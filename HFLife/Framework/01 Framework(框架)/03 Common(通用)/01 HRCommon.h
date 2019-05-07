@@ -24,7 +24,7 @@
 
 #import "MJRefresh.h"
 #import "MJExtension.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "WHKit.h"
 

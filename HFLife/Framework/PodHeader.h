@@ -16,7 +16,7 @@
 #import <Masonry.h>
 #import <MBProgressHUD.h>
 #import <MJRefresh.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 #import <SDAutoLayout.h>
 #import "SDCycleScrollView.h"
 #import <SDImageCache.h>
