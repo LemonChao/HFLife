@@ -29,7 +29,7 @@ target 'HFLife' do
     
     pod 'pop', '~> 1.0'
     
-    pod 'ReactiveCocoa', '2.3.1'
+    pod 'ReactiveObjC', '~> 3.1.0'
     
     pod 'FSCalendar', '~> 2.7.9'
     #########  YYKit ###############
