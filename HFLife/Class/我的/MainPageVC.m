@@ -18,7 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.customNavBar.title = @"我的";
+    self.navigationController.navigationBarHidden = YES;
 }
+
+
+
 
 /*
 #pragma mark - Navigation

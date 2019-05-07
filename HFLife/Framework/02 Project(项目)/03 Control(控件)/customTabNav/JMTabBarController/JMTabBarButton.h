@@ -35,5 +35,5 @@
 @property (nonatomic, strong) JMBadgeValue *badgeValue;
 /** type */
 @property (nonatomic, assign) JMConfigTypeLayout typeLayout;
-
+@property (nonatomic, strong) UITapGestureRecognizer *tap;
 @end

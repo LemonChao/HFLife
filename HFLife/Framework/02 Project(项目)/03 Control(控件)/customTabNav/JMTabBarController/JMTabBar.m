@@ -22,7 +22,7 @@
  */
 
 #import "JMTabBar.h"
-#import "JMTabBarButton.h"
+
 #import "UIView+JM.h"
 #import "CAAnimation+JMAnimation.h"
 #import "sxfTouchBtn.h"
@@ -86,6 +86,7 @@
             
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick:)];
             [tbBtn addGestureRecognizer:tap];
+            tbBtn.tap = tap;
             
             [self.saveTabBarArrM addObject:tbBtn];
             self.titleImageArrM = [NSMutableArray arrayWithArray:titleArr];

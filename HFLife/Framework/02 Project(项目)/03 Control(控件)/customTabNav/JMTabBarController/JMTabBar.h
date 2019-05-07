@@ -23,7 +23,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JMConfig.h"
-
+#import "JMTabBarButton.h"
 @class JMTabBar;
 @protocol JMTabBarDelegate <NSObject>
 

@@ -17,12 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //导航栏
-    UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    setBtn.frame = CGRectMake(0, 0, 10, 19);
-    [setBtn setBackgroundImage:[UIImage imageNamed:@"fanhui"] forState:UIControlStateNormal];
-    [setBtn addTarget:self action:@selector(popToBack) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:setBtn];
-    self.navigationItem.leftBarButtonItem = leftItem;
+//    UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    setBtn.frame = CGRectMake(0, 0, 10, 19);
+//    [setBtn setBackgroundImage:[UIImage imageNamed:@"fanhui"] forState:UIControlStateNormal];
+//    [setBtn addTarget:self action:@selector(popToBack) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:setBtn];
+//    self.navigationItem.leftBarButtonItem = leftItem;
     self.navigationBarHidden = YES;
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
     {

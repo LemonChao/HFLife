@@ -43,16 +43,46 @@
     self.searchImageV   = [UIImageView new];
     
     [self addSubview:self.searchBgView];
-    [self addSubview:self.searchImageV];
-    [self addSubview:self.seatchTitle];
+    [self.searchBgView addSubview:self.searchImageV];
+    [self.searchBgView addSubview:self.seatchTitle];
     
     self.seatchTitle.font = MyFont(13);
     self.seatchTitle.textColor = [UIColor colorWithHexString:@"#1D1B1B"];
     
+    self.searchImageV.image = [UIImage imageNamed:@"搜索"];
+    self.searchBgView.backgroundColor =  [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+    self.searchBgView.layer.cornerRadius = 4;
+    self.searchBgView.layer.masksToBounds = YES;
+    self.searchImageV.contentMode = UIViewContentModeScaleAspectFit;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSearchView)];
+    [self addGestureRecognizer:tap];
 }
-
+- (void) tapSearchView{
+    !self.searchBtnClick ? : self.searchBtnClick();
+}
 - (void)layoutSubviews{
     [super layoutSubviews];
+     
+    [self.searchBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self).offset(8);
+        make.bottom.mas_equalTo(self).offset(-8);
+        make.left.mas_equalTo(self).offset(12);
+        make.right.mas_equalTo(self).offset(-12);
+    }];
+     
+    [self.searchImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.searchBgView.mas_left).offset(12);
+        make.top.bottom.mas_equalTo(self.searchBgView);
+        make.width.mas_equalTo(13);
+    }];
+     
+     [self.seatchTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.left.mas_equalTo(self.searchImageV.mas_right).offset(9);
+         make.centerY.mas_equalTo(self.searchImageV.mas_centerY);
+     }];
+    
+    
 }
 
 @end

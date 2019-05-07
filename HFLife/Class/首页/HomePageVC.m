@@ -15,6 +15,8 @@
 #import "JFLocation.h"
 #import "JFAreaDataManager.h"
 
+#import "SXF_HF_CustomSearchBar.h"
+
 @interface HomePageVC ()<UITableViewDelegate, UITableViewDataSource ,JFLocationDelegate>
 @property (nonatomic, strong)JFLocation *locationManager;
 @property (nonatomic, strong)NSTimer *circleTimer;
@@ -58,21 +60,22 @@
     [self setupNavigationItem];
 //    [self VersionBounced];
     [self timingTask];
+ 
     
+    [self setUpUI];
+    [self loadServerData];
+}
+
+- (void)loadServerData{
     
-    HW3DBannerView *bnnerView = [HW3DBannerView initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200) imageSpacing:10 imageWidth:200];
-    
-    
-    
-    bnnerView.center = self.view.center;
-    
-    
-    
-    
-    
-    
-    
-    
+}
+
+- (void)setUpUI{
+    SXF_HF_CustomSearchBar *searchBar = [[SXF_HF_CustomSearchBar alloc] initWithFrame:CGRectMake(0, statusBarHeight, SCREEN_WIDTH, 44)];
+    [self.customNavBar addSubview:searchBar];
+    searchBar.searchBtnClick = ^{
+        [WXZTipView showTopWithText:@"搜索"];
+    };
 }
 - (void) click{
     BaseViewController *vc = [BaseViewController new];

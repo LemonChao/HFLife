@@ -79,7 +79,8 @@
 
 #pragma mark - ------------------- Font -------------------
 #define FONT(size) [UIFont systemFontOfSize:size]
-
+#define HF_xyRatio [UIScreen mainScreen].bounds.size.height / 568
+#define HF_Ratio [UIScreen mainScreen].bounds.size.width / 667
 
 #pragma mark - ------------------- G_C_D -------------------
 
