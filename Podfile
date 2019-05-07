@@ -7,7 +7,7 @@ target 'HFLife' do
     pod 'JAnalytics'
     pod 'Masonry'
     pod 'IQKeyboardManager'
-    pod 'SDWebImage'
+    pod 'SDWebImage', '~> 4.4.6'
     pod 'MJRefresh'
     pod 'SDAutoLayout', '~> 2.2.1'
     pod 'MBProgressHUD'
