@@ -4025,10 +4025,10 @@
 		658C3A2921EDD65500880B6A /* HW3DBannerView */ = {
 			isa = PBXGroup;
 			children = (
-				658C3A2A21EDD65500880B6A /* UIView+Banner.h */,
-				658C3A2B21EDD65500880B6A /* HW3DBannerView.m */,
-				658C3A2C21EDD65500880B6A /* UIView+Banner.m */,
 				658C3A2D21EDD65500880B6A /* HW3DBannerView.h */,
+				658C3A2B21EDD65500880B6A /* HW3DBannerView.m */,
+				658C3A2A21EDD65500880B6A /* UIView+Banner.h */,
+				658C3A2C21EDD65500880B6A /* UIView+Banner.m */,
 			);
 			path = HW3DBannerView;
 			sourceTree = "<group>";
