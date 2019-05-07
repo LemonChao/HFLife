@@ -56,7 +56,8 @@
     [mainVC.customNavBar wr_setLeftButtonWithNormal:image(@"") highlighted:image(@"")];
     [controllersArr addObject:mainNav];
     
-    
+    //5.设置导航栏隐藏
+    [[UINavigationBar appearance] setHidden:YES];
     //初始化配置信息
     JMConfig *config = [JMConfig config];
     
@@ -103,7 +104,10 @@
     currentView.navigationController.navigationBarHidden = YES;
     
     ShopPageVC *shopVC = [[ShopPageVC alloc] init];
-    [currentView.navigationController pushViewController:shopVC animated:YES];
+    [currentView presentViewController:shopVC animated:YES completion:^{
+        
+    }];
+//    [currentView.navigationController pushViewController:shopVC animated:YES];
     
     
     
