@@ -1,0 +1,589 @@
+
+
+//
+//  networkingManagerTool.m
+//  门口农场
+//
+//  Created by SXF on 16/9/8.
+//  Copyright © 2016年 Consequently there door. All rights reserved.
+//
+
+#import "networkingManagerTool.h"
+#import "setCookiesTool.h"
+#import "HRRequest.h"
+#import "HR_dataManagerTool.h"
+//#import "loginAppViewController.h"
+
+
+
+@interface networkingManagerTool()
+
+@end
+
+@implementation networkingManagerTool
++ (networkingManagerTool *)sharedFMDBManager
+{
+    static networkingManagerTool *plManager = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+        plManager = [[networkingManagerTool alloc]init];
+//    });
+    return plManager;
+}
+
+/*
+//发送请求  获得验证码图片数据
++(void)getAuthCodeWithBlock:(imageBlock)block
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:[NSString stringWithFormat:@"%@%@" , BASEURL , @"vcode.php"] parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        UIImage *image = [UIImage imageWithData:responseObject];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        }];
+        NSLog(@"验证码获取成功%@" , image);
+        //获取储存到本地 并设置
+        [[[setCookiesTool alloc] init] saveHttpCookie];
+        [[[setCookiesTool alloc] init] loadHttpCookie];
+        
+        block(image);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        //
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//            [MBProgressHUD showError:@"获取验证码失败"];
+        }];
+        NSLog(@"验证码获取失败%@",error);
+    }];
+}
+
+
+
+//获取图片
++(void)getfarmImageWithWithUrl:(NSString *)imageUrl Block:(imageBlock)block
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:[NSString stringWithFormat:@"%@%@" , BASEURL , imageUrl] parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        UIImage *image = [UIImage imageWithData:responseObject];
+//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//        }];
+        block(image);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil);
+    }];
+}
+*/
+
+
+//不显示进度
++ (void) requestToServerWithType:(NSString *)RequestType withSubUrl:(NSString *)subUrl withParameters:(NSDictionary *)parameters withResultBlock:(ValueBlock)valueBlock witnVC:(UIViewController *)VC{
+    [networkingManagerTool requestToServerWithType:RequestType withSubUrl:subUrl withParameters:parameters progress:nil withResultBlock:valueBlock witnVC:VC];
+}
+//显示进度
++ (void) requestToServerWithType:(NSString *)RequestType withSubUrl:(NSString *)subUrl withParameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress withResultBlock:(ValueBlock)valueBlock witnVC:(UIViewController *)VC
+{
+    HRRequest *requestManager = [HRRequest manager];
+    if ([RequestType isEqualToString:GET]) {
+        [requestManager GET:subUrl para:parameters progress:^(NSProgress *progressResult) {
+            progress(progressResult);
+        } success:^(id data) {
+            [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:data withresultBlock:valueBlock withvc:VC];
+        } faiulre:^(NSString *errMsg) {
+            
+        }];
+    }
+    else if ([RequestType isEqualToString:POST]) {
+        [requestManager POST:subUrl para:parameters progress:^(NSProgress *progressResult) {
+            if (progress) {
+                progress(progressResult);
+            }
+        } success:^(id data) {
+            [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:data withresultBlock:valueBlock withvc:VC];
+        } faiulre:^(NSString *errMsg) {
+            
+        }];
+    }
+    else if ([RequestType isEqualToString:PUT]) {
+        
+    }
+//    上传 数据流上传
+    else if ([RequestType isEqualToString:UPDATE]) {
+        [requestManager UpDate:subUrl para:parameters progress:^(NSProgress *progressResult) {
+            if (progress) {
+               progress(progressResult);
+            }
+        } success:^(id data) {
+            [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:data withresultBlock:valueBlock withvc:VC];
+        } faiulre:^(NSString *errMsg){
+            
+        }];
+    }
+    else if ([RequestType isEqualToString:DOWNLOAD]) {
+        [requestManager DownLoad:subUrl para:parameters progress:^(NSProgress *progressResult) {
+            if (progress) {
+                progress(progressResult);
+            }
+        } success:^(id data) {
+            
+        } faiulre:^(id errMsg) {
+            
+        }];
+    }
+    
+//   [manager.requestSerializer setValue:[NSString stringWithFormat:@"farm/ios %@" ,[userInfoDataModel shareduserInfoDataModel].versionNumStr] forHTTPHeaderField:@"User-Agent"];
+    //设置请求头
+//     [manager.requestSerializer setValue:[[networkingManagerTool sharedFMDBManager] networkingStatesFromStatebar] forHTTPHeaderField:@"NETTYPE"];
+//    NSString *gettoken = [[NSUserDefaults standardUserDefaults] valueForKey:Token];
+//    //token 设置到请求头上
+//    if (gettoken) {
+//        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@" , gettoken] forHTTPHeaderField:@"Authorization"];
+//    }
+    //请求地址
+//    NSString *HostUrl = [NSString stringWithFormat:@"%@%@", BASEURL, subUrl];
+    
+    //获取cookies值并保存到本地
+//    NSArray *cookiesArr = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:HostUrl]];
+//    NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject:cookiesArr];
+//    [[NSUserDefaults standardUserDefaults] setObject:cookiesData forKey:kUserDefaultsCookie];
+    
+    //将cookies值添加到数据请求中
+//    NSData *cookies = [[NSUserDefaults standardUserDefaults] valueForKey:kUserDefaultsCookie];
+//    if ([cookies length]) {
+//        NSArray *cookiesarr = [NSKeyedUnarchiver unarchiveObjectWithData:cookies];
+//        NSHTTPCookie *cookie;
+//        for (cookies in cookiesarr) {
+//            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+//        }
+//    }
+    
+    //添加请求参数
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:parameters];
+//    if (gettoken) {
+//        [dict setObject:gettoken forKey:@"token"];
+//    }
+//    NSLog(@"请求参数是：%@" , dict);
+    //数据请求
+    
+    
+    
+    /*
+    
+    if ([RequestType isEqualToString:@"GET"])
+    {
+        
+        
+        
+        
+        
+        [manager GET:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:responseObject withresultBlock:valueBlock withvc:VC];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            //失败
+            NSLog(@"userInfo=%@" , error.userInfo[@"com.alamofire.serialization.response.error.data"]);
+            [CustomPromptBox showTextHud:@"请求失败！"];
+            valueBlock(NO , nil);
+        }];
+    }
+    else if([RequestType isEqualToString:@"POST"])
+    {
+        [manager POST:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:responseObject withresultBlock:valueBlock withvc:VC];
+            [dataMenagerTool hideLoadHUD];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            //失败
+            NSLog(@"userInfo=%@" , error.userInfo[@"com.alamofire.serialization.response.error.data"]);
+            NSLog(@"%@" , error.userInfo);
+            [CustomPromptBox showTextHud:@"请求失败！"];
+            valueBlock(NO , nil);
+            NSLog(@"请求失败");
+        }];
+    }else{
+        //put
+        [manager PUT:urlStr parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:responseObject withresultBlock:valueBlock withvc:VC];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"userInfo=%@" , error.userInfo[@"com.alamofire.serialization.response.error.data"]);
+            NSLog(@"%@" , error.userInfo);
+            [CustomPromptBox showTextHud:@"请求失败！"];
+            valueBlock(NO , nil);
+            NSLog(@"请求失败");
+        }];
+    }
+     
+     */
+}
+
+
+
+
+//上传图片   base64上传
++ (void)upLoadImageWithBase64WithImage:(UIImage *)image withSubUrl:(NSString *)subUrl progress:(progressBlock)progress withResultBlock:(void (^)(BOOL, id))resultBlock witnVC:(UIViewController *)VC
+{
+    //根据url初始化request
+    
+    HRRequest *requestManager = [HRRequest manager];
+    NSData* data;
+    NSData *newData;
+    NSString *type;
+    if(image){
+        //判断图片是不是png格式的文件
+        if (UIImagePNGRepresentation(image)) {
+            //返回为png图像。
+            data = UIImagePNGRepresentation(image);
+            newData = data;
+            type = @".png";
+        }else {
+            //返回为JPEG图像。
+            data = UIImageJPEGRepresentation(image, 1.f);
+            //                CGFloat size = 2048.f;// kb
+            CGFloat size = 100.f;
+            CGFloat scale = size/(data.length/1024);
+            newData= UIImageJPEGRepresentation(image, scale);
+            type = @".jpeg";
+        }
+    }
+    NSString *encodedImageStr = [newData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    //Base64字符串转UIImage图片：
+    
+    NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:encodedImageStr options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(60, 100, 200, 400)];
+    [imgView setImage:decodedImage];
+    NSLog(@"decodedImage==%@",decodedImageData);
+    
+    NSString *gettoken = [[NSUserDefaults standardUserDefaults] valueForKey:@"Token"];
+    gettoken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjcsImlzcyI6Imh0dHA6Ly9qci5kdWR1YXBwLm5ldC9hcGkvc2lnbiIsImlhdCI6MTUyMDU4MDIwMCwiZXhwIjoxNTIzMTcyMjAwLCJuYmYiOjE1MjA1ODAyMDAsImp0aSI6IlJOeEJhZmdpendzOXd2SHYifQ.yEkQZ3pfM9--_MMBKD3ypFg8X5McuGsZJyCnSFSpbos";
+    if (gettoken) {
+//        [requestManager setHTTPHeaderFieldValue:[NSString stringWithFormat:@"Bearer %@" , gettoken] forKey:@"Authorization"];
+    }
+    
+    
+    NSDictionary *parameters = @{@"content" : encodedImageStr , @"token" :gettoken};
+    NSLog(@"请求参数是：%@" , parameters);
+    
+    
+    [requestManager POST:subUrl para:parameters progress:^(NSProgress *progressResult) {
+        progress(progressResult);
+    } success:^(id data) {
+        [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:data withresultBlock:resultBlock withvc:VC];
+    } faiulre:^(NSString *errMsg) {
+        
+    }];
+   
+}
+
+
+////上传 数据流上传
+//+ (void)upLoadStreamPara:(NSDictionary *)parameters  withSubUrl:(NSString *)subUrl progress:(progressBlock)progress withResultBlock:(void (^)(BOOL, id))resultBlock witnVC:(UIViewController *)VC{
+//
+//
+//    [networkingManagerTool requestToServerWithType:UPDATE withSubUrl:subUrl withParameters:parameters progress:progress withResultBlock:resultBlock witnVC:VC];
+//}
+
+
+
+
+
+
+
+
+- (void) getDataAnalysisWith:(id)responseObject withresultBlock:(ValueBlock)valueBlock
+{
+    //成功  返回就是json  不需要解析
+    NSDictionary *valueDic = [HR_dataManagerTool dataToypteDJson:responseObject];
+    NSLog(@"result = %@" , valueDic);
+    if ([[NSString stringWithFormat:@"%@" , valueDic[@"code"]] isEqualToString:@"1"])
+    {
+        //成功
+        NSLog(@"%@" ,valueDic[@"msg"]);
+        if ([valueDic[@"msg"] isEqualToString:@"请求成功"] || [valueDic[@"msg"] isEqualToString:@"二级密码有效"]) {
+        }
+        else
+        {
+//
+        }
+        if (!valueDic[@"msg"])
+        {
+//           
+        }
+        
+        valueBlock(YES , valueDic);
+    }
+    else if ([valueDic[@"code"] integerValue]  == 0)
+    {
+        NSLog(@"%@" ,valueDic[@"msg"]);
+        
+        if (!valueDic[@"msg"]) {
+//            [MBProgressHUD showError:@"获取失败"];
+        }
+        else
+        {
+//            [MBProgressHUD showError:valueDic[@"msg"]];
+        }
+        
+        valueBlock(NO , valueDic);
+    }
+    else
+    {
+        valueBlock(NO , valueDic);
+        //授权失败请重新登录
+        NSLog(@"%@" ,valueDic[@"msg"]);
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:valueDic[@"msg"] preferredStyle:(UIAlertControllerStyleAlert)];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+//            [self canclBtnClickwithVc:];
+        }]];
+        //再不是控制器的类里面模态出提示框的方法
+        UIWindow *window = nil;
+        id<UIApplicationDelegate> delegate = [[UIApplication sharedApplication] delegate];
+        if ([delegate respondsToSelector:@selector(window)]) {
+            window = [delegate performSelector:@selector(window)];
+        } else {
+            window = [[UIApplication sharedApplication] keyWindow];
+        }
+        [window.rootViewController presentViewController:alert animated:YES completion:nil];
+        NSLog(@"rootViewController = %@" , [window.rootViewController class]);
+    }
+    [[NSUserDefaults standardUserDefaults] setValue:valueDic[@"code"] forKey:@"code"];
+}
+
+- (void) getDataAnalysisWith:(id)responseObject withresultBlock:(ValueBlock)valueBlock withvc:(UIViewController *)vc
+{
+    //成功
+    NSDictionary *valueDic = [HR_dataManagerTool dataToypteDJson:responseObject];
+    if ([valueDic[@"success"] integerValue]  == 1)
+    {
+        //成功
+        valueBlock(YES , valueDic);
+    }
+    else
+    {
+        if (![valueDic[@"msg"] isEqualToString:@"Token 无效"]) {
+         
+        }
+        
+        valueBlock(NO , valueDic);
+
+    }
+//    [[NSUserDefaults standardUserDefaults] setValue:valueDic[@"code"] forKey:@"code"];
+}
+
+
+
+
+
+- (void) canclBtnClickwithVc:(UIViewController *)vc
+{
+    //失败切换根视图控制器
+//    [UIApplication sharedApplication].keyWindow.rootViewController = [[LoginViewController alloc] init];
+//    loginAppViewController *logInVC = [[loginAppViewController alloc] init];
+//    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:logInVC];
+//    [vc presentViewController:navi animated:YES completion:nil];
+}
+
+
+
+/*
+#pragma mark --  AFNetWorking post请求上传图片   -----
++ (void)postRequestWithURL: (NSString *)url  //
+                     image: (UIImage *)image  //  上传图片对象
+               picFileName: (NSString *)picFileName//随机生成的文件名
+                     block:(block)dic
+
+{
+    //根据url初始化request
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    //接收类型不一致请替换一致text/html或别的
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"image/jpeg",@"image/png", @"application/octet-stream", @"text/json",@"multipart/form-data",  nil];
+//    [manager.requestSerializer setValue:[NSString stringWithFormat:@"farm/ios %@" ,[userInfoDataModel shareduserInfoDataModel].versionNumStr] forHTTPHeaderField:@"User-Agent"];
+    [manager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSData* data;
+        NSData *newData;
+        NSString *type;
+        if(image){
+            //判断图片是不是png格式的文件
+            if (UIImagePNGRepresentation(image)) {
+                //返回为png图像。
+                data = UIImagePNGRepresentation(image);
+                newData = data;
+                type = @".png";
+            }else {
+                //返回为JPEG图像。
+                data = UIImageJPEGRepresentation(image, 1.f);
+//                CGFloat size = 2048.f;// kb
+                CGFloat size = 100.f;
+                CGFloat scale = size/(data.length/1024);
+                newData= UIImageJPEGRepresentation(image, scale);
+                type = @".jpeg";
+            }
+        }
+        
+        
+        
+        NSString *encodedImageStr = [newData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        
+        
+        
+        NSLog(@"encodedImageStr==%@",encodedImageStr);
+        
+        //Base64字符串转UIImage图片：
+        
+//        NSData *decodedImageData = [[NSData alloc]
+//
+//                                    initWithBase64EncodedString:encodedImageStr options:NSDataBase64DecodingIgnoreUnknownCharacters];
+//
+//        UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
+//
+//        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(60, 100, 200, 400)];
+//
+//        [imgView setImage:decodedImage];
+//
+//        [self.view addSubview:imgView];
+        
+//        NSLog(@"decodedImage==%@",decodedImageData);
+        
+        
+        
+        
+        
+        
+        
+        
+        [formData appendPartWithFileData:data
+                                    name:@"uploadedfile"
+                                    fileName:[NSString stringWithFormat:@"%@%@",picFileName,type]
+                                    mimeType:@"image/png"];
+        NSLog(@"%@" , [NSString stringWithFormat:@"%@%@",picFileName , type]);
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        NSLog(@"进度---%@" , uploadProgress);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([[NSString stringWithFormat:@"%@" , responseObject[@"code"]] isEqualToString:@"1" ]) {
+            NSLog(@"%@",responseObject[@"msg"]);
+            dic(responseObject);
+        }
+        else if ([[NSString stringWithFormat:@"%@" , responseObject[@"code"]] isEqualToString:@"0" ])
+        {
+//            [MBProgressHUD showError:responseObject[@"msg"]];
+        }
+        else
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:responseObject[@"msg"] preferredStyle:(UIAlertControllerStyleAlert)];
+            [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                [networkingManagerTool canclBtnClick];
+            }]];
+            //再不是控制器的类里面模态出提示框的方法
+            UIWindow *window = nil;
+            id<UIApplicationDelegate> delegate = [[UIApplication sharedApplication] delegate];
+            if ([delegate respondsToSelector:@selector(window)]) {
+                window = [delegate performSelector:@selector(window)];
+            } else {
+                window = [[UIApplication sharedApplication] keyWindow];
+            }
+            [window.rootViewController presentViewController:alert animated:YES completion:nil];
+
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@" , error.userInfo);
+        [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:error.userInfo[@"com.alamofire.serialization.response.error.data"] withresultBlock:^(BOOL result, id value) {
+            dic (value);
+        } withvc:nil];
+    
+        
+    }];
+}
+
+
+*/
+
+
+
++ (void) canclBtnClick
+{
+    //失败切换根视图控制器
+   
+    
+}
+
+
+- (void) getCookies
+{
+    
+}
+- (NSString *)networkingStatesFromStatebar {
+    // 状态栏是由当前app控制的，首先获取当前app
+    UIApplication *application = [UIApplication sharedApplication];
+    
+    NSArray *children;
+    if
+        ([[application valueForKeyPath:@"_statusBar"] isKindOfClass:NSClassFromString(@"UIStatusBar_Modern")]) {
+            
+            children = [[[[application valueForKeyPath:@"_statusBar"] valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
+            
+        } else
+        {
+            
+            children = [[[application valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
+            
+        }
+    
+    int type = 0;
+    for (id child in children) {
+        if ([child isKindOfClass:[NSClassFromString(@"UIStatusBarDataNetworkItemView") class]]) {
+            type = [[child valueForKeyPath:@"dataNetworkType"] intValue];
+        }
+    }
+    NSString *stateString = @"wifi";
+    
+    switch (type) {
+        case 0:
+            stateString = @"notReachable";
+            break;
+            
+        case 1:
+            stateString = @"2G";
+            break;
+            
+        case 2:
+            stateString = @"3G";
+            break;
+            
+        case 3:
+            stateString = @"4G";
+            break;
+            
+        case 4:
+            stateString = @"LTE";
+            break;
+            
+        case 5:
+            stateString = @"wifi";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return stateString;
+}
+
++ (void)cancleRequestData{
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    //终止所有下载任务
+//    [manager.operationQueue cancelAllOperations];
+    
+//    //获取当前下载任务
+//    NSOperation *operation = manager.operationQueue.operations.lastObject;
+//    [operation cancel];
+//
+//    NSURLSessionDataTask *dataTask;
+//    [dataTask cancel];
+}
+//取消所有网络请求
+
+
+
+
+
+@end
