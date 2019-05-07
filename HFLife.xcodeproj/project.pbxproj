@@ -236,6 +236,12 @@
 		04F54B3422811DC8009AAEF3 /* subModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B3322811DC8009AAEF3 /* subModels.m */; };
 		04F54B4322813B23009AAEF3 /* WRNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B3D22813B23009AAEF3 /* WRNavigationBar.m */; };
 		04F54B4422813B23009AAEF3 /* WRCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4022813B23009AAEF3 /* WRCustomNavigationBar.m */; };
+		04F54B4722815194009AAEF3 /* SXF_HF_HomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4622815194009AAEF3 /* SXF_HF_HomePageView.m */; };
+		04F54B4A22815808009AAEF3 /* SXF_HF_CustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4922815808009AAEF3 /* SXF_HF_CustomCollectionView.m */; };
+		04F54B4D22815B80009AAEF3 /* SXF_HF_CustomLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4C22815B80009AAEF3 /* SXF_HF_CustomLayout.m */; };
+		04F54B50228160DB009AAEF3 /* SXF_HF_CustomPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4F228160DB009AAEF3 /* SXF_HF_CustomPageControl.m */; };
+		04F54B5422816189009AAEF3 /* SXF_HF_CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5322816189009AAEF3 /* SXF_HF_CustomSearchBar.m */; };
+		04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */; };
 		6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 65229493225AE063001DF691 /* SELUpdateAlert.m */; };
 		6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */; };
 		6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */; };
@@ -978,6 +984,18 @@
 		04F54B3E22813B23009AAEF3 /* WRCustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCustomNavigationBar.h; sourceTree = "<group>"; };
 		04F54B3F22813B23009AAEF3 /* WRNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRNavigationBar.h; sourceTree = "<group>"; };
 		04F54B4022813B23009AAEF3 /* WRCustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCustomNavigationBar.m; sourceTree = "<group>"; };
+		04F54B4522815194009AAEF3 /* SXF_HF_HomePageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HomePageView.h; sourceTree = "<group>"; };
+		04F54B4622815194009AAEF3 /* SXF_HF_HomePageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HomePageView.m; sourceTree = "<group>"; };
+		04F54B4822815808009AAEF3 /* SXF_HF_CustomCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_CustomCollectionView.h; sourceTree = "<group>"; };
+		04F54B4922815808009AAEF3 /* SXF_HF_CustomCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CustomCollectionView.m; sourceTree = "<group>"; };
+		04F54B4B22815B80009AAEF3 /* SXF_HF_CustomLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_CustomLayout.h; sourceTree = "<group>"; };
+		04F54B4C22815B80009AAEF3 /* SXF_HF_CustomLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CustomLayout.m; sourceTree = "<group>"; };
+		04F54B4E228160DB009AAEF3 /* SXF_HF_CustomPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_CustomPageControl.h; sourceTree = "<group>"; };
+		04F54B4F228160DB009AAEF3 /* SXF_HF_CustomPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CustomPageControl.m; sourceTree = "<group>"; };
+		04F54B5222816189009AAEF3 /* SXF_HF_CustomSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_CustomSearchBar.h; sourceTree = "<group>"; };
+		04F54B5322816189009AAEF3 /* SXF_HF_CustomSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CustomSearchBar.m; sourceTree = "<group>"; };
+		04F54B5522816268009AAEF3 /* SXF_HF_HomePageTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HomePageTableHeader.h; sourceTree = "<group>"; };
+		04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HomePageTableHeader.m; sourceTree = "<group>"; };
 		65229492225AE063001DF691 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		65229493225AE063001DF691 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VersionUpdate_Icon@3x.png"; sourceTree = "<group>"; };
@@ -2948,9 +2966,12 @@
 		04B9D4F122803CF00084FA23 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				04F54B51228160E8009AAEF3 /* customView */,
 				04B9D4F222803CF00084FA23 /* homeNavBG.png */,
 				04B9D4F322803CF00084FA23 /* HomePageVC.h */,
 				04B9D4F422803CF00084FA23 /* HomePageVC.m */,
+				04F54B4522815194009AAEF3 /* SXF_HF_HomePageView.h */,
+				04F54B4622815194009AAEF3 /* SXF_HF_HomePageView.m */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -3288,6 +3309,23 @@
 				04F54B4022813B23009AAEF3 /* WRCustomNavigationBar.m */,
 			);
 			path = WRNavigationBar;
+			sourceTree = "<group>";
+		};
+		04F54B51228160E8009AAEF3 /* customView */ = {
+			isa = PBXGroup;
+			children = (
+				04F54B4822815808009AAEF3 /* SXF_HF_CustomCollectionView.h */,
+				04F54B4922815808009AAEF3 /* SXF_HF_CustomCollectionView.m */,
+				04F54B4B22815B80009AAEF3 /* SXF_HF_CustomLayout.h */,
+				04F54B4C22815B80009AAEF3 /* SXF_HF_CustomLayout.m */,
+				04F54B4E228160DB009AAEF3 /* SXF_HF_CustomPageControl.h */,
+				04F54B4F228160DB009AAEF3 /* SXF_HF_CustomPageControl.m */,
+				04F54B5222816189009AAEF3 /* SXF_HF_CustomSearchBar.h */,
+				04F54B5322816189009AAEF3 /* SXF_HF_CustomSearchBar.m */,
+				04F54B5522816268009AAEF3 /* SXF_HF_HomePageTableHeader.h */,
+				04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */,
+			);
+			path = customView;
 			sourceTree = "<group>";
 		};
 		568527D544756CE228B06AEA /* Pods */ = {
@@ -4642,6 +4680,7 @@
 				04A508CD227EDD3A0013E8EC /* UILabel+FitSize.m in Sources */,
 				65B5DFE8221E83FE00A65044 /* DateChoose.m in Sources */,
 				658B7CA721D749E100801CC8 /* AnimationTransitionBegin.m in Sources */,
+				04F54B4722815194009AAEF3 /* SXF_HF_HomePageView.m in Sources */,
 				658C3AE721F31A5000880B6A /* MKShowDynamic.m in Sources */,
 				658B7CBE21D749E100801CC8 /* MsgPlaySound.m in Sources */,
 				6C2F5152222A663D0022EE03 /* HXDatePhotoViewFlowLayout.m in Sources */,
@@ -4701,6 +4740,7 @@
 				04A50898227EDD3A0013E8EC /* UIBarButtonItem+WHBarButtonItem.m in Sources */,
 				04A5089A227EDD3A0013E8EC /* NSDate+WHDate.m in Sources */,
 				658C39E421E9FA5B00880B6A /* JXCategoryNumberView.m in Sources */,
+				04F54B5422816189009AAEF3 /* SXF_HF_CustomSearchBar.m in Sources */,
 				04B9D57F22803E260084FA23 /* HPTabBar.m in Sources */,
 				04A508B2227EDD3A0013E8EC /* setCookiesTool.m in Sources */,
 				04A5087D227EDD3A0013E8EC /* myTagBtnView.m in Sources */,
@@ -4716,6 +4756,7 @@
 				04B9D54D22803CF20084FA23 /* SelectCheckDateViewController.m in Sources */,
 				658B7C7D21D749E100801CC8 /* LYEmptyView.m in Sources */,
 				659EA0B4220537EC004471CD /* SpeechSynthesizer.m in Sources */,
+				04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */,
 				6C2F514E222A663D0022EE03 /* UIView+HXExtension.m in Sources */,
 				65DC6812221124AD00F1085E /* HXShareScrollView.m in Sources */,
 				04A50845227EDD390013E8EC /* DMDropDownMenu.m in Sources */,
@@ -4775,6 +4816,7 @@
 				658B7C9A21D749E100801CC8 /* VCTransitionDelegate.m in Sources */,
 				04A508E5227EDD3A0013E8EC /* HRMessage.m in Sources */,
 				658C39DB21E9FA5B00880B6A /* JXCategoryTitleImageView.m in Sources */,
+				04F54B4A22815808009AAEF3 /* SXF_HF_CustomCollectionView.m in Sources */,
 				658C3AEB21F3234C00880B6A /* UIView+LLXAlertPop.m in Sources */,
 				658C39E021E9FA5B00880B6A /* JXCategoryTitleView.m in Sources */,
 				04B9D54322803CF20084FA23 /* STMURLCache.m in Sources */,
@@ -4790,6 +4832,7 @@
 				658B7CC121D749E100801CC8 /* TXScrollLabelView.m in Sources */,
 				04B9D54622803CF20084FA23 /* LoginVC.m in Sources */,
 				658B7CBB21D749E100801CC8 /* ZAlertViewManager.m in Sources */,
+				04F54B4D22815B80009AAEF3 /* SXF_HF_CustomLayout.m in Sources */,
 				04F54B3422811DC8009AAEF3 /* subModels.m in Sources */,
 				658C39DF21E9FA5B00880B6A /* JXCategoryTitleCell.m in Sources */,
 				04A508A9227EDD3A0013E8EC /* networkingManagerTool.m in Sources */,
@@ -5033,6 +5076,7 @@
 				04A50856227EDD3A0013E8EC /* ZFCollectionViewController.m in Sources */,
 				6C2F5143222A663D0022EE03 /* HXPhotoConfiguration.m in Sources */,
 				0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */,
+				04F54B50228160DB009AAEF3 /* SXF_HF_CustomPageControl.m in Sources */,
 				04A50852227EDD3A0013E8EC /* ZFPlayerControlView.m in Sources */,
 				659EA04722015F94004471CD /* WBRoundHUD.m in Sources */,
 				658B7CA521D749E100801CC8 /* UIView+HHLayout.m in Sources */,

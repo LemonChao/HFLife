@@ -60,14 +60,17 @@
     [self timingTask];
     
     
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
-    btn.backgroundColor = [UIColor redColor];
+    HW3DBannerView *bnnerView = [HW3DBannerView initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200) imageSpacing:10 imageWidth:200];
     
-    btn.center =  self.view.center;
     
-    [self.view addSubview:btn];
     
-    [btn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+    bnnerView.center = self.view.center;
+    
+    
+    
+    
+    
+    
     
     
 }

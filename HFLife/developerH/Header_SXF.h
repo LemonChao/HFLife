@@ -9,5 +9,6 @@
 #ifndef Header_SXF_h
 #define Header_SXF_h
 
+#import "HW3DBannerView.h"
 
 #endif /* Header_SXF_h */
