@@ -13,3 +13,13 @@
 @property (nonatomic, strong)baseTableView *tableView;
 继承baseTableView  集成了刷新控件 page+-；
 
+#适应屏幕 缩放比例
+ScreenScale(<#x#>)
+
+
+
+#必须真机调试的代码 放到  这里（加上宏定义）
+#if TARGET_IPHONE_SIMULATOR// 模拟器
+#elif TARGET_OS_IPHONE// 真机
+#endif
+

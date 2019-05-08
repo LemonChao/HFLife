@@ -224,7 +224,6 @@
     self.bottomBarBgView.layer.shadowOpacity = 1.0;
     self.bottomBarBgView.layer.shadowOffset = CGSizeMake(0, 4);
     self.bottomBarBgView.layer.cornerRadius = 5;
-    self.bottomBarBgView.layer.masksToBounds = YES;
     self.bottomBarBgView.clipsToBounds = YES;
     self.bottomBarBgView.masksToBounds = NO;
     

@@ -47,4 +47,26 @@
     
 }
 
+
+- (void)addShadowForViewColor:(UIColor *)color offSet:(CGSize)offset shadowRadius:(CGFloat)shadowRadius cornerRadius:(CGFloat)cornerRadius  opacity:(CGFloat) opacity{
+//    self.layer.shadowColor = color.CGColor;
+//    self.layer.shadowRadius = shadowRadius;
+//    self.layer.shadowOpacity = 1.0;
+//    self.layer.shadowOffset = offset;
+//    self.layer.cornerRadius = cornerRadius;
+//    self.layer.masksToBounds = NO;
+//    self.clipsToBounds = YES;
+//    
+    
+    
+    self.layer.shadowColor = color.CGColor;;
+    self.layer.shadowRadius = shadowRadius;
+    self.layer.shadowOpacity = opacity;
+    self.layer.shadowOffset = offset;
+    self.layer.cornerRadius = cornerRadius;
+    self.clipsToBounds = YES;
+    self.masksToBounds = NO;
+    
+    
+}
 @end

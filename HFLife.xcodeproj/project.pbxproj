@@ -41,6 +41,10 @@
 		0453D188228266D300880C2A /* LWDPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D172228266D200880C2A /* LWDPageControl.m */; };
 		0453D189228266D300880C2A /* customCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D175228266D200880C2A /* customCycleView.m */; };
 		0453D18A228266D300880C2A /* CollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D176228266D200880C2A /* CollectionReusableView.m */; };
+		0453D1922282764E00880C2A /* myCenterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D18D2282764D00880C2A /* myCenterCollectionViewCell.m */; };
+		0453D1932282764E00880C2A /* myCenterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D18E2282764D00880C2A /* myCenterCollectionView.m */; };
+		0453D1982282774C00880C2A /* SXF_HF_ItemsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1972282774C00880C2A /* SXF_HF_ItemsViewCell.m */; };
+		0453D19C2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D19B2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m */; };
 		04A50836227EDD390013E8EC /* VierticalScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065A227EDD350013E8EC /* VierticalScrollView.m */; };
 		04A50837227EDD390013E8EC /* UIView+FrameExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065D227EDD350013E8EC /* UIView+FrameExtension.m */; };
 		04A50838227EDD390013E8EC /* segementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A50661227EDD350013E8EC /* segementView.m */; };
@@ -610,6 +614,14 @@
 		0453D175228266D200880C2A /* customCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customCycleView.m; sourceTree = "<group>"; };
 		0453D176228266D200880C2A /* CollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionReusableView.m; sourceTree = "<group>"; };
 		0453D177228266D200880C2A /* cycleScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cycleScrollCell.h; sourceTree = "<group>"; };
+		0453D18D2282764D00880C2A /* myCenterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myCenterCollectionViewCell.m; sourceTree = "<group>"; };
+		0453D18E2282764D00880C2A /* myCenterCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myCenterCollectionView.m; sourceTree = "<group>"; };
+		0453D18F2282764D00880C2A /* myCenterCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myCenterCollectionView.h; sourceTree = "<group>"; };
+		0453D1912282764E00880C2A /* myCenterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myCenterCollectionViewCell.h; sourceTree = "<group>"; };
+		0453D1962282774C00880C2A /* SXF_HF_ItemsViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_ItemsViewCell.h; sourceTree = "<group>"; };
+		0453D1972282774C00880C2A /* SXF_HF_ItemsViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_ItemsViewCell.m; sourceTree = "<group>"; };
+		0453D19A2282918400880C2A /* ZHB_HP_PreventWeChatPopout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHB_HP_PreventWeChatPopout.h; sourceTree = "<group>"; };
+		0453D19B2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHB_HP_PreventWeChatPopout.m; sourceTree = "<group>"; };
 		04A50655227EDD2D0013E8EC /* PodHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodHeader.h; sourceTree = "<group>"; };
 		04A50656227EDD310013E8EC /* FrameworkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameworkHeader.h; sourceTree = "<group>"; };
 		04A5065A227EDD350013E8EC /* VierticalScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VierticalScrollView.m; sourceTree = "<group>"; };
@@ -1700,15 +1712,14 @@
 		0453D15C228266D200880C2A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0453D177228266D200880C2A /* cycleScrollCell.h */,
-				0453D15F228266D200880C2A /* cycleScrollCell.m */,
+				0453D1952282765A00880C2A /* scrollViewCell */,
+				0453D18C2282763800880C2A /* itemsBtnView */,
 				0453D160228266D200880C2A /* CollectionReusableView.h */,
 				0453D176228266D200880C2A /* CollectionReusableView.m */,
 				0453D15D228266D200880C2A /* CollectionViewCell.h */,
 				0453D161228266D200880C2A /* CollectionViewCell.m */,
 				0453D15E228266D200880C2A /* privilageCollectionViewCell.h */,
 				0453D162228266D200880C2A /* privilageCollectionViewCell.m */,
-				0453D163228266D200880C2A /* 自定义轮播 */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1736,6 +1747,38 @@
 				0453D175228266D200880C2A /* customCycleView.m */,
 			);
 			path = "自定义轮播";
+			sourceTree = "<group>";
+		};
+		0453D18C2282763800880C2A /* itemsBtnView */ = {
+			isa = PBXGroup;
+			children = (
+				0453D18F2282764D00880C2A /* myCenterCollectionView.h */,
+				0453D18E2282764D00880C2A /* myCenterCollectionView.m */,
+				0453D1912282764E00880C2A /* myCenterCollectionViewCell.h */,
+				0453D18D2282764D00880C2A /* myCenterCollectionViewCell.m */,
+				0453D1962282774C00880C2A /* SXF_HF_ItemsViewCell.h */,
+				0453D1972282774C00880C2A /* SXF_HF_ItemsViewCell.m */,
+			);
+			path = itemsBtnView;
+			sourceTree = "<group>";
+		};
+		0453D1952282765A00880C2A /* scrollViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0453D177228266D200880C2A /* cycleScrollCell.h */,
+				0453D15F228266D200880C2A /* cycleScrollCell.m */,
+				0453D163228266D200880C2A /* 自定义轮播 */,
+			);
+			path = scrollViewCell;
+			sourceTree = "<group>";
+		};
+		0453D1992282918400880C2A /* 防微信弹框 */ = {
+			isa = PBXGroup;
+			children = (
+				0453D19A2282918400880C2A /* ZHB_HP_PreventWeChatPopout.h */,
+				0453D19B2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m */,
+			);
+			path = "防微信弹框";
 			sourceTree = "<group>";
 		};
 		04A50654227EDCF90013E8EC /* Framework */ = {
@@ -2962,6 +3005,7 @@
 		04B9D35E227FC10C0084FA23 /* 项目使用 */ = {
 			isa = PBXGroup;
 			children = (
+				0453D1992282918400880C2A /* 防微信弹框 */,
 				659EA0B7220537F9004471CD /* 地图 */,
 				04B9D364227FD3D50084FA23 /* 支付 */,
 				0428EB5022797379000E4B4E /* 打电话 */,
@@ -5014,6 +5058,7 @@
 				658C3AE121F31A5000880B6A /* MKShowMultipleButtonView.m in Sources */,
 				04A50853227EDD3A0013E8EC /* ZFPlayerView.m in Sources */,
 				04A5086C227EDD3A0013E8EC /* sxf_NetworkAnomalies.m in Sources */,
+				0453D1932282764E00880C2A /* myCenterCollectionView.m in Sources */,
 				658B7CC121D749E100801CC8 /* TXScrollLabelView.m in Sources */,
 				04B9D54622803CF20084FA23 /* LoginVC.m in Sources */,
 				658B7CBB21D749E100801CC8 /* ZAlertViewManager.m in Sources */,
@@ -5052,6 +5097,7 @@
 				0453D17C228266D200880C2A /* cycleScrollCell.m in Sources */,
 				658902F0223B775F009C1B03 /* PYSearchSuggestionViewController.m in Sources */,
 				658C39D421E9FA5B00880B6A /* JXCategoryIndicatorBackgroundView.m in Sources */,
+				0453D19C2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m in Sources */,
 				04A50895227EDD3A0013E8EC /* WHMethods.m in Sources */,
 				04A508AB227EDD3A0013E8EC /* LYDataCache.m in Sources */,
 				04B9D54222803CF20084FA23 /* STMURLCacheModel.m in Sources */,
@@ -5199,6 +5245,7 @@
 				04B9D4F022803C6B0084FA23 /* sxfTouchBtn.m in Sources */,
 				658C39DD21E9FA5B00880B6A /* JXCategoryTitleImageCellModel.m in Sources */,
 				6C2F5146222A663D0022EE03 /* HXDatePhotoPreviewBottomView.m in Sources */,
+				0453D1922282764E00880C2A /* myCenterCollectionViewCell.m in Sources */,
 				04A50899227EDD3A0013E8EC /* UIImage+WHImage.m in Sources */,
 				658B7C5D21D749E100801CC8 /* ChooseLocationView.m in Sources */,
 				04F54B4322813B23009AAEF3 /* WRNavigationBar.m in Sources */,
@@ -5269,6 +5316,7 @@
 				04A5086E227EDD3A0013E8EC /* CustomPromptBox.m in Sources */,
 				04A50856227EDD3A0013E8EC /* ZFCollectionViewController.m in Sources */,
 				6C2F5143222A663D0022EE03 /* HXPhotoConfiguration.m in Sources */,
+				0453D1982282774C00880C2A /* SXF_HF_ItemsViewCell.m in Sources */,
 				0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */,
 				04F54B50228160DB009AAEF3 /* SXF_HF_CustomPageControl.m in Sources */,
 				04A50852227EDD3A0013E8EC /* ZFPlayerControlView.m in Sources */,

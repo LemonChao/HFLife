@@ -8,6 +8,19 @@
 
 #import "CollectionViewCell.h"
 
+@interface CollectionViewCell ()
+
+@property (nonatomic, strong) UIView *bgView;
+@property (nonatomic ,strong) UIImageView *imageV;
+@property (nonatomic ,strong) UILabel *titleLb;
+@property (nonatomic, strong) UILabel *subTitle;
+@property (nonatomic ,strong) UILabel *time1;
+@property (nonatomic, strong) UILabel *time2;
+@property (nonatomic ,strong) UIImageView *incoderImageV;
+
+@end
+
+
 @implementation CollectionViewCell
 
 - (void)awakeFromNib {
@@ -22,15 +35,87 @@
     return self;
 }
 - (void) addChildrenViews{
-    self.backgroundColor = [UIColor colorWithRed:arc4random_uniform(256)/255.0
-                                           green:arc4random_uniform(256)/255.0
-                                            blue:arc4random_uniform(256)/255.0
-                                           alpha:1.0];
+    self.backgroundColor = [UIColor whiteColor];
     
     _textLabel = [[UILabel alloc] init];
     [self.contentView addSubview:_textLabel];
     _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [_textLabel.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
     [_textLabel.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
+    
+    
+    
+    self.bgView = [UIView new];
+    self.imageV = [UIImageView new];
+    self.titleLb = [UILabel new];
+    self.subTitle = [UILabel new];
+    self.incoderImageV = [UIImageView new];
+    self.time1 = [UILabel new];
+    self.time2 = [UILabel new];
+    
+    [self.contentView addSubview:self.bgView];
+    [self.bgView addSubview:self.imageV];
+    [self.bgView addSubview:self.titleLb];
+    [self.bgView addSubview:self.subTitle];
+    [self.bgView addSubview:self.incoderImageV];
+    [self.bgView addSubview:self.time1];
+    [self.bgView addSubview:self.time2];
+    
+    self.incoderImageV.image = [UIImage imageNamed:@"更多"];
+    self.imageV.image = [UIImage imageNamed:@"homeLoge"];
+    self.titleLb.font = FONT(12);
+    self.titleLb.textColor = HEX_COLOR(0x131313);
+    self.subTitle.font = FONT(12);
+    self.subTitle.textColor = HEX_COLOR(0x131313);
+    self.time1.font = FONT(12);
+    self.time1.textColor = HEX_COLOR(0x868686);
+    self.time2.font = FONT(12);
+    self.time2.textColor = HEX_COLOR(0x868686);
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCell)];
+    [self.bgView addGestureRecognizer:tap];
+    
+    
+    self.titleLb.text = @"生活缴费：电费缴费成功";
+    self.subTitle.text = @"转账：你的好友梧桐给你转账了";
+    self.time1.text = @"36分钟前";
+    self.time2.text = @"25分钟前";
+    
 }
+
+- (void) clickCell{
+    NSLog(@"点击cell");
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
+        make.right.mas_equalTo(self.contentView.mas_right).offset(-ScreenScale(12));
+        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(5));
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-ScreenScale(5));
+    }];
+    
+    [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.bgView.mas_left).offset(ScreenScale(10));
+        make.centerY.mas_equalTo(self.bgView.mas_centerY);
+        make.width.height.mas_equalTo(ScreenScale(36));
+    }];
+    
+    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.imageV.mas_top); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
+        make.height.mas_equalTo(12);
+    }];
+    
+    
+    [self layoutIfNeeded];
+    
+    self.bgView.layer.cornerRadius = 5;
+    [self.bgView addShadowForViewColor:HEX_COLOR(0x808080) offSet:CGSizeMake(0,4) shadowRadius:9 cornerRadius:5 opacity:0.5];
+    
+}
+
+
 @end

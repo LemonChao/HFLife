@@ -12,10 +12,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor colorWithRed:arc4random_uniform(256)/255.0
-                                               green:arc4random_uniform(256)/255.0
-                                                blue:arc4random_uniform(256)/255.0
-                                               alpha:1.0];
+        self.backgroundColor = [UIColor whiteColor];
         _textLabel = [[UILabel alloc] init];
         [self addSubview:_textLabel];
         _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -23,6 +20,9 @@
         [_textLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor].active = YES;
         [_textLabel.widthAnchor constraintEqualToAnchor:self.widthAnchor].active = YES;
         [_textLabel.heightAnchor constraintEqualToAnchor:self.heightAnchor].active = YES;
+        _textLabel.font = [UIFont systemFontOfSize:18 weight:1.5];
+        _textLabel.textColor = HEX_COLOR(0x131313);
+       
     }
     return self;
 }
