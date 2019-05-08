@@ -109,6 +109,11 @@
     NSLog(@"列表数据------%@" , dataArr);
     for (NSMutableDictionary *subDic in dataArr)
     {
+        if (![subDic isKindOfClass:[NSDictionary class]]) {
+            //防止不是字典
+            NSLog(@"");
+            continue;
+        }
         for (NSString *key in subDic.allKeys) {
             //取到值 如果是<NULL>那么就赋值为空
             //保证字典为可变的

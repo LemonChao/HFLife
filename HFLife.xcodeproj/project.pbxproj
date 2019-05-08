@@ -21,6 +21,23 @@
 		0453D1502281935E00880C2A /* customItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14C2281935E00880C2A /* customItemView.m */; };
 		0453D1512281935E00880C2A /* myTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14F2281935E00880C2A /* myTopView.m */; };
 		0453D1542281A54900880C2A /* DigitalRollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1532281A54800880C2A /* DigitalRollingView.m */; };
+		0453D17A228266D200880C2A /* collectionFlowLyoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D158228266D100880C2A /* collectionFlowLyoutView.m */; };
+		0453D17B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D15A228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m */; };
+		0453D17C228266D200880C2A /* cycleScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D15F228266D200880C2A /* cycleScrollCell.m */; };
+		0453D17D228266D200880C2A /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D161228266D200880C2A /* CollectionViewCell.m */; };
+		0453D17E228266D200880C2A /* privilageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D162228266D200880C2A /* privilageCollectionViewCell.m */; };
+		0453D17F228266D200880C2A /* CWCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D165228266D200880C2A /* CWCarousel.m */; };
+		0453D180228266D200880C2A /* CWPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D167228266D200880C2A /* CWPageControl.m */; };
+		0453D181228266D200880C2A /* 01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0453D168228266D200880C2A /* 01.jpg */; };
+		0453D182228266D200880C2A /* 03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0453D169228266D200880C2A /* 03.jpg */; };
+		0453D183228266D200880C2A /* CWFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D16A228266D200880C2A /* CWFlowLayout.m */; };
+		0453D184228266D200880C2A /* 02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0453D16C228266D200880C2A /* 02.jpg */; };
+		0453D185228266D200880C2A /* 05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0453D16D228266D200880C2A /* 05.jpg */; };
+		0453D186228266D200880C2A /* 04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0453D16F228266D200880C2A /* 04.jpg */; };
+		0453D187228266D300880C2A /* Mask Copy 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0453D171228266D200880C2A /* Mask Copy 2.png */; };
+		0453D188228266D300880C2A /* LWDPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D172228266D200880C2A /* LWDPageControl.m */; };
+		0453D189228266D300880C2A /* customCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D175228266D200880C2A /* customCycleView.m */; };
+		0453D18A228266D300880C2A /* CollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D176228266D200880C2A /* CollectionReusableView.m */; };
 		04A50836227EDD390013E8EC /* VierticalScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065A227EDD350013E8EC /* VierticalScrollView.m */; };
 		04A50837227EDD390013E8EC /* UIView+FrameExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065D227EDD350013E8EC /* UIView+FrameExtension.m */; };
 		04A50838227EDD390013E8EC /* segementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A50661227EDD350013E8EC /* segementView.m */; };
@@ -554,6 +571,36 @@
 		0453D14F2281935E00880C2A /* myTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myTopView.m; sourceTree = "<group>"; };
 		0453D1522281A54800880C2A /* DigitalRollingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigitalRollingView.h; sourceTree = "<group>"; };
 		0453D1532281A54800880C2A /* DigitalRollingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigitalRollingView.m; sourceTree = "<group>"; };
+		0453D157228266D100880C2A /* collectionFlowLyoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collectionFlowLyoutView.h; sourceTree = "<group>"; };
+		0453D158228266D100880C2A /* collectionFlowLyoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionFlowLyoutView.m; sourceTree = "<group>"; };
+		0453D15A228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPCollectionViewWaterfallFlowLayout.m; sourceTree = "<group>"; };
+		0453D15B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPCollectionViewWaterfallFlowLayout.h; sourceTree = "<group>"; };
+		0453D15D228266D200880C2A /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		0453D15E228266D200880C2A /* privilageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = privilageCollectionViewCell.h; sourceTree = "<group>"; };
+		0453D15F228266D200880C2A /* cycleScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cycleScrollCell.m; sourceTree = "<group>"; };
+		0453D160228266D200880C2A /* CollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionReusableView.h; sourceTree = "<group>"; };
+		0453D161228266D200880C2A /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		0453D162228266D200880C2A /* privilageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = privilageCollectionViewCell.m; sourceTree = "<group>"; };
+		0453D164228266D200880C2A /* LWDPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWDPageControl.h; sourceTree = "<group>"; };
+		0453D165228266D200880C2A /* CWCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWCarousel.m; sourceTree = "<group>"; };
+		0453D166228266D200880C2A /* CWCarouselHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWCarouselHeader.h; sourceTree = "<group>"; };
+		0453D167228266D200880C2A /* CWPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWPageControl.m; sourceTree = "<group>"; };
+		0453D168228266D200880C2A /* 01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01.jpg; sourceTree = "<group>"; };
+		0453D169228266D200880C2A /* 03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 03.jpg; sourceTree = "<group>"; };
+		0453D16A228266D200880C2A /* CWFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWFlowLayout.m; sourceTree = "<group>"; };
+		0453D16B228266D200880C2A /* CWCarouselProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWCarouselProtocol.h; sourceTree = "<group>"; };
+		0453D16C228266D200880C2A /* 02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02.jpg; sourceTree = "<group>"; };
+		0453D16D228266D200880C2A /* 05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 05.jpg; sourceTree = "<group>"; };
+		0453D16E228266D200880C2A /* customCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customCycleView.h; sourceTree = "<group>"; };
+		0453D16F228266D200880C2A /* 04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 04.jpg; sourceTree = "<group>"; };
+		0453D170228266D200880C2A /* CWCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWCarousel.h; sourceTree = "<group>"; };
+		0453D171228266D200880C2A /* Mask Copy 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mask Copy 2.png"; sourceTree = "<group>"; };
+		0453D172228266D200880C2A /* LWDPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWDPageControl.m; sourceTree = "<group>"; };
+		0453D173228266D200880C2A /* CWPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWPageControl.h; sourceTree = "<group>"; };
+		0453D174228266D200880C2A /* CWFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWFlowLayout.h; sourceTree = "<group>"; };
+		0453D175228266D200880C2A /* customCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customCycleView.m; sourceTree = "<group>"; };
+		0453D176228266D200880C2A /* CollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionReusableView.m; sourceTree = "<group>"; };
+		0453D177228266D200880C2A /* cycleScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cycleScrollCell.h; sourceTree = "<group>"; };
 		04A50655227EDD2D0013E8EC /* PodHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodHeader.h; sourceTree = "<group>"; };
 		04A50656227EDD310013E8EC /* FrameworkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameworkHeader.h; sourceTree = "<group>"; };
 		04A5065A227EDD350013E8EC /* VierticalScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VierticalScrollView.m; sourceTree = "<group>"; };
@@ -1583,6 +1630,75 @@
 				0428EB5222797379000E4B4E /* callTelephone.h */,
 			);
 			path = "打电话";
+			sourceTree = "<group>";
+		};
+		0453D155228266A800880C2A /* 瀑布流 */ = {
+			isa = PBXGroup;
+			children = (
+				0453D156228266D100880C2A /* 瀑布流布局 */,
+				0453D15C228266D200880C2A /* View */,
+				0453D159228266D200880C2A /* WaterfallLayout */,
+			);
+			path = "瀑布流";
+			sourceTree = "<group>";
+		};
+		0453D156228266D100880C2A /* 瀑布流布局 */ = {
+			isa = PBXGroup;
+			children = (
+				0453D157228266D100880C2A /* collectionFlowLyoutView.h */,
+				0453D158228266D100880C2A /* collectionFlowLyoutView.m */,
+			);
+			path = "瀑布流布局";
+			sourceTree = "<group>";
+		};
+		0453D159228266D200880C2A /* WaterfallLayout */ = {
+			isa = PBXGroup;
+			children = (
+				0453D15A228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m */,
+				0453D15B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.h */,
+			);
+			path = WaterfallLayout;
+			sourceTree = "<group>";
+		};
+		0453D15C228266D200880C2A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0453D177228266D200880C2A /* cycleScrollCell.h */,
+				0453D15F228266D200880C2A /* cycleScrollCell.m */,
+				0453D160228266D200880C2A /* CollectionReusableView.h */,
+				0453D176228266D200880C2A /* CollectionReusableView.m */,
+				0453D15D228266D200880C2A /* CollectionViewCell.h */,
+				0453D161228266D200880C2A /* CollectionViewCell.m */,
+				0453D15E228266D200880C2A /* privilageCollectionViewCell.h */,
+				0453D162228266D200880C2A /* privilageCollectionViewCell.m */,
+				0453D163228266D200880C2A /* 自定义轮播 */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0453D163228266D200880C2A /* 自定义轮播 */ = {
+			isa = PBXGroup;
+			children = (
+				0453D164228266D200880C2A /* LWDPageControl.h */,
+				0453D165228266D200880C2A /* CWCarousel.m */,
+				0453D166228266D200880C2A /* CWCarouselHeader.h */,
+				0453D167228266D200880C2A /* CWPageControl.m */,
+				0453D168228266D200880C2A /* 01.jpg */,
+				0453D169228266D200880C2A /* 03.jpg */,
+				0453D16A228266D200880C2A /* CWFlowLayout.m */,
+				0453D16B228266D200880C2A /* CWCarouselProtocol.h */,
+				0453D16C228266D200880C2A /* 02.jpg */,
+				0453D16D228266D200880C2A /* 05.jpg */,
+				0453D16E228266D200880C2A /* customCycleView.h */,
+				0453D16F228266D200880C2A /* 04.jpg */,
+				0453D170228266D200880C2A /* CWCarousel.h */,
+				0453D171228266D200880C2A /* Mask Copy 2.png */,
+				0453D172228266D200880C2A /* LWDPageControl.m */,
+				0453D173228266D200880C2A /* CWPageControl.h */,
+				0453D174228266D200880C2A /* CWFlowLayout.h */,
+				0453D175228266D200880C2A /* customCycleView.m */,
+			);
+			path = "自定义轮播";
 			sourceTree = "<group>";
 		};
 		04A50654227EDCF90013E8EC /* Framework */ = {
@@ -2975,6 +3091,7 @@
 		04B9D4F122803CF00084FA23 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				0453D155228266A800880C2A /* 瀑布流 */,
 				04F54B51228160E8009AAEF3 /* customView */,
 				04B9D4F222803CF00084FA23 /* homeNavBG.png */,
 				04B9D4F322803CF00084FA23 /* HomePageVC.h */,
@@ -4540,8 +4657,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0453D182228266D200880C2A /* 03.jpg in Resources */,
 				04A50861227EDD3A0013E8EC /* image1x1.jpg in Resources */,
 				04A50850227EDD3A0013E8EC /* ZFPlayer.bundle in Resources */,
+				0453D186228266D200880C2A /* 04.jpg in Resources */,
 				659EA0B6220537EC004471CD /* 首牛.png in Resources */,
 				658B79F321D71D1800801CC8 /* LaunchScreen.storyboard in Resources */,
 				04A5085E227EDD3A0013E8EC /* ZFPlayerCell.xib in Resources */,
@@ -4570,15 +4689,18 @@
 				04A50858227EDD3A0013E8EC /* ZFCollectionViewCell.xib in Resources */,
 				04A50844227EDD390013E8EC /* line@2x.png in Resources */,
 				04A508AE227EDD3A0013E8EC /* weiboImage.png in Resources */,
+				0453D184228266D200880C2A /* 02.jpg in Resources */,
 				658B7CBF21D749E100801CC8 /* message.png in Resources */,
 				04A5087F227EDD3A0013E8EC /* 关闭1.png in Resources */,
 				65DC683D22112C4300F1085E /* 定位@2x.png in Resources */,
 				658B7C6121D749E100801CC8 /* Cities.json in Resources */,
 				04A50843227EDD390013E8EC /* down@2x.png in Resources */,
+				0453D181228266D200880C2A /* 01.jpg in Resources */,
 				65DC68272211253200F1085E /* shareView_wx.png in Resources */,
 				04A50860227EDD3A0013E8EC /* image100x100.jpg in Resources */,
 				04B9D54722803CF20084FA23 /* iconPhotoSelectorCamera.png in Resources */,
 				65DC683E22112C4300F1085E /* 定位@3x.png in Resources */,
+				0453D187228266D300880C2A /* Mask Copy 2.png in Resources */,
 				04B9D3C9227FE5A90084FA23 /* PosPay_Resource.bundle in Resources */,
 				65DC682E2211253200F1085E /* shareView_wx@3x.png in Resources */,
 				04B9D54822803CF20084FA23 /* iconPhotoSelectorCamera@2x.png in Resources */,
@@ -4589,6 +4711,7 @@
 				658B7C5E21D749E100801CC8 /* AddressTableViewCell.xib in Resources */,
 				65DC683C22112C4300F1085E /* 定位.png in Resources */,
 				65DC68232211253200F1085E /* shareView_wx@2x.png in Resources */,
+				0453D185228266D200880C2A /* 05.jpg in Resources */,
 				04B9D54E22803CF20084FA23 /* DayCell.xib in Resources */,
 				04A50863227EDD3A0013E8EC /* myTableViewCell.xib in Resources */,
 				65DC682B2211253200F1085E /* shareView_qzone.png in Resources */,
@@ -4686,6 +4809,7 @@
 				04A5083A227EDD390013E8EC /* ZXSegmentController.m in Sources */,
 				658B7C6321D749E100801CC8 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				04B9D57D22803E260084FA23 /* BaseModel.m in Sources */,
+				0453D183228266D200880C2A /* CWFlowLayout.m in Sources */,
 				04A50869227EDD3A0013E8EC /* JQToastWindow.m in Sources */,
 				6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */,
 				658B7C4121D749E100801CC8 /* UIButton+SSEdgeInsets.m in Sources */,
@@ -4700,6 +4824,7 @@
 				658B7CBE21D749E100801CC8 /* MsgPlaySound.m in Sources */,
 				6C2F5152222A663D0022EE03 /* HXDatePhotoViewFlowLayout.m in Sources */,
 				04A508DD227EDD3A0013E8EC /* HRFirstEnter.m in Sources */,
+				0453D189228266D300880C2A /* customCycleView.m in Sources */,
 				65DC68782217C5A900F1085E /* RSAEncryptor.m in Sources */,
 				6C2F5150222A663D0022EE03 /* HXPhotoTools.m in Sources */,
 				04A50878227EDD3A0013E8EC /* UIViewController+Chameleon.m in Sources */,
@@ -4756,6 +4881,7 @@
 				04A50898227EDD3A0013E8EC /* UIBarButtonItem+WHBarButtonItem.m in Sources */,
 				04A5089A227EDD3A0013E8EC /* NSDate+WHDate.m in Sources */,
 				658C39E421E9FA5B00880B6A /* JXCategoryNumberView.m in Sources */,
+				0453D188228266D300880C2A /* LWDPageControl.m in Sources */,
 				04F54B5422816189009AAEF3 /* SXF_HF_CustomSearchBar.m in Sources */,
 				04B9D57F22803E260084FA23 /* HPTabBar.m in Sources */,
 				04A508B2227EDD3A0013E8EC /* setCookiesTool.m in Sources */,
@@ -4783,6 +4909,7 @@
 				658B7C9D21D749E100801CC8 /* AnimationTildEnd.m in Sources */,
 				04A5085F227EDD3A0013E8EC /* myTableViewCell.m in Sources */,
 				6C2F5149222A663D0022EE03 /* UIImageView+HXExtension.m in Sources */,
+				0453D17A228266D200880C2A /* collectionFlowLyoutView.m in Sources */,
 				04A5089B227EDD3A0013E8EC /* NSArray+WHArray.m in Sources */,
 				658C3B0C21F57FBC00880B6A /* CityModel.m in Sources */,
 				6579784921E6D6B600E606BE /* JFCityCollectionFlowLayout.m in Sources */,
@@ -4823,6 +4950,7 @@
 				04A508E0227EDD3A0013E8EC /* HRBaseRequest+NetStautsMoniter.m in Sources */,
 				04A508A7227EDD3A0013E8EC /* HRRequest.m in Sources */,
 				04A5084D227EDD3A0013E8EC /* UIImageView+ZFCache.m in Sources */,
+				0453D17E228266D200880C2A /* privilageCollectionViewCell.m in Sources */,
 				04A5089C227EDD3A0013E8EC /* NSObject+WHRuntime.m in Sources */,
 				658B7C4421D749E100801CC8 /* JSONKit.m in Sources */,
 				658B7C4D21D749E100801CC8 /* UIButton+Extension.m in Sources */,
@@ -4881,6 +5009,7 @@
 				65DC6881221A3FA100F1085E /* AppDelegate+JPush.m in Sources */,
 				04A508E8227EDD3A0013E8EC /* HRBaseNavigationController.m in Sources */,
 				658C39EB21E9FA5B00880B6A /* JXCategoryIndicatorParamsModel.m in Sources */,
+				0453D17C228266D200880C2A /* cycleScrollCell.m in Sources */,
 				658902F0223B775F009C1B03 /* PYSearchSuggestionViewController.m in Sources */,
 				658C39D421E9FA5B00880B6A /* JXCategoryIndicatorBackgroundView.m in Sources */,
 				04A50895227EDD3A0013E8EC /* WHMethods.m in Sources */,
@@ -4888,6 +5017,7 @@
 				04B9D54222803CF20084FA23 /* STMURLCacheModel.m in Sources */,
 				04A5089E227EDD3A0013E8EC /* UINavigationController+WHNavigationController.m in Sources */,
 				6C2F5144222A663D0022EE03 /* HXDownloadProgressView.m in Sources */,
+				0453D18A228266D300880C2A /* CollectionReusableView.m in Sources */,
 				658B7C5A21D749E100801CC8 /* CommonTools.m in Sources */,
 				658B7C5421D749E100801CC8 /* UITextView+ZWPlaceHolder.m in Sources */,
 				04A5088D227EDD3A0013E8EC /* UIDevice+WHDevice.m in Sources */,
@@ -5017,7 +5147,9 @@
 				65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */,
 				658902EE223B775F009C1B03 /* UIColor+PYSearchExtension.m in Sources */,
 				6579784521E6D6B600E606BE /* JFCityHeaderView.m in Sources */,
+				0453D17B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m in Sources */,
 				04A50881227EDD3A0013E8EC /* customTableViewCell.m in Sources */,
+				0453D17F228266D200880C2A /* CWCarousel.m in Sources */,
 				6C2F514D222A663D0022EE03 /* HXAlbumListViewController.m in Sources */,
 				6C2F5161222A663D0022EE03 /* HXCustomPreviewView.m in Sources */,
 				658B7CC621D749E100801CC8 /* SFHFKeychainUtils.m in Sources */,
@@ -5048,6 +5180,7 @@
 				04A5086F227EDD3A0013E8EC /* UIColor+ChameleonPrivate.m in Sources */,
 				04B9D58022803E260084FA23 /* baseTableView.m in Sources */,
 				658B7C4B21D749E100801CC8 /* NSArray+JSON.m in Sources */,
+				0453D180228266D200880C2A /* CWPageControl.m in Sources */,
 				658B7C7821D749E100801CC8 /* LXAlertView.m in Sources */,
 				04A508D1227EDD3A0013E8EC /* NSString+PinYin.m in Sources */,
 				04A508E3227EDD3A0013E8EC /* HRJSON.m in Sources */,
@@ -5070,6 +5203,7 @@
 				658C39ED21E9FA5B00880B6A /* JXCategoryBaseView.m in Sources */,
 				04A508D3227EDD3A0013E8EC /* NSString+MD5.m in Sources */,
 				6C2F5147222A663D0022EE03 /* NSBundle+HXPhotoPicker.m in Sources */,
+				0453D17D228266D200880C2A /* CollectionViewCell.m in Sources */,
 				658C3AE521F31A5000880B6A /* MKShow.m in Sources */,
 				658B7C9421D749E100801CC8 /* YBRectConst.m in Sources */,
 				04B9D4E922803C6B0084FA23 /* JMConfig.m in Sources */,

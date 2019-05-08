@@ -16,13 +16,14 @@
 #import "JFAreaDataManager.h"
 
 #import "SXF_HF_CustomSearchBar.h"
-#import "SXF_HF_HomePageView.h"
+//#import "SXF_HF_HomePageView.h"
+#import "collectionFlowLyoutView.h"
 @interface HomePageVC ()<UITableViewDelegate, UITableViewDataSource ,JFLocationDelegate>
 @property (nonatomic, strong)JFLocation *locationManager;
 @property (nonatomic, strong)NSTimer *circleTimer;
 
 
-@property (nonatomic, strong)SXF_HF_HomePageView *homeTableView;
+//@property (nonatomic, strong)SXF_HF_HomePageView *homeTableView;
 @end
 
 @implementation HomePageVC
@@ -78,8 +79,12 @@
         [WXZTipView showTopWithText:@"搜索"];
     };
     
-    self.homeTableView = [[SXF_HF_HomePageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
-    [self.view addSubview:self.homeTableView];
+//    self.homeTableView = [[SXF_HF_HomePageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
+//    [self.view addSubview:self.homeTableView];
+    
+    
+    collectionFlowLyoutView *collectionView = [[collectionFlowLyoutView alloc] initWithFrame:CGRectMake(0, NaviBarHeight + statusBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NaviBarHeight - TableBarHeight - statusBarHeight)];
+    [self.view addSubview:collectionView];
     
     
 }
