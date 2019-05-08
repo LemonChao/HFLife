@@ -36,7 +36,9 @@
     [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView);
         make.centerX.mas_equalTo(self.contentView.mas_centerX);
-        make.width.height.mas_equalTo(WidthRatio(100));
+//        make.width.height.mas_equalTo(WidthRatio(100));
+        make.width.mas_equalTo(55);
+        make.height.mas_equalTo(45);
     }];
     MMViewBorderRadius(self.imgView, WidthRatio(15), 0, [UIColor clearColor]);
     self.imgView.center = self.contentView.center;

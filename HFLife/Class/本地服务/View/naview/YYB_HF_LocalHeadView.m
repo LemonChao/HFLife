@@ -7,7 +7,9 @@
 //
 
 #import "YYB_HF_LocalHeadView.h"
-
+#import "CityChooseVC.h"
+@interface YYB_HF_LocalHeadView()<CityChooseVCDelegate>
+@end
 @implementation YYB_HF_LocalHeadView
 
 /*
@@ -36,8 +38,9 @@
     [self addSubview:self.localLabel];
     [self addSubview:self.selectBtn];
     
-    self.headImageV.backgroundColor = [UIColor redColor];
-    
+//    self.headImageV.backgroundColor = [UIColor redColor];
+    self.headImageV.image = MMGetImage(@"icon_touxiang");
+    [self.selectBtn setImage:MMGetImage(@"icon_jiantou") forState:UIControlStateNormal];
     
     [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self).mas_offset(HeightStatus + 7);
@@ -52,7 +55,7 @@
         make.height.mas_equalTo(14);
     }];
     
-    self.selectBtn.backgroundColor = [UIColor redColor];
+//    self.selectBtn.backgroundColor = [UIColor redColor];
     [self.selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.headImageV);
         make.left.mas_equalTo(self.localLabel.mas_right).mas_offset(0);
@@ -73,7 +76,8 @@
     }];
     
     UIImageView *searchIcon = [UIImageView new];
-    searchIcon.backgroundColor = [UIColor redColor];
+//    searchIcon.backgroundColor = [UIColor redColor];
+    searchIcon.image = MMGetImage(@"choose_NO");
     [searchBgView addSubview:searchIcon];
     [searchIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.headImageV);
@@ -82,11 +86,32 @@
     }];
     [searchBgView addSubview:self.searchlabel];
     self.searchlabel.text = @"海底捞";
-    self.searchlabel.textColor = [UIColor blackColor];
+    self.searchlabel.textColor = HEX_COLOR(0xAAAAAA);
     [self.searchlabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.headImageV);
         make.left.mas_equalTo(searchIcon.mas_right).mas_offset(10);
         make.height.mas_equalTo(13);
     }];
+    
+    self.localLabel.userInteractionEnabled = YES;
+    [self.localLabel wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
+        NSLog(@"");
+        CityChooseVC *cityChoose = [[CityChooseVC alloc]init];
+        cityChoose.delegate = self;
+        BaseNavigationController *navigationController = [[BaseNavigationController alloc] initWithRootViewController:cityChoose];
+        [self.viewController presentViewController:navigationController animated:YES completion:nil];
+//        [self.viewController.navigationController pushViewController:navigationController animated:YES];
+    }];
+    
+    [self.selectBtn wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
+        NSLog(@"");
+    }];
+    
+    
+    
+}
+#pragma mark - cityDeleage
+- (void)cityChooseName:(NSString *)name {
+   
 }
 @end
