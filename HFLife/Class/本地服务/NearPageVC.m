@@ -9,6 +9,9 @@
 #import "NearPageVC.h"
 #import "YYB_HF_LocalHeadView.h"
 #import "NearColumnCell.h"
+#import "YYB_HF_guessLikeTableViewCell.h"
+#import "NearColumnCell.h"
+
 @interface NearPageVC ()<UITableViewDelegate, UITableViewDataSource>
 /** 容器TableView*/
 @property (nonatomic,strong)UITableView *containerTableView;
@@ -20,8 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.customNavBar.title = @"本地服务";
-    
     
     YYB_HF_LocalHeadView *headView = [[YYB_HF_LocalHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,NavBarHeight)];
     [self.view addSubview:headView];
@@ -32,6 +33,14 @@
     [self.containerTableView setFrame:CGRectMake(0, NavBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NavBarHeight)];
     //    self.locationManager.delegate = self;
 //    [self.view insertSubview:self.customNavBar aboveSubview:self.containerTableView];
+    
+    self.containerTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self.containerTableView.mj_header endRefreshing];
+    }];
+    
+    self.containerTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self.containerTableView.mj_footer endRefreshing];
+    }];
     
 }
 
@@ -63,10 +72,13 @@
 #pragma mark - table delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 1) {
+        return 2;
+    }
     return 1;
 }
 
@@ -74,9 +86,15 @@
     if (indexPath.row == 0 && indexPath.section == 0) {
         CGFloat height = [tableView cellHeightForIndexPath:indexPath model:MMNSStringFormat(@"%d",1) keyPath:@"dataModel" cellClass:[NearColumnCell class] contentViewWidth:[self cellContentViewWith]];
         NSLog(@"height = %f",height);
-        return height;
+        return height - 40;
     }
-    return 200;
+    
+    
+    
+    if ((indexPath.row == 0 && indexPath.section == 1)) {
+        return 173;
+    }
+    return 110;
 
 }
 
@@ -90,10 +108,37 @@
 ////        }
 //        return HeightRatio(63);
 //    }
+    
+    if (section == 1) {
+        return 30;
+    }
     return 0.01;
     
     
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    
+    if (section == 1) {
+        UILabel *titleLabel = [UILabel new];
+        UIView *view = [UIView new];
+        [view addSubview:titleLabel];
+        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(view).mas_offset(12);
+            make.centerY.mas_equalTo(view);
+            make.height.mas_equalTo(17);
+        }];
+        titleLabel.text = @"猜你喜欢";
+        titleLabel.font = FONT(17);
+        titleLabel.textColor = HEX_COLOR(0X131313);
+        return view;
+    }
+    return [UIView new];
+    
+}
+
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
@@ -118,6 +163,38 @@
 //            arc = 0;
 //        };
 //        cell.dataModel = [NSString stringWithFormat:@"%d", arc];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }else if(indexPath.row == 0 && indexPath.section == 1){
+        YYB_HF_guessLikeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YYB_HF_guessLikeTableViewCell"];
+        if (!cell) {
+            cell = [[YYB_HF_guessLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YYB_HF_guessLikeTableViewCell"];
+        }
+        //        cell.delegate = self.delegateManage;
+        //        if (self.nearPageDict[@"banner"].count != 0) {
+        //            arc = 1;
+        //            cell.bannerListModel = self.nearPageDict[@"banner"];
+        //
+        //        }else{
+        //            arc = 0;
+        //        };
+        //        cell.dataModel = [NSString stringWithFormat:@"%d", arc];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }else {
+        YYB_HF_guessLikeTableViewCellRightPic *cell = [tableView dequeueReusableCellWithIdentifier:@"YYB_HF_guessLikeTableViewCellRightPic"];
+        if (!cell) {
+            cell = [[YYB_HF_guessLikeTableViewCellRightPic alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YYB_HF_guessLikeTableViewCellRightPic"];
+        }
+        //        cell.delegate = self.delegateManage;
+        //        if (self.nearPageDict[@"banner"].count != 0) {
+        //            arc = 1;
+        //            cell.bannerListModel = self.nearPageDict[@"banner"];
+        //
+        //        }else{
+        //            arc = 0;
+        //        };
+        //        cell.dataModel = [NSString stringWithFormat:@"%d", arc];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }

@@ -20,6 +20,8 @@
 		040A17B62282700F00997B93 /* YYB_HF_LocalHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */; };
 		040A17BC2282701E00997B93 /* NearColumnCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17B92282701D00997B93 /* NearColumnCollectionViewCell.m */; };
 		040A17BD2282701E00997B93 /* NearColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17BA2282701D00997B93 /* NearColumnCell.m */; };
+		040A17C22282857200997B93 /* YYB_HF_guessLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17C02282857200997B93 /* YYB_HF_guessLikeTableViewCell.m */; };
+		040A17DA2282CDBB00997B93 /* YYB_HF_EntryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17D92282CDBB00997B93 /* YYB_HF_EntryVC.m */; };
 		0428EB5322797379000E4B4E /* callTelephone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428EB5122797379000E4B4E /* callTelephone.m */; };
 		0453D1502281935E00880C2A /* customItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14C2281935E00880C2A /* customItemView.m */; };
 		0453D1512281935E00880C2A /* myTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14F2281935E00880C2A /* myTopView.m */; };
@@ -582,6 +584,10 @@
 		040A17B92282701D00997B93 /* NearColumnCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearColumnCollectionViewCell.m; sourceTree = "<group>"; };
 		040A17BA2282701D00997B93 /* NearColumnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearColumnCell.m; sourceTree = "<group>"; };
 		040A17BB2282701D00997B93 /* NearColumnCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearColumnCollectionViewCell.h; sourceTree = "<group>"; };
+		040A17BF2282857200997B93 /* YYB_HF_guessLikeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_guessLikeTableViewCell.h; sourceTree = "<group>"; };
+		040A17C02282857200997B93 /* YYB_HF_guessLikeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_guessLikeTableViewCell.m; sourceTree = "<group>"; };
+		040A17D82282CDBB00997B93 /* YYB_HF_EntryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_EntryVC.h; sourceTree = "<group>"; };
+		040A17D92282CDBB00997B93 /* YYB_HF_EntryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_EntryVC.m; sourceTree = "<group>"; };
 		0428EB5122797379000E4B4E /* callTelephone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callTelephone.m; sourceTree = "<group>"; };
 		0428EB5222797379000E4B4E /* callTelephone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callTelephone.h; sourceTree = "<group>"; };
 		0453D14C2281935E00880C2A /* customItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customItemView.m; sourceTree = "<group>"; };
@@ -1688,6 +1694,24 @@
 				040A17BB2282701D00997B93 /* NearColumnCollectionViewCell.h */,
 			);
 			path = "分类Cell";
+			sourceTree = "<group>";
+		};
+		040A17BE228284EF00997B93 /* 猜你喜欢 */ = {
+			isa = PBXGroup;
+			children = (
+				040A17BF2282857200997B93 /* YYB_HF_guessLikeTableViewCell.h */,
+				040A17C02282857200997B93 /* YYB_HF_guessLikeTableViewCell.m */,
+			);
+			path = "猜你喜欢";
+			sourceTree = "<group>";
+		};
+		040A17D72282CD5B00997B93 /* 商家入驻 */ = {
+			isa = PBXGroup;
+			children = (
+				040A17D82282CDBB00997B93 /* YYB_HF_EntryVC.h */,
+				040A17D92282CDBB00997B93 /* YYB_HF_EntryVC.m */,
+			);
+			path = "商家入驻";
 			sourceTree = "<group>";
 		};
 		0428EB5022797379000E4B4E /* 打电话 */ = {
@@ -3356,12 +3380,12 @@
 			children = (
 				040A17B22282700F00997B93 /* View */,
 				04B9D51B22803CF10084FA23 /* NearHomeVC.h */,
+				04B9D53622803CF10084FA23 /* NearHomeVC.m */,
+				04B9D53722803CF10084FA23 /* NearPageVC.h */,
 				04B9D51C22803CF10084FA23 /* NearPageVC.m */,
 				04B9D51D22803CF10084FA23 /* Cell */,
 				04B9D52222803CF10084FA23 /* VC */,
 				04B9D53122803CF10084FA23 /* 城市选择 */,
-				04B9D53622803CF10084FA23 /* NearHomeVC.m */,
-				04B9D53722803CF10084FA23 /* NearPageVC.h */,
 			);
 			path = "本地服务";
 			sourceTree = "<group>";
@@ -3369,6 +3393,7 @@
 		04B9D51D22803CF10084FA23 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				040A17BE228284EF00997B93 /* 猜你喜欢 */,
 				040A17B72282701D00997B93 /* 分类Cell */,
 				04B9D51E22803CF10084FA23 /* YYStarView */,
 			);
@@ -3388,6 +3413,7 @@
 		04B9D52222803CF10084FA23 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				040A17D72282CD5B00997B93 /* 商家入驻 */,
 				04B9D52322803CF10084FA23 /* 酒店 */,
 			);
 			path = VC;
@@ -5042,6 +5068,7 @@
 				658B7C9D21D749E100801CC8 /* AnimationTildEnd.m in Sources */,
 				04A5085F227EDD3A0013E8EC /* myTableViewCell.m in Sources */,
 				6C2F5149222A663D0022EE03 /* UIImageView+HXExtension.m in Sources */,
+				040A17DA2282CDBB00997B93 /* YYB_HF_EntryVC.m in Sources */,
 				0453D17A228266D200880C2A /* collectionFlowLyoutView.m in Sources */,
 				04A5089B227EDD3A0013E8EC /* NSArray+WHArray.m in Sources */,
 				658C3B0C21F57FBC00880B6A /* CityModel.m in Sources */,
@@ -5135,6 +5162,7 @@
 				04A50891227EDD3A0013E8EC /* NSObject+WHObject.m in Sources */,
 				659EA0BA220538D5004471CD /* MapViewController.m in Sources */,
 				04A508D7227EDD3A0013E8EC /* NSArray+Category.m in Sources */,
+				040A17C22282857200997B93 /* YYB_HF_guessLikeTableViewCell.m in Sources */,
 				6C3D4ACA222680570007AF9A /* CALayer+XibBorderColor.m in Sources */,
 				658B7CA621D749E100801CC8 /* AnimationErectEnd.m in Sources */,
 				658C3AE321F31A5000880B6A /* MKShowSubMultipleImportView.m in Sources */,
