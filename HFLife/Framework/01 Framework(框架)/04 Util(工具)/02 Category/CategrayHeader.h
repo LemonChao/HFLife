@@ -15,4 +15,5 @@
 #import "UITextField+Placeholder.h"
 #import "UILabel+ChainTypeLabel.h"
 #import "UILabel+FitSize.h"
+#import "UIView+Shadow.h"
 #endif /* CategrayHeader_h */

@@ -45,6 +45,10 @@
     
     [self addSubview:self.tableView];
     self.tableView.tableHeaderView = self.tableHeader;
+    
+    
+    self.tableView.mj_header = nil;
+    self.tableView.mj_footer = nil;
 }
 
 - (void)layoutSubviews{
@@ -67,16 +71,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-    
-    
-    
+
     return cell;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 200;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 40;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     UIView *sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
@@ -87,7 +95,7 @@
     [sectionHeader addSubview:titleLb];
     [titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(sectionHeader.mas_left).offset(12);
-        make.top.bottom.mas_equalTo(sectionHeader);
+        make.height.mas_equalTo(40);
     }];
     
     return sectionHeader;
@@ -111,7 +119,7 @@
 }
 - (SXF_HF_HomePageTableHeader *)tableHeader{
     if (!_tableHeader) {
-        _tableHeader = [[SXF_HF_HomePageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 290 * HF_Ratio)];
+        _tableHeader = [[SXF_HF_HomePageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(290))];
     }
     return _tableHeader;
 }

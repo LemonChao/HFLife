@@ -11,5 +11,5 @@
 @interface UIView (Shadow)
 -(void)addShadow;
 - (void)addShadowColor:(UIColor *)color;
--(void)addShadowColor:(UIColor *)color offset:(CGSize)offsert;
+-(void)addShadowColor:(UIColor *)color offset:(CGSize)offset shadowRadius:(CGFloat)radius;
 @end

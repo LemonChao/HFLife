@@ -18,6 +18,9 @@
 		0406ED2B22755438000784D0 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
 		0428EB5322797379000E4B4E /* callTelephone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428EB5122797379000E4B4E /* callTelephone.m */; };
+		0453D1502281935E00880C2A /* customItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14C2281935E00880C2A /* customItemView.m */; };
+		0453D1512281935E00880C2A /* myTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14F2281935E00880C2A /* myTopView.m */; };
+		0453D1542281A54900880C2A /* DigitalRollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1532281A54800880C2A /* DigitalRollingView.m */; };
 		04A50836227EDD390013E8EC /* VierticalScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065A227EDD350013E8EC /* VierticalScrollView.m */; };
 		04A50837227EDD390013E8EC /* UIView+FrameExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065D227EDD350013E8EC /* UIView+FrameExtension.m */; };
 		04A50838227EDD390013E8EC /* segementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A50661227EDD350013E8EC /* segementView.m */; };
@@ -545,6 +548,12 @@
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
 		0428EB5122797379000E4B4E /* callTelephone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callTelephone.m; sourceTree = "<group>"; };
 		0428EB5222797379000E4B4E /* callTelephone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callTelephone.h; sourceTree = "<group>"; };
+		0453D14C2281935E00880C2A /* customItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customItemView.m; sourceTree = "<group>"; };
+		0453D14D2281935E00880C2A /* myTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTopView.h; sourceTree = "<group>"; };
+		0453D14E2281935E00880C2A /* customItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customItemView.h; sourceTree = "<group>"; };
+		0453D14F2281935E00880C2A /* myTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myTopView.m; sourceTree = "<group>"; };
+		0453D1522281A54800880C2A /* DigitalRollingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigitalRollingView.h; sourceTree = "<group>"; };
+		0453D1532281A54800880C2A /* DigitalRollingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigitalRollingView.m; sourceTree = "<group>"; };
 		04A50655227EDD2D0013E8EC /* PodHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodHeader.h; sourceTree = "<group>"; };
 		04A50656227EDD310013E8EC /* FrameworkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameworkHeader.h; sourceTree = "<group>"; };
 		04A5065A227EDD350013E8EC /* VierticalScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VierticalScrollView.m; sourceTree = "<group>"; };
@@ -3314,6 +3323,12 @@
 		04F54B51228160E8009AAEF3 /* customView */ = {
 			isa = PBXGroup;
 			children = (
+				0453D1522281A54800880C2A /* DigitalRollingView.h */,
+				0453D1532281A54800880C2A /* DigitalRollingView.m */,
+				0453D14E2281935E00880C2A /* customItemView.h */,
+				0453D14C2281935E00880C2A /* customItemView.m */,
+				0453D14D2281935E00880C2A /* myTopView.h */,
+				0453D14F2281935E00880C2A /* myTopView.m */,
 				04F54B4822815808009AAEF3 /* SXF_HF_CustomCollectionView.h */,
 				04F54B4922815808009AAEF3 /* SXF_HF_CustomCollectionView.m */,
 				04F54B4B22815B80009AAEF3 /* SXF_HF_CustomLayout.h */,
@@ -4727,6 +4742,7 @@
 				04B9D55322803CF20084FA23 /* CityChooseVC.m in Sources */,
 				04B9D4E722803C6B0084FA23 /* customTabBarViewController.m in Sources */,
 				04A508D9227EDD3A0013E8EC /* HRSelectPhotoManager.m in Sources */,
+				0453D1512281935E00880C2A /* myTopView.m in Sources */,
 				04A508C7227EDD3A0013E8EC /* UIView+Responder.m in Sources */,
 				658C39DE21E9FA5B00880B6A /* JXCategoryTitleCellModel.m in Sources */,
 				04A5084A227EDD3A0013E8EC /* UIView+CustomControlView.m in Sources */,
@@ -4788,6 +4804,7 @@
 				658B7C4321D749E100801CC8 /* UIViewController+Extension.m in Sources */,
 				04B9D54B22803CF20084FA23 /* YYStarView.m in Sources */,
 				658C39E121E9FA5B00880B6A /* JXCategoryImageView.m in Sources */,
+				0453D1502281935E00880C2A /* customItemView.m in Sources */,
 				658902F4223B775F009C1B03 /* UIView+PYSearchExtension.m in Sources */,
 				658B7CA221D749E100801CC8 /* VCInteractionDelegate.m in Sources */,
 				659EA07D2203D5A1004471CD /* DHGuidePageHUD.m in Sources */,
@@ -4959,6 +4976,7 @@
 				658B7C9921D749E100801CC8 /* AnimationTransitionEnd.m in Sources */,
 				658B7CB221D749E100801CC8 /* TAPageControl.m in Sources */,
 				04B9D4EF22803C6B0084FA23 /* JMBadgeValue.m in Sources */,
+				0453D1542281A54900880C2A /* DigitalRollingView.m in Sources */,
 				04A50855227EDD3A0013E8EC /* ASValueTrackingSlider.m in Sources */,
 				658902F1223B775F009C1B03 /* PYSearchConst.m in Sources */,
 				04B9D57B22803E260084FA23 /* BaseWebViewController.m in Sources */,
