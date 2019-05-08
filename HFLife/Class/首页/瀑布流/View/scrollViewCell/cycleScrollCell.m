@@ -39,13 +39,15 @@
     self.pageControl.numberOfPages = self.nums;
     [self.cycleV refreshData];
     [self addPageControl];
+
 }
 
 - (void) addPageControl{
     [self.contentView addSubview:self.pageControl];
     [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.left.bottom.mas_equalTo(self.contentView);
+        make.right.left.mas_equalTo(self.contentView);
         make.top.mas_equalTo(self.cycleV.mas_bottom);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(5);
     }];
     self.pageControl.backgroundColor = [UIColor whiteColor];
 }
@@ -54,10 +56,7 @@
 
 
 - (void) addChildrenViews{
-    self.backgroundColor = [UIColor colorWithRed:arc4random_uniform(256)/255.0
-                                           green:arc4random_uniform(256)/255.0
-                                            blue:arc4random_uniform(256)/255.0
-                                           alpha:1.0];
+    self.backgroundColor = [UIColor whiteColor];
     
     [self.contentView addSubview:self.cycleV];
     [self.contentView addSubview:self.pageControl];
@@ -101,12 +100,13 @@
     
     [self.cycleV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(self.contentView);
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-20);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-10);
     }];
     
     [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(self.contentView);
+        make.right.left.mas_equalTo(self.contentView);
         make.top.mas_equalTo(self.cycleV.mas_bottom);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
     }];
     
 }
@@ -119,7 +119,7 @@
 
 - (LWDPageControl *)pageControl{
     if (!_pageControl) {
-        _pageControl = [[LWDPageControl alloc] initWithFrame:CGRectMake(0, 320, CGRectGetWidth(self.frame) - 20, 27) indicatorMargin:7.f indicatorWidth:4.f currentIndicatorWidth:4.f indicatorHeight:4];
+        _pageControl = [[LWDPageControl alloc] initWithFrame:CGRectMake(0, ScreenScale(100 - 80), SCREEN_WIDTH, 10) indicatorMargin:7.f indicatorWidth:4.f currentIndicatorWidth:4.f indicatorHeight:4];
         _pageControl.numberOfPages = self.nums;
         _pageControl.currentPageIndicatorColor = [UIColor colorWithRed:235/255.0 green:84/255.0 blue:54/255.0 alpha:1];
         _pageControl.pageIndicatorColor = [UIColor colorWithRed:176/255.0 green:157/255.0 blue:129/255.0 alpha:1];

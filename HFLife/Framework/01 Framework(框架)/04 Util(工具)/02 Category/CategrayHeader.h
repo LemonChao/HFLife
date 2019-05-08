@@ -16,4 +16,5 @@
 #import "UILabel+ChainTypeLabel.h"
 #import "UILabel+FitSize.h"
 #import "UIView+Shadow.h"
+#import "UIView+changeBgColor.h"//渐变色
 #endif /* CategrayHeader_h */

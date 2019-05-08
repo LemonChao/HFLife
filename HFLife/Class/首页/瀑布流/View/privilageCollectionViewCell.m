@@ -1,9 +1,9 @@
 //
 //  privilageCollectionViewCell.m
-//  DoLifeApp
+//  HF_Life
 //
 //  Created by sxf_pro on 2018/11/12.
-//  Copyright © 2018年 张志超. All rights reserved.
+//  Copyright © 2018年 sxf. All rights reserved.
 //
 
 #import "privilageCollectionViewCell.h"
@@ -42,37 +42,15 @@
 - (void) addChildrenViews{
     
     [self.contentView addSubview:self.imageV];
-    [self.contentView addSubview:self.titleLb];
-    [self.contentView addSubview:self.currentPriceLb];
-    [self.contentView addSubview:self.priceLb];
-    [self.contentView addSubview:self.incoderImageV];
-    [self.contentView addSubview:self.sellCountLb];
     
-    self.imageV.backgroundColor = HEX_COLOR(0x999999);
-    self.imageV.layer.cornerRadius = 4;
+    
+    self.imageV.backgroundColor = HEX_COLOR(0xE1E1E1);
+    self.imageV.layer.cornerRadius = 5;
     self.imageV.clipsToBounds = YES;
     
-    self.titleLb.numberOfLines = 2;
-    self.titleLb.textColor = HEX_COLOR(0x333333);
-    self.titleLb.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
+  
     
-    self.currentPriceLb.textColor =  [UIColor colorWithRed:246/255.0 green:46/255.0 blue:46/255.0 alpha:1];
-    self.currentPriceLb.font =  [UIFont fontWithName:@"DIN-Medium" size:20];
-    
-    self.incoderImageV.image = [UIImage imageNamed:@"vip_会员价-黑小"];
-    
-    self.priceLb.textColor = HEX_COLOR(0x333333);
-    self.priceLb.font = [UIFont fontWithName:@"PingFangSC-Medium" size:13];
-    
-    self.sellCountLb.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
-    self.sellCountLb.textColor = [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1];
-    
-    
-    
-    self.titleLb.text = @"eqeqeqw";
-    self.currentPriceLb.text = @"eqvvvvv";
-    self.priceLb.text = @"adasdadad";
-    self.sellCountLb.text = @"已售0";
+   
 }
 
 - (void)layoutSubviews{
@@ -81,41 +59,11 @@
     CGFloat margin = 10;
     
     [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.mas_equalTo(self.contentView).offset(margin);
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-margin);
-        make.width.mas_equalTo(161 - 2 * margin);
+        make.top.mas_equalTo(self.contentView).offset(0);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
+        make.right.mas_equalTo(self.contentView.mas_right).offset(-ScreenScale(12));
     }];
-    
-    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.imageV.mas_right).offset(margin);
-        make.top.mas_equalTo(self.imageV.mas_top).offset(0);
-        make.right.mas_equalTo(self.contentView.mas_right).offset(-22);
-    }];
-    
-    [self.currentPriceLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.titleLb.mas_left).offset(0);
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-33);
-    }];
-    [self.priceLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.titleLb.mas_left).offset(0);
-        make.bottom.mas_equalTo(self.imageV.mas_bottom).offset(0);
-    }];
-    
-    [self.sellCountLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.priceLb.mas_centerY);
-        make.right.mas_equalTo(self.contentView.mas_right).offset(-14);
-    }];
-    
-    [self.incoderImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.currentPriceLb.mas_centerY);
-        make.left.mas_equalTo(self.currentPriceLb.mas_right).offset(2);
-        make.height.mas_equalTo(14);
-        make.width.mas_equalTo(42);
-    }];
-    
-    [self layoutIfNeeded];
-   
-    
 }
 
 

@@ -15,16 +15,23 @@
         self.backgroundColor = [UIColor whiteColor];
         _textLabel = [[UILabel alloc] init];
         [self addSubview:_textLabel];
-        _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [_textLabel.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
-        [_textLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor].active = YES;
-        [_textLabel.widthAnchor constraintEqualToAnchor:self.widthAnchor].active = YES;
-        [_textLabel.heightAnchor constraintEqualToAnchor:self.heightAnchor].active = YES;
+       
+        _textLabel.frame = CGRectMake(ScreenScale(12), 0, 200, self.frame.size.height);
         _textLabel.font = [UIFont systemFontOfSize:18 weight:1.5];
         _textLabel.textColor = HEX_COLOR(0x131313);
-       
+
     }
     return self;
 }
+
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(12));
+        make.top.bottom.mas_equalTo(self);
+    }];
+}
+
 
 @end

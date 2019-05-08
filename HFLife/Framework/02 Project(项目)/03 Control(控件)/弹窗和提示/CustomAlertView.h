@@ -2,8 +2,8 @@
 //  CustomAlertView.h
 //  DuDuJR
 //
-//  Created by 张志超 on 2017/12/21.
-//  Copyright © 2017年 张志超. All rights reserved.
+//  Created by sxf on 2017/12/21.
+//  Copyright © 2017年 sxf. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -44,7 +44,12 @@
     self.titleLb.textAlignment = NSTextAlignmentCenter;
     
     self.imageV.contentMode = UIViewContentModeScaleAspectFit;
-    self.titleLb.text = @"标题";
+    
+    
+    self.titleLb.textColor = HEX_COLOR(0x131313);
+    self.titleLb.font = MyFont(12);
+    
+    
     [self.tapBtn addTarget:self action:@selector(clickUpBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     

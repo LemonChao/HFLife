@@ -59,7 +59,7 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    [self.itemArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:[UIScreen mainScreen].bounds.size.width / 3 leadSpacing:0 tailSpacing:0];
+    [self.itemArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:[UIScreen mainScreen].bounds.size.width / _titleArr.count leadSpacing:0 tailSpacing:0];
     [self.itemArr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.mas_equalTo(self);
     }];

@@ -219,13 +219,10 @@
     
     
     [self layoutIfNeeded];    
-    self.bottomBarBgView.layer.shadowColor = HEX_COLOR(0xFCC9C4).CGColor;
-    self.bottomBarBgView.layer.shadowRadius = 4;
-    self.bottomBarBgView.layer.shadowOpacity = 1.0;
-    self.bottomBarBgView.layer.shadowOffset = CGSizeMake(0, 4);
-    self.bottomBarBgView.layer.cornerRadius = 5;
-    self.bottomBarBgView.clipsToBounds = YES;
-    self.bottomBarBgView.masksToBounds = NO;
+   
+    
+    
+    [self.bottomBarBgView addShadowForViewColor:HEX_COLOR(0xFCC9C4) offSet:CGSizeMake(-1,2) shadowRadius:3 cornerRadius:5 opacity:1.0];
     
     self.bottomBarView.layer.cornerRadius = 5;
     self.bottomBarView.masksToBounds = YES;

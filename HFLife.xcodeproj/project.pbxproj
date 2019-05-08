@@ -45,6 +45,12 @@
 		0453D1932282764E00880C2A /* myCenterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D18E2282764D00880C2A /* myCenterCollectionView.m */; };
 		0453D1982282774C00880C2A /* SXF_HF_ItemsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1972282774C00880C2A /* SXF_HF_ItemsViewCell.m */; };
 		0453D19C2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D19B2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m */; };
+		0453D1A12282B2CD00880C2A /* SXF_HF_HeadlineCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1A02282B2CD00880C2A /* SXF_HF_HeadlineCell1.m */; };
+		0453D1A42282B2DE00880C2A /* SXF_HF_HeadlineCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1A32282B2DE00880C2A /* SXF_HF_HeadlineCell2.m */; };
+		0453D1A72282B3CD00880C2A /* SXF_HF_RecommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1A62282B3CD00880C2A /* SXF_HF_RecommentCell.m */; };
+		0453D1AA2282C37C00880C2A /* SXF_HF_RecommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1A92282C37C00880C2A /* SXF_HF_RecommentView.m */; };
+		0453D1AD2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1AC2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.m */; };
+		0453D1AF2282CFA100880C2A /* UIView+changeBgColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1AE2282CFA000880C2A /* UIView+changeBgColor.m */; };
 		04A50836227EDD390013E8EC /* VierticalScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065A227EDD350013E8EC /* VierticalScrollView.m */; };
 		04A50837227EDD390013E8EC /* UIView+FrameExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065D227EDD350013E8EC /* UIView+FrameExtension.m */; };
 		04A50838227EDD390013E8EC /* segementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A50661227EDD350013E8EC /* segementView.m */; };
@@ -622,6 +628,18 @@
 		0453D1972282774C00880C2A /* SXF_HF_ItemsViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_ItemsViewCell.m; sourceTree = "<group>"; };
 		0453D19A2282918400880C2A /* ZHB_HP_PreventWeChatPopout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHB_HP_PreventWeChatPopout.h; sourceTree = "<group>"; };
 		0453D19B2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHB_HP_PreventWeChatPopout.m; sourceTree = "<group>"; };
+		0453D19F2282B2CD00880C2A /* SXF_HF_HeadlineCell1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HeadlineCell1.h; sourceTree = "<group>"; };
+		0453D1A02282B2CD00880C2A /* SXF_HF_HeadlineCell1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HeadlineCell1.m; sourceTree = "<group>"; };
+		0453D1A22282B2DE00880C2A /* SXF_HF_HeadlineCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HeadlineCell2.h; sourceTree = "<group>"; };
+		0453D1A32282B2DE00880C2A /* SXF_HF_HeadlineCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HeadlineCell2.m; sourceTree = "<group>"; };
+		0453D1A52282B3CD00880C2A /* SXF_HF_RecommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_RecommentCell.h; sourceTree = "<group>"; };
+		0453D1A62282B3CD00880C2A /* SXF_HF_RecommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_RecommentCell.m; sourceTree = "<group>"; };
+		0453D1A82282C37C00880C2A /* SXF_HF_RecommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_RecommentView.h; sourceTree = "<group>"; };
+		0453D1A92282C37C00880C2A /* SXF_HF_RecommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_RecommentView.m; sourceTree = "<group>"; };
+		0453D1AB2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_RecommentCollectionCell.h; sourceTree = "<group>"; };
+		0453D1AC2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_RecommentCollectionCell.m; sourceTree = "<group>"; };
+		0453D1AE2282CFA000880C2A /* UIView+changeBgColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+changeBgColor.m"; sourceTree = "<group>"; };
+		0453D1B02282CFDB00880C2A /* UIView+changeBgColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+changeBgColor.h"; sourceTree = "<group>"; };
 		04A50655227EDD2D0013E8EC /* PodHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodHeader.h; sourceTree = "<group>"; };
 		04A50656227EDD310013E8EC /* FrameworkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameworkHeader.h; sourceTree = "<group>"; };
 		04A5065A227EDD350013E8EC /* VierticalScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VierticalScrollView.m; sourceTree = "<group>"; };
@@ -1712,6 +1730,8 @@
 		0453D15C228266D200880C2A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0453D19E2282B27D00880C2A /* 头条cell */,
+				0453D19D2282A5A100880C2A /* 推荐cell */,
 				0453D1952282765A00880C2A /* scrollViewCell */,
 				0453D18C2282763800880C2A /* itemsBtnView */,
 				0453D160228266D200880C2A /* CollectionReusableView.h */,
@@ -1779,6 +1799,30 @@
 				0453D19B2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m */,
 			);
 			path = "防微信弹框";
+			sourceTree = "<group>";
+		};
+		0453D19D2282A5A100880C2A /* 推荐cell */ = {
+			isa = PBXGroup;
+			children = (
+				0453D1A52282B3CD00880C2A /* SXF_HF_RecommentCell.h */,
+				0453D1A62282B3CD00880C2A /* SXF_HF_RecommentCell.m */,
+				0453D1A82282C37C00880C2A /* SXF_HF_RecommentView.h */,
+				0453D1A92282C37C00880C2A /* SXF_HF_RecommentView.m */,
+				0453D1AB2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.h */,
+				0453D1AC2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.m */,
+			);
+			path = "推荐cell";
+			sourceTree = "<group>";
+		};
+		0453D19E2282B27D00880C2A /* 头条cell */ = {
+			isa = PBXGroup;
+			children = (
+				0453D19F2282B2CD00880C2A /* SXF_HF_HeadlineCell1.h */,
+				0453D1A02282B2CD00880C2A /* SXF_HF_HeadlineCell1.m */,
+				0453D1A22282B2DE00880C2A /* SXF_HF_HeadlineCell2.h */,
+				0453D1A32282B2DE00880C2A /* SXF_HF_HeadlineCell2.m */,
+			);
+			path = "头条cell";
 			sourceTree = "<group>";
 		};
 		04A50654227EDCF90013E8EC /* Framework */ = {
@@ -2451,6 +2495,8 @@
 		04A507AB227EDD390013E8EC /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				0453D1B02282CFDB00880C2A /* UIView+changeBgColor.h */,
+				0453D1AE2282CFA000880C2A /* UIView+changeBgColor.m */,
 				658B7A5921D749DF00801CC8 /* UIView_extra.h */,
 				658B7A6C21D749DF00801CC8 /* UIView_extra.m */,
 				658B7A5E21D749DF00801CC8 /* UIView+Extension.h */,
@@ -4899,6 +4945,7 @@
 				04B9D54F22803CF20084FA23 /* MouthModel.m in Sources */,
 				659EA0B5220537EC004471CD /* MapManager.m in Sources */,
 				658B7C5021D749E100801CC8 /* AxcAE_TabBarBadge.m in Sources */,
+				0453D1A42282B2DE00880C2A /* SXF_HF_HeadlineCell2.m in Sources */,
 				04A508CD227EDD3A0013E8EC /* UILabel+FitSize.m in Sources */,
 				65B5DFE8221E83FE00A65044 /* DateChoose.m in Sources */,
 				658B7CA721D749E100801CC8 /* AnimationTransitionBegin.m in Sources */,
@@ -4912,8 +4959,10 @@
 				6C2F5150222A663D0022EE03 /* HXPhotoTools.m in Sources */,
 				04A50878227EDD3A0013E8EC /* UIViewController+Chameleon.m in Sources */,
 				040A17BC2282701E00997B93 /* NearColumnCollectionViewCell.m in Sources */,
+				0453D1A72282B3CD00880C2A /* SXF_HF_RecommentCell.m in Sources */,
 				658B7CC321D749E100801CC8 /* AlertViewCell.m in Sources */,
 				6C2F515A222A663D0022EE03 /* HXFullScreenCameraPlayView.m in Sources */,
+				0453D1AA2282C37C00880C2A /* SXF_HF_RecommentView.m in Sources */,
 				04A50867227EDD3A0013E8EC /* UITableView+JQMMnodata.m in Sources */,
 				658B7C5B21D749E100801CC8 /* UIView+Frame.m in Sources */,
 				04B9D57822803E260084FA23 /* BaseViewModel.m in Sources */,
@@ -5091,6 +5140,7 @@
 				658C3AE321F31A5000880B6A /* MKShowSubMultipleImportView.m in Sources */,
 				04B9D4EA22803C6B0084FA23 /* JMTabBarButton.m in Sources */,
 				658B7CB421D749E100801CC8 /* TAAbstractDotView.m in Sources */,
+				0453D1AD2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.m in Sources */,
 				65DC6881221A3FA100F1085E /* AppDelegate+JPush.m in Sources */,
 				04A508E8227EDD3A0013E8EC /* HRBaseNavigationController.m in Sources */,
 				658C39EB21E9FA5B00880B6A /* JXCategoryIndicatorParamsModel.m in Sources */,
@@ -5111,6 +5161,7 @@
 				04A50836227EDD390013E8EC /* VierticalScrollView.m in Sources */,
 				658C39D721E9FA5B00880B6A /* JXCategoryIndicatorView.m in Sources */,
 				04B9D54522803CF20084FA23 /* STMURLProtocol.m in Sources */,
+				0453D1A12282B2CD00880C2A /* SXF_HF_HeadlineCell1.m in Sources */,
 				658C39D321E9FA5B00880B6A /* JXCategoryIndicatorComponentView.m in Sources */,
 				658B7CA321D749E100801CC8 /* AnimationWaveBegin.m in Sources */,
 				6C2F515F222A663D0022EE03 /* HXAlbumModel.m in Sources */,
@@ -5321,6 +5372,7 @@
 				04F54B50228160DB009AAEF3 /* SXF_HF_CustomPageControl.m in Sources */,
 				04A50852227EDD3A0013E8EC /* ZFPlayerControlView.m in Sources */,
 				659EA04722015F94004471CD /* WBRoundHUD.m in Sources */,
+				0453D1AF2282CFA100880C2A /* UIView+changeBgColor.m in Sources */,
 				658B7CA521D749E100801CC8 /* UIView+HHLayout.m in Sources */,
 				658B7CA121D749E100801CC8 /* UIViewController+HHTransition.m in Sources */,
 				658B7CB521D749E100801CC8 /* TLMenuButton.m in Sources */,

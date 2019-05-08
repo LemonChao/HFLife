@@ -10,6 +10,5 @@
 
 @interface CollectionViewCell : UICollectionViewCell
 
-@property(nonatomic, strong) UILabel *textLabel;
 
 @end

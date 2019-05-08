@@ -63,7 +63,7 @@
     self.collectionV.layer.masksToBounds = YES;
     self.collectionV.clipsToBounds = YES;
     //HEX_COLOR(0x808080)
-    [self.bgView addShadowForViewColor:HEX_COLOR(0x808080) offSet:CGSizeMake(0,4) shadowRadius:9 cornerRadius:5 opacity:0.5];
+    [self.bgView addShadowForViewColor:HEX_COLOR(0x808080) offSet:CGSizeMake(-1, 2) shadowRadius:3 cornerRadius:5 opacity:0.3];
     
     
     self.collectionV.layer.cornerRadius = 5;

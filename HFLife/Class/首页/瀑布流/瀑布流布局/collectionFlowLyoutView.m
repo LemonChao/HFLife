@@ -10,6 +10,9 @@
 #import "CollectionViewCell.h"
 #import "cycleScrollCell.h"
 #import "SXF_HF_ItemsViewCell.h"
+#import "SXF_HF_HeadlineCell1.h"
+#import "SXF_HF_HeadlineCell2.h"
+#import "SXF_HF_RecommentCell.h"
 #import "CollectionReusableView.h"
 #import "SXF_HF_HomePageTableHeader.h"
 @interface collectionFlowLyoutView()<XPCollectionViewWaterfallFlowLayoutDataSource,
@@ -38,7 +41,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
 
 - (void) addChildrenViews{
     [self addSubview:self.collectionView];
-    _titleArr = @[@"", @"活动推荐", @"汉富头条"];
+    _titleArr = @[@"", @"活动推荐",@"汉富头条",  @""];
     //设置数据源
     self.dataSource = [NSMutableArray array];
     for (int i=0; i<10; i++) {
@@ -72,7 +75,9 @@ static NSString * const footerReuseIdentifier = @"Footer";
     if (section == 0) {
         return 3;
     }else if (section == 1){
-        return 3;
+        return 1;
+    }else if (section == 2){
+        return 3;//汉服头条数据
     }
     return [self.dataSource objectAtIndex:section].count;
 }
@@ -90,9 +95,18 @@ static NSString * const footerReuseIdentifier = @"Footer";
             cell.modelArr = @[@"", @"", @""];
             return cell;
         }
+    }else if (indexPath.section == 1){
+        SXF_HF_RecommentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_RecommentCell class]) forIndexPath:indexPath];
+        return cell;
+    }else if (indexPath.section == 2){
+        SXF_HF_HeadlineCell1 *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_HeadlineCell1 class]) forIndexPath:indexPath];
+        return cell;
+    }else if (indexPath.section == 3){
+        SXF_HF_HeadlineCell2 *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_HeadlineCell2 class]) forIndexPath:indexPath];
+        return cell;
     }
     CollectionViewCell *cell = (CollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([CollectionViewCell class]) forIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"{%ld,%ld}", indexPath.section, indexPath.item];
+    
     return cell;
 }
 
@@ -101,7 +115,18 @@ static NSString * const footerReuseIdentifier = @"Footer";
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     NSString *identifier = (kind==UICollectionElementKindSectionHeader) ? headerReuseIdentifier : footerReuseIdentifier;
     CollectionReusableView *view = (CollectionReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
+    view.backgroundColor = [UIColor whiteColor];
     view.textLabel.text = _titleArr[indexPath.section];
+    if (kind == UICollectionElementKindSectionFooter) {
+        view.hidden = YES;
+    }else{
+        if (indexPath.section == 0 || indexPath.section == 3) {
+            view.hidden = YES;
+        }else{
+            view.hidden = NO;
+        }
+    }
+    
     return view;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -114,9 +139,11 @@ static NSString * const footerReuseIdentifier = @"Footer";
     if (section == 0) {
         return 1;
     }else if (section == 1) {
+        return 1;
+    }else if (section == 2){
         return 2;
     }
-    return  MIN(section+1, 5);
+    return  1;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout *)layout itemWidth:(CGFloat)width heightForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -127,12 +154,16 @@ static NSString * const footerReuseIdentifier = @"Footer";
         }else if(indexPath.row == 1){
             return ScreenScale(80);
         }
-        return 200;
-    }else if (indexPath.section == 1) {
+        return ScreenScale(100);
+    }else if (indexPath.section ==1){
+        return ScreenScale(180);
+    }else if (indexPath.section == 2) {
         if (indexPath.row > 4) {
             return 100;
         }
         return [UIScreen mainScreen].bounds.size.width / 2;
+    }else if (indexPath.section == 3){
+        return ScreenScale(112);
     }
     NSNumber *number = self.dataSource[indexPath.section][indexPath.item];
     return [number floatValue];
@@ -142,35 +173,37 @@ static NSString * const footerReuseIdentifier = @"Footer";
     //每个分区的上左下右间距
     if (section == 0) {
         return UIEdgeInsetsMake(ScreenScale(300), 0.0, 10.0, 0.0);
+    }else if (section == 2){
+        return UIEdgeInsetsMake(0.0, ScreenScale(6), 0.0, ScreenScale(6));
     }
-    return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+    return UIEdgeInsetsMake(ScreenScale(6), 0.0, 0.0, 0.0);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     //cell最小行间距
-    return 10.0;
+    if (section == 2 || section == 3) {
+        return 0.0;
+    }
+    return ScreenScale(12);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     //分区内的最小列间距
-    if (section == 0) {
+    if (section == 0 || section == 2 || section == 3) {
         return 0.0;
     }
-    return 10.0;
+    return ScreenScale(10);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout *)layout referenceHeightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
+    if (section == 0 || section == 3) {
         return 0.01;
     }
     return 40.0;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout *)layout referenceHeightForFooterInSection:(NSInteger)section {
-    if (section == 0) {
-        return 0.01;
-    }
-    return 40.0;
+    return 0.01;;
 }
 
 - (UICollectionView *)collectionView{
@@ -187,6 +220,13 @@ static NSString * const footerReuseIdentifier = @"Footer";
         [_collectionView registerClass:[cycleScrollCell class] forCellWithReuseIdentifier:NSStringFromClass([cycleScrollCell class])];
         
         [_collectionView registerClass:[SXF_HF_ItemsViewCell class] forCellWithReuseIdentifier:NSStringFromClass([SXF_HF_ItemsViewCell class])];
+        
+        
+        [_collectionView registerClass:[SXF_HF_HeadlineCell1 class] forCellWithReuseIdentifier:NSStringFromClass([SXF_HF_HeadlineCell1 class])];
+        
+        [_collectionView registerClass:[SXF_HF_HeadlineCell2 class] forCellWithReuseIdentifier:NSStringFromClass([SXF_HF_HeadlineCell2 class])];
+        
+        [_collectionView registerClass:[SXF_HF_RecommentCell class] forCellWithReuseIdentifier:NSStringFromClass([SXF_HF_RecommentCell class])];
     }
     return _collectionView;
 }

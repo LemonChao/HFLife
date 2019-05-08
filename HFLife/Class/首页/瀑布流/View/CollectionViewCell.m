@@ -37,14 +37,6 @@
 - (void) addChildrenViews{
     self.backgroundColor = [UIColor whiteColor];
     
-    _textLabel = [[UILabel alloc] init];
-    [self.contentView addSubview:_textLabel];
-    _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [_textLabel.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
-    [_textLabel.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
-    
-    
-    
     self.bgView = [UIView new];
     self.imageV = [UIImageView new];
     self.titleLb = [UILabel new];
@@ -61,6 +53,7 @@
     [self.bgView addSubview:self.time1];
     [self.bgView addSubview:self.time2];
     
+    self.bgView.backgroundColor = [UIColor whiteColor];
     self.incoderImageV.image = [UIImage imageNamed:@"更多"];
     self.imageV.image = [UIImage imageNamed:@"homeLoge"];
     self.titleLb.font = FONT(12);
@@ -109,11 +102,22 @@
         make.height.mas_equalTo(12);
     }];
     
+    [self.subTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.titleLb.mas_left);
+        make.bottom.mas_equalTo(self.imageV.mas_bottom);
+    }];
+    
+    [self.incoderImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.bgView.mas_right).offset(-ScreenScale(10));
+        make.width.mas_equalTo(ScreenScale(9));
+        make.height.mas_equalTo(ScreenScale(16));
+        make.centerY.mas_equalTo(self.imageV.mas_centerY);
+    }];
     
     [self layoutIfNeeded];
     
     self.bgView.layer.cornerRadius = 5;
-    [self.bgView addShadowForViewColor:HEX_COLOR(0x808080) offSet:CGSizeMake(0,4) shadowRadius:9 cornerRadius:5 opacity:0.5];
+    [self.bgView addShadowForViewColor:HEX_COLOR(0x808080) offSet:CGSizeMake(-1,2) shadowRadius:3 cornerRadius:5 opacity:0.3];
     
 }
 
