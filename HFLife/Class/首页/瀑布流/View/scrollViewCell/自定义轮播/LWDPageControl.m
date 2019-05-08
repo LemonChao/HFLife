@@ -90,6 +90,10 @@
             view.frame = CGRectMake(viewX, 0, _indicatorWidth, _indicatorHeight);
             viewX += _indicatorWidth + _indicatorMargin;
             view.backgroundColor = _pageIndicatorColor;
+            
+            view.layer.borderWidth = 1.0;
+            view.layer.borderColor = _currentPageIndicatorColor.CGColor;
+            view.backgroundColor = [UIColor whiteColor];
         }
     }
     if (sendEvent) {
@@ -121,6 +125,9 @@
                 view.layer.cornerRadius = _indicatorHeight/2;
                 view.layer.masksToBounds = YES;
                 viewX += _currentIndicatorWidth + _indicatorMargin;
+                view.layer.borderWidth = 1.0;
+                view.layer.borderColor = _currentPageIndicatorColor.CGColor;
+                view.backgroundColor = _currentPageIndicatorColor;
                 [self.contentView addSubview:view];
                 [self.indicatorViews addObject:view];
             }else{
@@ -131,6 +138,9 @@
                 viewX += _indicatorWidth + _indicatorMargin;
                 [self.contentView addSubview:view];
                 [self.indicatorViews addObject:view];
+                view.layer.borderColor = _currentPageIndicatorColor.CGColor;
+                view.backgroundColor = [UIColor whiteColor];
+                view.layer.borderWidth = 1.0;
             }
         }
         

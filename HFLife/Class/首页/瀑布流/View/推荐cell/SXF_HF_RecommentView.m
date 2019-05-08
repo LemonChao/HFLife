@@ -8,10 +8,13 @@
 
 #import "SXF_HF_RecommentView.h"
 #import "SXF_HF_RecommentCollectionCell.h"
-
-@interface SXF_HF_RecommentView ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+#import "LWDPageControl.h"
+@interface SXF_HF_RecommentView ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
+@property (nonatomic ,strong) LWDPageControl *pageControl;
+@property (nonatomic , assign) NSInteger nums;//个数
+@property (nonatomic, assign) CGFloat itemWidth;
 @end
 
 
@@ -35,14 +38,39 @@
     }
     return self;
 }
+
+- (void)setDataSource:(NSArray *)dataSource{
+    _dataSource = dataSource;
+    if (self.pageControl) {
+        [self.pageControl removeFromSuperview];
+        self.pageControl = nil;
+    }
+    self.nums = _dataSource.count;
+    self.pageControl.numberOfPages = self.nums;
+    [self addPageControl];
+    
+    
+    [self.collectionView reloadData];
+}
+- (void) addPageControl{
+    [self addSubview:self.pageControl];
+    [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.left.mas_equalTo(self);
+        make.top.mas_equalTo(self.collectionView.mas_bottom);
+        make.bottom.mas_equalTo(self.collectionView.mas_bottom).offset(0);
+    }];
+    self.pageControl.backgroundColor = [UIColor whiteColor];
+}
+
 - (void) addChildrenViews{
     [self addSubview:self.collectionView];
     self.layout.itemSize = CGSizeMake(ScreenScale(275), ScreenScale(175));
+    self.itemWidth = self.layout.itemSize.width;
     self.collectionView.contentInset = UIEdgeInsetsMake(0.0, ScreenScale(12.0), 0.0, ScreenScale(12.0));
 }
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 10;
+    return self.dataSource.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -52,8 +80,20 @@
     return cell;
 }
 
+- (void)currentPageChanged:(LWDPageControl *)pageControl{
+    //点击小点
+}
 
-
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    CGFloat pageWidth = self.itemWidth;
+    
+    int currentPage = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    
+    
+    self.pageControl.currentPage = currentPage;
+    
+}
 
 
 - (void)layoutSubviews{
@@ -62,6 +102,13 @@
         make.top.left.right.mas_equalTo(self);
         make.bottom.mas_equalTo(self.mas_bottom).offset(-ScreenScale(10));
     }];
+    
+    [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.left.mas_equalTo(self);
+        make.top.mas_equalTo(self.collectionView.mas_bottom);
+        make.bottom.mas_equalTo(self.collectionView.mas_bottom).offset(0);
+    }];
+    self.pageControl.backgroundColor = [UIColor whiteColor];
 }
 
 
@@ -87,5 +134,16 @@
         _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     }
     return _layout;
+}
+
+- (LWDPageControl *)pageControl{
+    if (!_pageControl) {
+        _pageControl = [[LWDPageControl alloc] initWithFrame:CGRectMake(0, ScreenScale(100 - 80), SCREEN_WIDTH, 10) indicatorMargin:7.f indicatorWidth:8.f currentIndicatorWidth:8.f indicatorHeight:8];
+        _pageControl.numberOfPages = self.nums;
+        _pageControl.currentPageIndicatorColor = HEX_COLOR(0xCA1400);
+        _pageControl.pageIndicatorColor = HEX_COLOR(0xCA1400);
+        [_pageControl addTarget:self action:@selector(currentPageChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _pageControl;
 }
 @end

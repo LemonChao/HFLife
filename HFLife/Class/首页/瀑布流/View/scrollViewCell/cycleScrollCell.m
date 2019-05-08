@@ -119,10 +119,10 @@
 
 - (LWDPageControl *)pageControl{
     if (!_pageControl) {
-        _pageControl = [[LWDPageControl alloc] initWithFrame:CGRectMake(0, ScreenScale(100 - 80), SCREEN_WIDTH, 10) indicatorMargin:7.f indicatorWidth:4.f currentIndicatorWidth:4.f indicatorHeight:4];
+        _pageControl = [[LWDPageControl alloc] initWithFrame:CGRectMake(0, ScreenScale(100 - 80), SCREEN_WIDTH, 10) indicatorMargin:7.f indicatorWidth:8.f currentIndicatorWidth:8.f indicatorHeight:8];
         _pageControl.numberOfPages = self.nums;
-        _pageControl.currentPageIndicatorColor = [UIColor colorWithRed:235/255.0 green:84/255.0 blue:54/255.0 alpha:1];
-        _pageControl.pageIndicatorColor = [UIColor colorWithRed:176/255.0 green:157/255.0 blue:129/255.0 alpha:1];
+        _pageControl.currentPageIndicatorColor = HEX_COLOR(0xCA1400);
+        _pageControl.pageIndicatorColor = HEX_COLOR(0xCA1400);
         [_pageControl addTarget:self action:@selector(currentPageChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _pageControl;

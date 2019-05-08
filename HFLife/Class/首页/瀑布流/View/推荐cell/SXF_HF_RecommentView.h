@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_RecommentView : UIView
-
+@property (nonatomic, strong) NSArray *dataSource;
 @end
 
 NS_ASSUME_NONNULL_END

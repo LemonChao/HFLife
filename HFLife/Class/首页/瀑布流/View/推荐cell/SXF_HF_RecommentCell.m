@@ -27,6 +27,7 @@
 - (void) addChildrenViews{
     self.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.collectionV];
+    self.collectionV.dataSource = @[@"", @"", @"", @"", @""];
 }
 
 - (void)layoutSubviews{
