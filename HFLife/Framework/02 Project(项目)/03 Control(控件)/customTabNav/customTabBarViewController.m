@@ -12,6 +12,8 @@
 #import "ShopPageVC.h"
 #import "VRMarket.h"
 #import "MainPageVC.h"
+#import "ShopTabbarViewController.h"
+
 @interface customTabBarViewController ()<JMTabBarDelegate>
 
 @end
@@ -98,24 +100,9 @@
 }
 
 - (void) clickMyBtn:(UIButton *)secder{
-    NSLog(@"点我干啥");
     
-    BaseViewController *currentView = (BaseViewController *)[self jsd_getCurrentViewController];
-    currentView.navigationController.navigationBarHidden = YES;
-    
-    ShopPageVC *shopVC = [[ShopPageVC alloc] init];
-    [currentView presentViewController:shopVC animated:YES completion:^{
-        
-    }];
-//    [currentView.navigationController pushViewController:shopVC animated:YES];
-    
-    
-    
-    
-    
-    
-    
-    
+    ShopTabbarViewController *shopTabbarVC = [ShopTabbarViewController configerTableBarVC];
+    [self presentViewController:shopTabbarVC animated:YES completion:nil];
 }
 
 
@@ -123,44 +110,44 @@
     self.selectedIndex = selectIndex;
     NSLog(@"----%ld", selectIndex);
 }
-- (UIViewController *)jsd_getRootViewController{
-    
-    UIWindow* window = [[[UIApplication sharedApplication] delegate] window];
-    NSAssert(window, @"The window is empty");
-    return window.rootViewController;
-}
-- (UIViewController *)jsd_getCurrentViewController{
-    
-    UIViewController* currentViewController = [self jsd_getRootViewController];
-    BOOL runLoopFind = YES;
-    while (runLoopFind) {
-        if (currentViewController.presentedViewController) {
-            
-            currentViewController = currentViewController.presentedViewController;
-        } else if ([currentViewController isKindOfClass:[UINavigationController class]]) {
-            
-            UINavigationController* navigationController = (UINavigationController* )currentViewController;
-            currentViewController = [navigationController.childViewControllers lastObject];
-            
-        } else if ([currentViewController isKindOfClass:[UITabBarController class]]) {
-            
-            UITabBarController* tabBarController = (UITabBarController* )currentViewController;
-            currentViewController = tabBarController.selectedViewController;
-        } else {
-            
-            NSUInteger childViewControllerCount = currentViewController.childViewControllers.count;
-            if (childViewControllerCount > 0) {
-                
-                currentViewController = currentViewController.childViewControllers.lastObject;
-                
-                return currentViewController;
-            } else {
-                
-                return currentViewController;
-            }
-        }
-        
-    }
-    return currentViewController;
-}
+//- (UIViewController *)jsd_getRootViewController{
+//
+//    UIWindow* window = [[[UIApplication sharedApplication] delegate] window];
+//    NSAssert(window, @"The window is empty");
+//    return window.rootViewController;
+//}
+//- (UIViewController *)jsd_getCurrentViewController{
+//
+//    UIViewController* currentViewController = [self jsd_getRootViewController];
+//    BOOL runLoopFind = YES;
+//    while (runLoopFind) {
+//        if (currentViewController.presentedViewController) {
+//
+//            currentViewController = currentViewController.presentedViewController;
+//        } else if ([currentViewController isKindOfClass:[UINavigationController class]]) {
+//
+//            UINavigationController* navigationController = (UINavigationController* )currentViewController;
+//            currentViewController = [navigationController.childViewControllers lastObject];
+//
+//        } else if ([currentViewController isKindOfClass:[UITabBarController class]]) {
+//
+//            UITabBarController* tabBarController = (UITabBarController* )currentViewController;
+//            currentViewController = tabBarController.selectedViewController;
+//        } else {
+//
+//            NSUInteger childViewControllerCount = currentViewController.childViewControllers.count;
+//            if (childViewControllerCount > 0) {
+//
+//                currentViewController = currentViewController.childViewControllers.lastObject;
+//
+//                return currentViewController;
+//            } else {
+//
+//                return currentViewController;
+//            }
+//        }
+//
+//    }
+//    return currentViewController;
+//}
 @end

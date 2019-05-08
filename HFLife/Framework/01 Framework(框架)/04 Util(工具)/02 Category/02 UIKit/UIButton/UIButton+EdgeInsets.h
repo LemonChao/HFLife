@@ -15,22 +15,6 @@ typedef NS_ENUM(NSInteger, ImagePositionType) {
     ImagePositionTypeBottom  //图片在下，标题在上
 };
 
-typedef NS_ENUM(NSInteger, EdgeInsetsType) {
-    EdgeInsetsTypeTitle,//标题
-    EdgeInsetsTypeImage//图片
-};
-
-typedef NS_ENUM(NSInteger, MarginType) {
-    MarginTypeTop         ,
-    MarginTypeBottom      ,
-    MarginTypeLeft        ,
-    MarginTypeRight       ,
-    MarginTypeTopLeft     ,
-    MarginTypeTopRight    ,
-    MarginTypeBottomLeft  ,
-    MarginTypeBottomRight
-};
-
 /**
  默认情况下，imageEdgeInsets和titleEdgeInsets都是0。先不考虑height,
  
@@ -46,13 +30,11 @@ typedef NS_ENUM(NSInteger, MarginType) {
  *  注意：1.该方法需在设置图片和标题之后才调用;
  2.图片和标题改变后需再次调用以重新计算titleEdgeInsets和imageEdgeInsets
  *
- *  @param type    图片位置类型
+ *  @param postion    图片位置类型
  *  @param spacing 图片和标题之间的间隙
  */
-- (void)setImagePositionWithType:(ImagePositionType)type spacing:(CGFloat)spacing leftSpacing:(CGFloat)leftSpacing;
 
-
-
+- (void)setImagePosition:(ImagePositionType)postion spacing:(CGFloat)spacing;
 
 /**
  根据图文距button边框的距离 自动调整图文水平间距,
@@ -63,26 +45,8 @@ typedef NS_ENUM(NSInteger, MarginType) {
 - (void)setImagePosition:(ImagePositionType)postion WithMargin:(CGFloat )margin;
 
 
-/**
- *  按钮只设置了title or image，该方法可以改变它们的位置
- *
- *  @param edgeInsetsType <#edgeInsetsType description#>
- *  @param marginType     <#marginType description#>
- *  @param margin         <#margin description#>
- */
-- (void)setEdgeInsetsWithType:(EdgeInsetsType)edgeInsetsType marginType:(MarginType)marginType margin:(CGFloat)margin;
 
-/**
- *  图片在上，标题在下
- *
- *  @param spacing image 和 title 之间的间隙
- */
-- (void)setImageUpTitleDownWithSpacing:(CGFloat)spacing __deprecated_msg("Method deprecated. Use `setImagePositionWithType:spacing:`");
+- (void)tabBarItem_setImagePosition:(ImagePositionType)postion spacing:(CGFloat)spacing;
 
-/**
- *  图片在右，标题在左
- *
- *  @param spacing image 和 title 之间的间隙
- */
-- (void)setImageRightTitleLeftWithSpacing:(CGFloat)spacing __deprecated_msg("Method deprecated. Use `setImagePositionWithType:spacing:`");
+
 @end

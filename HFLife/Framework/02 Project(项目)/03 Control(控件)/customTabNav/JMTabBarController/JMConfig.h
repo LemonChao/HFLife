@@ -94,7 +94,7 @@ typedef void (^JMConfigCustomBtnBlock) (UIButton *btn, NSInteger index);
 
 /** tabBar */
 @property (nonatomic, assign) JMConfigTabBarAnimType tabBarAnimType;
-/** 是否显示tabBar顶部线条颜色 (默认 YES) */
+/** 是否显示tabBar顶部线条 (默认 YES) */
 @property (nonatomic, assign) BOOL isClearTabBarTopLine;
 /** tabBar顶部线条颜色 (默认亮灰色) */
 @property (nonatomic, strong) UIColor *tabBarTopLineColor;

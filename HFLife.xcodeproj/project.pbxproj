@@ -518,6 +518,11 @@
 		6C2F5166222A663D0022EE03 /* HXDatePhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F513E222A663D0022EE03 /* HXDatePhotoEditViewController.m */; };
 		6C2F5170222A76DD0022EE03 /* UITool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F516F222A76DD0022EE03 /* UITool.m */; };
 		6C3D4ACA222680570007AF9A /* CALayer+XibBorderColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */; };
+		6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6F422827B47001824A0 /* ShopTabbarViewController.m */; };
+		6CCAD6F822827CBE001824A0 /* ZC_HF_ShopHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6F722827CBE001824A0 /* ZC_HF_ShopHomeVC.m */; };
+		6CCAD6FF22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6FE22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m */; };
+		6CCAD70222827FCD001824A0 /* ZC_HF_ShopCartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD70122827FCD001824A0 /* ZC_HF_ShopCartVC.m */; };
+		6CCAD70522827FE4001824A0 /* ZC_HF_ShopOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD70422827FE4001824A0 /* ZC_HF_ShopOrderVC.m */; };
 		C001CFEA1B0E8AD33641E112 /* libPods-HFLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7358FE6F8201198FC2AE374D /* libPods-HFLife.a */; };
 /* End PBXBuildFile section */
 
@@ -1515,6 +1520,16 @@
 		6C3D4ABA22255A0E0007AF9A /* AppColorHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppColorHeader.h; sourceTree = "<group>"; };
 		6C3D4AC8222680570007AF9A /* CALayer+XibBorderColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibBorderColor.h"; sourceTree = "<group>"; };
 		6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibBorderColor.m"; sourceTree = "<group>"; };
+		6CCAD6F322827B47001824A0 /* ShopTabbarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopTabbarViewController.h; sourceTree = "<group>"; };
+		6CCAD6F422827B47001824A0 /* ShopTabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopTabbarViewController.m; sourceTree = "<group>"; };
+		6CCAD6F622827CBE001824A0 /* ZC_HF_ShopHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ShopHomeVC.h; sourceTree = "<group>"; };
+		6CCAD6F722827CBE001824A0 /* ZC_HF_ShopHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_ShopHomeVC.m; sourceTree = "<group>"; };
+		6CCAD6FD22827FB4001824A0 /* ZC_HF_ShopClassifyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ShopClassifyVC.h; sourceTree = "<group>"; };
+		6CCAD6FE22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_ShopClassifyVC.m; sourceTree = "<group>"; };
+		6CCAD70022827FCD001824A0 /* ZC_HF_ShopCartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ShopCartVC.h; sourceTree = "<group>"; };
+		6CCAD70122827FCD001824A0 /* ZC_HF_ShopCartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_ShopCartVC.m; sourceTree = "<group>"; };
+		6CCAD70322827FE4001824A0 /* ZC_HF_ShopOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ShopOrderVC.h; sourceTree = "<group>"; };
+		6CCAD70422827FE4001824A0 /* ZC_HF_ShopOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_ShopOrderVC.m; sourceTree = "<group>"; };
 		7358FE6F8201198FC2AE374D /* libPods-HFLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HFLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0FD763EB23372586598644F /* Pods-HFLife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HFLife.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HFLife/Pods-HFLife.debug.xcconfig"; sourceTree = "<group>"; };
 		AF4ED42DB4DA8F9C5A04E8A7 /* Pods-HFLife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HFLife.release.xcconfig"; path = "Pods/Target Support Files/Pods-HFLife/Pods-HFLife.release.xcconfig"; sourceTree = "<group>"; };
@@ -2374,12 +2389,12 @@
 		04A507CA227EDD390013E8EC /* UIButton */ = {
 			isa = PBXGroup;
 			children = (
-				658B7A5A21D749DF00801CC8 /* UIButton+SSEdgeInsets.m */,
 				658B7A5F21D749DF00801CC8 /* UIButton+Extension.h */,
+				658B7A7521D749DF00801CC8 /* UIButton+Extension.m */,
+				658B7A7121D749DF00801CC8 /* UIButton+EdgeInsets.h */,
 				658B7A6821D749DF00801CC8 /* UIButton+EdgeInsets.m */,
 				658B7A6D21D749DF00801CC8 /* UIButton+SSEdgeInsets.h */,
-				658B7A7121D749DF00801CC8 /* UIButton+EdgeInsets.h */,
-				658B7A7521D749DF00801CC8 /* UIButton+Extension.m */,
+				658B7A5A21D749DF00801CC8 /* UIButton+SSEdgeInsets.m */,
 				04A507CB227EDD390013E8EC /* 01 block点击事件 */,
 				04A507CE227EDD390013E8EC /* 链式创建 */,
 			);
@@ -2999,6 +3014,12 @@
 			children = (
 				04B9D4FC22803CF10084FA23 /* ShopPageVC.m */,
 				04B9D4FD22803CF10084FA23 /* ShopPageVC.h */,
+				6CCAD6F322827B47001824A0 /* ShopTabbarViewController.h */,
+				6CCAD6F422827B47001824A0 /* ShopTabbarViewController.m */,
+				6CCAD6F922827CCC001824A0 /* ShopHome */,
+				6CCAD6FA22827CE2001824A0 /* ShopClassify */,
+				6CCAD6FB22827D37001824A0 /* ShopCart */,
+				6CCAD6FC22827D5A001824A0 /* ShopOrder */,
 			);
 			path = "商城";
 			sourceTree = "<group>";
@@ -4441,6 +4462,42 @@
 			path = ZCUITool;
 			sourceTree = "<group>";
 		};
+		6CCAD6F922827CCC001824A0 /* ShopHome */ = {
+			isa = PBXGroup;
+			children = (
+				6CCAD6F622827CBE001824A0 /* ZC_HF_ShopHomeVC.h */,
+				6CCAD6F722827CBE001824A0 /* ZC_HF_ShopHomeVC.m */,
+			);
+			path = ShopHome;
+			sourceTree = "<group>";
+		};
+		6CCAD6FA22827CE2001824A0 /* ShopClassify */ = {
+			isa = PBXGroup;
+			children = (
+				6CCAD6FD22827FB4001824A0 /* ZC_HF_ShopClassifyVC.h */,
+				6CCAD6FE22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m */,
+			);
+			path = ShopClassify;
+			sourceTree = "<group>";
+		};
+		6CCAD6FB22827D37001824A0 /* ShopCart */ = {
+			isa = PBXGroup;
+			children = (
+				6CCAD70022827FCD001824A0 /* ZC_HF_ShopCartVC.h */,
+				6CCAD70122827FCD001824A0 /* ZC_HF_ShopCartVC.m */,
+			);
+			path = ShopCart;
+			sourceTree = "<group>";
+		};
+		6CCAD6FC22827D5A001824A0 /* ShopOrder */ = {
+			isa = PBXGroup;
+			children = (
+				6CCAD70322827FE4001824A0 /* ZC_HF_ShopOrderVC.h */,
+				6CCAD70422827FE4001824A0 /* ZC_HF_ShopOrderVC.m */,
+			);
+			path = ShopOrder;
+			sourceTree = "<group>";
+		};
 		6FD4CD12E023F76504379A14 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -4823,6 +4880,7 @@
 				658B7C4E21D749E100801CC8 /* UIView+Extension.m in Sources */,
 				658C3B0D21F57FBC00880B6A /* HttpRequest.m in Sources */,
 				658B7C9C21D749E100801CC8 /* AnimationBackBegin.m in Sources */,
+				6CCAD6FF22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m in Sources */,
 				04A508B1227EDD3A0013E8EC /* HR_thirdLogInView.m in Sources */,
 				04A508EE227EDD3A0013E8EC /* HRBarItem.m in Sources */,
 				658C39E621E9FA5B00880B6A /* JXCategoryNumberCellModel.m in Sources */,
@@ -4887,6 +4945,7 @@
 				6579784321E6D6B600E606BE /* JFLocation.m in Sources */,
 				6C2F5159222A663D0022EE03 /* HXPhotoView.m in Sources */,
 				658C3ADE21F31A5000880B6A /* MKButton+Line.m in Sources */,
+				6CCAD6F822827CBE001824A0 /* ZC_HF_ShopHomeVC.m in Sources */,
 				04A5088E227EDD3A0013E8EC /* CALayer+WHLayer.m in Sources */,
 				658C39DC21E9FA5B00880B6A /* JXCategoryTitleImageCell.m in Sources */,
 				658B7C4921D749E100801CC8 /* UIView_extra.m in Sources */,
@@ -4972,6 +5031,7 @@
 				04A5083E227EDD390013E8EC /* UIView+ViewController.m in Sources */,
 				04A508A3227EDD3A0013E8EC /* NSTimer+WHTimer.m in Sources */,
 				658C39E821E9FA5B00880B6A /* JXCategoryListVCContainerView.m in Sources */,
+				6CCAD70222827FCD001824A0 /* ZC_HF_ShopCartVC.m in Sources */,
 				04A50879227EDD3A0013E8EC /* UIAppearance+Swift.m in Sources */,
 				658C39E721E9FA5B00880B6A /* JXCategoryListContainerView.m in Sources */,
 				6579784621E6D6B600E606BE /* JFSearchView.m in Sources */,
@@ -4998,6 +5058,7 @@
 				04A50896227EDD3A0013E8EC /* UIView+WHView.m in Sources */,
 				65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */,
 				658902EE223B775F009C1B03 /* UIColor+PYSearchExtension.m in Sources */,
+				6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */,
 				6579784521E6D6B600E606BE /* JFCityHeaderView.m in Sources */,
 				04A50881227EDD3A0013E8EC /* customTableViewCell.m in Sources */,
 				6C2F514D222A663D0022EE03 /* HXAlbumListViewController.m in Sources */,
@@ -5070,6 +5131,7 @@
 				04A5087B227EDD3A0013E8EC /* RLPieChart.m in Sources */,
 				6537119E21E5964100C4FCE2 /* UIView+LSCore.m in Sources */,
 				04B9D55222803CF20084FA23 /* SearchBarEffectController.m in Sources */,
+				6CCAD70522827FE4001824A0 /* ZC_HF_ShopOrderVC.m in Sources */,
 				04A5086D227EDD3A0013E8EC /* CustomAlertView.m in Sources */,
 				6522949E225AE063001DF691 /* SELUpdateAlertConst.m in Sources */,
 				04A5086E227EDD3A0013E8EC /* CustomPromptBox.m in Sources */,
