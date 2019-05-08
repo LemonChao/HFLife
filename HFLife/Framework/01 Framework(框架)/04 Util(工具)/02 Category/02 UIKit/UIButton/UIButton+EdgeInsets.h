@@ -46,6 +46,12 @@ typedef NS_ENUM(NSInteger, ImagePositionType) {
 
 
 
+/**
+ 商城tabBar上的plusButton 图文排版
+
+ @param postion 图片位置
+ @param spacing 图文间距
+ */
 - (void)tabBarItem_setImagePosition:(ImagePositionType)postion spacing:(CGFloat)spacing;
 
 

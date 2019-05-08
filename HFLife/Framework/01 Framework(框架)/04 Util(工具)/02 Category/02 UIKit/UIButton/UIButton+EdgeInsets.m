@@ -85,7 +85,7 @@ sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
     CGFloat labelBottom = 0.f;
     CGFloat imgW = self.imageView.image.size.width;
     CGFloat imgH = self.imageView.image.size.height;
-    CGSize origLabSize = CGSizeMake(10.33, 12);
+    CGSize origLabSize = IS_IPHONE_5 ? CGSizeMake(4, 12) : CGSizeMake(10.33, 12);
     CGFloat orgLabW = origLabSize.width;
     CGFloat orgLabH = origLabSize.height;
 
@@ -104,7 +104,6 @@ sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
     
     self.imageEdgeInsets = UIEdgeInsetsMake(-imageOffsetY-10, imageOffsetX, imageOffsetY, -imageOffsetX);
     self.titleEdgeInsets = UIEdgeInsetsMake(-labelOffsetY, -labelOffsetX1, labelOffsetY, labelOffsetX2);
-
 }
 
 @end

@@ -54,11 +54,11 @@
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     CGFloat btnW = [UIScreen mainScreen].bounds.size.width / 4;
     btn.frame = CGRectMake(0, 0, btnW, tabBarVc.JM_TabBar.frame.size.height);
+    [btn tabBarItem_setImagePosition:ImagePositionTypeTop spacing:4.f];
 
     [config addCustomBtn:btn AtIndex:2 BtnClickBlock:^(UIButton *btn, NSInteger index) {
         [[JMConfig config].tabBarController dismissViewControllerAnimated:YES completion:nil];
     }];
-    [btn tabBarItem_setImagePosition:ImagePositionTypeTop spacing:4.f];
 
     return tabBarVc;
 }
