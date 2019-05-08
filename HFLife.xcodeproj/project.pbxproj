@@ -17,6 +17,9 @@
 		0406ED2A22755438000784D0 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; };
 		0406ED2B22755438000784D0 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
+		040A17B62282700F00997B93 /* YYB_HF_LocalHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */; };
+		040A17BC2282701E00997B93 /* NearColumnCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17B92282701D00997B93 /* NearColumnCollectionViewCell.m */; };
+		040A17BD2282701E00997B93 /* NearColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17BA2282701D00997B93 /* NearColumnCell.m */; };
 		0428EB5322797379000E4B4E /* callTelephone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428EB5122797379000E4B4E /* callTelephone.m */; };
 		0453D1502281935E00880C2A /* customItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14C2281935E00880C2A /* customItemView.m */; };
 		0453D1512281935E00880C2A /* myTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14F2281935E00880C2A /* myTopView.m */; };
@@ -563,6 +566,12 @@
 		0406ED2222755421000784D0 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		0406ED2E227554E3000784D0 /* LYBmOcrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBmOcrManager.h; sourceTree = "<group>"; };
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
+		040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_LocalHeadView.m; sourceTree = "<group>"; };
+		040A17B52282700F00997B93 /* YYB_HF_LocalHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYB_HF_LocalHeadView.h; sourceTree = "<group>"; };
+		040A17B82282701D00997B93 /* NearColumnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearColumnCell.h; sourceTree = "<group>"; };
+		040A17B92282701D00997B93 /* NearColumnCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearColumnCollectionViewCell.m; sourceTree = "<group>"; };
+		040A17BA2282701D00997B93 /* NearColumnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearColumnCell.m; sourceTree = "<group>"; };
+		040A17BB2282701D00997B93 /* NearColumnCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearColumnCollectionViewCell.h; sourceTree = "<group>"; };
 		0428EB5122797379000E4B4E /* callTelephone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callTelephone.m; sourceTree = "<group>"; };
 		0428EB5222797379000E4B4E /* callTelephone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callTelephone.h; sourceTree = "<group>"; };
 		0453D14C2281935E00880C2A /* customItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customItemView.m; sourceTree = "<group>"; };
@@ -1621,6 +1630,34 @@
 				0406ED2F227554E3000784D0 /* LYBmOcrManager.m */,
 			);
 			path = "百度OCR";
+			sourceTree = "<group>";
+		};
+		040A17B22282700F00997B93 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				040A17B32282700F00997B93 /* naview */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		040A17B32282700F00997B93 /* naview */ = {
+			isa = PBXGroup;
+			children = (
+				040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */,
+				040A17B52282700F00997B93 /* YYB_HF_LocalHeadView.h */,
+			);
+			path = naview;
+			sourceTree = "<group>";
+		};
+		040A17B72282701D00997B93 /* 分类Cell */ = {
+			isa = PBXGroup;
+			children = (
+				040A17B82282701D00997B93 /* NearColumnCell.h */,
+				040A17B92282701D00997B93 /* NearColumnCollectionViewCell.m */,
+				040A17BA2282701D00997B93 /* NearColumnCell.m */,
+				040A17BB2282701D00997B93 /* NearColumnCollectionViewCell.h */,
+			);
+			path = "分类Cell";
 			sourceTree = "<group>";
 		};
 		0428EB5022797379000E4B4E /* 打电话 */ = {
@@ -3227,6 +3264,7 @@
 		04B9D51A22803CF10084FA23 /* 本地服务 */ = {
 			isa = PBXGroup;
 			children = (
+				040A17B22282700F00997B93 /* View */,
 				04B9D51B22803CF10084FA23 /* NearHomeVC.h */,
 				04B9D51C22803CF10084FA23 /* NearPageVC.m */,
 				04B9D51D22803CF10084FA23 /* Cell */,
@@ -3241,6 +3279,7 @@
 		04B9D51D22803CF10084FA23 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				040A17B72282701D00997B93 /* 分类Cell */,
 				04B9D51E22803CF10084FA23 /* YYStarView */,
 			);
 			path = Cell;
@@ -4828,6 +4867,7 @@
 				65DC68782217C5A900F1085E /* RSAEncryptor.m in Sources */,
 				6C2F5150222A663D0022EE03 /* HXPhotoTools.m in Sources */,
 				04A50878227EDD3A0013E8EC /* UIViewController+Chameleon.m in Sources */,
+				040A17BC2282701E00997B93 /* NearColumnCollectionViewCell.m in Sources */,
 				658B7CC321D749E100801CC8 /* AlertViewCell.m in Sources */,
 				6C2F515A222A663D0022EE03 /* HXFullScreenCameraPlayView.m in Sources */,
 				04A50867227EDD3A0013E8EC /* UITableView+JQMMnodata.m in Sources */,
@@ -5179,10 +5219,12 @@
 				04A508A0227EDD3A0013E8EC /* UIButton+WHButton.m in Sources */,
 				04A5086F227EDD3A0013E8EC /* UIColor+ChameleonPrivate.m in Sources */,
 				04B9D58022803E260084FA23 /* baseTableView.m in Sources */,
+				040A17B62282700F00997B93 /* YYB_HF_LocalHeadView.m in Sources */,
 				658B7C4B21D749E100801CC8 /* NSArray+JSON.m in Sources */,
 				0453D180228266D200880C2A /* CWPageControl.m in Sources */,
 				658B7C7821D749E100801CC8 /* LXAlertView.m in Sources */,
 				04A508D1227EDD3A0013E8EC /* NSString+PinYin.m in Sources */,
+				040A17BD2282701E00997B93 /* NearColumnCell.m in Sources */,
 				04A508E3227EDD3A0013E8EC /* HRJSON.m in Sources */,
 				658B7C4821D749E100801CC8 /* UIView+Shadow.m in Sources */,
 				6C2F5165222A663D0022EE03 /* HXDatePhotoToolManager.m in Sources */,
