@@ -211,6 +211,8 @@
 - (UILabel *)createLabel:(NSString *)text{
     UILabel *label = [[UILabel alloc] init];
     label.textColor = self.textColor;
+    label.layer.borderColor = self.itemBoardColor.CGColor;
+    label.backgroundColor = self.itemBgColor;
     label.font = self.font;
 //    label.textColor = HEX_COLOR(0x666666);
 //    label.font = [UIFont systemFontOfSize:WidthRatio(24)];
@@ -220,6 +222,7 @@
          MMViewBorderRadius(label, WidthRatio(10), HeightRatio(2), HEX_COLOR(0xc7c7c7));
     }else{
          MMViewBorderRadius(label, WidthRatio(10),0, HEX_COLOR(0xc7c7c7));
+        label.backgroundColor = [UIColor clearColor];
     }
     return label;
 }

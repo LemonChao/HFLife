@@ -18,6 +18,10 @@
  人数
  */
 @property (nonatomic, strong)UIView *pepleCountView;
+
+/**
+ 人数数据view
+ */
 @property (nonatomic, strong)DigitalRollingView *countView;
 
 /**
@@ -42,6 +46,11 @@
  富权
  */
 @property (nonatomic, strong)UIView *fqMoneyView;
+/**
+ 富权数据view
+ */
+@property (nonatomic, strong)DigitalRollingView *fqNUmView;
+
 
 @property (nonatomic, strong)myTopView *bottomBarView;
 @property (nonatomic, strong)UIView *bottomBarBgView;
@@ -97,6 +106,35 @@
     [self.bottomBarBgView addSubview:self.bottomBarView];
     [self.pepleCountView addSubview:self.countView];
     
+    
+    //动态数据view
+    
+    self.countView = [DigitalRollingView new];
+    self.countView.font = [UIFont systemFontOfSize:ScreenScale(11)];
+    self.countView.textColor = HEX_COLOR(0xCA1400);
+    self.countView.width = ScreenScale(13);
+    self.countView.height = ScreenScale(13);
+    self.countView.minLength = 3;
+    self.countView.itemBoardColor = [UIColor redColor];
+    self.countView.itemBgColor = [UIColor whiteColor];
+    
+    
+    self.fqNUmView = [DigitalRollingView new];
+    self.fqNUmView.font = [UIFont systemFontOfSize:ScreenScale(11)];
+    self.fqNUmView.textColor = HEX_COLOR(0xCA1400);
+    self.fqNUmView.width = ScreenScale(13);
+    self.fqNUmView.height = ScreenScale(13);
+    self.fqNUmView.minLength = 3;
+    self.fqNUmView.itemBoardColor = [UIColor redColor];
+    self.fqNUmView.itemBgColor = [UIColor whiteColor];
+    
+    
+    [self addSubview:self.countView];
+    [self.fqMoneyView addSubview:self.fqNUmView];
+    
+    
+    
+    
     self.peploImageV.image = [UIImage imageNamed:@"人数图标"];
     self.bgImageV.backgroundColor = [UIColor purpleColor];
     self.myFQNumLb.textColor = [UIColor whiteColor];
@@ -122,8 +160,8 @@
     self.bottomBarBgView.backgroundColor = [UIColor whiteColor];
     
     
-    self.pepleCountView.backgroundColor = [UIColor yellowColor];
-    self.fqMoneyView.backgroundColor = [UIColor whiteColor];
+    self.pepleCountView.backgroundColor = [UIColor clearColor];
+    self.fqMoneyView.backgroundColor = [UIColor clearColor];
     
 //    self.moneyTypeLb.backgroundColor = 
     
@@ -138,6 +176,11 @@
     self.bottomBarView.selectedItem = ^(NSInteger index) {
         NSLog(@"点击的是 ： %ld", index);
     };
+    
+    //赋值并执行动画
+    self.countView.integerNumber = 32434;
+    self.fqNUmView.number = 32434.02432434;
+    [self.countView startAnimation];
     
 }
 
@@ -220,6 +263,21 @@
     
     [self layoutIfNeeded];    
    
+    [self.countView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(self.pepleCountView);
+        make.centerY.mas_equalTo(self.pepleCountView.mas_centerY).offset(-ScreenScale(6.5));
+        make.centerX.mas_equalTo(self.pepleCountView.mas_centerX);
+
+    }];
+    
+    
+    [self.fqNUmView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(self.fqMoneyView);
+        make.centerY.mas_equalTo(self.fqMoneyView.mas_centerY).offset(-ScreenScale(6.5));
+        make.centerX.mas_equalTo(self.fqMoneyView.mas_centerX);
+        
+    }];
+    
     
     
     [self.bottomBarBgView addShadowForViewColor:HEX_COLOR(0xFCC9C4) offSet:CGSizeMake(-1,2) shadowRadius:3 cornerRadius:5 opacity:1.0];
@@ -227,9 +285,6 @@
     self.bottomBarView.layer.cornerRadius = 5;
     self.bottomBarView.masksToBounds = YES;
     self.bottomBarView.clipsToBounds = YES;
-    
-    
-    
 }
 
 @end
