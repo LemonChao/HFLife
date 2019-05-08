@@ -114,7 +114,6 @@
     UITabBarController *tabBar = [customTabBarViewController configerTableBarVC];
     self.window.rootViewController = tabBar;
     [self.window makeKeyAndVisible];
-    self.window.backgroundColor = [UIColor blackColor];
 }
 -(void)changLoginRootViewController{
     [[self topViewController].navigationController pushViewController:[[LoginVC alloc]init] animated:YES];

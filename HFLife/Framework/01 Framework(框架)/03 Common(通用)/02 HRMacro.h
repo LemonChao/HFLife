@@ -82,6 +82,8 @@
 #define HF_xyRatio [UIScreen mainScreen].bounds.size.height / 568
 #define HF_Ratio [UIScreen mainScreen].bounds.size.width / 667
 
+#define ScreenScale(x) ([UIScreen mainScreen].bounds.size.width / 375) * x
+
 #pragma mark - ------------------- G_C_D -------------------
 
 #define GCD_G_Q dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)

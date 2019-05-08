@@ -40,7 +40,10 @@
 - (void)wr_setRightButtonWithTitle:(NSString *)title titleColor:(UIColor *)titleColor;
 
 
-
+- (void) setRightBtnWidth:(CGFloat)width;
+- (void) setLeftBtnWidth:(CGFloat)width;
+@property (nonatomic, strong) UIButton    *leftButton;
+@property (nonatomic, strong) UIButton    *rightButton;
 @end
 
 

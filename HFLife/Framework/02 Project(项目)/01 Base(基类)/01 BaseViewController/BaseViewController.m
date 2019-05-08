@@ -36,8 +36,8 @@ typedef enum NetStatus
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    [self setupNavBar];
     self.navigationController.navigationBarHidden = YES;
+    [self setupNavBar];
 }
 
 - (void)setupNavBar
@@ -62,6 +62,10 @@ typedef enum NetStatus
         }
         
     }
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.view addSubview:self.customNavBar];
 }
 /**
  *  懒加载赋值屏幕高

@@ -59,11 +59,15 @@
 
 @interface WRCustomNavigationBar ()
 @property (nonatomic, strong) UILabel     *titleLable;
-@property (nonatomic, strong) UIButton    *leftButton;
-@property (nonatomic, strong) UIButton    *rightButton;
+
 @property (nonatomic, strong) UIView      *bottomLine;
 @property (nonatomic, strong) UIView      *backgroundView;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
+
+@property (nonatomic ,assign) CGFloat rightBtnW;
+@property (nonatomic ,assign) CGFloat leftBtnW;
+
+
 @end
 
 @implementation WRCustomNavigationBar
@@ -92,6 +96,11 @@
     [self addSubview:self.titleLable];
     [self addSubview:self.rightButton];
     [self addSubview:self.bottomLine];
+    
+    //设置默认宽度
+    self.rightBtnW = 60;
+    self.leftBtnW = 60;
+    
     [self updateFrame];
     self.backgroundColor = [UIColor clearColor];
     self.backgroundView.backgroundColor = kWRDefaultBackgroundColor;
@@ -102,14 +111,14 @@
     NSInteger top = ([WRCustomNavigationBar isIphoneX]) ? 44 : 20;
     NSInteger margin = 0;
     NSInteger buttonHeight = 44;
-    NSInteger buttonWidth = 44;
+//    NSInteger buttonWidth = 60;
     NSInteger titleLabelHeight = 44;
     NSInteger titleLabelWidth = 180;
 
     self.backgroundView.frame = self.bounds;
     self.backgroundImageView.frame = self.bounds;
-    self.leftButton.frame = CGRectMake(margin, top, buttonWidth, buttonHeight);
-    self.rightButton.frame = CGRectMake(kWRScreenWidth - buttonWidth - margin, top, buttonWidth, buttonHeight);
+    self.leftButton.frame = CGRectMake(margin, top, self.leftBtnW, buttonHeight);
+    self.rightButton.frame = CGRectMake(kWRScreenWidth - self.rightBtnW - margin, top,  self.rightBtnW, buttonHeight);
     self.titleLable.frame = CGRectMake((kWRScreenWidth - titleLabelWidth) / 2, top, titleLabelWidth, titleLabelHeight);
     self.bottomLine.frame = CGRectMake(0, (CGFloat)(self.bounds.size.height-0.5), kWRScreenWidth, 0.5);
 }
@@ -263,6 +272,20 @@
     }
     return _backgroundImageView;
 }
+
+//设置宽度
+- (void) setRightBtnWidth:(CGFloat)width{
+    self.rightBtnW = width;
+    [self updateFrame];
+}
+- (void) setLeftBtnWidth:(CGFloat)width{
+    self.leftBtnW = width;
+    [self updateFrame];
+}
+
+
+
+
 
 + (int)navBarBottom {
     return 44 + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);

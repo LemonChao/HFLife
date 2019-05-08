@@ -16,10 +16,14 @@
 #import "JFAreaDataManager.h"
 
 #import "SXF_HF_CustomSearchBar.h"
-
+//#import "SXF_HF_HomePageView.h"
+#import "collectionFlowLyoutView.h"
 @interface HomePageVC ()<UITableViewDelegate, UITableViewDataSource ,JFLocationDelegate>
 @property (nonatomic, strong)JFLocation *locationManager;
 @property (nonatomic, strong)NSTimer *circleTimer;
+
+
+//@property (nonatomic, strong)SXF_HF_HomePageView *homeTableView;
 @end
 
 @implementation HomePageVC
@@ -47,21 +51,19 @@
         [self setStaticGuidePage];
     }
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
     self.customNavBar.title = @"首页";
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"homeNavBG"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"homeNavBG"] forBarMetrics:UIBarMetricsDefault];
     // 设置初始导航栏透明度
     [self wr_setNavBarBackgroundAlpha:0];
     self.locationManager.delegate = self;
     self.view.backgroundColor = HEX_COLOR(0xf4f4f4);
 
-   
-    [self setupNavigationItem];
+
+//    [self setupNavigationItem];
 //    [self VersionBounced];
     [self timingTask];
- 
-    
+
+
     [self setUpUI];
     [self loadServerData];
 }
@@ -76,6 +78,15 @@
     searchBar.searchBtnClick = ^{
         [WXZTipView showTopWithText:@"搜索"];
     };
+    
+//    self.homeTableView = [[SXF_HF_HomePageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
+//    [self.view addSubview:self.homeTableView];
+    
+    
+    collectionFlowLyoutView *collectionView = [[collectionFlowLyoutView alloc] initWithFrame:CGRectMake(0, NaviBarHeight + statusBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NaviBarHeight - TableBarHeight - statusBarHeight)];
+    [self.view addSubview:collectionView];
+    
+    
 }
 - (void) click{
     BaseViewController *vc = [BaseViewController new];
@@ -91,7 +102,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"homeNavBG"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"homeNavBG"] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -100,11 +111,12 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.circleTimer invalidate];
     self.circleTimer = nil;
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    
+//    self.navigationController.navigationBar.hidden = YES;
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 
 }
 

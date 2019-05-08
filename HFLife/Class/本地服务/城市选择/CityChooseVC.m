@@ -10,7 +10,6 @@
 #import "CityChooseVC.h"
 #import "JFCityTableViewCell.h"
 #import "JFLocation.h"
-
 @interface CityChooseVC ()<UITableViewDelegate,UITableViewDataSource,JFLocationDelegate>
 /** 定位*/
 @property (nonatomic, strong) JFLocation *locationManager;
@@ -55,15 +54,29 @@
 }
 -(void)axcBaseRequestData{
     WS(weakSelf);
-    
+//    [[NearNetRequest sharedInstance]getOperCityData:^(id  _Nonnull request) {
+//        if ([request isKindOfClass:[NSDictionary class]]) {
+//            [weakSelf deleteEmptyDataView];
+//            NSDictionary *dict = (NSDictionary *)request;
+//            [weakSelf.characterMutableArray addObjectsFromArray:dict[@"key"]];
+//            weakSelf.cityMutabledictionary = dict[@"value"];
+//            weakSelf.citySearchValue = dict[@"city_array"];
+//            weakSelf.hotCityArray = dict[@"hot_names"];
+//            [weakSelf.rootTableView reloadData];
+//        }else{
+//            [weakSelf initEmptyDataViewbelowSubview:weakSelf.customNavBar touchBlock:^{
+//                [weakSelf axcBaseRequestData];
+//            }];
+//        }
+//    }];
 }
 -(void)setupNavBar{
     WS(weakSelf);
     [super setupNavBar];
-    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
+    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"icon_guanbi"]];
     [self.customNavBar wr_setRightButtonWithImage:[UIImage imageNamed:@"NearFoodSousuo"]];
 //    [self.customNavBar wr_setRightButtonWithTitle:@"发布" titleColor:HEX_COLOR(0xC04CEB)];
-    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@"meishi_bg"];
+    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@"yynavi_bg"];
     [self.customNavBar setOnClickLeftButton:^{
 //        [weakSelf.navigationController popViewControllerAnimated:YES];
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
@@ -74,9 +87,9 @@
     }];
         //    [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:YES];
-    self.customNavBar.title = @"城市选择";
+    self.customNavBar.title = @"国内";
     self.customNavBar.backgroundColor = [UIColor whiteColor];
-    self.customNavBar.titleLabelColor = [UIColor whiteColor];
+    self.customNavBar.titleLabelColor = [UIColor blackColor];
 }
 #pragma mark UITableView 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
