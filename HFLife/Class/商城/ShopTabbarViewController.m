@@ -11,7 +11,7 @@
 #import "ZC_HF_ShopClassifyVC.h"
 #import "ZC_HF_ShopCartVC.h"
 #import "ZC_HF_ShopOrderVC.h"
-
+#import "sxfTouchBtn.h"
 @interface ShopTabbarViewController ()<JMTabBarDelegate>
 
 @end
@@ -45,7 +45,7 @@
     ShopTabbarViewController *tabBarVc = [[ShopTabbarViewController alloc] initWithTabBarControllers:controllerArr NorImageArr:imageNormalArr SelImageArr:imageSelectedArr TitleArr:titleArr Config:config];
     tabBarVc.JM_TabBar.myDelegate = tabBarVc;
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    sxfTouchBtn *btn = [sxfTouchBtn buttonWithType:UIButtonTypeCustom];
     [btn setImage:[UIImage imageNamed:@"shop_hanfu"] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"shop_hanfu"] forState:UIControlStateSelected];
     [btn setTitle:@"返回首页" forState:UIControlStateNormal];

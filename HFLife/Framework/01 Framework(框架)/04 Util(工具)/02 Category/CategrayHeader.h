@@ -17,4 +17,6 @@
 #import "UILabel+FitSize.h"
 #import "UIView+Shadow.h"
 #import "UIView+changeBgColor.h"//渐变色
+#import "UIButton+EnlargeEdge.h"
+#import "UIFont+scaleSize.h"
 #endif /* CategrayHeader_h */

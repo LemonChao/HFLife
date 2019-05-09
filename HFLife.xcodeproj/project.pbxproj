@@ -54,6 +54,8 @@
 		0453D1AD2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1AC2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.m */; };
 		0453D1AF2282CFA100880C2A /* UIView+changeBgColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1AE2282CFA000880C2A /* UIView+changeBgColor.m */; };
 		0453D1B82283BE8D00880C2A /* baseCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1B72283BE8D00880C2A /* baseCollectionView.m */; };
+		0453D1BB2283D38E00880C2A /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1BA2283D38E00880C2A /* UIButton+EnlargeEdge.m */; };
+		0453D1BF2283D99500880C2A /* UIFont+scaleSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1BE2283D99500880C2A /* UIFont+scaleSize.m */; };
 		04A50836227EDD390013E8EC /* VierticalScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065A227EDD350013E8EC /* VierticalScrollView.m */; };
 		04A50837227EDD390013E8EC /* UIView+FrameExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065D227EDD350013E8EC /* UIView+FrameExtension.m */; };
 		04A50838227EDD390013E8EC /* segementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A50661227EDD350013E8EC /* segementView.m */; };
@@ -656,6 +658,10 @@
 		0453D1B02282CFDB00880C2A /* UIView+changeBgColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+changeBgColor.h"; sourceTree = "<group>"; };
 		0453D1B62283BE8D00880C2A /* baseCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseCollectionView.h; sourceTree = "<group>"; };
 		0453D1B72283BE8D00880C2A /* baseCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseCollectionView.m; sourceTree = "<group>"; };
+		0453D1B92283D38E00880C2A /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
+		0453D1BA2283D38E00880C2A /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
+		0453D1BD2283D99500880C2A /* UIFont+scaleSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+scaleSize.h"; sourceTree = "<group>"; };
+		0453D1BE2283D99500880C2A /* UIFont+scaleSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+scaleSize.m"; sourceTree = "<group>"; };
 		04A50655227EDD2D0013E8EC /* PodHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodHeader.h; sourceTree = "<group>"; };
 		04A50656227EDD310013E8EC /* FrameworkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameworkHeader.h; sourceTree = "<group>"; };
 		04A5065A227EDD350013E8EC /* VierticalScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VierticalScrollView.m; sourceTree = "<group>"; };
@@ -1929,6 +1935,15 @@
 			path = "搜索栏";
 			sourceTree = "<group>";
 		};
+		0453D1BC2283D97F00880C2A /* UIFont */ = {
+			isa = PBXGroup;
+			children = (
+				0453D1BD2283D99500880C2A /* UIFont+scaleSize.h */,
+				0453D1BE2283D99500880C2A /* UIFont+scaleSize.m */,
+			);
+			path = UIFont;
+			sourceTree = "<group>";
+		};
 		04A50654227EDCF90013E8EC /* Framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -2563,6 +2578,7 @@
 		04A507A4227EDD390013E8EC /* 02 UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				0453D1BC2283D97F00880C2A /* UIFont */,
 				04B9D35F227FC2810084FA23 /* UIImageView */,
 				04A508F2227EF3B80013E8EC /* UIImage */,
 				04A508F1227EF34A0013E8EC /* UITabBar */,
@@ -2736,6 +2752,8 @@
 				658B7A6821D749DF00801CC8 /* UIButton+EdgeInsets.m */,
 				658B7A6D21D749DF00801CC8 /* UIButton+SSEdgeInsets.h */,
 				658B7A5A21D749DF00801CC8 /* UIButton+SSEdgeInsets.m */,
+				0453D1B92283D38E00880C2A /* UIButton+EnlargeEdge.h */,
+				0453D1BA2283D38E00880C2A /* UIButton+EnlargeEdge.m */,
 				04A507CB227EDD390013E8EC /* 01 block点击事件 */,
 				04A507CE227EDD390013E8EC /* 链式创建 */,
 			);
@@ -5473,6 +5491,7 @@
 				04B9D58022803E260084FA23 /* baseTableView.m in Sources */,
 				040A17B62282700F00997B93 /* YYB_HF_LocalHeadView.m in Sources */,
 				658B7C4B21D749E100801CC8 /* NSArray+JSON.m in Sources */,
+				0453D1BF2283D99500880C2A /* UIFont+scaleSize.m in Sources */,
 				0453D180228266D200880C2A /* CWPageControl.m in Sources */,
 				658B7C7821D749E100801CC8 /* LXAlertView.m in Sources */,
 				04A508D1227EDD3A0013E8EC /* NSString+PinYin.m in Sources */,
@@ -5515,6 +5534,7 @@
 				658B7CB121D749E100801CC8 /* TADotView.m in Sources */,
 				04A5087B227EDD3A0013E8EC /* RLPieChart.m in Sources */,
 				6537119E21E5964100C4FCE2 /* UIView+LSCore.m in Sources */,
+				0453D1BB2283D38E00880C2A /* UIButton+EnlargeEdge.m in Sources */,
 				04B9D55222803CF20084FA23 /* SearchBarEffectController.m in Sources */,
 				6CCAD70522827FE4001824A0 /* ZC_HF_ShopOrderVC.m in Sources */,
 				04A5086D227EDD3A0013E8EC /* CustomAlertView.m in Sources */,
