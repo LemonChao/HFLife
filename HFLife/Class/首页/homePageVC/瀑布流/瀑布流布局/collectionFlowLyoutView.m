@@ -7,7 +7,7 @@
 
 #import "collectionFlowLyoutView.h"
 #import "XPCollectionViewWaterfallFlowLayout.h"
-#import "CollectionViewCell.h"
+#import "SXF_HF_CollectionViewCell.h"
 #import "cycleScrollCell.h"
 #import "SXF_HF_ItemsViewCell.h"
 #import "SXF_HF_HeadlineCell1.h"
@@ -18,7 +18,7 @@
 @interface collectionFlowLyoutView()<XPCollectionViewWaterfallFlowLayoutDataSource,
 UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic ,strong) UICollectionView *collectionView;
+@property (nonatomic ,strong) baseCollectionView *collectionView;
 @property (nonatomic ,strong) XPCollectionViewWaterfallFlowLayout *layout;
 @property (nonatomic ,strong)NSMutableArray<NSMutableArray<NSNumber *> *> *dataSource;
 @property (nonatomic, strong)SXF_HF_HomePageTableHeader *tableHeader;
@@ -61,6 +61,20 @@ static NSString * const footerReuseIdentifier = @"Footer";
     
 
     [self.collectionView addSubview:self.tableHeader];
+    
+    //下拉刷新
+    self.collectionView.refreshHeaderBlock = ^{
+        NSLog(@"collection下拉");
+    };
+    
+    
+    //上拉加载
+    self.collectionView.refreshFooterBlock = ^{
+        NSLog(@"collection上拉");
+    };
+    
+    
+    
 }
 
 
@@ -88,7 +102,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
             SXF_HF_ItemsViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_ItemsViewCell class]) forIndexPath:indexPath];
             return cell;
         }else if (indexPath.row == 1) {
-            CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([CollectionViewCell class]) forIndexPath:indexPath];
+            SXF_HF_CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_CollectionViewCell class]) forIndexPath:indexPath];
             return cell;
         }else if (indexPath.row == 2) {
             cycleScrollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([cycleScrollCell class]) forIndexPath:indexPath];
@@ -105,7 +119,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
         SXF_HF_HeadlineCell2 *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_HeadlineCell2 class]) forIndexPath:indexPath];
         return cell;
     }
-    CollectionViewCell *cell = (CollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([CollectionViewCell class]) forIndexPath:indexPath];
+    SXF_HF_CollectionViewCell *cell = (SXF_HF_CollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_CollectionViewCell class]) forIndexPath:indexPath];
     
     return cell;
 }
@@ -173,7 +187,10 @@ static NSString * const footerReuseIdentifier = @"Footer";
     //每个分区的上左下右间距
     if (section == 0) {
         return UIEdgeInsetsMake(ScreenScale(300), 0.0, 10.0, 0.0);
-    }else if (section == 2){
+    }else if (section == 1){
+        return UIEdgeInsetsMake(ScreenScale(6), 0.0, ScreenScale(6), 0.0);
+    }
+    else if (section == 2){
         return UIEdgeInsetsMake(0.0, ScreenScale(6), 0.0, ScreenScale(6));
     }
     return UIEdgeInsetsMake(ScreenScale(6), 0.0, 0.0, 0.0);
@@ -208,14 +225,14 @@ static NSString * const footerReuseIdentifier = @"Footer";
 
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.layout];
+        _collectionView = [[baseCollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerClass:[CollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseIdentifier];
         [_collectionView registerClass:[CollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerReuseIdentifier];
         
-        [_collectionView registerClass:[CollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([CollectionViewCell class])];
+        [_collectionView registerClass:[SXF_HF_CollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([SXF_HF_CollectionViewCell class])];
         
         [_collectionView registerClass:[cycleScrollCell class] forCellWithReuseIdentifier:NSStringFromClass([cycleScrollCell class])];
         

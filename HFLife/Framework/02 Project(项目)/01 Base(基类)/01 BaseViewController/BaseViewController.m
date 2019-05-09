@@ -45,9 +45,9 @@ typedef enum NetStatus
     [self.view addSubview:self.customNavBar];
     
     // 设置自定义导航栏背景图片
-    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@"navi_bg"];
+//    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@"navi_bg"];
     [self.customNavBar wr_setBottomLineHidden:YES];
-    
+    self.customNavBar.backgroundColor = [UIColor whiteColor];
     // 设置自定义导航栏标题颜色
     self.customNavBar.titleLabelColor = [UIColor whiteColor];
     
@@ -62,6 +62,8 @@ typedef enum NetStatus
         }
         
     }
+    // 设置初始导航栏透明度
+    [self wr_setNavBarBackgroundAlpha:0];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];

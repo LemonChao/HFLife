@@ -48,9 +48,10 @@
     
     self.seatchTitle.font = MyFont(13);
     self.seatchTitle.textColor = [UIColor colorWithHexString:@"#1D1B1B"];
+    self.seatchTitle.text = @"搜索";
     
     self.searchImageV.image = [UIImage imageNamed:@"搜索"];
-    self.searchBgView.backgroundColor =  [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+    self.searchBgView.backgroundColor =  HEX_COLOR(0xF5F5F5);
     self.searchBgView.layer.cornerRadius = 4;
     self.searchBgView.layer.masksToBounds = YES;
     self.searchImageV.contentMode = UIViewContentModeScaleAspectFit;

@@ -53,7 +53,7 @@
     [self.tapBtn addTarget:self action:@selector(clickUpBtn:) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void) clickUpBtn:(UIButton *)sender{
-    !self.clickItem ? : self.clickItem(sender.tag);
+    !self.clickItem ? : self.clickItem(self.tag);
 }
 - (void)layoutSubviews{
     [super layoutSubviews];

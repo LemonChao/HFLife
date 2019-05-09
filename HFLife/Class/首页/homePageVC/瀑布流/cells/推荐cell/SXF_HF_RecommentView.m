@@ -83,7 +83,16 @@
 - (void)currentPageChanged:(LWDPageControl *)pageControl{
     //点击小点
 }
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat pageWidth = self.itemWidth;
+    
+    int currentPage = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    
+    if (currentPage != self.pageControl.currentPage) {
+        self.pageControl.currentPage = currentPage;
+    }
+    
+}
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
     CGFloat pageWidth = self.itemWidth;
@@ -100,13 +109,13 @@
     [super layoutSubviews];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(self);
-        make.bottom.mas_equalTo(self.mas_bottom).offset(-ScreenScale(10));
+        make.bottom.mas_equalTo(self.mas_bottom).offset(-ScreenScale(15));
     }];
     
     [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.left.mas_equalTo(self);
         make.top.mas_equalTo(self.collectionView.mas_bottom);
-        make.bottom.mas_equalTo(self.collectionView.mas_bottom).offset(0);
+        make.bottom.mas_equalTo(self.collectionView.mas_bottom).offset(ScreenScale(5));
     }];
     self.pageControl.backgroundColor = [UIColor whiteColor];
 }
@@ -120,7 +129,7 @@
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.pagingEnabled = YES;//整页滚动
+        _collectionView.pagingEnabled = NO;//整页滚动
         [_collectionView registerClass:[SXF_HF_RecommentCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([SXF_HF_RecommentCollectionCell class])];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
@@ -138,7 +147,7 @@
 
 - (LWDPageControl *)pageControl{
     if (!_pageControl) {
-        _pageControl = [[LWDPageControl alloc] initWithFrame:CGRectMake(0, ScreenScale(100 - 80), SCREEN_WIDTH, 10) indicatorMargin:7.f indicatorWidth:8.f currentIndicatorWidth:8.f indicatorHeight:8];
+        _pageControl = [[LWDPageControl alloc] initWithFrame:CGRectMake(0, ScreenScale(100 - 80), SCREEN_WIDTH, 15) indicatorMargin:7.f indicatorWidth:6.f currentIndicatorWidth:6.f indicatorHeight:6];
         _pageControl.numberOfPages = self.nums;
         _pageControl.currentPageIndicatorColor = HEX_COLOR(0xCA1400);
         _pageControl.pageIndicatorColor = HEX_COLOR(0xCA1400);

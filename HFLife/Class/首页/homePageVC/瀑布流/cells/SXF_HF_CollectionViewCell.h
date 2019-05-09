@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CollectionViewCell : UICollectionViewCell
+@interface SXF_HF_CollectionViewCell : UICollectionViewCell
 
 
 @end

@@ -52,9 +52,7 @@
     }
     
     self.customNavBar.title = @"首页";
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"homeNavBG"] forBarMetrics:UIBarMetricsDefault];
-    // 设置初始导航栏透明度
-    [self wr_setNavBarBackgroundAlpha:0];
+    
     self.locationManager.delegate = self;
     self.view.backgroundColor = HEX_COLOR(0xf4f4f4);
 

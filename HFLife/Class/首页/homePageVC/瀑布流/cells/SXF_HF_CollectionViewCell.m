@@ -6,9 +6,9 @@
 //  Copyright © 2018年 xiaopin. All rights reserved.
 //
 
-#import "CollectionViewCell.h"
+#import "SXF_HF_CollectionViewCell.h"
 
-@interface CollectionViewCell ()
+@interface SXF_HF_CollectionViewCell ()
 
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic ,strong) UIImageView *imageV;
@@ -21,7 +21,7 @@
 @end
 
 
-@implementation CollectionViewCell
+@implementation SXF_HF_CollectionViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

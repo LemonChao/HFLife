@@ -100,13 +100,13 @@
     
     [self.cycleV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(self.contentView);
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-10);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-15);
     }];
     
     [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.left.mas_equalTo(self.contentView);
         make.top.mas_equalTo(self.cycleV.mas_bottom);
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(5));
     }];
     
 }
@@ -119,7 +119,7 @@
 
 - (LWDPageControl *)pageControl{
     if (!_pageControl) {
-        _pageControl = [[LWDPageControl alloc] initWithFrame:CGRectMake(0, ScreenScale(100 - 80), SCREEN_WIDTH, 10) indicatorMargin:7.f indicatorWidth:8.f currentIndicatorWidth:8.f indicatorHeight:8];
+        _pageControl = [[LWDPageControl alloc] initWithFrame:CGRectMake(0, ScreenScale(100 - 80), SCREEN_WIDTH, 15) indicatorMargin:7.f indicatorWidth:6.f currentIndicatorWidth:6.f indicatorHeight:6];
         _pageControl.numberOfPages = self.nums;
         _pageControl.currentPageIndicatorColor = HEX_COLOR(0xCA1400);
         _pageControl.pageIndicatorColor = HEX_COLOR(0xCA1400);

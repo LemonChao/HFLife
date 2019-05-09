@@ -55,12 +55,14 @@
 }
 - (void) addChildrenViews{
     self.backgroundColor = [UIColor whiteColor];
+    
     self.colorsView = [UIView new];
     self.bgView = [UIView new];
     self.bgView.backgroundColor = [UIColor clearColor];
     
-    [self.contentView addSubview:self.colorsView];
-    [self.contentView addSubview:_bgView];
+    
+    [self.contentView addSubview:self.bgView];
+    [self.bgView addSubview:self.colorsView];
     
     self.titleLb = [UILabel new];
     self.inviteesNumberLb = [UILabel new];
@@ -104,11 +106,13 @@
     
     
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(4));
+        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(4));
+        make.bottom.right.mas_equalTo(self.contentView).offset(ScreenScale(-4));
     }];
     
     [self.colorsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.mas_equalTo(self.contentView);
+        make.left.right.top.bottom.mas_equalTo(self.bgView);
     }];
     
     
@@ -148,6 +152,9 @@
     self.inviteeButton.layer.cornerRadius = self.inviteeButton.bounds.size.height * 0.5;
     self.inviteeButton.layer.masksToBounds = YES;
     
+    self.bgView.layer.cornerRadius = 8;
+    self.bgView.layer.masksToBounds = YES;
+    self.bgView.clipsToBounds = YES;
     
     [self.colorsView changeBgView:@[HEX_COLOR(0x54B56B), HEX_COLOR(0xA7FABA)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
     

@@ -55,6 +55,9 @@
 @property (nonatomic, strong)myTopView *bottomBarView;
 @property (nonatomic, strong)UIView *bottomBarBgView;
 
+
+@property (nonatomic, assign)BOOL eyeOpen;//眼睛状态
+@property (nonatomic, strong) UILabel *secritLb;//加密富权资产
 @end
 
 
@@ -91,6 +94,7 @@
     self.bottomBarView = [myTopView new];
     self.bottomBarBgView = [UIView new];
     self.countView = [[DigitalRollingView alloc] init];
+    self.secritLb = [UILabel new];
     
     [self addSubview:self.bgImageV];
     [self addSubview:self.peploImageV];
@@ -103,6 +107,7 @@
     [self addSubview:self.fqTitleLb];
     [self addSubview:self.fqMoneyView];
     [self addSubview:self.bottomBarBgView];
+    [self addSubview:self.secritLb];
     [self.bottomBarBgView addSubview:self.bottomBarView];
     [self.pepleCountView addSubview:self.countView];
     
@@ -151,17 +156,26 @@
     
     self.myMoneyLb.textColor = [UIColor whiteColor];
     self.myMoneyLb.font = MyFont(ScreenScale(30));
+    self.secritLb.textColor = [UIColor whiteColor];
+    self.secritLb.font = MyFont(ScreenScale(30));
     
     self.fqTitleLb.font = MyFont(13);
     self.fqTitleLb.textColor = [UIColor whiteColor];
     
-    
     self.bottomBarView.backgroundColor = [UIColor whiteColor];
     self.bottomBarBgView.backgroundColor = [UIColor whiteColor];
-    
-    
     self.pepleCountView.backgroundColor = [UIColor clearColor];
     self.fqMoneyView.backgroundColor = [UIColor clearColor];
+    
+    
+    //眼睛的点击事件
+    self.eyeImageV.userInteractionEnabled = YES;
+    UITapGestureRecognizer *eyeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapEyeImage)];
+    [self.eyeImageV addGestureRecognizer:eyeTap];
+    self.myMoneyLb.hidden = YES;
+    self.secritLb.hidden = NO;
+    self.eyeImageV.image = [UIImage imageNamed:self.eyeOpen ? @"眼睛" : @"闭眼"];
+    
     
 //    self.moneyTypeLb.backgroundColor = 
     
@@ -169,14 +183,14 @@
     self.myMoneyTitleLb.text = @"富权资产";
     self.moneyTypeLb.text = @"实时";
     self.fqTitleLb.text = @"富权";
-    
-    self.myMoneyLb.text = @"34545.7989789";
+    self.secritLb.text = @"******";
     
     
     self.bottomBarView.selectedItem = ^(NSInteger index) {
         NSLog(@"点击的是 ： %ld", index);
     };
     
+    self.myMoneyLb.text = @"34545.7989789";
     //赋值并执行动画
     self.countView.integerNumber = 32434;
     self.fqNUmView.number = 32434.02432434;
@@ -184,6 +198,15 @@
     
 }
 
+/**
+ 点击小眼睛
+ */
+- (void)tapEyeImage{
+    self.eyeOpen = !self.eyeOpen;
+    self.myMoneyLb.hidden = !self.eyeOpen;
+    self.secritLb.hidden = self.eyeOpen;
+    self.eyeImageV.image = [UIImage imageNamed:self.eyeOpen ? @"眼睛" : @"闭眼"];
+}
 - (void)layoutSubviews{
     [super layoutSubviews];
     
@@ -236,6 +259,12 @@
         make.top.mas_equalTo(self.myMoneyTitleLb.mas_bottom).offset(ScreenScale(11));
         make.height.mas_equalTo(ScreenScale(23));
     }];
+    [self.secritLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.myMoneyLb);
+        make.height.mas_equalTo(ScreenScale(20));
+        make.centerY.mas_equalTo(self.myMoneyLb.mas_centerY).offset(ScreenScale(5));
+    }];
+    
     
     [self.fqTitleLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.myMoneyTitleLb.mas_left);

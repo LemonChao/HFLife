@@ -22,6 +22,7 @@
 #import "BaseScrollView.h"
 #import "BaseTextField.h"
 #import "HPTabBar.h"
+#import "baseCollectionView.h"
 
 
 
