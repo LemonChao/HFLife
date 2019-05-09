@@ -139,4 +139,13 @@ return [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]];\
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 /** 是否是IPhoneX */
 //#define IS_IPHONE_X  (IS_IPHONE && SCREEN_MAX_LENGTH == 812.0)
+
+/// ------------------------ 字体相关 ------------------------
+// Medium字体
+#define MediumFont(sizePt)  [UIFont systemFontOfSize:FontRatio(sizePt) weight:UIFontWeightMedium]
+// Bold字体
+#define BoldFont(sizePt)    [UIFont boldSystemFontOfSize:FontRatio(sizePt)]
+// system|regular字体
+#define SystemFont(sizePt)  [UIFont systemFontOfSize:FontRatio(sizePt)]
+
 #endif /* ToolMacro_h */

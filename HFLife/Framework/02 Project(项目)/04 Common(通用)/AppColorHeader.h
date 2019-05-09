@@ -18,7 +18,7 @@
 /** 线条 - f5f5f5 */
 #define LineColor RGBA(245,245,245,1)
 
-/** 重要 - 0c0b0b */
+/** 重要 - 0c0b0b 导航标题，重要提醒*/
 #define ImportantColor RGBA(12,11,11,1)
 
 /** 一级 - 4a4a4a */
@@ -27,7 +27,7 @@
 /** 次要 - 666666 */
 #define MinorColor RGBA(102,102,102,1)
 
-/** 辅助 - 999999 */
-#define AssistColor RGBA(153,153,153,1)
+/** 辅助 - aaaaaa */
+#define AssistColor RGBA(170,170,170,1)
 
 #endif /* AppColorHeader_h */
