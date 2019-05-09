@@ -17,6 +17,7 @@
 		0406ED2A22755438000784D0 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; };
 		0406ED2B22755438000784D0 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
+		0408C68122840F5F003AA841 /* YYB_HF_NearSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0408C68022840F5F003AA841 /* YYB_HF_NearSearchVC.m */; };
 		040A17B62282700F00997B93 /* YYB_HF_LocalHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */; };
 		040A17BC2282701E00997B93 /* NearColumnCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17B92282701D00997B93 /* NearColumnCollectionViewCell.m */; };
 		040A17BD2282701E00997B93 /* NearColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17BA2282701D00997B93 /* NearColumnCell.m */; };
@@ -588,6 +589,8 @@
 		0406ED2222755421000784D0 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		0406ED2E227554E3000784D0 /* LYBmOcrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBmOcrManager.h; sourceTree = "<group>"; };
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
+		0408C67F22840F5F003AA841 /* YYB_HF_NearSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_NearSearchVC.h; sourceTree = "<group>"; };
+		0408C68022840F5F003AA841 /* YYB_HF_NearSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_NearSearchVC.m; sourceTree = "<group>"; };
 		040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_LocalHeadView.m; sourceTree = "<group>"; };
 		040A17B52282700F00997B93 /* YYB_HF_LocalHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYB_HF_LocalHeadView.h; sourceTree = "<group>"; };
 		040A17B82282701D00997B93 /* NearColumnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearColumnCell.h; sourceTree = "<group>"; };
@@ -1711,6 +1714,8 @@
 			children = (
 				040A17B52282700F00997B93 /* YYB_HF_LocalHeadView.h */,
 				040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */,
+				0408C67F22840F5F003AA841 /* YYB_HF_NearSearchVC.h */,
+				0408C68022840F5F003AA841 /* YYB_HF_NearSearchVC.m */,
 			);
 			path = naview;
 			sourceTree = "<group>";
@@ -5451,6 +5456,7 @@
 				04A50857227EDD3A0013E8EC /* ZFCollectionViewCell.m in Sources */,
 				658B7CF421D749E100801CC8 /* UserCache.m in Sources */,
 				04A50896227EDD3A0013E8EC /* UIView+WHView.m in Sources */,
+				0408C68122840F5F003AA841 /* YYB_HF_NearSearchVC.m in Sources */,
 				65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */,
 				658902EE223B775F009C1B03 /* UIColor+PYSearchExtension.m in Sources */,
 				6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */,
