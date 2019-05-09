@@ -82,10 +82,11 @@ sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
 }
 
 - (void)tabBarItem_setImagePosition:(ImagePositionType)postion spacing:(CGFloat)spacing {
-    CGFloat labelBottom = 0.f;
+    CGFloat bottomMargin = 0.f;
     CGFloat imgW = self.imageView.image.size.width;
-    CGFloat imgH = self.imageView.image.size.height;
-    CGSize origLabSize = IS_IPHONE_5 ? CGSizeMake(4, 12) : CGSizeMake(10.33, 12);
+    CGFloat imgH = self.imageView.image.size.height;//(4,10) 8,xr(11.5,13.5) plus,x,xs,xsmax,(11.3,13.3)
+    CGSize origLabSize = IS_IPHONE_5 ? CGSizeMake(4, 10) : CGSizeMake(11.4, 13.4);
+//    CGSize origLabSize = self.titleLabel.frame.size;
     CGFloat orgLabW = origLabSize.width;
     CGFloat orgLabH = origLabSize.height;
 
@@ -94,13 +95,13 @@ sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
     //image中心移动的x距离
     CGFloat imageOffsetX = orgLabW/2 ;
     //image中心移动的y距离
-    CGFloat imageOffsetY = imgH/2-self.bounds.size.height/2+orgLabH+spacing+labelBottom;
+    CGFloat imageOffsetY = imgH/2-self.bounds.size.height/2+orgLabH+spacing+bottomMargin;
     //label左边缘移动的x距离
     CGFloat labelOffsetX1 = imgW/2 - orgLabW/2 + trueLabW/2;
     //label右边缘移动的x距离
     CGFloat labelOffsetX2 = imgW/2 + orgLabW/2 - trueLabW/2;
     //label中心移动的y距离
-    CGFloat labelOffsetY = orgLabH-self.bounds.size.height/2+labelBottom-4;
+    CGFloat labelOffsetY = orgLabH-self.bounds.size.height/2+bottomMargin;
     
     self.imageEdgeInsets = UIEdgeInsetsMake(-imageOffsetY-10, imageOffsetX, imageOffsetY, -imageOffsetX);
     self.titleEdgeInsets = UIEdgeInsetsMake(-labelOffsetY, -labelOffsetX1, labelOffsetY, labelOffsetX2);

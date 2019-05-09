@@ -47,14 +47,14 @@
     
     sxfTouchBtn *btn = [sxfTouchBtn buttonWithType:UIButtonTypeCustom];
     [btn setImage:[UIImage imageNamed:@"shop_hanfu"] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:@"shop_hanfu"] forState:UIControlStateSelected];
+    [btn setImage:[UIImage imageNamed:@"shop_hanfu"] forState:UIControlStateHighlighted];
     [btn setTitle:@"返回首页" forState:UIControlStateNormal];
     [btn setTitle:@"返回首页" forState:UIControlStateSelected];
     btn.titleLabel.font = [UIFont systemFontOfSize:10.f];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     CGFloat btnW = [UIScreen mainScreen].bounds.size.width / 4;
     btn.frame = CGRectMake(0, 0, btnW, tabBarVc.JM_TabBar.frame.size.height);
-    [btn tabBarItem_setImagePosition:ImagePositionTypeTop spacing:4.f];
+    [btn tabBarItem_setImagePosition:ImagePositionTypeTop spacing:6.f];
 
     [config addCustomBtn:btn AtIndex:2 BtnClickBlock:^(UIButton *btn, NSInteger index) {
         [[JMConfig config].tabBarController dismissViewControllerAnimated:YES completion:^{
