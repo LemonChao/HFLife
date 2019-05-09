@@ -11,10 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_LocalHeadView : UIView
-@property(nonatomic, strong) UIImageView *headImageV;
-@property(nonatomic, strong) UILabel *localLabel;
-@property(nonatomic, strong) UIButton *selectBtn;
-@property(nonatomic, strong) UILabel *searchlabel;
+
+@property(nonatomic, copy) NSString *setHeadImageStr;
+@property(nonatomic, copy) NSString *setLocalStr;
+@property(nonatomic, copy) NSString *setSearchStr;
 @end
 
 NS_ASSUME_NONNULL_END

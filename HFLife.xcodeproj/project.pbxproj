@@ -1709,8 +1709,8 @@
 		040A17B32282700F00997B93 /* naview */ = {
 			isa = PBXGroup;
 			children = (
-				040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */,
 				040A17B52282700F00997B93 /* YYB_HF_LocalHeadView.h */,
+				040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */,
 			);
 			path = naview;
 			sourceTree = "<group>";
@@ -3569,8 +3569,8 @@
 		04B9D53122803CF10084FA23 /* 城市选择 */ = {
 			isa = PBXGroup;
 			children = (
-				04B9D53422803CF10084FA23 /* CityChooseVC.m */,
 				04B9D53222803CF10084FA23 /* CityChooseVC.h */,
+				04B9D53422803CF10084FA23 /* CityChooseVC.m */,
 				04B9D53522803CF10084FA23 /* SearchBarEffectController.h */,
 				04B9D53322803CF10084FA23 /* SearchBarEffectController.m */,
 			);
