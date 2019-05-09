@@ -66,7 +66,7 @@
     self.time2.textColor = HEX_COLOR(0x868686);
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCell)];
-    [self.bgView addGestureRecognizer:tap];
+//    [self.bgView addGestureRecognizer:tap];
     
     
     self.titleLb.text = @"生活缴费：电费缴费成功";

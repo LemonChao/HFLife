@@ -185,9 +185,9 @@
     self.fqTitleLb.text = @"富权";
     self.secritLb.text = @"******";
     
-    
+    WEAK(weakSelf);
     self.bottomBarView.selectedItem = ^(NSInteger index) {
-        NSLog(@"点击的是 ： %ld", index);
+        !weakSelf.selectedHeaderBtn ? : self.selectedHeaderBtn(index);
     };
     
     self.myMoneyLb.text = @"34545.7989789";

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface bannerCollectionViewCell : UICollectionViewCell
-- (void) setModelForCell:(id)model index:(NSInteger )indexPath;
+- (void) setModelForCell:(id)model index:(NSInteger)indexPath;
 @end

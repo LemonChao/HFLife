@@ -69,6 +69,10 @@
     self.collectionView.contentInset = UIEdgeInsetsMake(0.0, ScreenScale(12.0), 0.0, ScreenScale(12.0));
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    !self.selectedItem ? : self.selectedItem(indexPath.row);
+}
+
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.dataSource.count;
 }

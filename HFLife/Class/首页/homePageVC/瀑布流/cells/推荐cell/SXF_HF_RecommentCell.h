@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_RecommentCell : UICollectionViewCell
-
+@property (nonatomic, strong) void(^selectedItem)(NSInteger index);
 @end
 
 NS_ASSUME_NONNULL_END

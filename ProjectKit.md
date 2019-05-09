@@ -24,7 +24,10 @@ ScreenScale(<#x#>)
 #endif
 
 #缺省页
-[weakSelf.tableView showAlertViewToViewImageTYpe:IMAGETYPE_NOLIST msg:@"暂无数据" forView:TYPE_VIEW imageCenter:(self.headerView.frame.size.height) * 0.5 errorBlock:^{
+[weakSelf.tableView showAlertViewToViewImageTYpe:IMAGETYPE_NOLIST msg:@"暂无数据" forView:TYPE_VIEW imageCenter:0 errorBlock:^{
 
 }];
+
+#登录提示y弹窗
+[SXF_HF_LoginAlertView showLoginAlertComplete:nil];
 

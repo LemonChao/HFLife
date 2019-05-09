@@ -28,6 +28,11 @@
     self.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.collectionV];
     self.collectionV.dataSource = @[@"", @"", @"", @"", @""];
+    WEAK(weakSelf);
+    self.collectionV.selectedItem = ^(NSInteger indexPath) {
+        !weakSelf.selectedItem ? : weakSelf.selectedItem(indexPath);
+    };
+    
 }
 
 - (void)layoutSubviews{

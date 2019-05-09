@@ -8,7 +8,6 @@
 //
 
 #import "SXF_HF_ItemsViewCell.h"
-
 #import "myCenterCollectionView.h"
 
 @interface SXF_HF_ItemsViewCell()
@@ -43,6 +42,10 @@
     
     self.collectionV = [[myCenterCollectionView alloc] init];
     [self.bgView addSubview:self.collectionV];
+    WEAK(weakSelf);
+    self.collectionV.selectedItem = ^(NSInteger index) {
+        !weakSelf.selectItemBlock ? : weakSelf.selectItemBlock(index);
+    };
 }
 - (void)layoutSubviews{
     [super layoutSubviews];

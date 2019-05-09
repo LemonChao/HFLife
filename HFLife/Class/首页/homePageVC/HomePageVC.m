@@ -16,12 +16,11 @@
 #import "JFAreaDataManager.h"
 
 #import "SXF_HF_CustomSearchBar.h"
-//#import "SXF_HF_HomePageView.h"
-#import "collectionFlowLyoutView.h"
+#import "SXF_HF_HomePageView.h"
 @interface HomePageVC ()<UITableViewDelegate, UITableViewDataSource ,JFLocationDelegate>
 @property (nonatomic, strong)JFLocation *locationManager;
 @property (nonatomic, strong)NSTimer *circleTimer;
-
+@property (nonatomic, strong)SXF_HF_HomePageView *collectionView;
 
 //@property (nonatomic, strong)SXF_HF_HomePageView *homeTableView;
 @end
@@ -36,11 +35,26 @@
     return _circleTimer;
 }
 
-
-
 //循环加载接口
 - (void) circleLoadData{
 
+}
+- (void)loadServerData:(NSInteger)page{
+    WEAK(weakSelf);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf.collectionView endRefreshData];
+    });
+    //刷新数据
+    NSDictionary *param = @{
+                            @"page":@(page),
+                            };
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"" withParameters:param withResultBlock:^(BOOL result, id value) {
+        if (result){
+            
+        }
+    } witnVC:self];
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -52,23 +66,28 @@
     }
     
     self.customNavBar.title = @"首页";
-    
     self.locationManager.delegate = self;
     self.view.backgroundColor = HEX_COLOR(0xf4f4f4);
-
-
 //    [self setupNavigationItem];
 //    [self VersionBounced];
     [self timingTask];
 
 
-    [self setUpUI];
-    [self loadServerData];
+    [self setUpUI];    
+    //headerAction
+    self.collectionView.selectedHeaderBtnBlock = ^(NSInteger index) {
+        NSLog(@"点击区头 ： %ld", index);
+    };
+    
+    self.collectionView.selectedItem = ^(NSIndexPath * _Nonnull indexPath) {
+        NSLog(@"%ld分区   %ld个", (long)indexPath.section, (long)indexPath.row);
+    };
+    WEAK(weakSelf);
+    self.collectionView.refreshDataCallBack = ^(NSInteger page) {
+        [weakSelf loadServerData:page];
+    };
 }
 
-- (void)loadServerData{
-    
-}
 
 - (void)setUpUI{
     SXF_HF_CustomSearchBar *searchBar = [[SXF_HF_CustomSearchBar alloc] initWithFrame:CGRectMake(0, statusBarHeight, SCREEN_WIDTH, 44)];
@@ -77,13 +96,11 @@
         [WXZTipView showTopWithText:@"搜索"];
     };
     
-//    self.homeTableView = [[SXF_HF_HomePageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
-//    [self.view addSubview:self.homeTableView];
-    
-    
-    collectionFlowLyoutView *collectionView = [[collectionFlowLyoutView alloc] initWithFrame:CGRectMake(0, NaviBarHeight + statusBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NaviBarHeight - TableBarHeight - statusBarHeight)];
+
+
+    SXF_HF_HomePageView *collectionView = [[SXF_HF_HomePageView alloc] initWithFrame:CGRectMake(0, NaviBarHeight + statusBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NaviBarHeight - TableBarHeight - statusBarHeight)];
     [self.view addSubview:collectionView];
-    
+    self.collectionView = collectionView;
     
 }
 - (void) click{
