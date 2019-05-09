@@ -96,7 +96,7 @@
     
     self.nameLabel.text = @"索菲特国际饭店海鲜自助餐";
     self.nameLabel.font = FONT(14);
-    self.adLabel.text = @"仅售3580元，价值6086元的优惠套餐，欢迎体验";
+    self.adLabel.text = @"仅售3580元，价值6086元的优惠套餐，欢迎体验仅售3580元，价值6086元的优惠套餐，欢迎体验";
     self.adLabel.font = FONT(12);
     self.adLabel.textColor = HEX_COLOR(0x333333);
     self.distanceLabel.text = @"4.5km";
@@ -117,7 +117,6 @@
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.oldPriceLabel.text
                                                                                 attributes:@{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle)}];
     self.oldPriceLabel.attributedText = attrStr;
-
 }
 
 - (void)layoutSubviews{
@@ -134,16 +133,11 @@
         make.top.mas_equalTo(self.bgView).mas_offset(10);
         make.height.mas_equalTo(15);
     }];
-    [self.adLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.bgView).mas_offset(10);
-        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(5);
-        make.height.mas_equalTo(12);
-    }];
     
     [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bgView).mas_offset(-10);
-        make.centerY.mas_equalTo(self.adLabel).mas_offset(5);
         make.height.mas_equalTo(12);
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(5);
     }];
     [self.adLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
@@ -151,6 +145,7 @@
         make.right.mas_equalTo(self.distanceLabel.mas_left).mas_offset(-18);
         make.height.mas_equalTo(12);
     }];
+    
     
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
@@ -306,8 +301,6 @@
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.oldPriceLabel.text
                                                                                 attributes:@{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle)}];
     self.oldPriceLabel.attributedText = attrStr;
-    
-    
     
 }
 

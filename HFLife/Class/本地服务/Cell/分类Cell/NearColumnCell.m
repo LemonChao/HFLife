@@ -31,8 +31,7 @@
     return self;
 }
 -(void)initWithUI{
-//    imageNameArray = @[@"meishi",@"jiudian",@"xiuxiyule",@"waimai",@"menpiao",@"chaoshi",@"jiehunsheyin",@"qinzileyuan",@"lirenmeifa",@"neargengduo"];
-//    titleArray = @[@"美食",@"酒店",@"休闲娱乐",@"外卖",@"周边游",@"超市",@"结婚摄影",@"亲子/乐园",@"丽人美发",@"更多"];
+    
     imageNameArray = @[@"icon_ruzhu",@"icon_meishi",@"icon_jiudian",@"icon_shenxian",@"icon_meifa",@"icon_xiuxian",@"icon_jiehun",@"icon_qinzi",@"icon_waimai",@"icon_jiaju",@"icon_youyong",@"icon_yake",@"icon_jiaoyu",@"icon_meirong",@"icon_gengduo"];
     
     titleArray = @[@"商家入驻",@"美食", @"酒店住宿", @"超市生鲜", @"美在中国", @"休闲娱乐", @"结婚摄影", @"亲子乐园", @"外卖", @"家具装修",@"游泳健身",@"医疗牙科",@"教育培训",@"医学美容",@"更多"];
@@ -53,13 +52,6 @@
         make.top.mas_equalTo(self.collectionView.mas_bottom).mas_offset(HeightRatio(27));
         make.height.mas_equalTo(HeightRatio(164));
     }];
-//    self.activityImageView.sd_layout
-//    .leftSpaceToView(self.contentView, WidthRatio(10))
-//    .rightSpaceToView(self.contentView, WidthRatio(10))
-//    .topSpaceToView(self.collectionView, HeightRatio(27))
-//    .heightIs(HeightRatio(211));
-    
-//    self.cycleScroll.bounds = self.activityImageView.bounds;
     
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doTap:)];
