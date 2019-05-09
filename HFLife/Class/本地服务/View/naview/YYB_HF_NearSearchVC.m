@@ -27,6 +27,10 @@
         make.top.mas_equalTo(self.customNavBar.mas_bottom);
         make.left.right.bottom.mas_equalTo(self.view);
     }];
+    WEAK(weakSelf)
+    self.collectionView.refreshHeaderBlock = ^{
+        [weakSelf.collectionView endRefreshData];
+    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -89,7 +93,6 @@
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor brownColor];
-    
     return cell;
 }
 
@@ -98,7 +101,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
+    return 10;
 }
 
 
@@ -112,10 +115,10 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout itemWidth:(CGFloat)width
  heightForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return 60;
+        return 100;
         
     }
-    return 22;
+    return 10;
 }
 
 /// Column spacing between columns
@@ -128,7 +131,8 @@
 }
 ///
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    return UIEdgeInsetsMake(5, 10, 5, 10);
 }
 /// Return per section header view height.
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout referenceHeightForHeaderInSection:(NSInteger)section {

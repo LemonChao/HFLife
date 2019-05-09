@@ -111,7 +111,7 @@
     self.oldPriceLabel.font = FONT(9);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
-    self.concessionMoney.text = @"  让利$100";
+    self.concessionMoney.text = @"让利$100";
     self.concessionMoney.font = FONT(10);
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.oldPriceLabel.text
@@ -166,6 +166,7 @@
     }];
     [self.concessionIamgeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.concessionMoney);
+        make.left.mas_equalTo(self.concessionMoney).mas_offset(-5);
     }];
     
     [self.picBgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -295,7 +296,7 @@
     self.oldPriceLabel.font = FONT(9);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
-    self.concessionMoney.text = @"  让利$100";
+    self.concessionMoney.text = @"让利$100";
     self.concessionMoney.font = FONT(10);
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.oldPriceLabel.text
@@ -342,9 +343,13 @@
         make.left.mas_equalTo(self.oldPriceLabel.mas_right).mas_offset(10);
         make.centerY.mas_equalTo(self.priceLabel);
         make.height.mas_equalTo(13);
+        make.width.mas_greaterThanOrEqualTo(1);
     }];
     [self.concessionIamgeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.concessionMoney);
+        make.left.mas_equalTo(self.concessionMoney).mas_offset(-5);
+        make.right.mas_equalTo(self.concessionMoney);
+        make.bottom.mas_equalTo(self.concessionMoney);
+        make.top.mas_equalTo(self.concessionMoney);
     }];
     [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.showImage.mas_left).mas_offset(-24);
