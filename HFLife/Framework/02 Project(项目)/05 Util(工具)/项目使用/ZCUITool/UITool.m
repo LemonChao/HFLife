@@ -8,6 +8,7 @@
 
 #import "UITool.h"
 #import "UITextView+ZWPlaceHolder.h"
+#import <UIImageView+WebCache.h>
 
 @implementation UITool
 /// UIView
@@ -75,7 +76,22 @@
 }
 
 #pragma mark - button
-+ (UIButton *)wordButton:(UIButtonType)type title:(NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font bgColor:(UIColor *)backgroundColor{
++ (UIButton *)wordButton:(NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font bgColor:(UIColor *)backgroundColor {
+    UIButton *button = [self wordButton:UIButtonTypeCustom title:title titleColor:titleColor font:font bgColor:backgroundColor];
+    return button;
+}
+
++ (UIButton *)wordButton:(NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font bgImage:(UIImage *)backgroundImage {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.titleLabel.font = font;
+    
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:titleColor forState:UIControlStateNormal];
+    [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+    return button;
+}
+
++ (UIButton *)wordButton:(UIButtonType)type title:(NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font bgColor:(UIColor *)backgroundColor {
     UIButton *button = [UIButton buttonWithType:type];
     button.titleLabel.font = font;
     
@@ -96,6 +112,7 @@
     button.layer.cornerRadius = cornerRadius;
     button.layer.borderWidth = borderWidth;
     button.layer.borderColor = [borderColor CGColor];
+    button.layer.masksToBounds = YES;
     return button;
 }
 
@@ -109,7 +126,7 @@
 + (UITextField *)textField:(NSString *)placeHolder textColor:(UIColor *)textColor font:(UIFont *)font borderStyle:(UITextBorderStyle)style {
     
     UITextField *textField = [self textField:placeHolder textColor:textColor font:font borderStyle:style alignment:NSTextAlignmentLeft];
-
+    
     return textField;
 }
 
@@ -135,7 +152,43 @@
     return textView;
 }
 
+/// UIImageView
 
++ (UIImageView *)imageViewImage:(nullable UIImage*)image contentMode:(UIViewContentMode)mode {
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.contentMode = mode;
+    return imageView;
+}
+
++ (UIImageView *)imageViewImage:(NSString *)imageUrl placeHolder:(nullable UIImage *)image contentMode:(UIViewContentMode)mode {
+    UIImageView *imageView = [[UIImageView alloc] init];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:image];
+    imageView.contentMode = mode;
+    return imageView;
+}
+
+//
++ (UIImageView *)imageViewPlaceHolder:(nullable UIImage *)image contentMode:(UIViewContentMode)mode cornerRadius:(CGFloat)radius borderWidth:(CGFloat)width borderColor:(UIColor*)color {
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.contentMode = mode;
+    imageView.layer.cornerRadius = radius;
+    imageView.layer.borderWidth = width;
+    imageView.layer.borderColor = [color CGColor];
+    imageView.clipsToBounds = YES;
+    
+    return imageView;
+}
++ (UIImageView *)imageViewImage:(NSString *)imageUrl placeHolder:(nullable UIImage *)image contentMode:(UIViewContentMode)mode cornerRadius:(CGFloat)radius borderWidth:(CGFloat)width borderColor:(UIColor*)color {
+    UIImageView *imageView = [[UIImageView alloc] init];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:image];
+    imageView.contentMode = mode;
+    imageView.layer.cornerRadius = radius;
+    imageView.layer.borderWidth = width;
+    imageView.layer.borderColor = [color CGColor];
+    imageView.clipsToBounds = YES;
+    
+    return imageView;
+}
 
 
 @end

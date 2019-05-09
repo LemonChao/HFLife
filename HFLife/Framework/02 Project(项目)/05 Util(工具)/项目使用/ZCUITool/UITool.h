@@ -30,10 +30,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// UIButton
-+ (UIButton *)wordButton:(UIButtonType)type title:(NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font bgColor:(UIColor *)backgroundColor;
-+ (UIButton *)imageButton:(UIImage *)image;
-+ (UIButton *)imageButton:(UIImage *)image cornerRadius:(CGFloat)cornerRadius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
-+ (UIButton *)richButton:(UIButtonType)type title:(NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font bgColor:(UIColor *)backgroundColor image:(UIImage *)image;
++ (UIButton *)wordButton:(nullable NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font bgColor:(UIColor *)backgroundColor;
++ (UIButton *)wordButton:(nullable NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font bgImage:(UIImage *)backgroundImage;
++ (UIButton *)wordButton:(UIButtonType)type title:(nullable NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font bgColor:(UIColor *)backgroundColor;
++ (UIButton *)imageButton:(nullable UIImage *)image;
++ (UIButton *)imageButton:(nullable UIImage *)image cornerRadius:(CGFloat)cornerRadius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
++ (UIButton *)richButton:(UIButtonType)type title:(nullable NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font bgColor:(UIColor *)backgroundColor image:(nullable UIImage *)image;
 
 /// UITextField
 + (UITextField *)textField:(NSString *)placeHolder textColor:(UIColor *)textColor font:(UIFont *)font borderStyle:(UITextBorderStyle)style;
@@ -42,6 +44,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// UITextView
 + (UITextView *)textViewText:(nullable NSString *)text font:(UIFont *)font textColor:(UIColor *)color placeHolder:(NSString *)placeHolder placeholderColor:(UIColor *)placeHolderColor;
+/// UIImageView
++ (UIImageView *)imageViewImage:(nullable UIImage*)image contentMode:(UIViewContentMode)mode;
++ (UIImageView *)imageViewImage:(NSString *)imageUrl placeHolder:(nullable UIImage *)image contentMode:(UIViewContentMode)mode;
++ (UIImageView *)imageViewPlaceHolder:(nullable UIImage *)image contentMode:(UIViewContentMode)mode cornerRadius:(CGFloat)radius borderWidth:(CGFloat)width borderColor:(UIColor*)color;
++ (UIImageView *)imageViewImage:(NSString *)imageUrl placeHolder:(nullable UIImage *)image contentMode:(UIViewContentMode)mode cornerRadius:(CGFloat)radius borderWidth:(CGFloat)width borderColor:(UIColor*)color;
+
 @end
+
 
 NS_ASSUME_NONNULL_END
