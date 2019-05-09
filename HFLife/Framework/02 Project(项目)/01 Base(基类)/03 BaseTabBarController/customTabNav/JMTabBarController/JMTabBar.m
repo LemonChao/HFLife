@@ -145,8 +145,9 @@
         UIView *view = tempArr[i];
         
         if ([view isKindOfClass:[sxfTouchBtn class]]) {
-            view.frame = CGRectMake(viewX, -10, viewW, viewW);
+            view.frame = CGRectMake(viewX, viewH-80, viewW, 80);
             self.centerBtn = (UIButton *)view;
+            [(UIButton *)view setImagePosition:ImagePositionTypeTop WithMargin:2.f];
         }else{
             view.frame = CGRectMake(viewX, viewY, viewW, viewH);
         }   
