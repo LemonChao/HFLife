@@ -9,5 +9,6 @@
 #ifndef Header_ZC_h
 #define Header_ZC_h
 
+#import "UIView+BadgeValue.h"
 
 #endif /* Header_ZC_h */

@@ -7,8 +7,11 @@
 //
 
 #import "ZC_HF_ShopHomeVC.h"
+#import "ZC_HF_ShopHomeSearchButton.h"
 
 @interface ZC_HF_ShopHomeVC ()
+
+@property(nonatomic, strong) UITableView *tableView;
 
 @end
 
@@ -18,5 +21,13 @@
     [super viewDidLoad];
 }
 
+
+
+//- (void)setupNavBar {
+//    [super setupNavBar];
+//
+//    [self.customNavBar wr_setBackgroundAlpha:0.f];
+//    [self.customNavBar wr_setRightButtonWithImage:image(@"shop_news")];
+//}
 
 @end
