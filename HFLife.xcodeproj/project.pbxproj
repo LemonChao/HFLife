@@ -1659,9 +1659,9 @@
 			isa = PBXGroup;
 			children = (
 				040A17B82282701D00997B93 /* NearColumnCell.h */,
-				040A17B92282701D00997B93 /* NearColumnCollectionViewCell.m */,
 				040A17BA2282701D00997B93 /* NearColumnCell.m */,
 				040A17BB2282701D00997B93 /* NearColumnCollectionViewCell.h */,
+				040A17B92282701D00997B93 /* NearColumnCollectionViewCell.m */,
 			);
 			path = "分类Cell";
 			sourceTree = "<group>";
@@ -3313,9 +3313,9 @@
 		04B9D51E22803CF10084FA23 /* YYStarView */ = {
 			isa = PBXGroup;
 			children = (
+				04B9D52122803CF10084FA23 /* YYStarView.h */,
 				04B9D51F22803CF10084FA23 /* YYStarView.m */,
 				04B9D52022803CF10084FA23 /* YYStarView.bundle */,
-				04B9D52122803CF10084FA23 /* YYStarView.h */,
 			);
 			path = YYStarView;
 			sourceTree = "<group>";
@@ -3380,10 +3380,10 @@
 		04B9D53122803CF10084FA23 /* 城市选择 */ = {
 			isa = PBXGroup;
 			children = (
-				04B9D53222803CF10084FA23 /* CityChooseVC.h */,
-				04B9D53322803CF10084FA23 /* SearchBarEffectController.m */,
 				04B9D53422803CF10084FA23 /* CityChooseVC.m */,
+				04B9D53222803CF10084FA23 /* CityChooseVC.h */,
 				04B9D53522803CF10084FA23 /* SearchBarEffectController.h */,
+				04B9D53322803CF10084FA23 /* SearchBarEffectController.m */,
 			);
 			path = "城市选择";
 			sourceTree = "<group>";

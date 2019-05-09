@@ -14,7 +14,7 @@
 
 @interface NearPageVC ()<UITableViewDelegate, UITableViewDataSource>
 /** 容器TableView*/
-@property (nonatomic,strong)UITableView *containerTableView;
+@property (nonatomic,strong) baseTableView *containerTableView;
 @property(nonatomic, strong) UIView *headView;
 @end
 
@@ -34,14 +34,22 @@
     //    self.locationManager.delegate = self;
 //    [self.view insertSubview:self.customNavBar aboveSubview:self.containerTableView];
     
-    self.containerTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self.containerTableView.mj_header endRefreshing];
-    }];
+//    self.containerTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        [self.containerTableView.mj_header endRefreshing];
+//    }];
+//
+//    self.containerTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        [self.containerTableView.mj_footer endRefreshing];
+//    }];
     
-    self.containerTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self.containerTableView.mj_footer endRefreshing];
-    }];
+    WEAK(weakSelf);
+    self.containerTableView.refreshHeaderBlock = ^{
+        [weakSelf.containerTableView.mj_header endRefreshing];
+    };
     
+    self.containerTableView.refreshFooterBlock = ^{
+        [weakSelf.containerTableView.mj_footer endRefreshing];
+    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,7 +65,7 @@
 - (UITableView *)containerTableView
 {
     if (_containerTableView == nil) {
-        _containerTableView = [[UITableView alloc] initWithFrame:CGRectZero
+        _containerTableView = [[baseTableView alloc] initWithFrame:CGRectZero
                                                            style:UITableViewStyleGrouped];
         _containerTableView.delegate = self;
         _containerTableView.dataSource = self;
