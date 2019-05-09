@@ -12,14 +12,14 @@
 // rgb三原色
 #define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
-/** 背景 - f5f6f7 */
-#define BackGroundColor HEX_COLOR(0xf5f6f7)
+/** 背景白 - f5f5f5 */
+#define BackGroundColor HEX_COLOR(0xf5f5f5)
 
-/** 线条 - eaeaea */
-#define LineColor RGBA(234,234,234,1)
+/** 线条 - f5f5f5 */
+#define LineColor RGBA(245,245,245,1)
 
-/** 重要 - 333333 */
-#define ImportantColor RGBA(51,51,51,1)
+/** 重要 - 0c0b0b */
+#define ImportantColor RGBA(12,11,11,1)
 
 /** 一级 - 4a4a4a */
 #define PrimaryColor RGBA(74,74,74,1)

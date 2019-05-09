@@ -57,7 +57,11 @@
     [btn tabBarItem_setImagePosition:ImagePositionTypeTop spacing:4.f];
 
     [config addCustomBtn:btn AtIndex:2 BtnClickBlock:^(UIButton *btn, NSInteger index) {
-        [[JMConfig config].tabBarController dismissViewControllerAnimated:YES completion:nil];
+        [[JMConfig config].tabBarController dismissViewControllerAnimated:YES completion:^{
+            JMConfig *config = [JMConfig config];
+            config.norTitleColor = HEX_COLOR(0xAAAAAA);
+            config.selTitleColor = HEX_COLOR(0xCA1400);
+        }];
     }];
 
     return tabBarVc;
