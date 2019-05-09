@@ -107,6 +107,12 @@
         NSLog(@"");
     }];
     
+    searchBgView.userInteractionEnabled = YES;
+    [searchBgView wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
+        NSLog(@"搜索");
+        
+    }];
+    
     
     
 }

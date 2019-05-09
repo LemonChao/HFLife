@@ -9,20 +9,27 @@
 #import "YYB_HF_guessLikeTableViewCell.h"
 @interface YYB_HF_guessLikeTableViewCell()
 @property(nonatomic, strong) UIView *bgView;
+/** 名称 */
 @property(nonatomic, strong) UILabel  *nameLabel;
+/** 活动 */
 @property(nonatomic, strong) UILabel *adLabel;
+/** k距离 */
 @property(nonatomic, strong) UILabel *distanceLabel;
+/** 新价格 */
 @property(nonatomic, strong) UILabel *priceLabel;
+/** 旧价格 */
 @property(nonatomic, strong) UILabel *oldPriceLabel;
 /** 让利 */
 @property(nonatomic, strong) UILabel *concessionMoney;
-
+/** 让利背景图片 */
 @property(nonatomic, strong) UIImageView *concessionIamgeView;
+/** 物品图片布局 */
 
 @property(nonatomic, strong) UIView *picBgView;
 @property(nonatomic, strong) UIImageView *showImage1;
 @property(nonatomic, strong) UIImageView *showImage2;
 @property(nonatomic, strong) UIImageView *showImage3;
+/** 图片布局数组 */
 @property(nonatomic, strong) NSMutableArray *picImageViewArr;
 @end
 @implementation YYB_HF_guessLikeTableViewCell
@@ -91,10 +98,12 @@
     self.nameLabel.font = FONT(14);
     self.adLabel.text = @"仅售3580元，价值6086元的优惠套餐，欢迎体验";
     self.adLabel.font = FONT(12);
+    self.adLabel.textColor = HEX_COLOR(0x333333);
     self.distanceLabel.text = @"4.5km";
     self.distanceLabel.font = FONT(9);
+    self.distanceLabel.textColor = HEX_COLOR(0x333333);
     self.priceLabel.text = @"￥3580";
-    self.priceLabel.font = FONT(14);
+    self.priceLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size: 18];
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
     
     self.oldPriceLabel.text = @"￥3580";
@@ -103,9 +112,11 @@
     
     self.concessionMoney.textColor = [UIColor whiteColor];
     self.concessionMoney.text = @"  让利$100";
-    self.concessionMoney.font = FONT(13);
+    self.concessionMoney.font = FONT(10);
     
-    
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.oldPriceLabel.text
+                                                                                attributes:@{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle)}];
+    self.oldPriceLabel.attributedText = attrStr;
 
 }
 
@@ -181,6 +192,36 @@
     }];
     
 }
+
+- (void)setSetNameStr:(NSString *)setNameStr {
+    _setNameStr = setNameStr;
+    self.nameLabel.text = setNameStr;
+}
+
+- (void)setSetAdLabelStr:(NSString *)setAdLabelStr {
+    self.adLabel.text = setAdLabelStr;
+}
+
+- (void)setSetDistanceStr:(NSString *)setDistanceStr {
+    self.distanceLabel.text = setDistanceStr;
+}
+
+- (void)setSetPriceStr:(NSString *)setPriceStr {
+    
+    self.priceLabel.text = setPriceStr;
+}
+
+- (void)setSetOldPriceStr:(NSString *)setOldPriceStr {
+    _setOldPriceStr = setOldPriceStr;
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:_setOldPriceStr
+                                                                                attributes:@{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle)}];
+    self.oldPriceLabel.attributedText = attrStr;
+}
+
+- (void)setSetConcessionMoneyStr:(NSString *)setConcessionMoneyStr {
+    self.concessionMoney.text = setConcessionMoneyStr;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
@@ -260,7 +301,11 @@
     
     self.concessionMoney.textColor = [UIColor whiteColor];
     self.concessionMoney.text = @"  让利$100";
-    self.concessionMoney.font = FONT(13);
+    self.concessionMoney.font = FONT(10);
+    
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.oldPriceLabel.text
+                                                                                attributes:@{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle)}];
+    self.oldPriceLabel.attributedText = attrStr;
     
     
     
@@ -314,6 +359,32 @@
         make.height.mas_equalTo(9);
     }];
 }
+
+- (void)setSetNameStr:(NSString *)setNameStr {
+    _setNameStr = setNameStr;
+    self.nameLabel.text = setNameStr;
+}
+
+- (void)setSetDistanceStr:(NSString *)setDistanceStr {
+    self.distanceLabel.text = setDistanceStr;
+}
+
+- (void)setSetPriceStr:(NSString *)setPriceStr {
+    
+    self.priceLabel.text = setPriceStr;
+}
+
+- (void)setSetOldPriceStr:(NSString *)setOldPriceStr {
+    _setOldPriceStr = setOldPriceStr;
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:_setOldPriceStr
+                                                                                attributes:@{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle)}];
+    self.oldPriceLabel.attributedText = attrStr;
+}
+
+- (void)setSetConcessionMoneyStr:(NSString *)setConcessionMoneyStr {
+    self.concessionMoney.text = setConcessionMoneyStr;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
