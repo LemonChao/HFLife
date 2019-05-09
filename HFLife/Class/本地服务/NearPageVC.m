@@ -12,17 +12,20 @@
 #import "YYB_HF_guessLikeTableViewCell.h"
 #import "NearColumnCell.h"
 
-@interface NearPageVC ()<UITableViewDelegate, UITableViewDataSource>
+@interface NearPageVC ()<UITableViewDelegate, UITableViewDataSource> {
+    int arc;
+}
 /** 容器TableView*/
 @property (nonatomic,strong) baseTableView *containerTableView;
 @property(nonatomic, strong) UIView *headView;
+@property(nonatomic, strong) NSMutableDictionary *cellHeightDic;
 @end
 
 @implementation NearPageVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.cellHeightDic = [NSMutableDictionary dictionary];
     
     YYB_HF_LocalHeadView *headView = [[YYB_HF_LocalHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,NavBarHeight)];
     [self.view addSubview:headView];
@@ -30,7 +33,7 @@
     
     [self.view addSubview:self.containerTableView];
     self.containerTableView.backgroundColor = [UIColor whiteColor];
-    [self.containerTableView setFrame:CGRectMake(0, NavBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NavBarHeight)];
+    [self.containerTableView setFrame:CGRectMake(0, NavBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NavBarHeight - TabBarHeight)];
     //    self.locationManager.delegate = self;
 //    [self.view insertSubview:self.customNavBar aboveSubview:self.containerTableView];
     
@@ -45,10 +48,12 @@
     WEAK(weakSelf);
     self.containerTableView.refreshHeaderBlock = ^{
         [weakSelf.containerTableView.mj_header endRefreshing];
+        [weakSelf.containerTableView reloadData];
     };
     
     self.containerTableView.refreshFooterBlock = ^{
         [weakSelf.containerTableView.mj_footer endRefreshing];
+        [weakSelf.containerTableView reloadData];
     };
 }
 
@@ -57,7 +62,6 @@
     [self.customNavBar setHidden:YES];
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.translucent = YES;
-    
     
 }
 
@@ -73,6 +77,14 @@
         _containerTableView.backgroundColor = HEX_COLOR(0xffffff);
         UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
         _containerTableView.tableHeaderView = headView;
+        if (@available(iOS 11.0, *)) {
+            /** 上拉跳跃异常 */
+            _containerTableView.estimatedRowHeight = 0;
+            _containerTableView.estimatedSectionFooterHeight = 0;
+            _containerTableView.estimatedSectionHeaderHeight = 0;
+            _containerTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        
     }
     return _containerTableView;
 }
@@ -92,17 +104,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0 && indexPath.section == 0) {
-        CGFloat height = [tableView cellHeightForIndexPath:indexPath model:MMNSStringFormat(@"%d",1) keyPath:@"dataModel" cellClass:[NearColumnCell class] contentViewWidth:[self cellContentViewWith]];
+        arc = 1;
+        CGFloat height = [tableView cellHeightForIndexPath:indexPath model:MMNSStringFormat(@"%d",arc) keyPath:@"dataModel" cellClass:[NearColumnCell class] contentViewWidth:[self cellContentViewWith]];
         NSLog(@"height = %f",height);
-        return height - 40;
+        return height - 30;
     }
     
-    
-    
-    if ((indexPath.row == 0 && indexPath.section == 1)) {
-        return 173;
+    if ([self.cellHeightDic.allKeys containsObject:indexPath]) {
+        return [self.cellHeightDic[indexPath] integerValue];
     }
-    return 110;
+    
+//    if ((indexPath.row == 0 && indexPath.section == 1)) {
+//        return 173;
+//    }
+    return 0.110;
 
 }
 
@@ -118,7 +133,7 @@
 //    }
     
     if (section == 1) {
-        return 30;
+        return 40;
     }
     return 0.01;
     
@@ -126,7 +141,6 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
     
     if (section == 1) {
         UILabel *titleLabel = [UILabel new];
@@ -146,14 +160,9 @@
     
 }
 
-
-
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
 }
-
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -178,32 +187,16 @@
         if (!cell) {
             cell = [[YYB_HF_guessLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YYB_HF_guessLikeTableViewCell"];
         }
-        //        cell.delegate = self.delegateManage;
-        //        if (self.nearPageDict[@"banner"].count != 0) {
-        //            arc = 1;
-        //            cell.bannerListModel = self.nearPageDict[@"banner"];
-        //
-        //        }else{
-        //            arc = 0;
-        //        };
-        //        cell.dataModel = [NSString stringWithFormat:@"%d", arc];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self.cellHeightDic setObject:@(173) forKey:indexPath];
         return cell;
     }else {
         YYB_HF_guessLikeTableViewCellRightPic *cell = [tableView dequeueReusableCellWithIdentifier:@"YYB_HF_guessLikeTableViewCellRightPic"];
         if (!cell) {
             cell = [[YYB_HF_guessLikeTableViewCellRightPic alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YYB_HF_guessLikeTableViewCellRightPic"];
         }
-        //        cell.delegate = self.delegateManage;
-        //        if (self.nearPageDict[@"banner"].count != 0) {
-        //            arc = 1;
-        //            cell.bannerListModel = self.nearPageDict[@"banner"];
-        //
-        //        }else{
-        //            arc = 0;
-        //        };
-        //        cell.dataModel = [NSString stringWithFormat:@"%d", arc];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self.cellHeightDic setObject:@(110) forKey:indexPath];
         return cell;
     }
     

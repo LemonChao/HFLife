@@ -55,8 +55,9 @@
 -(void)axcBaseRequestData{
     WS(weakSelf);
     
+    
     [networkingManagerTool requestToServerWithType:POST withSubUrl:@"http://test.hfgld.net?w=find&t=city_list_hot" withParameters:nil withResultBlock:^(BOOL result, id value) {
-        NSLog(@"");
+        NSLog(@"选择城市");
     } witnVC:nil];
 //    [[NearNetRequest sharedInstance]getOperCityData:^(id  _Nonnull request) {
 //        if ([request isKindOfClass:[NSDictionary class]]) {

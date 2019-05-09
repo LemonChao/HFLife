@@ -23,3 +23,8 @@ ScreenScale(<#x#>)
 #elif TARGET_OS_IPHONE// 真机
 #endif
 
+#缺省页
+[weakSelf.tableView showAlertViewToViewImageTYpe:IMAGETYPE_NOLIST msg:@"暂无数据" forView:TYPE_VIEW imageCenter:(self.headerView.frame.size.height) * 0.5 errorBlock:^{
+
+}];
+
