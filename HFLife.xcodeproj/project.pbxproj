@@ -30,7 +30,7 @@
 		0453D17B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D15A228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m */; };
 		0453D17C228266D200880C2A /* cycleScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D15F228266D200880C2A /* cycleScrollCell.m */; };
 		0453D17D228266D200880C2A /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D161228266D200880C2A /* CollectionViewCell.m */; };
-		0453D17E228266D200880C2A /* privilageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D162228266D200880C2A /* privilageCollectionViewCell.m */; };
+		0453D17E228266D200880C2A /* bannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D162228266D200880C2A /* bannerCollectionViewCell.m */; };
 		0453D17F228266D200880C2A /* CWCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D165228266D200880C2A /* CWCarousel.m */; };
 		0453D180228266D200880C2A /* CWPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D167228266D200880C2A /* CWPageControl.m */; };
 		0453D181228266D200880C2A /* 01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0453D168228266D200880C2A /* 01.jpg */; };
@@ -606,11 +606,11 @@
 		0453D15A228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPCollectionViewWaterfallFlowLayout.m; sourceTree = "<group>"; };
 		0453D15B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPCollectionViewWaterfallFlowLayout.h; sourceTree = "<group>"; };
 		0453D15D228266D200880C2A /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
-		0453D15E228266D200880C2A /* privilageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = privilageCollectionViewCell.h; sourceTree = "<group>"; };
+		0453D15E228266D200880C2A /* bannerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bannerCollectionViewCell.h; sourceTree = "<group>"; };
 		0453D15F228266D200880C2A /* cycleScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cycleScrollCell.m; sourceTree = "<group>"; };
 		0453D160228266D200880C2A /* CollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionReusableView.h; sourceTree = "<group>"; };
 		0453D161228266D200880C2A /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
-		0453D162228266D200880C2A /* privilageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = privilageCollectionViewCell.m; sourceTree = "<group>"; };
+		0453D162228266D200880C2A /* bannerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bannerCollectionViewCell.m; sourceTree = "<group>"; };
 		0453D164228266D200880C2A /* LWDPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWDPageControl.h; sourceTree = "<group>"; };
 		0453D165228266D200880C2A /* CWCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWCarousel.m; sourceTree = "<group>"; };
 		0453D166228266D200880C2A /* CWCarouselHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWCarouselHeader.h; sourceTree = "<group>"; };
@@ -1777,8 +1777,6 @@
 				0453D176228266D200880C2A /* CollectionReusableView.m */,
 				0453D15D228266D200880C2A /* CollectionViewCell.h */,
 				0453D161228266D200880C2A /* CollectionViewCell.m */,
-				0453D15E228266D200880C2A /* privilageCollectionViewCell.h */,
-				0453D162228266D200880C2A /* privilageCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1824,6 +1822,8 @@
 		0453D1952282765A00880C2A /* scrollViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				0453D15E228266D200880C2A /* bannerCollectionViewCell.h */,
+				0453D162228266D200880C2A /* bannerCollectionViewCell.m */,
 				0453D177228266D200880C2A /* cycleScrollCell.h */,
 				0453D15F228266D200880C2A /* cycleScrollCell.m */,
 				0453D163228266D200880C2A /* 自定义轮播 */,
@@ -5167,7 +5167,7 @@
 				04A508E0227EDD3A0013E8EC /* HRBaseRequest+NetStautsMoniter.m in Sources */,
 				04A508A7227EDD3A0013E8EC /* HRRequest.m in Sources */,
 				04A5084D227EDD3A0013E8EC /* UIImageView+ZFCache.m in Sources */,
-				0453D17E228266D200880C2A /* privilageCollectionViewCell.m in Sources */,
+				0453D17E228266D200880C2A /* bannerCollectionViewCell.m in Sources */,
 				04A5089C227EDD3A0013E8EC /* NSObject+WHRuntime.m in Sources */,
 				658B7C4421D749E100801CC8 /* JSONKit.m in Sources */,
 				658B7C4D21D749E100801CC8 /* UIButton+Extension.m in Sources */,

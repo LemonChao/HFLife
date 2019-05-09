@@ -7,7 +7,7 @@
 
 #import "cycleScrollCell.h"
 #import "customCycleView.h"//自定义轮播
-#import "privilageCollectionViewCell.h"
+#import "bannerCollectionViewCell.h"
 #import "LWDPageControl.h"
 
 @interface cycleScrollCell ()<customCycleViewDelegate>
@@ -69,7 +69,7 @@
     self.cycleV.pageNumbers = self.nums;
     self.cycleV.delegate = self;
     //    self.cycleV.canAutoScroll = YES;//不自动轮播
-    self.cycleV.cellClass = NSStringFromClass([privilageCollectionViewCell class]);
+    self.cycleV.cellClass = NSStringFromClass([bannerCollectionViewCell class]);
     [self layoutIfNeeded];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.cycleV startAnimationView];

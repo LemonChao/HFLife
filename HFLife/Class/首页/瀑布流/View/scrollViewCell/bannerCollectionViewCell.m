@@ -6,8 +6,8 @@
 //  Copyright © 2018年 sxf. All rights reserved.
 //
 
-#import "privilageCollectionViewCell.h"
-@interface  privilageCollectionViewCell()
+#import "bannerCollectionViewCell.h"
+@interface  bannerCollectionViewCell()
 @property (nonatomic ,strong) UIImageView *imageV;
 @property (nonatomic ,strong) UILabel *titleLb;
 @property (nonatomic ,strong) UILabel *currentPriceLb;
@@ -19,7 +19,7 @@
 @end
 
 
-@implementation privilageCollectionViewCell
+@implementation bannerCollectionViewCell
 
 
 

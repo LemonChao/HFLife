@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface privilageCollectionViewCell : UICollectionViewCell
+@interface bannerCollectionViewCell : UICollectionViewCell
 - (void) setModelForCell:(id)model index:(NSInteger )indexPath;
 @end

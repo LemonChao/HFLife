@@ -9,7 +9,7 @@
 #define kViewTag 666
 #define kCount 5
 #import "customCycleView.h"
-#import "privilageCollectionViewCell.h"
+#import "bannerCollectionViewCell.h"
 #import "CWPageControl.h"//自定义pageControll
 
 @interface customCycleView()<CWCarouselDatasource, CWCarouselDelegate>
@@ -87,8 +87,8 @@
     }
     //注册cell
     
-    if ([self.cellClass isEqualToString:NSStringFromClass([privilageCollectionViewCell class])]) {
-         [self.carousel registerViewClass:[privilageCollectionViewCell class] identifier:@"cellId"];
+    if ([self.cellClass isEqualToString:NSStringFromClass([bannerCollectionViewCell class])]) {
+         [self.carousel registerViewClass:[bannerCollectionViewCell class] identifier:@"cellId"];
     }
     
     
@@ -115,17 +115,17 @@
 
 #pragma mark - Delegate
 - (UICollectionViewCell *)viewForCarousel:(CWCarousel *)carousel indexPath:(NSIndexPath *)indexPath index:(NSInteger)index{
-    if ([self.cellClass isEqualToString:NSStringFromClass([privilageCollectionViewCell class])]) {
+    if ([self.cellClass isEqualToString:NSStringFromClass([bannerCollectionViewCell class])]) {
+        bannerCollectionViewCell *cell = [carousel.carouselView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
+        if (self.dataSourceArr.count - 1 >= index) {
+            //        [cell setModelForCell:self.dataSourceArr[index] index:index];
+        }
         
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        return cell;
     }
     
-    privilageCollectionViewCell *cell = [carousel.carouselView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
-    if (self.dataSourceArr.count - 1 >= index) {
-//        [cell setModelForCell:self.dataSourceArr[index] index:index];
-    }
-    
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    return cell;
+
     
     return nil;
     
