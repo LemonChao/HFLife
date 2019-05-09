@@ -11,10 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UILabel (ChainTypeLabel)
++ (UILabel *(^)(void))creat;
 - (UILabel *(^)(NSString *text))setText;
 - (UILabel *(^)(UIColor *color))setTextColor;
 - (UILabel *(^)(UIFont *font))setFont;
 - (UILabel *(^)(CGFloat fontSize))setFontSize;
+- (UILabel *(^)(NSTextAlignment textAlignment))setTextAligement;
 @end
 
 NS_ASSUME_NONNULL_END

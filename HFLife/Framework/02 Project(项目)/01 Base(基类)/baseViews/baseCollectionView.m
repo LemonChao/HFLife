@@ -9,7 +9,7 @@
 #import "baseCollectionView.h"
 
 @interface baseCollectionView ()
-@property (nonatomic, strong) MJRefreshGifHeader *header;
+
 @property (nonatomic ,strong) NSString *gifPathSource;//图片地址
 @end
 

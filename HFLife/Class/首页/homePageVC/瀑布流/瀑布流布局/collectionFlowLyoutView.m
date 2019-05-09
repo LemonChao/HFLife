@@ -16,7 +16,7 @@
 #import "CollectionReusableView.h"
 #import "SXF_HF_HomePageTableHeader.h"
 @interface collectionFlowLyoutView()<XPCollectionViewWaterfallFlowLayoutDataSource,
-UICollectionViewDelegate, UICollectionViewDataSource>
+UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic ,strong) baseCollectionView *collectionView;
 @property (nonatomic ,strong) XPCollectionViewWaterfallFlowLayout *layout;
@@ -28,6 +28,7 @@ UICollectionViewDelegate, UICollectionViewDataSource>
 @implementation collectionFlowLyoutView
 {
     NSArray *_titleArr;
+    UILabel *_refreshLb;
 }
 static NSString * const headerReuseIdentifier = @"Header";
 static NSString * const footerReuseIdentifier = @"Footer";
@@ -60,11 +61,29 @@ static NSString * const footerReuseIdentifier = @"Footer";
     //不能设置 self.collectionView.contentInset = UIEdgeInsetsMake(290, 0.0, 0.0, 0.0);
     
 
-    [self.collectionView addSubview:self.tableHeader];
+//    [self.collectionView addSubview:self.tableHeader];
     
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:self.collectionView.bounds];
+    bgView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundView = bgView;
+    [bgView addSubview:self.tableHeader];
+    _refreshLb =
+    UILabel.creat()
+    .setFontSize(13)
+    .setTextColor([UIColor redColor])
+    .setText(self.collectionView.header.stateLabel.text)
+    .setTextAligement(NSTextAlignmentCenter)
+    .setFrame(CGRectMake(0, CGRectGetMaxY(self.tableHeader.frame), SCREEN_WIDTH, 40));
     //下拉刷新
+    [bgView addSubview:_refreshLb];
+    self.collectionView.header.stateLabel.hidden = YES;
+    WEAK(weakSelf);
     self.collectionView.refreshHeaderBlock = ^{
         NSLog(@"collection下拉");
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.collectionView endRefreshData];
+        });
     };
     
     
@@ -186,7 +205,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout *)layout insetForSectionAtIndex:(NSInteger)section {
     //每个分区的上左下右间距
     if (section == 0) {
-        return UIEdgeInsetsMake(ScreenScale(300), 0.0, 10.0, 0.0);
+        return UIEdgeInsetsMake(ScreenScale(290) , 0.0, 10.0, 0.0);
     }else if (section == 1){
         return UIEdgeInsetsMake(ScreenScale(6), 0.0, ScreenScale(6), 0.0);
     }
@@ -222,6 +241,23 @@ static NSString * const footerReuseIdentifier = @"Footer";
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout *)layout referenceHeightForFooterInSection:(NSInteger)section {
     return 0.01;;
 }
+
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    NSIndexSet *set  = [NSIndexSet indexSetWithIndex:0];
+//    [self.collectionView reloadData];
+    
+    self.tableHeader.frame = CGRectMake(0, - (scrollView.contentOffset.y > 0 ? scrollView.contentOffset.y : 0), self.tableHeader.bounds.size.width, self.tableHeader.bounds.size.height);
+    
+    if (scrollView.contentOffset.y > 50) {
+        _refreshLb.hidden = YES;
+    }else{
+        _refreshLb.hidden =  NO;
+        _refreshLb.text = self.collectionView.header.stateLabel.text;
+    }
+}
+
 
 - (UICollectionView *)collectionView{
     if (!_collectionView) {

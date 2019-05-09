@@ -60,9 +60,8 @@
     }else if (IS_IPHONE_6_PLUS){
         newFont = [UIFont adjustFont:fontSize + IPHONE6PLUS_INCREMENT];
     }else if (IS_IPHONE_6){
-        newFont = [UIFont adjustFont:fontSize + IPHONE6PLUS_INCREMENT];
+        newFont = [UIFont adjustFont:fontSize];
     }else{
-//        newFont = [UIFont adjustFont:fontSize];
         newFont = [UIFont adjustFont:fontSize + IPHONE6PLUS_INCREMENT];
     }
     return newFont;

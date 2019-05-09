@@ -9,6 +9,14 @@
 #import "UILabel+ChainTypeLabel.h"
 
 @implementation UILabel (ChainTypeLabel)
+
++ (UILabel *(^)(void))creat{
+    return ^(){
+        UILabel *lab = [[UILabel alloc] init];
+        return lab;
+    };
+}
+
 - (UILabel *(^)(NSString *text))setText{
     return ^(NSString *text){
         self.text = text;
@@ -32,6 +40,15 @@
 - (UILabel *(^)(CGFloat fontSize))setFontSize{
     return ^(CGFloat fontSize){
         self.font = [UIFont systemFontOfSize:fontSize];
+        return self;
+        
+    };
+}
+
+
+- (UILabel *(^)(NSTextAlignment textAlignment))setTextAligement{
+    return ^(NSTextAlignment textAlignment){
+        self.textAlignment = textAlignment;
         return self;
     };
 }
