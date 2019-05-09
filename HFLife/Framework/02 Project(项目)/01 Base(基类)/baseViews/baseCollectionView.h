@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,assign) NSInteger page;
 
 @property (nonatomic ,strong) MJRefreshFooter *footer;
-
+@property (nonatomic, strong) MJRefreshGifHeader *header;
 
 @property (nonatomic ,assign) BOOL activityGifHeader;//是否激活 动画刷新 默认yes
 @property (nonatomic ,strong) NSString *gifSourceName;//动画图片名字

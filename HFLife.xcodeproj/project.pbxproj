@@ -3419,8 +3419,8 @@
 			isa = PBXGroup;
 			children = (
 				04B9D51022803CF10084FA23 /* MainPageVC.h */,
-				04B9D51122803CF10084FA23 /* VC */,
 				04B9D51922803CF10084FA23 /* MainPageVC.m */,
+				04B9D51122803CF10084FA23 /* VC */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
