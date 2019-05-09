@@ -1949,7 +1949,6 @@
 		04A50658227EDD350013E8EC /* 03 Control(控件) */ = {
 			isa = PBXGroup;
 			children = (
-				04B9D4D022803C6B0084FA23 /* customTabNav */,
 				04A50659227EDD350013E8EC /* 上下滚动显示 */,
 				04A5065E227EDD350013E8EC /* segementView */,
 				04A50676227EDD350013E8EC /* DMDropDownMenu */,
@@ -3555,6 +3554,7 @@
 		04B9D55522803E250084FA23 /* 03 BaseTabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				04B9D4D022803C6B0084FA23 /* customTabNav */,
 				04B9D55622803E250084FA23 /* BaseTabBarController.h */,
 				04B9D55722803E250084FA23 /* BaseTabBarController.m */,
 			);
