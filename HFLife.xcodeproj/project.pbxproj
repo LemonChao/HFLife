@@ -304,6 +304,7 @@
 		04F54B50228160DB009AAEF3 /* SXF_HF_CustomPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4F228160DB009AAEF3 /* SXF_HF_CustomPageControl.m */; };
 		04F54B5422816189009AAEF3 /* SXF_HF_CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5322816189009AAEF3 /* SXF_HF_CustomSearchBar.m */; };
 		04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */; };
+		04F5F24D228412630043BBB7 /* SXF_HF_LoginAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F24C228412630043BBB7 /* SXF_HF_LoginAlertView.m */; };
 		6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 65229493225AE063001DF691 /* SELUpdateAlert.m */; };
 		6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */; };
 		6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */; };
@@ -1164,6 +1165,9 @@
 		04F54B5322816189009AAEF3 /* SXF_HF_CustomSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CustomSearchBar.m; sourceTree = "<group>"; };
 		04F54B5522816268009AAEF3 /* SXF_HF_HomePageTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HomePageTableHeader.h; sourceTree = "<group>"; };
 		04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HomePageTableHeader.m; sourceTree = "<group>"; };
+		04F5F24B228412620043BBB7 /* SXF_HF_LoginAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXF_HF_LoginAlertView.h; sourceTree = "<group>"; };
+		04F5F24C228412630043BBB7 /* SXF_HF_LoginAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_LoginAlertView.m; sourceTree = "<group>"; };
+		04F5F24E228414B00043BBB7 /* frameworkUtiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frameworkUtiles.h; sourceTree = "<group>"; };
 		65229492225AE063001DF691 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		65229493225AE063001DF691 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VersionUpdate_Icon@3x.png"; sourceTree = "<group>"; };
@@ -2063,6 +2067,7 @@
 		04A50658227EDD350013E8EC /* 03 Control(控件) */ = {
 			isa = PBXGroup;
 			children = (
+				04F5F24A228412460043BBB7 /* 登录弹窗 */,
 				04A50659227EDD350013E8EC /* 上下滚动显示 */,
 				0453D1C02284032F00880C2A /* 缺省页 */,
 				04A5065E227EDD350013E8EC /* segementView */,
@@ -2079,6 +2084,7 @@
 				04A506FA227EDD350013E8EC /* 图片预览 */,
 				04A506FE227EDD350013E8EC /* 下拉弹窗 */,
 				04A5070A227EDD350013E8EC /* Vender */,
+				04F5F24E228414B00043BBB7 /* frameworkUtiles.h */,
 			);
 			path = "03 Control(控件)";
 			sourceTree = "<group>";
@@ -3801,6 +3807,15 @@
 			path = customView;
 			sourceTree = "<group>";
 		};
+		04F5F24A228412460043BBB7 /* 登录弹窗 */ = {
+			isa = PBXGroup;
+			children = (
+				04F5F24B228412620043BBB7 /* SXF_HF_LoginAlertView.h */,
+				04F5F24C228412630043BBB7 /* SXF_HF_LoginAlertView.m */,
+			);
+			path = "登录弹窗";
+			sourceTree = "<group>";
+		};
 		568527D544756CE228B06AEA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -5509,6 +5524,7 @@
 				04B9D4ED22803C6B0084FA23 /* UIColor+JM.m in Sources */,
 				04A508D8227EDD3A0013E8EC /* NSDate+TimeStamp.m in Sources */,
 				04A508D0227EDD3A0013E8EC /* UIButton+ChainTypeButton.m in Sources */,
+				04F5F24D228412630043BBB7 /* SXF_HF_LoginAlertView.m in Sources */,
 				04B9D57722803E260084FA23 /* BaseTabBarController.m in Sources */,
 				658B7C5721D749E100801CC8 /* UIViewController+LKBubbleView.m in Sources */,
 				04A508CB227EDD3A0013E8EC /* UIWebView+Browser.m in Sources */,
