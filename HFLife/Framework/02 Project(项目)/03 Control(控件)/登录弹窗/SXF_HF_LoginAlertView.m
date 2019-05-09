@@ -141,17 +141,20 @@
     
     __weak typeof(alertView)weakAlert = alertView;
     alertView.clickBtn = ^(BOOL btnType) {
-        [UIView animateWithDuration:0.2 animations:^{
-            weakAlert.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
-            weakAlert.transform = CGAffineTransformMakeScale(0.01, 0.01);
-        } completion:^(BOOL finished) {
-            
-            if (complate) {
-                complate(btnType);
-            }
-            [weakAlert removeFromSuperview];
-            [bgView removeFromSuperview];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [UIView animateWithDuration:0.2 animations:^{
+                
+                weakAlert.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
+                weakAlert.transform = CGAffineTransformMakeScale(0.01, 0.01);
+            } completion:^(BOOL finished) {
+                if (complate) {
+                    complate(btnType);
+                }
+                [weakAlert removeFromSuperview];
+                [bgView removeFromSuperview];
+            }];
         }];
+        
     };
 }
 

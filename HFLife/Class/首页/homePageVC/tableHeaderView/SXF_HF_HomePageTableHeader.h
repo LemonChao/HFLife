@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_HomePageTableHeader : UIView
-
+@property (nonatomic, strong)void(^selectedHeaderBtn)(NSInteger index);
 @end
 
 NS_ASSUME_NONNULL_END

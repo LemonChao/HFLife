@@ -26,7 +26,7 @@
 		0453D1502281935E00880C2A /* customItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14C2281935E00880C2A /* customItemView.m */; };
 		0453D1512281935E00880C2A /* myTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14F2281935E00880C2A /* myTopView.m */; };
 		0453D1542281A54900880C2A /* DigitalRollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1532281A54800880C2A /* DigitalRollingView.m */; };
-		0453D17A228266D200880C2A /* collectionFlowLyoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D158228266D100880C2A /* collectionFlowLyoutView.m */; };
+		0453D17A228266D200880C2A /* SXF_HF_HomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D158228266D100880C2A /* SXF_HF_HomePageView.m */; };
 		0453D17B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D15A228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m */; };
 		0453D17C228266D200880C2A /* cycleScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D15F228266D200880C2A /* cycleScrollCell.m */; };
 		0453D17D228266D200880C2A /* SXF_HF_CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D161228266D200880C2A /* SXF_HF_CollectionViewCell.m */; };
@@ -298,13 +298,13 @@
 		04F54B3422811DC8009AAEF3 /* subModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B3322811DC8009AAEF3 /* subModels.m */; };
 		04F54B4322813B23009AAEF3 /* WRNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B3D22813B23009AAEF3 /* WRNavigationBar.m */; };
 		04F54B4422813B23009AAEF3 /* WRCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4022813B23009AAEF3 /* WRCustomNavigationBar.m */; };
-		04F54B4722815194009AAEF3 /* SXF_HF_HomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4622815194009AAEF3 /* SXF_HF_HomePageView.m */; };
 		04F54B4A22815808009AAEF3 /* SXF_HF_CustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4922815808009AAEF3 /* SXF_HF_CustomCollectionView.m */; };
 		04F54B4D22815B80009AAEF3 /* SXF_HF_CustomLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4C22815B80009AAEF3 /* SXF_HF_CustomLayout.m */; };
 		04F54B50228160DB009AAEF3 /* SXF_HF_CustomPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4F228160DB009AAEF3 /* SXF_HF_CustomPageControl.m */; };
 		04F54B5422816189009AAEF3 /* SXF_HF_CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5322816189009AAEF3 /* SXF_HF_CustomSearchBar.m */; };
 		04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */; };
 		04F5F24D228412630043BBB7 /* SXF_HF_LoginAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F24C228412630043BBB7 /* SXF_HF_LoginAlertView.m */; };
+		04F5F251228418880043BBB7 /* SXF_HF_HomePageVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F250228418880043BBB7 /* SXF_HF_HomePageVM.m */; };
 		6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 65229493225AE063001DF691 /* SELUpdateAlert.m */; };
 		6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */; };
 		6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */; };
@@ -631,8 +631,8 @@
 		0453D14F2281935E00880C2A /* myTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myTopView.m; sourceTree = "<group>"; };
 		0453D1522281A54800880C2A /* DigitalRollingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigitalRollingView.h; sourceTree = "<group>"; };
 		0453D1532281A54800880C2A /* DigitalRollingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigitalRollingView.m; sourceTree = "<group>"; };
-		0453D157228266D100880C2A /* collectionFlowLyoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collectionFlowLyoutView.h; sourceTree = "<group>"; };
-		0453D158228266D100880C2A /* collectionFlowLyoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionFlowLyoutView.m; sourceTree = "<group>"; };
+		0453D157228266D100880C2A /* SXF_HF_HomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HomePageView.h; sourceTree = "<group>"; };
+		0453D158228266D100880C2A /* SXF_HF_HomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HomePageView.m; sourceTree = "<group>"; };
 		0453D15A228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPCollectionViewWaterfallFlowLayout.m; sourceTree = "<group>"; };
 		0453D15B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPCollectionViewWaterfallFlowLayout.h; sourceTree = "<group>"; };
 		0453D15D228266D200880C2A /* SXF_HF_CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXF_HF_CollectionViewCell.h; sourceTree = "<group>"; };
@@ -1153,8 +1153,6 @@
 		04F54B3E22813B23009AAEF3 /* WRCustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCustomNavigationBar.h; sourceTree = "<group>"; };
 		04F54B3F22813B23009AAEF3 /* WRNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRNavigationBar.h; sourceTree = "<group>"; };
 		04F54B4022813B23009AAEF3 /* WRCustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCustomNavigationBar.m; sourceTree = "<group>"; };
-		04F54B4522815194009AAEF3 /* SXF_HF_HomePageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HomePageView.h; sourceTree = "<group>"; };
-		04F54B4622815194009AAEF3 /* SXF_HF_HomePageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HomePageView.m; sourceTree = "<group>"; };
 		04F54B4822815808009AAEF3 /* SXF_HF_CustomCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_CustomCollectionView.h; sourceTree = "<group>"; };
 		04F54B4922815808009AAEF3 /* SXF_HF_CustomCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CustomCollectionView.m; sourceTree = "<group>"; };
 		04F54B4B22815B80009AAEF3 /* SXF_HF_CustomLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_CustomLayout.h; sourceTree = "<group>"; };
@@ -1168,6 +1166,8 @@
 		04F5F24B228412620043BBB7 /* SXF_HF_LoginAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXF_HF_LoginAlertView.h; sourceTree = "<group>"; };
 		04F5F24C228412630043BBB7 /* SXF_HF_LoginAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_LoginAlertView.m; sourceTree = "<group>"; };
 		04F5F24E228414B00043BBB7 /* frameworkUtiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frameworkUtiles.h; sourceTree = "<group>"; };
+		04F5F24F228418880043BBB7 /* SXF_HF_HomePageVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HomePageVM.h; sourceTree = "<group>"; };
+		04F5F250228418880043BBB7 /* SXF_HF_HomePageVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HomePageVM.m; sourceTree = "<group>"; };
 		65229492225AE063001DF691 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		65229493225AE063001DF691 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VersionUpdate_Icon@3x.png"; sourceTree = "<group>"; };
@@ -1821,8 +1821,8 @@
 		0453D156228266D100880C2A /* 瀑布流布局 */ = {
 			isa = PBXGroup;
 			children = (
-				0453D157228266D100880C2A /* collectionFlowLyoutView.h */,
-				0453D158228266D100880C2A /* collectionFlowLyoutView.m */,
+				0453D157228266D100880C2A /* SXF_HF_HomePageView.h */,
+				0453D158228266D100880C2A /* SXF_HF_HomePageView.m */,
 			);
 			path = "瀑布流布局";
 			sourceTree = "<group>";
@@ -1940,8 +1940,8 @@
 				04B9D4F222803CF00084FA23 /* homeNavBG.png */,
 				04B9D4F322803CF00084FA23 /* HomePageVC.h */,
 				04B9D4F422803CF00084FA23 /* HomePageVC.m */,
-				04F54B4522815194009AAEF3 /* SXF_HF_HomePageView.h */,
-				04F54B4622815194009AAEF3 /* SXF_HF_HomePageView.m */,
+				04F5F24F228418880043BBB7 /* SXF_HF_HomePageVM.h */,
+				04F5F250228418880043BBB7 /* SXF_HF_HomePageVM.m */,
 				0453D1B52283B6E200880C2A /* 搜索栏 */,
 				0453D1B22283B62900880C2A /* tableHeaderView */,
 				0453D155228266A800880C2A /* 瀑布流 */,
@@ -5243,7 +5243,6 @@
 				04A508CD227EDD3A0013E8EC /* UILabel+FitSize.m in Sources */,
 				65B5DFE8221E83FE00A65044 /* DateChoose.m in Sources */,
 				658B7CA721D749E100801CC8 /* AnimationTransitionBegin.m in Sources */,
-				04F54B4722815194009AAEF3 /* SXF_HF_HomePageView.m in Sources */,
 				658C3AE721F31A5000880B6A /* MKShowDynamic.m in Sources */,
 				658B7CBE21D749E100801CC8 /* MsgPlaySound.m in Sources */,
 				6C2F5152222A663D0022EE03 /* HXDatePhotoViewFlowLayout.m in Sources */,
@@ -5337,7 +5336,7 @@
 				04A5085F227EDD3A0013E8EC /* myTableViewCell.m in Sources */,
 				6C2F5149222A663D0022EE03 /* UIImageView+HXExtension.m in Sources */,
 				040A17DA2282CDBB00997B93 /* YYB_HF_EntryVC.m in Sources */,
-				0453D17A228266D200880C2A /* collectionFlowLyoutView.m in Sources */,
+				0453D17A228266D200880C2A /* SXF_HF_HomePageView.m in Sources */,
 				04A5089B227EDD3A0013E8EC /* NSArray+WHArray.m in Sources */,
 				658C3B0C21F57FBC00880B6A /* CityModel.m in Sources */,
 				6579784921E6D6B600E606BE /* JFCityCollectionFlowLayout.m in Sources */,
@@ -5386,6 +5385,7 @@
 				04A5087C227EDD3A0013E8EC /* NSObject+CountDown.m in Sources */,
 				658C3A2E21EDD65500880B6A /* HW3DBannerView.m in Sources */,
 				04A5088F227EDD3A0013E8EC /* NSString+WHString.m in Sources */,
+				04F5F251228418880043BBB7 /* SXF_HF_HomePageVM.m in Sources */,
 				658B7C9A21D749E100801CC8 /* VCTransitionDelegate.m in Sources */,
 				04A508E5227EDD3A0013E8EC /* HRMessage.m in Sources */,
 				658C39DB21E9FA5B00880B6A /* JXCategoryTitleImageView.m in Sources */,

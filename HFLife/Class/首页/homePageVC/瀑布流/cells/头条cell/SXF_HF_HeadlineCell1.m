@@ -17,8 +17,6 @@
 @property (nonatomic, strong) UIImageView *imageV;
 @property (nonatomic, strong) UILabel *titleLb;
 @property (nonatomic, strong) UILabel *timeLb;
-
-
 @end
 
 @implementation SXF_HF_HeadlineCell1

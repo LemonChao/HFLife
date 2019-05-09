@@ -5,7 +5,7 @@
 //  Created by 史小峰 on 2019/5/8.
 //
 
-#import "collectionFlowLyoutView.h"
+#import "SXF_HF_HomePageView.h"
 #import "XPCollectionViewWaterfallFlowLayout.h"
 #import "SXF_HF_CollectionViewCell.h"
 #import "cycleScrollCell.h"
@@ -15,7 +15,7 @@
 #import "SXF_HF_RecommentCell.h"
 #import "CollectionReusableView.h"
 #import "SXF_HF_HomePageTableHeader.h"
-@interface collectionFlowLyoutView()<XPCollectionViewWaterfallFlowLayoutDataSource,
+@interface SXF_HF_HomePageView()<XPCollectionViewWaterfallFlowLayoutDataSource,
 UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic ,strong) baseCollectionView *collectionView;
@@ -25,7 +25,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 @end
 
 
-@implementation collectionFlowLyoutView
+@implementation SXF_HF_HomePageView
 {
     NSArray *_titleArr;
     UILabel *_refreshLb;
@@ -63,7 +63,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
 
 //    [self.collectionView addSubview:self.tableHeader];
     
-    
+    WEAK(weakSelf);
     UIView *bgView = [[UIView alloc] initWithFrame:self.collectionView.bounds];
     bgView.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundView = bgView;
@@ -78,27 +78,45 @@ static NSString * const footerReuseIdentifier = @"Footer";
     //下拉刷新
     [bgView addSubview:_refreshLb];
     self.collectionView.header.stateLabel.hidden = YES;
-    WEAK(weakSelf);
     self.collectionView.refreshHeaderBlock = ^{
         NSLog(@"collection下拉");
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakSelf.collectionView endRefreshData];
-        });
+        !weakSelf.refreshDataCallBack ? : weakSelf.refreshDataCallBack(weakSelf.collectionView.page);
     };
-    
-    
     //上拉加载
     self.collectionView.refreshFooterBlock = ^{
         NSLog(@"collection上拉");
+        !weakSelf.refreshDataCallBack ? : weakSelf.refreshDataCallBack(weakSelf.collectionView.page);
     };
     
+    //分区头点击d事件
+    self.tableHeader.selectedHeaderBtn = ^(NSInteger index) {
+        !weakSelf.selectedHeaderBtnBlock ? : weakSelf.selectedHeaderBtnBlock(index);
+    };
     
-    
+}
+- (void) endRefreshData{
+    [self.collectionView endRefreshData];
+}
+//集合点击事件
+- (void) collectionViewSelection:(NSInteger )section itemIndex:(NSInteger)index{
+    NSIndexPath *indexP = [NSIndexPath indexPathForRow:index inSection:section];
+    !self.selectedItem ? : self.selectedItem(indexP);
 }
 
 
 #pragma mark <UICollectionViewDataSource>
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger mySection;
+    //点击事件
+    if (indexPath.section == 0) {
+        mySection = 1;
+    }else if (indexPath.section == 2) {
+        mySection = 4;
+    }else if (indexPath.section == 3){
+        mySection = 5;
+    }
+    [self collectionViewSelection:mySection itemIndex:indexPath.row];
+}
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return _titleArr.count;
 }
@@ -116,9 +134,13 @@ static NSString * const footerReuseIdentifier = @"Footer";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    WEAK(weakSelf);
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             SXF_HF_ItemsViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_ItemsViewCell class]) forIndexPath:indexPath];
+            cell.selectItemBlock = ^(NSInteger index) {
+                [weakSelf collectionViewSelection:0 itemIndex:index];
+            };
             return cell;
         }else if (indexPath.row == 1) {
             SXF_HF_CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_CollectionViewCell class]) forIndexPath:indexPath];
@@ -126,10 +148,16 @@ static NSString * const footerReuseIdentifier = @"Footer";
         }else if (indexPath.row == 2) {
             cycleScrollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([cycleScrollCell class]) forIndexPath:indexPath];
             cell.modelArr = @[@"", @"", @""];
+            cell.selectItemBlock = ^(NSInteger index) {
+                [weakSelf collectionViewSelection:2 itemIndex:index];
+            };
             return cell;
         }
     }else if (indexPath.section == 1){
         SXF_HF_RecommentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_RecommentCell class]) forIndexPath:indexPath];
+        cell.selectedItem = ^(NSInteger index) {
+            [weakSelf collectionViewSelection:3 itemIndex:index];;
+        };
         return cell;
     }else if (indexPath.section == 2){
         SXF_HF_HeadlineCell1 *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_HeadlineCell1 class]) forIndexPath:indexPath];
@@ -162,9 +190,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
     
     return view;
 }
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"第%ld分区--第%ld行", indexPath.section, indexPath.item);
-}
+
 #pragma mark <XPCollectionViewWaterfallFlowLayoutDelegate>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout *)layout numberOfColumnInSection:(NSInteger)section {
