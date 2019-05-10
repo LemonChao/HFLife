@@ -30,4 +30,8 @@
 /** 辅助 - aaaaaa */
 #define AssistColor RGBA(170,170,170,1)
 
+/** 通用红 CA1400 */
+#define GeneralRedColor RGBA(202,20,0,1)
+
+
 #endif /* AppColorHeader_h */
