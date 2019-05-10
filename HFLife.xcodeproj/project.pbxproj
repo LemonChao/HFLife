@@ -306,6 +306,13 @@
 		04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */; };
 		04F5F24D228412630043BBB7 /* SXF_HF_LoginAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F24C228412630043BBB7 /* SXF_HF_LoginAlertView.m */; };
 		04F5F251228418880043BBB7 /* SXF_HF_HomePageVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F250228418880043BBB7 /* SXF_HF_HomePageVM.m */; };
+		04F5F25422842EE80043BBB7 /* SXF_HF_MainPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F25322842EE80043BBB7 /* SXF_HF_MainPageView.m */; };
+		04F5F25722842F2C0043BBB7 /* SXF_HF_MainPageCycleScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F25622842F2C0043BBB7 /* SXF_HF_MainPageCycleScrollCell.m */; };
+		04F5F25A22842F830043BBB7 /* SXF_HF_MainPageMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F25922842F830043BBB7 /* SXF_HF_MainPageMenuCell.m */; };
+		04F5F25E2284309D0043BBB7 /* SXF_HF_MainTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F25D2284309D0043BBB7 /* SXF_HF_MainTableHeaderView.m */; };
+		04F5F261228430DA0043BBB7 /* SXF_HF_MianPageSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F260228430DA0043BBB7 /* SXF_HF_MianPageSectionView.m */; };
+		04F5F266228440860043BBB7 /* SXF_HF_CycleContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */; };
+		04F67AB22285199A008124A3 /* UIView+cornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB12285199A008124A3 /* UIView+cornerRadius.m */; };
 		6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 65229493225AE063001DF691 /* SELUpdateAlert.m */; };
 		6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */; };
 		6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */; };
@@ -1173,6 +1180,20 @@
 		04F5F24E228414B00043BBB7 /* frameworkUtiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frameworkUtiles.h; sourceTree = "<group>"; };
 		04F5F24F228418880043BBB7 /* SXF_HF_HomePageVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HomePageVM.h; sourceTree = "<group>"; };
 		04F5F250228418880043BBB7 /* SXF_HF_HomePageVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HomePageVM.m; sourceTree = "<group>"; };
+		04F5F25222842EE80043BBB7 /* SXF_HF_MainPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_MainPageView.h; sourceTree = "<group>"; };
+		04F5F25322842EE80043BBB7 /* SXF_HF_MainPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_MainPageView.m; sourceTree = "<group>"; };
+		04F5F25522842F2C0043BBB7 /* SXF_HF_MainPageCycleScrollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_MainPageCycleScrollCell.h; sourceTree = "<group>"; };
+		04F5F25622842F2C0043BBB7 /* SXF_HF_MainPageCycleScrollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_MainPageCycleScrollCell.m; sourceTree = "<group>"; };
+		04F5F25822842F830043BBB7 /* SXF_HF_MainPageMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_MainPageMenuCell.h; sourceTree = "<group>"; };
+		04F5F25922842F830043BBB7 /* SXF_HF_MainPageMenuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_MainPageMenuCell.m; sourceTree = "<group>"; };
+		04F5F25C2284309D0043BBB7 /* SXF_HF_MainTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_MainTableHeaderView.h; sourceTree = "<group>"; };
+		04F5F25D2284309D0043BBB7 /* SXF_HF_MainTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_MainTableHeaderView.m; sourceTree = "<group>"; };
+		04F5F25F228430DA0043BBB7 /* SXF_HF_MianPageSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_MianPageSectionView.h; sourceTree = "<group>"; };
+		04F5F260228430DA0043BBB7 /* SXF_HF_MianPageSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_MianPageSectionView.m; sourceTree = "<group>"; };
+		04F5F264228440860043BBB7 /* SXF_HF_CycleContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_CycleContentCell.h; sourceTree = "<group>"; };
+		04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CycleContentCell.m; sourceTree = "<group>"; };
+		04F67AB02285199A008124A3 /* UIView+cornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+cornerRadius.h"; sourceTree = "<group>"; };
+		04F67AB12285199A008124A3 /* UIView+cornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+cornerRadius.m"; sourceTree = "<group>"; };
 		65229492225AE063001DF691 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		65229493225AE063001DF691 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VersionUpdate_Icon@3x.png"; sourceTree = "<group>"; };
@@ -1865,24 +1886,24 @@
 		0453D163228266D200880C2A /* 自定义轮播 */ = {
 			isa = PBXGroup;
 			children = (
-				0453D164228266D200880C2A /* LWDPageControl.h */,
-				0453D165228266D200880C2A /* CWCarousel.m */,
-				0453D166228266D200880C2A /* CWCarouselHeader.h */,
-				0453D167228266D200880C2A /* CWPageControl.m */,
-				0453D168228266D200880C2A /* 01.jpg */,
-				0453D169228266D200880C2A /* 03.jpg */,
-				0453D16A228266D200880C2A /* CWFlowLayout.m */,
 				0453D16B228266D200880C2A /* CWCarouselProtocol.h */,
-				0453D16C228266D200880C2A /* 02.jpg */,
-				0453D16D228266D200880C2A /* 05.jpg */,
-				0453D16E228266D200880C2A /* customCycleView.h */,
-				0453D16F228266D200880C2A /* 04.jpg */,
-				0453D170228266D200880C2A /* CWCarousel.h */,
-				0453D171228266D200880C2A /* Mask Copy 2.png */,
+				0453D166228266D200880C2A /* CWCarouselHeader.h */,
+				0453D164228266D200880C2A /* LWDPageControl.h */,
 				0453D172228266D200880C2A /* LWDPageControl.m */,
 				0453D173228266D200880C2A /* CWPageControl.h */,
+				0453D167228266D200880C2A /* CWPageControl.m */,
+				0453D170228266D200880C2A /* CWCarousel.h */,
+				0453D165228266D200880C2A /* CWCarousel.m */,
+				0453D168228266D200880C2A /* 01.jpg */,
+				0453D169228266D200880C2A /* 03.jpg */,
 				0453D174228266D200880C2A /* CWFlowLayout.h */,
+				0453D16A228266D200880C2A /* CWFlowLayout.m */,
+				0453D16E228266D200880C2A /* customCycleView.h */,
 				0453D175228266D200880C2A /* customCycleView.m */,
+				0453D171228266D200880C2A /* Mask Copy 2.png */,
+				0453D16C228266D200880C2A /* 02.jpg */,
+				0453D16F228266D200880C2A /* 04.jpg */,
+				0453D16D228266D200880C2A /* 05.jpg */,
 			);
 			path = "自定义轮播";
 			sourceTree = "<group>";
@@ -2739,6 +2760,8 @@
 				658C3BF921F815B000880B6A /* UIView+MHFrame.m */,
 				6CCAD70A2282E4E7001824A0 /* UIView+BadgeValue.h */,
 				6CCAD7092282E4E7001824A0 /* UIView+BadgeValue.m */,
+				04F67AB02285199A008124A3 /* UIView+cornerRadius.h */,
+				04F67AB12285199A008124A3 /* UIView+cornerRadius.m */,
 				04A507AC227EDD390013E8EC /* 02 设置圆角 */,
 				04A507AF227EDD390013E8EC /* 01 所在控制器 */,
 				04A507B2227EDD390013E8EC /* 链式创建 */,
@@ -3529,19 +3552,18 @@
 		04B9D50F22803CF10084FA23 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
-				04B9D51022803CF10084FA23 /* MainPageVC.h */,
-				04B9D51922803CF10084FA23 /* MainPageVC.m */,
-				04B9D51122803CF10084FA23 /* VC */,
+				04F5F263228431010043BBB7 /* MainPage */,
+				04B9D51122803CF10084FA23 /* subVC */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
 		};
-		04B9D51122803CF10084FA23 /* VC */ = {
+		04B9D51122803CF10084FA23 /* subVC */ = {
 			isa = PBXGroup;
 			children = (
 				04B9D51222803CF10084FA23 /* 安全中心  */,
 			);
-			path = VC;
+			path = subVC;
 			sourceTree = "<group>";
 		};
 		04B9D51222803CF10084FA23 /* 安全中心  */ = {
@@ -3825,6 +3847,43 @@
 				04F5F24C228412630043BBB7 /* SXF_HF_LoginAlertView.m */,
 			);
 			path = "登录弹窗";
+			sourceTree = "<group>";
+		};
+		04F5F25B22842FA00043BBB7 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				04F5F25522842F2C0043BBB7 /* SXF_HF_MainPageCycleScrollCell.h */,
+				04F5F25622842F2C0043BBB7 /* SXF_HF_MainPageCycleScrollCell.m */,
+				04F5F264228440860043BBB7 /* SXF_HF_CycleContentCell.h */,
+				04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */,
+				04F5F25822842F830043BBB7 /* SXF_HF_MainPageMenuCell.h */,
+				04F5F25922842F830043BBB7 /* SXF_HF_MainPageMenuCell.m */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		04F5F262228430DF0043BBB7 /* headerAndSectionView */ = {
+			isa = PBXGroup;
+			children = (
+				04F5F25C2284309D0043BBB7 /* SXF_HF_MainTableHeaderView.h */,
+				04F5F25D2284309D0043BBB7 /* SXF_HF_MainTableHeaderView.m */,
+				04F5F25F228430DA0043BBB7 /* SXF_HF_MianPageSectionView.h */,
+				04F5F260228430DA0043BBB7 /* SXF_HF_MianPageSectionView.m */,
+			);
+			path = headerAndSectionView;
+			sourceTree = "<group>";
+		};
+		04F5F263228431010043BBB7 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				04F5F262228430DF0043BBB7 /* headerAndSectionView */,
+				04F5F25B22842FA00043BBB7 /* cells */,
+				04B9D51022803CF10084FA23 /* MainPageVC.h */,
+				04B9D51922803CF10084FA23 /* MainPageVC.m */,
+				04F5F25222842EE80043BBB7 /* SXF_HF_MainPageView.h */,
+				04F5F25322842EE80043BBB7 /* SXF_HF_MainPageView.m */,
+			);
+			path = MainPage;
 			sourceTree = "<group>";
 		};
 		568527D544756CE228B06AEA /* Pods */ = {
@@ -5273,6 +5332,7 @@
 				0453D1AA2282C37C00880C2A /* SXF_HF_RecommentView.m in Sources */,
 				04A50867227EDD3A0013E8EC /* UITableView+JQMMnodata.m in Sources */,
 				658B7C5B21D749E100801CC8 /* UIView+Frame.m in Sources */,
+				04F5F25422842EE80043BBB7 /* SXF_HF_MainPageView.m in Sources */,
 				04B9D57822803E260084FA23 /* BaseViewModel.m in Sources */,
 				658B79EB21D71D1700801CC8 /* ViewController.m in Sources */,
 				04B9D53C22803CF20084FA23 /* HomePageVC.m in Sources */,
@@ -5337,6 +5397,7 @@
 				04A508E2227EDD3A0013E8EC /* HRCall.m in Sources */,
 				658902F3223B775F009C1B03 /* NSBundle+PYSearchExtension.m in Sources */,
 				04A508E4227EDD3A0013E8EC /* HREmail.m in Sources */,
+				04F5F25E2284309D0043BBB7 /* SXF_HF_MainTableHeaderView.m in Sources */,
 				04B9D54D22803CF20084FA23 /* SelectCheckDateViewController.m in Sources */,
 				658B7C7D21D749E100801CC8 /* LYEmptyView.m in Sources */,
 				659EA0B4220537EC004471CD /* SpeechSynthesizer.m in Sources */,
@@ -5391,6 +5452,7 @@
 				04A50890227EDD3A0013E8EC /* NSNumber+WHNumber.m in Sources */,
 				658B7C7A21D749E100801CC8 /* LYEmptyBaseView.m in Sources */,
 				6C2F515E222A663D0022EE03 /* HXPhotoSubViewCell.m in Sources */,
+				04F5F25722842F2C0043BBB7 /* SXF_HF_MainPageCycleScrollCell.m in Sources */,
 				04A508E0227EDD3A0013E8EC /* HRBaseRequest+NetStautsMoniter.m in Sources */,
 				04A508A7227EDD3A0013E8EC /* HRRequest.m in Sources */,
 				04A5084D227EDD3A0013E8EC /* UIImageView+ZFCache.m in Sources */,
@@ -5523,6 +5585,7 @@
 				04A508EA227EDD3A0013E8EC /* HRBaseTabBarController.m in Sources */,
 				658B7C7921D749E100801CC8 /* UILabel+LXAdd.m in Sources */,
 				658C3B0F21F57FBC00880B6A /* CountyModel.m in Sources */,
+				04F5F266228440860043BBB7 /* SXF_HF_CycleContentCell.m in Sources */,
 				652294A4225B00BF001DF691 /* AppDelegate+JAnalytics.m in Sources */,
 				04B9D54022803CF20084FA23 /* WKWebViewController.m in Sources */,
 				6CCAD70B2282E4E8001824A0 /* UIView+BadgeValue.m in Sources */,
@@ -5561,7 +5624,9 @@
 				04A5087E227EDD3A0013E8EC /* SQButtonTagView.m in Sources */,
 				04A50893227EDD3A0013E8EC /* UILabel+WHLabel.m in Sources */,
 				658B7C9921D749E100801CC8 /* AnimationTransitionEnd.m in Sources */,
+				04F67AB22285199A008124A3 /* UIView+cornerRadius.m in Sources */,
 				658B7CB221D749E100801CC8 /* TAPageControl.m in Sources */,
+				04F5F261228430DA0043BBB7 /* SXF_HF_MianPageSectionView.m in Sources */,
 				04B9D4EF22803C6B0084FA23 /* JMBadgeValue.m in Sources */,
 				0453D1542281A54900880C2A /* DigitalRollingView.m in Sources */,
 				04A50855227EDD3A0013E8EC /* ASValueTrackingSlider.m in Sources */,
@@ -5625,6 +5690,7 @@
 				04F54B4322813B23009AAEF3 /* WRNavigationBar.m in Sources */,
 				04B9D55122803CF20084FA23 /* DayCell.m in Sources */,
 				658B79E821D71D1700801CC8 /* AppDelegate.m in Sources */,
+				04F5F25A22842F830043BBB7 /* SXF_HF_MainPageMenuCell.m in Sources */,
 				658C39D521E9FA5B00880B6A /* JXCategoryIndicatorCellModel.m in Sources */,
 				04A50840227EDD390013E8EC /* NinaBaseView.m in Sources */,
 				6C2F5158222A663D0022EE03 /* HXCustomCollectionReusableView.m in Sources */,

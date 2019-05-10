@@ -9,7 +9,9 @@
 #define kViewTag 666
 #define kCount 5
 #import "customCycleView.h"
+//自定义cell
 #import "bannerCollectionViewCell.h"
+#import "SXF_HF_CycleContentCell.h"
 #import "CWPageControl.h"//自定义pageControll
 
 @interface customCycleView()<CWCarouselDatasource, CWCarouselDelegate>
@@ -88,7 +90,9 @@
     //注册cell
     
     if ([self.cellClass isEqualToString:NSStringFromClass([bannerCollectionViewCell class])]) {
-         [self.carousel registerViewClass:[bannerCollectionViewCell class] identifier:@"cellId"];
+         [self.carousel registerViewClass:[bannerCollectionViewCell class] identifier:NSStringFromClass([bannerCollectionViewCell class])];
+    }else if ([self.cellClass isEqualToString:NSStringFromClass([SXF_HF_CycleContentCell class])]){
+        [self.carousel registerViewClass:[SXF_HF_CycleContentCell class] identifier:NSStringFromClass([SXF_HF_CycleContentCell class])];
     }
     
     
@@ -116,12 +120,16 @@
 #pragma mark - Delegate
 - (UICollectionViewCell *)viewForCarousel:(CWCarousel *)carousel indexPath:(NSIndexPath *)indexPath index:(NSInteger)index{
     if ([self.cellClass isEqualToString:NSStringFromClass([bannerCollectionViewCell class])]) {
-        bannerCollectionViewCell *cell = [carousel.carouselView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
+        bannerCollectionViewCell *cell = [carousel.carouselView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([bannerCollectionViewCell class]) forIndexPath:indexPath];
         if (self.dataSourceArr.count - 1 >= index) {
             //        [cell setModelForCell:self.dataSourceArr[index] index:index];
         }
         
         cell.contentView.backgroundColor = [UIColor whiteColor];
+        return cell;
+    }else if ([self.cellClass isEqualToString:NSStringFromClass([SXF_HF_CycleContentCell class])]){
+        SXF_HF_CycleContentCell *cell = [carousel.carouselView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_CycleContentCell class]) forIndexPath:indexPath];
+        
         return cell;
     }
     

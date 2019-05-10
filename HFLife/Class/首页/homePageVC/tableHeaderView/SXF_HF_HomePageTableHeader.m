@@ -58,10 +58,18 @@
 
 @property (nonatomic, assign)BOOL eyeOpen;//眼睛状态
 @property (nonatomic, strong) UILabel *secritLb;//加密富权资产
+
+
+//滑动处理
+@property (nonatomic, assign)CGRect bottomBarFrame;
+@property (nonatomic, assign)CGFloat bottomBarAlpha;
 @end
 
 
 @implementation SXF_HF_HomePageTableHeader
+{
+    CGFloat currentY;
+}
 - (instancetype)init
 {
     self = [super init];
@@ -187,7 +195,7 @@
     
     WEAK(weakSelf);
     self.bottomBarView.selectedItem = ^(NSInteger index) {
-        !weakSelf.selectedHeaderBtn ? : self.selectedHeaderBtn(index);
+        !weakSelf.selectedHeaderBtn ? : weakSelf.selectedHeaderBtn(index);
     };
     
     self.myMoneyLb.text = @"34545.7989789";
@@ -314,6 +322,59 @@
     self.bottomBarView.layer.cornerRadius = 5;
     self.bottomBarView.masksToBounds = YES;
     self.bottomBarView.clipsToBounds = YES;
+    
+    //获取 bottomView在父视图上的位置
+    CGRect rect = [self convertRect:self.bottomBarBgView.frame fromView:self.superview.superview];
+    self.bottomBarFrame = rect;
+    
+    
+
 }
+
+
+
+//处理滑动隐藏以及显示
+- (void)setScrollY:(CGFloat)scrollY{
+    _scrollY = scrollY;
+    
+    
+    if (currentY - scrollY > 0) {
+//        NSLog(@"下拉");
+        if (_scrollY > 0) {
+            if (self) {
+                self.bottomBarAlpha =  (CGRectGetMaxY(self.bottomBarFrame) - _scrollY) / self.bottomBarFrame.size.height;
+                NSLog(@"开始出现");
+                !self.appearCallback ? : self.appearCallback(self.bottomBarAlpha, YES);
+            }
+        }else{
+            self.bottomBarAlpha = 1.0;
+        }
+    }else{
+        NSLog(@"上拉");
+        if (_scrollY - self.bottomBarFrame.origin.y  >= 0) {
+            //开始隐藏
+            if (self.bottomBarAlpha > 0) {
+                self.bottomBarAlpha = 1 - (_scrollY - self.bottomBarFrame.origin.y) / self.bottomBarFrame.size.height;
+                NSLog(@"开始隐藏");
+                !self.appearCallback ? : self.appearCallback(self.bottomBarAlpha, NO);
+            }
+        }else{
+            self.bottomBarAlpha = 1.0;
+        }
+    }
+    
+    
+    
+    
+    NSLog(@"%lf--%lf---%lf", _scrollY, CGRectGetMaxX(self.bottomBarFrame), self.bottomBarFrame.origin.y);
+    
+    self.bottomBarBgView.alpha = self.bottomBarAlpha;
+    
+    currentY = self.scrollY;
+    
+}
+
+
+
 
 @end

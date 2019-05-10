@@ -19,4 +19,5 @@
 #import "UIView+changeBgColor.h"//渐变色
 #import "UIButton+EnlargeEdge.h"
 #import "UIFont+scaleSize.h"
+#import "UIView+cornerRadius.h"
 #endif /* CategrayHeader_h */

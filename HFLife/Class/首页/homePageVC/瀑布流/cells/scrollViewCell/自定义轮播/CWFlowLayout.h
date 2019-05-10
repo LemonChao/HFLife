@@ -14,6 +14,8 @@ typedef NS_ENUM(NSUInteger, CWCarouselStyle) {
     CWCarouselStyle_H_1,            ///<自定义样式一, 中间一张居中,前后2张图有部分内容在屏幕内可以预览到
     CWCarouselStyle_H_2,            ///<自定义样式二, 中间一张居中,前后2张图有部分内容在屏幕内可以预览到,并且中间一张图正常大小,前后2张图会缩放
     CWCarouselStyle_H_3,            ///<自定义样式三, 中间一张居中,前后2张图有部分内容在屏幕内可以预览到,中间一张有放大效果,前后2张正常大小
+    
+    CWCarouselStyle_H_4,//和3 差不多的布局 cell竖长
 };
 
 @interface CWFlowLayout : UICollectionViewFlowLayout

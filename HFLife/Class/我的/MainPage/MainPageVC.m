@@ -8,9 +8,9 @@
 //
 
 #import "MainPageVC.h"
-
+#import "SXF_HF_MainPageView.h"
 @interface MainPageVC ()
-
+@property (nonatomic, strong)SXF_HF_MainPageView *mainPageView;
 @end
 
 @implementation MainPageVC
@@ -19,8 +19,12 @@
     [super viewDidLoad];
     self.customNavBar.title = @"我的";
     self.navigationController.navigationBarHidden = YES;
+    [self setUpUI];
 }
-
+- (void)setUpUI{
+    self.mainPageView = [[SXF_HF_MainPageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight - self.tabBarHeight)];
+    [self.view addSubview:self.mainPageView];
+}
 
 
 

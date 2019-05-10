@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_HomePageTableHeader : UIView
 @property (nonatomic, strong)void(^selectedHeaderBtn)(NSInteger index);
+@property (nonatomic, assign)CGFloat scrollY;//头部滑动的位置
+@property (nonatomic, strong)void(^appearCallback)(CGFloat alpha, BOOL isAppear);
 @end
 
 NS_ASSUME_NONNULL_END

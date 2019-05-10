@@ -37,6 +37,12 @@
     self.itemSpace_V = 1;
     self.minScale = 0.8;
     self.maxScale = 1.2;
+    
+    if (self.style == CWCarouselStyle_H_4) {
+        self.minScale = 0.5;
+        self.maxScale = 1.5;
+        self.itemWidth = [UIScreen mainScreen].bounds.size.width * 0.5;
+    }
 }
 
 - (void)prepareLayout {
@@ -74,7 +80,19 @@
             self.minimumLineSpacing = self.factItemSpace;
         }
             break;
-        
+        case CWCarouselStyle_H_4:{
+            CGFloat width = self.itemWidth == 0 ? self.defaultItemWidth : self.itemWidth;
+            self.itemWidth = width;
+            CGFloat height = CGRectGetHeight(self.collectionView.frame);
+            self.itemSize = CGSizeMake(width, self.style == CWCarouselStyle_H_4 ? height / self.maxScale : height);
+            self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            self.factItemSpace = -30;
+            if(width * (1 - self.minScale) * 0.5 < self.itemSpace_H) {
+                self.factItemSpace = self.itemSpace_H - width * (1 - self.minScale) * 0.5;
+            }
+            self.minimumLineSpacing = self.factItemSpace;
+        }
+            
         default:
             break;
     }
@@ -170,6 +188,9 @@
         case CWCarouselStyle_H_2:
         case CWCarouselStyle_H_3:
             return self.collectionView.frame.size.width * 0.75;
+            break;
+        case CWCarouselStyle_H_4://自己定义的
+            return self.collectionView.frame.size.width * 0.5;
             break;
         default:
             break;
