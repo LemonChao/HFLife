@@ -53,4 +53,47 @@
     };
 }
 
+
+
+
+- (UILabel *(^)(CGRect frame))setFrame{
+    return ^(CGRect frame){
+        self.frame = frame;
+        return self;
+    };
+    
+}
+- (UILabel *(^)(CGRect bounce))setBounce{
+    return ^(CGRect bounce){
+        self.bounds = bounce;
+        return self;
+    };
+}
+
+- (UILabel *(^)(UIColor *color))setBackgroundColor{
+    return ^(UIColor *color){
+        self.backgroundColor = color;
+        return self;
+    };
+}
+
+- (UILabel *(^)(CGFloat cornerRadius))setCornerRadius{
+    return ^(CGFloat cornerRadius){
+        self.layer.cornerRadius = cornerRadius;
+        return self;
+    };
+}
+- (UILabel *(^)(CGFloat boardWidth))setBoardWidth{
+    return ^(CGFloat boardWidth){
+        self.layer.borderWidth = boardWidth;
+        return self;
+    };
+}
+- (UILabel *(^)(UIColor *boardColor))setBoardColor{
+    return ^(UIColor *boardColor){
+        self.layer.borderColor = boardColor.CGColor;
+        return self;
+    };
+}
+
 @end

@@ -17,6 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (UILabel *(^)(UIFont *font))setFont;
 - (UILabel *(^)(CGFloat fontSize))setFontSize;
 - (UILabel *(^)(NSTextAlignment textAlignment))setTextAligement;
+
+- (UILabel *(^)(CGRect frame))setFrame;
+- (UILabel *(^)(CGRect bounce))setBounce;
+- (UILabel *(^)(UIColor *color))setBackgroundColor;
+- (UILabel *(^)(CGFloat cornerRadius))setCornerRadius;
+- (UILabel *(^)(CGFloat boardWidth))setBoardWidth;
+- (UILabel *(^)(UIColor *boardColor))setBoardColor;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -36,7 +36,7 @@ typedef enum NetStatus
     [super viewDidLoad];
     self.view.backgroundColor = BackGroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
     [self setupNavBar];
 }
 
@@ -56,18 +56,17 @@ typedef enum NetStatus
             NSLog(@"vc = %@", NSStringFromClass([vc class]));
         }
         if (self != self.navigationController.childViewControllers.firstObject) {
-            [self.customNavBar wr_setLeftButtonWithNormal:image(@"back_white") highlighted:image(@"back_white")];
+            [self.customNavBar wr_setLeftButtonWithNormal:image(@"back") highlighted:image(@"back")];
         }else{
             
         }
         
     }
     // 设置初始导航栏透明度
-    [self wr_setNavBarBackgroundAlpha:0];
+//    [self wr_setNavBarBackgroundAlpha:0];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self.view addSubview:self.customNavBar];
 }
 /**
  *  懒加载赋值屏幕高
@@ -123,16 +122,16 @@ typedef enum NetStatus
     [super viewWillAppear:animated];
 
     [self.view addSubview:self.customNavBar];
+    self.navigationController.navigationBar.hidden = YES;
     //百度单页面统计
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-   
+   self.navigationController.navigationBar.hidden = NO;
     
     //百度单页面统计
 //    [[BaiduMobStat defaultStat] pageviewEndWithName:self.title];
  }
-
 
 
 //显示自定义加载框

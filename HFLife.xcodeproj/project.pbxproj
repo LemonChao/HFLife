@@ -81,6 +81,8 @@
 		0453D1F22284033000880C2A /* alertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1D92284033000880C2A /* alertView.m */; };
 		0453D1F32284033000880C2A /* errorAlertViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1DA2284033000880C2A /* errorAlertViewViewController.m */; };
 		0453D1F42284033000880C2A /* empoty.html in Resources */ = {isa = PBXBuildFile; fileRef = 0453D1DB2284033000880C2A /* empoty.html */; };
+		048DABB1228556F1006E6BA2 /* UITextField+ChainTypeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DABB0228556F1006E6BA2 /* UITextField+ChainTypeTextField.m */; };
+		048DABB522855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DABB422855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m */; };
 		04A50836227EDD390013E8EC /* VierticalScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065A227EDD350013E8EC /* VierticalScrollView.m */; };
 		04A50837227EDD390013E8EC /* UIView+FrameExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065D227EDD350013E8EC /* UIView+FrameExtension.m */; };
 		04A50838227EDD390013E8EC /* segementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A50661227EDD350013E8EC /* segementView.m */; };
@@ -313,6 +315,7 @@
 		04F5F261228430DA0043BBB7 /* SXF_HF_MianPageSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F260228430DA0043BBB7 /* SXF_HF_MianPageSectionView.m */; };
 		04F5F266228440860043BBB7 /* SXF_HF_CycleContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */; };
 		04F67AB22285199A008124A3 /* UIView+cornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB12285199A008124A3 /* UIView+cornerRadius.m */; };
+		04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */; };
 		6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 65229493225AE063001DF691 /* SELUpdateAlert.m */; };
 		6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */; };
 		6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */; };
@@ -727,6 +730,10 @@
 		0453D1DA2284033000880C2A /* errorAlertViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = errorAlertViewViewController.m; sourceTree = "<group>"; };
 		0453D1DB2284033000880C2A /* empoty.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = empoty.html; sourceTree = "<group>"; };
 		0453D1DC2284033000880C2A /* UIView+alertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+alertView.h"; sourceTree = "<group>"; };
+		048DABAF228556F1006E6BA2 /* UITextField+ChainTypeTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+ChainTypeTextField.h"; sourceTree = "<group>"; };
+		048DABB0228556F1006E6BA2 /* UITextField+ChainTypeTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ChainTypeTextField.m"; sourceTree = "<group>"; };
+		048DABB322855C9C006E6BA2 /* UIImageView+ChainTypeImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ChainTypeImageView.h"; sourceTree = "<group>"; };
+		048DABB422855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ChainTypeImageView.m"; sourceTree = "<group>"; };
 		04A50655227EDD2D0013E8EC /* PodHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodHeader.h; sourceTree = "<group>"; };
 		04A50656227EDD310013E8EC /* FrameworkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameworkHeader.h; sourceTree = "<group>"; };
 		04A5065A227EDD350013E8EC /* VierticalScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VierticalScrollView.m; sourceTree = "<group>"; };
@@ -1195,6 +1202,8 @@
 		04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CycleContentCell.m; sourceTree = "<group>"; };
 		04F67AB02285199A008124A3 /* UIView+cornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+cornerRadius.h"; sourceTree = "<group>"; };
 		04F67AB12285199A008124A3 /* UIView+cornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+cornerRadius.m"; sourceTree = "<group>"; };
+		04F67AB4228522BA008124A3 /* NSArray+layoutViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+layoutViews.h"; sourceTree = "<group>"; };
+		04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+layoutViews.m"; sourceTree = "<group>"; };
 		65229492225AE063001DF691 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		65229493225AE063001DF691 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VersionUpdate_Icon@3x.png"; sourceTree = "<group>"; };
@@ -2076,6 +2085,24 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		048DABAE228556AA006E6BA2 /* 链式创建 */ = {
+			isa = PBXGroup;
+			children = (
+				048DABAF228556F1006E6BA2 /* UITextField+ChainTypeTextField.h */,
+				048DABB0228556F1006E6BA2 /* UITextField+ChainTypeTextField.m */,
+			);
+			path = "链式创建";
+			sourceTree = "<group>";
+		};
+		048DABB222855C6C006E6BA2 /* 链式创建 */ = {
+			isa = PBXGroup;
+			children = (
+				048DABB322855C9C006E6BA2 /* UIImageView+ChainTypeImageView.h */,
+				048DABB422855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m */,
+			);
+			path = "链式创建";
+			sourceTree = "<group>";
+		};
 		04A50654227EDCF90013E8EC /* Framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -2802,6 +2829,7 @@
 		04A507B5227EDD390013E8EC /* UITextField */ = {
 			isa = PBXGroup;
 			children = (
+				048DABAE228556AA006E6BA2 /* 链式创建 */,
 				04A507B6227EDD390013E8EC /* 02 自定义的TF */,
 				04A507B9227EDD390013E8EC /* 01 占位符颜色、字体 */,
 			);
@@ -2909,8 +2937,8 @@
 		04A507CE227EDD390013E8EC /* 链式创建 */ = {
 			isa = PBXGroup;
 			children = (
-				04A507CF227EDD390013E8EC /* UIButton+ChainTypeButton.m */,
 				04A507D0227EDD390013E8EC /* UIButton+ChainTypeButton.h */,
+				04A507CF227EDD390013E8EC /* UIButton+ChainTypeButton.m */,
 			);
 			path = "链式创建";
 			sourceTree = "<group>";
@@ -3006,6 +3034,7 @@
 		04A507E6227EDD390013E8EC /* NSArray */ = {
 			isa = PBXGroup;
 			children = (
+				04F67AB32285227A008124A3 /* 对Masonry扩展 */,
 				658B7A5D21D749DF00801CC8 /* NSArray+JSON.h */,
 				658B7A7021D749DF00801CC8 /* NSArray+JSON.m */,
 				04A507E7227EDD390013E8EC /* 01 Safe Array */,
@@ -3370,6 +3399,7 @@
 			children = (
 				658B7A8621D749DF00801CC8 /* UIImageView+LBBlurredImage.h */,
 				658B7B9221D749E000801CC8 /* UIImageView+LBBlurredImage.m */,
+				048DABB222855C6C006E6BA2 /* 链式创建 */,
 			);
 			path = UIImageView;
 			sourceTree = "<group>";
@@ -3887,6 +3917,15 @@
 				04F5F25322842EE80043BBB7 /* SXF_HF_MainPageView.m */,
 			);
 			path = MainPage;
+			sourceTree = "<group>";
+		};
+		04F67AB32285227A008124A3 /* 对Masonry扩展 */ = {
+			isa = PBXGroup;
+			children = (
+				04F67AB4228522BA008124A3 /* NSArray+layoutViews.h */,
+				04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */,
+			);
+			path = "对Masonry扩展";
 			sourceTree = "<group>";
 		};
 		568527D544756CE228B06AEA /* Pods */ = {
@@ -5339,6 +5378,7 @@
 				658B7C5B21D749E100801CC8 /* UIView+Frame.m in Sources */,
 				04F5F25422842EE80043BBB7 /* SXF_HF_MainPageView.m in Sources */,
 				04B9D57822803E260084FA23 /* BaseViewModel.m in Sources */,
+				04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */,
 				658B79EB21D71D1700801CC8 /* ViewController.m in Sources */,
 				04B9D53C22803CF20084FA23 /* HomePageVC.m in Sources */,
 				04A5084B227EDD3A0013E8EC /* UINavigationController+ZFPlayerRotation.m in Sources */,
@@ -5352,6 +5392,7 @@
 				04A508EB227EDD3A0013E8EC /* HRBaseModel.m in Sources */,
 				04A5084E227EDD3A0013E8EC /* UIViewController+ZFPlayerRotation.m in Sources */,
 				04B9D4EE22803C6B0084FA23 /* JMTabBar.m in Sources */,
+				048DABB1228556F1006E6BA2 /* UITextField+ChainTypeTextField.m in Sources */,
 				04A508A2227EDD3A0013E8EC /* NSFileManager+WHFileManager.m in Sources */,
 				658B7CBA21D749E100801CC8 /* UIColor+Hexadecimal.m in Sources */,
 				658C3AE621F31A5000880B6A /* MKSubMultipleButtonView.m in Sources */,
@@ -5406,6 +5447,7 @@
 				04B9D54D22803CF20084FA23 /* SelectCheckDateViewController.m in Sources */,
 				658B7C7D21D749E100801CC8 /* LYEmptyView.m in Sources */,
 				659EA0B4220537EC004471CD /* SpeechSynthesizer.m in Sources */,
+				048DABB522855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m in Sources */,
 				04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */,
 				6C2F514E222A663D0022EE03 /* UIView+HXExtension.m in Sources */,
 				65DC6812221124AD00F1085E /* HXShareScrollView.m in Sources */,

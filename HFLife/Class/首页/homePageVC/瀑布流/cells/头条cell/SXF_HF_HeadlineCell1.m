@@ -92,7 +92,7 @@
     [self layoutIfNeeded];
     
     self.bgView.layer.cornerRadius = 5;
-    [self.bgView addShadowForViewColor:HEX_COLOR(0x808080) offSet:CGSizeMake(-1,2) shadowRadius:3 cornerRadius:5 opacity:0.3];
+    [self.bgView addShadowForViewColor:HEX_COLOR(0x808080) offSet:CGSizeMake(-1,2) shadowRadius:3 cornerRadius:5 opacity:0.2];
 }
 
 
