@@ -582,6 +582,7 @@
 		6C2F5166222A663D0022EE03 /* HXDatePhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F513E222A663D0022EE03 /* HXDatePhotoEditViewController.m */; };
 		6C2F5170222A76DD0022EE03 /* UITool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F516F222A76DD0022EE03 /* UITool.m */; };
 		6C3D4ACA222680570007AF9A /* CALayer+XibBorderColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */; };
+		6C7D84F92285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D84F82285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m */; };
 		6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6F422827B47001824A0 /* ShopTabbarViewController.m */; };
 		6CCAD6F822827CBE001824A0 /* ZC_HF_ShopHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6F722827CBE001824A0 /* ZC_HF_ShopHomeVC.m */; };
 		6CCAD6FF22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6FE22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m */; };
@@ -1691,6 +1692,8 @@
 		6C3D4ABA22255A0E0007AF9A /* AppColorHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppColorHeader.h; sourceTree = "<group>"; };
 		6C3D4AC8222680570007AF9A /* CALayer+XibBorderColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibBorderColor.h"; sourceTree = "<group>"; };
 		6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibBorderColor.m"; sourceTree = "<group>"; };
+		6C7D84F72285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_CollectionCycleHeader.h; sourceTree = "<group>"; };
+		6C7D84F82285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_CollectionCycleHeader.m; sourceTree = "<group>"; };
 		6CCAD6F322827B47001824A0 /* ShopTabbarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopTabbarViewController.h; sourceTree = "<group>"; };
 		6CCAD6F422827B47001824A0 /* ShopTabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopTabbarViewController.m; sourceTree = "<group>"; };
 		6CCAD6F622827CBE001824A0 /* ZC_HF_ShopHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ShopHomeVC.h; sourceTree = "<group>"; };
@@ -4981,6 +4984,8 @@
 				6CCAD70E2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m */,
 				6CFB99AC228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.h */,
 				6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */,
+				6C7D84F72285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.h */,
+				6C7D84F82285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5381,6 +5386,7 @@
 				658C3B0E21F57FBC00880B6A /* ProvinceModel.m in Sources */,
 				6C2F5166222A663D0022EE03 /* HXDatePhotoEditViewController.m in Sources */,
 				658B7C9F21D749E100801CC8 /* AnimationFadeBegin.m in Sources */,
+				6C7D84F92285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m in Sources */,
 				6C2F5153222A663D0022EE03 /* HXDatePhotoViewController.m in Sources */,
 				04A50890227EDD3A0013E8EC /* NSNumber+WHNumber.m in Sources */,
 				658B7C7A21D749E100801CC8 /* LYEmptyBaseView.m in Sources */,
