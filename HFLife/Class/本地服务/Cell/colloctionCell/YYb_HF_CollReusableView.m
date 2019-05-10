@@ -1,0 +1,34 @@
+//
+//  YYb_HF_CollReusableView.m
+//  HFLife
+//
+//  Created by mac on 2019/5/10.
+//  Copyright © 2019 luyukeji. All rights reserved.
+//
+
+#import "YYb_HF_CollReusableView.h"
+
+@implementation YYb_HF_CollReusableView
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
+        _textLabel = [[UILabel alloc] init];
+        [self addSubview:_textLabel];
+        
+        _textLabel.frame = CGRectMake(ScreenScale(12), 0, 200, self.frame.size.height);
+        _textLabel.font = FONT(17);
+        _textLabel.textColor = HEX_COLOR(0x131313);
+        
+    }
+    return self;
+}
+
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(12));
+        make.top.bottom.mas_equalTo(self);
+    }];
+}
+@end

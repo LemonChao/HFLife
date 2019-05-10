@@ -105,13 +105,13 @@
 }
 
 
+#pragma mark - XPCollectionViewWaterfallFlowLayout
 
-
-/// Return per section's column number(must be greater than 0).
+/// 列数
 - (NSInteger)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout numberOfColumnInSection:(NSInteger)section {
     return 2;
 }
-/// Return per item's height
+/// item高度
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout itemWidth:(CGFloat)width
  heightForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
@@ -121,11 +121,11 @@
     return 10;
 }
 
-/// Column spacing between columns
+/// 列间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 5;
 }
-/// The spacing between rows and rows
+/// 行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 5;
 }
