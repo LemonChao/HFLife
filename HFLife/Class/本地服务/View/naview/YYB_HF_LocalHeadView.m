@@ -115,7 +115,7 @@
     searchBgView.userInteractionEnabled = YES;
     [searchBgView wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
         NSLog(@"搜索");
-        
+        [self.viewController.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
     }];
     
     

@@ -34,7 +34,7 @@ typedef enum NetStatus
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = BackGroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBarHidden = YES;
     [self setupNavBar];
@@ -122,8 +122,7 @@ typedef enum NetStatus
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    
-    
+    [self.view addSubview:self.customNavBar];
     //百度单页面统计
 }
 - (void)viewWillDisappear:(BOOL)animated {

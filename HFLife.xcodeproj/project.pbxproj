@@ -17,6 +17,7 @@
 		0406ED2A22755438000784D0 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; };
 		0406ED2B22755438000784D0 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
+		0408C68122840F5F003AA841 /* YYB_HF_NearSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0408C68022840F5F003AA841 /* YYB_HF_NearSearchVC.m */; };
 		040A17B62282700F00997B93 /* YYB_HF_LocalHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */; };
 		040A17BC2282701E00997B93 /* NearColumnCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17B92282701D00997B93 /* NearColumnCollectionViewCell.m */; };
 		040A17BD2282701E00997B93 /* NearColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A17BA2282701D00997B93 /* NearColumnCell.m */; };
@@ -595,6 +596,7 @@
 		6CCAD70522827FE4001824A0 /* ZC_HF_ShopOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD70422827FE4001824A0 /* ZC_HF_ShopOrderVC.m */; };
 		6CCAD70B2282E4E8001824A0 /* UIView+BadgeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD7092282E4E7001824A0 /* UIView+BadgeValue.m */; };
 		6CCAD70F2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD70E2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m */; };
+		6CFB99AE228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */; };
 		C001CFEA1B0E8AD33641E112 /* libPods-HFLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7358FE6F8201198FC2AE374D /* libPods-HFLife.a */; };
 /* End PBXBuildFile section */
 
@@ -620,6 +622,8 @@
 		0406ED2222755421000784D0 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		0406ED2E227554E3000784D0 /* LYBmOcrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBmOcrManager.h; sourceTree = "<group>"; };
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
+		0408C67F22840F5F003AA841 /* YYB_HF_NearSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_NearSearchVC.h; sourceTree = "<group>"; };
+		0408C68022840F5F003AA841 /* YYB_HF_NearSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_NearSearchVC.m; sourceTree = "<group>"; };
 		040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_LocalHeadView.m; sourceTree = "<group>"; };
 		040A17B52282700F00997B93 /* YYB_HF_LocalHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYB_HF_LocalHeadView.h; sourceTree = "<group>"; };
 		040A17B82282701D00997B93 /* NearColumnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearColumnCell.h; sourceTree = "<group>"; };
@@ -1722,6 +1726,8 @@
 		6CCAD70A2282E4E7001824A0 /* UIView+BadgeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BadgeValue.h"; sourceTree = "<group>"; };
 		6CCAD70D2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ShopHomeSearchButton.h; sourceTree = "<group>"; };
 		6CCAD70E2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_ShopHomeSearchButton.m; sourceTree = "<group>"; };
+		6CFB99AC228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_HomeRushPurchaseCell.h; sourceTree = "<group>"; };
+		6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_HomeRushPurchaseCell.m; sourceTree = "<group>"; };
 		7358FE6F8201198FC2AE374D /* libPods-HFLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HFLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0FD763EB23372586598644F /* Pods-HFLife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HFLife.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HFLife/Pods-HFLife.debug.xcconfig"; sourceTree = "<group>"; };
 		AF4ED42DB4DA8F9C5A04E8A7 /* Pods-HFLife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HFLife.release.xcconfig"; path = "Pods/Target Support Files/Pods-HFLife/Pods-HFLife.release.xcconfig"; sourceTree = "<group>"; };
@@ -1787,6 +1793,8 @@
 			children = (
 				040A17B52282700F00997B93 /* YYB_HF_LocalHeadView.h */,
 				040A17B42282700F00997B93 /* YYB_HF_LocalHeadView.m */,
+				0408C67F22840F5F003AA841 /* YYB_HF_NearSearchVC.h */,
+				0408C68022840F5F003AA841 /* YYB_HF_NearSearchVC.m */,
 			);
 			path = naview;
 			sourceTree = "<group>";
@@ -5030,6 +5038,8 @@
 			children = (
 				6CCAD70D2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.h */,
 				6CCAD70E2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m */,
+				6CFB99AC228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.h */,
+				6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5080,7 +5090,7 @@
 			attributes = {
 				CLASSPREFIX = SXF_HF_;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = sxf;
+				ORGANIZATIONNAME = luyukeji;
 				TargetAttributes = {
 					658B79E221D71D1700801CC8 = {
 						CreatedOnToolsVersion = 10.1;
@@ -5324,6 +5334,7 @@
 				04A5084B227EDD3A0013E8EC /* UINavigationController+ZFPlayerRotation.m in Sources */,
 				658B7C7721D749E100801CC8 /* SGAdvertScrollView.m in Sources */,
 				04A50894227EDD3A0013E8EC /* NSDictionary+WHDictionary.m in Sources */,
+				6CFB99AE228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m in Sources */,
 				04B9D4EC22803C6B0084FA23 /* CAAnimation+JMAnimation.m in Sources */,
 				04A508E6227EDD3A0013E8EC /* HRBaseViewController.m in Sources */,
 				04A508CE227EDD3A0013E8EC /* UILabel+ChainTypeLabel.m in Sources */,
@@ -5650,6 +5661,7 @@
 				04A50857227EDD3A0013E8EC /* ZFCollectionViewCell.m in Sources */,
 				658B7CF421D749E100801CC8 /* UserCache.m in Sources */,
 				04A50896227EDD3A0013E8EC /* UIView+WHView.m in Sources */,
+				0408C68122840F5F003AA841 /* YYB_HF_NearSearchVC.m in Sources */,
 				65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */,
 				658902EE223B775F009C1B03 /* UIColor+PYSearchExtension.m in Sources */,
 				6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */,

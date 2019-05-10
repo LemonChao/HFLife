@@ -10,5 +10,5 @@
 #define Header_ZC_h
 
 #import "UIView+BadgeValue.h"
-
+#import "UITool.h"
 #endif /* Header_ZC_h */
