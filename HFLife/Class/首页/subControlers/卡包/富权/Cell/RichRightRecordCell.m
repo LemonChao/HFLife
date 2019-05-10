@@ -1,9 +1,9 @@
 //
 //  RichRightRecordCell.m
-//  HanPay
+//  HFLife
 //
-//  Created by 张海彬 on 2019/4/20.
-//  Copyright © 2019年 张海彬. All rights reserved.
+//  Created by sxf on 2019/4/20.
+//  Copyright © 2019年 sxf. All rights reserved.
 //
 
 #import "RichRightRecordCell.h"

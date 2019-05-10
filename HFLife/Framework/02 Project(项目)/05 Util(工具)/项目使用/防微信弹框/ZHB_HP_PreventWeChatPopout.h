@@ -1,8 +1,8 @@
 //
 //  ZHB_HP_PreventWeChatPopout.h
-//  HanPay
+//  HFLife
 //
-//  Created by 张海彬 on 2019/5/8.
+//  Created by sxf on 2019/5/8.
 //  Copyright © 2019年 sxf. All rights reserved.
 //
 

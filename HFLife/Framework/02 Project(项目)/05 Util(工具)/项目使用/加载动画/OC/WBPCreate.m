@@ -1,6 +1,6 @@
 //
 //  WBProgressHUD+WBPCreate.m
-//  HanPay
+//  HFLife
 //
 //  Created by mac on 2019/1/30.
 //  Copyright © 2019年 mac. All rights reserved.

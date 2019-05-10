@@ -1,6 +1,6 @@
 //
 //  BaseManage.m
-//  HanPay
+//  HFLife
 //
 //  Created by mac on 2019/1/19.
 //  Copyright © 2019年 mac. All rights reserved.

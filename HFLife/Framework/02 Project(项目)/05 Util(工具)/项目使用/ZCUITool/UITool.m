@@ -1,6 +1,6 @@
 //
 //  UITool.m
-//  HanPay
+//  HFLife
 //
 //  Created by zchao on 2019/3/2.
 //  Copyright © 2019 mac. All rights reserved.

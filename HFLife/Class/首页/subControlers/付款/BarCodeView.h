@@ -1,9 +1,9 @@
 //
 //  BarCodeView.h
-//  HanPay
+//  HFLife
 //
-//  Created by 张海彬 on 2019/4/12.
-//  Copyright © 2019年 张海彬. All rights reserved.
+//  Created by sxf on 2019/4/12.
+//  Copyright © 2019年 sxf. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

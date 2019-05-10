@@ -1,10 +1,10 @@
 
 //
 //  exchangeFQ_VC.m
-//  HanPay
+//  HFLife
 //
 //  Created by mac on 2019/4/20.
-//  Copyright © 2019 张海彬. All rights reserved.
+//  Copyright © 2019 sxf. All rights reserved.
 //
 
 #import "exchangeFQ_VC.h"

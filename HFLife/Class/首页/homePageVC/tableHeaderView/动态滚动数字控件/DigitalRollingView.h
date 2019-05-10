@@ -2,8 +2,8 @@
 //  DigitalRollingView.h
 //  数字滚动
 //
-//  Created by 张海彬 on 2019/1/2.
-//  Copyright © 2019年 张海彬. All rights reserved.
+//  Created by sxf on 2019/1/2.
+//  Copyright © 2019年 sxf. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

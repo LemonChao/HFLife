@@ -1,10 +1,10 @@
 
 //
 //  WithdrawVC.m
-//  HanPay
+//  HFLife
 //
 //  Created by mac on 2019/4/16.
-//  Copyright © 2019 张海彬. All rights reserved.
+//  Copyright © 2019 sxf. All rights reserved.
 //
 
 #import "WithdrawVC.h"
