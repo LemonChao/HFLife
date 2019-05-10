@@ -39,12 +39,39 @@
  */
 @property(nonatomic,assign)CGFloat tabBarHeight;
 
-
+@property (nonatomic, assign)NSInteger limitCount;//限制输入框小数点h后的位数
+@property (nonatomic, assign)BOOL firstType;//手位数字是否可以为0
 
 
 - (void)setupNavBar;
 //2.2.3 显示自定义加载框
 -(void)showLoadingToastView;
 -(void)dismissLoadingToastView;
+
+
+
+
+
+
+
+
+
+/** 计算手续费*/
+-(NSString *)computingCharge:(NSString *)percentage amount:(NSString *)amount;
+
+/** 交易密码处理*/
+-(BOOL)TransactionPasswordProcessing;
+/**
+ *  限制UITextField输入小数点后几位（在- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string 方法里调用）
+ */
+-(BOOL)limiTtextFled:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+
+
+/**
+ 计算cell高度
+
+ @return <#return value description#>
+ */
+- (CGFloat)cellContentViewWith;
 
 @end

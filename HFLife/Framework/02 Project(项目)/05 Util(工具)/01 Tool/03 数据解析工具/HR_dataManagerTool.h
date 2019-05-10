@@ -31,5 +31,5 @@
 + (id)getRecordMsgWithDic:(NSDictionary *)dic withClass:(Class)recordClass;
 
 /**解析列表数据*/
-+ (NSArray *)getTheRecordMsgWithArr:(NSArray *)dataArr withClass:(Class)recordClass;
++ (NSArray *)getModelArrWithArr:(NSArray *)dataArr withClass:(Class)recordClass;
 @end
