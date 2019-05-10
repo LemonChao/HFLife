@@ -53,6 +53,7 @@
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(5);
     }];
     self.pageControl.backgroundColor = [UIColor whiteColor];
+    self.pageControl.hidden = YES;
 }
 
 
