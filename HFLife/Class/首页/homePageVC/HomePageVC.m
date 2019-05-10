@@ -81,19 +81,7 @@
     [self setUpUI];    
     //headerAction
     self.collectionView.selectedHeaderBtnBlock = ^(NSInteger index) {
-        NSLog(@"点击区头 ： %ld", index);
-        UIViewController *vc = [BaseViewController new];
-        if (index == 0) {
-            vc = [FlickingVC new];//扫一扫
-        }else if (index == 1){
-            vc = [PaymentVC new];//付款
-        }else if (index == 2){
-            vc = [GatheringVC new];//收款
-        }else if (index == 3){
-            vc = [CardPackageVC new];//卡包
-        }
-        
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        [weakSelf headerBtnAction:index];
     };
     
     self.collectionView.selectedItem = ^(NSIndexPath * _Nonnull indexPath) {
@@ -103,22 +91,34 @@
         [weakSelf loadServerData:page];
     };
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSearchBar:) name:@"hiddenSearchBar" object:nil];
-    
-    
-    
-}
-- (void)hiddenSearchBar:(NSNotification *)notifi{
-    NSLog(@"%@", notifi.object);
-//    self.searchBar.alpha = [notifi.object floatValue];
 }
 
+
+- (void) headerBtnAction:(NSInteger)index{
+    NSLog(@"点击区头 ： %ld", index);
+    UIViewController *vc = [BaseViewController new];
+    if (index == 0) {
+        vc = [FlickingVC new];//扫一扫
+    }else if (index == 1){
+        vc = [PaymentVC new];//付款
+    }else if (index == 2){
+        vc = [GatheringVC new];//收款
+    }else if (index == 3){
+        vc = [CardPackageVC new];//卡包
+    }else if (index == 4){
+        //搜索
+        
+    }
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)setUpUI{
+    WEAK(weakSelf);
     SXF_HF_CustomSearchBar *searchBar = [[SXF_HF_CustomSearchBar alloc] initWithFrame:CGRectMake(0, statusBarHeight, SCREEN_WIDTH, 44)];
     [self.customNavBar addSubview:searchBar];
     searchBar.topBarBtnClick = ^(NSInteger tag) {
         NSLog(@"tag = %ld", tag);
+        [weakSelf headerBtnAction:tag];
     };
     self.searchBar = searchBar;
 

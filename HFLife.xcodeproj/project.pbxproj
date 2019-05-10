@@ -136,12 +136,12 @@
 		048DAC6322857516006E6BA2 /* BillDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC4522857516006E6BA2 /* BillDetailsCell.m */; };
 		048DAC6422857516006E6BA2 /* BillDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC4622857516006E6BA2 /* BillDetailsVC.m */; };
 		048DAC7122857BBB006E6BA2 /* PaymentMethodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC6922857BBB006E6BA2 /* PaymentMethodsCell.m */; };
-		048DAC7222857BBB006E6BA2 /* BindingAlipayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC6E22857BBB006E6BA2 /* BindingAlipayVC.m */; };
-		048DAC7322857BBB006E6BA2 /* BindingPayWayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC6F22857BBB006E6BA2 /* BindingPayWayVC.m */; };
 		048DAC7422857BBB006E6BA2 /* PaymentMethodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC7022857BBB006E6BA2 /* PaymentMethodsVC.m */; };
 		048DAC7822857DF9006E6BA2 /* Per_MethodsToDealWithManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC7622857DF9006E6BA2 /* Per_MethodsToDealWithManage.m */; };
 		048DAC9022857E7D006E6BA2 /* CertificatePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC8622857E7D006E6BA2 /* CertificatePhoto.m */; };
 		048DAC9122857E7D006E6BA2 /* PersonalDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC8B22857E7D006E6BA2 /* PersonalDataCell.m */; };
+		048DAC9722858A78006E6BA2 /* BindingAlipayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC9522858A78006E6BA2 /* BindingAlipayVC.m */; };
+		048DAC9822858A78006E6BA2 /* BindingPayWayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC9622858A78006E6BA2 /* BindingPayWayVC.m */; };
 		04A50836227EDD390013E8EC /* VierticalScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065A227EDD350013E8EC /* VierticalScrollView.m */; };
 		04A50837227EDD390013E8EC /* UIView+FrameExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5065D227EDD350013E8EC /* UIView+FrameExtension.m */; };
 		04A50838227EDD390013E8EC /* segementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A50661227EDD350013E8EC /* segementView.m */; };
@@ -889,10 +889,6 @@
 		048DAC6622857BBB006E6BA2 /* PaymentMethodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodsVC.h; sourceTree = "<group>"; };
 		048DAC6822857BBB006E6BA2 /* PaymentMethodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodsCell.h; sourceTree = "<group>"; };
 		048DAC6922857BBB006E6BA2 /* PaymentMethodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodsCell.m; sourceTree = "<group>"; };
-		048DAC6C22857BBB006E6BA2 /* BindingAlipayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingAlipayVC.h; sourceTree = "<group>"; };
-		048DAC6D22857BBB006E6BA2 /* BindingPayWayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingPayWayVC.h; sourceTree = "<group>"; };
-		048DAC6E22857BBB006E6BA2 /* BindingAlipayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingAlipayVC.m; sourceTree = "<group>"; };
-		048DAC6F22857BBB006E6BA2 /* BindingPayWayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingPayWayVC.m; sourceTree = "<group>"; };
 		048DAC7022857BBB006E6BA2 /* PaymentMethodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodsVC.m; sourceTree = "<group>"; };
 		048DAC7622857DF9006E6BA2 /* Per_MethodsToDealWithManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Per_MethodsToDealWithManage.m; sourceTree = "<group>"; };
 		048DAC7722857DF9006E6BA2 /* Per_MethodsToDealWithManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Per_MethodsToDealWithManage.h; sourceTree = "<group>"; };
@@ -900,6 +896,10 @@
 		048DAC8722857E7D006E6BA2 /* CertificatePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificatePhoto.h; sourceTree = "<group>"; };
 		048DAC8A22857E7D006E6BA2 /* PersonalDataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalDataCell.h; sourceTree = "<group>"; };
 		048DAC8B22857E7D006E6BA2 /* PersonalDataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalDataCell.m; sourceTree = "<group>"; };
+		048DAC9322858A78006E6BA2 /* BindingAlipayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingAlipayVC.h; sourceTree = "<group>"; };
+		048DAC9422858A78006E6BA2 /* BindingPayWayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingPayWayVC.h; sourceTree = "<group>"; };
+		048DAC9522858A78006E6BA2 /* BindingAlipayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingAlipayVC.m; sourceTree = "<group>"; };
+		048DAC9622858A78006E6BA2 /* BindingPayWayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingPayWayVC.m; sourceTree = "<group>"; };
 		04A50655227EDD2D0013E8EC /* PodHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodHeader.h; sourceTree = "<group>"; };
 		04A50656227EDD310013E8EC /* FrameworkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameworkHeader.h; sourceTree = "<group>"; };
 		04A5065A227EDD350013E8EC /* VierticalScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VierticalScrollView.m; sourceTree = "<group>"; };
@@ -2572,20 +2572,9 @@
 		048DAC6A22857BBB006E6BA2 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				048DAC6B22857BBB006E6BA2 /* 绑定银行卡\支付宝 */,
+				048DAC9222858A78006E6BA2 /* 绑定银行卡\支付宝 */,
 			);
 			path = VC;
-			sourceTree = "<group>";
-		};
-		048DAC6B22857BBB006E6BA2 /* 绑定银行卡\支付宝 */ = {
-			isa = PBXGroup;
-			children = (
-				048DAC6C22857BBB006E6BA2 /* BindingAlipayVC.h */,
-				048DAC6D22857BBB006E6BA2 /* BindingPayWayVC.h */,
-				048DAC6E22857BBB006E6BA2 /* BindingAlipayVC.m */,
-				048DAC6F22857BBB006E6BA2 /* BindingPayWayVC.m */,
-			);
-			path = "绑定银行卡\\支付宝";
 			sourceTree = "<group>";
 		};
 		048DAC7522857DF9006E6BA2 /* 方法处理 */ = {
@@ -2630,6 +2619,17 @@
 				048DAC8B22857E7D006E6BA2 /* PersonalDataCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		048DAC9222858A78006E6BA2 /* 绑定银行卡\支付宝 */ = {
+			isa = PBXGroup;
+			children = (
+				048DAC9322858A78006E6BA2 /* BindingAlipayVC.h */,
+				048DAC9522858A78006E6BA2 /* BindingAlipayVC.m */,
+				048DAC9422858A78006E6BA2 /* BindingPayWayVC.h */,
+				048DAC9622858A78006E6BA2 /* BindingPayWayVC.m */,
+			);
+			path = "绑定银行卡\\支付宝";
 			sourceTree = "<group>";
 		};
 		04A50654227EDCF90013E8EC /* Framework */ = {
@@ -5930,7 +5930,6 @@
 				04B9D57822803E260084FA23 /* BaseViewModel.m in Sources */,
 				04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */,
 				658B79EB21D71D1700801CC8 /* ViewController.m in Sources */,
-				048DAC7322857BBB006E6BA2 /* BindingPayWayVC.m in Sources */,
 				04B9D53C22803CF20084FA23 /* HomePageVC.m in Sources */,
 				04A5084B227EDD3A0013E8EC /* UINavigationController+ZFPlayerRotation.m in Sources */,
 				658B7C7721D749E100801CC8 /* SGAdvertScrollView.m in Sources */,
@@ -5963,6 +5962,7 @@
 				658C39D621E9FA5B00880B6A /* JXCategoryIndicatorCell.m in Sources */,
 				658C39EC21E9FA5B00880B6A /* UIColor+JXAdd.m in Sources */,
 				658C39EE21E9FA5B00880B6A /* JXCategoryBaseCell.m in Sources */,
+				048DAC9722858A78006E6BA2 /* BindingAlipayVC.m in Sources */,
 				04A5089D227EDD3A0013E8EC /* UIColor+WHColor.m in Sources */,
 				658B7CA821D749E100801CC8 /* AnimationScaleEnd.m in Sources */,
 				658C39EF21E9FA5B00880B6A /* JXCategoryBaseCellModel.m in Sources */,
@@ -6183,6 +6183,7 @@
 				04A508D5227EDD3A0013E8EC /* NSDictionary+UnicodeToChinese.m in Sources */,
 				04A50882227EDD3A0013E8EC /* MXPullDownMenu.m in Sources */,
 				658B7CAC21D749E100801CC8 /* SDCycleScrollView.m in Sources */,
+				048DAC9822858A78006E6BA2 /* BindingPayWayVC.m in Sources */,
 				04B9D58322803E260084FA23 /* BaseScrollView.m in Sources */,
 				04A50873227EDD3A0013E8EC /* UIView+ChameleonPrivate.m in Sources */,
 				6579784A21E6D6B600E606BE /* JFButton.m in Sources */,
@@ -6255,7 +6256,6 @@
 				04A50855227EDD3A0013E8EC /* ASValueTrackingSlider.m in Sources */,
 				658902F1223B775F009C1B03 /* PYSearchConst.m in Sources */,
 				04B9D57B22803E260084FA23 /* BaseWebViewController.m in Sources */,
-				048DAC7222857BBB006E6BA2 /* BindingAlipayVC.m in Sources */,
 				659EA04622015F94004471CD /* WBProgressHUD.m in Sources */,
 				048DAC6022857516006E6BA2 /* HeadUserView.m in Sources */,
 				658B7C4A21D749E100801CC8 /* NSObject+Extension.m in Sources */,
