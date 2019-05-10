@@ -15,8 +15,9 @@
 @implementation BaseNavigationController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBarHidden = YES;
+    self.navigationBar.hidden = YES;
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated

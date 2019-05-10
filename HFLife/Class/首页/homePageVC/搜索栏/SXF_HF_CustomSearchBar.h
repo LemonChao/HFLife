@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_CustomSearchBar : UIView
-@property (nonatomic, copy)void(^searchBtnClick)(void);
+@property (nonatomic, copy)void(^topBarBtnClick)(NSInteger tag);
 @end
 
 NS_ASSUME_NONNULL_END

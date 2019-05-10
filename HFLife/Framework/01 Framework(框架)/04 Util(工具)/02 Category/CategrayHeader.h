@@ -20,4 +20,5 @@
 #import "UIButton+EnlargeEdge.h"
 #import "UIFont+scaleSize.h"
 #import "UIView+cornerRadius.h"
+#import "NSArray+layoutViews.h"
 #endif /* CategrayHeader_h */

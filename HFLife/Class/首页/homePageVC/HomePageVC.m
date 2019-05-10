@@ -65,7 +65,7 @@
         [self setStaticGuidePage];
     }
     
-    self.customNavBar.title = @"首页";
+//    self.customNavBar.title = @"首页";
     self.locationManager.delegate = self;
     self.view.backgroundColor = HEX_COLOR(0xf4f4f4);
 //    [self setupNavigationItem];
@@ -77,6 +77,9 @@
     //headerAction
     self.collectionView.selectedHeaderBtnBlock = ^(NSInteger index) {
         NSLog(@"点击区头 ： %ld", index);
+        BaseViewController *baseVC = [BaseViewController new];
+        baseVC.customNavBar.title = @"baseVC";
+        [self.navigationController pushViewController:baseVC animated:YES];
     };
     
     self.collectionView.selectedItem = ^(NSIndexPath * _Nonnull indexPath) {
@@ -94,15 +97,15 @@
 }
 - (void)hiddenSearchBar:(NSNotification *)notifi{
     NSLog(@"%@", notifi.object);
-    self.searchBar.alpha = [notifi.object floatValue];
+//    self.searchBar.alpha = [notifi.object floatValue];
 }
 
 
 - (void)setUpUI{
     SXF_HF_CustomSearchBar *searchBar = [[SXF_HF_CustomSearchBar alloc] initWithFrame:CGRectMake(0, statusBarHeight, SCREEN_WIDTH, 44)];
     [self.customNavBar addSubview:searchBar];
-    searchBar.searchBtnClick = ^{
-        [WXZTipView showTopWithText:@"搜索"];
+    searchBar.topBarBtnClick = ^(NSInteger tag) {
+        NSLog(@"tag = %ld", tag);
     };
     self.searchBar = searchBar;
 

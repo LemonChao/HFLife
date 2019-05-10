@@ -313,6 +313,7 @@
 		04F5F261228430DA0043BBB7 /* SXF_HF_MianPageSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F260228430DA0043BBB7 /* SXF_HF_MianPageSectionView.m */; };
 		04F5F266228440860043BBB7 /* SXF_HF_CycleContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */; };
 		04F67AB22285199A008124A3 /* UIView+cornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB12285199A008124A3 /* UIView+cornerRadius.m */; };
+		04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */; };
 		6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 65229493225AE063001DF691 /* SELUpdateAlert.m */; };
 		6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */; };
 		6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */; };
@@ -1193,6 +1194,8 @@
 		04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CycleContentCell.m; sourceTree = "<group>"; };
 		04F67AB02285199A008124A3 /* UIView+cornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+cornerRadius.h"; sourceTree = "<group>"; };
 		04F67AB12285199A008124A3 /* UIView+cornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+cornerRadius.m"; sourceTree = "<group>"; };
+		04F67AB4228522BA008124A3 /* NSArray+layoutViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+layoutViews.h"; sourceTree = "<group>"; };
+		04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+layoutViews.m"; sourceTree = "<group>"; };
 		65229492225AE063001DF691 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		65229493225AE063001DF691 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VersionUpdate_Icon@3x.png"; sourceTree = "<group>"; };
@@ -3000,6 +3003,7 @@
 		04A507E6227EDD390013E8EC /* NSArray */ = {
 			isa = PBXGroup;
 			children = (
+				04F67AB32285227A008124A3 /* 对Masonry扩展 */,
 				658B7A5D21D749DF00801CC8 /* NSArray+JSON.h */,
 				658B7A7021D749DF00801CC8 /* NSArray+JSON.m */,
 				04A507E7227EDD390013E8EC /* 01 Safe Array */,
@@ -3881,6 +3885,15 @@
 				04F5F25322842EE80043BBB7 /* SXF_HF_MainPageView.m */,
 			);
 			path = MainPage;
+			sourceTree = "<group>";
+		};
+		04F67AB32285227A008124A3 /* 对Masonry扩展 */ = {
+			isa = PBXGroup;
+			children = (
+				04F67AB4228522BA008124A3 /* NSArray+layoutViews.h */,
+				04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */,
+			);
+			path = "对Masonry扩展";
 			sourceTree = "<group>";
 		};
 		568527D544756CE228B06AEA /* Pods */ = {
@@ -5329,6 +5342,7 @@
 				658B7C5B21D749E100801CC8 /* UIView+Frame.m in Sources */,
 				04F5F25422842EE80043BBB7 /* SXF_HF_MainPageView.m in Sources */,
 				04B9D57822803E260084FA23 /* BaseViewModel.m in Sources */,
+				04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */,
 				658B79EB21D71D1700801CC8 /* ViewController.m in Sources */,
 				04B9D53C22803CF20084FA23 /* HomePageVC.m in Sources */,
 				04A5084B227EDD3A0013E8EC /* UINavigationController+ZFPlayerRotation.m in Sources */,

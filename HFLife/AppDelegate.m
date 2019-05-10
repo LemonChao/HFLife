@@ -112,6 +112,7 @@
 #pragma mark ————— 设置主视图 —————
 -(void)changeRootViewController{
     UITabBarController *tabBar = [customTabBarViewController configerTableBarVC];
+    tabBar.navigationController.navigationBarHidden = YES;
     self.window.rootViewController = tabBar;
     [self.window makeKeyAndVisible];
 }
