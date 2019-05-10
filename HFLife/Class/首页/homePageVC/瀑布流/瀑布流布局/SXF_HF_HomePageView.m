@@ -93,6 +93,11 @@ static NSString * const footerReuseIdentifier = @"Footer";
         !weakSelf.selectedHeaderBtnBlock ? : weakSelf.selectedHeaderBtnBlock(index);
     };
     
+    //扫一扫栏目出现的时机
+    self.tableHeader.appearCallback = ^(CGFloat alpha, BOOL isAppear) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hiddenSearchBar" object:@(alpha)];
+    };
+    
 }
 - (void) endRefreshData{
     [self.collectionView endRefreshData];
@@ -282,6 +287,11 @@ static NSString * const footerReuseIdentifier = @"Footer";
         _refreshLb.hidden =  NO;
         _refreshLb.text = self.collectionView.header.stateLabel.text;
     }
+    
+    
+    //s隐藏扫一扫时机
+    self.tableHeader.scrollY = self.collectionView.contentOffset.y;
+    
 }
 
 

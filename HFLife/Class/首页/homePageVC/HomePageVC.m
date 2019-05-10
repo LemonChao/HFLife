@@ -21,7 +21,7 @@
 @property (nonatomic, strong)JFLocation *locationManager;
 @property (nonatomic, strong)NSTimer *circleTimer;
 @property (nonatomic, strong)SXF_HF_HomePageView *collectionView;
-
+@property (nonatomic, strong)SXF_HF_CustomSearchBar *searchBar;
 //@property (nonatomic, strong)SXF_HF_HomePageView *homeTableView;
 @end
 
@@ -86,6 +86,15 @@
     self.collectionView.refreshDataCallBack = ^(NSInteger page) {
         [weakSelf loadServerData:page];
     };
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSearchBar:) name:@"hiddenSearchBar" object:nil];
+    
+    
+    
+}
+- (void)hiddenSearchBar:(NSNotification *)notifi{
+    NSLog(@"%@", notifi.object);
+    self.searchBar.alpha = [notifi.object floatValue];
 }
 
 
@@ -95,7 +104,7 @@
     searchBar.searchBtnClick = ^{
         [WXZTipView showTopWithText:@"搜索"];
     };
-    
+    self.searchBar = searchBar;
 
 
     SXF_HF_HomePageView *collectionView = [[SXF_HF_HomePageView alloc] initWithFrame:CGRectMake(0, NaviBarHeight + statusBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NaviBarHeight - TableBarHeight - statusBarHeight)];

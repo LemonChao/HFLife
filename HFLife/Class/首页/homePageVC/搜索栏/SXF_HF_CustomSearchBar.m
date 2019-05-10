@@ -58,6 +58,15 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSearchView)];
     [self addGestureRecognizer:tap];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSearchBar:) name:@"hiddenSearchBar" object:nil];
+    
+    
+    
+}
+- (void)hiddenSearchBar:(NSNotification *)notifi{
+    NSLog(@"%@", notifi.object);
+    self.searchBgView.alpha = [notifi.object floatValue];
 }
 - (void) tapSearchView{
     !self.searchBtnClick ? : self.searchBtnClick();
