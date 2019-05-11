@@ -21,7 +21,7 @@
 
  @param bounds <#bounds description#>
  */
--(void)placeholderRectForBounds:(CGRect)bounds;
+//-(void)placeholderRectForBounds:(CGRect)bounds;
 
 
 /**
@@ -29,5 +29,5 @@
 
  @param bounds <#bounds description#>
  */
--(void)editingRectForBounds:(CGRect)bounds;
+//-(void)editingRectForBounds:(CGRect)bounds;
 @end
