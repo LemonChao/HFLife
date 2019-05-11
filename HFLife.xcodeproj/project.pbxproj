@@ -418,7 +418,6 @@
 		658B79F321D71D1800801CC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658B79F121D71D1800801CC8 /* LaunchScreen.storyboard */; };
 		658B79F621D71D1800801CC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B79F521D71D1800801CC8 /* main.m */; };
 		658B7C4021D749E100801CC8 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B7A5821D749DF00801CC8 /* NSString+Helper.m */; };
-		658B7C4121D749E100801CC8 /* UIButton+SSEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B7A5A21D749DF00801CC8 /* UIButton+SSEdgeInsets.m */; };
 		658B7C4221D749E100801CC8 /* UITabBar+TBBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B7A5C21D749DF00801CC8 /* UITabBar+TBBadge.m */; };
 		658B7C4321D749E100801CC8 /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B7A6021D749DF00801CC8 /* UIViewController+Extension.m */; };
 		658B7C4421D749E100801CC8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B7A6121D749DF00801CC8 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1459,7 +1458,6 @@
 		658B7A3621D749DF00801CC8 /* LayoutMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutMacro.h; sourceTree = "<group>"; };
 		658B7A5821D749DF00801CC8 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		658B7A5921D749DF00801CC8 /* UIView_extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_extra.h; sourceTree = "<group>"; };
-		658B7A5A21D749DF00801CC8 /* UIButton+SSEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SSEdgeInsets.m"; sourceTree = "<group>"; };
 		658B7A5B21D749DF00801CC8 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		658B7A5C21D749DF00801CC8 /* UITabBar+TBBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+TBBadge.m"; sourceTree = "<group>"; };
 		658B7A5D21D749DF00801CC8 /* NSArray+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+JSON.h"; sourceTree = "<group>"; };
@@ -1477,7 +1475,6 @@
 		658B7A6A21D749DF00801CC8 /* UIView+TBFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TBFrame.h"; sourceTree = "<group>"; };
 		658B7A6B21D749DF00801CC8 /* UITabBar+TBBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+TBBadge.h"; sourceTree = "<group>"; };
 		658B7A6C21D749DF00801CC8 /* UIView_extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_extra.m; sourceTree = "<group>"; };
-		658B7A6D21D749DF00801CC8 /* UIButton+SSEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SSEdgeInsets.h"; sourceTree = "<group>"; };
 		658B7A6E21D749DF00801CC8 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 		658B7A6F21D749DF00801CC8 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		658B7A7021D749DF00801CC8 /* NSArray+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+JSON.m"; sourceTree = "<group>"; };
@@ -3598,8 +3595,6 @@
 				658B7A7521D749DF00801CC8 /* UIButton+Extension.m */,
 				658B7A7121D749DF00801CC8 /* UIButton+EdgeInsets.h */,
 				658B7A6821D749DF00801CC8 /* UIButton+EdgeInsets.m */,
-				658B7A6D21D749DF00801CC8 /* UIButton+SSEdgeInsets.h */,
-				658B7A5A21D749DF00801CC8 /* UIButton+SSEdgeInsets.m */,
 				0453D1B92283D38E00880C2A /* UIButton+EnlargeEdge.h */,
 				0453D1BA2283D38E00880C2A /* UIButton+EnlargeEdge.m */,
 				04A507CB227EDD390013E8EC /* 01 block点击事件 */,
@@ -5961,7 +5956,6 @@
 				04A50869227EDD3A0013E8EC /* JQToastWindow.m in Sources */,
 				6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */,
 				048DABD122856656006E6BA2 /* HHPasswordErrorView.m in Sources */,
-				658B7C4121D749E100801CC8 /* UIButton+SSEdgeInsets.m in Sources */,
 				659EA0B5220537EC004471CD /* MapManager.m in Sources */,
 				049783952285957F00E143D7 /* YYB_HF_LocalHeadView.m in Sources */,
 				658B7C5021D749E100801CC8 /* AxcAE_TabBarBadge.m in Sources */,

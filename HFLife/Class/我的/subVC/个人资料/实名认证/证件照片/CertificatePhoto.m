@@ -206,7 +206,7 @@
    	agreeBtn = [UIButton new];
     agreeBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(22)];
     [agreeBtn setTitleColor:HEX_COLOR(0xAAAAAA) forState:(UIControlStateNormal)];
-    [agreeBtn setImagePositionWithType:ImagePositionTypeLeft spacing:WidthRatio(22) leftSpacing:0];
+    [agreeBtn setImagePosition:ImagePositionTypeLeft spacing:WidthRatio(22)];
     [agreeBtn addTarget:self action:@selector(agreeBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
     [agreeBtn setTitle:@"我已阅读并接受" forState:(UIControlStateNormal)];
     [agreeBtn setImage:MMGetImage(@"gouxuan") forState:(UIControlStateNormal)];

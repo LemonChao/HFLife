@@ -147,7 +147,7 @@ static CLLocationCoordinate2D distinateCoor;//目的地坐标
         [rightButton setImage:MMGetImage(@"luxian") forState:(UIControlStateNormal)];
         [rightButton setTitle:@"查看线路" forState:UIControlStateNormal];
         [rightButton addTarget:self action:@selector(navBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        [rightButton setImagePositionWithType:(SSImagePositionTypeTop) spacing:HeightRatio(19)];
+        [rightButton setImagePosition:ImagePositionTypeTop spacing:HeightRatio(19)];
         annotationView.rightCalloutAccessoryView = rightButton;
         UILabel *lin = [UILabel new];
         lin.backgroundColor = HEX_COLOR(0xEAEAEA);
