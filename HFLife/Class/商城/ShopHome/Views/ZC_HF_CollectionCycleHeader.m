@@ -121,7 +121,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.titleLable];
-        
+        self.backgroundColor = [UIColor whiteColor];
         [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.left.equalTo(self).offset(ScreenScale(12));

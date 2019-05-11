@@ -16,10 +16,10 @@
 /**
  添加阴影圆角
 
- @param color <#color description#>
- @param offset <#offset description#>
- @param radius <#radius description#>
- @param opacity <#opacity description#>
+ @param color shadowColor
+ @param offset shadowOffset
+ @param shadowRadius shadowRadius
+ @param opacity shadowOpacity
  */
-- (void)addShadowForViewColor:(UIColor *)color offSet:(CGSize)offset shadowRadius:(CGFloat)shadowRadius cornerRadius:(CGFloat)cornerRadius  opacity:(CGFloat) opacity;
+- (void)addShadowForViewColor:(UIColor *)color offSet:(CGSize)offset shadowRadius:(CGFloat)shadowRadius cornerRadius:(CGFloat)cornerRadius  opacity:(CGFloat)opacity;
 @end
