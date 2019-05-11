@@ -30,7 +30,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    [SXF_HF_LoginAlertView showLoginAlertComplete:nil];
+    [SXF_HF_LoginAlertView showLoginAlertType:AlertType_login Complete:nil];
     
     
 }

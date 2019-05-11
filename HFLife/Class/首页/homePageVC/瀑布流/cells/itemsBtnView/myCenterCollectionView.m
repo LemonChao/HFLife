@@ -25,8 +25,8 @@
 
 
 - (void) addChilerenViews{
-    _titleArr = @[@"路印打车", @"附近商家", @"生活缴费", @"火车票", @"外卖", @"快递查询", @"VR商城", @"超级账本"];
-    _imageArr =  @[@"路印打车", @"附近商家", @"生活缴费", @"火车票", @"外卖", @"快递查询", @"VR商城", @"超级账本"];
+    _titleArr = @[@"附近商家", @"生活缴费", @"超级账本", @"VR商城", @"外卖", @"快递查询", @"路印打车", @"火车票机票"];
+    _imageArr =  @[@"附近商家", @"生活缴费", @"超级账本", @"VR商城", @"外卖", @"快递查询", @"路印打车", @"火车票"];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake((SCREEN_WIDTH - ScreenScale(24)) / 4.0, 150 / 2);
     layout.minimumLineSpacing = 0.0;

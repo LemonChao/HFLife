@@ -75,9 +75,50 @@
     }
 }
 
+
+- (void)setAlertType:(HF_AlertType)alertType{
+    _alertType = alertType;
+    //更改字体样式
+    switch (alertType) {
+        case AlertType_login:{
+            
+        }
+        break;
+        case AlertType_save:{
+            
+        }
+        break;
+        default:
+            break;
+    }
+    
+    //更新布局
+    [self layoutSubviews];
+}
+
+
+
 - (void)layoutSubviews{
     [super layoutSubviews];
+    switch (self.alertType) {
+        case AlertType_login:
+            [self layoutLogInType];
+            break;
+         case AlertType_save:
+            [self layoutSaveType];
+        default:
+            break;
+    }
     
+    
+    
+}
+
+
+/**
+  安全提示
+ */
+- (void)layoutSaveType{
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(ScreenScale(16));
         make.top.mas_equalTo(self).offset(ScreenScale(31));
@@ -101,14 +142,40 @@
         make.centerY.mas_equalTo(self.sureBtn.mas_centerY);
         
     }];
+}
+
+/**
+ 登录提醒
+ */
+- (void) layoutLogInType{
+    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(16));
+        make.top.mas_equalTo(self).offset(ScreenScale(31));
+        make.height.mas_equalTo(ScreenScale(17));
+    }];
     
+    [self.msgLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.titleLb.mas_bottom).offset(ScreenScale(15));
+        make.left.mas_equalTo(self.titleLb.mas_left);
+        make.height.mas_equalTo(ScreenScale(14));
+    }];
     
+    [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.mas_right).offset(ScreenScale(-16));
+        make.bottom.mas_equalTo(self.mas_bottom).offset(ScreenScale(-31));
+        
+    }];
+    
+    [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.sureBtn.mas_left).offset(ScreenScale(-25));
+        make.centerY.mas_equalTo(self.sureBtn.mas_centerY);
+        
+    }];
 }
 
 
 
-
-+ (void) showLoginAlertComplete:(void(^__nullable)(BOOL btnBype))complate{
++ (void) showLoginAlertType:(HF_AlertType)alertType Complete:(void(^__nullable)(BOOL btnBype))complate{
     
     UIWindow *kwin = [UIApplication sharedApplication].keyWindow;
     if (!kwin) {
@@ -126,13 +193,7 @@
     alertView.backgroundColor = [UIColor whiteColor];
     alertView.transform = CGAffineTransformMakeScale(0.01, 0.01);
     alertView.center = bgView.center;
-    
-    
-    
-    
-    
-    
-    
+    alertView.alertType = alertType;
     
     [UIView animateWithDuration:0.2 animations:^{
         bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];

@@ -9,6 +9,13 @@
 
 #import "SXF_HF_CycleContentCell.h"
 
+@interface SXF_HF_CycleContentCell ()
+
+@property (nonatomic, strong)UIImageView *bgImageV;
+
+@end
+
+
 @implementation SXF_HF_CycleContentCell
 
 - (void)awakeFromNib {
@@ -25,6 +32,20 @@
     return self;
 }
 - (void)addChildrenViews{
-    self.contentView.backgroundColor = [UIColor orangeColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.bgImageV = [UIImageView new];
+    self.bgImageV.contentMode = UIViewContentModeScaleAspectFit;
+    [self.contentView addSubview:self.bgImageV];
+    self.bgImageV.image = MY_IMAHE(@"余额底图_00000");
 }
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    
+    [self.bgImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.mas_equalTo(self.contentView);
+    }];
+}
+
 @end

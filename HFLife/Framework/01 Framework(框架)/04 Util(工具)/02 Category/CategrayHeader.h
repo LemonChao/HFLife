@@ -22,5 +22,6 @@
 #import "UIView+cornerRadius.h"
 #import "NSArray+layoutViews.h"
 #import "UIButton+ChainTypeButton.h"
+#import "UIImageView+LoadGif.h"
 
 #endif /* CategrayHeader_h */
