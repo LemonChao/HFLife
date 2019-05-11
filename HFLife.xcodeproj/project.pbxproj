@@ -134,7 +134,6 @@
 		048DAC7822857DF9006E6BA2 /* Per_MethodsToDealWithManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC7622857DF9006E6BA2 /* Per_MethodsToDealWithManage.m */; };
 		048DAC9022857E7D006E6BA2 /* CertificatePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC8622857E7D006E6BA2 /* CertificatePhoto.m */; };
 		048DAC9122857E7D006E6BA2 /* PersonalDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC8B22857E7D006E6BA2 /* PersonalDataCell.m */; };
-		048DACA822859078006E6BA2 /* BindingPayWayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DACA622859078006E6BA2 /* BindingPayWayVC.m */; };
 		049783832285957E00E143D7 /* NearPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497834B2285957E00E143D7 /* NearPageVC.m */; };
 		049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497834E2285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m */; };
 		049783852285957E00E143D7 /* YYb_HF_CollReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049783522285957E00E143D7 /* YYb_HF_CollReusableView.m */; };
@@ -897,7 +896,6 @@
 		048DAC8722857E7D006E6BA2 /* CertificatePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificatePhoto.h; sourceTree = "<group>"; };
 		048DAC8A22857E7D006E6BA2 /* PersonalDataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalDataCell.h; sourceTree = "<group>"; };
 		048DAC8B22857E7D006E6BA2 /* PersonalDataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalDataCell.m; sourceTree = "<group>"; };
-		048DACA622859078006E6BA2 /* BindingPayWayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingPayWayVC.m; sourceTree = "<group>"; };
 		0497834A2285957E00E143D7 /* NearHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearHomeVC.h; sourceTree = "<group>"; };
 		0497834B2285957E00E143D7 /* NearPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearPageVC.m; sourceTree = "<group>"; };
 		0497834E2285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_LocaColumnCollectionCell.m; sourceTree = "<group>"; };
@@ -2604,17 +2602,8 @@
 		048DACA122859078006E6BA2 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				048DACA222859078006E6BA2 /* 绑定银行卡\支付宝 */,
 			);
 			path = VC;
-			sourceTree = "<group>";
-		};
-		048DACA222859078006E6BA2 /* 绑定银行卡\支付宝 */ = {
-			isa = PBXGroup;
-			children = (
-				048DACA622859078006E6BA2 /* BindingPayWayVC.m */,
-			);
-			path = "绑定银行卡\\支付宝";
 			sourceTree = "<group>";
 		};
 		049783492285957E00E143D7 /* 本地服务 */ = {
@@ -6436,7 +6425,6 @@
 				0453D180228266D200880C2A /* CWPageControl.m in Sources */,
 				658B7C7821D749E100801CC8 /* LXAlertView.m in Sources */,
 				04A508D1227EDD3A0013E8EC /* NSString+PinYin.m in Sources */,
-				048DACA822859078006E6BA2 /* BindingPayWayVC.m in Sources */,
 				04A508E3227EDD3A0013E8EC /* HRJSON.m in Sources */,
 				658B7C4821D749E100801CC8 /* UIView+Shadow.m in Sources */,
 				6C2F5165222A663D0022EE03 /* HXDatePhotoToolManager.m in Sources */,
