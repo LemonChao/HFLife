@@ -10,14 +10,15 @@
 #if DEBUG
 static NSString *const URL_PROTOCOL = @"http://";
 #else
-static NSString *const URL_PROTOCOL = @"<#https://#>";
+static NSString *const URL_PROTOCOL = @"https://";
 #endif
 
 
 #pragma mark - ---------- 地址(host) ----------
-//地址(host) （不能为空）
+//http://xm_hanfu2.com/api/mobile/index.php?w=index&t=index
+//地址(host) （不能为空）http://hzf-takeout    备用@"hzf2-mall.zhongchangjy.com/
 #if DEBUG
-static NSString *const URL_HOST = @"jr.duduapp.net";
+static NSString *const URL_HOST = @"xm_hanfu2.com/";
 #else
 static NSString *const URL_HOST = @"<#www.xxx.xxx#>";
 #endif
@@ -25,15 +26,18 @@ static NSString *const URL_HOST = @"<#www.xxx.xxx#>";
 #pragma mark - ---------- 端口(port) ----------
 //端口（port），（含“:”前缀，如果 URL_PORT 为空，则不含）
 #if DEBUG
-static NSString *const URL_PORT = @"";
+static NSString *const URL_PORT = @"api/mobile/index.php?";
 #else
 static NSString *const URL_PORT = @"<#:xxxx#>";
 #endif
 
 #pragma mark - ---------- 路径(path) ----------
 //路径通用前缀，（含后缀“/” ，如果 URL_PREFIX 为空， 则不含）
-static NSString *const URL_PATH_PREFIX = @"";
+static NSString *const URL_PATH_PREFIX = @"";//后缀
 //static NSString *const URL_PATH_PREFIX = @"<#xxx/#>";
+
+
+
 
 //XXXX
 static NSString *const PATH_XXXX = @"PATH_XXXX"; // ⚠️：变量名称全部大写，用下划线分割

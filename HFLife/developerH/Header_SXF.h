@@ -9,6 +9,25 @@
 #ifndef Header_SXF_h
 #define Header_SXF_h
 
+/************************yourTools************************/
 #import "HW3DBannerView.h"
 #import "SXF_HF_HomePageModel.h"
+/************************yourTools************************/
+
+
+
+
+/************************subUrl************************/
+static NSString *const shopUrl = @"w=index&t=index";
+
+/************************subUrl************************/
+
+
+
+
+
+
+
+
+
 #endif /* Header_SXF_h */

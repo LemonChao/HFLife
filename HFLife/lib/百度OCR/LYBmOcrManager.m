@@ -88,7 +88,7 @@ static LYBmOcrManager *ocrManager = nil;
                                      
                                      
                                  }];
-    UIViewController *myVC = [self jsd_getCurrentViewController];
+    UIViewController *myVC = [self getCurrentViewController];
     if ([myVC isKindOfClass:[BaseViewController class]]) {
         BaseViewController *basevc = (BaseViewController *)myVC;
         basevc.customNavBar.hidden = YES;
@@ -141,7 +141,7 @@ static LYBmOcrManager *ocrManager = nil;
 //            [alertView show];
 //            [WXZTipView showCenterWithText:@"识别成功"];
         }];
-        [[weakSelf jsd_getCurrentViewController] dismissViewControllerAnimated:YES completion:nil];
+        [[weakSelf getCurrentViewController] dismissViewControllerAnimated:YES completion:nil];
     };
     
     _failHandler = ^(NSError *error){
@@ -153,57 +153,7 @@ static LYBmOcrManager *ocrManager = nil;
     };
 }
 
-//获取当前页面控制器
-- (UIViewController *)jsd_getCurrentViewController{
-    
-    
-   
-    
-    UIViewController* currentViewController = [self jsd_getRootViewController];
-    BOOL runLoopFind = YES;
-    while (runLoopFind) {
-        if (currentViewController.presentedViewController) {
-            
-            currentViewController = currentViewController.presentedViewController;
-        } else if ([currentViewController isKindOfClass:[UINavigationController class]]) {
-            
-            UINavigationController* navigationController = (UINavigationController* )currentViewController;
-            currentViewController = [navigationController.childViewControllers lastObject];
-            
-        } else if ([currentViewController isKindOfClass:[UITabBarController class]]) {
-            
-            UITabBarController* tabBarController = (UITabBarController* )currentViewController;
-            currentViewController = tabBarController.selectedViewController;
-        } else {
-            
-            NSUInteger childViewControllerCount = currentViewController.childViewControllers.count;
-            if (childViewControllerCount > 0) {
-                
-                currentViewController = currentViewController.childViewControllers.lastObject;
-                
-                return currentViewController;
-            } else {
-                
-                return currentViewController;
-            }
-        }
-        
-    }
-    if ([currentViewController isKindOfClass:[BaseViewController class]]) {
-        BaseViewController *vc = (BaseViewController *)currentViewController;
-        vc.customNavBar.hidden = YES;
-    }
-    return currentViewController;
-}
 
-
-//获取根控制器
-- (UIViewController *)jsd_getRootViewController{
-    
-    UIWindow* window = [[[UIApplication sharedApplication] delegate] window];
-    NSAssert(window, @"The window is empty");
-    return window.rootViewController;
-}
 
 
 //根据用户选择类型进行页面的不同跳转

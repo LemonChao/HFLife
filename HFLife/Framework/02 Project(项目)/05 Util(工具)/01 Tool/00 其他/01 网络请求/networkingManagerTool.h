@@ -39,6 +39,17 @@ typedef void(^progressBlock)(NSProgress *progress);
 //发送请求  获得验证码图片数据
 +(void)getAuthCodeWithBlock:(imageBlock)block;
 
+
+
+
+
+/**
+ +++++++++++++不带VC
+ */
++ (void) requestToServerWithType:(NSString *)RequestType withSubUrl:(NSString *)subUrl withParameters:(NSDictionary *)parameters withResultBlock:(ValueBlock)valueBlock;
+
+
+
 /**
  -------------带有进度条的请求
  */
@@ -57,15 +68,4 @@ typedef void(^progressBlock)(NSProgress *progress);
                      image: (UIImage *)image  //  上传图片对象
                picFileName: (NSString *)picFileName//随机生成的文件名
                      block:(void(^)(NSDictionary *dict))resultBlock;
-
-
-
-
-
-
-
-
-
-//+(void)getfarmImageWithWithUrl:(NSString *)imageUrl Block:(imageBlock)block;
-//+ (void)cancleRequestData;
 @end

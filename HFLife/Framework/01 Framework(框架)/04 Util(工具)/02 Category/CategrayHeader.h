@@ -23,5 +23,6 @@
 #import "NSArray+layoutViews.h"
 #import "UIButton+ChainTypeButton.h"
 #import "UIImageView+LoadGif.h"
-
+#import "NSObject+currentController.h"
+#import "NSObject+Extension.h"
 #endif /* CategrayHeader_h */

@@ -1,6 +1,10 @@
 
 #网络请求
+1.
 [networkingManagerTool requestToServerWithType:POST withSubUrl:<#(NSString *)#> withParameters:<#(NSDictionary *)#> withResultBlock:<#^(BOOL result, id value)valueBlock#> witnVC:<#(UIViewController *)#>]
+2.
+[networkingManagerTool requestToServerWithType:<#(NSString *)#> withSubUrl:<#(NSString *)#> withParameters:<#(NSDictionary *)#> withResultBlock:<#^(BOOL result, id value)valueBlock#>]
+
 
 # 数据解析
 [HR_dataManagerTool getTheRecordMsgWithArr:<#(NSArray *)#>  withClass:<#(__unsafe_unretained Class)#>]

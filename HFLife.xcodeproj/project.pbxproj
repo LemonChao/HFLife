@@ -382,6 +382,7 @@
 		04FB7F1622865A4900150CA7 /* 余额底图_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1422865A4900150CA7 /* 余额底图_00000.png */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
 		04FB7F1D2286A40700150CA7 /* UILabel+atributeText.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1C2286A40700150CA7 /* UILabel+atributeText.m */; };
+		04FB7F332286C02600150CA7 /* NSObject+currentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F322286C02500150CA7 /* NSObject+currentController.m */; };
 		6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 65229493225AE063001DF691 /* SELUpdateAlert.m */; };
 		6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */; };
 		6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */; };
@@ -1397,6 +1398,8 @@
 		04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LoadGif.m"; sourceTree = "<group>"; };
 		04FB7F1B2286A40700150CA7 /* UILabel+atributeText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+atributeText.h"; sourceTree = "<group>"; };
 		04FB7F1C2286A40700150CA7 /* UILabel+atributeText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+atributeText.m"; sourceTree = "<group>"; };
+		04FB7F312286C02500150CA7 /* NSObject+currentController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+currentController.h"; sourceTree = "<group>"; };
+		04FB7F322286C02500150CA7 /* NSObject+currentController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+currentController.m"; sourceTree = "<group>"; };
 		65229492225AE063001DF691 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		65229493225AE063001DF691 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VersionUpdate_Icon@3x.png"; sourceTree = "<group>"; };
@@ -1460,7 +1463,6 @@
 		658B79F421D71D1800801CC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		658B79F521D71D1800801CC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		658B7A3321D749DF00801CC8 /* KeyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyMacro.h; sourceTree = "<group>"; };
-		658B7A3421D749DF00801CC8 /* TFCNetApiMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFCNetApiMacro.h; sourceTree = "<group>"; };
 		658B7A3521D749DF00801CC8 /* ToolMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolMacro.h; sourceTree = "<group>"; };
 		658B7A3621D749DF00801CC8 /* LayoutMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutMacro.h; sourceTree = "<group>"; };
 		658B7A5821D749DF00801CC8 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
@@ -3184,7 +3186,6 @@
 				04A5071E227EDD350013E8EC /* 04 URL.h */,
 				04A5071F227EDD350013E8EC /* 03 Constant.h */,
 				658B7A3321D749DF00801CC8 /* KeyMacro.h */,
-				658B7A3421D749DF00801CC8 /* TFCNetApiMacro.h */,
 				658B7A3521D749DF00801CC8 /* ToolMacro.h */,
 				658B7A3621D749DF00801CC8 /* LayoutMacro.h */,
 				6C3D4ABA22255A0E0007AF9A /* AppColorHeader.h */,
@@ -3997,6 +3998,8 @@
 			children = (
 				658B7A5B21D749DF00801CC8 /* NSObject+Extension.h */,
 				658B7A6E21D749DF00801CC8 /* NSObject+Extension.m */,
+				04FB7F312286C02500150CA7 /* NSObject+currentController.h */,
+				04FB7F322286C02500150CA7 /* NSObject+currentController.m */,
 			);
 			path = NSObject;
 			sourceTree = "<group>";
@@ -6409,6 +6412,7 @@
 				6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */,
 				6579784521E6D6B600E606BE /* JFCityHeaderView.m in Sources */,
 				0453D17B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m in Sources */,
+				04FB7F332286C02600150CA7 /* NSObject+currentController.m in Sources */,
 				04A50881227EDD3A0013E8EC /* customTableViewCell.m in Sources */,
 				0453D17F228266D200880C2A /* CWCarousel.m in Sources */,
 				6C2F514D222A663D0022EE03 /* HXAlbumListViewController.m in Sources */,

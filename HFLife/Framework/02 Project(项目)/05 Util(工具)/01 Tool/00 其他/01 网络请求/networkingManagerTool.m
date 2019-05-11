@@ -12,7 +12,7 @@
 #import "setCookiesTool.h"
 #import "HRRequest.h"
 #import "HR_dataManagerTool.h"
-//#import "loginAppViewController.h"
+#import "LoginVC.h"
 
 
 
@@ -74,6 +74,14 @@
 }
 */
 
+//不带控制器
++ (void) requestToServerWithType:(NSString *)RequestType withSubUrl:(NSString *)subUrl withParameters:(NSDictionary *)parameters withResultBlock:(ValueBlock)valueBlock{
+    [networkingManagerTool requestToServerWithType:RequestType withSubUrl:subUrl withParameters:parameters withResultBlock:valueBlock witnVC:nil];
+}
+
+
+
+
 
 //不显示进度
 + (void) requestToServerWithType:(NSString *)RequestType withSubUrl:(NSString *)subUrl withParameters:(NSDictionary *)parameters withResultBlock:(ValueBlock)valueBlock witnVC:(UIViewController *)VC{
@@ -83,6 +91,7 @@
 + (void) requestToServerWithType:(NSString *)RequestType withSubUrl:(NSString *)subUrl withParameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress withResultBlock:(ValueBlock)valueBlock witnVC:(UIViewController *)VC
 {
     HRRequest *requestManager = [HRRequest manager];
+    //GET
     if ([RequestType isEqualToString:GET]) {
         [requestManager GET:subUrl para:parameters progress:^(NSProgress *progressResult) {
             progress(progressResult);
@@ -91,7 +100,7 @@
         } faiulre:^(NSString *errMsg) {
             
         }];
-    }
+    }//POST
     else if ([RequestType isEqualToString:POST]) {
         [requestManager POST:subUrl para:parameters progress:^(NSProgress *progressResult) {
             if (progress) {
@@ -102,7 +111,7 @@
         } faiulre:^(NSString *errMsg) {
             
         }];
-    }
+    }//PUT
     else if ([RequestType isEqualToString:PUT]) {
         
     }
@@ -129,88 +138,7 @@
             
         }];
     }
-    
-//   [manager.requestSerializer setValue:[NSString stringWithFormat:@"farm/ios %@" ,[userInfoDataModel shareduserInfoDataModel].versionNumStr] forHTTPHeaderField:@"User-Agent"];
-    //设置请求头
-//     [manager.requestSerializer setValue:[[networkingManagerTool sharedFMDBManager] networkingStatesFromStatebar] forHTTPHeaderField:@"NETTYPE"];
-//    NSString *gettoken = [[NSUserDefaults standardUserDefaults] valueForKey:Token];
-//    //token 设置到请求头上
-//    if (gettoken) {
-//        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@" , gettoken] forHTTPHeaderField:@"Authorization"];
-//    }
-    //请求地址
-//    NSString *HostUrl = [NSString stringWithFormat:@"%@%@", BASEURL, subUrl];
-    
-    //获取cookies值并保存到本地
-//    NSArray *cookiesArr = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:HostUrl]];
-//    NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject:cookiesArr];
-//    [[NSUserDefaults standardUserDefaults] setObject:cookiesData forKey:kUserDefaultsCookie];
-    
-    //将cookies值添加到数据请求中
-//    NSData *cookies = [[NSUserDefaults standardUserDefaults] valueForKey:kUserDefaultsCookie];
-//    if ([cookies length]) {
-//        NSArray *cookiesarr = [NSKeyedUnarchiver unarchiveObjectWithData:cookies];
-//        NSHTTPCookie *cookie;
-//        for (cookies in cookiesarr) {
-//            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-//        }
-//    }
-    
-    //添加请求参数
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:parameters];
-//    if (gettoken) {
-//        [dict setObject:gettoken forKey:@"token"];
-//    }
-//    NSLog(@"请求参数是：%@" , dict);
-    //数据请求
-    
-    
-    
-    /*
-    
-    if ([RequestType isEqualToString:@"GET"])
-    {
-        
-        
-        
-        
-        
-        [manager GET:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:responseObject withresultBlock:valueBlock withvc:VC];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            //失败
-            NSLog(@"userInfo=%@" , error.userInfo[@"com.alamofire.serialization.response.error.data"]);
-            [CustomPromptBox showTextHud:@"请求失败！"];
-            valueBlock(NO , nil);
-        }];
-    }
-    else if([RequestType isEqualToString:@"POST"])
-    {
-        [manager POST:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:responseObject withresultBlock:valueBlock withvc:VC];
-            [dataMenagerTool hideLoadHUD];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            //失败
-            NSLog(@"userInfo=%@" , error.userInfo[@"com.alamofire.serialization.response.error.data"]);
-            NSLog(@"%@" , error.userInfo);
-            [CustomPromptBox showTextHud:@"请求失败！"];
-            valueBlock(NO , nil);
-            NSLog(@"请求失败");
-        }];
-    }else{
-        //put
-        [manager PUT:urlStr parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:responseObject withresultBlock:valueBlock withvc:VC];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"userInfo=%@" , error.userInfo[@"com.alamofire.serialization.response.error.data"]);
-            NSLog(@"%@" , error.userInfo);
-            [CustomPromptBox showTextHud:@"请求失败！"];
-            valueBlock(NO , nil);
-            NSLog(@"请求失败");
-        }];
-    }
-     
-     */
+
 }
 
 
@@ -272,99 +200,34 @@
    
 }
 
-
-////上传 数据流上传
-//+ (void)upLoadStreamPara:(NSDictionary *)parameters  withSubUrl:(NSString *)subUrl progress:(progressBlock)progress withResultBlock:(void (^)(BOOL, id))resultBlock witnVC:(UIViewController *)VC{
-//
-//
-//    [networkingManagerTool requestToServerWithType:UPDATE withSubUrl:subUrl withParameters:parameters progress:progress withResultBlock:resultBlock witnVC:VC];
-//}
-
-
-
-
-
-
-
-
-- (void) getDataAnalysisWith:(id)responseObject withresultBlock:(ValueBlock)valueBlock
+- (void) getDataAnalysisWith:(id)responseObject withresultBlock:(ValueBlock)valueBlock withvc:(UIViewController *)vc
 {
+    UIViewController *currentVC;
+    if (![vc isKindOfClass:[UIViewController class]]) {
+        currentVC = [self getCurrentViewController];
+    }else{
+        currentVC = vc;
+    }
+    
     //成功  返回就是json  不需要解析
     NSDictionary *valueDic = [HR_dataManagerTool dataToypteDJson:responseObject];
     NSLog(@"result = %@" , valueDic);
-    if ([[NSString stringWithFormat:@"%@" , valueDic[@"code"]] isEqualToString:@"1"])
-    {
-        //成功
-        NSLog(@"%@" ,valueDic[@"msg"]);
-        if ([valueDic[@"msg"] isEqualToString:@"请求成功"] || [valueDic[@"msg"] isEqualToString:@"二级密码有效"]) {
+    //解析正确
+    if (valueDic != nil) {
+        if ([valueDic[@"code"] integerValue] == 1){
+            //成功
+            valueBlock(YES , valueDic);
+        }else if ([valueDic[@"code"] integerValue]  == 0){
+            //失败
+            valueBlock(NO , valueDic);
+        }else if([valueDic[@"code"] integerValue]  == -1){
+            //登陆过期
+            valueBlock(NO , valueDic);
+            [currentVC presentViewController:[LoginVC new] animated:YES completion:nil];
+        }else{
+            
         }
-        else
-        {
-//
-        }
-        if (!valueDic[@"msg"])
-        {
-//           
-        }
-        
-        valueBlock(YES , valueDic);
     }
-    else if ([valueDic[@"code"] integerValue]  == 0)
-    {
-        NSLog(@"%@" ,valueDic[@"msg"]);
-        
-        if (!valueDic[@"msg"]) {
-//            [MBProgressHUD showError:@"获取失败"];
-        }
-        else
-        {
-//            [MBProgressHUD showError:valueDic[@"msg"]];
-        }
-        
-        valueBlock(NO , valueDic);
-    }
-    else
-    {
-        valueBlock(NO , valueDic);
-        //授权失败请重新登录
-        NSLog(@"%@" ,valueDic[@"msg"]);
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:valueDic[@"msg"] preferredStyle:(UIAlertControllerStyleAlert)];
-        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-//            [self canclBtnClickwithVc:];
-        }]];
-        //再不是控制器的类里面模态出提示框的方法
-        UIWindow *window = nil;
-        id<UIApplicationDelegate> delegate = [[UIApplication sharedApplication] delegate];
-        if ([delegate respondsToSelector:@selector(window)]) {
-            window = [delegate performSelector:@selector(window)];
-        } else {
-            window = [[UIApplication sharedApplication] keyWindow];
-        }
-        [window.rootViewController presentViewController:alert animated:YES completion:nil];
-        NSLog(@"rootViewController = %@" , [window.rootViewController class]);
-    }
-    [[NSUserDefaults standardUserDefaults] setValue:valueDic[@"code"] forKey:@"code"];
-}
-
-- (void) getDataAnalysisWith:(id)responseObject withresultBlock:(ValueBlock)valueBlock withvc:(UIViewController *)vc
-{
-    //成功
-    NSDictionary *valueDic = [HR_dataManagerTool dataToypteDJson:responseObject];
-    if ([valueDic[@"success"] integerValue]  == 1)
-    {
-        //成功
-        valueBlock(YES , valueDic);
-    }
-    else
-    {
-        if (![valueDic[@"msg"] isEqualToString:@"Token 无效"]) {
-         
-        }
-        
-        valueBlock(NO , valueDic);
-
-    }
-//    [[NSUserDefaults standardUserDefaults] setValue:valueDic[@"code"] forKey:@"code"];
 }
 
 

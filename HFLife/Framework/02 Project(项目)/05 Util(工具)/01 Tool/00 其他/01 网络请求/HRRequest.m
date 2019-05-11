@@ -136,7 +136,7 @@
     NSDictionary *valueDict = [HR_dataManagerTool dataToJson:result];
     
     
-    if ([valueDict[@"success"] integerValue] == 1) {
+    if ([valueDict[@"status"] integerValue] == 1) {
         //data 可修改，原理同上
         success(valueDict);
     } else {

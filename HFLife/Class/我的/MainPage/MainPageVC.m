@@ -20,6 +20,12 @@
     self.customNavBar.title = @"我的";
     self.navigationController.navigationBarHidden = YES;
     [self setUpUI];
+    
+    
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:shopUrl withParameters:@{@"key1" : @"value1"} withResultBlock:^(BOOL result, id value) {
+        
+    }];
+    
 }
 - (void)setUpUI{
     self.mainPageView = [[SXF_HF_MainPageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight - self.tabBarHeight)];
