@@ -140,3 +140,123 @@
 }
 
 @end
+
+/// 倒计时View
+@interface CountdDownView : UIView
+
+@property(nonatomic, copy) NSString *hour;
+@property(nonatomic, copy) NSString *minute;
+@property(nonatomic, copy) NSString *second;
+
+@property(nonatomic, strong) UILabel *hourLable;
+@property(nonatomic, strong) UILabel *minuteLable;
+@property(nonatomic, strong) UILabel *secondLable;
+
+@end
+/// 带有倒计时header
+@interface ZC_HF_CollectionTimerHeader ()
+
+@property(nonatomic, strong) UILabel *titleLable;
+
+@property(nonatomic, strong) CountdDownView *countDownView;
+@end
+
+@implementation ZC_HF_CollectionTimerHeader
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [UIColor whiteColor];
+        
+        self.countDownView = [[CountdDownView alloc] init];
+        
+        [self addSubview:self.titleLable];
+        [self addSubview:self.countDownView];
+        
+        [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.left.equalTo(self).offset(ScreenScale(12));
+        }];
+        [self.countDownView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.left.equalTo(self.titleLable.mas_right).offset(ScreenScale(10));
+        }];
+    }
+    return self;
+}
+
+
+- (UILabel *)titleLable {
+    if (!_titleLable) {
+        _titleLable = [UITool labelWithTextColor:ImportantColor font:MediumFont(18)];
+        _titleLable.text = @"限时折扣";
+    }
+    return _titleLable;
+}
+
+@end
+
+
+@interface ShopCountLabel : UILabel
+
+@end
+
+
+@implementation CountdDownView
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.hour = self.minute = self.second = @"00";
+        self.hourLable = [[ShopCountLabel alloc] init];
+        self.minuteLable = [[ShopCountLabel alloc] init];
+        self.secondLable = [[ShopCountLabel alloc] init];
+        UILabel *colonLab1 = [UITool labelWithText:@":" textColor:GeneralRedColor font:SystemFont(14)];
+        UILabel *colonLab2 = [UITool labelWithText:@":" textColor:GeneralRedColor font:SystemFont(14)];
+        
+        UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.hourLable,colonLab1,self.minuteLable,colonLab2,self.secondLable]];
+        stackView.axis = UILayoutConstraintAxisHorizontal;
+        stackView.alignment = UIStackViewAlignmentFill;
+        stackView.distribution = UIStackViewDistributionFill;
+        stackView.spacing = 2.f;
+        
+        [self addSubview:stackView];
+        [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+    }
+    return self;
+}
+
+@end
+
+
+
+@implementation ShopCountLabel
+
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.text = @"00";
+        self.textColor = GeneralRedColor;
+        self.font = SystemFont(14);
+        self.textAlignment = NSTextAlignmentCenter;
+        self.backgroundColor = BackGroundColor;
+        self.clipsToBounds = YES;
+    }
+    return self;
+}
+
+
+
+- (CGSize)intrinsicContentSize {
+    CGSize size = [super intrinsicContentSize];
+    self.layer.cornerRadius = (size.height+6)/2;
+    return CGSizeMake(size.width+16, size.height+4);
+}
+
+@end
+

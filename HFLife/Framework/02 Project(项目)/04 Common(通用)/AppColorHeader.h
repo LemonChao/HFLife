@@ -20,6 +20,7 @@
 
 /** 重要 - 0c0b0b 导航标题，重要提醒*/
 #define ImportantColor RGBA(12,11,11,1)
+//#define ImportantColor HEX_COLOR(0x333333)
 
 /** 一级 - 4a4a4a */
 #define PrimaryColor RGBA(74,74,74,1)

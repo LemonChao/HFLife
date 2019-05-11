@@ -36,8 +36,8 @@
 - (void)setupNavBar {
     [super setupNavBar];
     
-    self.customNavBar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0];
-    [self.customNavBar wr_setBackgroundAlpha:0.f];
+    self.customNavBar.barBackgroundColor = [RGBA(202, 20, 0, 1) colorWithAlphaComponent:0];
+    self.customNavBar.backgroundColor = [UIColor clearColor];
     [self.customNavBar wr_setRightButtonWithImage:image(@"shop_news")];
     
     ZC_HF_ShopHomeSearchButton *searchBtn = [[ZC_HF_ShopHomeSearchButton alloc] initWithFrame:CGRectMake(ScreenScale(12), self.navBarHeight-28-8, ScreenScale(300), 28 )];
@@ -115,7 +115,11 @@
         if (indexPath.section == 0) {
             ZC_HF_CollectionCycleHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionCycleHeader class]) forIndexPath:indexPath];
             return header;
-        }else {
+        }else if (indexPath.section == 1) {
+            ZC_HF_CollectionTimerHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionTimerHeader class]) forIndexPath:indexPath];
+            return header;
+        }
+        else {
             return [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionWordsHeader class]) forIndexPath:indexPath];
         }
 
@@ -164,6 +168,25 @@
 }
 
 
+#pragma mark - ScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    CGFloat offsetY = scrollView.contentOffset.y;
+
+    if (offsetY < ScreenScale(214)-NavBarHeight*2 || offsetY == 0) {
+        self.customNavBar.barBackgroundColor = [RGBA(202, 20, 0, 1) colorWithAlphaComponent:0];
+
+    }else {
+        CGFloat alpha = (offsetY+NavBarHeight*2-ScreenScale(214)) / NavBarHeight;
+        if (alpha > 1) {
+            alpha = 1;
+        }
+        self.customNavBar.barBackgroundColor = [RGBA(202, 20, 0, 1) colorWithAlphaComponent:0.2*alpha];
+    }
+}
+
+
 #pragma mark - getters and setters
 - (baseCollectionView *)collectionView {
     if (!_collectionView) {
@@ -185,7 +208,8 @@
         [_collectionView registerClass:[ZC_HF_CollectionCycleHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionCycleHeader class])];
         
         [_collectionView registerClass:[ZC_HF_CollectionWordsHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionWordsHeader class])];
-        
+        [_collectionView registerClass:[ZC_HF_CollectionTimerHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionTimerHeader class])];
+
         if (@available(iOS 11.0, *)) {
             _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {

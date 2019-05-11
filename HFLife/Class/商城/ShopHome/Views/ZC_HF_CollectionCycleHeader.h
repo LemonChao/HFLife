@@ -18,4 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface ZC_HF_CollectionTimerHeader : UICollectionReusableView
+
+@end
+
+
 NS_ASSUME_NONNULL_END
