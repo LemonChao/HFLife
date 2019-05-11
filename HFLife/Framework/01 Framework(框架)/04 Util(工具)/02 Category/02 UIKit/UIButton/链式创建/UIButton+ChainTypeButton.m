@@ -8,7 +8,7 @@
 //
 
 #import "UIButton+ChainTypeButton.h"
-
+#import "UIButton+AddAction.h"
 @implementation UIButton (ChainTypeButton)
 
 
@@ -71,7 +71,6 @@
         
         return self;
     };
-    
 }
 
 - (void)addActionHandler

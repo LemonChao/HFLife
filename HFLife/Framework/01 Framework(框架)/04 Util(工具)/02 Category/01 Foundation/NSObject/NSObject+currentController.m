@@ -9,9 +9,6 @@
 #import "NSObject+currentController.h"
 
 @implementation NSObject (currentController)
-
-
-
 //获取当前页面控制器
 - (UIViewController *)getCurrentViewController{
     UIViewController* currentViewController = [self getRootViewController];
