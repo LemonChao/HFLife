@@ -1,16 +1,17 @@
 //
-//  ZCHomeRecommendCell.h
+//  ZCExclusiveRecommendCell.h
 //  HFLife
 //
-//  Created by zchao on 2019/5/10.
+//  Created by zchao on 2019/5/11.
 //  Copyright © 2019 luyukeji. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-/// 新品推荐
-@interface ZCHomeRecommendCell : UICollectionViewCell
+
+/// 专属推荐
+@interface ZCExclusiveRecommendCell : UICollectionViewCell
 
 @end
 

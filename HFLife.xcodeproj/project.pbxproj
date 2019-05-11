@@ -655,6 +655,7 @@
 		6C2F5166222A663D0022EE03 /* HXDatePhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F513E222A663D0022EE03 /* HXDatePhotoEditViewController.m */; };
 		6C2F5170222A76DD0022EE03 /* UITool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F516F222A76DD0022EE03 /* UITool.m */; };
 		6C3D4ACA222680570007AF9A /* CALayer+XibBorderColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */; };
+		6C68105F228670F500300A14 /* ZCExclusiveRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68105E228670F500300A14 /* ZCExclusiveRecommendCell.m */; };
 		6C7D84F92285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D84F82285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m */; };
 		6C7D84FC22852CAF00A8E9F7 /* ZCHeaderCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D84FB22852CAF00A8E9F7 /* ZCHeaderCategoryCell.m */; };
 		6C7D84FF22856E9200A8E9F7 /* ZCHomeRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D84FE22856E9200A8E9F7 /* ZCHomeRecommendCell.m */; };
@@ -1907,6 +1908,8 @@
 		6C3D4ABA22255A0E0007AF9A /* AppColorHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppColorHeader.h; sourceTree = "<group>"; };
 		6C3D4AC8222680570007AF9A /* CALayer+XibBorderColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibBorderColor.h"; sourceTree = "<group>"; };
 		6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibBorderColor.m"; sourceTree = "<group>"; };
+		6C68105D228670F500300A14 /* ZCExclusiveRecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCExclusiveRecommendCell.h; sourceTree = "<group>"; };
+		6C68105E228670F500300A14 /* ZCExclusiveRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCExclusiveRecommendCell.m; sourceTree = "<group>"; };
 		6C7D84F72285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_CollectionCycleHeader.h; sourceTree = "<group>"; };
 		6C7D84F82285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_CollectionCycleHeader.m; sourceTree = "<group>"; };
 		6C7D84FA22852CAF00A8E9F7 /* ZCHeaderCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCHeaderCategoryCell.h; sourceTree = "<group>"; };
@@ -5674,6 +5677,8 @@
 				6C7D84FE22856E9200A8E9F7 /* ZCHomeRecommendCell.m */,
 				6C7D85092285845500A8E9F7 /* ZCRecommendCollectionCell.h */,
 				6C7D850A2285845500A8E9F7 /* ZCRecommendCollectionCell.m */,
+				6C68105D228670F500300A14 /* ZCExclusiveRecommendCell.h */,
+				6C68105E228670F500300A14 /* ZCExclusiveRecommendCell.m */,
 				6C7D84F72285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.h */,
 				6C7D84F82285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m */,
 				6C7D84FA22852CAF00A8E9F7 /* ZCHeaderCategoryCell.h */,
@@ -6275,6 +6280,7 @@
 				04A50870227EDD3A0013E8EC /* ChameleonConstants.m in Sources */,
 				658B7C4021D749E100801CC8 /* NSString+Helper.m in Sources */,
 				658C39E321E9FA5B00880B6A /* JXCategoryImageCellModel.m in Sources */,
+				6C68105F228670F500300A14 /* ZCExclusiveRecommendCell.m in Sources */,
 				04A50897227EDD3A0013E8EC /* UIImageView+WHImageView.m in Sources */,
 				048DAC4A22857516006E6BA2 /* getOutFQ_VC.m in Sources */,
 				04A50875227EDD3A0013E8EC /* NSArray+Chameleon.m in Sources */,

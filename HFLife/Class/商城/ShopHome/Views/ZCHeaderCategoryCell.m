@@ -35,7 +35,7 @@
     [self.button setTitle:params[@"title"] forState:UIControlStateNormal];
     [self.button setImage:image(params[@"imageName"]) forState:UIControlStateNormal];
     [self.button setImage:image(params[@"imageName"]) forState:UIControlStateHighlighted];
-    [self.button setImagePosition:ImagePositionTypeTop WithMargin:ScreenScale(8)];
+    [self.button setImagePosition:ImagePositionTypeTop WithMargin:ScreenScale(6)];
 }
 
 
