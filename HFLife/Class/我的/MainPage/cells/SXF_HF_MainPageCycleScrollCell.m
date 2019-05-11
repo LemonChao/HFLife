@@ -16,6 +16,8 @@
 @property (nonatomic ,strong) customCycleView *cycleV;
 @property (nonatomic ,strong) LWDPageControl *pageControl;
 @property (nonatomic , assign) NSInteger nums;//个数
+
+@property (nonatomic, strong)UIImageView *animImageV;
 @end
 
 @implementation SXF_HF_MainPageCycleScrollCell
@@ -41,7 +43,7 @@
     self.cycleV.pageNumbers = self.nums;
     self.pageControl.numberOfPages = self.nums;
     [self.cycleV refreshData];
-    [self addPageControl];
+//    [self addPageControl];
     
 }
 
@@ -65,6 +67,10 @@
     [self.contentView addSubview:self.cycleV];
     [self.contentView addSubview:self.pageControl];
     
+    self.animImageV = [[UIImageView alloc] init];
+    self.animImageV.contentMode = UIViewContentModeScaleAspectFit;
+    [self.contentView addSubview:self.animImageV];
+    self.animImageV.backgroundColor = [UIColor clearColor];
     
     self.cycleV.backgroundColor = [UIColor clearColor];
     self.cycleV.scrollStyle = CWCarouselStyle_H_4;
@@ -92,6 +98,21 @@
     //滚动到
     //    NSLog(@"滚动到section3  %ld", index);
     self.pageControl.currentPage = index;
+    
+    
+    
+    //在当前cell播放动画
+    NSString *iamgePath = [[NSBundle mainBundle] pathForResource:@"余额" ofType:@"gif"];
+    UIImage *gifImage = [UIImage sd_animatedGIFWithData:[NSData dataWithContentsOfFile:iamgePath]];
+//    self.animImageV.image = gifImage;
+    
+    [self.animImageV playGifImageData:[NSData dataWithContentsOfFile:iamgePath] repeatCount:1];
+    
+    
+    
+    
+    
+    
 }
 //点击item
 - (void)clickItemFromIndex:(NSInteger)index{
@@ -103,14 +124,16 @@
     [super layoutSubviews];
     
     [self.cycleV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(self.contentView);
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-15);
+        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(5));
+        make.left.right.mas_equalTo(self.contentView);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-5));
     }];
     
-    [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.left.mas_equalTo(self.contentView);
-        make.top.mas_equalTo(self.cycleV.mas_bottom);
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(5));
+    [self.animImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.contentView.mas_centerX);
+        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(100));
+        make.bottom.mas_equalTo(self.contentView.mas_bottom);
+        make.width.mas_equalTo(self.contentView.mas_width).multipliedBy(0.5);
     }];
     
 }
@@ -131,5 +154,8 @@
     }
     return _pageControl;
 }
+
+
+
 @end
 

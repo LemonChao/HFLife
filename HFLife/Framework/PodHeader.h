@@ -21,6 +21,7 @@
 #import "SDCycleScrollView.h"
 #import <SDImageCache.h>
 #import "NSButton+WebCache.h"
+#import <UIImage+GIF.h>
 
 
 

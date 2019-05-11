@@ -9,7 +9,7 @@
 #import "NearPageVC.h"
 #import "YYB_HF_LocalHeadView.h"
 #import "YYB_HF_LifeLocaView.h"
-@interface NearPageVC ()<UITableViewDelegate, UITableViewDataSource> {
+@interface NearPageVC (){
     int arc;
 }
 /** 容器TableView*/
