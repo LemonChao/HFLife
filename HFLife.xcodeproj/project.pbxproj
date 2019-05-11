@@ -134,7 +134,6 @@
 		048DAC7822857DF9006E6BA2 /* Per_MethodsToDealWithManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC7622857DF9006E6BA2 /* Per_MethodsToDealWithManage.m */; };
 		048DAC9022857E7D006E6BA2 /* CertificatePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC8622857E7D006E6BA2 /* CertificatePhoto.m */; };
 		048DAC9122857E7D006E6BA2 /* PersonalDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC8B22857E7D006E6BA2 /* PersonalDataCell.m */; };
-		048DACA722859078006E6BA2 /* BindingAlipayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DACA522859078006E6BA2 /* BindingAlipayVC.m */; };
 		048DACA822859078006E6BA2 /* BindingPayWayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DACA622859078006E6BA2 /* BindingPayWayVC.m */; };
 		049783832285957E00E143D7 /* NearPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497834B2285957E00E143D7 /* NearPageVC.m */; };
 		049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497834E2285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m */; };
@@ -898,9 +897,6 @@
 		048DAC8722857E7D006E6BA2 /* CertificatePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificatePhoto.h; sourceTree = "<group>"; };
 		048DAC8A22857E7D006E6BA2 /* PersonalDataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalDataCell.h; sourceTree = "<group>"; };
 		048DAC8B22857E7D006E6BA2 /* PersonalDataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalDataCell.m; sourceTree = "<group>"; };
-		048DACA322859078006E6BA2 /* BindingAlipayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingAlipayVC.h; sourceTree = "<group>"; };
-		048DACA422859078006E6BA2 /* BindingPayWayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingPayWayVC.h; sourceTree = "<group>"; };
-		048DACA522859078006E6BA2 /* BindingAlipayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingAlipayVC.m; sourceTree = "<group>"; };
 		048DACA622859078006E6BA2 /* BindingPayWayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingPayWayVC.m; sourceTree = "<group>"; };
 		0497834A2285957E00E143D7 /* NearHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearHomeVC.h; sourceTree = "<group>"; };
 		0497834B2285957E00E143D7 /* NearPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearPageVC.m; sourceTree = "<group>"; };
@@ -2616,9 +2612,6 @@
 		048DACA222859078006E6BA2 /* 绑定银行卡\支付宝 */ = {
 			isa = PBXGroup;
 			children = (
-				048DACA322859078006E6BA2 /* BindingAlipayVC.h */,
-				048DACA422859078006E6BA2 /* BindingPayWayVC.h */,
-				048DACA522859078006E6BA2 /* BindingAlipayVC.m */,
 				048DACA622859078006E6BA2 /* BindingPayWayVC.m */,
 			);
 			path = "绑定银行卡\\支付宝";
@@ -6094,7 +6087,6 @@
 				049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */,
 				04A508E4227EDD3A0013E8EC /* HREmail.m in Sources */,
 				04F5F25E2284309D0043BBB7 /* SXF_HF_MainTableHeaderView.m in Sources */,
-				048DACA722859078006E6BA2 /* BindingAlipayVC.m in Sources */,
 				658B7C7D21D749E100801CC8 /* LYEmptyView.m in Sources */,
 				659EA0B4220537EC004471CD /* SpeechSynthesizer.m in Sources */,
 				048DABB522855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m in Sources */,
