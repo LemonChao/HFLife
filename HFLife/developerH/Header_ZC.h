@@ -9,6 +9,26 @@
 #ifndef Header_ZC_h
 #define Header_ZC_h
 
+
+
+
+/************************yourTools************************/
 #import "UIView+BadgeValue.h"
 #import "UITool.h"
+/************************yourTools************************/
+
+
+
+
+/************************subUrl************************/
+static NSString *const zcTestUrl = @"w=index&t=index";
+
+/************************subUrl************************/
+
+
+
+
+
+
+
 #endif /* Header_ZC_h */
