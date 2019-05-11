@@ -106,12 +106,12 @@
     self.distanceLabel.font = FONT(9);
     self.distanceLabel.textColor = HEX_COLOR(0x333333);
     self.priceLabel.text = @"￥3580";
-    self.priceLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size: 18];
+    self.priceLabel.font = FONT(17);
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
     
     self.oldPriceLabel.text = @"￥3580";
     self.oldPriceLabel.textColor = HEX_COLOR(0xAAAAAA);
-    self.oldPriceLabel.font = FONT(9);
+    self.oldPriceLabel.font = FONT(11);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
     self.concessionMoney.text = @"让利$100";
@@ -153,13 +153,13 @@
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
         make.top.mas_equalTo(self.adLabel.mas_bottom).mas_offset(5);
-        make.height.mas_equalTo(15);
+        make.height.mas_equalTo(17);
     }];
     
     [self.oldPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.priceLabel.mas_right).mas_offset(5);
         make.bottom.mas_equalTo(self.priceLabel);
-        make.height.mas_equalTo(9);
+        make.height.mas_equalTo(11);
     }];
     
     [self.concessionMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -287,12 +287,12 @@
     self.distanceLabel.text = @"4.5km";
     self.distanceLabel.font = FONT(9);
     self.priceLabel.text = @"￥3580";
-    self.priceLabel.font = FONT(14);
+    self.priceLabel.font = FONT(17);
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
     
     self.oldPriceLabel.text = @"￥3580";
     self.oldPriceLabel.textColor = HEX_COLOR(0xAAAAAA);
-    self.oldPriceLabel.font = FONT(9);
+    self.oldPriceLabel.font = FONT(11);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
     self.concessionMoney.text = @"让利$100";
@@ -328,14 +328,14 @@
     
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
-        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(5);
-        make.height.mas_equalTo(15);
+        make.bottom.mas_equalTo(self.showImage.mas_bottom).mas_offset(0);
+        make.height.mas_equalTo(17);
     }];
     
     [self.oldPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.priceLabel.mas_right).mas_offset(5);
         make.bottom.mas_equalTo(self.priceLabel);
-        make.height.mas_equalTo(9);
+        make.height.mas_equalTo(11);
     }];
     
     [self.concessionMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -351,7 +351,8 @@
         make.top.mas_equalTo(self.concessionMoney);
     }];
     [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.showImage.mas_left).mas_offset(-24);
+        make.right.mas_equalTo(self.showImage.mas_left).mas_offset(-5);
+        make.left.mas_equalTo(self.concessionIamgeView.mas_right).mas_offset(5);
         make.bottom.mas_equalTo(self.priceLabel);
         make.height.mas_equalTo(9);
     }];

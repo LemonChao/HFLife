@@ -22,43 +22,59 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIButton *imgButton = [UITool imageButton:image(@"zhendianzhibao") cornerRadius:4 borderWidth:0.f borderColor:[UIColor clearColor]];
-        
-        UIStackView *stack = [[UIStackView alloc] initWithArrangedSubviews:self.subButtons];
-        stack.axis = UILayoutConstraintAxisHorizontal;
-        stack.distribution = UIStackViewDistributionFillEqually;
-        stack.alignment = UIStackViewAlignmentFill;
-        //        stack.spacing = WidthRatio(40);
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        UIButton *imgButton = [self imageButton:@"zhendianzhibao"];
+        UIButton *topLeftButton = [self imageButton:@"pinpaizhekou"];
+        UIButton *topRightButton = [self imageButton:@"tiantiantemai"];
+        UIButton *bottomLeftButton = [self imageButton:@"shihuihaohuo"];
+        UIButton *bottomRightButton = [self imageButton:@"pinleimiaosha"];
+
         
         [self.contentView addSubview:imgButton];
-        [self.contentView addSubview:stack];
+        [self.contentView addSubview:topLeftButton];
+        [self.contentView addSubview:topRightButton];
+        [self.contentView addSubview:bottomLeftButton];
+        [self.contentView addSubview:bottomRightButton];
         [imgButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.equalTo(self.contentView);
+            make.top.equalTo(self.contentView);
             make.left.right.equalTo(self.contentView).inset(ScreenScale(12));
+            make.height.mas_equalTo(ScreenScale(100));
         }];
         
-        //        [stack mas_makeConstraints:^(MASConstraintMaker *make) {
-        //
-        //        }];
+        [topLeftButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(imgButton.mas_bottom).offset(ScreenScale(12));
+            make.left.equalTo(self.contentView).inset(ScreenScale(12));
+            make.size.mas_equalTo(CGSizeMake(ScreenScale(170), ScreenScale(100)));
+        }];
+        [topRightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(imgButton.mas_bottom).offset(ScreenScale(12));
+            make.right.equalTo(self.contentView).inset(ScreenScale(12));
+            make.size.equalTo(topLeftButton);
+        }];
+
+        [bottomLeftButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(topLeftButton.mas_bottom).offset(ScreenScale(12));
+            make.left.equalTo(self.contentView).inset(ScreenScale(12));
+            make.size.equalTo(topLeftButton);
+        }];
+
+        [bottomRightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(topRightButton.mas_bottom).offset(ScreenScale(12));
+            make.right.equalTo(self.contentView).inset(ScreenScale(12));
+            make.size.equalTo(topLeftButton);
+        }];
+
     }
     return self;
 }
 
-
-
-- (NSArray<UIButton *> *)subButtons {
-    if (!_subButtons) {
-        NSArray *imageNames = @[@"pinpaizhekou",@"tiantiantemai",@"shihuihaohuo",@"pinleimiaosha"];
-        NSMutableArray *array = [NSMutableArray array];
-        for (int i = 0; i < imageNames.count; i++) {
-            UIButton *button = [UITool imageButton:image(imageNames[i]) cornerRadius:4 borderWidth:0.f borderColor:[UIColor clearColor]];
-            [button addTarget:self action:@selector(imageButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-            [array addObject:button];
-        }
-        _subButtons = array.copy;
-
-    }
-    return _subButtons;
+- (UIButton *)imageButton:(NSString *)imgName {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:image(imgName) forState:UIControlStateNormal];
+    [button setBackgroundImage:image(imgName) forState:UIControlStateHighlighted];
+    button.imageView.contentMode = UIViewContentModeScaleToFill;
+    [button addTarget:self action:@selector(imageButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    return button;
 }
 
 

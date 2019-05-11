@@ -9,7 +9,10 @@
 #import "ZC_HF_ShopHomeVC.h"
 #import "ZC_HF_ShopHomeSearchButton.h"
 #import "ZC_HF_HomeRushPurchaseCell.h"
+#import "ZCHomeDiscountCell.h"
 #import "XPCollectionViewWaterfallFlowLayout.h"
+#import "ZC_HF_CollectionCycleHeader.h"
+#import "ZCHomeRecommendCell.h"
 
 @interface ZC_HF_ShopHomeVC ()<XPCollectionViewWaterfallFlowLayoutDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -46,33 +49,115 @@
 
 /// Return per section's column number(must be greater than 0).
 - (NSInteger)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout numberOfColumnInSection:(NSInteger)section {
-    return 2;
+    return 1;
 }
 /// Return per item's height
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout itemWidth:(CGFloat)width
  heightForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
-}
+    if (indexPath.section == 1) {
+        return ScreenScale(194);
+    }else if (indexPath.section == 2) {
+        return ScreenScale(334);
+    }else if (indexPath.section == 3) {
+        return ScreenScale(160);
+    }
+    return ScreenScale(334);
 
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    if (section == 0) {
+        return 0;
+    }
+    else if (section == 3) {
+        return 1;
+    }else {
+        return 1;
+    }
 }
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 4;
+}
+
+/// header footer View
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        if (indexPath.section == 0) {
+            ZC_HF_CollectionCycleHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionCycleHeader class]) forIndexPath:indexPath];
+            return header;
+        }else {
+            return [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionWordsHeader class]) forIndexPath:indexPath];
+        }
+
+    }else {
+        UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([UICollectionReusableView class]) forIndexPath:indexPath];
+        return footer;
+    }
+}
+
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ZC_HF_HomeRushPurchaseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZC_HF_HomeRushPurchaseCell class]) forIndexPath:indexPath];
-    return cell;
+    if (indexPath.section == 1) {
+        ZCHomeDiscountCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeDiscountCell class]) forIndexPath:indexPath];
+        return cell;
+    }
+    else if (indexPath.section == 2) {
+        ZC_HF_HomeRushPurchaseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZC_HF_HomeRushPurchaseCell class]) forIndexPath:indexPath];
+        return cell;
+
+    }
+    else if (indexPath.section == 3) {
+        ZCHomeRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeRecommendCell class]) forIndexPath:indexPath];
+        return cell;
+
+    }
+    else {
+        ZC_HF_HomeRushPurchaseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZC_HF_HomeRushPurchaseCell class]) forIndexPath:indexPath];
+        return cell;
+    }
+}
+
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout *)layout referenceHeightForFooterInSection:(NSInteger)section {
+    return 0.0f;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout referenceHeightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return ScreenScale(365);
+    }else {
+        return ScreenScale(40);
+    }
 }
 
 
 #pragma mark - getters and setters
 - (baseCollectionView *)collectionView {
     if (!_collectionView) {
-        _collectionView = [[baseCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.layout];
+        _collectionView = [[baseCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TabBarHeight) collectionViewLayout:self.layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = BackGroundColor;
+        
+        [_collectionView registerClass:[ZCHomeDiscountCell class] forCellWithReuseIdentifier:NSStringFromClass([ZCHomeDiscountCell class])];
+        
         [_collectionView registerClass:[ZC_HF_HomeRushPurchaseCell class] forCellWithReuseIdentifier:NSStringFromClass([ZC_HF_HomeRushPurchaseCell class])];
+        
+        [_collectionView registerClass:[ZCHomeRecommendCell class] forCellWithReuseIdentifier:NSStringFromClass([ZCHomeRecommendCell class])];
+
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class])];
+        
+        [_collectionView registerClass:[ZC_HF_CollectionCycleHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionCycleHeader class])];
+        
+        [_collectionView registerClass:[ZC_HF_CollectionWordsHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionWordsHeader class])];
+        
+        if (@available(iOS 11.0, *)) {
+            _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
     }
     return _collectionView;
 }

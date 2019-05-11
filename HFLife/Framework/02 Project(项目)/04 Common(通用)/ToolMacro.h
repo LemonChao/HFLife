@@ -142,10 +142,10 @@ return [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]];\
 
 /// ------------------------ 字体相关 ------------------------
 // Medium字体
-#define MediumFont(sizePt)  [UIFont systemFontOfSize:FontRatio(sizePt) weight:UIFontWeightMedium]
+#define MediumFont(sizePt)  [UIFont systemFontOfSize:sizePt weight:UIFontWeightMedium]
 // Bold字体
-#define BoldFont(sizePt)    [UIFont boldSystemFontOfSize:FontRatio(sizePt)]
+#define BoldFont(sizePt)    [UIFont boldSystemFontOfSize:sizePt]
 // system|regular字体
-#define SystemFont(sizePt)  [UIFont systemFontOfSize:FontRatio(sizePt)]
+#define SystemFont(sizePt)  [UIFont systemFontOfSize:sizePt]
 
 #endif /* ToolMacro_h */

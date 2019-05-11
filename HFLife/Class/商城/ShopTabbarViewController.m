@@ -34,7 +34,7 @@
     //配置信息
     JMConfig *config = [JMConfig config];
     config.norTitleColor = HEX_COLOR(0x131313);
-    config.selTitleColor = HEX_COLOR(0xCA1400);
+    config.selTitleColor = GeneralRedColor;
     config.titleFont = 11.0f;
     config.titleOffset = -2;
     config.animType = JMConfigTabBarAnimTypeNormal;
@@ -56,7 +56,7 @@
         [[JMConfig config].tabBarController dismissViewControllerAnimated:YES completion:^{
             JMConfig *config = [JMConfig config];
             config.norTitleColor = HEX_COLOR(0xAAAAAA);
-            config.selTitleColor = HEX_COLOR(0xCA1400);
+            config.selTitleColor = GeneralRedColor;
         }];
     }];
 

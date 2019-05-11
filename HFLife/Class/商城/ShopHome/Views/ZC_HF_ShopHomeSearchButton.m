@@ -16,7 +16,7 @@
     if (self) {
         self.layer.cornerRadius = 14.f;
         self.clipsToBounds = YES;
-        self.backgroundColor = RGBA(237, 242, 243, 1);
+        self.backgroundColor = RGBA(237, 242, 243,0.8);
         [self addTarget:self action:@selector(searchButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         UIImageView *imgView = [[UIImageView alloc]initWithImage:image(@"shopHome_search")];
         UILabel *titleLab = [UILabel new].setText(@"搜一搜").setTextColor(AssistColor);

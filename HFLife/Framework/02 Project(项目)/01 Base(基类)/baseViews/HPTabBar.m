@@ -21,7 +21,7 @@
 //    CGFloat w = self.width/5.0;
     
     [self addSubview:self.plusBtn];
-    [self.plusBtn setImagePositionWithType:SSImagePositionTypeTop spacing:4];
+    [self.plusBtn setImagePosition:ImagePositionTypeTop spacing:4];
     
         // 其他位置按钮
     NSUInteger count = self.subviews.count;
