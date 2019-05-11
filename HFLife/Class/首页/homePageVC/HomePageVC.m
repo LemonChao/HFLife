@@ -1,6 +1,6 @@
 //
 //  HomePageVC.m
-//  HanPay
+//  HFLife
 //
 //  Created by mac on 2018/12/29.
 //  Copyright © 2018年 mac. All rights reserved.
@@ -17,6 +17,10 @@
 
 #import "SXF_HF_CustomSearchBar.h"
 #import "SXF_HF_HomePageView.h"
+#import "FlickingVC.h"
+#import "PaymentVC.h"
+#import "GatheringVC.h"
+#import "CardPackageVC.h"
 @interface HomePageVC ()<UITableViewDelegate, UITableViewDataSource ,JFLocationDelegate>
 @property (nonatomic, strong)JFLocation *locationManager;
 @property (nonatomic, strong)NSTimer *circleTimer;
@@ -59,6 +63,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    WEAK(weakSelf);
     if (![[NSUserDefaults standardUserDefaults] boolForKey:BOOLFORKEY]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:BOOLFORKEY];
             // 静态引导页
@@ -76,36 +81,44 @@
     [self setUpUI];    
     //headerAction
     self.collectionView.selectedHeaderBtnBlock = ^(NSInteger index) {
-        NSLog(@"点击区头 ： %ld", index);
-        BaseViewController *baseVC = [BaseViewController new];
-        baseVC.customNavBar.title = @"baseVC";
-        [self.navigationController pushViewController:baseVC animated:YES];
+        [weakSelf headerBtnAction:index];
     };
     
     self.collectionView.selectedItem = ^(NSIndexPath * _Nonnull indexPath) {
         NSLog(@"%ld分区   %ld个", (long)indexPath.section, (long)indexPath.row);
     };
-    WEAK(weakSelf);
     self.collectionView.refreshDataCallBack = ^(NSInteger page) {
         [weakSelf loadServerData:page];
     };
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSearchBar:) name:@"hiddenSearchBar" object:nil];
-    
-    
-    
-}
-- (void)hiddenSearchBar:(NSNotification *)notifi{
-    NSLog(@"%@", notifi.object);
-//    self.searchBar.alpha = [notifi.object floatValue];
 }
 
+
+- (void) headerBtnAction:(NSInteger)index{
+    NSLog(@"点击区头 ： %ld", index);
+    UIViewController *vc = [BaseViewController new];
+    if (index == 0) {
+        vc = [FlickingVC new];//扫一扫
+    }else if (index == 1){
+        vc = [PaymentVC new];//付款
+    }else if (index == 2){
+        vc = [GatheringVC new];//收款
+    }else if (index == 3){
+        vc = [CardPackageVC new];//卡包
+    }else if (index == 4){
+        //搜索
+        
+    }
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)setUpUI{
+    WEAK(weakSelf);
     SXF_HF_CustomSearchBar *searchBar = [[SXF_HF_CustomSearchBar alloc] initWithFrame:CGRectMake(0, statusBarHeight, SCREEN_WIDTH, 44)];
     [self.customNavBar addSubview:searchBar];
     searchBar.topBarBtnClick = ^(NSInteger tag) {
         NSLog(@"tag = %ld", tag);
+        [weakSelf headerBtnAction:tag];
     };
     self.searchBar = searchBar;
 

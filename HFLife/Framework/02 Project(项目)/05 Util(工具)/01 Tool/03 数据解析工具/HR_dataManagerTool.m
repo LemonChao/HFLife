@@ -103,7 +103,7 @@
 }
 
 //解析列表（数组）数据
-+ (NSArray *)getTheRecordMsgWithArr:(NSArray *)dataArr withClass:(Class)recordClass
++ (NSArray *)getModelArrWithArr:(NSArray *)dataArr withClass:(Class)recordClass
 {
     NSMutableArray *recordArr = [NSMutableArray array];
     NSLog(@"列表数据------%@" , dataArr);

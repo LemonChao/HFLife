@@ -10,5 +10,5 @@
 #define Header_SXF_h
 
 #import "HW3DBannerView.h"
-
+#import "SXF_HF_HomePageModel.h"
 #endif /* Header_SXF_h */

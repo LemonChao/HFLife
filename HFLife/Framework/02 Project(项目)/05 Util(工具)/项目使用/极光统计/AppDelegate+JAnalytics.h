@@ -1,6 +1,6 @@
 //
 //  AppDelegate+JAnalytics.h
-//  HanPay
+//  HFLife
 //
 //  Created by mac on 2019/4/8.
 //  Copyright © 2019年 mac. All rights reserved.

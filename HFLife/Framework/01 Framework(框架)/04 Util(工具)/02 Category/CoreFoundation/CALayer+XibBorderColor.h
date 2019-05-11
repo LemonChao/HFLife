@@ -1,6 +1,6 @@
 //
 //  CALayer+XibBorderColor.h
-//  HanPay
+//  HFLife
 //
 //  Created by zchao on 2019/2/27.
 //  Copyright © 2019 mac. All rights reserved.
