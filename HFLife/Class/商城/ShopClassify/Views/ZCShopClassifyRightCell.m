@@ -10,7 +10,9 @@
 
 @interface ZCShopClassifyRightCell ()
 
-@property(nonatomic, strong) UIButton *button;
+@property(nonatomic, strong) UIImageView *imageView;
+
+@property(nonatomic, strong) UILabel *titleLable;
 
 @end
 
@@ -22,27 +24,35 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addSubview:self.button];
+        [self.contentView addSubview:self.imageView];
+        [self.contentView addSubview:self.titleLable];
         
-        [self.button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+        [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.top.equalTo(self.contentView);
+            make.size.mas_equalTo(CGSizeMake(ScreenScale(55), ScreenScale(55)));
         }];
         
-        [self layoutIfNeeded];
-        [self.button setImagePosition:ImagePositionTypeTop WithMargin:0];
+        [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.contentView);
+        }];
     }
     return self;
 }
 
 
-
-- (UIButton *)button {
-    if (!_button) {
-        _button = [UITool richButton:UIButtonTypeCustom title:@"苹果" titleColor:ImportantColor font:SystemFont(12) bgColor:[UIColor whiteColor] image:image(@"jiajujiazhuang")];
+- (UIImageView *)imageView {
+    if (!_imageView) {
+        _imageView = [UITool imageViewImage:image(@"jiajujiazhuang") contentMode:UIViewContentModeScaleAspectFit];
     }
-    return _button;
+    return _imageView;
 }
 
+- (UILabel *)titleLable {
+    if (!_titleLable) {
+        _titleLable = [UITool labelWithText:@"苹果" textColor:ImportantColor font:SystemFont(12) alignment:NSTextAlignmentCenter numberofLines:1 backgroundColor:[UIColor whiteColor]];
+    }
+    return _titleLable;
+}
 
 
 @end

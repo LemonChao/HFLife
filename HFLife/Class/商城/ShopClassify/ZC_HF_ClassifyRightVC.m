@@ -50,7 +50,7 @@
     if (!_rightCollection) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.sectionInset = UIEdgeInsetsMake(ScreenScale(10), ScreenScale(22), ScreenScale(10), ScreenScale(22));
-        layout.itemSize = CGSizeMake(ScreenScale(55), ScreenScale(55));
+        layout.itemSize = CGSizeMake(ScreenScale(55), ScreenScale(85));
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumLineSpacing  = ScreenScale(30);
         _rightCollection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];

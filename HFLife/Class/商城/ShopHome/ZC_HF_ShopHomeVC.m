@@ -14,11 +14,16 @@
 #import "ZC_HF_CollectionCycleHeader.h"
 #import "ZCHomeRecommendCell.h"
 #import "ZCExclusiveRecommendCell.h"
+#import "ZCShopHomeViewModel.h"
+
+
 
 @interface ZC_HF_ShopHomeVC ()<XPCollectionViewWaterfallFlowLayoutDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 
-@property (nonatomic ,strong) baseCollectionView *collectionView;
-@property (nonatomic ,strong) XPCollectionViewWaterfallFlowLayout *layout;
+@property(nonatomic ,strong) baseCollectionView *collectionView;
+@property(nonatomic ,strong) XPCollectionViewWaterfallFlowLayout *layout;
+@property(nonatomic, strong) ZCShopHomeViewModel *viewModel;
+
 @end
 
 @implementation ZC_HF_ShopHomeVC
@@ -29,6 +34,8 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.collectionView];
+    
+    [self getData:@"1"];
 }
 
 
@@ -45,6 +52,16 @@
 }
 
 #pragma mark - event response
+
+- (void)getData:(NSString *)page {
+    
+    [[self.viewModel.shopHomeCmd execute:nil] subscribeNext:^(id  _Nullable x) {
+        
+    }error:^(NSError * _Nullable error) {
+        
+    }];
+}
+
 
 #pragma mark - UICollectionViewDelegate && UICollectionViewDataSource
 
@@ -114,9 +131,6 @@
     if (kind == UICollectionElementKindSectionHeader) {
         if (indexPath.section == 0) {
             ZC_HF_CollectionCycleHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionCycleHeader class]) forIndexPath:indexPath];
-            return header;
-        }else if (indexPath.section == 1) {
-            ZC_HF_CollectionTimerHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionTimerHeader class]) forIndexPath:indexPath];
             return header;
         }
         else {
@@ -208,7 +222,6 @@
         [_collectionView registerClass:[ZC_HF_CollectionCycleHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionCycleHeader class])];
         
         [_collectionView registerClass:[ZC_HF_CollectionWordsHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionWordsHeader class])];
-        [_collectionView registerClass:[ZC_HF_CollectionTimerHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionTimerHeader class])];
 
         if (@available(iOS 11.0, *)) {
             _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -226,6 +239,13 @@
         _layout.dataSource = self;//设置数据源代理
     }
     return _layout;
+}
+
+- (ZCShopHomeViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[ZCShopHomeViewModel alloc] init];
+    }
+    return _viewModel;
 }
 
 #pragma mark - private

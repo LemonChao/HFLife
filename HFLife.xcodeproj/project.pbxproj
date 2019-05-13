@@ -621,6 +621,7 @@
 		6C0A93172289212D0090623B /* ZCShopClassifyLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A93162289212D0090623B /* ZCShopClassifyLeftCell.m */; };
 		6C0A931B228929A10090623B /* ZC_HF_ClassifyRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A931A228929A10090623B /* ZC_HF_ClassifyRightVC.m */; };
 		6C0A931E228948E40090623B /* ZCShopClassifyRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A931D228948E40090623B /* ZCShopClassifyRightCell.m */; };
+		6C0A932522895D130090623B /* ZCShopHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A932422895D130090623B /* ZCShopHomeViewModel.m */; };
 		6C0CF29F2233BD3100E0E2AC /* CornerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0CF29E2233BD3000E0E2AC /* CornerShadowView.m */; };
 		6C2F5141222A663D0022EE03 /* HXCustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F50F4222A663D0022EE03 /* HXCustomCameraViewController.m */; };
 		6C2F5142222A663D0022EE03 /* UIViewController+HXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F50F5222A663D0022EE03 /* UIViewController+HXExtension.m */; };
@@ -665,6 +666,7 @@
 		6C68105F228670F500300A14 /* ZCExclusiveRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68105E228670F500300A14 /* ZCExclusiveRecommendCell.m */; };
 		6C68106C2286AFCD00300A14 /* BindingAlipayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68106A2286AFCD00300A14 /* BindingAlipayVC.m */; };
 		6C68106D2286AFCD00300A14 /* BindingPayWayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68106B2286AFCD00300A14 /* BindingPayWayVC.m */; };
+		6C6BCD6B228975D500BE069A /* CountdDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6BCD6A228975D500BE069A /* CountdDownView.m */; };
 		6C7D84F92285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D84F82285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m */; };
 		6C7D84FC22852CAF00A8E9F7 /* ZCHeaderCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D84FB22852CAF00A8E9F7 /* ZCHeaderCategoryCell.m */; };
 		6C7D84FF22856E9200A8E9F7 /* ZCHomeRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D84FE22856E9200A8E9F7 /* ZCHomeRecommendCell.m */; };
@@ -1845,6 +1847,8 @@
 		6C0A931A228929A10090623B /* ZC_HF_ClassifyRightVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_ClassifyRightVC.m; sourceTree = "<group>"; };
 		6C0A931C228948E40090623B /* ZCShopClassifyRightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopClassifyRightCell.h; sourceTree = "<group>"; };
 		6C0A931D228948E40090623B /* ZCShopClassifyRightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopClassifyRightCell.m; sourceTree = "<group>"; };
+		6C0A932322895D130090623B /* ZCShopHomeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopHomeViewModel.h; sourceTree = "<group>"; };
+		6C0A932422895D130090623B /* ZCShopHomeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopHomeViewModel.m; sourceTree = "<group>"; };
 		6C0CF29D2233BD3000E0E2AC /* CornerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CornerShadowView.h; sourceTree = "<group>"; };
 		6C0CF29E2233BD3000E0E2AC /* CornerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CornerShadowView.m; sourceTree = "<group>"; };
 		6C2F50F4222A663D0022EE03 /* HXCustomCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXCustomCameraViewController.m; sourceTree = "<group>"; };
@@ -1935,6 +1939,8 @@
 		6C6810692286AFCD00300A14 /* BindingPayWayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingPayWayVC.h; sourceTree = "<group>"; };
 		6C68106A2286AFCD00300A14 /* BindingAlipayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingAlipayVC.m; sourceTree = "<group>"; };
 		6C68106B2286AFCD00300A14 /* BindingPayWayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingPayWayVC.m; sourceTree = "<group>"; };
+		6C6BCD69228975D500BE069A /* CountdDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountdDownView.h; sourceTree = "<group>"; };
+		6C6BCD6A228975D500BE069A /* CountdDownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountdDownView.m; sourceTree = "<group>"; };
 		6C7D84F72285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_CollectionCycleHeader.h; sourceTree = "<group>"; };
 		6C7D84F82285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_CollectionCycleHeader.m; sourceTree = "<group>"; };
 		6C7D84FA22852CAF00A8E9F7 /* ZCHeaderCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCHeaderCategoryCell.h; sourceTree = "<group>"; };
@@ -5581,6 +5587,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		6C0A931F22895CBB0090623B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6C0A932322895D130090623B /* ZCShopHomeViewModel.h */,
+				6C0A932422895D130090623B /* ZCShopHomeViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		6C2F50F3222A663D0022EE03 /* HXPhotoPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -5700,6 +5715,7 @@
 			children = (
 				6CCAD6F622827CBE001824A0 /* ZC_HF_ShopHomeVC.h */,
 				6CCAD6F722827CBE001824A0 /* ZC_HF_ShopHomeVC.m */,
+				6C0A931F22895CBB0090623B /* ViewModel */,
 				6CCAD70C2282E651001824A0 /* Views */,
 			);
 			path = ShopHome;
@@ -5756,6 +5772,8 @@
 				6C7D84F82285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m */,
 				6C7D84FA22852CAF00A8E9F7 /* ZCHeaderCategoryCell.h */,
 				6C7D84FB22852CAF00A8E9F7 /* ZCHeaderCategoryCell.m */,
+				6C6BCD69228975D500BE069A /* CountdDownView.h */,
+				6C6BCD6A228975D500BE069A /* CountdDownView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -6253,6 +6271,7 @@
 				04A5084F227EDD3A0013E8EC /* ZFBrightnessView.m in Sources */,
 				658B7C5521D749E100801CC8 /* LKBubbleView.m in Sources */,
 				658B79F621D71D1800801CC8 /* main.m in Sources */,
+				6C0A932522895D130090623B /* ZCShopHomeViewModel.m in Sources */,
 				658B7C5821D749E100801CC8 /* NSObject+LKBubbleView.m in Sources */,
 				04A508C5227EDD3A0013E8EC /* UIColor+Image.m in Sources */,
 				04A508D6227EDD3A0013E8EC /* NSDictionary+Category.m in Sources */,
@@ -6483,6 +6502,7 @@
 				6C2F515D222A663D0022EE03 /* HXDatePhotoViewTransition.m in Sources */,
 				049783982285957F00E143D7 /* NearHomeVC.m in Sources */,
 				65B5DD9A221BDA4E00A65044 /* JFLocationSingleton.m in Sources */,
+				6C6BCD6B228975D500BE069A /* CountdDownView.m in Sources */,
 				6CCAD70F2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m in Sources */,
 				04A508A0227EDD3A0013E8EC /* UIButton+WHButton.m in Sources */,
 				04A5086F227EDD3A0013E8EC /* UIColor+ChameleonPrivate.m in Sources */,
