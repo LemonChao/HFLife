@@ -36,7 +36,13 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    [SXF_HF_AlertView showAlertType:AlertType_login Complete:nil];
+    [SXF_HF_AlertView showAlertType:AlertType_save Complete:^(BOOL btnBype) {
+        if (btnBype) {
+            NSLog(@"right");
+        }else{
+            NSLog(@"left");
+        }
+    }];
     
     
 }

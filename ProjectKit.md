@@ -33,5 +33,11 @@ ScreenScale(<#x#>)
 }];
 
 #登录提示y弹窗
-[SXF_HF_LoginAlertView showLoginAlertComplete:nil];
+[SXF_HF_AlertView showAlertType:AlertType_save Complete:^(BOOL btnBype) {
+if (btnBype) {
+NSLog(@"right");
+}else{
+NSLog(@"left");
+}
+}];
 
