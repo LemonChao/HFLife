@@ -41,7 +41,7 @@
     if (self.style == CWCarouselStyle_H_4) {
         self.minScale = 0.6;
         self.maxScale = 1.4;
-        self.itemWidth = [UIScreen mainScreen].bounds.size.width * 0.5;
+        self.itemWidth = [UIScreen mainScreen].bounds.size.width * 0.4;
     }
 }
 
@@ -86,7 +86,7 @@
             CGFloat height = CGRectGetHeight(self.collectionView.frame);
             self.itemSize = CGSizeMake(width, self.style == CWCarouselStyle_H_4 ? height / self.maxScale : height);
             self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            self.factItemSpace = -60;
+            self.factItemSpace = -30;
             if(width * (1 - self.minScale) * 0.5 < self.itemSpace_H) {
                 self.factItemSpace = self.itemSpace_H - width * (1 - self.minScale) * 0.5;
             }

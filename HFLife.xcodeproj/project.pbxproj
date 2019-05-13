@@ -330,7 +330,6 @@
 		04B9D4EE22803C6B0084FA23 /* JMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9D4E322803C6B0084FA23 /* JMTabBar.m */; };
 		04B9D4EF22803C6B0084FA23 /* JMBadgeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9D4E522803C6B0084FA23 /* JMBadgeValue.m */; };
 		04B9D4F022803C6B0084FA23 /* sxfTouchBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9D4E622803C6B0084FA23 /* sxfTouchBtn.m */; };
-		04B9D53B22803CF20084FA23 /* homeNavBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B9D4F222803CF00084FA23 /* homeNavBG.png */; };
 		04B9D53C22803CF20084FA23 /* HomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9D4F422803CF00084FA23 /* HomePageVC.m */; };
 		04B9D53D22803CF20084FA23 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9D4F622803CF00084FA23 /* MapViewController.m */; };
 		04B9D53E22803CF20084FA23 /* VRMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9D4F922803CF00084FA23 /* VRMarket.m */; };
@@ -1296,7 +1295,6 @@
 		04B9D4E422803C6B0084FA23 /* JMTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTabBarButton.h; sourceTree = "<group>"; };
 		04B9D4E522803C6B0084FA23 /* JMBadgeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMBadgeValue.m; sourceTree = "<group>"; };
 		04B9D4E622803C6B0084FA23 /* sxfTouchBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sxfTouchBtn.m; sourceTree = "<group>"; };
-		04B9D4F222803CF00084FA23 /* homeNavBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeNavBG.png; sourceTree = "<group>"; };
 		04B9D4F322803CF00084FA23 /* HomePageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageVC.h; sourceTree = "<group>"; };
 		04B9D4F422803CF00084FA23 /* HomePageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageVC.m; sourceTree = "<group>"; };
 		04B9D4F622803CF00084FA23 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
@@ -2144,7 +2142,6 @@
 		0453D1B12283B60100880C2A /* homePageVC */ = {
 			isa = PBXGroup;
 			children = (
-				04B9D4F222803CF00084FA23 /* homeNavBG.png */,
 				04B9D4F322803CF00084FA23 /* HomePageVC.h */,
 				04B9D4F422803CF00084FA23 /* HomePageVC.m */,
 				04F5F24F228418880043BBB7 /* SXF_HF_HomePageVM.h */,
@@ -4191,10 +4188,10 @@
 		04B9D4F122803CF00084FA23 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
-				048DABB622855DCF006E6BA2 /* subControlers */,
-				0453D1B12283B60100880C2A /* homePageVC */,
 				048DABFE22857057006E6BA2 /* SXF_HF_HomePageModel.h */,
 				048DABFF22857057006E6BA2 /* SXF_HF_HomePageModel.m */,
+				048DABB622855DCF006E6BA2 /* subControlers */,
+				0453D1B12283B60100880C2A /* homePageVC */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -5905,7 +5902,6 @@
 				0453D1EF2284033000880C2A /* errorAlertViewViewController.xib in Resources */,
 				6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */,
 				04A5085D227EDD3A0013E8EC /* myCollectionViewCell.xib in Resources */,
-				04B9D53B22803CF20084FA23 /* homeNavBG.png in Resources */,
 				658B7CB721D749E100801CC8 /* Alert.png in Resources */,
 				65DC68312211253200F1085E /* shareView_qq@2x.png in Resources */,
 				04A508B0227EDD3A0013E8EC /* qqImage.png in Resources */,

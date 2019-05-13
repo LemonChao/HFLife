@@ -141,8 +141,6 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"homeNavBG"] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -202,7 +200,6 @@
         [self uploadBackLocation:city];
         
     });
-    
     //4.开始执行
     dispatch_resume(timer);
     

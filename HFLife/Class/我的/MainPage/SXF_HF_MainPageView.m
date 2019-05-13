@@ -38,11 +38,10 @@
     return self;
 }
 - (void) addChildrenViews{
-    _titleArr = @[@"分区1", @"分区2", @"分区3"];
+    _titleArr = @[@"资产", @"综合服务"];
     [self addSubview:self.tableView];
-    self.headerView.backgroundColor = [UIColor orangeColor];
     self.tableView.tableHeaderView = self.headerView;
-    
+    self.tableView.backgroundColor = rgb(245.0, 245.0, 245.0);
     self.tableView.refreshHeaderBlock = ^{
         
     };
@@ -67,13 +66,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *anyCell;
+    WEAK(weakSelf);
     if (indexPath.section == 0) {
         SXF_HF_MainPageCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SXF_HF_MainPageCycleScrollCell class]) forIndexPath:indexPath];
         cell.modelArr = @[@"", @"", @""];
+        cell.selectItemBlock = ^(NSInteger index) {
+            !weakSelf.selectedItemCallback? : weakSelf.selectedItemCallback([NSIndexPath indexPathForRow:index inSection:indexPath.section]);
+        };
         anyCell = cell;
     }else
         if (indexPath.section == 1){
         SXF_HF_MainPageMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SXF_HF_MainPageMenuCell class]) forIndexPath:indexPath];
+            cell.selecteItem = ^(NSInteger index) {
+                !weakSelf.selectedItemCallback? : weakSelf.selectedItemCallback([NSIndexPath indexPathForRow:index inSection:indexPath.section]);
+            };
         anyCell = cell;
     }else{
         anyCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
@@ -88,7 +94,7 @@
     if (indexPath.section == 0) {
         return (710.0 / 389.0) * 0.5 * SCREEN_WIDTH ;
     }else if (indexPath.section == 1){
-        return 140;
+        return ScreenScale(180);
     }else{
         return 50;
     }
@@ -125,7 +131,7 @@
 
 - (SXF_HF_MainTableHeaderView *)headerView{
     if (!_headerView) {
-        _headerView = [[SXF_HF_MainTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(200))];
+        _headerView = [[SXF_HF_MainTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(210))];
     }
     return _headerView;
 }

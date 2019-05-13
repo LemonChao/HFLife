@@ -72,10 +72,6 @@
             [MBProgressHUD SG_showMBProgressHUDWithModifyStyleMessage:@"正在处理..." toView:weakSelf.view];
             [obtain stopRunning];
             [obtain playSoundName:@"SGQRCode.bundle/sound.caf"];
-            
-//            ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
-//            jumpVC.comeFromVC = ScanSuccessJumpComeFromWC;
-//            jumpVC.jump_URL = result;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 NSLog(@"result = %@",result);
                 [MBProgressHUD SG_hideHUDForView:weakSelf.view];
@@ -89,25 +85,6 @@
                     code = result;
                 }
                 [weakSelf decodingString:code];
-//                NSString *amoubt = [RSAEncryptor decryptString:result privateKey:AMOUNTRSAPUBLICKEY];
-//                if ([amoubt containsString:@"HanPay:"]) {
-//                    NSArray *array = [amoubt componentsSeparatedByString:@","];
-//                    NSString *str1 = array[0];
-//                    NSString *str2 = array[1];
-//                    NSString *amoubtStr = [str1 substringFromIndex:7];
-//                    NSString *userID = [str2 substringFromIndex:7];
-//                    TransferVC *tran = [[TransferVC alloc]init];
-//                    tran.amount = amoubtStr;
-//                    tran.userID = userID;
-//                    [weakSelf.navigationController pushViewController:tran animated:YES];
-//                }else if ([amoubt containsString:@"HanPay_Merchants:"]){
-//                    [WXZTipView showCenterWithText:@"该二维码只适用商户进行扫码"];
-//                    [weakSelf.navigationController popViewControllerAnimated:YES];
-//                }else{
-//                    [WXZTipView showCenterWithText:@"无效的二维码"];
-//                    [weakSelf.navigationController popViewControllerAnimated:YES];
-//                }
-                
             });
         }
     }];
@@ -129,8 +106,7 @@
     self.customNavBar.onClickRightButton = ^{
         [weakSelf rightBarButtonItenAction];
     };
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"相册" style:(UIBarButtonItemStyleDone) target:self action:@selector(rightBarButtonItenAction)];
+
 }
 
 - (void)rightBarButtonItenAction {
