@@ -28,7 +28,8 @@
     _titleArr = @[@"附近商家", @"生活缴费", @"超级账本", @"VR商城", @"外卖", @"快递查询", @"路印打车", @"火车票机票"];
     _imageArr =  @[@"附近商家", @"生活缴费", @"超级账本", @"VR商城", @"外卖", @"快递查询", @"路印打车", @"火车票"];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((SCREEN_WIDTH - ScreenScale(24)) / 4.0, 150 / 2);
+    layout.itemSize = CGSizeMake((SCREEN_WIDTH - ScreenScale(24)) / 4.0 - 1, ScreenScale(75));
+    NSLog(@"%lf ---  %lf", layout.itemSize.width * 4 + ScreenScale(24), SCREEN_WIDTH);
     layout.minimumLineSpacing = 0.0;
     layout.minimumInteritemSpacing = 0.0;
     
@@ -46,6 +47,10 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     self.collectionV.frame = self.bounds;
+    
+    [self.collectionV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.top.mas_equalTo(self);
+    }];
     
 }
 
@@ -72,9 +77,9 @@
 }
 
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(ScreenScale((self.bounds.size.width - 48.0))  / 4.0, 150.0 / 2);
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+//    return CGSizeMake(ScreenScale((self.bounds.size.width - 24.0)) / 4.0, 150.0 / 2);
+//}
 
 
 @end

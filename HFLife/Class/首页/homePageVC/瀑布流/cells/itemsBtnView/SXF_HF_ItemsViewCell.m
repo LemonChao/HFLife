@@ -50,10 +50,10 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_left).offset(12);
-        make.right.mas_equalTo(self.contentView.mas_right).offset(-12);
-        make.top.mas_equalTo(self.contentView.mas_top).offset(5);
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-5);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
+        make.right.mas_equalTo(self.contentView.mas_right).offset(ScreenScale(-12));
+        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(5));
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-5));
     }];
     
     [self.collectionV mas_makeConstraints:^(MASConstraintMaker *make) {

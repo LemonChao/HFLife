@@ -214,7 +214,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
     //item的高
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return 180;
+            return ScreenScale(170);
         }else if(indexPath.row == 1){
             return ScreenScale(80);
         }
@@ -248,6 +248,9 @@ static NSString * const footerReuseIdentifier = @"Footer";
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     //cell最小行间距
+    if (section == 0) {
+        return 0.0;
+    }
     if (section == 2 || section == 3) {
         return 0.0;
     }

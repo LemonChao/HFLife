@@ -136,7 +136,7 @@
         make.centerX.mas_equalTo(self.contentView.mas_centerX);
         make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(100));
         make.bottom.mas_equalTo(self.contentView.mas_bottom);
-        make.width.mas_equalTo(self.contentView.mas_width).multipliedBy(0.5);
+        make.width.mas_equalTo(ScreenScale(183));
     }];
     
 }

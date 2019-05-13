@@ -142,8 +142,9 @@
 - (UICollectionView *)menuCollectionView{
     if (!_menuCollectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.minimumInteritemSpacing = 5.0;
-        layout.minimumLineSpacing = 5.0;
+        layout.minimumInteritemSpacing = ScreenScale(5);
+        layout.minimumLineSpacing = ScreenScale(5);
+        CGFloat itemSize = (SCREEN_WIDTH - (24 + 15)) / 4;
         layout.itemSize = CGSizeMake(ScreenScale(84), ScreenScale(84));
         _menuCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _menuCollectionView.delegate = self;

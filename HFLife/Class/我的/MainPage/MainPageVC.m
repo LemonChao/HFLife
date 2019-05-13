@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.customNavBar.title = @"我的";
+    self.customNavBar.title = @"";
     [self setUpUI];
     
     
@@ -34,6 +34,11 @@
     self.mainPageView.selectedItemCallback = ^(NSIndexPath * _Nonnull indexPath) {
         NSLog(@"分区 %ld   行%ld", (long)indexPath.section, (long)indexPath.row);
     };
+    
+    
+    [self.customNavBar wr_setLeftButtonWithTitle:@"我的" titleColor:HEX_COLOR(0x000000)];
+    
+    
 }
 
 

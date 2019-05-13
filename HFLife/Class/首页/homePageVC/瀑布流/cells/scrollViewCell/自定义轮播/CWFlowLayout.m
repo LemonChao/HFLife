@@ -39,13 +39,14 @@
     self.maxScale = 1.2;
     
     if (self.style == CWCarouselStyle_H_4) {
-        self.minScale = 0.6;
-        self.maxScale = 1.4;
-        self.itemWidth = [UIScreen mainScreen].bounds.size.width * 0.4;
+        self.minScale = 0.5;
+        self.maxScale = 1.5;
+        self.itemWidth = ScreenScale(122);
     }
 }
 
 - (void)prepareLayout {
+    NSLog(@"prepareLayout");
     switch (self.style) {
         case CWCarouselStyle_Normal:
             {
@@ -83,16 +84,16 @@
         case CWCarouselStyle_H_4:{
             CGFloat width = self.itemWidth == 0 ? self.defaultItemWidth : self.itemWidth;
             self.itemWidth = width;
-            CGFloat height = CGRectGetHeight(self.collectionView.frame);
+            CGFloat height = ScreenScale(278);
             self.itemSize = CGSizeMake(width, self.style == CWCarouselStyle_H_4 ? height / self.maxScale : height);
             self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            self.factItemSpace = -30;
+            self.factItemSpace = ScreenScale(-10);
             if(width * (1 - self.minScale) * 0.5 < self.itemSpace_H) {
                 self.factItemSpace = self.itemSpace_H - width * (1 - self.minScale) * 0.5;
             }
             self.minimumLineSpacing = self.factItemSpace;
         }
-            
+            break;
         default:
             break;
     }
@@ -104,6 +105,7 @@
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+//    NSLog(@"layoutAttributesForElementsInRect");
     if(self.style != CWCarouselStyle_Normal &&
        self.style != CWCarouselStyle_Unknow &&
        self.style != CWCarouselStyle_H_1) {
@@ -118,7 +120,10 @@
                 CGFloat scale = 1;
                 if (self.style == CWCarouselStyle_H_2) {
                     scale = (self.minScale - 1) / (self.itemWidth + self.factItemSpace) * space + 1;
-                }else {
+                }else if (self.style == CWCarouselStyle_H_4){
+                    //自己定义的 适配 375 的屏幕
+                    scale = -((self.maxScale - 1) / width) * space + self.maxScale;
+                }else{
                     scale = -((self.maxScale - 1) / width) * space + self.maxScale;
                 }
                 obj.transform = CGAffineTransformMakeScale(scale, scale);
@@ -126,12 +131,14 @@
                     maxScale = scale;
                     attri = obj;
                 }
+                NSLog(@"scale = %lf  %lf", scale, space);
             }
             obj.zIndex = 0;
         }];
         if (attri) {
             attri.zIndex = 1;
         }
+        
         return arr;
     }else {
         return [super layoutAttributesForElementsInRect:rect];
@@ -190,7 +197,7 @@
             return self.collectionView.frame.size.width * 0.75;
             break;
         case CWCarouselStyle_H_4://自己定义的
-            return self.collectionView.frame.size.width * 0.5;
+            return ScreenScale(124);
             break;
         default:
             break;
