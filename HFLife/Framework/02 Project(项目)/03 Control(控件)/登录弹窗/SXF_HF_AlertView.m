@@ -6,9 +6,9 @@
 //  Copyright © 2019 mac. All rights reserved.
 //
 
-#import "SXF_HF_LoginAlertView.h"
+#import "SXF_HF_AlertView.h"
 
-@interface SXF_HF_LoginAlertView ()
+@interface SXF_HF_AlertView ()
 @property (nonatomic, strong)UILabel *titleLb;
 @property (nonatomic, strong)UILabel *msgLb;
 @property (nonatomic, strong)UIButton *sureBtn;
@@ -18,7 +18,7 @@
 
 
 
-@implementation SXF_HF_LoginAlertView
+@implementation SXF_HF_AlertView
 
 - (instancetype)init
 {
@@ -48,17 +48,6 @@
     [self addSubview:self.sureBtn];
     [self addSubview:self.cancleBtn];
     
-    self.titleLb.font = self.msgLb.font = [UIFont systemFontOfSize:18];
-    self.msgLb.font = FONT(14);
-    self.msgLb.textColor = HEX_COLOR(0x0C0B0B);
-    
-    self.sureBtn.titleLabel.font = self.cancleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    
-    
-    self.titleLb.text = @"是否登录";
-    self.msgLb.text = @"此功能需登录才可使用，是否登录？";
-    [self.sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [self.cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
     
     [self.sureBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
     [self.cancleBtn setTitleColor:[UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1.0] forState:UIControlStateNormal];
@@ -91,12 +80,50 @@
         default:
             break;
     }
-    
+    //配置字体样式
+    [self configerAlert];
     //更新布局
     [self layoutSubviews];
 }
 
-
+- (void)configerAlert{
+    switch (self.alertType) {
+        case AlertType_login:{
+            self.titleLb.font = self.msgLb.font = [UIFont systemFontOfSize:18];
+            self.msgLb.font = FONT(14);
+            self.msgLb.textColor = HEX_COLOR(0x0C0B0B);
+            self.sureBtn.titleLabel.font = self.cancleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+            
+            self.titleLb.text = @"是否登录";
+            self.msgLb.text = @"此功能需登录才可使用，是否登录？";
+            [self.sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+            [self.cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
+        }
+        break;
+        case AlertType_save:{
+            self.titleLb.font = self.msgLb.font = [UIFont systemFontOfSize:18];
+            self.msgLb.font = FONT(14);
+            self.msgLb.textColor = HEX_COLOR(0x0C0B0B);
+            self.sureBtn.titleLabel.font = self.cancleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+            
+            self.titleLb.text = @"是否登录";
+            self.msgLb.text = @"支付密码不正确。";
+            [self.sureBtn setTitle:@"重新输入" forState:UIControlStateNormal];
+            [self.cancleBtn setTitle:@"找回并完成支付" forState:UIControlStateNormal];
+        }
+            break;
+        case AlertType_Pay:{
+            
+        }
+            break;
+        default:
+            break;
+    }
+    
+    [self layoutIfNeeded];
+    
+    
+}
 
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -106,12 +133,13 @@
             break;
          case AlertType_save:
             [self layoutSaveType];
+            break;
+        case AlertType_Pay:
+            [self layoutPayType];
+            break;
         default:
             break;
     }
-    
-    
-    
 }
 
 
@@ -171,11 +199,21 @@
         make.centerY.mas_equalTo(self.sureBtn.mas_centerY);
         
     }];
+    
+    [self layoutIfNeeded];
 }
 
 
 
-+ (void) showLoginAlertType:(HF_AlertType)alertType Complete:(void(^__nullable)(BOOL btnBype))complate{
+/**
+ 支付提示
+ */
+- (void)layoutPayType{
+    
+}
+
+
++ (void) showAlertType:(HF_AlertType)alertType Complete:(void(^__nullable)(BOOL btnBype))complate{
     
     UIWindow *kwin = [UIApplication sharedApplication].keyWindow;
     if (!kwin) {
@@ -185,15 +223,36 @@
     UIView *bgView = [[UIView alloc] initWithFrame:kwin.bounds];
     bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
     [kwin addSubview:bgView];
-    SXF_HF_LoginAlertView *alertView = [[SXF_HF_LoginAlertView alloc] init];
-    alertView.frame = CGRectMake(0, 0, 325, 150);
+    SXF_HF_AlertView *alertView = [[SXF_HF_AlertView alloc] init];
+    
     [kwin addSubview:alertView];
+    alertView.backgroundColor = [UIColor redColor];
     alertView.layer.cornerRadius = 5;
     alertView.layer.masksToBounds = YES;
     alertView.backgroundColor = [UIColor whiteColor];
     alertView.transform = CGAffineTransformMakeScale(0.01, 0.01);
-    alertView.center = bgView.center;
+    
+    switch (alertType) {
+        case AlertType_login:{
+            alertView.frame = CGRectMake(0, 0, ScreenScale(325), ScreenScale(150));
+        }
+        break;
+        case AlertType_save:{
+            alertView.frame = CGRectMake(0, 0, ScreenScale(287), ScreenScale(207));
+        }
+        break;
+        case AlertType_Pay:{
+            alertView.frame = CGRectMake(0, 0, ScreenScale(287), ScreenScale(120));
+        }
+            break;
+        default:
+            break;
+    }
+    
     alertView.alertType = alertType;
+    [alertView layoutIfNeeded];
+    
+    alertView.center = bgView.center;
     
     [UIView animateWithDuration:0.2 animations:^{
         bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];

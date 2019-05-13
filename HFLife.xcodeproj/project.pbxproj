@@ -368,7 +368,7 @@
 		04F54B50228160DB009AAEF3 /* SXF_HF_CustomPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4F228160DB009AAEF3 /* SXF_HF_CustomPageControl.m */; };
 		04F54B5422816189009AAEF3 /* SXF_HF_CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5322816189009AAEF3 /* SXF_HF_CustomSearchBar.m */; };
 		04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */; };
-		04F5F24D228412630043BBB7 /* SXF_HF_LoginAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F24C228412630043BBB7 /* SXF_HF_LoginAlertView.m */; };
+		04F5F24D228412630043BBB7 /* SXF_HF_AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F24C228412630043BBB7 /* SXF_HF_AlertView.m */; };
 		04F5F251228418880043BBB7 /* SXF_HF_HomePageVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F250228418880043BBB7 /* SXF_HF_HomePageVM.m */; };
 		04F5F25422842EE80043BBB7 /* SXF_HF_MainPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F25322842EE80043BBB7 /* SXF_HF_MainPageView.m */; };
 		04F5F25722842F2C0043BBB7 /* SXF_HF_MainPageCycleScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F25622842F2C0043BBB7 /* SXF_HF_MainPageCycleScrollCell.m */; };
@@ -1372,8 +1372,8 @@
 		04F54B5322816189009AAEF3 /* SXF_HF_CustomSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CustomSearchBar.m; sourceTree = "<group>"; };
 		04F54B5522816268009AAEF3 /* SXF_HF_HomePageTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HomePageTableHeader.h; sourceTree = "<group>"; };
 		04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HomePageTableHeader.m; sourceTree = "<group>"; };
-		04F5F24B228412620043BBB7 /* SXF_HF_LoginAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXF_HF_LoginAlertView.h; sourceTree = "<group>"; };
-		04F5F24C228412630043BBB7 /* SXF_HF_LoginAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_LoginAlertView.m; sourceTree = "<group>"; };
+		04F5F24B228412620043BBB7 /* SXF_HF_AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXF_HF_AlertView.h; sourceTree = "<group>"; };
+		04F5F24C228412630043BBB7 /* SXF_HF_AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_AlertView.m; sourceTree = "<group>"; };
 		04F5F24E228414B00043BBB7 /* frameworkUtiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frameworkUtiles.h; sourceTree = "<group>"; };
 		04F5F24F228418880043BBB7 /* SXF_HF_HomePageVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HomePageVM.h; sourceTree = "<group>"; };
 		04F5F250228418880043BBB7 /* SXF_HF_HomePageVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HomePageVM.m; sourceTree = "<group>"; };
@@ -4463,8 +4463,8 @@
 		04F5F24A228412460043BBB7 /* 登录弹窗 */ = {
 			isa = PBXGroup;
 			children = (
-				04F5F24B228412620043BBB7 /* SXF_HF_LoginAlertView.h */,
-				04F5F24C228412630043BBB7 /* SXF_HF_LoginAlertView.m */,
+				04F5F24B228412620043BBB7 /* SXF_HF_AlertView.h */,
+				04F5F24C228412630043BBB7 /* SXF_HF_AlertView.m */,
 			);
 			path = "登录弹窗";
 			sourceTree = "<group>";
@@ -6349,7 +6349,7 @@
 				04A508D8227EDD3A0013E8EC /* NSDate+TimeStamp.m in Sources */,
 				048DAC5722857516006E6BA2 /* withdrawAlertView.m in Sources */,
 				04A508D0227EDD3A0013E8EC /* UIButton+ChainTypeButton.m in Sources */,
-				04F5F24D228412630043BBB7 /* SXF_HF_LoginAlertView.m in Sources */,
+				04F5F24D228412630043BBB7 /* SXF_HF_AlertView.m in Sources */,
 				04B9D57722803E260084FA23 /* BaseTabBarController.m in Sources */,
 				658B7C5721D749E100801CC8 /* UIViewController+LKBubbleView.m in Sources */,
 				04A508CB227EDD3A0013E8EC /* UIWebView+Browser.m in Sources */,

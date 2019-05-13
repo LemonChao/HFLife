@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.customNavBar.title = @"我的";
     self.navigationController.navigationBarHidden = YES;
-    [self setUpUI];
+//    [self setUpUI];
     
     
     [networkingManagerTool requestToServerWithType:POST withSubUrl:shopUrl withParameters:@{@"key1" : @"value1"} withResultBlock:^(BOOL result, id value) {
@@ -36,7 +36,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    [SXF_HF_LoginAlertView showLoginAlertType:AlertType_login Complete:nil];
+    [SXF_HF_AlertView showAlertType:AlertType_login Complete:nil];
     
     
 }

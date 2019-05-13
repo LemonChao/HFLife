@@ -9,16 +9,24 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, HF_AlertType) {
-    AlertType_login,
+    AlertType_login,//登录提示
     AlertType_save,//安全提示,
+    AlertType_Pay,//支付提示
 };
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SXF_HF_LoginAlertView : UIView
+@interface SXF_HF_AlertView : UIView
 @property (nonatomic, assign)HF_AlertType alertType;
-+ (void) showLoginAlertType:(HF_AlertType) alertType Complete:(void(^__nullable)(BOOL btnBype))complate;
+
+/**
+ app弹窗封装
+
+ @param alertType <#alertType description#>
+ @param complate <#complate description#>
+ */
++ (void) showAlertType:(HF_AlertType) alertType Complete:(void(^__nullable)(BOOL btnBype))complate;
 @end
 
 NS_ASSUME_NONNULL_END

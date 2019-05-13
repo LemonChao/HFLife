@@ -8,6 +8,6 @@
 
 #ifndef frameworkUtiles_h
 #define frameworkUtiles_h
-#import "SXF_HF_LoginAlertView.h"
+#import "SXF_HF_AlertView.h"
 
 #endif /* frameworkUtiles_h */
