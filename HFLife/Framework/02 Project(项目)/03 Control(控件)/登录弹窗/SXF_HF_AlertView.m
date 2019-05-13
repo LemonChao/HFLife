@@ -49,6 +49,12 @@
     [self addSubview:self.cancleBtn];
     
     
+    
+    self.titleLb.font = self.msgLb.font = [UIFont systemFontOfSize:18];
+    self.msgLb.font = FONT(14);
+    self.msgLb.textColor = HEX_COLOR(0x0C0B0B);
+    self.msgLb.numberOfLines = 0;
+    self.sureBtn.titleLabel.font = self.cancleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.sureBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
     [self.cancleBtn setTitleColor:[UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1.0] forState:UIControlStateNormal];
     
@@ -89,10 +95,7 @@
 - (void)configerAlert{
     switch (self.alertType) {
         case AlertType_login:{
-            self.titleLb.font = self.msgLb.font = [UIFont systemFontOfSize:18];
-            self.msgLb.font = FONT(14);
-            self.msgLb.textColor = HEX_COLOR(0x0C0B0B);
-            self.sureBtn.titleLabel.font = self.cancleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+            
             
             self.titleLb.text = @"是否登录";
             self.msgLb.text = @"此功能需登录才可使用，是否登录？";
@@ -101,19 +104,18 @@
         }
         break;
         case AlertType_save:{
-            self.titleLb.font = self.msgLb.font = [UIFont systemFontOfSize:18];
-            self.msgLb.font = FONT(14);
-            self.msgLb.textColor = HEX_COLOR(0x0C0B0B);
-            self.sureBtn.titleLabel.font = self.cancleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-            
-            self.titleLb.text = @"是否登录";
-            self.msgLb.text = @"支付密码不正确。";
-            [self.sureBtn setTitle:@"重新输入" forState:UIControlStateNormal];
-            [self.cancleBtn setTitle:@"找回并完成支付" forState:UIControlStateNormal];
+            self.titleLb.text = @"安全提示";
+            self.msgLb.text = @"付款后资金将直接进入对方账户，无法退款。为保证安全，请核实对方身份后支付。";
+            [self.msgLb setLabelWithLineSpace:6.0];
+            [self.sureBtn setTitle:@"知道了" forState:UIControlStateNormal];
+            [self.sureBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
         }
             break;
         case AlertType_Pay:{
-            
+            self.msgLb.text = @"支付密码不正确。";
+            [self.sureBtn setTitle:@"重新输入" forState:UIControlStateNormal];
+            [self.cancleBtn setTitle:@"找回并完成支付" forState:UIControlStateNormal];
+            [self.sureBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
         }
             break;
         default:
@@ -148,26 +150,21 @@
  */
 - (void)layoutSaveType{
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(16));
-        make.top.mas_equalTo(self).offset(ScreenScale(31));
+        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(20));
+        make.top.mas_equalTo(self).offset(ScreenScale(20));
         make.height.mas_equalTo(ScreenScale(17));
     }];
     
     [self.msgLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.titleLb.mas_bottom).offset(ScreenScale(15));
+        make.top.mas_equalTo(self.titleLb.mas_bottom).offset(ScreenScale(20));
+        make.right.mas_equalTo(self.mas_right).offset(ScreenScale(-20));
         make.left.mas_equalTo(self.titleLb.mas_left);
-        make.height.mas_equalTo(ScreenScale(14));
     }];
     
     [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.mas_right).offset(ScreenScale(-16));
-        make.bottom.mas_equalTo(self.mas_bottom).offset(ScreenScale(-31));
-        
-    }];
-    
-    [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.sureBtn.mas_left).offset(ScreenScale(-25));
-        make.centerY.mas_equalTo(self.sureBtn.mas_centerY);
+        make.top.mas_equalTo(self.msgLb.mas_bottom).offset(ScreenScale(52));
+        make.right.mas_equalTo(self.mas_right).offset(ScreenScale(-20));
+        make.bottom.mas_equalTo(self.mas_bottom).offset(ScreenScale(-20));
         
     }];
 }
@@ -209,6 +206,21 @@
  支付提示
  */
 - (void)layoutPayType{
+    [self.msgLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(20));
+        make.top.mas_equalTo(self.mas_top).offset(ScreenScale(33));
+        make.height.mas_equalTo(ScreenScale(13));
+    }];
+    
+    [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.mas_right).offset(ScreenScale(-20));
+        make.bottom.mas_equalTo(self.mas_bottom).offset(ScreenScale(-21));
+    }];
+    
+    [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.sureBtn.mas_left).offset(ScreenScale(-24));
+        make.centerY.mas_equalTo(self.sureBtn.mas_centerY);
+    }];
     
 }
 
@@ -230,15 +242,23 @@
     alertView.layer.cornerRadius = 5;
     alertView.layer.masksToBounds = YES;
     alertView.backgroundColor = [UIColor whiteColor];
-    alertView.transform = CGAffineTransformMakeScale(0.01, 0.01);
-    
     switch (alertType) {
         case AlertType_login:{
             alertView.frame = CGRectMake(0, 0, ScreenScale(325), ScreenScale(150));
         }
         break;
         case AlertType_save:{
-            alertView.frame = CGRectMake(0, 0, ScreenScale(287), ScreenScale(207));
+//            alertView.frame = CGRectMake(0, 0, ScreenScale(287), ScreenScale(207));
+            
+            [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(kwin.mas_left).offset(ScreenScale(44));
+                make.right.mas_equalTo(kwin.mas_right).offset(ScreenScale(-44));
+                make.centerY.mas_equalTo(kwin.mas_centerY);
+                make.centerX.mas_equalTo(kwin.mas_centerX);
+            }];
+            
+            
+            
         }
         break;
         case AlertType_Pay:{
@@ -251,12 +271,16 @@
     
     alertView.alertType = alertType;
     [alertView layoutIfNeeded];
-    
     alertView.center = bgView.center;
-    
+    alertView.transform = CGAffineTransformMakeScale(0.01, 0.01);
     [UIView animateWithDuration:0.2 animations:^{
         bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
-        alertView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        alertView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.1 animations:^{
+            alertView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+        }];
     }];
     
     __weak typeof(alertView)weakAlert = alertView;
