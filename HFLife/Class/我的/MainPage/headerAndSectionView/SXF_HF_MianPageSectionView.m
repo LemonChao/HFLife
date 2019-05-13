@@ -34,21 +34,24 @@
     [self.contentView addSubview:self.leftView];
     
     self.leftView.backgroundColor = HEX_COLOR(0xCA1400);
-    self.titleLb.font = FONT(15);
-    self.titleLb.textColor = HEX_COLOR(0x131313);
+    self.titleLb.font = FONT(18);
+    self.titleLb.textColor = HEX_COLOR(0x0C0B0B);
+    self.leftView.layer.cornerRadius = 2;
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.leftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(15));
-        make.width.mas_equalTo(ScreenScale(3));
-        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(14));
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-14));
+        make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
+        make.width.mas_equalTo(ScreenScale(4));
+//        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(14));
+//        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-14));
+        make.centerY.mas_equalTo(self.mas_centerY);
+        make.height.mas_equalTo(ScreenScale(17));
     }];
     
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.leftView.mas_right).offset(ScreenScale(5));
+        make.left.mas_equalTo(self.leftView.mas_right).offset(ScreenScale(10));
         make.centerY.mas_equalTo(self.leftView.mas_centerY);
     }];
 }

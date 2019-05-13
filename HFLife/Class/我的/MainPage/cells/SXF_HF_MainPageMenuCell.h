@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_MainPageMenuCell : UITableViewCell
-
+@property (nonatomic, strong)void(^selecteItem)(NSInteger index);
 @end
 
 NS_ASSUME_NONNULL_END

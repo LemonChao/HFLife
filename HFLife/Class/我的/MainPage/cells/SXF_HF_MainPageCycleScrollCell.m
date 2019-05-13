@@ -62,10 +62,12 @@
 
 
 - (void) addChildrenViews{
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = rgb(245.0, 245.0, 245.0);
     
     [self.contentView addSubview:self.cycleV];
     [self.contentView addSubview:self.pageControl];
+    
+    self.cycleV.backgroundColor = rgb(245.0, 245.0, 245.0);
     
     self.animImageV = [[UIImageView alloc] init];
     self.animImageV.contentMode = UIViewContentModeScaleAspectFit;
@@ -125,7 +127,8 @@
     
     [self.cycleV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(5));
-        make.left.right.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
+        make.right.mas_equalTo(self.contentView.mas_right).offset(ScreenScale(-12));
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-5));
     }];
     
@@ -133,7 +136,7 @@
         make.centerX.mas_equalTo(self.contentView.mas_centerX);
         make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(100));
         make.bottom.mas_equalTo(self.contentView.mas_bottom);
-        make.width.mas_equalTo(self.contentView.mas_width).multipliedBy(0.5);
+        make.width.mas_equalTo(ScreenScale(183));
     }];
     
 }

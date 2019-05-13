@@ -56,10 +56,10 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    CGFloat margin = 10;
+    CGFloat margin = 6;
     
     [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.contentView).offset(0);
+        make.top.mas_equalTo(self.contentView).offset(margin);
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
         make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
         make.right.mas_equalTo(self.contentView.mas_right).offset(-ScreenScale(12));
