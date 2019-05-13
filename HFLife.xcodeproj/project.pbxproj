@@ -617,6 +617,9 @@
 		65DC6892221A6C9700F1085E /* luxian2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DC688F221A6C9700F1085E /* luxian2x.png */; };
 		65DC6893221A6C9700F1085E /* luxian.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DC6890221A6C9700F1085E /* luxian.png */; };
 		65DC6894221A6C9700F1085E /* luxian@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DC6891221A6C9700F1085E /* luxian@3x.png */; };
+		6C0A93172289212D0090623B /* ZCShopClassifyLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A93162289212D0090623B /* ZCShopClassifyLeftCell.m */; };
+		6C0A931B228929A10090623B /* ZC_HF_ClassifyRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A931A228929A10090623B /* ZC_HF_ClassifyRightVC.m */; };
+		6C0A931E228948E40090623B /* ZCShopClassifyRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A931D228948E40090623B /* ZCShopClassifyRightCell.m */; };
 		6C0CF29F2233BD3100E0E2AC /* CornerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0CF29E2233BD3000E0E2AC /* CornerShadowView.m */; };
 		6C2F5141222A663D0022EE03 /* HXCustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F50F4222A663D0022EE03 /* HXCustomCameraViewController.m */; };
 		6C2F5142222A663D0022EE03 /* UIViewController+HXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F50F5222A663D0022EE03 /* UIViewController+HXExtension.m */; };
@@ -1834,6 +1837,12 @@
 		65DC688F221A6C9700F1085E /* luxian2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luxian2x.png; sourceTree = "<group>"; };
 		65DC6890221A6C9700F1085E /* luxian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luxian.png; sourceTree = "<group>"; };
 		65DC6891221A6C9700F1085E /* luxian@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "luxian@3x.png"; sourceTree = "<group>"; };
+		6C0A93152289212D0090623B /* ZCShopClassifyLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopClassifyLeftCell.h; sourceTree = "<group>"; };
+		6C0A93162289212D0090623B /* ZCShopClassifyLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopClassifyLeftCell.m; sourceTree = "<group>"; };
+		6C0A9319228929A10090623B /* ZC_HF_ClassifyRightVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ClassifyRightVC.h; sourceTree = "<group>"; };
+		6C0A931A228929A10090623B /* ZC_HF_ClassifyRightVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_ClassifyRightVC.m; sourceTree = "<group>"; };
+		6C0A931C228948E40090623B /* ZCShopClassifyRightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopClassifyRightCell.h; sourceTree = "<group>"; };
+		6C0A931D228948E40090623B /* ZCShopClassifyRightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopClassifyRightCell.m; sourceTree = "<group>"; };
 		6C0CF29D2233BD3000E0E2AC /* CornerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CornerShadowView.h; sourceTree = "<group>"; };
 		6C0CF29E2233BD3000E0E2AC /* CornerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CornerShadowView.m; sourceTree = "<group>"; };
 		6C2F50F4222A663D0022EE03 /* HXCustomCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXCustomCameraViewController.m; sourceTree = "<group>"; };
@@ -5558,6 +5567,17 @@
 			path = "极光推送工具";
 			sourceTree = "<group>";
 		};
+		6C0A93182289292C0090623B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6C0A93152289212D0090623B /* ZCShopClassifyLeftCell.h */,
+				6C0A93162289212D0090623B /* ZCShopClassifyLeftCell.m */,
+				6C0A931C228948E40090623B /* ZCShopClassifyRightCell.h */,
+				6C0A931D228948E40090623B /* ZCShopClassifyRightCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		6C2F50F3222A663D0022EE03 /* HXPhotoPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -5687,6 +5707,9 @@
 			children = (
 				6CCAD6FD22827FB4001824A0 /* ZC_HF_ShopClassifyVC.h */,
 				6CCAD6FE22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m */,
+				6C0A9319228929A10090623B /* ZC_HF_ClassifyRightVC.h */,
+				6C0A931A228929A10090623B /* ZC_HF_ClassifyRightVC.m */,
+				6C0A93182289292C0090623B /* Views */,
 			);
 			path = ShopClassify;
 			sourceTree = "<group>";
@@ -6345,6 +6368,7 @@
 				04A508D8227EDD3A0013E8EC /* NSDate+TimeStamp.m in Sources */,
 				048DAC5722857516006E6BA2 /* withdrawAlertView.m in Sources */,
 				04A508D0227EDD3A0013E8EC /* UIButton+ChainTypeButton.m in Sources */,
+				6C0A93172289212D0090623B /* ZCShopClassifyLeftCell.m in Sources */,
 				04F5F24D228412630043BBB7 /* SXF_HF_AlertView.m in Sources */,
 				04B9D57722803E260084FA23 /* BaseTabBarController.m in Sources */,
 				658B7C5721D749E100801CC8 /* UIViewController+LKBubbleView.m in Sources */,
@@ -6515,6 +6539,7 @@
 				0453D1BB2283D38E00880C2A /* UIButton+EnlargeEdge.m in Sources */,
 				6CCAD70522827FE4001824A0 /* ZC_HF_ShopOrderVC.m in Sources */,
 				04A5086D227EDD3A0013E8EC /* CustomAlertView.m in Sources */,
+				6C0A931B228929A10090623B /* ZC_HF_ClassifyRightVC.m in Sources */,
 				049783962285957F00E143D7 /* YYB_HF_NearSearchVC.m in Sources */,
 				6522949E225AE063001DF691 /* SELUpdateAlertConst.m in Sources */,
 				04A5086E227EDD3A0013E8EC /* CustomPromptBox.m in Sources */,
@@ -6531,6 +6556,7 @@
 				658B7CA521D749E100801CC8 /* UIView+HHLayout.m in Sources */,
 				658B7CA121D749E100801CC8 /* UIViewController+HHTransition.m in Sources */,
 				658B7CB521D749E100801CC8 /* TLMenuButton.m in Sources */,
+				6C0A931E228948E40090623B /* ZCShopClassifyRightCell.m in Sources */,
 				658C39DA21E9FA5B00880B6A /* JXCategoryDotCellModel.m in Sources */,
 				04A5083B227EDD390013E8EC /* ZXSegmentHeaderView.m in Sources */,
 				04A508C6227EDD3A0013E8EC /* UIView+Rounded.m in Sources */,
