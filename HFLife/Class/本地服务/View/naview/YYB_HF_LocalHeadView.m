@@ -115,7 +115,8 @@
     searchBgView.userInteractionEnabled = YES;
     [searchBgView wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
         NSLog(@"搜索");
-        [self.viewController.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
+//        [self.viewController.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
+        [self shareInfo];
     }];
     
     
@@ -124,13 +125,141 @@
 
 #pragma mark - method
 
+- (void)shareInfo {
+// w=user&t=get_invite_info
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=user&t=get_invite_info" withParameters:nil withResultBlock:^(BOOL result, id value) {
+        if (value) {
+
+        }
+    }];
+    
+    [self addShareViewForH5:nil];
+    
+}
+
+- (void)addShareViewForH5:(NSDictionary *)shardResult{
+    
+    if (shardResult == nil) {
+        shardResult = @{
+                        @"image":image(@"head_icon"),
+                        @"title":@"分享",
+                        @"url":@"http://www.baidu.com",
+                        @"text":@"分享内容"
+                        };
+    }
+    
+    NSArray *shareAry = @[@{@"image":@"shareView_wx",
+                            @"title":@"微信"},
+                          @{@"image":@"shareView_friend",
+                            @"title":@"朋友圈"},
+                          @{@"image":@"shareView_qq",
+                            @"title":@"QQ"},
+                          @{@"image":@"shareView_qzone",
+                            @"title":@"QQ空间"}];
+    
+    //    @{@"image":@"share_copyLink",
+    //      @"title":@"复制链接"}
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGMMainScreenWidth, 54)];
+    headerView.backgroundColor = [UIColor clearColor];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, headerView.frame.size.width, 15)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor blackColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:15];
+    label.text = @"分享到";
+    [headerView addSubview:label];
+    
+    UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, headerView.frame.size.height-0.5, headerView.frame.size.width, 0.5)];
+    lineLabel.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
+    [headerView addSubview:lineLabel];
+    
+    UILabel *lineLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, headerView.frame.size.width, 0.5)];
+    lineLabel1.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
+    
+    HXEasyCustomShareView *shareView = [[HXEasyCustomShareView alloc] initWithFrame:CGRectMake(0, 0, CGMMainScreenWidth, CGMMainScreenHeight)];
+    shareView.backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+    shareView.headerView = headerView;
+    float height = [shareView getBoderViewHeight:shareAry firstCount:7];
+    shareView.boderView.frame = CGRectMake(0, 0, shareView.frame.size.width, height);
+    shareView.middleLineLabel.hidden = YES;
+    [shareView.cancleButton addSubview:lineLabel1];
+    shareView.cancleButton.frame = CGRectMake(shareView.cancleButton.frame.origin.x, shareView.cancleButton.frame.origin.y, shareView.cancleButton.frame.size.width, 54);
+    shareView.cancleButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    [shareView.cancleButton setTitleColor:[UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [shareView setShareAry:shareAry delegate:nil];
+    shareView.shareViewButtonAction = ^(HXEasyCustomShareView *shareView, NSString *title) {
+        NSLog(@"当前点击:%@",title);
+        
+        SSDKPlatformType type;
+        if ([title isEqualToString:@"微信"]) {
+            type = SSDKPlatformSubTypeWechatSession;
+        }else if ([title isEqualToString:@"朋友圈"]){
+            type = SSDKPlatformSubTypeWechatTimeline;
+        }else if ([title isEqualToString:@"QQ"]){
+            type = SSDKPlatformSubTypeQQFriend;
+        }else if ([title isEqualToString:@"QQ空间"]){
+            type = SSDKPlatformSubTypeQZone;
+        }else{
+            return;
+        }
+        
+        [ShareProductInfoView shareBtnClick:type ShareImage:shardResult[@"image"] title:shardResult[@"title"] url:shardResult[@"url"] context:shardResult[@"text"] shareBtnClickBlock:^(BOOL isSucceed, NSString *msg) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [WXZTipView showCenterWithText:msg];
+            });
+            
+        }];
+        
+        
+        //        NSLog(@"%@", self->_shardResult);
+        //        if (self->_shardResult) {
+        //            //        NSArray *imagesArr = ;
+        //
+        //            [ShareProductInfoView shareBtnClick:type ShareImage:self.shardResult[@"image"] title:self.shardResult[@"title"] url:self.shardResult[@"url"] context:self.shardResult[@"text"] shareBtnClickBlock:^(BOOL isSucceed, NSString *msg) {
+        //                dispatch_async(dispatch_get_main_queue(), ^{
+        //                    [WXZTipView showCenterWithText:msg];
+        //                });
+        //
+        //            }];
+        //        }else {
+        //
+        //            HP_GetShareNetApi * request = [[HP_GetShareNetApi alloc] init];
+        //            [request startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        //                HP_GetShareNetApi *requst = (HP_GetShareNetApi *)request;
+        //
+        //                if ([requst getCodeStatus] == 1) {
+        //                    NSDictionary *resut = [requst getContent];
+        //                    if ([resut isKindOfClass:[NSDictionary class]]){
+        //
+        //                        self.shardResult = resut;
+        //                        [ShareProductInfoView shareBtnClick:type ShareImage:self.shardResult[@"image"] title:self.shardResult[@"title"] url:self.shardResult[@"url"] context:self.shardResult[@"text"] shareBtnClickBlock:^(BOOL isSucceed, NSString *msg) {
+        //                            dispatch_async(dispatch_get_main_queue(), ^{
+        //                                [WXZTipView showCenterWithText:msg];
+        //                            });
+        //
+        //                        }];
+        //                    }
+        //
+        //                }
+        //            } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        //
+        //            }];
+        //        }
+        
+        [shareView tappedCancel];
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:shareView];
+}
+
 - (void)gotoCityVC {
     NSLog(@"choseCity");
     CityChooseVC *cityChoose = [[CityChooseVC alloc]init];
     cityChoose.delegate = self;
     BaseNavigationController *navigationController = [[BaseNavigationController alloc] initWithRootViewController:cityChoose];
     [self.viewController presentViewController:navigationController animated:YES completion:nil];
-    //        [self.viewController.navigationController pushViewController:navigationController animated:YES];
+//    [self.viewController.navigationController pushViewController:[NSClassFromString(@"PYSearchViewController") new] animated:YES];
+    
 }
 
 #pragma mark - setValue

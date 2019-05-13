@@ -8,7 +8,11 @@
 
 #ifndef Header_YYB_h
 #define Header_YYB_h
-
+/** 分享 */
+#import "ShareProductInfoView.h"
+#import "HXEasyCustomShareView.h"
+/** 弹窗 */
+#import "ZHB_HP_PreventWeChatPopout.h"
 
 /************************yourTools************************/
 
@@ -19,6 +23,7 @@
 
 /************************subUrl************************/
 static NSString *const yourTestUrl = @"w=index&t=index";
+static NSString *const yourTestUrl2 = @"w=user&t=get_invite_info";
 
 /************************subUrl************************/
 
