@@ -71,6 +71,8 @@
     if ([self.cellClass isEqualToString:@"KanjiaCollectionViewCell"]) {
 //        flowLayout.itemSpace_H = 1;
         flowLayout.itemWidth = self.frame.size.width - 60;
+    }else{
+        
     }
     self.carousel = [[CWCarousel alloc] initWithFrame:self.bounds delegate:self datasource:self flowLayout:flowLayout];
     self.carousel.isAuto = YES;
@@ -140,9 +142,11 @@
     
 }
 
+//点击
 - (void)CWCarousel:(CWCarousel *)carousel didSelectedAtIndex:(NSInteger)index {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(selectIndex:)]) {
-        [self.delegate selectIndex:index];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(clickItemFromIndex:)]) {
+        [self.delegate clickItemFromIndex:index];
     }
 }
 
@@ -157,6 +161,17 @@
 
 
 
+- (void)CWCarousel:(CWCarousel *)carousel didStartScrollAtIndex:(NSInteger)index indexPathRow:(NSInteger)indexPathRow {
+    NSLog(@"开始滑动: %ld", index);
+}
+
+
+- (void)CWCarousel:(CWCarousel *)carousel didEndScrollAtIndex:(NSInteger)index indexPathRow:(NSInteger)indexPathRow {
+    NSLog(@"结束滑动: %ld", index);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(selectIndex:)]) {
+        [self.delegate selectIndex:index];
+    }
+}
 
 
 

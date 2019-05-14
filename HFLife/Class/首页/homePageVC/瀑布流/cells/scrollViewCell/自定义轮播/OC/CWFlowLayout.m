@@ -24,6 +24,7 @@
     if(self = [super init]) {
         self.style = style;
         [self initial];
+        
     }
     return self;
 }
@@ -37,16 +38,15 @@
     self.itemSpace_V = 1;
     self.minScale = 0.8;
     self.maxScale = 1.2;
-    
     if (self.style == CWCarouselStyle_H_4) {
-        self.minScale = 0.5;
-        self.maxScale = 1.5;
-        self.itemWidth = ScreenScale(122);
+        self.itemSpace_H = 1;
+        self.itemSpace_V = 1;
+        self.minScale = 0.7;
+        self.maxScale = 1.7;
     }
 }
 
 - (void)prepareLayout {
-    NSLog(@"prepareLayout");
     switch (self.style) {
         case CWCarouselStyle_Normal:
             {
@@ -74,26 +74,29 @@
             CGFloat height = CGRectGetHeight(self.collectionView.frame);
             self.itemSize = CGSizeMake(width, self.style == CWCarouselStyle_H_3 ? height / self.maxScale : height);
             self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            self.factItemSpace = -16;
+            self.factItemSpace = 0;
             if(width * (1 - self.minScale) * 0.5 < self.itemSpace_H) {
                 self.factItemSpace = self.itemSpace_H - width * (1 - self.minScale) * 0.5;
             }
             self.minimumLineSpacing = self.factItemSpace;
         }
             break;
+            
+            
         case CWCarouselStyle_H_4:{
             CGFloat width = self.itemWidth == 0 ? self.defaultItemWidth : self.itemWidth;
             self.itemWidth = width;
-            CGFloat height = ScreenScale(278);
+            CGFloat height = CGRectGetHeight(self.collectionView.frame);
             self.itemSize = CGSizeMake(width, self.style == CWCarouselStyle_H_4 ? height / self.maxScale : height);
             self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            self.factItemSpace = ScreenScale(-10);
+            self.factItemSpace = ScreenScale(22);
             if(width * (1 - self.minScale) * 0.5 < self.itemSpace_H) {
                 self.factItemSpace = self.itemSpace_H - width * (1 - self.minScale) * 0.5;
             }
             self.minimumLineSpacing = self.factItemSpace;
         }
-            break;
+            
+        
         default:
             break;
     }
@@ -105,7 +108,6 @@
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-//    NSLog(@"layoutAttributesForElementsInRect");
     if(self.style != CWCarouselStyle_Normal &&
        self.style != CWCarouselStyle_Unknow &&
        self.style != CWCarouselStyle_H_1) {
@@ -116,13 +118,14 @@
         __block UICollectionViewLayoutAttributes *attri = nil;
         [arr enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CGFloat space = ABS(obj.center.x - centerX);
-            if(space > 0) {
+            if(space >= 0) {
                 CGFloat scale = 1;
                 if (self.style == CWCarouselStyle_H_2) {
                     scale = (self.minScale - 1) / (self.itemWidth + self.factItemSpace) * space + 1;
-                }else if (self.style == CWCarouselStyle_H_4){
-                    //自己定义的 适配 375 的屏幕
+                }else if(self.style == CWCarouselStyle_H_4){
                     scale = -((self.maxScale - 1) / width) * space + self.maxScale;
+                    
+//                    scale = (self.minScale - 1) / (self.itemWidth + self.factItemSpace) * space + 1;
                 }else{
                     scale = -((self.maxScale - 1) / width) * space + self.maxScale;
                 }
@@ -131,14 +134,12 @@
                     maxScale = scale;
                     attri = obj;
                 }
-                NSLog(@"scale = %lf  %lf", scale, space);
             }
             obj.zIndex = 0;
         }];
         if (attri) {
             attri.zIndex = 1;
         }
-        
         return arr;
     }else {
         return [super layoutAttributesForElementsInRect:rect];
@@ -196,8 +197,8 @@
         case CWCarouselStyle_H_3:
             return self.collectionView.frame.size.width * 0.75;
             break;
-        case CWCarouselStyle_H_4://自己定义的
-            return ScreenScale(124);
+            case CWCarouselStyle_H_4:
+            return self.collectionView.frame.size.width * 0.28;
             break;
         default:
             break;
