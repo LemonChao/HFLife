@@ -293,6 +293,21 @@
             } completion:^(BOOL finished) {
                 if (complate) {
                     complate(btnType);
+                    if (weakAlert.alertType == AlertType_login) {
+                        if (btnType) {
+                            //跳转登录
+                            
+                            Class loginClass = NSClassFromString(@"LoginVC");
+                            id loginVC = [[loginClass alloc] init];
+                            if (loginVC) {
+                                UIViewController *currentVC = [self getCurrentViewController];
+                                [currentVC presentViewController:loginVC animated:YES completion:nil];
+                            }else{
+                                
+                                [CustomPromptBox showTextHud:@"您还未创建登录VC"];
+                            }
+                        }
+                    }
                 }
                 [weakAlert removeFromSuperview];
                 [bgView removeFromSuperview];

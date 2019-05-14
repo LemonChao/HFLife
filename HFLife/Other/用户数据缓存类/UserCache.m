@@ -360,6 +360,21 @@ static YYCache *_dataUserCache;
     }
     return data;
 }
+#pragma mark 保存实名认证填选择的证件类型
++(void)setSaveCertificateType:(NSString *)type{
+    if (![NSString isNOTNull:type]) {
+        [_dataUserCache setObject:type forKey:@"certificateType" withBlock:nil];
+    }
+}
+#pragma mark 获取实名认证的证件类型
++(NSString *)getSaveCertificateType{
+    NSString *data =(NSString *)[_dataUserCache objectForKey:@"certificateType"];
+    if ([NSString isNOTNull:data]) {
+        return @"";
+    }
+    return data;
+}
+
 #pragma mark 保存实名认证填写的身份证号
 +(void)setSaveRealNameWriteIDCare:(NSString *)idCare{
     if (![NSString isNOTNull:idCare]) {
@@ -425,7 +440,7 @@ static YYCache *_dataUserCache;
     [_dataUserCache setObject:@"" forKey:@"RealNameWriteName"];
     [_dataUserCache setObject:@"" forKey:@"level_info"];
     [_dataUserCache setObject:@"" forKey:@"invite_code"];
-
+    
 }
 +(void)UserPassEmpty{
     [_dataUserCache setObject:@"" forKey:@"UserPass"];

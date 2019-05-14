@@ -99,6 +99,15 @@ static NSString * const footerReuseIdentifier = @"Footer";
     };
     
 }
+
+- (void)setPausePlay:(BOOL)pausePlay{
+    _pausePlay = pausePlay;
+    //获取cell
+    cycleScrollCell *cell = (cycleScrollCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    cell.pausePlay = pausePlay;
+}
+
+
 - (void) endRefreshData{
     [self.collectionView endRefreshData];
 }

@@ -25,6 +25,8 @@
 @property (nonatomic, assign) BOOL openCustomPageControl;//是否显示自定义
 @property (nonatomic ,assign) NSInteger pageNumbers;
 @property (nonatomic, weak) id<customCycleViewDelegate>delegate;
+@property (nonatomic, assign)BOOL pausePlay;//暂停、开启
+
 //开启动画
 - (void) startAnimationView;
 - (void) refreshData;//刷新数据

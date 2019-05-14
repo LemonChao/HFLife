@@ -17,7 +17,6 @@
 @interface customCycleView()<CWCarouselDatasource, CWCarouselDelegate>
 @property (nonatomic ,strong) CWPageControl *control;
 @property (nonatomic, strong) CWCarousel *carousel;
-
 @property (nonatomic ,assign) NSInteger count;
 
 @end
@@ -71,6 +70,8 @@
     if ([self.cellClass isEqualToString:@"KanjiaCollectionViewCell"]) {
 //        flowLayout.itemSpace_H = 1;
         flowLayout.itemWidth = self.frame.size.width - 60;
+    }else{
+        
     }
     self.carousel = [[CWCarousel alloc] initWithFrame:self.bounds delegate:self datasource:self flowLayout:flowLayout];
     self.carousel.isAuto = YES;
@@ -140,9 +141,23 @@
     
 }
 
+
+- (void)setPausePlay:(BOOL)pausePlay{
+    _pausePlay = pausePlay;
+    if (_pausePlay) {
+        //暂停
+        [self.carousel pause];
+    }else{
+        //开始
+        [self.carousel resumePlay];//暂停后继续播放
+    }
+}
+
+//点击
 - (void)CWCarousel:(CWCarousel *)carousel didSelectedAtIndex:(NSInteger)index {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(selectIndex:)]) {
-        [self.delegate selectIndex:index];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(clickItemFromIndex:)]) {
+        [self.delegate clickItemFromIndex:index];
     }
 }
 
@@ -157,6 +172,17 @@
 
 
 
+- (void)CWCarousel:(CWCarousel *)carousel didStartScrollAtIndex:(NSInteger)index indexPathRow:(NSInteger)indexPathRow {
+//    NSLog(@"开始滑动: %ld", index);
+}
+
+
+- (void)CWCarousel:(CWCarousel *)carousel didEndScrollAtIndex:(NSInteger)index indexPathRow:(NSInteger)indexPathRow {
+//    NSLog(@"结束滑动: %ld", index);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(selectIndex:)]) {
+        [self.delegate selectIndex:index];
+    }
+}
 
 
 

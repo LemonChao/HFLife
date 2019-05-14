@@ -1,22 +1,17 @@
 //
 //  CertificatePhoto.m
-//  HFLife
+//  HanPay
 //
-//  Created by sxf on 2019/1/18.
-//  Copyright © 2019年 sxf. All rights reserved.
+//  Created by mac on 2019/1/18.
+//  Copyright © 2019年 mac. All rights reserved.
 //
 
 #import "CertificatePhoto.h"
 //#import "AVCaptureViewController.h"
 //#import "JQAVCaptureViewController.h"
-
-//#import "JYBDBankCardVC.h"
-//#import "JYBDIDCardVC.h"
-
+#import "HXPhotoPicker.h"
 #import "Per_MethodsToDealWithManage.h"
-
-#import "LYBmOcrManager.h"
-@interface CertificatePhoto ()
+@interface CertificatePhoto ()<HXAlbumListViewControllerDelegate>
 {
     //身份证正面
     UIImageView *idCardPositiveImageView;
@@ -34,8 +29,12 @@
     UIButton *signatureButton;
     
     UIButton *agreeBtn;
+    //是否是背面照（人像面是背面）
+    BOOL isBack;
 }
 @property (nonatomic,strong)Per_MethodsToDealWithManage *manage;
+@property (strong, nonatomic) HXPhotoManager *photo_manager;
+@property (strong, nonatomic) HXDatePhotoToolManager *toolManager;
 @end
 
 @implementation CertificatePhoto
@@ -100,7 +99,7 @@
     }];
     
     UIImageView *idCardPositivedemo = [UIImageView new];
-    idCardPositivedemo.image = MMGetImage(@"zhengmian");
+    idCardPositivedemo.image = MMGetImage([self.type isEqualToString:@"3"]?@"icon_card":@"zhengmian");
     [self.view addSubview:idCardPositivedemo];
     [idCardPositivedemo mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(scanningBgImageView.mas_top).offset(HeightRatio(50));
@@ -112,7 +111,8 @@
     idCardPositiveImageView =  [UIImageView new];
     idCardPositiveImageView.image = MMGetImage(@"renwu");
     if ([UserCache getSaveRealNamePositiveImage] != nil) {
-        idCardPositiveImageView.image = [UserCache getSaveRealNamePositiveImage];
+//        idCardPositiveImageView.image = [UserCache getSaveRealNamePositiveImage];
+//        idCardPositiveImage = [UserCache getSaveRealNamePositiveImage];
     }
     [self.view addSubview:idCardPositiveImageView];
     [idCardPositiveImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -136,7 +136,7 @@
     
     
     UIImageView *idCardBackdemo = [UIImageView new];
-    idCardBackdemo.image = MMGetImage(@"fanmian");
+    idCardBackdemo.image = MMGetImage([self.type isEqualToString:@"3"]?@"icon_card2":@"fanmian");
     [self.view addSubview:idCardBackdemo];
     [idCardBackdemo mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(idCardPositivedemo.mas_bottom).offset(HeightRatio(26));
@@ -148,7 +148,8 @@
     idCardBackImageView =  [UIImageView new];
     idCardBackImageView.image = MMGetImage(@"guohui");
     if ([UserCache getSaveRealNameNegativeImage] != nil) {
-       idCardBackImageView.image = [UserCache getSaveRealNameNegativeImage];
+//       idCardBackImageView.image = [UserCache getSaveRealNameNegativeImage];
+//       idCardBackImage =  [UserCache getSaveRealNameNegativeImage];
     }
     [self.view addSubview:idCardBackImageView];
     [idCardBackImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -206,7 +207,7 @@
    	agreeBtn = [UIButton new];
     agreeBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(22)];
     [agreeBtn setTitleColor:HEX_COLOR(0xAAAAAA) forState:(UIControlStateNormal)];
-    [agreeBtn setImagePosition:ImagePositionTypeLeft spacing:WidthRatio(22)];
+    [agreeBtn setImagePosition:ImagePositionTypeLeft spacing:ScreenScale(22)];
     [agreeBtn addTarget:self action:@selector(agreeBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
     [agreeBtn setTitle:@"我已阅读并接受" forState:(UIControlStateNormal)];
     [agreeBtn setImage:MMGetImage(@"gouxuan") forState:(UIControlStateNormal)];
@@ -274,6 +275,11 @@
 //
 //    [self.navigationController pushViewController:AVCaptureVC animated:YES];
     
+    if ([self.type isEqualToString:@"3"]) {
+        isBack = YES;
+        [self hx_presentAlbumListViewControllerWithManager:self.photo_manager delegate:self];
+        return;
+    }
     
     [[LYBmOcrManager ocrShareManaer] presentAcrVCWithType:CardTypeIdCardFont complete:^(id result, UIImage *image) {
         
@@ -307,42 +313,16 @@
         
     }];
     
-//    JYBDIDCardVC *AVCaptureVC = [[JYBDIDCardVC alloc] init];
-//
-//    AVCaptureVC.finish = ^(JYBDCardIDInfo *info, UIImage *image)
-//    {
-//
-//
-//        if (![NSString isNOTNull:info.num]) {
-//            NSString *writeIDCard = [UserCache getSaveRealNameWriteIDCare];
-//            NSString *writeRealName = [UserCache getSaveRealNameWriteName];
-//            // !!!: 保存身份证信息验证第一步的输入信息
-//            if (![writeIDCard isEqualToString:info.num]) {
-//                return [WXZTipView showCenterWithText:@"身份证号码和输入号码不一致!" duration:1.5];
-//            }
-//            if (![writeRealName isEqualToString:info.name]) {
-//                return [WXZTipView showCenterWithText:@"身份证姓名和输入姓名不一致!" duration:1.5];
-//            }
-//
-//            self->idCardPositiveImageView.image = image;
-//                //身份证图片
-//            self->idCardPositiveImage = image;
-//        }else{
-//            [WXZTipView showCenterWithText:@"请拍摄正确照片"];
-//            return ;
-//        }
-//
-//
-//    };
-//
-//
-//    [self.navigationController pushViewController:AVCaptureVC animated:YES];
 }
 #pragma mark ===身份证国徽面
 -(void)idCardBackButtonClick{
     NSLog(@"idCardBackButtonClick");
     
-    
+    if ([self.type isEqualToString:@"3"]) {
+        isBack = NO;
+        [self hx_presentAlbumListViewControllerWithManager:self.photo_manager delegate:self];
+        return;
+    }
     
     
     [[LYBmOcrManager ocrShareManaer] presentAcrVCWithType:CardTypeIdCardBack complete:^(id result, UIImage *image) {
@@ -390,13 +370,39 @@
 //    };
 //    [self.navigationController pushViewController:AVCaptureVC animated:YES];
 }
-
-
 -(void)agreeBtnClick{
     agreeBtn.selected = !agreeBtn.selected;
 }
 -(void)agreementBtnClick{
     NSLog(@"协议");
+}
+#pragma mark 照片选择代理
+#pragma mark HXPhotoManager代理
+- (void)albumListViewController:(HXAlbumListViewController *)albumListViewController didDoneAllList:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photoList videos:(NSArray<HXPhotoModel *> *)videoList original:(BOOL)original {
+    if (photoList.count > 0) {
+        HXPhotoModel *model = photoList.firstObject;
+        if (self->isBack) {
+            self->idCardPositiveImageView.image = model.previewPhoto;
+            self->idCardPositiveImage = model.previewPhoto;
+        }else{
+            self->idCardBackImage = model.previewPhoto;
+            self->idCardBackImageView.image = model.previewPhoto;
+        }
+        NSSLog(@"%lu张图片",(unsigned long)photoList.count);
+    }else if (videoList.count > 0) {
+        
+        [self.toolManager getSelectedImageList:allList success:^(NSArray<UIImage *> *imageList) {
+            if (self->isBack) {
+                self->idCardPositiveImageView.image =  imageList.firstObject;
+                self->idCardPositiveImage = imageList.firstObject;
+            }else{
+                self->idCardBackImage = imageList.firstObject;
+                self->idCardBackImageView.image = imageList.firstObject;
+            }
+        } failed:^{
+            
+        }];
+    }
 }
 #pragma mark 懒加载
 -(Per_MethodsToDealWithManage *)manage{
@@ -405,6 +411,23 @@
     }
      _manage.superVC = self;
     return _manage;
+}
+- (HXPhotoManager *)photo_manager {
+    if (!_photo_manager) {
+        _photo_manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
+        _photo_manager.configuration.singleSelected = YES;
+        _photo_manager.configuration.albumListTableView = ^(UITableView *tableView) {
+            
+        };
+    }
+    return _photo_manager;
+}
+
+- (HXDatePhotoToolManager *)toolManager {
+    if (!_toolManager) {
+        _toolManager = [[HXDatePhotoToolManager alloc] init];
+    }
+    return _toolManager;
 }
 /*
 #pragma mark - Navigation

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) void(^selectItemBlock)(NSInteger index);
 
 @property (nonatomic ,strong) NSArray *modelArr;
+@property (nonatomic, assign)BOOL pausePlay;//暂停、开启
 @end
 
 NS_ASSUME_NONNULL_END

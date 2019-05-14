@@ -9,6 +9,7 @@
 #import "NearPageVC.h"
 #import "YYB_HF_LocalHeadView.h"
 #import "YYB_HF_LifeLocaView.h"
+#import "YBPopupMenu.h"
 @interface NearPageVC (){
     int arc;
 }

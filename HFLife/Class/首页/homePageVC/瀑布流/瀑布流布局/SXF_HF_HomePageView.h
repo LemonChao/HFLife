@@ -15,6 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong)void(^refreshDataCallBack)(NSInteger page);
 - (void) endRefreshData;
+
+
+/**
+ 离开暂停轮播
+ */
+@property (nonatomic, assign)BOOL pausePlay;//暂停、开启
+
 @end
 
 NS_ASSUME_NONNULL_END

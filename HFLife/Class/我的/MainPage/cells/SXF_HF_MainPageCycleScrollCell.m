@@ -100,21 +100,12 @@
     //滚动到
     //    NSLog(@"滚动到section3  %ld", index);
     self.pageControl.currentPage = index;
-    
-    
-    
     //在当前cell播放动画
     NSString *iamgePath = [[NSBundle mainBundle] pathForResource:@"余额" ofType:@"gif"];
     UIImage *gifImage = [UIImage sd_animatedGIFWithData:[NSData dataWithContentsOfFile:iamgePath]];
 //    self.animImageV.image = gifImage;
     
     [self.animImageV playGifImageData:[NSData dataWithContentsOfFile:iamgePath] repeatCount:1];
-    
-    
-    
-    
-    
-    
 }
 //点击item
 - (void)clickItemFromIndex:(NSInteger)index{
@@ -127,8 +118,8 @@
     
     [self.cycleV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(5));
-        make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
-        make.right.mas_equalTo(self.contentView.mas_right).offset(ScreenScale(-12));
+        make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(0));
+        make.right.mas_equalTo(self.contentView.mas_right).offset(ScreenScale(-0));
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-5));
     }];
     

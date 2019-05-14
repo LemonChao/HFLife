@@ -39,8 +39,19 @@
     self.pageControl.numberOfPages = self.nums;
     [self.cycleV refreshData];
     [self addPageControl];
-
+    
 }
+
+
+- (void)setPausePlay:(BOOL)pausePlay{
+    _pausePlay = pausePlay;
+    
+    self.cycleV.pausePlay = _pausePlay;
+    
+}
+
+
+
 
 - (void) addPageControl{
     [self.contentView addSubview:self.pageControl];

@@ -55,10 +55,27 @@
 -(BOOL) isValidateMobileAndTelAnd400;
 
 /** 银行账号判断 */
- -(BOOL)isValidateBank;
+-(BOOL)isValidateBank;
 
 /** 身份证号 */
 -(BOOL) isValidateIdentityCard;
+
+/**
+ 港澳台身份证验证
+ 
+ @return YES：通过 NO：不通过
+ */
+- (BOOL) isHKTCard;
+
+/**
+ 护照验证
+ 
+ @return YES:通过 NO：不通过
+ */
+- (BOOL) isPassport;
+
+/** 军官证验证  YES:通过 NO：不通过 */
+- (BOOL) isOfficer;
 
 /** 判断是否是车牌号 */
 -(BOOL) isValidateCarNo;
@@ -142,7 +159,7 @@
 
 /**
  获取18随机字符串
-
+ 
  @return 随机字符串
  */
 + (NSString *)getRandomString;
