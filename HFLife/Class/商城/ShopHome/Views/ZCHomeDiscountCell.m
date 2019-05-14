@@ -40,12 +40,22 @@
     return self;
 }
 
+- (void)setModel:(ZCShopHomeCellModel *)model {
+    _model = model;
+    
+    self.titleLable.text = model.title;
+}
+
+
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return self.model.cellDatas.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZCDisCountCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCDisCountCollectionCell class]) forIndexPath:indexPath];
+    ZCShopHomeLimitModel *model = self.model.cellDatas[indexPath.row];
+    cell.model = model;
     return cell;
 }
 
@@ -71,7 +81,6 @@
 - (UILabel *)titleLable {
     if (!_titleLable) {
         _titleLable = [UITool labelWithTextColor:ImportantColor font:MediumFont(18)];
-        _titleLable.text = @"今日必抢";
     }
     return _titleLable;
 }

@@ -75,8 +75,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/// 常规布局cellmodel 非瀑布流
-@interface ZCShopNormalCellModel : BaseModel
+/** cell model */
+@interface ZCShopHomeCellModel : BaseModel
 
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSArray *cellDatas;

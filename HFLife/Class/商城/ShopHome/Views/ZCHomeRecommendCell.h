@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZCShopHomeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 新品推荐
 @interface ZCHomeRecommendCell : UICollectionViewCell
+
+@property(nonatomic, strong) ZCShopHomeCellModel *model;
 
 @end
 

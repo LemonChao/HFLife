@@ -27,7 +27,7 @@
 @end
 
 
-@implementation ZCShopNormalCellModel
+@implementation ZCShopHomeCellModel
 
 
 

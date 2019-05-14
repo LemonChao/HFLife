@@ -132,7 +132,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.titleLable];
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.left.equalTo(self).offset(ScreenScale(12));
@@ -145,7 +145,7 @@
 - (UILabel *)titleLable {
     if (!_titleLable) {
         _titleLable = [UITool labelWithTextColor:ImportantColor font:MediumFont(18)];
-        _titleLable.text = @"今日必抢";
+        _titleLable.text = @"专属推荐";
     }
     return _titleLable;
 }
