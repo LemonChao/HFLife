@@ -177,10 +177,10 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    NSLog(@"结束滑动-----%lf" , scrollView.contentOffset.x);
+//    NSLog(@"结束滑动-----%lf" , scrollView.contentOffset.x);
     
     NSInteger index = scrollView.contentOffset.x / self.frame.size.width;
-    NSLog(@"--)))))%ld" , (long)index);
+//    NSLog(@"--)))))%ld" , (long)index);
     UIButton *btn = [_btnArrM objectAtIndex:index];
     _selectedBtn.selected = NO;
     _selectedBtn = btn;

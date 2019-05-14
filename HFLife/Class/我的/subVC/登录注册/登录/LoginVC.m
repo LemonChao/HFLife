@@ -42,7 +42,7 @@
     [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
     self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
     [self.customNavBar setOnClickLeftButton:^{
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
     [self.customNavBar setOnClickRightButton:^{
         NSLog(@"搜索");

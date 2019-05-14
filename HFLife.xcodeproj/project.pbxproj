@@ -421,6 +421,7 @@
 		04F52192228A7A9400ED4995 /* LocalMallCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5218A228A7A9300ED4995 /* LocalMallCollectionVC.m */; };
 		04F52193228A7A9400ED4995 /* GoodsCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5218E228A7A9300ED4995 /* GoodsCollectionVC.m */; };
 		04F52194228A7A9400ED4995 /* MyCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5218F228A7A9300ED4995 /* MyCollectionVC.m */; };
+		04F52197228A9C4C00ED4995 /* UIView+UIScreenDisplaying.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52196228A9C4C00ED4995 /* UIView+UIScreenDisplaying.m */; };
 		04F54B3022811B9C009AAEF3 /* ProjectKit.md in Resources */ = {isa = PBXBuildFile; fileRef = 04F54B2F22811B9C009AAEF3 /* ProjectKit.md */; };
 		04F54B3422811DC8009AAEF3 /* subModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B3322811DC8009AAEF3 /* subModels.m */; };
 		04F54B4322813B23009AAEF3 /* WRNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B3D22813B23009AAEF3 /* WRNavigationBar.m */; };
@@ -1513,6 +1514,8 @@
 		04F5218D228A7A9300ED4995 /* GoodsCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsCollectionVC.h; sourceTree = "<group>"; };
 		04F5218E228A7A9300ED4995 /* GoodsCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsCollectionVC.m; sourceTree = "<group>"; };
 		04F5218F228A7A9300ED4995 /* MyCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionVC.m; sourceTree = "<group>"; };
+		04F52195228A9C4C00ED4995 /* UIView+UIScreenDisplaying.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+UIScreenDisplaying.h"; sourceTree = "<group>"; };
+		04F52196228A9C4C00ED4995 /* UIView+UIScreenDisplaying.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIScreenDisplaying.m"; sourceTree = "<group>"; };
 		04F54B2F22811B9C009AAEF3 /* ProjectKit.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ProjectKit.md; sourceTree = "<group>"; };
 		04F54B3222811DC8009AAEF3 /* subModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subModels.h; sourceTree = "<group>"; };
 		04F54B3322811DC8009AAEF3 /* subModels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = subModels.m; sourceTree = "<group>"; };
@@ -3608,6 +3611,8 @@
 				6CCAD7092282E4E7001824A0 /* UIView+BadgeValue.m */,
 				04F67AB02285199A008124A3 /* UIView+cornerRadius.h */,
 				04F67AB12285199A008124A3 /* UIView+cornerRadius.m */,
+				04F52195228A9C4C00ED4995 /* UIView+UIScreenDisplaying.h */,
+				04F52196228A9C4C00ED4995 /* UIView+UIScreenDisplaying.m */,
 				04A507AC227EDD390013E8EC /* 02 设置圆角 */,
 				04A507AF227EDD390013E8EC /* 01 所在控制器 */,
 				04A507B2227EDD390013E8EC /* 链式创建 */,
@@ -6663,6 +6668,7 @@
 				048DAC5422857516006E6BA2 /* BalanceHomeVC.m in Sources */,
 				049783852285957E00E143D7 /* YYb_HF_CollReusableView.m in Sources */,
 				04A508E2227EDD3A0013E8EC /* HRCall.m in Sources */,
+				04F52197228A9C4C00ED4995 /* UIView+UIScreenDisplaying.m in Sources */,
 				04F52049228A61B200ED4995 /* friendViewCell.m in Sources */,
 				658902F3223B775F009C1B03 /* NSBundle+PYSearchExtension.m in Sources */,
 				049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */,

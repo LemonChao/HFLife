@@ -17,7 +17,6 @@
 @interface customCycleView()<CWCarouselDatasource, CWCarouselDelegate>
 @property (nonatomic ,strong) CWPageControl *control;
 @property (nonatomic, strong) CWCarousel *carousel;
-
 @property (nonatomic ,assign) NSInteger count;
 
 @end
@@ -142,6 +141,18 @@
     
 }
 
+
+- (void)setPausePlay:(BOOL)pausePlay{
+    _pausePlay = pausePlay;
+    if (_pausePlay) {
+        //暂停
+        [self.carousel pause];
+    }else{
+        //开始
+        [self.carousel resumePlay];//暂停后继续播放
+    }
+}
+
 //点击
 - (void)CWCarousel:(CWCarousel *)carousel didSelectedAtIndex:(NSInteger)index {
     
@@ -162,12 +173,12 @@
 
 
 - (void)CWCarousel:(CWCarousel *)carousel didStartScrollAtIndex:(NSInteger)index indexPathRow:(NSInteger)indexPathRow {
-    NSLog(@"开始滑动: %ld", index);
+//    NSLog(@"开始滑动: %ld", index);
 }
 
 
 - (void)CWCarousel:(CWCarousel *)carousel didEndScrollAtIndex:(NSInteger)index indexPathRow:(NSInteger)indexPathRow {
-    NSLog(@"结束滑动: %ld", index);
+//    NSLog(@"结束滑动: %ld", index);
     if (self.delegate && [self.delegate respondsToSelector:@selector(selectIndex:)]) {
         [self.delegate selectIndex:index];
     }
