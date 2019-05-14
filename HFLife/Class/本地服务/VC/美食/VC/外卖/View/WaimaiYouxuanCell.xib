@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="youxuanCycleCell_id" id="KGk-i7-Jjw" customClass="WaimaiYouxuanCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hWr-Oh-7KO">
+                        <rect key="frame" x="13" y="13" width="349" height="211.5"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7um-C8-dla">
+                                <rect key="frame" x="0.0" y="0.0" width="349" height="102"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="waimai_youxuan_topLeft" translatesAutoresizingMaskIntoConstraints="NO" id="KmN-MO-bFD">
+                                        <rect key="frame" x="0.0" y="0.0" width="169.5" height="102"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="waimai_youxuan_topRight" translatesAutoresizingMaskIntoConstraints="NO" id="Svg-8N-vHU">
+                                        <rect key="frame" x="179.5" y="0.0" width="169.5" height="102"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.84070357660927364" blue="0.71569153318136769" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <viewLayoutGuide key="safeArea" id="e8A-YQ-o6o"/>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-eu-LAA">
+                                <rect key="frame" x="0.0" y="110" width="349" height="101.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="waimai_youxuan_bottom0" translatesAutoresizingMaskIntoConstraints="NO" id="YTO-7F-8V0">
+                                        <rect key="frame" x="0.0" y="0.0" width="81.5" height="101.5"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="waimai_youxuan_bottom1" translatesAutoresizingMaskIntoConstraints="NO" id="04k-eU-RV6">
+                                        <rect key="frame" x="89.5" y="0.0" width="81" height="101.5"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="waimai_youxuan_bottom2" translatesAutoresizingMaskIntoConstraints="NO" id="cpp-QZ-Y4M">
+                                        <rect key="frame" x="178.5" y="0.0" width="81.5" height="101.5"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="waimai_youxuan_bottom3" translatesAutoresizingMaskIntoConstraints="NO" id="RFZ-jI-gxB">
+                                        <rect key="frame" x="268" y="0.0" width="81" height="101.5"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.49531228258170112" blue="0.97527350241254529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hWr-Oh-7KO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="A7U-tn-Hvg"/>
+                    <constraint firstAttribute="bottom" secondItem="hWr-Oh-7KO" secondAttribute="bottom" constant="25" id="cQ1-hG-g5A"/>
+                    <constraint firstItem="hWr-Oh-7KO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="fGv-hc-bbA"/>
+                    <constraint firstAttribute="trailing" secondItem="hWr-Oh-7KO" secondAttribute="trailing" constant="13" id="vs7-kQ-rAA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="352.80000000000001" y="92.653673163418304"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="waimai_youxuan_bottom0" width="81" height="97"/>
+        <image name="waimai_youxuan_bottom1" width="81" height="97"/>
+        <image name="waimai_youxuan_bottom2" width="80.5" height="97"/>
+        <image name="waimai_youxuan_bottom3" width="80.5" height="97"/>
+        <image name="waimai_youxuan_topLeft" width="170" height="110"/>
+        <image name="waimai_youxuan_topRight" width="170" height="110"/>
+    </resources>
+</document>

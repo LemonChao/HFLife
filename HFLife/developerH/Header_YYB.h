@@ -22,6 +22,8 @@
 
 
 /************************subUrl************************/
+#define GP_BASEURL  @"http://test.hfgld.net"
+
 static NSString *const yourTestUrl = @"w=index&t=index";
 static NSString *const yourTestUrl2 = @"w=user&t=get_invite_info";
 

@@ -133,7 +133,8 @@
         }
     }];
     
-    [self addShareViewForH5:nil];
+//    [self addShareViewForH5:nil];
+    [self.viewController.navigationController pushViewController:[NSClassFromString(@"InviteVC") new] animated:YES];
     
 }
 

@@ -19,6 +19,58 @@
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
 		04153B75228A680B00AA5DAF /* BindingAlipayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B73228A680B00AA5DAF /* BindingAlipayVC.m */; };
 		04153B76228A680B00AA5DAF /* BindingPayWayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B74228A680B00AA5DAF /* BindingPayWayVC.m */; };
+		04153B87228A9C9600AA5DAF /* SynthesizeMerchantListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B78228A9C9600AA5DAF /* SynthesizeMerchantListVC.m */; };
+		04153B88228A9C9600AA5DAF /* SynthesizeMerchantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B7B228A9C9600AA5DAF /* SynthesizeMerchantCell.m */; };
+		04153B89228A9C9600AA5DAF /* MerchantsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B7D228A9C9600AA5DAF /* MerchantsCell.m */; };
+		04153B8A228A9C9600AA5DAF /* ZKCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B80228A9C9600AA5DAF /* ZKCycleScrollView.m */; };
+		04153B8B228A9C9600AA5DAF /* LocalImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04153B81228A9C9600AA5DAF /* LocalImageCell.xib */; };
+		04153B8C228A9C9600AA5DAF /* ZKCycleScrollViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B84228A9C9600AA5DAF /* ZKCycleScrollViewFlowLayout.m */; };
+		04153B8D228A9C9600AA5DAF /* LocalImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B85228A9C9600AA5DAF /* LocalImageCell.m */; };
+		04153BF6228AA2F100AA5DAF /* NearFoodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B8F228AA2F100AA5DAF /* NearFoodVC.m */; };
+		04153BF7228AA2F100AA5DAF /* foodBG2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04153B90228AA2F100AA5DAF /* foodBG2.png */; };
+		04153BF8228AA2F100AA5DAF /* NearFoodDelegateManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B92228AA2F100AA5DAF /* NearFoodDelegateManage.m */; };
+		04153BF9228AA2F100AA5DAF /* foodBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 04153B94228AA2F100AA5DAF /* foodBG.png */; };
+		04153BFA228AA2F100AA5DAF /* FoodClassifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B98228AA2F100AA5DAF /* FoodClassifyCell.m */; };
+		04153BFB228AA2F100AA5DAF /* FoodPreferentialCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B9C228AA2F100AA5DAF /* FoodPreferentialCollCell.m */; };
+		04153BFC228AA2F100AA5DAF /* FoodPreferentialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B9D228AA2F100AA5DAF /* FoodPreferentialCell.m */; };
+		04153BFD228AA2F100AA5DAF /* NearFoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B9F228AA2F100AA5DAF /* NearFoodListCell.m */; };
+		04153BFE228AA2F100AA5DAF /* FoodAdvertisingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BA2228AA2F100AA5DAF /* FoodAdvertisingCell.m */; };
+		04153BFF228AA2F100AA5DAF /* DiscountCouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BA6228AA2F100AA5DAF /* DiscountCouponVC.m */; };
+		04153C00228AA2F100AA5DAF /* DiscountCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BA9228AA2F100AA5DAF /* DiscountCouponCell.m */; };
+		04153C01228AA2F100AA5DAF /* BuffetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BAD228AA2F100AA5DAF /* BuffetVC.m */; };
+		04153C02228AA2F100AA5DAF /* NewStoresCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BB2228AA2F100AA5DAF /* NewStoresCell.m */; };
+		04153C03228AA2F100AA5DAF /* NewStoresPreferential.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BB3228AA2F100AA5DAF /* NewStoresPreferential.m */; };
+		04153C04228AA2F100AA5DAF /* NearFoodListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BB6228AA2F100AA5DAF /* NearFoodListVC.m */; };
+		04153C05228AA2F100AA5DAF /* HotPotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BB9228AA2F100AA5DAF /* HotPotVC.m */; };
+		04153C06228AA2F100AA5DAF /* Cake_MilkyTeaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BBB228AA2F100AA5DAF /* Cake_MilkyTeaVC.m */; };
+		04153C07228AA2F100AA5DAF /* TakeOutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BBE228AA2F100AA5DAF /* TakeOutVC.m */; };
+		04153C08228AA2F100AA5DAF /* NearbyShopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BC0228AA2F100AA5DAF /* NearbyShopVC.m */; };
+		04153C09228AA2F100AA5DAF /* TableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04153BC3228AA2F100AA5DAF /* TableHeaderView.xib */; };
+		04153C0A228AA2F100AA5DAF /* WaimaiYouxuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BC5228AA2F100AA5DAF /* WaimaiYouxuanCell.m */; };
+		04153C0B228AA2F100AA5DAF /* WaimaiZhiquCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BC6228AA2F100AA5DAF /* WaimaiZhiquCell.m */; };
+		04153C0C228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BC7228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.m */; };
+		04153C0D228AA2F100AA5DAF /* ZCBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BC8228AA2F100AA5DAF /* ZCBaseTableView.m */; };
+		04153C0E228AA2F100AA5DAF /* WaimaiCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BC9228AA2F100AA5DAF /* WaimaiCategoryCell.m */; };
+		04153C0F228AA2F100AA5DAF /* WaimaiRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BCB228AA2F100AA5DAF /* WaimaiRecommendCell.m */; };
+		04153C10228AA2F100AA5DAF /* NearbyShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04153BCE228AA2F100AA5DAF /* NearbyShopCell.xib */; };
+		04153C11228AA2F100AA5DAF /* WaimaiCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04153BCF228AA2F100AA5DAF /* WaimaiCategoryCell.xib */; };
+		04153C12228AA2F100AA5DAF /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BD0228AA2F100AA5DAF /* TableHeaderView.m */; };
+		04153C13228AA2F100AA5DAF /* WaimaiCycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BD1228AA2F100AA5DAF /* WaimaiCycleCell.m */; };
+		04153C14228AA2F100AA5DAF /* NearbyShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BD7228AA2F100AA5DAF /* NearbyShopCell.m */; };
+		04153C15228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04153BD9228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.xib */; };
+		04153C16228AA2F100AA5DAF /* WaimaiYouxuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04153BDA228AA2F100AA5DAF /* WaimaiYouxuanCell.xib */; };
+		04153C17228AA2F100AA5DAF /* ContainerTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BDB228AA2F100AA5DAF /* ContainerTableHeader.m */; };
+		04153C18228AA2F100AA5DAF /* NearbyShopSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BDC228AA2F100AA5DAF /* NearbyShopSectionHeader.m */; };
+		04153C19228AA2F100AA5DAF /* TakeOut_H5.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BDE228AA2F100AA5DAF /* TakeOut_H5.m */; };
+		04153C1A228AA2F100AA5DAF /* SubscribeSubmitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BE1228AA2F100AA5DAF /* SubscribeSubmitVC.m */; };
+		04153C1B228AA2F100AA5DAF /* PreorderTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BE3228AA2F100AA5DAF /* PreorderTableVC.m */; };
+		04153C1C228AA2F100AA5DAF /* ConfigOrderInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04153BE5228AA2F100AA5DAF /* ConfigOrderInfoVC.xib */; };
+		04153C1D228AA2F100AA5DAF /* PreorderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BE7228AA2F100AA5DAF /* PreorderTableCell.m */; };
+		04153C1E228AA2F100AA5DAF /* PreorderTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04153BE9228AA2F100AA5DAF /* PreorderTableCell.xib */; };
+		04153C1F228AA2F100AA5DAF /* ConfigOrderInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BEA228AA2F100AA5DAF /* ConfigOrderInfoVC.m */; };
+		04153C20228AA2F100AA5DAF /* NearDiscountCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BEF228AA2F100AA5DAF /* NearDiscountCouponCell.m */; };
+		04153C21228AA2F100AA5DAF /* NearDiscountCouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BF1228AA2F100AA5DAF /* NearDiscountCouponVC.m */; };
+		04153C22228AA2F100AA5DAF /* LunchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BF4228AA2F100AA5DAF /* LunchVC.m */; };
 		0428EB5322797379000E4B4E /* callTelephone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428EB5122797379000E4B4E /* callTelephone.m */; };
 		0453D1502281935E00880C2A /* customItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14C2281935E00880C2A /* customItemView.m */; };
 		0453D1512281935E00880C2A /* myTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14F2281935E00880C2A /* myTopView.m */; };
@@ -771,6 +823,100 @@
 		04153B72228A680B00AA5DAF /* BindingPayWayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingPayWayVC.h; sourceTree = "<group>"; };
 		04153B73228A680B00AA5DAF /* BindingAlipayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingAlipayVC.m; sourceTree = "<group>"; };
 		04153B74228A680B00AA5DAF /* BindingPayWayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingPayWayVC.m; sourceTree = "<group>"; };
+		04153B78228A9C9600AA5DAF /* SynthesizeMerchantListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthesizeMerchantListVC.m; sourceTree = "<group>"; };
+		04153B7A228A9C9600AA5DAF /* MerchantsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantsCell.h; sourceTree = "<group>"; };
+		04153B7B228A9C9600AA5DAF /* SynthesizeMerchantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthesizeMerchantCell.m; sourceTree = "<group>"; };
+		04153B7C228A9C9600AA5DAF /* SynthesizeMerchantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeMerchantCell.h; sourceTree = "<group>"; };
+		04153B7D228A9C9600AA5DAF /* MerchantsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantsCell.m; sourceTree = "<group>"; };
+		04153B7F228A9C9600AA5DAF /* ZKCycleScrollViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKCycleScrollViewFlowLayout.h; sourceTree = "<group>"; };
+		04153B80228A9C9600AA5DAF /* ZKCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKCycleScrollView.m; sourceTree = "<group>"; };
+		04153B81228A9C9600AA5DAF /* LocalImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalImageCell.xib; sourceTree = "<group>"; };
+		04153B82228A9C9600AA5DAF /* LocalImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalImageCell.h; sourceTree = "<group>"; };
+		04153B83228A9C9600AA5DAF /* ZKCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKCycleScrollView.h; sourceTree = "<group>"; };
+		04153B84228A9C9600AA5DAF /* ZKCycleScrollViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKCycleScrollViewFlowLayout.m; sourceTree = "<group>"; };
+		04153B85228A9C9600AA5DAF /* LocalImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalImageCell.m; sourceTree = "<group>"; };
+		04153B86228A9C9600AA5DAF /* SynthesizeMerchantListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeMerchantListVC.h; sourceTree = "<group>"; };
+		04153B8F228AA2F100AA5DAF /* NearFoodVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearFoodVC.m; sourceTree = "<group>"; };
+		04153B90228AA2F100AA5DAF /* foodBG2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foodBG2.png; sourceTree = "<group>"; };
+		04153B92228AA2F100AA5DAF /* NearFoodDelegateManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearFoodDelegateManage.m; sourceTree = "<group>"; };
+		04153B93228AA2F100AA5DAF /* NearFoodDelegateManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearFoodDelegateManage.h; sourceTree = "<group>"; };
+		04153B94228AA2F100AA5DAF /* foodBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foodBG.png; sourceTree = "<group>"; };
+		04153B97228AA2F100AA5DAF /* FoodClassifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodClassifyCell.h; sourceTree = "<group>"; };
+		04153B98228AA2F100AA5DAF /* FoodClassifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodClassifyCell.m; sourceTree = "<group>"; };
+		04153B9A228AA2F100AA5DAF /* FoodPreferentialCollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodPreferentialCollCell.h; sourceTree = "<group>"; };
+		04153B9B228AA2F100AA5DAF /* FoodPreferentialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodPreferentialCell.h; sourceTree = "<group>"; };
+		04153B9C228AA2F100AA5DAF /* FoodPreferentialCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodPreferentialCollCell.m; sourceTree = "<group>"; };
+		04153B9D228AA2F100AA5DAF /* FoodPreferentialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodPreferentialCell.m; sourceTree = "<group>"; };
+		04153B9F228AA2F100AA5DAF /* NearFoodListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearFoodListCell.m; sourceTree = "<group>"; };
+		04153BA0228AA2F100AA5DAF /* NearFoodListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearFoodListCell.h; sourceTree = "<group>"; };
+		04153BA2228AA2F100AA5DAF /* FoodAdvertisingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodAdvertisingCell.m; sourceTree = "<group>"; };
+		04153BA3228AA2F100AA5DAF /* FoodAdvertisingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodAdvertisingCell.h; sourceTree = "<group>"; };
+		04153BA6228AA2F100AA5DAF /* DiscountCouponVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCouponVC.m; sourceTree = "<group>"; };
+		04153BA8228AA2F100AA5DAF /* DiscountCouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountCouponCell.h; sourceTree = "<group>"; };
+		04153BA9228AA2F100AA5DAF /* DiscountCouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCouponCell.m; sourceTree = "<group>"; };
+		04153BAA228AA2F100AA5DAF /* DiscountCouponVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountCouponVC.h; sourceTree = "<group>"; };
+		04153BAC228AA2F100AA5DAF /* BuffetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuffetVC.h; sourceTree = "<group>"; };
+		04153BAD228AA2F100AA5DAF /* BuffetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuffetVC.m; sourceTree = "<group>"; };
+		04153BAF228AA2F100AA5DAF /* NewStoresPreferential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStoresPreferential.h; sourceTree = "<group>"; };
+		04153BB1228AA2F100AA5DAF /* NewStoresCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStoresCell.h; sourceTree = "<group>"; };
+		04153BB2228AA2F100AA5DAF /* NewStoresCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStoresCell.m; sourceTree = "<group>"; };
+		04153BB3228AA2F100AA5DAF /* NewStoresPreferential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStoresPreferential.m; sourceTree = "<group>"; };
+		04153BB5228AA2F100AA5DAF /* NearFoodListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearFoodListVC.h; sourceTree = "<group>"; };
+		04153BB6228AA2F100AA5DAF /* NearFoodListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearFoodListVC.m; sourceTree = "<group>"; };
+		04153BB8228AA2F100AA5DAF /* HotPotVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotPotVC.h; sourceTree = "<group>"; };
+		04153BB9228AA2F100AA5DAF /* HotPotVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotPotVC.m; sourceTree = "<group>"; };
+		04153BBB228AA2F100AA5DAF /* Cake_MilkyTeaVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cake_MilkyTeaVC.m; sourceTree = "<group>"; };
+		04153BBC228AA2F100AA5DAF /* Cake_MilkyTeaVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cake_MilkyTeaVC.h; sourceTree = "<group>"; };
+		04153BBE228AA2F100AA5DAF /* TakeOutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeOutVC.m; sourceTree = "<group>"; };
+		04153BBF228AA2F100AA5DAF /* TakeOut_H5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeOut_H5.h; sourceTree = "<group>"; };
+		04153BC0228AA2F100AA5DAF /* NearbyShopVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyShopVC.m; sourceTree = "<group>"; };
+		04153BC1228AA2F100AA5DAF /* TakeOutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeOutVC.h; sourceTree = "<group>"; };
+		04153BC3228AA2F100AA5DAF /* TableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableHeaderView.xib; sourceTree = "<group>"; };
+		04153BC4228AA2F100AA5DAF /* NearbyShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyShopCell.h; sourceTree = "<group>"; };
+		04153BC5228AA2F100AA5DAF /* WaimaiYouxuanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaimaiYouxuanCell.m; sourceTree = "<group>"; };
+		04153BC6228AA2F100AA5DAF /* WaimaiZhiquCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaimaiZhiquCell.m; sourceTree = "<group>"; };
+		04153BC7228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaimaiZhiquCollectionCell.m; sourceTree = "<group>"; };
+		04153BC8228AA2F100AA5DAF /* ZCBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCBaseTableView.m; sourceTree = "<group>"; };
+		04153BC9228AA2F100AA5DAF /* WaimaiCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaimaiCategoryCell.m; sourceTree = "<group>"; };
+		04153BCA228AA2F100AA5DAF /* WaimaiCycleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaimaiCycleCell.h; sourceTree = "<group>"; };
+		04153BCB228AA2F100AA5DAF /* WaimaiRecommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaimaiRecommendCell.m; sourceTree = "<group>"; };
+		04153BCC228AA2F100AA5DAF /* NearbyShopSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyShopSectionHeader.h; sourceTree = "<group>"; };
+		04153BCD228AA2F100AA5DAF /* ContainerTableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerTableHeader.h; sourceTree = "<group>"; };
+		04153BCE228AA2F100AA5DAF /* NearbyShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyShopCell.xib; sourceTree = "<group>"; };
+		04153BCF228AA2F100AA5DAF /* WaimaiCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaimaiCategoryCell.xib; sourceTree = "<group>"; };
+		04153BD0228AA2F100AA5DAF /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
+		04153BD1228AA2F100AA5DAF /* WaimaiCycleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaimaiCycleCell.m; sourceTree = "<group>"; };
+		04153BD2228AA2F100AA5DAF /* ZCBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCBaseTableView.h; sourceTree = "<group>"; };
+		04153BD3228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaimaiZhiquCollectionCell.h; sourceTree = "<group>"; };
+		04153BD4228AA2F100AA5DAF /* WaimaiCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaimaiCategoryCell.h; sourceTree = "<group>"; };
+		04153BD5228AA2F100AA5DAF /* WaimaiZhiquCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaimaiZhiquCell.h; sourceTree = "<group>"; };
+		04153BD6228AA2F100AA5DAF /* WaimaiYouxuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaimaiYouxuanCell.h; sourceTree = "<group>"; };
+		04153BD7228AA2F100AA5DAF /* NearbyShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyShopCell.m; sourceTree = "<group>"; };
+		04153BD8228AA2F100AA5DAF /* WaimaiRecommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaimaiRecommendCell.h; sourceTree = "<group>"; };
+		04153BD9228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaimaiZhiquCollectionCell.xib; sourceTree = "<group>"; };
+		04153BDA228AA2F100AA5DAF /* WaimaiYouxuanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaimaiYouxuanCell.xib; sourceTree = "<group>"; };
+		04153BDB228AA2F100AA5DAF /* ContainerTableHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerTableHeader.m; sourceTree = "<group>"; };
+		04153BDC228AA2F100AA5DAF /* NearbyShopSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyShopSectionHeader.m; sourceTree = "<group>"; };
+		04153BDD228AA2F100AA5DAF /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
+		04153BDE228AA2F100AA5DAF /* TakeOut_H5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeOut_H5.m; sourceTree = "<group>"; };
+		04153BDF228AA2F100AA5DAF /* NearbyShopVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyShopVC.h; sourceTree = "<group>"; };
+		04153BE1228AA2F100AA5DAF /* SubscribeSubmitVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeSubmitVC.m; sourceTree = "<group>"; };
+		04153BE2228AA2F100AA5DAF /* ConfigOrderInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigOrderInfoVC.h; sourceTree = "<group>"; };
+		04153BE3228AA2F100AA5DAF /* PreorderTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreorderTableVC.m; sourceTree = "<group>"; };
+		04153BE4228AA2F100AA5DAF /* SubscribeSubmitVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeSubmitVC.h; sourceTree = "<group>"; };
+		04153BE5228AA2F100AA5DAF /* ConfigOrderInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigOrderInfoVC.xib; sourceTree = "<group>"; };
+		04153BE7228AA2F100AA5DAF /* PreorderTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreorderTableCell.m; sourceTree = "<group>"; };
+		04153BE8228AA2F100AA5DAF /* PreorderTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreorderTableCell.h; sourceTree = "<group>"; };
+		04153BE9228AA2F100AA5DAF /* PreorderTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreorderTableCell.xib; sourceTree = "<group>"; };
+		04153BEA228AA2F100AA5DAF /* ConfigOrderInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigOrderInfoVC.m; sourceTree = "<group>"; };
+		04153BEB228AA2F100AA5DAF /* PreorderTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreorderTableVC.h; sourceTree = "<group>"; };
+		04153BED228AA2F100AA5DAF /* NearDiscountCouponVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearDiscountCouponVC.h; sourceTree = "<group>"; };
+		04153BEF228AA2F100AA5DAF /* NearDiscountCouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearDiscountCouponCell.m; sourceTree = "<group>"; };
+		04153BF0228AA2F100AA5DAF /* NearDiscountCouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearDiscountCouponCell.h; sourceTree = "<group>"; };
+		04153BF1228AA2F100AA5DAF /* NearDiscountCouponVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearDiscountCouponVC.m; sourceTree = "<group>"; };
+		04153BF3228AA2F100AA5DAF /* LunchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunchVC.h; sourceTree = "<group>"; };
+		04153BF4228AA2F100AA5DAF /* LunchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunchVC.m; sourceTree = "<group>"; };
+		04153BF5228AA2F100AA5DAF /* NearFoodVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearFoodVC.h; sourceTree = "<group>"; };
 		0428EB5122797379000E4B4E /* callTelephone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callTelephone.m; sourceTree = "<group>"; };
 		0428EB5222797379000E4B4E /* callTelephone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callTelephone.h; sourceTree = "<group>"; };
 		0453D14C2281935E00880C2A /* customItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customItemView.m; sourceTree = "<group>"; };
@@ -2187,6 +2333,306 @@
 			path = "绑定银行卡\\支付宝";
 			sourceTree = "<group>";
 		};
+		04153B77228A9C9600AA5DAF /* 综合商家店铺列表 */ = {
+			isa = PBXGroup;
+			children = (
+				04153B86228A9C9600AA5DAF /* SynthesizeMerchantListVC.h */,
+				04153B78228A9C9600AA5DAF /* SynthesizeMerchantListVC.m */,
+				04153B79228A9C9600AA5DAF /* Cell */,
+			);
+			path = "综合商家店铺列表";
+			sourceTree = "<group>";
+		};
+		04153B79228A9C9600AA5DAF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04153B7A228A9C9600AA5DAF /* MerchantsCell.h */,
+				04153B7B228A9C9600AA5DAF /* SynthesizeMerchantCell.m */,
+				04153B7C228A9C9600AA5DAF /* SynthesizeMerchantCell.h */,
+				04153B7D228A9C9600AA5DAF /* MerchantsCell.m */,
+				04153B7E228A9C9600AA5DAF /* ZKCycleScrollView */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		04153B7E228A9C9600AA5DAF /* ZKCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				04153B7F228A9C9600AA5DAF /* ZKCycleScrollViewFlowLayout.h */,
+				04153B80228A9C9600AA5DAF /* ZKCycleScrollView.m */,
+				04153B81228A9C9600AA5DAF /* LocalImageCell.xib */,
+				04153B82228A9C9600AA5DAF /* LocalImageCell.h */,
+				04153B83228A9C9600AA5DAF /* ZKCycleScrollView.h */,
+				04153B84228A9C9600AA5DAF /* ZKCycleScrollViewFlowLayout.m */,
+				04153B85228A9C9600AA5DAF /* LocalImageCell.m */,
+			);
+			path = ZKCycleScrollView;
+			sourceTree = "<group>";
+		};
+		04153B8E228AA2F100AA5DAF /* 美食 */ = {
+			isa = PBXGroup;
+			children = (
+				04153B8F228AA2F100AA5DAF /* NearFoodVC.m */,
+				04153B90228AA2F100AA5DAF /* foodBG2.png */,
+				04153B91228AA2F100AA5DAF /* 代理处理 */,
+				04153B94228AA2F100AA5DAF /* foodBG.png */,
+				04153B95228AA2F100AA5DAF /* Cell */,
+				04153BA4228AA2F100AA5DAF /* VC */,
+				04153BF5228AA2F100AA5DAF /* NearFoodVC.h */,
+			);
+			path = "美食";
+			sourceTree = "<group>";
+		};
+		04153B91228AA2F100AA5DAF /* 代理处理 */ = {
+			isa = PBXGroup;
+			children = (
+				04153B92228AA2F100AA5DAF /* NearFoodDelegateManage.m */,
+				04153B93228AA2F100AA5DAF /* NearFoodDelegateManage.h */,
+			);
+			path = "代理处理";
+			sourceTree = "<group>";
+		};
+		04153B95228AA2F100AA5DAF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04153B96228AA2F100AA5DAF /* 美食分类 */,
+				04153B99228AA2F100AA5DAF /* 美食优惠 */,
+				04153B9E228AA2F100AA5DAF /* 美食广场 */,
+				04153BA1228AA2F100AA5DAF /* 美食广告 */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		04153B96228AA2F100AA5DAF /* 美食分类 */ = {
+			isa = PBXGroup;
+			children = (
+				04153B97228AA2F100AA5DAF /* FoodClassifyCell.h */,
+				04153B98228AA2F100AA5DAF /* FoodClassifyCell.m */,
+			);
+			path = "美食分类";
+			sourceTree = "<group>";
+		};
+		04153B99228AA2F100AA5DAF /* 美食优惠 */ = {
+			isa = PBXGroup;
+			children = (
+				04153B9A228AA2F100AA5DAF /* FoodPreferentialCollCell.h */,
+				04153B9B228AA2F100AA5DAF /* FoodPreferentialCell.h */,
+				04153B9C228AA2F100AA5DAF /* FoodPreferentialCollCell.m */,
+				04153B9D228AA2F100AA5DAF /* FoodPreferentialCell.m */,
+			);
+			path = "美食优惠";
+			sourceTree = "<group>";
+		};
+		04153B9E228AA2F100AA5DAF /* 美食广场 */ = {
+			isa = PBXGroup;
+			children = (
+				04153B9F228AA2F100AA5DAF /* NearFoodListCell.m */,
+				04153BA0228AA2F100AA5DAF /* NearFoodListCell.h */,
+			);
+			path = "美食广场";
+			sourceTree = "<group>";
+		};
+		04153BA1228AA2F100AA5DAF /* 美食广告 */ = {
+			isa = PBXGroup;
+			children = (
+				04153BA2228AA2F100AA5DAF /* FoodAdvertisingCell.m */,
+				04153BA3228AA2F100AA5DAF /* FoodAdvertisingCell.h */,
+			);
+			path = "美食广告";
+			sourceTree = "<group>";
+		};
+		04153BA4228AA2F100AA5DAF /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				04153BA5228AA2F100AA5DAF /* 优惠团购 */,
+				04153BAB228AA2F100AA5DAF /* 自助餐 */,
+				04153BAE228AA2F100AA5DAF /* 新店特惠 */,
+				04153BB4228AA2F100AA5DAF /* 美食列表VC */,
+				04153BB7228AA2F100AA5DAF /* 火锅 */,
+				04153BBA228AA2F100AA5DAF /* 蛋糕奶茶 */,
+				04153BBD228AA2F100AA5DAF /* 外卖 */,
+				04153BE0228AA2F100AA5DAF /* 预约订座 */,
+				04153BEC228AA2F100AA5DAF /* 附近好券 */,
+				04153BF2228AA2F100AA5DAF /* 午餐 */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		04153BA5228AA2F100AA5DAF /* 优惠团购 */ = {
+			isa = PBXGroup;
+			children = (
+				04153BA6228AA2F100AA5DAF /* DiscountCouponVC.m */,
+				04153BA7228AA2F100AA5DAF /* Cell */,
+				04153BAA228AA2F100AA5DAF /* DiscountCouponVC.h */,
+			);
+			path = "优惠团购";
+			sourceTree = "<group>";
+		};
+		04153BA7228AA2F100AA5DAF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04153BA8228AA2F100AA5DAF /* DiscountCouponCell.h */,
+				04153BA9228AA2F100AA5DAF /* DiscountCouponCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		04153BAB228AA2F100AA5DAF /* 自助餐 */ = {
+			isa = PBXGroup;
+			children = (
+				04153BAC228AA2F100AA5DAF /* BuffetVC.h */,
+				04153BAD228AA2F100AA5DAF /* BuffetVC.m */,
+			);
+			path = "自助餐";
+			sourceTree = "<group>";
+		};
+		04153BAE228AA2F100AA5DAF /* 新店特惠 */ = {
+			isa = PBXGroup;
+			children = (
+				04153BAF228AA2F100AA5DAF /* NewStoresPreferential.h */,
+				04153BB0228AA2F100AA5DAF /* Cell */,
+				04153BB3228AA2F100AA5DAF /* NewStoresPreferential.m */,
+			);
+			path = "新店特惠";
+			sourceTree = "<group>";
+		};
+		04153BB0228AA2F100AA5DAF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04153BB1228AA2F100AA5DAF /* NewStoresCell.h */,
+				04153BB2228AA2F100AA5DAF /* NewStoresCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		04153BB4228AA2F100AA5DAF /* 美食列表VC */ = {
+			isa = PBXGroup;
+			children = (
+				04153BB5228AA2F100AA5DAF /* NearFoodListVC.h */,
+				04153BB6228AA2F100AA5DAF /* NearFoodListVC.m */,
+			);
+			path = "美食列表VC";
+			sourceTree = "<group>";
+		};
+		04153BB7228AA2F100AA5DAF /* 火锅 */ = {
+			isa = PBXGroup;
+			children = (
+				04153BB8228AA2F100AA5DAF /* HotPotVC.h */,
+				04153BB9228AA2F100AA5DAF /* HotPotVC.m */,
+			);
+			path = "火锅";
+			sourceTree = "<group>";
+		};
+		04153BBA228AA2F100AA5DAF /* 蛋糕奶茶 */ = {
+			isa = PBXGroup;
+			children = (
+				04153BBB228AA2F100AA5DAF /* Cake_MilkyTeaVC.m */,
+				04153BBC228AA2F100AA5DAF /* Cake_MilkyTeaVC.h */,
+			);
+			path = "蛋糕奶茶";
+			sourceTree = "<group>";
+		};
+		04153BBD228AA2F100AA5DAF /* 外卖 */ = {
+			isa = PBXGroup;
+			children = (
+				04153BBE228AA2F100AA5DAF /* TakeOutVC.m */,
+				04153BBF228AA2F100AA5DAF /* TakeOut_H5.h */,
+				04153BC0228AA2F100AA5DAF /* NearbyShopVC.m */,
+				04153BC1228AA2F100AA5DAF /* TakeOutVC.h */,
+				04153BC2228AA2F100AA5DAF /* View */,
+				04153BDE228AA2F100AA5DAF /* TakeOut_H5.m */,
+				04153BDF228AA2F100AA5DAF /* NearbyShopVC.h */,
+			);
+			path = "外卖";
+			sourceTree = "<group>";
+		};
+		04153BC2228AA2F100AA5DAF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04153BC3228AA2F100AA5DAF /* TableHeaderView.xib */,
+				04153BC4228AA2F100AA5DAF /* NearbyShopCell.h */,
+				04153BC5228AA2F100AA5DAF /* WaimaiYouxuanCell.m */,
+				04153BC6228AA2F100AA5DAF /* WaimaiZhiquCell.m */,
+				04153BC7228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.m */,
+				04153BC8228AA2F100AA5DAF /* ZCBaseTableView.m */,
+				04153BC9228AA2F100AA5DAF /* WaimaiCategoryCell.m */,
+				04153BCA228AA2F100AA5DAF /* WaimaiCycleCell.h */,
+				04153BCB228AA2F100AA5DAF /* WaimaiRecommendCell.m */,
+				04153BCC228AA2F100AA5DAF /* NearbyShopSectionHeader.h */,
+				04153BCD228AA2F100AA5DAF /* ContainerTableHeader.h */,
+				04153BCE228AA2F100AA5DAF /* NearbyShopCell.xib */,
+				04153BCF228AA2F100AA5DAF /* WaimaiCategoryCell.xib */,
+				04153BD0228AA2F100AA5DAF /* TableHeaderView.m */,
+				04153BD1228AA2F100AA5DAF /* WaimaiCycleCell.m */,
+				04153BD2228AA2F100AA5DAF /* ZCBaseTableView.h */,
+				04153BD3228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.h */,
+				04153BD4228AA2F100AA5DAF /* WaimaiCategoryCell.h */,
+				04153BD5228AA2F100AA5DAF /* WaimaiZhiquCell.h */,
+				04153BD6228AA2F100AA5DAF /* WaimaiYouxuanCell.h */,
+				04153BD7228AA2F100AA5DAF /* NearbyShopCell.m */,
+				04153BD8228AA2F100AA5DAF /* WaimaiRecommendCell.h */,
+				04153BD9228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.xib */,
+				04153BDA228AA2F100AA5DAF /* WaimaiYouxuanCell.xib */,
+				04153BDB228AA2F100AA5DAF /* ContainerTableHeader.m */,
+				04153BDC228AA2F100AA5DAF /* NearbyShopSectionHeader.m */,
+				04153BDD228AA2F100AA5DAF /* TableHeaderView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04153BE0228AA2F100AA5DAF /* 预约订座 */ = {
+			isa = PBXGroup;
+			children = (
+				04153BE1228AA2F100AA5DAF /* SubscribeSubmitVC.m */,
+				04153BE2228AA2F100AA5DAF /* ConfigOrderInfoVC.h */,
+				04153BE3228AA2F100AA5DAF /* PreorderTableVC.m */,
+				04153BE4228AA2F100AA5DAF /* SubscribeSubmitVC.h */,
+				04153BE5228AA2F100AA5DAF /* ConfigOrderInfoVC.xib */,
+				04153BE6228AA2F100AA5DAF /* View */,
+				04153BEA228AA2F100AA5DAF /* ConfigOrderInfoVC.m */,
+				04153BEB228AA2F100AA5DAF /* PreorderTableVC.h */,
+			);
+			path = "预约订座";
+			sourceTree = "<group>";
+		};
+		04153BE6228AA2F100AA5DAF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04153BE7228AA2F100AA5DAF /* PreorderTableCell.m */,
+				04153BE8228AA2F100AA5DAF /* PreorderTableCell.h */,
+				04153BE9228AA2F100AA5DAF /* PreorderTableCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04153BEC228AA2F100AA5DAF /* 附近好券 */ = {
+			isa = PBXGroup;
+			children = (
+				04153BED228AA2F100AA5DAF /* NearDiscountCouponVC.h */,
+				04153BEE228AA2F100AA5DAF /* Cell */,
+				04153BF1228AA2F100AA5DAF /* NearDiscountCouponVC.m */,
+			);
+			path = "附近好券";
+			sourceTree = "<group>";
+		};
+		04153BEE228AA2F100AA5DAF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04153BEF228AA2F100AA5DAF /* NearDiscountCouponCell.m */,
+				04153BF0228AA2F100AA5DAF /* NearDiscountCouponCell.h */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		04153BF2228AA2F100AA5DAF /* 午餐 */ = {
+			isa = PBXGroup;
+			children = (
+				04153BF3228AA2F100AA5DAF /* LunchVC.h */,
+				04153BF4228AA2F100AA5DAF /* LunchVC.m */,
+			);
+			path = "午餐";
+			sourceTree = "<group>";
+		};
 		0428EB5022797379000E4B4E /* 打电话 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2828,6 +3274,8 @@
 		049783622285957E00E143D7 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				04153B8E228AA2F100AA5DAF /* 美食 */,
+				04153B77228A9C9600AA5DAF /* 综合商家店铺列表 */,
 				049783632285957E00E143D7 /* 酒店 */,
 				049783712285957E00E143D7 /* 商家入驻 */,
 			);
@@ -2906,8 +3354,8 @@
 			isa = PBXGroup;
 			children = (
 				0497837A2285957E00E143D7 /* YYB_HF_LifeLocaView.h */,
-				0497837B2285957E00E143D7 /* naview */,
 				049783802285957E00E143D7 /* YYB_HF_LifeLocaView.m */,
+				0497837B2285957E00E143D7 /* naview */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6361,6 +6809,7 @@
 				659EA0712203D5A1004471CD /* GuideImage.bundle in Resources */,
 				6522949D225AE063001DF691 /* VersionUpdate_Cancel@3x.png in Resources */,
 				04F52150228A76BA00ED4995 /* chosensign@2x.png in Resources */,
+				04153C15228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.xib in Resources */,
 				0453D1EB2284033000880C2A /* sxf_地址@3x.png in Resources */,
 				04A5085B227EDD3A0013E8EC /* videoData.json in Resources */,
 				0453D1DD2284033000880C2A /* sxf_无网络@3x.png in Resources */,
@@ -6368,12 +6817,14 @@
 				04F52146228A76BA00ED4995 /* user-he.png in Resources */,
 				04F52145228A76BA00ED4995 /* user-he@2x.png in Resources */,
 				65DC68292211253200F1085E /* share_copyLink.png in Resources */,
+				04153B8B228A9C9600AA5DAF /* LocalImageCell.xib in Resources */,
 				04A50866227EDD3A0013E8EC /* JQBlankPageViewController.xib in Resources */,
 				659EA0AF220537EC004471CD /* 目的地.png in Resources */,
 				04A50842227EDD390013E8EC /* 向下箭头.png in Resources */,
 				04A50841227EDD390013E8EC /* smalldown@2x.png in Resources */,
 				65DC6892221A6C9700F1085E /* luxian2x.png in Resources */,
 				04F52140228A76BA00ED4995 /* iconPhotoSelectorCamera@2x.png in Resources */,
+				04153BF9228AA2F100AA5DAF /* foodBG.png in Resources */,
 				6522949F225AE063001DF691 /* VersionUpdate_Cancel@2x.png in Resources */,
 				04A508AD227EDD3A0013E8EC /* wexinImage.png in Resources */,
 				65DC68282211253200F1085E /* shareView_friend@3x.png in Resources */,
@@ -6405,10 +6856,12 @@
 				0453D1E02284033000880C2A /* sxf_暂无收藏.png in Resources */,
 				0453D1E12284033000880C2A /* sxf_无网络.png in Resources */,
 				658B7CBF21D749E100801CC8 /* message.png in Resources */,
+				04153C09228AA2F100AA5DAF /* TableHeaderView.xib in Resources */,
 				04F52141228A76BA00ED4995 /* chosennumber@2x.png in Resources */,
 				04F52176228A789600ED4995 /* style.css in Resources */,
 				04A5087F227EDD3A0013E8EC /* 关闭1.png in Resources */,
 				65DC683D22112C4300F1085E /* 定位@2x.png in Resources */,
+				04153C11228AA2F100AA5DAF /* WaimaiCategoryCell.xib in Resources */,
 				658B7C6121D749E100801CC8 /* Cities.json in Resources */,
 				04A50843227EDD390013E8EC /* down@2x.png in Resources */,
 				0453D181228266D200880C2A /* 01.jpg in Resources */,
@@ -6419,9 +6872,11 @@
 				048DAC4922857516006E6BA2 /* FQ_homeHeaderView.xib in Resources */,
 				0453D1E52284033000880C2A /* sxf_暂无收藏@2x.png in Resources */,
 				04A50860227EDD3A0013E8EC /* image100x100.jpg in Resources */,
+				04153C1C228AA2F100AA5DAF /* ConfigOrderInfoVC.xib in Resources */,
 				0497838E2285957F00E143D7 /* DayCell.xib in Resources */,
 				65DC683E22112C4300F1085E /* 定位@3x.png in Resources */,
 				048DABD722856656006E6BA2 /* RYNumberKeyboard.xib in Resources */,
+				04153C1E228AA2F100AA5DAF /* PreorderTableCell.xib in Resources */,
 				0453D187228266D300880C2A /* Mask Copy 2.png in Resources */,
 				04B9D3C9227FE5A90084FA23 /* PosPay_Resource.bundle in Resources */,
 				65DC682E2211253200F1085E /* shareView_wx@3x.png in Resources */,
@@ -6430,6 +6885,7 @@
 				65DC682D2211253200F1085E /* shareView_friend.png in Resources */,
 				04F52144228A76BA00ED4995 /* newcapsLock.png in Resources */,
 				04A5086B227EDD3A0013E8EC /* sxf_NetworkAnomalies.xib in Resources */,
+				04153C10228AA2F100AA5DAF /* NearbyShopCell.xib in Resources */,
 				04F52142228A76BA00ED4995 /* shift.png in Resources */,
 				04A5086A227EDD3A0013E8EC /* JQToastWindow.xib in Resources */,
 				04F52179228A789600ED4995 /* version.html in Resources */,
@@ -6457,6 +6913,7 @@
 				65DC6893221A6C9700F1085E /* luxian.png in Resources */,
 				65DC68302211253200F1085E /* shareView_friend@2x.png in Resources */,
 				04A508A5227EDD3A0013E8EC /* README.md in Resources */,
+				04153BF7228AA2F100AA5DAF /* foodBG2.png in Resources */,
 				0453D1EE2284033000880C2A /* sxf_无列表@2x.png in Resources */,
 				04F52178228A789600ED4995 /* version.jpg in Resources */,
 				65DC6894221A6C9700F1085E /* luxian@3x.png in Resources */,
@@ -6467,6 +6924,7 @@
 				6C2F5164222A663D0022EE03 /* HXPhotoPicker.bundle in Resources */,
 				04F5214F228A76BA00ED4995 /* charactor@2x.png in Resources */,
 				04F52149228A76BA00ED4995 /* checkbox_selected_false.png in Resources */,
+				04153C16228AA2F100AA5DAF /* WaimaiYouxuanCell.xib in Resources */,
 				658902F2223B775F009C1B03 /* PYSearch.bundle in Resources */,
 				04F5213E228A76BA00ED4995 /* sign@2x.png in Resources */,
 				658B79EE21D71D1700801CC8 /* Main.storyboard in Resources */,
@@ -6571,6 +7029,7 @@
 				04A508CD227EDD3A0013E8EC /* UILabel+FitSize.m in Sources */,
 				65B5DFE8221E83FE00A65044 /* DateChoose.m in Sources */,
 				658B7CA721D749E100801CC8 /* AnimationTransitionBegin.m in Sources */,
+				04153C17228AA2F100AA5DAF /* ContainerTableHeader.m in Sources */,
 				658C3AE721F31A5000880B6A /* MKShowDynamic.m in Sources */,
 				658B7CBE21D749E100801CC8 /* MsgPlaySound.m in Sources */,
 				6C2F5152222A663D0022EE03 /* HXDatePhotoViewFlowLayout.m in Sources */,
@@ -6579,6 +7038,7 @@
 				04F52047228A61B200ED4995 /* friendListView.m in Sources */,
 				04A508DD227EDD3A0013E8EC /* HRFirstEnter.m in Sources */,
 				0453D189228266D300880C2A /* customCycleView.m in Sources */,
+				04153C0C228AA2F100AA5DAF /* WaimaiZhiquCollectionCell.m in Sources */,
 				65DC68782217C5A900F1085E /* RSAEncryptor.m in Sources */,
 				6C2F5150222A663D0022EE03 /* HXPhotoTools.m in Sources */,
 				04F520FE228A764400ED4995 /* ReviewResultsVC.m in Sources */,
@@ -6594,9 +7054,14 @@
 				04F5F25422842EE80043BBB7 /* SXF_HF_MainPageView.m in Sources */,
 				04B9D57822803E260084FA23 /* BaseViewModel.m in Sources */,
 				04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */,
+				04153C01228AA2F100AA5DAF /* BuffetVC.m in Sources */,
 				658B79EB21D71D1700801CC8 /* ViewController.m in Sources */,
+				04153BFD228AA2F100AA5DAF /* NearFoodListCell.m in Sources */,
+				04153B88228A9C9600AA5DAF /* SynthesizeMerchantCell.m in Sources */,
+				04153BFE228AA2F100AA5DAF /* FoodAdvertisingCell.m in Sources */,
 				04B9D53C22803CF20084FA23 /* HomePageVC.m in Sources */,
 				04A5084B227EDD3A0013E8EC /* UINavigationController+ZFPlayerRotation.m in Sources */,
+				04153C18228AA2F100AA5DAF /* NearbyShopSectionHeader.m in Sources */,
 				658B7C7721D749E100801CC8 /* SGAdvertScrollView.m in Sources */,
 				048DAC5922857516006E6BA2 /* BalanceListVC.m in Sources */,
 				04A50894227EDD3A0013E8EC /* NSDictionary+WHDictionary.m in Sources */,
@@ -6616,6 +7081,7 @@
 				658B7CBA21D749E100801CC8 /* UIColor+Hexadecimal.m in Sources */,
 				658C3AE621F31A5000880B6A /* MKSubMultipleButtonView.m in Sources */,
 				04A508C8227EDD3A0013E8EC /* UIView+ChainTypeView.m in Sources */,
+				04153C0D228AA2F100AA5DAF /* ZCBaseTableView.m in Sources */,
 				04A50880227EDD3A0013E8EC /* lookBigImageView.m in Sources */,
 				659EA0B3220537EC004471CD /* MoreMenuView.m in Sources */,
 				658B7C5C21D749E100801CC8 /* AddressItem.m in Sources */,
@@ -6626,6 +7092,7 @@
 				6C2F5145222A663D0022EE03 /* HXPhoto3DTouchViewController.m in Sources */,
 				659E9F9C21F977F5004471CD /* MZTimerLabel.m in Sources */,
 				658C39D621E9FA5B00880B6A /* JXCategoryIndicatorCell.m in Sources */,
+				04153C0B228AA2F100AA5DAF /* WaimaiZhiquCell.m in Sources */,
 				658C39EC21E9FA5B00880B6A /* UIColor+JXAdd.m in Sources */,
 				658C39EE21E9FA5B00880B6A /* JXCategoryBaseCell.m in Sources */,
 				04A5089D227EDD3A0013E8EC /* UIColor+WHColor.m in Sources */,
@@ -6636,6 +7103,8 @@
 				0453D1512281935E00880C2A /* myTopView.m in Sources */,
 				04F5217E228A793400ED4995 /* EnterVC.m in Sources */,
 				04A508C7227EDD3A0013E8EC /* UIView+Responder.m in Sources */,
+				04153C1F228AA2F100AA5DAF /* ConfigOrderInfoVC.m in Sources */,
+				04153C04228AA2F100AA5DAF /* NearFoodListVC.m in Sources */,
 				658C39DE21E9FA5B00880B6A /* JXCategoryTitleCellModel.m in Sources */,
 				048DAC6122857516006E6BA2 /* RemarkBallView.m in Sources */,
 				04A5084A227EDD3A0013E8EC /* UIView+CustomControlView.m in Sources */,
@@ -6651,9 +7120,11 @@
 				04A50898227EDD3A0013E8EC /* UIBarButtonItem+WHBarButtonItem.m in Sources */,
 				04A5089A227EDD3A0013E8EC /* NSDate+WHDate.m in Sources */,
 				048DAC5E22857516006E6BA2 /* balanceOrderDetaileVC.m in Sources */,
+				04153C19228AA2F100AA5DAF /* TakeOut_H5.m in Sources */,
 				658C39E421E9FA5B00880B6A /* JXCategoryNumberView.m in Sources */,
 				0453D188228266D300880C2A /* LWDPageControl.m in Sources */,
 				04F54B5422816189009AAEF3 /* SXF_HF_CustomSearchBar.m in Sources */,
+				04153C12228AA2F100AA5DAF /* TableHeaderView.m in Sources */,
 				04B9D57F22803E260084FA23 /* HPTabBar.m in Sources */,
 				04A508B2227EDD3A0013E8EC /* setCookiesTool.m in Sources */,
 				04A5087D227EDD3A0013E8EC /* myTagBtnView.m in Sources */,
@@ -6673,9 +7144,12 @@
 				658902F3223B775F009C1B03 /* NSBundle+PYSearchExtension.m in Sources */,
 				049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */,
 				04A508E4227EDD3A0013E8EC /* HREmail.m in Sources */,
+				04153C00228AA2F100AA5DAF /* DiscountCouponCell.m in Sources */,
 				04F5F25E2284309D0043BBB7 /* SXF_HF_MainTableHeaderView.m in Sources */,
 				658B7C7D21D749E100801CC8 /* LYEmptyView.m in Sources */,
+				04153B8A228A9C9600AA5DAF /* ZKCycleScrollView.m in Sources */,
 				659EA0B4220537EC004471CD /* SpeechSynthesizer.m in Sources */,
+				04153C14228AA2F100AA5DAF /* NearbyShopCell.m in Sources */,
 				048DABB522855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m in Sources */,
 				04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */,
 				6C2F514E222A663D0022EE03 /* UIView+HXExtension.m in Sources */,
@@ -6688,6 +7162,7 @@
 				049783932285957F00E143D7 /* SearchBarEffectController.m in Sources */,
 				04A508CC227EDD3A0013E8EC /* UIWebView+JS.m in Sources */,
 				658B7C9D21D749E100801CC8 /* AnimationTildEnd.m in Sources */,
+				04153C08228AA2F100AA5DAF /* NearbyShopVC.m in Sources */,
 				04A5085F227EDD3A0013E8EC /* myTableViewCell.m in Sources */,
 				04F52166228A77EA00ED4995 /* LoginVC.m in Sources */,
 				6C2F5149222A663D0022EE03 /* UIImageView+HXExtension.m in Sources */,
@@ -6722,6 +7197,7 @@
 				658902F4223B775F009C1B03 /* UIView+PYSearchExtension.m in Sources */,
 				658B7CA221D749E100801CC8 /* VCInteractionDelegate.m in Sources */,
 				659EA07D2203D5A1004471CD /* DHGuidePageHUD.m in Sources */,
+				04153C07228AA2F100AA5DAF /* TakeOutVC.m in Sources */,
 				658B7CA421D749E100801CC8 /* AnimationErectBegin.m in Sources */,
 				658B7CC421D749E100801CC8 /* AlertView.m in Sources */,
 				658C39CE21E9FA5B00880B6A /* JXCategoryIndicatorLineView.m in Sources */,
@@ -6732,6 +7208,7 @@
 				658C3B0E21F57FBC00880B6A /* ProvinceModel.m in Sources */,
 				6C2F5166222A663D0022EE03 /* HXDatePhotoEditViewController.m in Sources */,
 				658B7C9F21D749E100801CC8 /* AnimationFadeBegin.m in Sources */,
+				04153BF8228AA2F100AA5DAF /* NearFoodDelegateManage.m in Sources */,
 				6C7D84F92285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m in Sources */,
 				6C2F5153222A663D0022EE03 /* HXDatePhotoViewController.m in Sources */,
 				04F5213A228A76BA00ED4995 /* LDDKeyboardView.m in Sources */,
@@ -6744,6 +7221,7 @@
 				04A5084D227EDD3A0013E8EC /* UIImageView+ZFCache.m in Sources */,
 				0453D17E228266D200880C2A /* bannerCollectionViewCell.m in Sources */,
 				04A5089C227EDD3A0013E8EC /* NSObject+WHRuntime.m in Sources */,
+				04153BFA228AA2F100AA5DAF /* FoodClassifyCell.m in Sources */,
 				658B7C4421D749E100801CC8 /* JSONKit.m in Sources */,
 				658B7C4D21D749E100801CC8 /* UIButton+Extension.m in Sources */,
 				659EA0862203FA66004471CD /* LXEmptyDataView.m in Sources */,
@@ -6764,6 +7242,7 @@
 				658B7C4E21D749E100801CC8 /* UIView+Extension.m in Sources */,
 				658C3B0D21F57FBC00880B6A /* HttpRequest.m in Sources */,
 				658B7C9C21D749E100801CC8 /* AnimationBackBegin.m in Sources */,
+				04153C0E228AA2F100AA5DAF /* WaimaiCategoryCell.m in Sources */,
 				6CCAD6FF22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m in Sources */,
 				048DABD822856656006E6BA2 /* RYNumberKeyboard.m in Sources */,
 				048DAC5C22857516006E6BA2 /* BalanceTfAtHomeVC.m in Sources */,
@@ -6782,6 +7261,7 @@
 				04F54B3422811DC8009AAEF3 /* subModels.m in Sources */,
 				658C39DF21E9FA5B00880B6A /* JXCategoryTitleCell.m in Sources */,
 				04A508A9227EDD3A0013E8EC /* networkingManagerTool.m in Sources */,
+				04153C06228AA2F100AA5DAF /* Cake_MilkyTeaVC.m in Sources */,
 				04B9D57C22803E260084FA23 /* BaseManage.m in Sources */,
 				04F52101228A764400ED4995 /* PersonalDataCell.m in Sources */,
 				0428EB5322797379000E4B4E /* callTelephone.m in Sources */,
@@ -6815,6 +7295,7 @@
 				04F52193228A7A9400ED4995 /* GoodsCollectionVC.m in Sources */,
 				04F520FD228A764400ED4995 /* IdentityInformationVC.m in Sources */,
 				04B9D4EA22803C6B0084FA23 /* JMTabBarButton.m in Sources */,
+				04153C02228AA2F100AA5DAF /* NewStoresCell.m in Sources */,
 				658B7CB421D749E100801CC8 /* TAAbstractDotView.m in Sources */,
 				0453D1AD2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.m in Sources */,
 				65DC6881221A3FA100F1085E /* AppDelegate+JPush.m in Sources */,
@@ -6865,6 +7346,7 @@
 				048DAC4822857516006E6BA2 /* CardPackageVC.m in Sources */,
 				04A5085C227EDD3A0013E8EC /* ZFVideoModel.m in Sources */,
 				658C39EA21E9FA5B00880B6A /* JXCategoryCollectionView.m in Sources */,
+				04153B8D228A9C9600AA5DAF /* LocalImageCell.m in Sources */,
 				049783912285957F00E143D7 /* DayCell.m in Sources */,
 				04F52167228A77EA00ED4995 /* ForgotPasswordVC.m in Sources */,
 				04B9D54122803CF20084FA23 /* WebViewController.m in Sources */,
@@ -6899,6 +7381,7 @@
 				04A508EA227EDD3A0013E8EC /* HRBaseTabBarController.m in Sources */,
 				658B7C7921D749E100801CC8 /* UILabel+LXAdd.m in Sources */,
 				658C3B0F21F57FBC00880B6A /* CountyModel.m in Sources */,
+				04153C1D228AA2F100AA5DAF /* PreorderTableCell.m in Sources */,
 				04F5F266228440860043BBB7 /* SXF_HF_CycleContentCell.m in Sources */,
 				0497838B2285957F00E143D7 /* YYStarView.m in Sources */,
 				652294A4225B00BF001DF691 /* AppDelegate+JAnalytics.m in Sources */,
@@ -6932,11 +7415,14 @@
 				04A508CB227EDD3A0013E8EC /* UIWebView+Browser.m in Sources */,
 				04B9D53D22803CF20084FA23 /* MapViewController.m in Sources */,
 				04A50864227EDD3A0013E8EC /* myCollectionViewCell.m in Sources */,
+				04153BFB228AA2F100AA5DAF /* FoodPreferentialCollCell.m in Sources */,
 				6C2F5160222A663D0022EE03 /* UIButton+HXExtension.m in Sources */,
 				658B7C9E21D749E100801CC8 /* AnimationFadeEnd.m in Sources */,
 				04A5083C227EDD390013E8EC /* ZXSegmentHeaderModel.m in Sources */,
 				048DAC4E22857516006E6BA2 /* RichRightListVC.m in Sources */,
 				658C39D921E9FA5B00880B6A /* JXCategoryDotView.m in Sources */,
+				04153C0A228AA2F100AA5DAF /* WaimaiYouxuanCell.m in Sources */,
+				04153C1A228AA2F100AA5DAF /* SubscribeSubmitVC.m in Sources */,
 				04A50847227EDD3A0013E8EC /* ZFPlayerModel.m in Sources */,
 				04A50877227EDD3A0013E8EC /* UILabel+Chameleon.m in Sources */,
 				04A5084C227EDD3A0013E8EC /* UIAlertController+ZFPlayerRotation.m in Sources */,
@@ -6980,6 +7466,7 @@
 				658B7CB321D749E100801CC8 /* TAAnimatedDotView.m in Sources */,
 				048DAC6422857516006E6BA2 /* BillDetailsVC.m in Sources */,
 				6C2F514A222A663D0022EE03 /* UIFont+HXExtension.m in Sources */,
+				04153C21228AA2F100AA5DAF /* NearDiscountCouponVC.m in Sources */,
 				04A5087A227EDD3A0013E8EC /* UIImage+ChameleonPrivate.m in Sources */,
 				04F5203B228A573B00ED4995 /* SXF_HF_MainPageModel.m in Sources */,
 				658B7CC021D749E100801CC8 /* UIImage+ImageEffects.m in Sources */,
@@ -7003,12 +7490,15 @@
 				04A50896227EDD3A0013E8EC /* UIView+WHView.m in Sources */,
 				65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */,
 				658902EE223B775F009C1B03 /* UIColor+PYSearchExtension.m in Sources */,
+				04153BFC228AA2F100AA5DAF /* FoodPreferentialCell.m in Sources */,
 				6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */,
 				6579784521E6D6B600E606BE /* JFCityHeaderView.m in Sources */,
+				04153BFF228AA2F100AA5DAF /* DiscountCouponVC.m in Sources */,
 				0453D17B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m in Sources */,
 				04FB7F332286C02600150CA7 /* NSObject+currentController.m in Sources */,
 				04F52037228A563100ED4995 /* AddressListCell.m in Sources */,
 				04A50881227EDD3A0013E8EC /* customTableViewCell.m in Sources */,
+				04153C03228AA2F100AA5DAF /* NewStoresPreferential.m in Sources */,
 				6C2F514D222A663D0022EE03 /* HXAlbumListViewController.m in Sources */,
 				6C2F5161222A663D0022EE03 /* HXCustomPreviewView.m in Sources */,
 				658B7CC621D749E100801CC8 /* SFHFKeychainUtils.m in Sources */,
@@ -7021,6 +7511,7 @@
 				0453D1922282764E00880C2A /* myCenterCollectionViewCell.m in Sources */,
 				04A50899227EDD3A0013E8EC /* UIImage+WHImage.m in Sources */,
 				658B7C5D21D749E100801CC8 /* ChooseLocationView.m in Sources */,
+				04153B87228A9C9600AA5DAF /* SynthesizeMerchantListVC.m in Sources */,
 				04F54B4322813B23009AAEF3 /* WRNavigationBar.m in Sources */,
 				658B79E821D71D1700801CC8 /* AppDelegate.m in Sources */,
 				04F52194228A7A9400ED4995 /* MyCollectionVC.m in Sources */,
@@ -7029,6 +7520,7 @@
 				04A50840227EDD390013E8EC /* NinaBaseView.m in Sources */,
 				6C2F5158222A663D0022EE03 /* HXCustomCollectionReusableView.m in Sources */,
 				658B7C5621D749E100801CC8 /* LKBubbleInfo.m in Sources */,
+				04153B8C228A9C9600AA5DAF /* ZKCycleScrollViewFlowLayout.m in Sources */,
 				658B7C6021D749E100801CC8 /* AddressTableViewCell.m in Sources */,
 				04F5202A228A4BB300ED4995 /* CWPageControl.m in Sources */,
 				04A50865227EDD3A0013E8EC /* ZFPlayerCell.m in Sources */,
@@ -7038,8 +7530,10 @@
 				048DABD022856656006E6BA2 /* HHTextField.m in Sources */,
 				04F52154228A76BA00ED4995 /* TurtleBezierPath.m in Sources */,
 				6C2F515D222A663D0022EE03 /* HXDatePhotoViewTransition.m in Sources */,
+				04153C20228AA2F100AA5DAF /* NearDiscountCouponCell.m in Sources */,
 				049783982285957F00E143D7 /* NearHomeVC.m in Sources */,
 				65B5DD9A221BDA4E00A65044 /* JFLocationSingleton.m in Sources */,
+				04153C05228AA2F100AA5DAF /* HotPotVC.m in Sources */,
 				6C6BCD6B228975D500BE069A /* CountdDownView.m in Sources */,
 				6CCAD70F2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m in Sources */,
 				04A508A0227EDD3A0013E8EC /* UIButton+WHButton.m in Sources */,
@@ -7086,6 +7580,7 @@
 				658B7C5921D749E100801CC8 /* ToolMothod.m in Sources */,
 				658C3AE421F31A5000880B6A /* MKShowImportView.m in Sources */,
 				658C39D121E9FA5B00880B6A /* JXCategoryIndicatorImageView.m in Sources */,
+				04153BF6228AA2F100AA5DAF /* NearFoodVC.m in Sources */,
 				048DABF922856FE9006E6BA2 /* receiptRecordListCell.m in Sources */,
 				658B7CC221D749E100801CC8 /* UIView+TXFrame.m in Sources */,
 				6C7D84FF22856E9200A8E9F7 /* ZCHomeRecommendCell.m in Sources */,
@@ -7095,13 +7590,18 @@
 				04A508CA227EDD3A0013E8EC /* UITextField+Placeholder.m in Sources */,
 				658C39D821E9FA5B00880B6A /* JXCategoryDotCell.m in Sources */,
 				6C2F5141222A663D0022EE03 /* HXCustomCameraViewController.m in Sources */,
+				04153C13228AA2F100AA5DAF /* WaimaiCycleCell.m in Sources */,
 				658B7CB121D749E100801CC8 /* TADotView.m in Sources */,
 				048DAC0022857057006E6BA2 /* SXF_HF_HomePageModel.m in Sources */,
 				04A5087B227EDD3A0013E8EC /* RLPieChart.m in Sources */,
 				048DAC7422857BBB006E6BA2 /* PaymentMethodsVC.m in Sources */,
+				04153C0F228AA2F100AA5DAF /* WaimaiRecommendCell.m in Sources */,
 				6537119E21E5964100C4FCE2 /* UIView+LSCore.m in Sources */,
+				04153C1B228AA2F100AA5DAF /* PreorderTableVC.m in Sources */,
+				04153C22228AA2F100AA5DAF /* LunchVC.m in Sources */,
 				0453D1BB2283D38E00880C2A /* UIButton+EnlargeEdge.m in Sources */,
 				6CCAD70522827FE4001824A0 /* ZC_HF_ShopOrderVC.m in Sources */,
+				04153B89228A9C9600AA5DAF /* MerchantsCell.m in Sources */,
 				04A5086D227EDD3A0013E8EC /* CustomAlertView.m in Sources */,
 				6C0A931B228929A10090623B /* ZC_HF_ClassifyRightVC.m in Sources */,
 				049783962285957F00E143D7 /* YYB_HF_NearSearchVC.m in Sources */,
