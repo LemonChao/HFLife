@@ -1,0 +1,20 @@
+@charset "utf-8";
+*{margin: 0px;padding: 0px;	-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box}
+html{font-size:50px;-webkit-tap-highlight-color:transparent;height:100%;min-width:320px;overflow-x:hidden;}
+ul{list-style: none;}
+input{outline: none;}
+a html,body {padding:0;margin:0;}
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,form,button,input,textarea,th,td {margin:0;padding:0;}
+body,button,input,select,textarea {font:12px/1.5 guoshi, "Microsoft YaHei UI","Microsoft YaHei",Arial,sans-serif,STHeiti,PingHei;color:#666;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight: normal;}
+address,cite,dfn,em,var {font-style:normal;}
+ul,ol,dl {list-style:none;}
+a {text-decoration:none;outline:none;font-family:"Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;color:#333;cursor:pointer;}
+img {border:0;}
+button,input,select,textarea {font-size:100%;resize:none;outline:none;}
+table {border-collapse:collapse;border-spacing:0}
+body{width: 100%;max-width: 768px;margin:0 auto;}
+.agreement{padding: .2rem;}
+.agreement h2{line-height:.8rem;font-size: .32rem;color: #333;font-weight: bold;text-align: center;}
+.agreement h3{line-height:.6rem;font-size: .28rem;color: #444;text-indent: 2em;}
+.agreement p{line-height:.5rem;font-size: .24rem;color: #777;text-indent: 2em;}

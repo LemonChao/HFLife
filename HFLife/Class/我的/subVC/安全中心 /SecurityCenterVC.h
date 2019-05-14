@@ -2,8 +2,8 @@
 //  SecurityCenterVC.h
 //  HanPay
 //
-//  Created by 张海彬 on 2019/1/21.
-//  Copyright © 2019年 张海彬. All rights reserved.
+//  Created by mac on 2019/1/21.
+//  Copyright © 2019年 mac. All rights reserved.
 //
 
 #import "BaseViewController.h"

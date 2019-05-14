@@ -21,6 +21,9 @@
 
 
 /************************subUrl************************/
+//申请列表(web)
+#define OPENSHOPURLLIST @"https://www.hfgld.net/app_html/enter_shop_model/#/list"
+
 static NSString *const shopUrl = @"w=index&t=index";
 
 /************************subUrl************************/
