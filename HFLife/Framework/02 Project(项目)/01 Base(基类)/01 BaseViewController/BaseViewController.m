@@ -41,7 +41,6 @@ typedef enum NetStatus
     [super viewDidLoad];
     self.view.backgroundColor = BackGroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.navigationController.navigationBarHidden = YES;
     [self setupNavBar];
 }
 

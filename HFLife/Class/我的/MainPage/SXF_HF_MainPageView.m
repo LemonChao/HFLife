@@ -45,9 +45,7 @@
     self.tableView.refreshHeaderBlock = ^{
         
     };
-    self.tableView.refreshFooterBlock = ^{
-        
-    };
+    self.tableView.mj_footer = nil;
 }
 
 - (void)layoutSubviews{

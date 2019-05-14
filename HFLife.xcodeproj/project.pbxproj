@@ -358,6 +358,14 @@
 		04F52027228A4AD600ED4995 /* CWCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52021228A4AD600ED4995 /* CWCarousel.m */; };
 		04F52028228A4AD600ED4995 /* CWFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52023228A4AD600ED4995 /* CWFlowLayout.m */; };
 		04F5202A228A4BB300ED4995 /* CWPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52029228A4BB300ED4995 /* CWPageControl.m */; };
+		04F52036228A563100ED4995 /* ShippingAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5202D228A563100ED4995 /* ShippingAddressVC.m */; };
+		04F52037228A563100ED4995 /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52030228A563100ED4995 /* AddressListCell.m */; };
+		04F52038228A563100ED4995 /* AddAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52035228A563100ED4995 /* AddAddressVC.m */; };
+		04F5203B228A573B00ED4995 /* SXF_HF_MainPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5203A228A573B00ED4995 /* SXF_HF_MainPageModel.m */; };
+		04F52047228A61B200ED4995 /* friendListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52040228A61B200ED4995 /* friendListView.m */; };
+		04F52048228A61B200ED4995 /* myFriendListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52042228A61B200ED4995 /* myFriendListVC.m */; };
+		04F52049228A61B200ED4995 /* friendViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52044228A61B200ED4995 /* friendViewCell.m */; };
+		04F5204A228A61B200ED4995 /* InviteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52045228A61B200ED4995 /* InviteVC.m */; };
 		04F54B3022811B9C009AAEF3 /* ProjectKit.md in Resources */ = {isa = PBXBuildFile; fileRef = 04F54B2F22811B9C009AAEF3 /* ProjectKit.md */; };
 		04F54B3422811DC8009AAEF3 /* subModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B3322811DC8009AAEF3 /* subModels.m */; };
 		04F54B4322813B23009AAEF3 /* WRNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B3D22813B23009AAEF3 /* WRNavigationBar.m */; };
@@ -1355,6 +1363,22 @@
 		04F52025228A4AD600ED4995 /* CWCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWCarousel.h; sourceTree = "<group>"; };
 		04F52026228A4AD600ED4995 /* CWFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWFlowLayout.h; sourceTree = "<group>"; };
 		04F52029228A4BB300ED4995 /* CWPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWPageControl.m; sourceTree = "<group>"; };
+		04F5202D228A563100ED4995 /* ShippingAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingAddressVC.m; sourceTree = "<group>"; };
+		04F5202F228A563100ED4995 /* AddressListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListCell.h; sourceTree = "<group>"; };
+		04F52030228A563100ED4995 /* AddressListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListCell.m; sourceTree = "<group>"; };
+		04F52031228A563100ED4995 /* ShippingAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingAddressVC.h; sourceTree = "<group>"; };
+		04F52034228A563100ED4995 /* AddAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressVC.h; sourceTree = "<group>"; };
+		04F52035228A563100ED4995 /* AddAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressVC.m; sourceTree = "<group>"; };
+		04F52039228A573B00ED4995 /* SXF_HF_MainPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_MainPageModel.h; sourceTree = "<group>"; };
+		04F5203A228A573B00ED4995 /* SXF_HF_MainPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_MainPageModel.m; sourceTree = "<group>"; };
+		04F5203F228A61B200ED4995 /* myFriendListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myFriendListVC.h; sourceTree = "<group>"; };
+		04F52040228A61B200ED4995 /* friendListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendListView.m; sourceTree = "<group>"; };
+		04F52041228A61B200ED4995 /* friendViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendViewCell.h; sourceTree = "<group>"; };
+		04F52042228A61B200ED4995 /* myFriendListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myFriendListVC.m; sourceTree = "<group>"; };
+		04F52043228A61B200ED4995 /* friendListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendListView.h; sourceTree = "<group>"; };
+		04F52044228A61B200ED4995 /* friendViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendViewCell.m; sourceTree = "<group>"; };
+		04F52045228A61B200ED4995 /* InviteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteVC.m; sourceTree = "<group>"; };
+		04F52046228A61B200ED4995 /* InviteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteVC.h; sourceTree = "<group>"; };
 		04F54B2F22811B9C009AAEF3 /* ProjectKit.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ProjectKit.md; sourceTree = "<group>"; };
 		04F54B3222811DC8009AAEF3 /* subModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subModels.h; sourceTree = "<group>"; };
 		04F54B3322811DC8009AAEF3 /* subModels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = subModels.m; sourceTree = "<group>"; };
@@ -4280,6 +4304,8 @@
 			children = (
 				04F5F263228431010043BBB7 /* MainPage */,
 				04B9D51122803CF10084FA23 /* subVC */,
+				04F52039228A573B00ED4995 /* SXF_HF_MainPageModel.h */,
+				04F5203A228A573B00ED4995 /* SXF_HF_MainPageModel.m */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -4287,6 +4313,8 @@
 		04B9D51122803CF10084FA23 /* subVC */ = {
 			isa = PBXGroup;
 			children = (
+				04F5203D228A61B200ED4995 /* 我的邀请 */,
+				04F5202C228A563100ED4995 /* 收货地址 */,
 				048DAC7922857E7D006E6BA2 /* 个人资料 */,
 				048DAC7522857DF9006E6BA2 /* 方法处理 */,
 				048DAC6522857BBB006E6BA2 /* 收款方式 */,
@@ -4426,6 +4454,66 @@
 				04F52021228A4AD600ED4995 /* CWCarousel.m */,
 			);
 			path = OC;
+			sourceTree = "<group>";
+		};
+		04F5202C228A563100ED4995 /* 收货地址 */ = {
+			isa = PBXGroup;
+			children = (
+				04F52031228A563100ED4995 /* ShippingAddressVC.h */,
+				04F5202D228A563100ED4995 /* ShippingAddressVC.m */,
+				04F5202E228A563100ED4995 /* Cell */,
+				04F52032228A563100ED4995 /* VC */,
+			);
+			path = "收货地址";
+			sourceTree = "<group>";
+		};
+		04F5202E228A563100ED4995 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04F5202F228A563100ED4995 /* AddressListCell.h */,
+				04F52030228A563100ED4995 /* AddressListCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		04F52032228A563100ED4995 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				04F52033228A563100ED4995 /* 添加修改地址 */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		04F52033228A563100ED4995 /* 添加修改地址 */ = {
+			isa = PBXGroup;
+			children = (
+				04F52034228A563100ED4995 /* AddAddressVC.h */,
+				04F52035228A563100ED4995 /* AddAddressVC.m */,
+			);
+			path = "添加修改地址";
+			sourceTree = "<group>";
+		};
+		04F5203D228A61B200ED4995 /* 我的邀请 */ = {
+			isa = PBXGroup;
+			children = (
+				04F5203E228A61B200ED4995 /* 好友列表 */,
+				04F52045228A61B200ED4995 /* InviteVC.m */,
+				04F52046228A61B200ED4995 /* InviteVC.h */,
+			);
+			path = "我的邀请";
+			sourceTree = "<group>";
+		};
+		04F5203E228A61B200ED4995 /* 好友列表 */ = {
+			isa = PBXGroup;
+			children = (
+				04F5203F228A61B200ED4995 /* myFriendListVC.h */,
+				04F52040228A61B200ED4995 /* friendListView.m */,
+				04F52041228A61B200ED4995 /* friendViewCell.h */,
+				04F52042228A61B200ED4995 /* myFriendListVC.m */,
+				04F52043228A61B200ED4995 /* friendListView.h */,
+				04F52044228A61B200ED4995 /* friendViewCell.m */,
+			);
+			path = "好友列表";
 			sourceTree = "<group>";
 		};
 		04F54B3122811D38009AAEF3 /* models */ = {
@@ -6071,6 +6159,7 @@
 				6C2F5152222A663D0022EE03 /* HXDatePhotoViewFlowLayout.m in Sources */,
 				048DAC5322857516006E6BA2 /* CardPackageCell.m in Sources */,
 				048DABFD22856FE9006E6BA2 /* SetAmountVC.m in Sources */,
+				04F52047228A61B200ED4995 /* friendListView.m in Sources */,
 				04A508DD227EDD3A0013E8EC /* HRFirstEnter.m in Sources */,
 				0453D189228266D300880C2A /* customCycleView.m in Sources */,
 				65DC68782217C5A900F1085E /* RSAEncryptor.m in Sources */,
@@ -6157,6 +6246,7 @@
 				048DAC5422857516006E6BA2 /* BalanceHomeVC.m in Sources */,
 				049783852285957E00E143D7 /* YYb_HF_CollReusableView.m in Sources */,
 				04A508E2227EDD3A0013E8EC /* HRCall.m in Sources */,
+				04F52049228A61B200ED4995 /* friendViewCell.m in Sources */,
 				658902F3223B775F009C1B03 /* NSBundle+PYSearchExtension.m in Sources */,
 				049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */,
 				04A508E4227EDD3A0013E8EC /* HREmail.m in Sources */,
@@ -6210,6 +6300,7 @@
 				658C39CE21E9FA5B00880B6A /* JXCategoryIndicatorLineView.m in Sources */,
 				04A5085A227EDD3A0013E8EC /* ZFPVideoResolution.m in Sources */,
 				04A508DC227EDD3A0013E8EC /* HRURLScheme.m in Sources */,
+				04F5204A228A61B200ED4995 /* InviteVC.m in Sources */,
 				658C3B0E21F57FBC00880B6A /* ProvinceModel.m in Sources */,
 				6C2F5166222A663D0022EE03 /* HXDatePhotoEditViewController.m in Sources */,
 				658B7C9F21D749E100801CC8 /* AnimationFadeBegin.m in Sources */,
@@ -6256,6 +6347,7 @@
 				04A5086C227EDD3A0013E8EC /* sxf_NetworkAnomalies.m in Sources */,
 				0453D1932282764E00880C2A /* myCenterCollectionView.m in Sources */,
 				658B7CC121D749E100801CC8 /* TXScrollLabelView.m in Sources */,
+				04F52036228A563100ED4995 /* ShippingAddressVC.m in Sources */,
 				04B9D54622803CF20084FA23 /* LoginVC.m in Sources */,
 				0453D1F02284033000880C2A /* UIView+alertView.m in Sources */,
 				658B7CBB21D749E100801CC8 /* ZAlertViewManager.m in Sources */,
@@ -6287,6 +6379,7 @@
 				659EA0BA220538D5004471CD /* MapViewController.m in Sources */,
 				04A508D7227EDD3A0013E8EC /* NSArray+Category.m in Sources */,
 				6C3D4ACA222680570007AF9A /* CALayer+XibBorderColor.m in Sources */,
+				04F52048228A61B200ED4995 /* myFriendListVC.m in Sources */,
 				658B7CA621D749E100801CC8 /* AnimationErectEnd.m in Sources */,
 				658C3AE321F31A5000880B6A /* MKShowSubMultipleImportView.m in Sources */,
 				04B9D4EA22803C6B0084FA23 /* JMTabBarButton.m in Sources */,
@@ -6388,6 +6481,7 @@
 				658B7CBD21D749E100801CC8 /* ZAlertView.m in Sources */,
 				04F52027228A4AD600ED4995 /* CWCarousel.m in Sources */,
 				6C2F514B222A663D0022EE03 /* HXDatePhotoInteractiveTransition.m in Sources */,
+				04F52038228A563100ED4995 /* AddAddressVC.m in Sources */,
 				04A508C4227EDD3A0013E8EC /* UIColor+Hex.m in Sources */,
 				04A508E9227EDD3A0013E8EC /* HRBaseViewModel.m in Sources */,
 				04A508ED227EDD3A0013E8EC /* HRTableViewBindingHelper.m in Sources */,
@@ -6450,6 +6544,7 @@
 				048DAC6422857516006E6BA2 /* BillDetailsVC.m in Sources */,
 				6C2F514A222A663D0022EE03 /* UIFont+HXExtension.m in Sources */,
 				04A5087A227EDD3A0013E8EC /* UIImage+ChameleonPrivate.m in Sources */,
+				04F5203B228A573B00ED4995 /* SXF_HF_MainPageModel.m in Sources */,
 				658B7CC021D749E100801CC8 /* UIImage+ImageEffects.m in Sources */,
 				6C2F5170222A76DD0022EE03 /* UITool.m in Sources */,
 				04FB7F3A2286C8E600150CA7 /* NSObject+checkSystems.m in Sources */,
@@ -6476,6 +6571,7 @@
 				6579784521E6D6B600E606BE /* JFCityHeaderView.m in Sources */,
 				0453D17B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m in Sources */,
 				04FB7F332286C02600150CA7 /* NSObject+currentController.m in Sources */,
+				04F52037228A563100ED4995 /* AddressListCell.m in Sources */,
 				04A50881227EDD3A0013E8EC /* customTableViewCell.m in Sources */,
 				6C2F514D222A663D0022EE03 /* HXAlbumListViewController.m in Sources */,
 				6C2F5161222A663D0022EE03 /* HXCustomPreviewView.m in Sources */,

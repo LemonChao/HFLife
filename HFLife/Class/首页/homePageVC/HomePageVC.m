@@ -96,20 +96,42 @@
 
 - (void) headerBtnAction:(NSInteger)index{
     NSLog(@"点击区头 ： %ld", index);
-    UIViewController *vc = [BaseViewController new];
-    if (index == 0) {
-        vc = [FlickingVC new];//扫一扫
-    }else if (index == 1){
-        vc = [PaymentVC new];//付款
-    }else if (index == 2){
-        vc = [GatheringVC new];//收款
-    }else if (index == 3){
-        vc = [CardPackageVC new];//卡包
-    }else if (index == 4){
-        //搜索
-        
+    
+    
+    if ([NSString isNOTNull:[HeaderToken getAccessToken]]) {
+        [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
+            if (btnBype) {
+                //登录页
+                [WXZTipView showCenterWithText:@"去登陆"];
+                return ;
+            }
+        }];
+    }else{
+        UIViewController *vc = [BaseViewController new];
+        if (index == 0) {
+            //检测相机权限
+            if ([NSObject isCanUseCamare]) {
+                vc = [FlickingVC new];//扫一扫
+            }else{
+                [WXZTipView showCenterWithText:@"相机不可用"];
+                return;
+            }
+            
+        }else if (index == 1){
+            vc = [PaymentVC new];//付款
+        }else if (index == 2){
+            vc = [GatheringVC new];//收款
+        }else if (index == 3){
+            vc = [CardPackageVC new];//卡包
+        }else if (index == 4){
+            //搜索
+            
+        }
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+    
 }
 
 - (void)setUpUI{

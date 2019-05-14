@@ -12,6 +12,7 @@
 /************************yourTools************************/
 #import "HW3DBannerView.h"
 #import "SXF_HF_HomePageModel.h"
+#import "SXF_HF_MainPageModel.h"
 /************************yourTools************************/
 
 
