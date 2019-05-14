@@ -13,6 +13,7 @@
 
 #import "ShippingAddressVC.h"
 #import "BindingPayWayVC.h"
+#import "InviteVC.h"
 
 
 @interface MainPageVC ()
@@ -63,6 +64,9 @@
                         bindingVC.isAlipay = NO;
                         vc = bindingVC;
                     }
+                        break;
+                    case 2:
+                        vc = [InviteVC new];
                         break;
                     default:
                         break;
