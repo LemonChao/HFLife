@@ -301,7 +301,8 @@
                             id loginVC = [[loginClass alloc] init];
                             if (loginVC) {
                                 UIViewController *currentVC = [self getCurrentViewController];
-                                [currentVC presentViewController:loginVC animated:YES completion:nil];
+                                BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
+                                [currentVC presentViewController:navi animated:YES completion:nil];
                             }else{
                                 
                                 [CustomPromptBox showTextHud:@"您还未创建登录VC"];
