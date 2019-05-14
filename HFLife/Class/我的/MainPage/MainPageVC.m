@@ -14,8 +14,11 @@
 #import "ShippingAddressVC.h"
 #import "BindingPayWayVC.h"
 #import "InviteVC.h"
-
-
+#import "SecurityCenterVC.h"
+#import "EnterVC.h"
+#import "MyCollectionVC.h"
+#import "myFriendListVC.h"
+#import "AboutVC.h"
 @interface MainPageVC ()
 @property (nonatomic, strong)SXF_HF_MainPageView *mainPageView;
 @end
@@ -67,6 +70,21 @@
                         break;
                     case 2:
                         vc = [InviteVC new];
+                        break;
+                    case 3:
+                        vc = [SecurityCenterVC new];
+                        break;
+                    case 4:
+                        vc = [EnterVC new];
+                        break;
+                    case 5:
+                        vc = [MyCollectionVC new];
+                        break;
+                    case 6:
+                        vc = [myFriendListVC new];
+                        break;
+                    case 7:
+                        vc = [AboutVC new];
                         break;
                     default:
                         break;

@@ -19,3 +19,7 @@
 
 @implementation friengListModel
 @end
+@implementation MyCollectionModel
+@end
+@implementation MyCollectionShopModel
+@end
