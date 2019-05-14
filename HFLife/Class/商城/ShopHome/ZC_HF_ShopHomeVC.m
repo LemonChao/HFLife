@@ -55,8 +55,10 @@
 
 - (void)getData:(NSString *)page {
     
-    [[self.viewModel.shopHomeCmd execute:nil] subscribeNext:^(id  _Nullable x) {
-        
+    [[self.viewModel.shopRefreshCmd execute:nil] subscribeNext:^(id  _Nullable x) {
+        if ([x boolValue]) {
+            [self.collectionView reloadData];
+        }
     }error:^(NSError * _Nullable error) {
         
     }];
@@ -122,7 +124,7 @@
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 5;
+    return self.viewModel.section;
 }
 
 /// header footer View
@@ -131,6 +133,8 @@
     if (kind == UICollectionElementKindSectionHeader) {
         if (indexPath.section == 0) {
             ZC_HF_CollectionCycleHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionCycleHeader class]) forIndexPath:indexPath];
+            header.bannerList = self.viewModel.homeModel.banner_list;
+            
             return header;
         }
         else {

@@ -15,6 +15,7 @@
 /************************yourTools************************/
 #import "UIView+BadgeValue.h"
 #import "UITool.h"
+#import <YYModel/YYModel.h>
 /************************yourTools************************/
 
 

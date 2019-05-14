@@ -622,6 +622,8 @@
 		6C0A931E228948E40090623B /* ZCShopClassifyRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A931D228948E40090623B /* ZCShopClassifyRightCell.m */; };
 		6C0A932522895D130090623B /* ZCShopHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A932422895D130090623B /* ZCShopHomeViewModel.m */; };
 		6C0CF29F2233BD3100E0E2AC /* CornerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0CF29E2233BD3000E0E2AC /* CornerShadowView.m */; };
+		6C2B2FF9228A64F10075E5AE /* ZCShopHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B2FF8228A64F10075E5AE /* ZCShopHomeModel.m */; };
+		6C2B2FFC228A707A0075E5AE /* ZCExclusiveRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B2FFB228A707A0075E5AE /* ZCExclusiveRecommendModel.m */; };
 		6C2F5141222A663D0022EE03 /* HXCustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F50F4222A663D0022EE03 /* HXCustomCameraViewController.m */; };
 		6C2F5142222A663D0022EE03 /* UIViewController+HXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F50F5222A663D0022EE03 /* UIViewController+HXExtension.m */; };
 		6C2F5143222A663D0022EE03 /* HXPhotoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F50F6222A663D0022EE03 /* HXPhotoConfiguration.m */; };
@@ -1849,6 +1851,10 @@
 		6C0A932422895D130090623B /* ZCShopHomeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopHomeViewModel.m; sourceTree = "<group>"; };
 		6C0CF29D2233BD3000E0E2AC /* CornerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CornerShadowView.h; sourceTree = "<group>"; };
 		6C0CF29E2233BD3000E0E2AC /* CornerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CornerShadowView.m; sourceTree = "<group>"; };
+		6C2B2FF7228A64F10075E5AE /* ZCShopHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopHomeModel.h; sourceTree = "<group>"; };
+		6C2B2FF8228A64F10075E5AE /* ZCShopHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopHomeModel.m; sourceTree = "<group>"; };
+		6C2B2FFA228A707A0075E5AE /* ZCExclusiveRecommendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCExclusiveRecommendModel.h; sourceTree = "<group>"; };
+		6C2B2FFB228A707A0075E5AE /* ZCExclusiveRecommendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCExclusiveRecommendModel.m; sourceTree = "<group>"; };
 		6C2F50F4222A663D0022EE03 /* HXCustomCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXCustomCameraViewController.m; sourceTree = "<group>"; };
 		6C2F50F5222A663D0022EE03 /* UIViewController+HXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HXExtension.m"; sourceTree = "<group>"; };
 		6C2F50F6222A663D0022EE03 /* HXPhotoConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXPhotoConfiguration.m; sourceTree = "<group>"; };
@@ -5589,6 +5595,10 @@
 			children = (
 				6C0A932322895D130090623B /* ZCShopHomeViewModel.h */,
 				6C0A932422895D130090623B /* ZCShopHomeViewModel.m */,
+				6C2B2FF7228A64F10075E5AE /* ZCShopHomeModel.h */,
+				6C2B2FF8228A64F10075E5AE /* ZCShopHomeModel.m */,
+				6C2B2FFA228A707A0075E5AE /* ZCExclusiveRecommendModel.h */,
+				6C2B2FFB228A707A0075E5AE /* ZCExclusiveRecommendModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -6198,6 +6208,7 @@
 				658902F4223B775F009C1B03 /* UIView+PYSearchExtension.m in Sources */,
 				658B7CA221D749E100801CC8 /* VCInteractionDelegate.m in Sources */,
 				659EA07D2203D5A1004471CD /* DHGuidePageHUD.m in Sources */,
+				6C2B2FF9228A64F10075E5AE /* ZCShopHomeModel.m in Sources */,
 				658B7CA421D749E100801CC8 /* AnimationErectBegin.m in Sources */,
 				658B7CC421D749E100801CC8 /* AlertView.m in Sources */,
 				658C39CE21E9FA5B00880B6A /* JXCategoryIndicatorLineView.m in Sources */,
@@ -6546,6 +6557,7 @@
 				658B7CC221D749E100801CC8 /* UIView+TXFrame.m in Sources */,
 				6C7D84FF22856E9200A8E9F7 /* ZCHomeRecommendCell.m in Sources */,
 				65B5DFE4221E51D100A65044 /* TimeChoose.m in Sources */,
+				6C2B2FFC228A707A0075E5AE /* ZCExclusiveRecommendModel.m in Sources */,
 				659EA08A2203FB48004471CD /* WLCardNoFormatter.m in Sources */,
 				65DC6810221124AD00F1085E /* ShareProductInfoView.m in Sources */,
 				04A508CA227EDD3A0013E8EC /* UITextField+Placeholder.m in Sources */,

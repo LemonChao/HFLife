@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZCShopHomeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZC_HF_CollectionCycleHeader : UICollectionReusableView
+
+@property(nonatomic, copy) NSArray<__kindof ZCShopHomeBannerModel *> *bannerList;
 
 @end
 

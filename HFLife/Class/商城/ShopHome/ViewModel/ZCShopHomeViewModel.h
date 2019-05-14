@@ -7,12 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZCShopHomeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZCShopHomeViewModel : BaseViewModel
 
-@property(nonatomic, strong) RACCommand *shopHomeCmd;
+/// 首页刷新，两个接口
+@property(nonatomic, strong) RACCommand *shopRefreshCmd;
+
+/// 加载更多
+@property(nonatomic, strong) RACCommand *shopLoadMoreCmd;
+
+@property(nonatomic, strong) ZCShopHomeModel *homeModel;
+
+@property(nonatomic, assign) NSUInteger section;
+
 
 @end
 

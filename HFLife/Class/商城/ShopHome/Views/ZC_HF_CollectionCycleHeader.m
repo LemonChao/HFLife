@@ -46,6 +46,17 @@
 }
 
 
+- (void)setBannerList:(NSArray<__kindof ZCShopHomeBannerModel *> *)bannerList {
+    _bannerList = bannerList.copy;
+    
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (ZCShopHomeBannerModel *item in self.bannerList) {
+        [tempArray addObject:item.mobile_banner_image];
+    }
+    self.cycleView.imageURLStringsGroup = tempArray;
+    
+}
+
 
 - (SDCycleScrollView *)cycleView {
     if (!_cycleView) {
