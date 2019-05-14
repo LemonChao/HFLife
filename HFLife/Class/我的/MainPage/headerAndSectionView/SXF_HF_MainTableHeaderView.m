@@ -96,13 +96,19 @@
     [self.getTextBtn addTarget:self action:@selector(copyText)];
     
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickHeaderImageV)];
+    [self.headerImageV addGestureRecognizer:tap];
+    
+    
     self.headerImageV.image = MY_IMAHE(@"head_icon");
     self.userNameLb.text = @"sxf";
     self.userLeveLb.text = @"LV：VIP1";
     self.myJoinTitleLb.text = @"我的邀请码：X34FV";
     
 }
-
+- (void)clickHeaderImageV{
+    
+}
 - (void)copyText{
     [UIPasteboard generalPasteboard].string = self.myJoinTitleLb.text;
     NSLog(@"剪切板数据 : %@", [UIPasteboard generalPasteboard].string);
