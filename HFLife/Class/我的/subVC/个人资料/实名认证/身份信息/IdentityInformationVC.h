@@ -1,5 +1,5 @@
 //
-//  CertificatePhoto.h
+//  IdentityInformationVC.h
 //  HanPay
 //
 //  Created by 张海彬 on 2019/1/18.
@@ -10,11 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CertificatePhoto : BaseViewController
-/**
- 0:大陆居民身份证 ， 3:港澳台身份证
- */
-@property (nonatomic , strong)NSString *type;
+@interface IdentityInformationVC : BaseViewController
+
 @end
 
 NS_ASSUME_NONNULL_END

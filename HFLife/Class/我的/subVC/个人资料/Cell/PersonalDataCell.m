@@ -1,9 +1,9 @@
 //
 //  PersonalDataCell.m
-//  HFLife
+//  HanPay
 //
-//  Created by sxf on 2019/1/18.
-//  Copyright © 2019年 sxf. All rights reserved.
+//  Created by 张海彬 on 2019/1/18.
+//  Copyright © 2019年 张海彬. All rights reserved.
 //
 
 #import "PersonalDataCell.h"

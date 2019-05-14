@@ -1,5 +1,5 @@
 //
-//  CertificatePhoto.h
+//  ModifyNicknameVC.h
 //  HanPay
 //
 //  Created by 张海彬 on 2019/1/18.
@@ -10,11 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CertificatePhoto : BaseViewController
+@interface ModifyNicknameVC : BaseViewController
+
 /**
- 0:大陆居民身份证 ， 3:港澳台身份证
+ 修改成功回调
  */
-@property (nonatomic , strong)NSString *type;
+@property (nonatomic,copy)void (^modifiedSuccessfulBlock)(NSString *value);
 @end
 
 NS_ASSUME_NONNULL_END
