@@ -69,7 +69,7 @@
 
 /// Return per section's column number(must be greater than 0).
 - (NSInteger)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout numberOfColumnInSection:(NSInteger)section {
-    if (section == 4) {
+    if (section == 1) {
         return 2;
     }
     return 1;
@@ -77,101 +77,65 @@
 /// Return per item's height
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout itemWidth:(CGFloat)width
  heightForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
-        return ScreenScale(194);
-    }else if (indexPath.section == 2) {
-        return ScreenScale(334);
-    }else if (indexPath.section == 3) {
-        return ScreenScale(160);
-    }else if (indexPath.section == 4) {
-        return ScreenScale(273);
-    }
-    return 0;
+//    if (indexPath.section == 1) {
+//        return ScreenScale(194);
+//    }else if (indexPath.section == 2) {
+//        return ScreenScale(334);
+//    }else if (indexPath.section == 3) {
+//        return ScreenScale(160);
+//    }else if (indexPath.section == 4) {
+//        return ScreenScale(273);
+//    }
+//    return 0;
+    
+    NSArray *array = self.viewModel.dataArray[indexPath.section];
+    if (indexPath.section == 0) {
+        
+        ZCShopNormalCellModel *model = array.firstObject;
+        
+        return model.rowHeight;
+    }else {
+        ZCShopNormalCellModel *model = array.firstObject;
+        
+        return model.rowHeight;
 
+    }
 }
 
 /// Column spacing between columns
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    if (section == 4) {
+    if (section == 1) {
         return ScreenScale(11);
     }
     return 0.f;
 }
 /// The spacing between rows and rows
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    if (section == 4) {
+    if (section == 1) {
         return ScreenScale(11);
     }
     
     return 0.f;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout insetForSectionAtIndex:(NSInteger)section {
-    if (section == 4) {
+    if (section == 1) {
         return UIEdgeInsetsMake(0, ScreenScale(11), 0, ScreenScale(11));
     }
     return UIEdgeInsetsZero;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 0;
-    }
-    else if (section == 4) {
-        return 6;
-    }else {
-        return 1;
-    }
+//    if (section == 0) {
+//        return 0;
+//    }
+//    else if (section == 4) {
+//        return 6;
+//    }else {
+//        return 1;
+//    }
+    NSArray *sectionArray = self.viewModel.dataArray[section];
+    return sectionArray.count;
 }
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.viewModel.section;
-}
-
-/// header footer View
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    
-    if (kind == UICollectionElementKindSectionHeader) {
-        if (indexPath.section == 0) {
-            ZC_HF_CollectionCycleHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionCycleHeader class]) forIndexPath:indexPath];
-            header.bannerList = self.viewModel.homeModel.banner_list;
-            
-            return header;
-        }
-        else {
-            return [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionWordsHeader class]) forIndexPath:indexPath];
-        }
-
-    }else {
-        UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([UICollectionReusableView class]) forIndexPath:indexPath];
-        return footer;
-    }
-}
-
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
-        ZCHomeDiscountCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeDiscountCell class]) forIndexPath:indexPath];
-        return cell;
-    }
-    else if (indexPath.section == 2) {
-        ZC_HF_HomeRushPurchaseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZC_HF_HomeRushPurchaseCell class]) forIndexPath:indexPath];
-        return cell;
-
-    }
-    else if (indexPath.section == 3) {
-        ZCHomeRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeRecommendCell class]) forIndexPath:indexPath];
-        return cell;
-
-    }
-    else if (indexPath.section == 4) {
-        ZCExclusiveRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCExclusiveRecommendCell class]) forIndexPath:indexPath];
-        
-        return cell;
-    }
-    
-    return nil;
-}
-
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout *)layout referenceHeightForFooterInSection:(NSInteger)section {
     return 0.0f;
@@ -183,6 +147,86 @@
     }else {
         return ScreenScale(40);
     }
+}
+
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return self.viewModel.dataArray.count;
+}
+
+/// header footer View
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        if (indexPath.section == 0) {
+            ZC_HF_CollectionCycleHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionCycleHeader class]) forIndexPath:indexPath];
+            header.bannerList = self.viewModel.bannerArray;
+            
+            return header;
+        }
+        else {
+            ZC_HF_CollectionWordsHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionWordsHeader class]) forIndexPath:indexPath];
+            
+            return header;
+        }
+
+    }else {
+        UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([UICollectionReusableView class]) forIndexPath:indexPath];
+        return footer;
+    }
+}
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *array = self.viewModel.dataArray[indexPath.section];
+
+    ZCShopNormalCellModel *model = array[indexPath.row];
+    
+    if (indexPath.section == 0) {
+        if ([model.title isEqualToString:@"限时折扣"]) {
+            ZCHomeDiscountCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeDiscountCell class]) forIndexPath:indexPath];
+            return cell;
+
+        }else if ([model.title isEqualToString:@"今日必抢"]) {
+            ZC_HF_HomeRushPurchaseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZC_HF_HomeRushPurchaseCell class]) forIndexPath:indexPath];
+            return cell;
+        }else if ([model.title isEqualToString:@"新品推荐"]) {
+            ZCHomeRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeRecommendCell class]) forIndexPath:indexPath];
+            return cell;
+        }
+        return nil;
+        
+    }
+    else {
+        ZCExclusiveRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCExclusiveRecommendCell class]) forIndexPath:indexPath];
+        return cell;
+        
+    }
+
+    
+    
+    
+//    if (indexPath.section == 1) {
+//        ZCHomeDiscountCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeDiscountCell class]) forIndexPath:indexPath];
+//        return cell;
+//    }
+//    else if (indexPath.section == 2) {
+//        ZC_HF_HomeRushPurchaseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZC_HF_HomeRushPurchaseCell class]) forIndexPath:indexPath];
+//        return cell;
+//
+//    }
+//    else if (indexPath.section == 3) {
+//        ZCHomeRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeRecommendCell class]) forIndexPath:indexPath];
+//        return cell;
+//
+//    }
+//    else if (indexPath.section == 4) {
+//        ZCExclusiveRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCExclusiveRecommendCell class]) forIndexPath:indexPath];
+//
+//        return cell;
+//    }
+//
+//    return nil;
 }
 
 

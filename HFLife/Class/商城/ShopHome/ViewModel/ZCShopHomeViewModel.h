@@ -21,6 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) ZCShopHomeModel *homeModel;
 
+/** 列表数据 */
+@property(nonatomic, copy) NSArray <__kindof NSArray *>*dataArray;
+
+/** 轮播数据 */
+@property(nonatomic, copy) NSArray *bannerArray;
+
+
 @property(nonatomic, assign) NSUInteger section;
 
 

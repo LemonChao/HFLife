@@ -35,8 +35,9 @@
                 [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=index&t=index" withParameters:@{} withResultBlock:^(BOOL result, id value) {
                     if (result){
                         
-                        ZCShopHomeModel *model = [ZCShopHomeModel yy_modelWithDictionary:value];
-                        self.homeModel = model;
+                        ZCShopHomeModel *model = [ZCShopHomeModel yy_modelWithDictionary:value[@"data"]];
+                        self.bannerArray = model.banner_list.copy;
+                       self.dataArray = [self buildDataArrayWithModel:model];
                         
                         [subscriber sendNext:@(1)];
                         
@@ -76,7 +77,47 @@
 }
 
 
-
+- (NSArray *)buildDataArrayWithModel:(ZCShopHomeModel *)model {
+    NSMutableArray *tempArray = [NSMutableArray array];
+    NSMutableArray *section0 = [NSMutableArray array];
+    NSMutableArray *section1 = [NSMutableArray arrayWithCapacity:6];
+    
+    if (model.limit_time_goods.count) {
+        ZCShopNormalCellModel *cellModel = [[ZCShopNormalCellModel alloc] init];
+        cellModel.title = @"限时折扣";
+        cellModel.cellDatas = model.limit_time_goods;
+        cellModel.rowHeight = ScreenScale(234);
+        [section0 addObject:cellModel];
+    }
+    
+    ZCShopNormalCellModel *cellModel = [[ZCShopNormalCellModel alloc] init];
+    cellModel.title = @"今日必抢";
+    cellModel.cellDatas = [NSArray array];
+    cellModel.rowHeight = ScreenScale(374);
+    [section0 addObject:cellModel];
+    
+    if (model.shop_newGoods.count) {
+        ZCShopNormalCellModel *cellModel = [[ZCShopNormalCellModel alloc] init];
+        cellModel.title = @"新品推荐";
+        cellModel.cellDatas = model.shop_newGoods;
+        cellModel.rowHeight = ScreenScale(200);
+        [section0 addObject:cellModel];
+    }
+    
+    for (int i = 0; i < 6; i++) {
+        
+        ZCShopNormalCellModel *cellModel = [[ZCShopNormalCellModel alloc] init];
+        cellModel.title = @"专属推荐";
+        cellModel.cellDatas = [NSArray array];
+        cellModel.rowHeight = ScreenScale(273);
+        [section1 addObject:cellModel];
+    }
+    
+    [tempArray addObject:section0];
+    [tempArray addObject:section1];
+    return tempArray.copy;
+    
+}
 
 
 

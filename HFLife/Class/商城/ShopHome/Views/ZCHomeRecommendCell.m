@@ -10,7 +10,7 @@
 #import "ZCRecommendCollectionCell.h"
 
 @interface ZCHomeRecommendCell ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-
+@property(nonatomic, strong) UILabel *titleLable;
 @property(nonatomic, strong) UICollectionView *collectionView;
 @end
 
@@ -21,10 +21,18 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self.contentView addSubview:self.titleLable];
         [self.contentView addSubview:self.collectionView];
         
+        [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView);
+            make.left.equalTo(self.contentView).offset(ScreenScale(12));
+            make.height.mas_equalTo(ScreenScale(40));
+        }];
+
         [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.right.equalTo(self.contentView);
+            make.top.equalTo(self.titleLable.mas_bottom);
+            make.bottom.right.equalTo(self.contentView);
             make.left.equalTo(self.contentView).inset(ScreenScale(12));
         }];
     }
@@ -58,6 +66,13 @@
     }
     return _collectionView;
     
+}
+- (UILabel *)titleLable {
+    if (!_titleLable) {
+        _titleLable = [UITool labelWithTextColor:ImportantColor font:MediumFont(18)];
+        _titleLable.text = @"今日必抢";
+    }
+    return _titleLable;
 }
 
 

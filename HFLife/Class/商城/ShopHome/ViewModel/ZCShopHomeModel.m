@@ -27,6 +27,12 @@
 @end
 
 
+@implementation ZCShopNormalCellModel
+
+
+
+@end
+
 
 @implementation ZCShopHomeModel
 + (NSDictionary *)modelCustomPropertyMapper {

@@ -214,13 +214,13 @@
     NSLog(@"result = %@" , valueDic);
     //解析正确
     if (valueDic != nil) {
-        if ([valueDic[@"code"] integerValue] == 1){
+        if ([valueDic[@"status"] integerValue] == 1){
             //成功
             valueBlock(YES , valueDic);
-        }else if ([valueDic[@"code"] integerValue]  == 0){
+        }else if ([valueDic[@"status"] integerValue]  == 0){
             //失败
             valueBlock(NO , valueDic);
-        }else if([valueDic[@"code"] integerValue]  == -1){
+        }else if([valueDic[@"status"] integerValue]  == -1){
             //登陆过期
             valueBlock(NO , valueDic);
             [currentVC presentViewController:[LoginVC new] animated:YES completion:nil];

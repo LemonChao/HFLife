@@ -10,6 +10,7 @@
 
 
 @interface ZC_HF_HomeRushPurchaseCell ()
+@property(nonatomic, strong) UILabel *titleLable;
 
 @property(nonatomic, strong)NSArray<UIButton *> *subButtons;
 
@@ -29,14 +30,23 @@
         UIButton *bottomLeftButton = [self imageButton:@"shihuihaohuo"];
         UIButton *bottomRightButton = [self imageButton:@"pinleimiaosha"];
 
-        
+        [self.contentView addSubview:self.titleLable];
         [self.contentView addSubview:imgButton];
         [self.contentView addSubview:topLeftButton];
         [self.contentView addSubview:topRightButton];
         [self.contentView addSubview:bottomLeftButton];
         [self.contentView addSubview:bottomRightButton];
-        [imgButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView);
+            make.left.equalTo(self.contentView).offset(ScreenScale(12));
+            make.height.mas_equalTo(ScreenScale(40));
+        }];
+
+        
+        
+        [imgButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.titleLable.mas_bottom);
             make.left.right.equalTo(self.contentView).inset(ScreenScale(12));
             make.height.mas_equalTo(ScreenScale(100));
         }];
@@ -81,5 +91,14 @@
 - (void)imageButtonAction:(UIButton *)button {
     
 }
+
+- (UILabel *)titleLable {
+    if (!_titleLable) {
+        _titleLable = [UITool labelWithTextColor:ImportantColor font:MediumFont(18)];
+        _titleLable.text = @"今日必抢";
+    }
+    return _titleLable;
+}
+
 
 @end
