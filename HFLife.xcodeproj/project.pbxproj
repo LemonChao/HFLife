@@ -366,6 +366,8 @@
 		04F52048228A61B200ED4995 /* myFriendListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52042228A61B200ED4995 /* myFriendListVC.m */; };
 		04F52049228A61B200ED4995 /* friendViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52044228A61B200ED4995 /* friendViewCell.m */; };
 		04F5204A228A61B200ED4995 /* InviteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F52045228A61B200ED4995 /* InviteVC.m */; };
+		04F5204F228A662000ED4995 /* BindingPayWayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5204D228A662000ED4995 /* BindingPayWayVC.m */; };
+		04F52050228A662000ED4995 /* BindingAlipayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5204E228A662000ED4995 /* BindingAlipayVC.m */; };
 		04F54B3022811B9C009AAEF3 /* ProjectKit.md in Resources */ = {isa = PBXBuildFile; fileRef = 04F54B2F22811B9C009AAEF3 /* ProjectKit.md */; };
 		04F54B3422811DC8009AAEF3 /* subModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B3322811DC8009AAEF3 /* subModels.m */; };
 		04F54B4322813B23009AAEF3 /* WRNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B3D22813B23009AAEF3 /* WRNavigationBar.m */; };
@@ -1377,6 +1379,10 @@
 		04F52044228A61B200ED4995 /* friendViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendViewCell.m; sourceTree = "<group>"; };
 		04F52045228A61B200ED4995 /* InviteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteVC.m; sourceTree = "<group>"; };
 		04F52046228A61B200ED4995 /* InviteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteVC.h; sourceTree = "<group>"; };
+		04F5204B228A661F00ED4995 /* BindingAlipayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingAlipayVC.h; sourceTree = "<group>"; };
+		04F5204C228A662000ED4995 /* BindingPayWayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingPayWayVC.h; sourceTree = "<group>"; };
+		04F5204D228A662000ED4995 /* BindingPayWayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingPayWayVC.m; sourceTree = "<group>"; };
+		04F5204E228A662000ED4995 /* BindingAlipayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingAlipayVC.m; sourceTree = "<group>"; };
 		04F54B2F22811B9C009AAEF3 /* ProjectKit.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ProjectKit.md; sourceTree = "<group>"; };
 		04F54B3222811DC8009AAEF3 /* subModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subModels.h; sourceTree = "<group>"; };
 		04F54B3322811DC8009AAEF3 /* subModels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = subModels.m; sourceTree = "<group>"; };
@@ -5789,6 +5795,10 @@
 		6C6810672286AFCD00300A14 /* 绑定银行卡\支付宝 */ = {
 			isa = PBXGroup;
 			children = (
+				04F5204B228A661F00ED4995 /* BindingAlipayVC.h */,
+				04F5204E228A662000ED4995 /* BindingAlipayVC.m */,
+				04F5204C228A662000ED4995 /* BindingPayWayVC.h */,
+				04F5204D228A662000ED4995 /* BindingPayWayVC.m */,
 			);
 			path = "绑定银行卡\\支付宝";
 			sourceTree = "<group>";
@@ -6309,6 +6319,7 @@
 				658B7C4421D749E100801CC8 /* JSONKit.m in Sources */,
 				658B7C4D21D749E100801CC8 /* UIButton+Extension.m in Sources */,
 				659EA0862203FA66004471CD /* LXEmptyDataView.m in Sources */,
+				04F52050228A662000ED4995 /* BindingAlipayVC.m in Sources */,
 				04A5087C227EDD3A0013E8EC /* NSObject+CountDown.m in Sources */,
 				658C3A2E21EDD65500880B6A /* HW3DBannerView.m in Sources */,
 				04A5088F227EDD3A0013E8EC /* NSString+WHString.m in Sources */,
@@ -6658,6 +6669,7 @@
 				0497838F2285957F00E143D7 /* MouthModel.m in Sources */,
 				04A50856227EDD3A0013E8EC /* ZFCollectionViewController.m in Sources */,
 				6C2F5143222A663D0022EE03 /* HXPhotoConfiguration.m in Sources */,
+				04F5204F228A662000ED4995 /* BindingPayWayVC.m in Sources */,
 				0453D1982282774C00880C2A /* SXF_HF_ItemsViewCell.m in Sources */,
 				0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */,
 				04F54B50228160DB009AAEF3 /* SXF_HF_CustomPageControl.m in Sources */,
