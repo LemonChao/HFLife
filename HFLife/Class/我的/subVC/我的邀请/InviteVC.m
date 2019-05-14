@@ -58,7 +58,7 @@
 -(void)setupNavBar{
     WS(weakSelf);
     [super setupNavBar];
-    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"fanhuianniu"]];
+//    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"fanhuianniu"]];
     [self.customNavBar wr_setRightButtonWithTitle:@"" titleColor:[UIColor whiteColor]];
     self.customNavBar.barBackgroundImage = [UIImage imageNamed:@"myOrderBG"];
     [self.customNavBar setOnClickLeftButton:^{
@@ -87,6 +87,7 @@
         make.width.mas_equalTo(WidthRatio(401));
         make.height.mas_equalTo(HeightRatio(108));
     }];
+    button.setBackgroundColor([UIColor redColor]);
 }
 -(void)buttonClick{
     [self addGuanjiaShareView];
