@@ -168,15 +168,16 @@
             }
             vc = web;
         }else{
-            if ([VcArr[indexPath.row] isKindOfClass:[NSString class]]) {
-                Class vcClass = NSClassFromString(VcArr[indexPath.row]);
-                vc = [[vcClass alloc] init];
-            }else{
-                SynthesizeMerchantListVC *syn = [[SynthesizeMerchantListVC alloc]init];
-                syn.type = MMNSStringFormat(@"%@",VcArr[indexPath.row]);
-                vc = syn;
+            if (VcArr.count > indexPath.row) {
+                if ([VcArr[indexPath.row] isKindOfClass:[NSString class]]) {
+                    Class vcClass = NSClassFromString(VcArr[indexPath.row]);
+                    vc = [[vcClass alloc] init];
+                }else{
+                    SynthesizeMerchantListVC *syn = [[SynthesizeMerchantListVC alloc]init];
+                    syn.type = MMNSStringFormat(@"%@",VcArr[indexPath.row]);
+                    vc = syn;
+                }
             }
-            
         }
         if (vc) {
             [self.viewController.navigationController pushViewController:vc animated:YES];
