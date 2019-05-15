@@ -72,6 +72,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *goods_fan_price;
 @property(nonatomic, copy) NSString *goods_sale_price;
 @property(nonatomic, copy) NSString *goods_image;
+/** 显示商品价格 */
+@property(nonatomic, copy) NSAttributedString *attPrice;
 
 @end
 

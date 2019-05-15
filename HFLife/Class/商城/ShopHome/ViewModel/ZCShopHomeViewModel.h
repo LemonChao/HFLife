@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZCShopHomeModel.h"
+#import "ZCExclusiveRecommendModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,16 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 加载更多
 @property(nonatomic, strong) RACCommand *shopLoadMoreCmd;
 
-@property(nonatomic, strong) ZCShopHomeModel *homeModel;
+//@property(nonatomic, strong) ZCShopHomeModel *homeModel;
 
 /** 列表数据 */
 @property(nonatomic, copy) NSArray <__kindof NSArray *>*dataArray;
 
 /** 轮播数据 */
 @property(nonatomic, copy) NSArray *bannerArray;
-
-
-@property(nonatomic, assign) NSUInteger section;
 
 
 @end

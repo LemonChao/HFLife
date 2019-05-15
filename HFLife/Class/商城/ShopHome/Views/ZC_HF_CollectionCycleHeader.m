@@ -13,6 +13,8 @@
 @interface ZC_HF_CollectionCycleHeader ()<SDCycleScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property(nonatomic, strong) SDCycleScrollView *cycleView;
+
+@property(nonatomic, strong) UILabel *pageIndexLabel;
 @property(nonatomic, strong) UIView *collectionBgView;
 @property(nonatomic, strong) UICollectionView *collectionView;
 @property(nonatomic, copy) NSArray *dataArray;
@@ -25,11 +27,18 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.cycleView];
+        [self.cycleView addSubview:self.pageIndexLabel];
         [self addSubview:self.collectionBgView];
         [self.collectionBgView addSubview:self.collectionView];
         
         [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(ScreenScale(10), ScreenScale(10), ScreenScale(9), ScreenScale(10)));
+        }];
+        
+        [self.pageIndexLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.cycleView).inset(ScreenScale(12));
+            make.bottom.equalTo(self.collectionBgView.mas_top).offset(-ScreenScale(5));
+            make.size.mas_equalTo(CGSizeMake(ScreenScale(32), ScreenScale(16)));
         }];
     }
     return self;
@@ -45,6 +54,9 @@
     return cell;
 }
 
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
+    self.pageIndexLabel.text = [NSString stringWithFormat:@"%ld/%ld", index+1, self.bannerList.count];
+}
 
 - (void)setBannerList:(NSArray<__kindof ZCShopHomeBannerModel *> *)bannerList {
     _bannerList = bannerList.copy;
@@ -54,7 +66,7 @@
         [tempArray addObject:item.mobile_banner_image];
     }
     self.cycleView.imageURLStringsGroup = tempArray;
-    
+    self.pageIndexLabel.text = [NSString stringWithFormat:@"1/%ld", self.bannerList.count];
 }
 
 
@@ -63,10 +75,6 @@
         _cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(240)) delegate:self placeholderImage:image(@"banner")];
         _cycleView.localizationImageNamesGroup = @[image(@"banner"),image(@"banner")];
         _cycleView.backgroundColor = [UIColor whiteColor];
-        _cycleView.showPageControl = YES;
-        _cycleView.pageControlBottomOffset = ScreenScale(23);
-        _cycleView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
-        _cycleView.currentPageDotColor = GeneralRedColor;
     }
     return _cycleView;
 }
@@ -114,6 +122,15 @@
         _dataArray = array.copy;
     }
     return _dataArray;
+}
+
+- (UILabel *)pageIndexLabel {
+    if (!_pageIndexLabel) {
+        _pageIndexLabel = [UITool labelWithText:nil textColor:ImportantColor font:SystemFont(12) alignment:NSTextAlignmentCenter numberofLines:0 backgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.4]];
+        _pageIndexLabel.layer.cornerRadius = ScreenScale(8);
+        _pageIndexLabel.clipsToBounds = YES;
+    }
+    return _pageIndexLabel;
 }
 
 @end

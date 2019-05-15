@@ -37,12 +37,13 @@
 
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self.contentView);
+//            make.height.mas_equalTo(ScreenScale(50));
         }];
         
         [self.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.imageView.mas_bottom);
             make.left.right.equalTo(self.imageView);
-            make.height.mas_equalTo(ScreenScale(18));
+            make.height.mas_equalTo(ScreenScale(0));
         }];
         
         [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -67,17 +68,23 @@
     return self;
 }
 
-//- (void)updateConstraints {
-//
-//
-//
-//
-//    [super updateConstraints];
-//}
+- (void)updateConstraints {
+    [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self.model.viewHeight);
+    }];
 
+    [super updateConstraints];
+}
 
-
-
+- (void)setModel:(ZCExclusiveRecommendModel *)model {
+    _model = model;
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.goods_image]];
+    self.titleLab.text = model.goods_name;
+    self.descriptLab.text = model.goods_name;
+    self.priceLab.attributedText = model.attPrice;
+    [self setNeedsUpdateConstraints];
+}
 
 
 - (UIImageView *)imageView {
@@ -97,7 +104,6 @@
 - (UILabel *)titleLab {
     if (!_titleLab) {
         _titleLab = [UITool labelWithTextColor:ImportantColor font:MediumFont(14)];
-        _titleLab.text = @"悉尼之风";
     }
     return _titleLab;
 }
@@ -105,7 +111,6 @@
 - (UILabel *)descriptLab {
     if (!_descriptLab) {
         _descriptLab = [UITool labelWithTextColor:AssistColor font:MediumFont(12)];
-        _descriptLab.text = @"匠心制作";
     }
     return _descriptLab;
 }
@@ -113,7 +118,6 @@
 - (UILabel *)priceLab {
     if (!_priceLab) {
         _priceLab = [UITool labelWithTextColor:GeneralRedColor font:MediumFont(18)];
-        _priceLab.text = @"￥1252起";
     }
     return _priceLab;
 }

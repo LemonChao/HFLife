@@ -7,7 +7,6 @@
 //
 
 #import "ZCShopHomeViewModel.h"
-
 @interface ZCShopHomeViewModel ()
 
 
@@ -15,39 +14,17 @@
 
 @implementation ZCShopHomeViewModel
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.section = 0;
-    }
-    return self;
-}
-
-
-
-
 - (RACCommand *)shopRefreshCmd {
     if (!_shopRefreshCmd) {
+        @weakify(self);
         _shopRefreshCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
-            return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=index&t=index" withParameters:@{} withResultBlock:^(BOOL result, id value) {
-                    if (result){
-                        
-                        ZCShopHomeModel *model = [ZCShopHomeModel yy_modelWithDictionary:value[@"data"]];
-                        self.bannerArray = model.banner_list.copy;
-                       self.dataArray = [self buildDataArrayWithModel:model];
-                        
-                        [subscriber sendNext:@(1)];
-                        
-                    }else {
-                        [subscriber sendNext:@(0)];
-                    }
-                    [subscriber sendCompleted];
-                }];
-                
-                return nil;
+            return [RACSignal combineLatest:@[[self restSignal],[self exclusizeSignal]] reduce:^id _Nonnull(NSArray *section0, NSArray *section1){
+                @strongify(self);
+                if (section0.count && section1.count) {
+                    self.dataArray = @[section0,section1];
+                    return @(1);
+                }
+                return @(0);
             }];
         }];
     }
@@ -67,8 +44,6 @@
                     }
                 }];
 
-                
-                
                 return nil;
             }];
         }];
@@ -76,11 +51,59 @@
     return _shopLoadMoreCmd;
 }
 
+/** 专属推荐signal */
+- (RACSignal *)exclusizeSignal {
+    RACSignal *exclusiveSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=index&t=get_tui_goods" withParameters:@{@"page":@"1",@"page_all":@"0"} withResultBlock:^(BOOL result, id value) {
+            NSArray *section1;
+            if (result){
+                section1 = [NSArray yy_modelArrayWithClass:[ZCExclusiveRecommendModel class] json:value[@"data"]];
+                [section1 enumerateObjectsUsingBlock:^(ZCExclusiveRecommendModel *_Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+                    CGFloat cellWith = (SCREEN_WIDTH-ScreenScale(33))/2;//(contentWidthOfSection - spacing)/columnOfSection
+                    item.viewHeight = item.height / item.width * cellWith;
+                    NSString *string = [NSString stringWithFormat:@"￥%@ 起",item.goods_price];
+                    NSMutableAttributedString *mAttstring = [[NSMutableAttributedString alloc] initWithString:string];
+                    [mAttstring addAttributes:@{NSFontAttributeName:MediumFont(12),NSForegroundColorAttributeName:GeneralRedColor} range:NSMakeRange(0, string.length)];
+                    [mAttstring addAttribute:NSFontAttributeName value:MediumFont(18) range:[string rangeOfString:item.goods_price]];
+                   item.attPrice = mAttstring.mutableCopy;
+                }];
+            }
+            [subscriber sendNext:section1];
+            [subscriber sendCompleted];
+        }];
+        return nil;
+    }];
+    
+    return exclusiveSignal;
+}
+
+/** 剩余数据signal */
+- (RACSignal *)restSignal {
+    @weakify(self);
+    return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=index&t=index" withParameters:@{} withResultBlock:^(BOOL result, id value) {
+            @strongify(self);
+            NSArray *section0;
+            if (result){
+                
+                ZCShopHomeModel *model = [ZCShopHomeModel yy_modelWithDictionary:value[@"data"]];
+                self.bannerArray = model.banner_list.copy;
+                section0 = [self buildDataArrayWithModel:model];
+            }
+            [subscriber sendNext:section0];
+
+            [subscriber sendCompleted];
+        }];
+        
+        return nil;
+    }];
+}
+
 
 - (NSArray *)buildDataArrayWithModel:(ZCShopHomeModel *)model {
-    NSMutableArray *tempArray = [NSMutableArray array];
     NSMutableArray *section0 = [NSMutableArray array];
-    NSMutableArray *section1 = [NSMutableArray arrayWithCapacity:6];
     
     if (model.limit_time_goods.count) {
         ZCShopHomeCellModel *cellModel = [[ZCShopHomeCellModel alloc] init];
@@ -99,23 +122,19 @@
     if (model.shop_newGoods.count) {
         ZCShopHomeCellModel *cellModel = [[ZCShopHomeCellModel alloc] init];
         cellModel.title = @"新品推荐";
+        [model.shop_newGoods enumerateObjectsUsingBlock:^(__kindof ZCShopNewGoodsModel * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *string = [NSString stringWithFormat:@"￥%@ 起",item.goods_price];
+            NSMutableAttributedString *mAttstring = [[NSMutableAttributedString alloc] initWithString:string];
+            [mAttstring addAttributes:@{NSFontAttributeName:MediumFont(12),NSForegroundColorAttributeName:GeneralRedColor} range:NSMakeRange(0, string.length)];
+            [mAttstring addAttribute:NSFontAttributeName value:MediumFont(18) range:[string rangeOfString:item.goods_price]];
+            item.attPrice = mAttstring;
+        }];
         cellModel.cellDatas = model.shop_newGoods;
-        cellModel.rowHeight = ScreenScale(200);
+        cellModel.rowHeight = ScreenScale(290);
         [section0 addObject:cellModel];
     }
     
-    for (int i = 0; i < 6; i++) {
-        ZCShopHomeCellModel *cellModel = [[ZCShopHomeCellModel alloc] init];
-        cellModel.title = @"专属推荐";
-        cellModel.cellDatas = [NSArray array];
-        cellModel.rowHeight = ScreenScale(273);
-        [section1 addObject:cellModel];
-    }
-    
-    [tempArray addObject:section0];
-    [tempArray addObject:section1];
-    return tempArray.copy;
-    
+    return section0.copy;
 }
 
 
