@@ -33,6 +33,33 @@
 #define IS_IPHONE_Xs_Max ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
 
 
+/**
+ *判断是否是iPhoneX及以上版本
+ */
+#define IPHONE_X_Later \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+
+/**
+ *导航栏高度
+ */
+#define SafeAreaTopHeight (IPHONE_X_Later ? 88 : 64)
+
+/**
+ *tabbar高度
+ */
+#define SafeAreaTabBarHeight (IPHONE_X_Later ? (49 + 34) : 49)
+/**
+ *底部安全区域高度
+ */
+#define SafeAreaBottomHeight (IPHONE_X_Later ? (34) : 0)
+
+
+
+
 /** 获取mainScreen的bounds */
 #define MMScreenBounds [[UIScreen mainScreen] bounds]
 

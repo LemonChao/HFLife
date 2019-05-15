@@ -6,15 +6,14 @@
 //
 
 #import "cycleScrollCell.h"
-#import "customCycleView.h"//自定义轮播
-#import "bannerCollectionViewCell.h"
 #import "LWDPageControl.h"
+#import "SDCycleScrollView.h"
+@interface cycleScrollCell ()< SDCycleScrollViewDelegate>
 
-@interface cycleScrollCell ()<customCycleViewDelegate>
-
-@property (nonatomic ,strong) customCycleView *cycleV;
 @property (nonatomic ,strong) LWDPageControl *pageControl;
 @property (nonatomic , assign) NSInteger nums;//个数
+
+@property (nonatomic ,strong) SDCycleScrollView *cycleScroll;
 @end
 
 @implementation cycleScrollCell
@@ -33,11 +32,10 @@
         self.pageControl = nil;
     }
     //刷新轮播图
-    self.cycleV.dataSourceArr = _modelArr;
-    self.nums = self.cycleV.dataSourceArr.count;
-    self.cycleV.pageNumbers = self.nums;
+    self.nums = _modelArr.count;
+
     self.pageControl.numberOfPages = self.nums;
-    [self.cycleV refreshData];
+    self.cycleScroll.imageURLStringsGroup = @[@"http://img0.imgtn.bdimg.com/it/u=260329114,3367670618&fm=26&gp=0.jpg", @"http://img1.3lian.com/img013/v5/21/d/84.jpg", @"http://img1.imgtn.bdimg.com/it/u=2917799186,1224386513&fm=26&gp=0.jpg"];
     [self addPageControl];
     
 }
@@ -46,7 +44,7 @@
 - (void)setPausePlay:(BOOL)pausePlay{
     _pausePlay = pausePlay;
     
-    self.cycleV.pausePlay = _pausePlay;
+//    self.cycleV.pausePlay = _pausePlay;
     
 }
 
@@ -57,7 +55,7 @@
     [self.contentView addSubview:self.pageControl];
     [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.left.mas_equalTo(self.contentView);
-        make.top.mas_equalTo(self.cycleV.mas_bottom);
+        make.top.mas_equalTo(self.cycleScroll.mas_bottom);
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(5);
     }];
     self.pageControl.backgroundColor = [UIColor whiteColor];
@@ -69,22 +67,15 @@
 - (void) addChildrenViews{
     self.backgroundColor = [UIColor whiteColor];
     
-    [self.contentView addSubview:self.cycleV];
+//    [self.contentView addSubview:self.cycleV];
     [self.contentView addSubview:self.pageControl];
     
+    [self.contentView addSubview:self.cycleScroll];
+    self.cycleScroll.layer.cornerRadius = ScreenScale(5);
+    self.cycleScroll.layer.masksToBounds = YES;
+    self.cycleScroll.clipsToBounds = YES;
+
     
-    self.cycleV.backgroundColor = [UIColor clearColor];
-    self.cycleV.scrollStyle = CWCarouselStyle_Normal;
-    self.cycleV.pageControlHidden = YES;//默认NO
-    self.cycleV.openCustomPageControl = NO;
-    self.cycleV.pageNumbers = self.nums;
-    self.cycleV.delegate = self;
-    //    self.cycleV.canAutoScroll = YES;//不自动轮播
-    self.cycleV.cellClass = NSStringFromClass([bannerCollectionViewCell class]);
-    [self layoutIfNeeded];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.cycleV startAnimationView];
-    });
 
 }
 
@@ -95,38 +86,51 @@
 
 #pragma maek customCycleViewDelegate
 
-- (void)selectIndex:(NSInteger)index{
-    //滚动到
-    //    NSLog(@"滚动到section3  %ld", index);
-    self.pageControl.currentPage = index;
-}
-//点击item
-- (void)clickItemFromIndex:(NSInteger)index{
+
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     !self.selectItemBlock ? : self.selectItemBlock(index);
 }
+
+/** 图片滚动回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
+    self.pageControl.currentPage = index;
+}
+
+
+
+
+
 
 
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    [self.cycleV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(self.contentView);
+   
+    
+    
+    [self.cycleScroll mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
+        make.right.mas_equalTo(self.contentView.mas_right).offset(ScreenScale(-12));
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-15);
     }];
     
+    
+    
     [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.left.mas_equalTo(self.contentView);
-        make.top.mas_equalTo(self.cycleV.mas_bottom);
+        make.top.mas_equalTo(self.cycleScroll.mas_bottom);
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(5));
     }];
     
 }
-- (customCycleView *)cycleV{
-    if (!_cycleV) {
-        _cycleV = [[customCycleView alloc] init];
-    }
-    return _cycleV;
-}
+//- (customCycleView *)cycleV{
+//    if (!_cycleV) {
+//        _cycleV = [[customCycleView alloc] init];
+//    }
+//    return _cycleV;
+//}
 
 - (LWDPageControl *)pageControl{
     if (!_pageControl) {
@@ -138,4 +142,21 @@
     }
     return _pageControl;
 }
+
+//广告位
+-(SDCycleScrollView *)cycleScroll{
+    if (_cycleScroll == nil) {
+        _cycleScroll = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"banner"]];
+        _cycleScroll.isCustom = YES;
+        _cycleScroll.distance = HeightRatio(47);
+        _cycleScroll.delegate = self;
+        _cycleScroll.tag = -4000;
+        _cycleScroll.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
+        _cycleScroll.imageURLStringsGroup = @[];
+        _cycleScroll.showPageControl = NO;
+    }
+    return _cycleScroll;
+}
+
+
 @end

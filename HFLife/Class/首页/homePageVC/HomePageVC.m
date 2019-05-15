@@ -21,6 +21,8 @@
 #import "PaymentVC.h"
 #import "GatheringVC.h"
 #import "CardPackageVC.h"
+
+#import "SXF_HF_payStepAleryView.h"
 @interface HomePageVC ()<UITableViewDelegate, UITableViewDataSource ,JFLocationDelegate>
 @property (nonatomic, strong)JFLocation *locationManager;
 @property (nonatomic, strong)NSTimer *circleTimer;
@@ -149,6 +151,21 @@
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
     
+    
+    
+    
+    UIButton *testBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
+    testBtn.backgroundColor = [UIColor orangeColor];
+    testBtn.center = self.view.center;
+    
+//    [self.view addSubview:testBtn];
+    [testBtn wh_addActionHandler:^{
+        [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
+            
+        }];
+    }];
+    
+    
 }
 - (void) click{
     BaseViewController *vc = [BaseViewController new];
@@ -181,18 +198,14 @@
 }
 
 - (void)setupNavigationItem {
-    UIImage *adressBook = [[UIImage imageNamed:@"adressBook"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage *addMore = [[UIImage imageNamed:@"addMore"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    UIBarButtonItem *itemAdressBook = [[UIBarButtonItem alloc] initWithImage:adressBook style:UIBarButtonItemStylePlain target:self action:@selector(adressBookAction)];
-    UIBarButtonItem *itemMore = [[UIBarButtonItem alloc] initWithImage:addMore style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"首页" forState:(UIControlStateNormal)];
     button.frame = CGRectMake(0, 0, 44, 44);
     [button setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
     button.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(32)];
-   
+    
+    
 }
 
 -(void)timingTask{

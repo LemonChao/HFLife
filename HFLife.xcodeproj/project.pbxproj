@@ -128,6 +128,8 @@
 		0453D1F42284033000880C2A /* empoty.html in Resources */ = {isa = PBXBuildFile; fileRef = 0453D1DB2284033000880C2A /* empoty.html */; };
 		0461600D228AB1360042830B /* SXF_HF_paySuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461600B228AB1360042830B /* SXF_HF_paySuccessVC.m */; };
 		0461600E228AB1360042830B /* SXF_HF_paySuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0461600C228AB1360042830B /* SXF_HF_paySuccessVC.xib */; };
+		04616013228AC9650042830B /* SXF_HF_PayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04616011228AC9650042830B /* SXF_HF_PayVC.m */; };
+		04616014228AC9650042830B /* SXF_HF_PayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04616012228AC9650042830B /* SXF_HF_PayVC.xib */; };
 		048DABB1228556F1006E6BA2 /* UITextField+ChainTypeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DABB0228556F1006E6BA2 /* UITextField+ChainTypeTextField.m */; };
 		048DABB522855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DABB422855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m */; };
 		048DABBA2285661B006E6BA2 /* FlickingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DABB82285661B006E6BA2 /* FlickingVC.m */; };
@@ -495,6 +497,17 @@
 		04F5F266228440860043BBB7 /* SXF_HF_CycleContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */; };
 		04F67AB22285199A008124A3 /* UIView+cornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB12285199A008124A3 /* UIView+cornerRadius.m */; };
 		04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */; };
+		04F946D3228B9E9600085F78 /* SXF_HF_payStepAleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */; };
+		04F946D6228BBC6300085F78 /* SXF_HF_payStepTowCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946D5228BBC6300085F78 /* SXF_HF_payStepTowCel.m */; };
+		04F946E3228C0C7400085F78 /* SXF_HF_Password.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946E0228C0C7300085F78 /* SXF_HF_Password.m */; };
+		04F946E4228C0C7400085F78 /* yuandian.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F946E1228C0C7300085F78 /* yuandian.png */; };
+		04F946E8228C0FD200085F78 /* SXF_HF_KeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946E7228C0FD200085F78 /* SXF_HF_KeyBoardView.m */; };
+		04F946F4228C1F9700085F78 /* 回删附号@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F946EA228C1F9600085F78 /* 回删附号@3x.png */; };
+		04F946F5228C1F9700085F78 /* APNumberButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946EB228C1F9600085F78 /* APNumberButton.m */; };
+		04F946F6228C1F9700085F78 /* APNumberPadDefaultStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946EC228C1F9600085F78 /* APNumberPadDefaultStyle.m */; };
+		04F946F7228C1F9700085F78 /* APNumberPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946ED228C1F9600085F78 /* APNumberPad.m */; };
+		04F946F8228C1F9700085F78 /* 回删附号@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F946EE228C1F9600085F78 /* 回删附号@2x.png */; };
+		04F946F9228C1F9700085F78 /* 回删附号.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F946EF228C1F9600085F78 /* 回删附号.png */; };
 		04FB7F1522865A4900150CA7 /* 余额.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1322865A4900150CA7 /* 余额.gif */; };
 		04FB7F1622865A4900150CA7 /* 余额底图_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1422865A4900150CA7 /* 余额底图_00000.png */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
@@ -1008,6 +1021,9 @@
 		0461600A228AB1360042830B /* SXF_HF_paySuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_paySuccessVC.h; sourceTree = "<group>"; };
 		0461600B228AB1360042830B /* SXF_HF_paySuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_paySuccessVC.m; sourceTree = "<group>"; };
 		0461600C228AB1360042830B /* SXF_HF_paySuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_paySuccessVC.xib; sourceTree = "<group>"; };
+		04616010228AC9650042830B /* SXF_HF_PayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_PayVC.h; sourceTree = "<group>"; };
+		04616011228AC9650042830B /* SXF_HF_PayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_PayVC.m; sourceTree = "<group>"; };
+		04616012228AC9650042830B /* SXF_HF_PayVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_PayVC.xib; sourceTree = "<group>"; };
 		048DABAF228556F1006E6BA2 /* UITextField+ChainTypeTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+ChainTypeTextField.h"; sourceTree = "<group>"; };
 		048DABB0228556F1006E6BA2 /* UITextField+ChainTypeTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ChainTypeTextField.m"; sourceTree = "<group>"; };
 		048DABB322855C9C006E6BA2 /* UIImageView+ChainTypeImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ChainTypeImageView.h"; sourceTree = "<group>"; };
@@ -1710,6 +1726,25 @@
 		04F67AB12285199A008124A3 /* UIView+cornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+cornerRadius.m"; sourceTree = "<group>"; };
 		04F67AB4228522BA008124A3 /* NSArray+layoutViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+layoutViews.h"; sourceTree = "<group>"; };
 		04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+layoutViews.m"; sourceTree = "<group>"; };
+		04F946D1228B9E9600085F78 /* SXF_HF_payStepAleryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payStepAleryView.h; sourceTree = "<group>"; };
+		04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_payStepAleryView.m; sourceTree = "<group>"; };
+		04F946D4228BBC6300085F78 /* SXF_HF_payStepTowCel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payStepTowCel.h; sourceTree = "<group>"; };
+		04F946D5228BBC6300085F78 /* SXF_HF_payStepTowCel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_payStepTowCel.m; sourceTree = "<group>"; };
+		04F946E0228C0C7300085F78 /* SXF_HF_Password.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_Password.m; sourceTree = "<group>"; };
+		04F946E1228C0C7300085F78 /* yuandian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yuandian.png; sourceTree = "<group>"; };
+		04F946E2228C0C7400085F78 /* SXF_HF_Password.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXF_HF_Password.h; sourceTree = "<group>"; };
+		04F946E6228C0FD200085F78 /* SXF_HF_KeyBoardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_KeyBoardView.h; sourceTree = "<group>"; };
+		04F946E7228C0FD200085F78 /* SXF_HF_KeyBoardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_KeyBoardView.m; sourceTree = "<group>"; };
+		04F946EA228C1F9600085F78 /* 回删附号@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "回删附号@3x.png"; sourceTree = "<group>"; };
+		04F946EB228C1F9600085F78 /* APNumberButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APNumberButton.m; sourceTree = "<group>"; };
+		04F946EC228C1F9600085F78 /* APNumberPadDefaultStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APNumberPadDefaultStyle.m; sourceTree = "<group>"; };
+		04F946ED228C1F9600085F78 /* APNumberPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APNumberPad.m; sourceTree = "<group>"; };
+		04F946EE228C1F9600085F78 /* 回删附号@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "回删附号@2x.png"; sourceTree = "<group>"; };
+		04F946EF228C1F9600085F78 /* 回删附号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "回删附号.png"; sourceTree = "<group>"; };
+		04F946F0228C1F9600085F78 /* APNumberPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APNumberPad.h; sourceTree = "<group>"; };
+		04F946F1228C1F9600085F78 /* APNumberPadDefaultStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APNumberPadDefaultStyle.h; sourceTree = "<group>"; };
+		04F946F2228C1F9600085F78 /* APNumberButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APNumberButton.h; sourceTree = "<group>"; };
+		04F946F3228C1F9600085F78 /* APNumberPadStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APNumberPadStyle.h; sourceTree = "<group>"; };
 		04FB7F1322865A4900150CA7 /* 余额.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "余额.gif"; sourceTree = "<group>"; };
 		04FB7F1422865A4900150CA7 /* 余额底图_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额底图_00000.png"; sourceTree = "<group>"; };
 		04FB7F1722866BE300150CA7 /* UIImageView+LoadGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadGif.h"; sourceTree = "<group>"; };
@@ -2890,6 +2925,28 @@
 			path = "支付成功";
 			sourceTree = "<group>";
 		};
+		0461600F228AC94A0042830B /* 付款 */ = {
+			isa = PBXGroup;
+			children = (
+				04616010228AC9650042830B /* SXF_HF_PayVC.h */,
+				04616011228AC9650042830B /* SXF_HF_PayVC.m */,
+				04616012228AC9650042830B /* SXF_HF_PayVC.xib */,
+			);
+			path = "付款";
+			sourceTree = "<group>";
+		};
+		04616042228AD5010042830B /* 支付弹窗 */ = {
+			isa = PBXGroup;
+			children = (
+				04F946D1228B9E9600085F78 /* SXF_HF_payStepAleryView.h */,
+				04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */,
+				04F946D4228BBC6300085F78 /* SXF_HF_payStepTowCel.h */,
+				04F946D5228BBC6300085F78 /* SXF_HF_payStepTowCel.m */,
+				04F946E5228C0CA100085F78 /* 自定义键盘 */,
+			);
+			path = "支付弹窗";
+			sourceTree = "<group>";
+		};
 		048DABAE228556AA006E6BA2 /* 链式创建 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2923,8 +2980,10 @@
 		048DABB72285661B006E6BA2 /* 扫一扫 */ = {
 			isa = PBXGroup;
 			children = (
+				04616042228AD5010042830B /* 支付弹窗 */,
 				048DABB92285661B006E6BA2 /* FlickingVC.h */,
 				048DABB82285661B006E6BA2 /* FlickingVC.m */,
+				0461600F228AC94A0042830B /* 付款 */,
 				04616009228AB1110042830B /* 支付成功 */,
 			);
 			path = "扫一扫";
@@ -3226,13 +3285,13 @@
 			isa = PBXGroup;
 			children = (
 				0497834A2285957E00E143D7 /* NearHomeVC.h */,
+				049783812285957E00E143D7 /* NearHomeVC.m */,
+				049783822285957E00E143D7 /* NearPageVC.h */,
 				0497834B2285957E00E143D7 /* NearPageVC.m */,
 				0497834C2285957E00E143D7 /* Cell */,
 				049783622285957E00E143D7 /* VC */,
 				049783742285957E00E143D7 /* 城市选择 */,
 				049783792285957E00E143D7 /* View */,
-				049783812285957E00E143D7 /* NearHomeVC.m */,
-				049783822285957E00E143D7 /* NearPageVC.h */,
 			);
 			path = "本地服务";
 			sourceTree = "<group>";
@@ -5494,6 +5553,44 @@
 			path = "对Masonry扩展";
 			sourceTree = "<group>";
 		};
+		04F946DF228C0C5700085F78 /* 密码输入框 */ = {
+			isa = PBXGroup;
+			children = (
+				04F946E2228C0C7400085F78 /* SXF_HF_Password.h */,
+				04F946E0228C0C7300085F78 /* SXF_HF_Password.m */,
+				04F946E1228C0C7300085F78 /* yuandian.png */,
+			);
+			path = "密码输入框";
+			sourceTree = "<group>";
+		};
+		04F946E5228C0CA100085F78 /* 自定义键盘 */ = {
+			isa = PBXGroup;
+			children = (
+				04F946E6228C0FD200085F78 /* SXF_HF_KeyBoardView.h */,
+				04F946E7228C0FD200085F78 /* SXF_HF_KeyBoardView.m */,
+				04F946DF228C0C5700085F78 /* 密码输入框 */,
+				04F946E9228C1F9600085F78 /* 键盘 */,
+			);
+			path = "自定义键盘";
+			sourceTree = "<group>";
+		};
+		04F946E9228C1F9600085F78 /* 键盘 */ = {
+			isa = PBXGroup;
+			children = (
+				04F946EA228C1F9600085F78 /* 回删附号@3x.png */,
+				04F946EB228C1F9600085F78 /* APNumberButton.m */,
+				04F946EC228C1F9600085F78 /* APNumberPadDefaultStyle.m */,
+				04F946ED228C1F9600085F78 /* APNumberPad.m */,
+				04F946EE228C1F9600085F78 /* 回删附号@2x.png */,
+				04F946EF228C1F9600085F78 /* 回删附号.png */,
+				04F946F0228C1F9600085F78 /* APNumberPad.h */,
+				04F946F1228C1F9600085F78 /* APNumberPadDefaultStyle.h */,
+				04F946F2228C1F9600085F78 /* APNumberButton.h */,
+				04F946F3228C1F9600085F78 /* APNumberPadStyle.h */,
+			);
+			path = "键盘";
+			sourceTree = "<group>";
+		};
 		04FB7F1222865A3200150CA7 /* 动画资源图 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6866,6 +6963,7 @@
 				65DC682A2211253200F1085E /* shareView_qq@3x.png in Resources */,
 				04F5213D228A76BA00ED4995 /* number@2x.png in Resources */,
 				04F5213F228A76BA00ED4995 /* chosencharactor@2x.png in Resources */,
+				04616014228AC9650042830B /* SXF_HF_PayVC.xib in Resources */,
 				04F52152228A76BA00ED4995 /* newcapsLock@3x.png in Resources */,
 				04F54B3022811B9C009AAEF3 /* ProjectKit.md in Resources */,
 				04F5214D228A76BA00ED4995 /* newdelete@3x.png in Resources */,
@@ -6888,6 +6986,7 @@
 				04F52176228A789600ED4995 /* style.css in Resources */,
 				04A5087F227EDD3A0013E8EC /* 关闭1.png in Resources */,
 				65DC683D22112C4300F1085E /* 定位@2x.png in Resources */,
+				04F946F9228C1F9700085F78 /* 回删附号.png in Resources */,
 				04153C11228AA2F100AA5DAF /* WaimaiCategoryCell.xib in Resources */,
 				658B7C6121D749E100801CC8 /* Cities.json in Resources */,
 				04A50843227EDD390013E8EC /* down@2x.png in Resources */,
@@ -6914,9 +7013,11 @@
 				04A5086B227EDD3A0013E8EC /* sxf_NetworkAnomalies.xib in Resources */,
 				04153C10228AA2F100AA5DAF /* NearbyShopCell.xib in Resources */,
 				04F52142228A76BA00ED4995 /* shift.png in Resources */,
+				04F946E4228C0C7400085F78 /* yuandian.png in Resources */,
 				04A5086A227EDD3A0013E8EC /* JQToastWindow.xib in Resources */,
 				04F52179228A789600ED4995 /* version.html in Resources */,
 				04F5213B228A76BA00ED4995 /* iconPhotoSelectorCamera.png in Resources */,
+				04F946F4228C1F9700085F78 /* 回删附号@3x.png in Resources */,
 				658B7C5E21D749E100801CC8 /* AddressTableViewCell.xib in Resources */,
 				04F52157228A76BA00ED4995 /* LDDKeyboardView.xib in Resources */,
 				65DC683C22112C4300F1085E /* 定位.png in Resources */,
@@ -6928,6 +7029,7 @@
 				04F52177228A789600ED4995 /* service.html in Resources */,
 				04A50846227EDD3A0013E8EC /* minion_02.mp4 in Resources */,
 				04B9D3CA227FE5A90084FA23 /* UMSSecKeyboardLibResource.bundle in Resources */,
+				04F946F8228C1F9700085F78 /* 回删附号@2x.png in Resources */,
 				048DABCF22856656006E6BA2 /* password_loading_b@2x.png in Resources */,
 				0453D1EF2284033000880C2A /* errorAlertViewViewController.xib in Resources */,
 				04F52151228A76BA00ED4995 /* newcapsLock@2x.png in Resources */,
@@ -7179,6 +7281,7 @@
 				04153C14228AA2F100AA5DAF /* NearbyShopCell.m in Sources */,
 				048DABB522855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m in Sources */,
 				04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */,
+				04F946E8228C0FD200085F78 /* SXF_HF_KeyBoardView.m in Sources */,
 				6C2F514E222A663D0022EE03 /* UIView+HXExtension.m in Sources */,
 				049783972285957F00E143D7 /* YYB_HF_LifeLocaView.m in Sources */,
 				65DC6812221124AD00F1085E /* HXShareScrollView.m in Sources */,
@@ -7351,6 +7454,7 @@
 				048DAC5F22857516006E6BA2 /* TransferAccountsOrderDetails.m in Sources */,
 				658C39D721E9FA5B00880B6A /* JXCategoryIndicatorView.m in Sources */,
 				04B9D54522803CF20084FA23 /* STMURLProtocol.m in Sources */,
+				04F946F6228C1F9700085F78 /* APNumberPadDefaultStyle.m in Sources */,
 				0453D1A12282B2CD00880C2A /* SXF_HF_HeadlineCell1.m in Sources */,
 				658C39D321E9FA5B00880B6A /* JXCategoryIndicatorComponentView.m in Sources */,
 				048DAC6222857516006E6BA2 /* BalanceRecordModel.m in Sources */,
@@ -7377,6 +7481,7 @@
 				658C39EA21E9FA5B00880B6A /* JXCategoryCollectionView.m in Sources */,
 				04153B8D228A9C9600AA5DAF /* LocalImageCell.m in Sources */,
 				049783912285957F00E143D7 /* DayCell.m in Sources */,
+				04F946F5228C1F9700085F78 /* APNumberButton.m in Sources */,
 				04F52167228A77EA00ED4995 /* ForgotPasswordVC.m in Sources */,
 				04B9D54122803CF20084FA23 /* WebViewController.m in Sources */,
 				04B9D58122803E260084FA23 /* StatusBarView.m in Sources */,
@@ -7441,7 +7546,9 @@
 				04F5F24D228412630043BBB7 /* SXF_HF_AlertView.m in Sources */,
 				04B9D57722803E260084FA23 /* BaseTabBarController.m in Sources */,
 				658B7C5721D749E100801CC8 /* UIViewController+LKBubbleView.m in Sources */,
+				04F946F7228C1F9700085F78 /* APNumberPad.m in Sources */,
 				04A508CB227EDD3A0013E8EC /* UIWebView+Browser.m in Sources */,
+				04616013228AC9650042830B /* SXF_HF_PayVC.m in Sources */,
 				04B9D53D22803CF20084FA23 /* MapViewController.m in Sources */,
 				04A50864227EDD3A0013E8EC /* myCollectionViewCell.m in Sources */,
 				04153BFB228AA2F100AA5DAF /* FoodPreferentialCollCell.m in Sources */,
@@ -7579,6 +7686,7 @@
 				658B7C4821D749E100801CC8 /* UIView+Shadow.m in Sources */,
 				04F52028228A4AD600ED4995 /* CWFlowLayout.m in Sources */,
 				6C2F5165222A663D0022EE03 /* HXDatePhotoToolManager.m in Sources */,
+				04F946D3228B9E9600085F78 /* SXF_HF_payStepAleryView.m in Sources */,
 				04A508AC227EDD3A0013E8EC /* HR_dataManagerTool.m in Sources */,
 				04F52164228A77EA00ED4995 /* RegisteredVC.m in Sources */,
 				6C2F5156222A663D0022EE03 /* HXCustomCameraController.m in Sources */,
@@ -7615,6 +7723,7 @@
 				6C7D84FF22856E9200A8E9F7 /* ZCHomeRecommendCell.m in Sources */,
 				65B5DFE4221E51D100A65044 /* TimeChoose.m in Sources */,
 				6C2B2FFC228A707A0075E5AE /* ZCExclusiveRecommendModel.m in Sources */,
+				04F946E3228C0C7400085F78 /* SXF_HF_Password.m in Sources */,
 				659EA08A2203FB48004471CD /* WLCardNoFormatter.m in Sources */,
 				65DC6810221124AD00F1085E /* ShareProductInfoView.m in Sources */,
 				04A508CA227EDD3A0013E8EC /* UITextField+Placeholder.m in Sources */,
@@ -7627,6 +7736,7 @@
 				048DAC7422857BBB006E6BA2 /* PaymentMethodsVC.m in Sources */,
 				04153C0F228AA2F100AA5DAF /* WaimaiRecommendCell.m in Sources */,
 				6537119E21E5964100C4FCE2 /* UIView+LSCore.m in Sources */,
+				04F946D6228BBC6300085F78 /* SXF_HF_payStepTowCel.m in Sources */,
 				04153C1B228AA2F100AA5DAF /* PreorderTableVC.m in Sources */,
 				04153C22228AA2F100AA5DAF /* LunchVC.m in Sources */,
 				0453D1BB2283D38E00880C2A /* UIButton+EnlargeEdge.m in Sources */,
