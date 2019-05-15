@@ -58,6 +58,15 @@
     return self;
 }
 
+- (void)setModel:(ZCShopHomeLimitModel *)model {
+    _model = model;
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.goods_image]];
+    self.titleLable.text = model.goods_name;
+    self.priceLabel.text = model.xianshi_price;
+}
+
+
 - (UIImageView *)imageView {
     if (!_imageView) {
         _imageView = [UITool imageViewPlaceHolder:image(@"image1") contentMode:UIViewContentModeScaleAspectFill cornerRadius:ScreenScale(5) borderWidth:0.f borderColor:[UIColor clearColor]];

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZCShopHomeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZCDisCountCollectionCell : UICollectionViewCell
 
+@property(nonatomic, strong) ZCShopHomeLimitModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

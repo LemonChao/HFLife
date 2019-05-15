@@ -91,11 +91,11 @@
     NSArray *array = self.viewModel.dataArray[indexPath.section];
     if (indexPath.section == 0) {
         
-        ZCShopNormalCellModel *model = array.firstObject;
+        ZCShopHomeCellModel *model = array[indexPath.row];
         
         return model.rowHeight;
     }else {
-        ZCShopNormalCellModel *model = array.firstObject;
+        ZCShopHomeCellModel *model = array[indexPath.row];
         
         return model.rowHeight;
 
@@ -180,19 +180,22 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *array = self.viewModel.dataArray[indexPath.section];
 
-    ZCShopNormalCellModel *model = array[indexPath.row];
+    ZCShopHomeCellModel *model = array[indexPath.row];
     
     if (indexPath.section == 0) {
         if ([model.title isEqualToString:@"限时折扣"]) {
             ZCHomeDiscountCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeDiscountCell class]) forIndexPath:indexPath];
+            cell.model = model;
             return cell;
 
         }else if ([model.title isEqualToString:@"今日必抢"]) {
             ZC_HF_HomeRushPurchaseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZC_HF_HomeRushPurchaseCell class]) forIndexPath:indexPath];
+            cell.model = model;
             return cell;
         }else if ([model.title isEqualToString:@"新品推荐"]) {
             ZCHomeRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeRecommendCell class]) forIndexPath:indexPath];
-            return cell;
+            cell.model = model;
+           return cell;
         }
         return nil;
         

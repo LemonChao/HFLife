@@ -83,21 +83,21 @@
     NSMutableArray *section1 = [NSMutableArray arrayWithCapacity:6];
     
     if (model.limit_time_goods.count) {
-        ZCShopNormalCellModel *cellModel = [[ZCShopNormalCellModel alloc] init];
+        ZCShopHomeCellModel *cellModel = [[ZCShopHomeCellModel alloc] init];
         cellModel.title = @"限时折扣";
         cellModel.cellDatas = model.limit_time_goods;
         cellModel.rowHeight = ScreenScale(234);
         [section0 addObject:cellModel];
     }
     
-    ZCShopNormalCellModel *cellModel = [[ZCShopNormalCellModel alloc] init];
+    ZCShopHomeCellModel *cellModel = [[ZCShopHomeCellModel alloc] init];
     cellModel.title = @"今日必抢";
     cellModel.cellDatas = [NSArray array];
     cellModel.rowHeight = ScreenScale(374);
     [section0 addObject:cellModel];
     
     if (model.shop_newGoods.count) {
-        ZCShopNormalCellModel *cellModel = [[ZCShopNormalCellModel alloc] init];
+        ZCShopHomeCellModel *cellModel = [[ZCShopHomeCellModel alloc] init];
         cellModel.title = @"新品推荐";
         cellModel.cellDatas = model.shop_newGoods;
         cellModel.rowHeight = ScreenScale(200);
@@ -105,8 +105,7 @@
     }
     
     for (int i = 0; i < 6; i++) {
-        
-        ZCShopNormalCellModel *cellModel = [[ZCShopNormalCellModel alloc] init];
+        ZCShopHomeCellModel *cellModel = [[ZCShopHomeCellModel alloc] init];
         cellModel.title = @"专属推荐";
         cellModel.cellDatas = [NSArray array];
         cellModel.rowHeight = ScreenScale(273);

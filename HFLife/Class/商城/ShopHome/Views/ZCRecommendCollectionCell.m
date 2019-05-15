@@ -58,6 +58,12 @@
     return self;
 }
 
+- (void)setModel:(ZCShopNewGoodsModel *)model {
+    _model = model;
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.goods_image]];
+}
+
 - (UIImageView *)imageView {
     if (!_imageView) {
         _imageView = [UITool imageViewImage:image(@"image1") contentMode:UIViewContentModeScaleAspectFill];
