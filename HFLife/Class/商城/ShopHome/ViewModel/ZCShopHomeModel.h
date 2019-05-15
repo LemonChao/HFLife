@@ -72,11 +72,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *goods_fan_price;
 @property(nonatomic, copy) NSString *goods_sale_price;
 @property(nonatomic, copy) NSString *goods_image;
+/** 显示商品价格 */
+@property(nonatomic, copy) NSAttributedString *attPrice;
 
 @end
 
-/// 常规布局cellmodel 非瀑布流
-@interface ZCShopNormalCellModel : BaseModel
+/** cell model */
+@interface ZCShopHomeCellModel : BaseModel
 
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSArray *cellDatas;

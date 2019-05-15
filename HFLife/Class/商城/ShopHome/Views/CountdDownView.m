@@ -13,7 +13,13 @@
 @end
 
 
+@interface CountdDownView ()
 
+@property(nonatomic, strong) UILabel *hourLable;
+@property(nonatomic, strong) UILabel *minuteLable;
+@property(nonatomic, strong) UILabel *secondLable;
+
+@end
 @implementation CountdDownView
 
 - (instancetype)init
@@ -24,8 +30,8 @@
         self.hourLable = [[ShopCountLabel alloc] init];
         self.minuteLable = [[ShopCountLabel alloc] init];
         self.secondLable = [[ShopCountLabel alloc] init];
-        UILabel *colonLab1 = [UITool labelWithText:@":" textColor:GeneralRedColor font:SystemFont(14)];
-        UILabel *colonLab2 = [UITool labelWithText:@":" textColor:GeneralRedColor font:SystemFont(14)];
+        UILabel *colonLab1 = [UITool labelWithText:@":" textColor:GeneralRedColor font:SystemFont(12)];
+        UILabel *colonLab2 = [UITool labelWithText:@":" textColor:GeneralRedColor font:SystemFont(12)];
         
         UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.hourLable,colonLab1,self.minuteLable,colonLab2,self.secondLable]];
         stackView.axis = UILayoutConstraintAxisHorizontal;
@@ -64,7 +70,7 @@
     if (self) {
         self.text = @"00";
         self.textColor = [UIColor whiteColor];
-        self.font = SystemFont(14);
+        self.font = SystemFont(13);
         self.textAlignment = NSTextAlignmentCenter;
         self.backgroundColor = RGBA(202,20,0,0.8);
         self.clipsToBounds = YES;
@@ -76,8 +82,8 @@
 
 - (CGSize)intrinsicContentSize {
     CGSize size = [super intrinsicContentSize];
-    self.layer.cornerRadius = (size.height+ScreenScale(6))/2;
-    return CGSizeMake(size.width+ScreenScale(16), size.height+ScreenScale(6));
+    self.layer.cornerRadius = (size.height+ScreenScale(5))/2;
+    return CGSizeMake(size.width+ScreenScale(16), size.height+ScreenScale(5));
 }
 
 @end

@@ -58,9 +58,20 @@
     return self;
 }
 
+- (void)setModel:(ZCShopHomeLimitModel *)model {
+    _model = model;
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.goods_image]];
+    self.titleLable.text = model.goods_name;
+    self.priceLabel.text = model.xianshi_price;
+    NSTimeInterval interval = [[NSDate dateWithTimeIntervalSince1970:model.end_time.integerValue] timeIntervalSinceDate:[NSDate date]];
+    self.countDownView.timeInteval = interval;
+}
+
+
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [UITool imageViewPlaceHolder:image(@"image1") contentMode:UIViewContentModeScaleAspectFill cornerRadius:ScreenScale(5) borderWidth:0.f borderColor:[UIColor clearColor]];
+        _imageView = [UITool imageViewPlaceHolder:nil contentMode:UIViewContentModeScaleAspectFill cornerRadius:ScreenScale(5) borderWidth:0.f borderColor:[UIColor clearColor]];
     }
     return _imageView;
 }
@@ -69,7 +80,6 @@
     if (!_titleLable) {
         _titleLable = [UITool labelWithTextColor:ImportantColor font:SystemFont(14)];
         _titleLable.numberOfLines = 2;
-        _titleLable.text = @"四川攀枝花枇杷 新鲜水嫩肉厚皮薄好吃太好吃了这么会这么好吃";
     }
     return _titleLable;
 }
@@ -77,7 +87,6 @@
 - (UILabel *)priceLabel {
     if (!_priceLabel) {
         _priceLabel = [UITool labelWithTextColor:GeneralRedColor font:MediumFont(14)];
-        _priceLabel.text = @"￥2324.66";
     }
     return _priceLabel;
 }
@@ -85,7 +94,6 @@
 - (CountdDownView *)countDownView {
     if (!_countDownView) {
         _countDownView = [[CountdDownView alloc] init];
-        _countDownView.timeInteval = 361000;
     }
     return _countDownView;
 }

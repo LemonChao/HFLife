@@ -39,12 +39,20 @@
     return self;
 }
 
+- (void)setModel:(ZCShopHomeCellModel *)model {
+    _model = model;
+    self.titleLable.text = model.title;
+}
+
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return self.model.cellDatas.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZCRecommendCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCRecommendCollectionCell class]) forIndexPath:indexPath];
+    ZCShopNewGoodsModel *model = self.model.cellDatas[indexPath.row];
+    cell.model = model;
     return cell;
 }
 
@@ -54,14 +62,14 @@
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout.itemSize = CGSizeMake(ScreenScale(100), ScreenScale(160));
+        layout.itemSize = CGSizeMake(ScreenScale(150), ScreenScale(250));
         layout.minimumLineSpacing = ScreenScale(11);
         layout.minimumInteritemSpacing = 0.f;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = [UIColor clearColor];
         [_collectionView registerClass:[ZCRecommendCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([ZCRecommendCollectionCell class])];
     }
     return _collectionView;
@@ -70,7 +78,6 @@
 - (UILabel *)titleLable {
     if (!_titleLable) {
         _titleLable = [UITool labelWithTextColor:ImportantColor font:MediumFont(18)];
-        _titleLable.text = @"今日必抢";
     }
     return _titleLable;
 }

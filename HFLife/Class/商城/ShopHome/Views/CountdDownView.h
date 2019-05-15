@@ -19,9 +19,5 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, assign) NSTimeInterval timeInteval;
 
-@property(nonatomic, strong) UILabel *hourLable;
-@property(nonatomic, strong) UILabel *minuteLable;
-@property(nonatomic, strong) UILabel *secondLable;
-
 @end
 NS_ASSUME_NONNULL_END

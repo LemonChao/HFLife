@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZCShopHomeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZC_HF_HomeRushPurchaseCell : UICollectionViewCell
+
+@property(nonatomic, strong) ZCShopHomeCellModel *model;
 
 @end
 

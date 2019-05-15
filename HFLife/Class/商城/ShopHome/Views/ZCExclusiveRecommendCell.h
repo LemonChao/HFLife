@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZCExclusiveRecommendModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /// 专属推荐
 @interface ZCExclusiveRecommendCell : UICollectionViewCell
+
+@property(nonatomic, strong) ZCExclusiveRecommendModel *model;
 
 @end
 

@@ -24,9 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *goods_price;
 @property(nonatomic, copy) NSString *goods_fan_price;
 @property(nonatomic, copy) NSString *goods_image;
-@property(nonatomic, copy) NSString *width;
-@property(nonatomic, copy) NSString *height;
-
+@property(nonatomic, assign) CGFloat width;
+@property(nonatomic, assign) CGFloat height;
+/** imageViewH 图片高度 */
+@property(nonatomic, assign) CGFloat viewHeight;
+/** 显示商品价格 */
+@property(nonatomic, copy) NSAttributedString *attPrice;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -62,7 +62,7 @@
     }else if ([self.type isEqualToString:@"4"]){
         title = @"结婚摄影";
     }else if ([self.type isEqualToString:@"5"]){
-        title = @"亲自乐园";
+        title = @"亲子乐园";
     }
     self.customNavBar.title = title;
     self.customNavBar.backgroundColor = [UIColor whiteColor];
@@ -81,44 +81,41 @@
 //    if (!getcb) {
 //        getcb = [[GetComprehensiveBusinessListNetApi alloc]initWithParameter:@{@"class_id":self.type}];
 //    }
-//    [getcb startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-//        [weakSelf.contentTableView endLoadMore];
-//        [weakSelf.contentTableView endRefreshing];
-//        GetComprehensiveBusinessListNetApi *getcbRequest = (GetComprehensiveBusinessListNetApi *)request;
-//        if ([getcbRequest getCodeStatus] == 1) {
-//            NSDictionary *dict = [getcbRequest getContent];
-//            if ([dict isKindOfClass:[NSDictionary class]]) {
-//                self.bannerArray = dict[@"banner"];
-//                NSArray *array = dict[@"list"];
-//                [weakSelf.dataSource addObjectsFromArray:array];
-//                [weakSelf.contentTableView reloadData];
-//                if (array.count < 10) {
-//                    [weakSelf.contentTableView  setLoadMoreViewHidden:YES];
-//                }
-//            }
-//            if (weakSelf.dataSource.count == 0 && (![self.bannerArray isKindOfClass:[NSArray class]]||self.bannerArray.count == 0)) {
-//                [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
-//                    [self axcBaseRequestData];
-//                }];
-//            }
-//        }else{
-//
-//            [WXZTipView showCenterWithText:[getcbRequest getMsg]];
-//            [weakSelf.contentTableView  setLoadMoreViewHidden:YES];
-//            if (weakSelf.dataSource.count == 0 && (![self.bannerArray isKindOfClass:[NSArray class]]||self.bannerArray.count == 0)) {
-//                [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
-//                    [self axcBaseRequestData];
-//                }];
-//            }
-//        }
-//    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-//        [WXZTipView showCenterWithText:@"数据获取失败"];
-//        if (weakSelf.dataSource.count == 0) {
-//            [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
-//                [self axcBaseRequestData];
-//            }];
-//        }
-//    }];
+    NSDictionary *parm = @{@"class_id":self.type};
+    [self.view showAlertViewToViewImageTYpe:IMAGETYPE_NOLIST msg:@"无数据" forView:TYPE_VIEW imageCenter:0 errorBlock:^{
+        
+    }];
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kGet_general_shop_list withParameters:parm withResultBlock:^(BOOL result, id value) {
+        
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = value;
+                if ([dict isKindOfClass:[NSDictionary class]]) {
+                    self.bannerArray = dict[@"banner"];
+                    NSArray *array = dict[@"list"];
+                    [weakSelf.dataSource addObjectsFromArray:array];
+                    [weakSelf.contentTableView reloadData];
+                    if (array.count < 10) {
+                        //                        [weakSelf.contentTableView  setLoadMoreViewHidden:YES];
+                    }
+                }
+               
+            }else{
+                [WXZTipView showCenterWithText:@"暂无数据"];
+//                [weakSelf.contentTableView  setLoadMoreViewHidden:YES];
+                
+            }
+            if (weakSelf.dataSource.count == 0 && (![self.bannerArray isKindOfClass:[NSArray class]]||self.bannerArray.count == 0)) {
+                
+            }else {
+                [self.view removeAlertView];
+            }
+            
+        }else {
+            [WXZTipView showCenterWithText:@"请求错误"];
+        }
+    }];
+    
 }
 #pragma mark UITableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -78,6 +78,13 @@
     return self;
 }
 
+- (void)setModel:(ZCShopHomeCellModel *)model {
+    _model = model;
+    
+    self.titleLable.text = model.title;
+}
+
+
 - (UIButton *)imageButton:(NSString *)imgName {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundImage:image(imgName) forState:UIControlStateNormal];
@@ -95,7 +102,6 @@
 - (UILabel *)titleLable {
     if (!_titleLable) {
         _titleLable = [UITool labelWithTextColor:ImportantColor font:MediumFont(18)];
-        _titleLable.text = @"今日必抢";
     }
     return _titleLable;
 }

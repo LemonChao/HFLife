@@ -77,28 +77,14 @@
 /// Return per item's height
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout itemWidth:(CGFloat)width
  heightForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 1) {
-//        return ScreenScale(194);
-//    }else if (indexPath.section == 2) {
-//        return ScreenScale(334);
-//    }else if (indexPath.section == 3) {
-//        return ScreenScale(160);
-//    }else if (indexPath.section == 4) {
-//        return ScreenScale(273);
-//    }
-//    return 0;
     
     NSArray *array = self.viewModel.dataArray[indexPath.section];
     if (indexPath.section == 0) {
-        
-        ZCShopNormalCellModel *model = array.firstObject;
-        
+        ZCShopHomeCellModel *model = array[indexPath.row];
         return model.rowHeight;
     }else {
-        ZCShopNormalCellModel *model = array.firstObject;
-        
-        return model.rowHeight;
-
+        ZCExclusiveRecommendModel *model = array[indexPath.row];
+        return model.viewHeight+ScreenScale(110);
     }
 }
 
@@ -179,54 +165,32 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *array = self.viewModel.dataArray[indexPath.section];
-
-    ZCShopNormalCellModel *model = array[indexPath.row];
     
     if (indexPath.section == 0) {
+        ZCShopHomeCellModel *model = array[indexPath.row];
+
         if ([model.title isEqualToString:@"限时折扣"]) {
             ZCHomeDiscountCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeDiscountCell class]) forIndexPath:indexPath];
+            cell.model = model;
             return cell;
 
         }else if ([model.title isEqualToString:@"今日必抢"]) {
             ZC_HF_HomeRushPurchaseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZC_HF_HomeRushPurchaseCell class]) forIndexPath:indexPath];
+            cell.model = model;
             return cell;
         }else if ([model.title isEqualToString:@"新品推荐"]) {
             ZCHomeRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeRecommendCell class]) forIndexPath:indexPath];
-            return cell;
+            cell.model = model;
+           return cell;
         }
         return nil;
-        
     }
     else {
+        ZCExclusiveRecommendModel *model = array[indexPath.row];
         ZCExclusiveRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCExclusiveRecommendCell class]) forIndexPath:indexPath];
+        cell.model = model;
         return cell;
-        
     }
-
-    
-    
-    
-//    if (indexPath.section == 1) {
-//        ZCHomeDiscountCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeDiscountCell class]) forIndexPath:indexPath];
-//        return cell;
-//    }
-//    else if (indexPath.section == 2) {
-//        ZC_HF_HomeRushPurchaseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZC_HF_HomeRushPurchaseCell class]) forIndexPath:indexPath];
-//        return cell;
-//
-//    }
-//    else if (indexPath.section == 3) {
-//        ZCHomeRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHomeRecommendCell class]) forIndexPath:indexPath];
-//        return cell;
-//
-//    }
-//    else if (indexPath.section == 4) {
-//        ZCExclusiveRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCExclusiveRecommendCell class]) forIndexPath:indexPath];
-//
-//        return cell;
-//    }
-//
-//    return nil;
 }
 
 

@@ -191,11 +191,11 @@
         make.height.mas_equalTo(HeightRatio(57));
     }];
     
-    lin.hidden = YES;
-    la.hidden = YES;
-    lin2.hidden = YES;
-    QQBtn.hidden = YES;
-    WeChatBtn.hidden = YES;
+//    lin.hidden = YES;
+//    la.hidden = YES;
+//    lin2.hidden = YES;
+//    QQBtn.hidden = YES;
+//    WeChatBtn.hidden = YES;
 }
 
 -(UITextField *)userName{

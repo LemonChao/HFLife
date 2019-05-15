@@ -346,6 +346,10 @@
      
      */
 }
+
+- (void)axcBaseClickBaseLeftImageBtn:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark ===懒加载===
 -(UITextField *)phoneTextField{
     if (!_phoneTextField) {
