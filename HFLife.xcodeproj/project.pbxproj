@@ -187,6 +187,8 @@
 		048DAC7122857BBB006E6BA2 /* PaymentMethodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC6922857BBB006E6BA2 /* PaymentMethodsCell.m */; };
 		048DAC7422857BBB006E6BA2 /* PaymentMethodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC7022857BBB006E6BA2 /* PaymentMethodsVC.m */; };
 		048DAC7822857DF9006E6BA2 /* Per_MethodsToDealWithManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC7622857DF9006E6BA2 /* Per_MethodsToDealWithManage.m */; };
+		048E8803228D4D2000410405 /* VersionUpdate_Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 048E8802228D4D2000410405 /* VersionUpdate_Cancel.png */; };
+		048E8805228D4D2900410405 /* VersionUpdate_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 048E8804228D4D2800410405 /* VersionUpdate_Icon.png */; };
 		049783832285957E00E143D7 /* NearPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497834B2285957E00E143D7 /* NearPageVC.m */; };
 		049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497834E2285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m */; };
 		049783852285957E00E143D7 /* YYb_HF_CollReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049783522285957E00E143D7 /* YYb_HF_CollReusableView.m */; };
@@ -1129,6 +1131,8 @@
 		048DAC7022857BBB006E6BA2 /* PaymentMethodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodsVC.m; sourceTree = "<group>"; };
 		048DAC7622857DF9006E6BA2 /* Per_MethodsToDealWithManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Per_MethodsToDealWithManage.m; sourceTree = "<group>"; };
 		048DAC7722857DF9006E6BA2 /* Per_MethodsToDealWithManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Per_MethodsToDealWithManage.h; sourceTree = "<group>"; };
+		048E8802228D4D2000410405 /* VersionUpdate_Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VersionUpdate_Cancel.png; sourceTree = "<group>"; };
+		048E8804228D4D2800410405 /* VersionUpdate_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VersionUpdate_Icon.png; sourceTree = "<group>"; };
 		0497834A2285957E00E143D7 /* NearHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearHomeVC.h; sourceTree = "<group>"; };
 		0497834B2285957E00E143D7 /* NearPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearPageVC.m; sourceTree = "<group>"; };
 		0497834E2285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_LocaColumnCollectionCell.m; sourceTree = "<group>"; };
@@ -5631,13 +5635,15 @@
 			isa = PBXGroup;
 			children = (
 				65229492225AE063001DF691 /* SELUpdateAlertConst.h */,
+				65229497225AE063001DF691 /* SELUpdateAlertConst.m */,
+				65229499225AE063001DF691 /* SELUpdateAlert.h */,
 				65229493225AE063001DF691 /* SELUpdateAlert.m */,
+				048E8804228D4D2800410405 /* VersionUpdate_Icon.png */,
 				65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */,
 				65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */,
-				65229496225AE063001DF691 /* VersionUpdate_Cancel@3x.png */,
-				65229497225AE063001DF691 /* SELUpdateAlertConst.m */,
+				048E8802228D4D2000410405 /* VersionUpdate_Cancel.png */,
 				65229498225AE063001DF691 /* VersionUpdate_Cancel@2x.png */,
-				65229499225AE063001DF691 /* SELUpdateAlert.h */,
+				65229496225AE063001DF691 /* VersionUpdate_Cancel@3x.png */,
 			);
 			path = UpdateAlert;
 			sourceTree = "<group>";
@@ -6929,6 +6935,7 @@
 				0453D1F42284033000880C2A /* empoty.html in Resources */,
 				04A50850227EDD3A0013E8EC /* ZFPlayer.bundle in Resources */,
 				0453D186228266D200880C2A /* 04.jpg in Resources */,
+				048E8803228D4D2000410405 /* VersionUpdate_Cancel.png in Resources */,
 				04F5214A228A76BA00ED4995 /* default_headportrait.png in Resources */,
 				659EA0B6220537EC004471CD /* 首牛.png in Resources */,
 				0497838C2285957F00E143D7 /* YYStarView.bundle in Resources */,
@@ -6937,6 +6944,7 @@
 				0461600E228AB1360042830B /* SXF_HF_paySuccessVC.xib in Resources */,
 				04A5085E227EDD3A0013E8EC /* ZFPlayerCell.xib in Resources */,
 				658B7CBC21D749E100801CC8 /* success.png in Resources */,
+				048E8805228D4D2900410405 /* VersionUpdate_Icon.png in Resources */,
 				6579784B21E6D6B600E606BE /* shop_area.sqlite in Resources */,
 				659EA0712203D5A1004471CD /* GuideImage.bundle in Resources */,
 				6522949D225AE063001DF691 /* VersionUpdate_Cancel@3x.png in Resources */,

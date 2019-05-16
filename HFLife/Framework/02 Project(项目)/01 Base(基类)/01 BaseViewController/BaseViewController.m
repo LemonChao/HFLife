@@ -311,7 +311,7 @@ static BOOL IsUpdateRemind = YES;
         if (![NSString isNOTNull:description]) {
             [CommonTools setUpdateDescription:description];
         }else{
-            [CommonTools setUpdateDescription:@"有新版版本需要更新"];
+            [CommonTools setUpdateDescription:@"汉富新生活"];
         }
         // 是否强制更新
         BOOL isForce = [dataDict[@"force_update"] boolValue];
@@ -350,6 +350,12 @@ static BOOL IsUpdateRemind = YES;
 #pragma mark APP展示更新控件
 -(void)VersionBounced{
     __weak __typeof(&*self)weakSelf = self;
+    
+#warning 临时添加
+    [CommonTools setUpdateDescription:@"汉富新生活"];
+    
+    
+    
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     CFShow((__bridge CFTypeRef)(infoDictionary));
     // app版本
@@ -357,8 +363,9 @@ static BOOL IsUpdateRemind = YES;
     if (![app_Version isEqualToString:[CommonTools getVersionString]]&&![NSString isNOTNull:[CommonTools getVersionString]]) {
         BOOL hasNewVersion = [CommonTools IsHasNewVersion] ;
         BOOL isForce =  [CommonTools IsForce] ;
-        if (hasNewVersion) {
-            if (isForce) {
+        if (!hasNewVersion) {
+            if (!isForce) {
+                //强制更新
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // UI更新代码
                     self->updateAlert = [SELUpdateAlert showUpdateAlertWithVersion:[CommonTools getVersionString] Description:[CommonTools getUpdateDescription]];

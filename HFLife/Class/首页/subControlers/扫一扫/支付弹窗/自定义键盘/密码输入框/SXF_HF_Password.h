@@ -11,5 +11,6 @@
 @interface SXF_HF_Password : UIView
 @property (nonatomic, strong)void(^keyBoardCallback)(NSString *contentStr);
 - (void)closeKeyborad;
+@property (nonatomic, assign)BOOL editingEable;
 
 @end

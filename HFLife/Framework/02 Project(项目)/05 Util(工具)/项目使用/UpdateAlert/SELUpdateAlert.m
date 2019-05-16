@@ -9,7 +9,8 @@
 #import "SELUpdateAlert.h"
 #import "SELUpdateAlertConst.h"
 
-#define DEFAULT_MAX_HEIGHT SCREEN_HEIGHT/3*2
+// SCREEN_HEIGHT/3*2
+#define DEFAULT_MAX_HEIGHT ScreenScale(395)
 
 @interface SELUpdateAlert()
 {
@@ -95,6 +96,7 @@ description 格式如 @"1.xxxxxx\n2.xxxxxx"
     CGFloat realHeight = descHeight + Ratio(314);
     
     //bgView最大高度
+//    CGFloat maxHeight = DEFAULT_MAX_HEIGHT;
     CGFloat maxHeight = DEFAULT_MAX_HEIGHT;
     //更新内容可否滑动显示
     BOOL scrollEnabled = NO;
@@ -111,27 +113,30 @@ description 格式如 @"1.xxxxxx\n2.xxxxxx"
     //backgroundView
     UIView *bgView = [[UIView alloc]init];
     bgView.center = self.center;
-    bgView.bounds = CGRectMake(0, 0, self.frame.size.width - Ratio(40), maxHeight+Ratio(18));
+    bgView.bounds = CGRectMake(0, 0, self.frame.size.width - Ratio(40), maxHeight+ScreenScale(70));
     [self addSubview:bgView];
     
+    bgView.backgroundColor = [UIColor clearColor];
+    
     //添加更新提示
-    UIView *updateView = [[UIView alloc]initWithFrame:CGRectMake(Ratio(20), Ratio(18), bgView.frame.size.width - Ratio(40), maxHeight)];
+    UIView *updateView = [[UIView alloc]initWithFrame:CGRectMake(Ratio(20), Ratio(0), bgView.frame.size.width - Ratio(40), maxHeight + ScreenScale(40))];
     updateView.backgroundColor = [UIColor whiteColor];
     updateView.layer.masksToBounds = YES;
     updateView.layer.cornerRadius = 4.0f;
     [bgView addSubview:updateView];
     
     //20+166+10+28+10+descHeight+20+40+20 = 314+descHeight 内部元素高度计算bgView高度
-    UIImageView *updateIcon = [[UIImageView alloc]initWithFrame:CGRectMake((updateView.frame.size.width - Ratio(178))/2, Ratio(20), Ratio(178), Ratio(166))];
+    UIImageView *updateIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, updateView.frame.size.width, updateView.frame.size.width / 300.0 * 216.0)];
     updateIcon.image = [UIImage imageNamed:@"VersionUpdate_Icon"];
     [updateView addSubview:updateIcon];
     
     //版本号
-    UILabel *versionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, Ratio(10) + CGRectGetMaxY(updateIcon.frame), updateView.frame.size.width, Ratio(28))];
-    versionLabel.font = [UIFont boldSystemFontOfSize:18];
+    UILabel *versionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, Ratio(-10) + CGRectGetMaxY(updateIcon.frame), updateView.frame.size.width, Ratio(28))];
+    versionLabel.font = [UIFont systemFontOfSize:18];
     versionLabel.textAlignment = NSTextAlignmentCenter;
     versionLabel.text = [NSString stringWithFormat:@"发现新版本 V%@",self.version];
     [updateView addSubview:versionLabel];
+    versionLabel.textColor = HEX_COLOR(0xCA1400);
     
     //更新内容
     UITextView *descTextView = [[UITextView alloc]initWithFrame:CGRectMake(Ratio(28), Ratio(10) + CGRectGetMaxY(versionLabel.frame), updateView.frame.size.width - Ratio(56), descHeight)];
@@ -144,6 +149,7 @@ description 格式如 @"1.xxxxxx\n2.xxxxxx"
     descTextView.scrollEnabled = scrollEnabled;
     descTextView.showsVerticalScrollIndicator = scrollEnabled;
     descTextView.showsHorizontalScrollIndicator = NO;
+    descTextView.textAlignment = NSTextAlignmentCenter;
     [updateView addSubview:descTextView];
     
     if (scrollEnabled) {
@@ -153,10 +159,10 @@ description 格式如 @"1.xxxxxx\n2.xxxxxx"
     
     //更新按钮
     UIButton *updateButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    updateButton.backgroundColor = SELColor(34, 153, 238);
-    updateButton.frame = CGRectMake(Ratio(25), CGRectGetMaxY(descTextView.frame) + Ratio(20), updateView.frame.size.width - Ratio(50), Ratio(40));
+    updateButton.backgroundColor = HEX_COLOR(0xCA1400);
+    updateButton.frame = CGRectMake(ScreenScale(35), CGRectGetMaxY(descTextView.frame) + Ratio(20), updateView.frame.size.width - ScreenScale(70), ScreenScale(44));
     updateButton.clipsToBounds = YES;
-    updateButton.layer.cornerRadius = 2.0f;
+    updateButton.layer.cornerRadius = updateButton.frame.size.height * 0.5;
     [updateButton addTarget:self action:@selector(updateVersion) forControlEvents:UIControlEventTouchUpInside];
     [updateButton setTitle:@"立即更新" forState:UIControlStateNormal];
     [updateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -164,14 +170,18 @@ description 格式如 @"1.xxxxxx\n2.xxxxxx"
     
     //取消按钮
     cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    cancelButton.center = CGPointMake(CGRectGetMaxX(updateView.frame), CGRectGetMinY(updateView.frame));
-    cancelButton.bounds = CGRectMake(0, 0, Ratio(36), Ratio(36));
+//    cancelButton.center = CGPointMake(CGRectGetMaxX(updateView.frame), CGRectGetMinY(updateView.frame));
+    cancelButton.frame = CGRectMake(0, 0, ScreenScale(36), ScreenScale(36));
+    cancelButton.center = CGPointMake(bgView.center.x, CGRectGetMaxY(bgView.frame) + ScreenScale(20));
+    cancelButton.backgroundColor = [UIColor clearColor];
+//    cancelButton.bounds = CGRectMake(0, 0, Ratio(36), Ratio(36));
     [cancelButton setImage:[[UIImage imageNamed:@"VersionUpdate_Cancel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
-    [bgView addSubview:cancelButton];
     
     //显示更新
     [self showWithAlert:bgView];
+    
+    [self addSubview:cancelButton];
 }
 
 /** 更新按钮点击事件 跳转AppStore更新 */

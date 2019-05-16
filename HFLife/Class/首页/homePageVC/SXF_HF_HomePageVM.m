@@ -33,6 +33,7 @@
 {
     self = [super init];
     if (self) {
+        self.locationManager.delegate = self;
         [self timingTask];
     }
     return self;
@@ -217,7 +218,6 @@
 -(JFLocation *)locationManager{
     if (!_locationManager) {
         _locationManager = [[JFLocation alloc] init];
-        _locationManager.delegate = self;
     }
     return _locationManager;
 }

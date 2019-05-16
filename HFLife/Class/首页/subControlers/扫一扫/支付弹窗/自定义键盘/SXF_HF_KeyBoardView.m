@@ -54,8 +54,23 @@
     self.msgLb.textColor = HEX_COLOR(0xCA1400);
     self.msgLb.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.msgLb];
+    
+    
+    //遮挡第三方键盘的点击效应
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapKeyBoard)];
+    [self addGestureRecognizer:tap];
 }
 
+- (void)setEditingEable:(BOOL)editingEable{
+    _editingEable = editingEable;
+    self.passwordInputView.editingEable = _editingEable;
+}
+
+
+
+- (void)tapKeyBoard{
+    
+}
 - (void)layoutSubviews{
     [super layoutSubviews];
     

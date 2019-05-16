@@ -52,7 +52,7 @@
     [self setUpUI];
     [self setUpActions];
     
-//    [self VersionBounced];
+    [self VersionBounced];
     [self versionUpdateRequest];
     //加载数据
     [self loadServerData:1];
