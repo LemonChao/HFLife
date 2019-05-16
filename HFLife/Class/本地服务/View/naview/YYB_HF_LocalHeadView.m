@@ -127,11 +127,11 @@
 
 - (void)shareInfo {
 // w=user&t=get_invite_info
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=user&t=get_invite_info" withParameters:nil withResultBlock:^(BOOL result, id value) {
-        if (value) {
-
-        }
-    }];
+//    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"" withParameters:nil withResultBlock:^(BOOL result, id value) {
+//        if (value) {
+//
+//        }
+//    }];
     
 //    [self addShareViewForH5:nil];
     [self.viewController.navigationController pushViewController:[NSClassFromString(@"InviteVC") new] animated:YES];
@@ -255,10 +255,15 @@
 
 - (void)gotoCityVC {
     NSLog(@"choseCity");
-    CityChooseVC *cityChoose = [[CityChooseVC alloc]init];
-    cityChoose.delegate = self;
-    BaseNavigationController *navigationController = [[BaseNavigationController alloc] initWithRootViewController:cityChoose];
-    [self.viewController presentViewController:navigationController animated:YES completion:nil];
+    BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:[[NSClassFromString(@"LoginVC")  alloc]init]];
+
+    [self.viewController presentViewController:navi animated:YES completion:^{
+        
+    }];
+//    CityChooseVC *cityChoose = [[CityChooseVC alloc]init];
+//    cityChoose.delegate = self;
+//    BaseNavigationController *navigationController = [[BaseNavigationController alloc] initWithRootViewController:cityChoose];
+//    [self.viewController presentViewController:navigationController animated:YES completion:nil];
 //    [self.viewController.navigationController pushViewController:[NSClassFromString(@"PYSearchViewController") new] animated:YES];
     
 }

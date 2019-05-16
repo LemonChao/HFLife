@@ -196,6 +196,16 @@
         [WXZTipView showCenterWithText:@"邀请码不能为空"];
         return;
     }
+    
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneTextField.text,@"event":@"register"} withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            [WXZTipView showCenterWithText:@"短信验证码已发送"];
+            [self openCountdown:send];
+        }else {
+            [WXZTipView showCenterWithText:value[@"msg"]];
+        }
+    }];
+    
     //@"type":@"8" 注册加验证码
     
     
@@ -260,6 +270,7 @@
 }
 -(void)registerdBtnClick{
     NSLog(@"注册");
+    
     if (![self.phoneTextField.text isValidateMobile]) {
         [WXZTipView showCenterWithText:@"请输入正确的手机号"];
         return;
@@ -291,6 +302,40 @@
                            @"password":self.passwordTextField.text,
                            @"invite_code":[NSString isNOTNull:self.inviteCodeTextField.text]?@"":self.inviteCodeTextField.text
                            };
+    
+    NSDictionary *parm = @{
+                           @"member_mobile":self.phoneTextField.text,
+                           @"captcha":self.verificationCodeTextField.text,
+                           @"invite_code":[NSString isNOTNull:self.inviteCodeTextField.text]?@"":self.inviteCodeTextField.text
+                           };
+    
+    
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:parm withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            [WXZTipView showCenterWithText:@"注册成功！"];
+            
+            [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileLogin withParameters:@{@"account":self.phoneTextField.text,@"password":self.passwordTextField.text} withResultBlock:^(BOOL result, id value) {
+                if (result) {
+                    if (value && [value isKindOfClass:[NSDictionary class]]) {
+                        NSDictionary *dict = value;
+                        [HeaderToken setToken:dict[@"token"]];
+                        [CommonTools setToken:dict[@"token"]];
+                        [UserCache setUserPhone:self.phoneTextField.text];
+                        [UserCache setUserPass:self.passwordTextField.text];
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            
+                        }];
+                    }
+                    
+                }else {
+                    [WXZTipView showCenterWithText:value[@"msg"]];
+                }
+            }];
+            
+        }else {
+            [WXZTipView showCenterWithText:value[@"msg"]];
+        }
+    }];
     
     /*
     
