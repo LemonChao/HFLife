@@ -3,3 +3,6 @@
 xcuserdata 
 *.lock 
 Pods
+
+#忽略
+04 URL.h

@@ -27,6 +27,19 @@
 #define GP_BASEURL  @"http://test.hfgld.net"
 
 static NSString *const yourTestUrl = @"w=index&t=index";
+/** 手机注册 */
+static NSString *const kRegisterMobile = @"member/registerMobile";
+
+/** 手机登录 */
+static NSString *const kMobileLogin = @"member/mobileLogin";
+/** 微信登录 */
+static NSString *const kWXLogin = @"member/wxLogin";
+/** 注销登录 */
+static NSString *const kLogout = @"member/logout";
+/** 发送验证码 */
+static NSString *const kSendsms = @"sms/send";
+
+
 /** 分享数据 */
 static NSString *const kGet_invite_info = @"w=user&t=get_invite_info";
 /** 综合商家店铺列表 */

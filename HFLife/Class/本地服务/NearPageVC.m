@@ -10,6 +10,10 @@
 #import "YYB_HF_LocalHeadView.h"
 #import "YYB_HF_LifeLocaView.h"
 #import "YBPopupMenu.h"
+
+
+extern NSString *CTSettingCopyMyPhoneNumber();
+
 @interface NearPageVC (){
     int arc;
 }
@@ -47,7 +51,9 @@
     [self.customNavBar setHidden:YES];
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.translucent = YES;
+    NSString *ss = CTSettingCopyMyPhoneNumber();
     
+    NSLog(@"");
 }
 
 - (CGFloat)cellContentViewWith

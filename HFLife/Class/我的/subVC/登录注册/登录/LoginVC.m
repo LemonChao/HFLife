@@ -291,6 +291,23 @@
     }
     
     
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileLogin withParameters:@{@"account":self.userName.text,@"password":self.passwordText.text} withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = value;
+                [HeaderToken setToken:dict[@"token"]];
+                [CommonTools setToken:dict[@"token"]];
+                [UserCache setUserPhone:self.userName.text];
+                [UserCache setUserPass:self.passwordText.text];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                }];
+            }
+            
+        }else {
+            [WXZTipView showCenterWithText:value[@"msg"]];
+        }
+    }];
     
     /*
     
@@ -316,56 +333,88 @@
      
      */
 }
--(void)loginWithQQ{
+-(void)loginWithQQ {
     [ShareSDK getUserInfo:SSDKPlatformTypeQQ
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error){
-         if (state == SSDKResponseStateSuccess){
-             [CommonTools setToken:@""];// !!!:三方登录 清空token
-
-             NSDictionary *dataDict = @{@"type":@"qq",@"openId":user.uid,@"nickname":user.nickname,@"img":user.icon};
-             
-             
-             
-             /*
-             
-             
-             HP_ThirdPartyLoginNetApi *thirdParty = [[HP_ThirdPartyLoginNetApi alloc]initWithParameter:dataDict];
-             [thirdParty startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-                 HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
-                 if ([thirdPartyRequest getCodeStatus] == 1) {
-                     NSDictionary *dict = [thirdPartyRequest getContent];
+               if (state == SSDKResponseStateSuccess){
+                   [CommonTools setToken:@""];// !!!:三方登录 清空token
+                   
+                   //             NSDictionary *dataDict = @{@"type":@"qq",@"openId":user.uid,@"nickname":user.nickname,@"img":user.icon};
+                   
+                   NSDictionary *parm = @{@"openid":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
+                   
+                   [networkingManagerTool requestToServerWithType:POST withSubUrl:kWXLogin withParameters:parm     withResultBlock:^(BOOL result, id value) {
+                       if (result) {
+                           if (value && [value isKindOfClass:[NSDictionary class]]) {
+                               NSDictionary *dict = value;
+                               
+                               NSString *user_mobile = dict[@"user_mobile"];
+                               if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
+                                   [HeaderToken setToken:dict[@"token"]];
+                                   [CommonTools setToken:dict[@"token"]];
+                                   [self dismissViewControllerAnimated:YES completion:^{
+                                       
+                                   }];
+                               }else {
+                                   ReviseMobilePhone *vc = [[ReviseMobilePhone alloc]init];
+                                   vc.tokenStr = dict[@"token"];
+                                   vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
+                                       [HeaderToken setToken:dict[@"token"]];
+                                       [CommonTools setToken:dict[@"token"]];
+                                       [self dismissViewControllerAnimated:YES completion:^{
+                                           
+                                       }];
+                                   };
+                                   [self.navigationController pushViewController:vc animated:YES];
+                               }
+                               
+                           }
+                           
+                       }else {
+                           [WXZTipView showCenterWithText:value[@"msg"]];
+                       }
+                   }];
+                   
+                   /*
                     
-                     NSString *user_mobile = dict[@"user_mobile"];
-                     if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
-                         [HeaderToken setToken:dict[@"token"]];
-                         [CommonTools setToken:dict[@"token"]];
-                         [self.navigationController popToRootViewControllerAnimated:YES];
-                     }else {
-                         ReviseMobilePhone *vc = [[ReviseMobilePhone alloc]init];
-                         vc.tokenStr = dict[@"token"];
-                         vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-                             [HeaderToken setToken:dict[@"token"]];
-                             [CommonTools setToken:dict[@"token"]];
-                             [self.navigationController popToRootViewControllerAnimated:YES];
-                         };
-                         [self.navigationController pushViewController:vc animated:YES];
-                     }
-                     
-                 }else{
-                     [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
-                 }
-             } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-                 HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
-                 [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
-             }];
-              
-              
-              */
-             
-         }else{
-             NSLog(@"%@",error);
-         }
-     }];
+                    
+                    HP_ThirdPartyLoginNetApi *thirdParty = [[HP_ThirdPartyLoginNetApi alloc]initWithParameter:dataDict];
+                    [thirdParty startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                    HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
+                    if ([thirdPartyRequest getCodeStatus] == 1) {
+                    NSDictionary *dict = [thirdPartyRequest getContent];
+                    
+                    NSString *user_mobile = dict[@"user_mobile"];
+                    if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
+                    [HeaderToken setToken:dict[@"token"]];
+                    [CommonTools setToken:dict[@"token"]];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    }else {
+                    ReviseMobilePhone *vc = [[ReviseMobilePhone alloc]init];
+                    vc.tokenStr = dict[@"token"];
+                    vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
+                    [HeaderToken setToken:dict[@"token"]];
+                    [CommonTools setToken:dict[@"token"]];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    };
+                    [self.navigationController pushViewController:vc animated:YES];
+                    }
+                    
+                    }else{
+                    [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
+                    }
+                    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                    HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
+                    [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
+                    }];
+                    
+                    
+                    */
+                   
+               }else{
+                   NSLog(@"%@",error);
+               }
+           }];
 }
 -(void)loginWithWeChat{
 

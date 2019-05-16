@@ -240,6 +240,17 @@
 -(void)decodingString:(NSString *)string{
     WS(weakSelf);
     
+    TransferVC *tran = [[TransferVC alloc]init];
+    tran.userName = @"textName";
+    tran.uesrImage = @"thhp://www.baidu.com";
+    tran.code_str = string;
+    tran.ispayment = YES;
+    [weakSelf.navigationController pushViewController:tran animated:YES];
+    
+    
+    
+    
+    
     /*
     
     HP_ScanningDecodingNetApi *scann = [[HP_ScanningDecodingNetApi alloc]initWithParameter:@{@"code_str":string}];
