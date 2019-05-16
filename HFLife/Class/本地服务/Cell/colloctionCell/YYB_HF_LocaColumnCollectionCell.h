@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
 @interface YYB_HF_LocaColumnCollectionCell : UICollectionViewCell
+@end
+@interface YYB_HF_LocaColumnCollectionCellItem : UICollectionViewCell
 @property (nonatomic, strong) UIImageView *imgView;
 
 @property (nonatomic, strong) UILabel *title;

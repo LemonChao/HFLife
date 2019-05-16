@@ -102,8 +102,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         YYB_HF_LocaColumnCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_LocaColumnCollectionCell" forIndexPath:indexPath];
-        cell.imgView.image = MMGetImage(imageNameArray[indexPath.row]);
-        cell.title.text = titleArray[indexPath.row];
+//        cell.imgView.image = MMGetImage(imageNameArray[indexPath.row]);
+//        cell.title.text = titleArray[indexPath.row];
         //    cell.backgroundColor = [UIColor redColor];
         return cell;
     }
@@ -138,7 +138,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (section == 0) {
-        return 15;
+        return 1;
     }
     if (section == 2) {
         return 3;
@@ -211,7 +211,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout numberOfColumnInSection:(NSInteger)section {
     
     if (section == 0) {
-        return 5;
+        return 1;
     }
     
     if (section == 1) {
@@ -227,7 +227,7 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout itemWidth:(CGFloat)width
  heightForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return ScreenScale(60);
+        return ScreenScale(65) * 3;
     }
     
     if (indexPath.section == 1) {
@@ -246,6 +246,7 @@
 
 /// 列间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    
     return 5;
 }
 /// 行间距
