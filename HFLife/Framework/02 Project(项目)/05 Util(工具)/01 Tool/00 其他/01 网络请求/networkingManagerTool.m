@@ -109,7 +109,7 @@
         } success:^(id data) {
             [[networkingManagerTool sharedFMDBManager] getDataAnalysisWith:data withresultBlock:valueBlock withvc:VC];
         } faiulre:^(NSString *errMsg) {
-            
+            valueBlock(NO, nil);
         }];
     }//PUT
     else if ([RequestType isEqualToString:PUT]) {

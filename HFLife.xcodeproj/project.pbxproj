@@ -3991,8 +3991,8 @@
 		04A50765227EDD350013E8EC /* 系统配置权限检测 */ = {
 			isa = PBXGroup;
 			children = (
-				04A50766227EDD350013E8EC /* appStatusManager.m */,
 				04A50767227EDD350013E8EC /* appStatusManager.h */,
+				04A50766227EDD350013E8EC /* appStatusManager.m */,
 			);
 			path = "系统配置权限检测";
 			sourceTree = "<group>";
