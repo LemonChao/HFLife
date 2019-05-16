@@ -67,7 +67,6 @@
 - (void) addChildrenViews{
     self.backgroundColor = [UIColor whiteColor];
     
-//    [self.contentView addSubview:self.cycleV];
     [self.contentView addSubview:self.pageControl];
     
     [self.contentView addSubview:self.cycleScroll];
@@ -110,7 +109,7 @@
     
     
     [self.cycleScroll mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.contentView);
+        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(6));
         make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
         make.right.mas_equalTo(self.contentView.mas_right).offset(ScreenScale(-12));
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-15);

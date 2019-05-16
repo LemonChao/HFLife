@@ -51,8 +51,15 @@
 
 
 
+/**
+ 版本更新
+ */
+-(void)VersionBounced;
 
-
+/**
+ 请求是否更新
+ */
+-(void)versionUpdateRequest;
 
 
 
