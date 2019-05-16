@@ -1,26 +1,21 @@
 //
-//  LoginForVercode.m
+//  SetingMobilePhoneVC.m
 //  HFLife
 //
 //  Created by mac on 2019/5/16.
 //  Copyright © 2019 luyukeji. All rights reserved.
 //
 
-#import "LoginForVercode.h"
-#import <ShareSDK/ShareSDK.h>
-//VC
-#import "RegisteredVC.h"
-#import "ForgotPasswordVC.h"
-#import "ReviseMobilePhone.h"//设置手机号
+#import "SetingMobilePhoneVC.h"
 
-@interface RegisteredVC ()<UITextFieldDelegate>
-@property (nonatomic,strong)UITextField *userName;
+@interface SetingMobilePhoneVC ()<UITextFieldDelegate>
+@property(nonatomic, strong) UITextField *phoneText;
 @property (nonatomic,strong)UITextField *vercodeText;
 @property (nonatomic,strong)UITextField *inviteCodeTextField;
 
 @end
 
-@implementation RegisteredVC
+@implementation SetingMobilePhoneVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,118 +46,66 @@
     }];
     //    [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:YES];
-    self.customNavBar.title = @"";
-    self.customNavBar.titleLabelColor = [UIColor clearColor];
-    self.customNavBar.backgroundColor = [UIColor clearColor];
+    self.customNavBar.title = @"绑定手机号";
+    self.customNavBar.titleLabelColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
+
 -(void)initWithUI{
-    UIImageView *bgImageView = [UIImageView new];
-    bgImageView.image = MMGetImage(@"log_bg");
-    [self.view addSubview:bgImageView];
-    [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.view);
+   
+    
+    UILabel *lin = [UILabel new];
+    lin.backgroundColor = HEX_COLOR(0xF5F5F5);
+    [self.view addSubview:lin];
+    [lin mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).offset(12);
+        make.right.mas_equalTo(self.view.mas_right).offset(-12);
+        make.top.mas_equalTo(self.view).mas_offset(self.navBarHeight + 1);
+        make.height.mas_equalTo(1);
     }];
-    UIView *view = [[UIView alloc] init];
-    [bgImageView addSubview:view];
-    view.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.9];
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(bgImageView);
-    }];
-    
-    
-    UIImageView *iconImageView = [UIImageView new];
-    iconImageView.image = MMGetImage(@"icon_phone_login");
-    [self.view addSubview:iconImageView];
-    [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.top.mas_equalTo(self.view.mas_top).offset(ScreenScale(117));
-        make.width.mas_equalTo(ScreenScale(100));
-        make.height.mas_equalTo(ScreenScale(100));
-        
-    }];
-    
-    UIView *subBgView = [UIView new];
-    subBgView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
-    subBgView.layer.cornerRadius = 12;
-    [self.view addSubview:subBgView];
-    
-    [self.view addSubview:self.userName];
-    [self.userName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(WidthRatio(99));
-        make.right.mas_equalTo(self.view.mas_right).offset(-WidthRatio(92));
+    [self.view addSubview:self.phoneText];
+    [self.phoneText mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).offset(12);
+        make.right.mas_equalTo(self.view.mas_right).offset(-12);
         make.height.mas_equalTo(HeightRatio(82));
-        make.top.mas_equalTo(iconImageView.mas_bottom).offset(HeightRatio(52));
+        make.top.mas_equalTo(self.view).offset(self.navBarHeight + HeightRatio(26));
     }];
     [self.view addSubview:self.vercodeText];
     [self.vercodeText mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(WidthRatio(99));
-        make.right.mas_equalTo(self.view.mas_right).offset(-WidthRatio(92));
+        make.left.mas_equalTo(self.view.mas_left).offset(12);
+        make.right.mas_equalTo(self.view.mas_right).offset(-12);
         make.height.mas_equalTo(HeightRatio(82));
-        make.top.mas_equalTo(self.userName.mas_bottom).offset(HeightRatio(26));
+        make.top.mas_equalTo(self.phoneText.mas_bottom).offset(HeightRatio(26));
     }];
     
     [self.view addSubview:self.inviteCodeTextField];
     [self.inviteCodeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(WidthRatio(99));
-        make.right.mas_equalTo(self.view.mas_right).offset(-WidthRatio(92));
+        make.left.mas_equalTo(self.view.mas_left).offset(12);
+        make.right.mas_equalTo(self.view.mas_right).offset(-12);
         make.height.mas_equalTo(HeightRatio(82));
         make.top.mas_equalTo(self.vercodeText.mas_bottom).offset(HeightRatio(26));
     }];
     
-    
-    [subBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.userName).mas_offset(-10);
-        make.left.mas_equalTo(self.view).mas_offset(12);
-        make.right.mas_equalTo(self.view).mas_offset(-12);
-        make.bottom.mas_equalTo(self.view).mas_offset(-27);
-    }];
-    
-    //    UIButton *forgotPasswordBtn = [UIButton new];
-    //    forgotPasswordBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(23)];
-    //    [forgotPasswordBtn setTitle:@"忘记密码 ？" forState:(UIControlStateNormal)];
-    //    [forgotPasswordBtn setTitleColor:HEX_COLOR(0x656565) forState:(UIControlStateNormal)];
-    //    [forgotPasswordBtn addTarget:self action:@selector(forgotPasswordBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
-    //    [self.view addSubview:forgotPasswordBtn];
-    //    [forgotPasswordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.left.mas_equalTo(self.userName.mas_left);
-    //        make.top.mas_equalTo(self.vercodeText.mas_bottom).offset(HeightRatio(45));
-    //        make.width.mas_greaterThanOrEqualTo(1);
-    //        make.height.mas_equalTo(HeightRatio(23));
-    //    }];
-    //
-    //    UIButton *registeredBtn = [UIButton new];
-    //    registeredBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(23)];
-    //    [registeredBtn setTitle:@"还没有账号，去注册" forState:(UIControlStateNormal)];
-    //    [registeredBtn setTitleColor:HEX_COLOR(0x656565) forState:(UIControlStateNormal)];
-    //    [registeredBtn addTarget:self action:@selector(registeredClick) forControlEvents:(UIControlEventTouchUpInside)];
-    //    [self.view addSubview:registeredBtn];
-    //    [registeredBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.right.mas_equalTo(self.userName.mas_right);
-    //        make.top.mas_equalTo(self.vercodeText.mas_bottom).offset(HeightRatio(45));
-    //        make.width.mas_greaterThanOrEqualTo(1);
-    //        make.height.mas_equalTo(HeightRatio(23));
-    //    }];
-    
-    UIButton *loginBtn = [UIButton new];
-    loginBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(31)];
-    loginBtn.backgroundColor = [UIColor redColor];
-    [loginBtn setTitle:@"注册" forState:(UIControlStateNormal)];
-    [loginBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-    [loginBtn addTarget:self action:@selector(reginBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:loginBtn];
-    [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(ScreenScale(40));
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(-ScreenScale(40));
+    UIButton *sureBtn = [UIButton new];
+    sureBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(31)];
+    sureBtn.backgroundColor = [UIColor redColor];
+    [sureBtn setTitle:@"确定" forState:(UIControlStateNormal)];
+    [sureBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+    [sureBtn addTarget:self action:@selector(sureBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:sureBtn];
+    [sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).mas_offset(ScreenScale(12));
+        make.right.mas_equalTo(self.view.mas_right).mas_offset(-ScreenScale(12));
         make.top.mas_equalTo(self.inviteCodeTextField.mas_bottom).offset(ScreenScale(40));
         make.height.mas_equalTo(HeightRatio(90));
     }];
-    MMViewBorderRadius(loginBtn, WidthRatio(45), 0, [UIColor clearColor]);
+    MMViewBorderRadius(sureBtn, WidthRatio(10), 0, [UIColor clearColor]);
     
     //    UILabel *lin = [UILabel new];
     //    lin.backgroundColor = HEX_COLOR(0xdddddd);
     //    [self.view addSubview:lin];
     //    [lin mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.left.mas_equalTo(self.userName.mas_left);
+    //        make.left.mas_equalTo(self.phoneText.mas_left);
     //        make.top.mas_equalTo(loginBtn.mas_bottom).offset(HeightRatio(97));
     //        make.width.mas_equalTo(WidthRatio(194));
     //        make.height.mas_equalTo(HeightRatio(3));
@@ -229,12 +172,12 @@
     //    WeChatBtn.hidden = YES;
 }
 
--(UITextField *)userName{
-    if (_userName == nil) {
+-(UITextField *)phoneText{
+    if (_phoneText == nil) {
         UITextField *tf = [[UITextField alloc] init];
         //        tf.borderStyle = UITextBorderStyleRoundedRect;
         tf.keyboardType = UIKeyboardTypeTwitter;
-        tf.placeholder = @"请输入手机号/用户名";
+        tf.placeholder = @"请输入手机号(+86)";
         [tf setValue:HEX_COLOR(0xAAAAAA) forKeyPath:@"_placeholderLabel.textColor"];
         tf.textColor = HEX_COLOR(0x5b5b5b);
         tf.font = [UIFont systemFontOfSize:HeightRatio(32)];
@@ -245,15 +188,15 @@
         UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(30), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
         
-        UIImageView *iconImageView = [UIImageView new];
-        iconImageView.image = MMGetImage(@"icon_user");
-        [lv addSubview:iconImageView];
-        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(lv.mas_left);
-            make.centerY.mas_equalTo(lv.mas_centerY);
-            make.width.mas_equalTo(ScreenScale(24));
-            make.height.mas_equalTo(ScreenScale(24));
-        }];
+//        UIImageView *iconImageView = [UIImageView new];
+//        iconImageView.image = MMGetImage(@"icon_user");
+//        [lv addSubview:iconImageView];
+//        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(lv.mas_left);
+//            make.centerY.mas_equalTo(lv.mas_centerY);
+//            make.width.mas_equalTo(ScreenScale(24));
+//            make.height.mas_equalTo(ScreenScale(24));
+//        }];
         
         tf.leftViewMode = UITextFieldViewModeAlways;
         tf.leftView = lv;
@@ -262,30 +205,18 @@
         
         
         UILabel *lin = [UILabel new];
-        lin.backgroundColor = HEX_COLOR(0xdddddd);
+        lin.backgroundColor = HEX_COLOR(0xF5F5F5);
         [tf addSubview:lin];
         [lin mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.bottom.right.mas_equalTo(tf);
-            make.height.mas_equalTo(HeightRatio(3));
+            make.height.mas_equalTo(1);
         }];
         [self.view addSubview:tf];
-        _userName = tf;
+        _phoneText = tf;
     }
-    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(20), HeightRatio(69))];
-    rightView.backgroundColor = [UIColor clearColor];
-    UIButton *clearnButton = [UIButton new];
-    [clearnButton setImage:[UIImage imageNamed:@"icon_clear"] forState:UIControlStateNormal];
-    [clearnButton wh_addActionHandler:^{
-        self->_userName.text = @"";
-    }];
-    [rightView addSubview:clearnButton];
-    [clearnButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.left.mas_equalTo(rightView);
-        make.top.bottom.mas_equalTo(rightView);
-    }];
-    _userName.rightViewMode = UITextFieldViewModeAlways;
-    _userName.rightView = rightView;
-    return _userName;
+    
+    _phoneText.rightView = [UIView new];
+    return _phoneText;
 }
 -(UITextField *)vercodeText{
     if (!_vercodeText) {
@@ -295,22 +226,22 @@
         tf.placeholder = @"请输入验证码";
         [tf setValue:HEX_COLOR(0xAAAAAA) forKeyPath:@"_placeholderLabel.textColor"];
         tf.textColor = HEX_COLOR(0x5b5b5b);
-//        tf.secureTextEntry = YES;
+        //        tf.secureTextEntry = YES;
         tf.font = [UIFont systemFontOfSize:HeightRatio(32)];
         tf.backgroundColor = [UIColor clearColor];
         
         UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(30), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
         
-        UIImageView *iconImageView = [UIImageView new];
-        iconImageView.image = MMGetImage(@"icon_mima");
-        [lv addSubview:iconImageView];
-        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(lv.mas_left);
-            make.centerY.mas_equalTo(lv.mas_centerY);
-            make.width.mas_equalTo(ScreenScale(21));
-            make.height.mas_equalTo(ScreenScale(24));
-        }];
+//        UIImageView *iconImageView = [UIImageView new];
+//        iconImageView.image = MMGetImage(@"icon_mima");
+//        [lv addSubview:iconImageView];
+//        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(lv.mas_left);
+//            make.centerY.mas_equalTo(lv.mas_centerY);
+//            make.width.mas_equalTo(ScreenScale(21));
+//            make.height.mas_equalTo(ScreenScale(24));
+//        }];
         
         tf.leftViewMode = UITextFieldViewModeAlways;
         tf.leftView = lv;
@@ -320,7 +251,7 @@
         rightView.backgroundColor = [UIColor clearColor];
         UIButton *codeButton = [UIButton new];
         codeButton.titleLabel.font =[UIFont systemFontOfSize:WidthRatio(24)];
-        [codeButton addTarget:self action:@selector(getRegistCode:) forControlEvents:(UIControlEventTouchUpInside)];
+        [codeButton addTarget:self action:@selector(getSetingCode:) forControlEvents:(UIControlEventTouchUpInside)];
         [codeButton setTitleColor:HEX_COLOR(0x666666) forState:(UIControlStateNormal)];
         [codeButton setTitle:@"获取验证码" forState:(UIControlStateNormal)];
         [rightView addSubview:codeButton];
@@ -333,11 +264,11 @@
         tf.rightView = rightView;
         
         UILabel *lin = [UILabel new];
-        lin.backgroundColor = HEX_COLOR(0xdddddd);
+        lin.backgroundColor = HEX_COLOR(0xF5F5F5);
         [tf addSubview:lin];
         [lin mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.bottom.right.mas_equalTo(tf);
-            make.height.mas_equalTo(HeightRatio(3));
+            make.height.mas_equalTo(1);
         }];
         [self.view addSubview:tf];
         [self.view addSubview:tf];
@@ -354,7 +285,7 @@
         tf.placeholder = @"请输入邀请码";
         [tf setValue:HEX_COLOR(0xAAAAAA) forKeyPath:@"_placeholderLabel.textColor"];
         tf.textColor = HEX_COLOR(0x5b5b5b);
-//        tf.secureTextEntry = YES;
+        //        tf.secureTextEntry = YES;
         tf.font = [UIFont systemFontOfSize:HeightRatio(32)];
         tf.backgroundColor = [UIColor clearColor];
         tf.delegate = self;
@@ -362,26 +293,26 @@
         UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(30), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
         
-        UIImageView *iconImageView = [UIImageView new];
-        iconImageView.image = MMGetImage(@"icon_invite");
-        [lv addSubview:iconImageView];
-        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(lv.mas_left);
-            make.centerY.mas_equalTo(lv.mas_centerY);
-            make.width.mas_equalTo(ScreenScale(24));
-            make.height.mas_equalTo(ScreenScale(25));
-        }];
+//        UIImageView *iconImageView = [UIImageView new];
+//        iconImageView.image = MMGetImage(@"icon_invite");
+//        [lv addSubview:iconImageView];
+//        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(lv.mas_left);
+//            make.centerY.mas_equalTo(lv.mas_centerY);
+//            make.width.mas_equalTo(ScreenScale(24));
+//            make.height.mas_equalTo(ScreenScale(25));
+//        }];
         
         tf.leftViewMode = UITextFieldViewModeAlways;
         tf.leftView = lv;
         [tf sizeToFit];
         
         UILabel *lin = [UILabel new];
-        lin.backgroundColor = HEX_COLOR(0xdddddd);
+        lin.backgroundColor = HEX_COLOR(0xF5F5F5);
         [tf addSubview:lin];
         [lin mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.bottom.right.mas_equalTo(tf);
-            make.height.mas_equalTo(HeightRatio(3));
+            make.height.mas_equalTo(1);
         }];
         [self.view addSubview:tf];
         _inviteCodeTextField = tf;
@@ -407,18 +338,18 @@
     tf.rightView = rightView;
 }
 
--(void)getRegistCode:(UIButton *)send{
-    if (![self.userName.text isValidateMobile]) {
+-(void)getSetingCode:(UIButton *)send{
+    if (![self.phoneText.text isValidateMobile]) {
         [WXZTipView showCenterWithText:@"请输入正确的手机号"];
         return;
     }
-//    if ([NSString isNOTNull:self.inviteCodeTextField.text]) {
-//        [WXZTipView showCenterWithText:@"邀请码不能为空"];
-//        return;
-//    }
+    //    if ([NSString isNOTNull:self.inviteCodeTextField.text]) {
+    //        [WXZTipView showCenterWithText:@"邀请码不能为空"];
+    //        return;
+    //    }
     
-//    [self openCountdown:send];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.userName.text,@"event":@"register"} withResultBlock:^(BOOL result, id value) {
+    //    [self openCountdown:send];
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"changemobile"} withResultBlock:^(BOOL result, id value) {
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
             [self openCountdown:send];
@@ -466,9 +397,9 @@
     });
     dispatch_resume(_timer);
 }
--(void)reginBtnClick{
-    if ([NSString isNOTNull:self.userName.text]) {
-        [WXZTipView showCenterWithText:@"请输入用户名"];
+-(void)sureBtnClick{
+    if ([NSString isNOTNull:self.phoneText.text]) {
+        [WXZTipView showCenterWithText:@"请输入手机号"];
         return;
     }
     if ([NSString isNOTNull:self.vercodeText.text]) {
@@ -481,35 +412,35 @@
 //    }
     
     
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:@{@"member_mobile":self.userName.text,@"captcha":self.vercodeText.text,@"invite_code":self.inviteCodeTextField.text ? self.inviteCodeTextField.text : @""} withResultBlock:^(BOOL result, id value) {
-        if (result) {
-            if (value && [value isKindOfClass:[NSDictionary class]]) {
-                NSDictionary *dict = value;
-                [HeaderToken setToken:dict[@"data"]];
-                [CommonTools setToken:dict[@"data"]];
-                [UserCache setUserPhone:self.userName.text];
-                [UserCache setUserPass:self.vercodeText.text];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    
-                }];
-            }
-            
-        }else {
-            [WXZTipView showCenterWithText:value[@"msg"]];
-        }
-    }];
+//    [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:@{@"member_mobile":self.phoneText.text,@"captcha":self.vercodeText.text,@"invite_code":self.inviteCodeTextField.text ? self.inviteCodeTextField.text : @""} withResultBlock:^(BOOL result, id value) {
+//        if (result) {
+//            if (value && [value isKindOfClass:[NSDictionary class]]) {
+//                NSDictionary *dict = value;
+//                [HeaderToken setToken:dict[@"data"]];
+//                [CommonTools setToken:dict[@"data"]];
+//                [UserCache setUserPhone:self.phoneText.text];
+//                [UserCache setUserPass:self.vercodeText.text];
+//                [self dismissViewControllerAnimated:YES completion:^{
+//
+//                }];
+//            }
+//
+//        }else {
+//            [WXZTipView showCenterWithText:value[@"msg"]];
+//        }
+//    }];
     
     /*
      
      
-     HP_LoginNetApi *loginNetApi  = [[HP_LoginNetApi alloc]initWithParameter:@{@"account":self.userName.text,@"password":self.vercodeText.text}];
+     HP_LoginNetApi *loginNetApi  = [[HP_LoginNetApi alloc]initWithParameter:@{@"account":self.phoneText.text,@"password":self.vercodeText.text}];
      [loginNetApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
      HP_LoginNetApi *loginRequest = (HP_LoginNetApi *)request;
      if ([loginRequest getCodeStatus] == 1) {
      NSDictionary *dict = [loginRequest getContent];
      [HeaderToken setToken:dict[@"token"]];
      [CommonTools setToken:dict[@"token"]];
-     [UserCache setUserPhone:self.userName.text];
+     [UserCache setUserPhone:self.phoneText.text];
      [UserCache setUserPass:self.vercodeText.text];
      [self.navigationController popToRootViewControllerAnimated:YES];
      }else{
@@ -525,13 +456,13 @@
 }
 
 -(void)forgotPasswordBtnClick{
-    [self.navigationController pushViewController:[[ForgotPasswordVC alloc]init] animated:YES];
+    
 }
 
 #pragma mark - textFiledDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (textField == self.userName) {
+    if (textField == self.phoneText) {
         
     }
     if (textField == self.inviteCodeTextField) {
@@ -540,13 +471,13 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (textField == self.userName) {
+    if (textField == self.phoneText) {
         
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile withParameters:@{@"member_mobile":textField.text} withResultBlock:^(BOOL result, id value) {
             if (result) {
                 
             }else {
-                [self setRightView:textField string:@"该用户已存在"];
+                [self setRightView:textField string:@"手机号已存在"];
             }
         }];
     }
@@ -559,17 +490,8 @@
             }
         }];
     }
-
+    
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end
