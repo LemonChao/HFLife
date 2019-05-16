@@ -3423,10 +3423,10 @@
 		049783742285957E00E143D7 /* 城市选择 */ = {
 			isa = PBXGroup;
 			children = (
-				049783752285957E00E143D7 /* CityChooseVC.h */,
 				049783762285957E00E143D7 /* SearchBarEffectController.m */,
-				049783772285957E00E143D7 /* CityChooseVC.m */,
 				049783782285957E00E143D7 /* SearchBarEffectController.h */,
+				049783752285957E00E143D7 /* CityChooseVC.h */,
+				049783772285957E00E143D7 /* CityChooseVC.m */,
 			);
 			path = "城市选择";
 			sourceTree = "<group>";

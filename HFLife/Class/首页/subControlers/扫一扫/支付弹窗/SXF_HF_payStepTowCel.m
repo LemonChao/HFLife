@@ -54,7 +54,7 @@
     [self.headerImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
         make.width.height.mas_equalTo(ScreenScale(22));
-        make.centerY.mas_equalTo(self.contentView.mas_centerY);
+        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(13.5));
     }];
     
     
@@ -68,6 +68,7 @@
         make.left.mas_equalTo(self.typeNameLb.mas_left);
         make.top.mas_equalTo(self.typeNameLb.mas_bottom).offset(8);
         make.height.mas_equalTo(ScreenScale(14));
+
     }];
     
     [self.selectedImgeV mas_makeConstraints:^(MASConstraintMaker *make) {

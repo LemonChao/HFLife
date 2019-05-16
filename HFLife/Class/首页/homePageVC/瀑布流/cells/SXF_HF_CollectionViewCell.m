@@ -87,8 +87,8 @@
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentView.mas_left).offset(ScreenScale(12));
         make.right.mas_equalTo(self.contentView.mas_right).offset(-ScreenScale(12));
-        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(5));
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-ScreenScale(5));
+        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(6));
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-ScreenScale(6));
     }];
     
     [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,6 +112,16 @@
         make.width.mas_equalTo(ScreenScale(9));
         make.height.mas_equalTo(ScreenScale(16));
         make.centerY.mas_equalTo(self.imageV.mas_centerY);
+    }];
+    
+    [self.time1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.titleLb.mas_right).offset(ScreenScale(10));
+        make.centerY.mas_equalTo(self.titleLb);
+    }];
+    
+    [self.time2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.subTitle.mas_right).offset(ScreenScale(10));
+        make.centerY.mas_equalTo(self.subTitle);
     }];
     
     [self layoutIfNeeded];

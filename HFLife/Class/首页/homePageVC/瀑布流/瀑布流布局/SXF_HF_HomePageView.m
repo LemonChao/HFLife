@@ -227,7 +227,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
         }else if(indexPath.row == 1){
             return ScreenScale(80);
         }
-        return ScreenScale(100);
+        return ScreenScale(120);
     }else if (indexPath.section ==1){
         return ScreenScale(180);
     }else if (indexPath.section == 2) {

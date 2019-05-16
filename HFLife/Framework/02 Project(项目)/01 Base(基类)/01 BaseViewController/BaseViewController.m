@@ -22,12 +22,13 @@ typedef enum NetStatus
 //@property (nonatomic ,strong) NSTimer *timer;
 
 @end
-
+static BOOL IsUpdateRemind = YES;
 @implementation BaseViewController
 {
     BOOL isHaveDian;
     //首字母是否为0
     BOOL isFirstLetter;
+    SELUpdateAlert *updateAlert;//更新
 }
 -(JQToastWindow *)loadingToastView
 {
@@ -285,6 +286,125 @@ typedef enum NetStatus
 -(void)showMyMessage:(NSString *)str{
     [WXZTipView showCenterWithText:str duration:2];
 }
+
+
+//版本更新
+
+#pragma mark APP更新
+-(void)versionUpdateRequest{
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:appUpDateUrl withParameters:@{} withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                [self setUpVersion:value];
+            }else{
+                if (self->updateAlert) {
+                    [self->updateAlert removeFromSuperview];
+                }
+            }
+        }
+    }];
+}
+//版本设置
+-(void)setUpVersion:(NSDictionary *)dataDict{
+    if (dataDict != nil) {
+        NSString *description = dataDict[@"remark"];
+        if (![NSString isNOTNull:description]) {
+            [CommonTools setUpdateDescription:description];
+        }else{
+            [CommonTools setUpdateDescription:@"有新版版本需要更新"];
+        }
+        // 是否强制更新
+        BOOL isForce = [dataDict[@"force_update"] boolValue];
+        [CommonTools setIsForce:isForce];
+        
+        BOOL hasNewVersion = [dataDict[@"is_update"] boolValue];
+        [CommonTools setIsHasNewVersion:hasNewVersion];
+        NSString *version = [NSString stringWithFormat:@"%@",dataDict[@"ver_nod"]];
+        [CommonTools setVersionString:version];
+        if (![NSString isNOTNull:[NSString stringWithFormat:@"%@",dataDict[@"url"]]]) {
+            [CommonTools setUpdateVersionAddress:[NSString stringWithFormat:@"%@",dataDict[@"url"]]];
+        }
+        if (hasNewVersion) {
+            if (updateAlert == nil) {
+                [self VersionBounced];
+            }else{
+                if (isForce) {
+                    updateAlert.isMandatory = YES;
+                }else{
+                    updateAlert.isMandatory = NO;
+                }
+            }
+            
+        }else{
+            if (updateAlert != nil) {
+                [updateAlert removeFromSuperview];
+            }
+        }
+        
+    }
+}
+
+
+
+
+#pragma mark APP展示更新控件
+-(void)VersionBounced{
+    __weak __typeof(&*self)weakSelf = self;
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    // app版本
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    if (![app_Version isEqualToString:[CommonTools getVersionString]]&&![NSString isNOTNull:[CommonTools getVersionString]]) {
+        BOOL hasNewVersion = [CommonTools IsHasNewVersion] ;
+        BOOL isForce =  [CommonTools IsForce] ;
+        if (hasNewVersion) {
+            if (isForce) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // UI更新代码
+                    self->updateAlert = [SELUpdateAlert showUpdateAlertWithVersion:[CommonTools getVersionString] Description:[CommonTools getUpdateDescription]];
+                    self->updateAlert.isMandatory = YES;
+                    [self->updateAlert setUpdateNow:^{
+                        if (![NSString isNOTNull:[CommonTools getVersionAddress]]) {
+                            //                            SFSafariViewController * safari = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:[CommonTools getVersionAddress]]];
+                            //                            [weakSelf presentViewController:safari animated:YES completion:nil];
+                            //                            [self->updateAlert dismissAlert];
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[CommonTools getVersionAddress]]];
+                        }else{
+                            [WXZTipView showCenterWithText:@"更新地址错误"];
+                        }
+                    }];
+                    
+                });
+                
+            }else{
+                
+                if (IsUpdateRemind) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // UI更新代码
+                        self->updateAlert = [SELUpdateAlert showUpdateAlertWithVersion:[CommonTools getVersionString] Description:[CommonTools getUpdateDescription]];
+                        [self->updateAlert setUpdateNow:^{
+                            IsUpdateRemind = YES;
+                            //                            SFSafariViewController * safari = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:[CommonTools getVersionAddress]]];
+                            //                            [weakSelf presentViewController:safari animated:YES completion:nil];
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[CommonTools getVersionAddress]]];
+                        }];
+                        [self->updateAlert setDismissBlock:^{
+                            IsUpdateRemind = NO;
+                        }];
+                    });
+                    
+                    
+                }
+                
+            }
+        }
+    }
+    
+}
+
+
+
+
 
 //手续费计算
 -(NSString *)computingCharge:(NSString *)percentage amount:(NSString *)amount{
