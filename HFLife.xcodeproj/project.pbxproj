@@ -803,6 +803,10 @@
 		6C7D85022285726700A8E9F7 /* ZCHomeDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D85012285726700A8E9F7 /* ZCHomeDiscountCell.m */; };
 		6C7D850822857C1800A8E9F7 /* ZCDisCountCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D850722857C1800A8E9F7 /* ZCDisCountCollectionCell.m */; };
 		6C7D850B2285845500A8E9F7 /* ZCRecommendCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D850A2285845500A8E9F7 /* ZCRecommendCollectionCell.m */; };
+		6C96E051228CF8C300E2CDDA /* ZCClassifyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C96E050228CF8C300E2CDDA /* ZCClassifyViewModel.m */; };
+		6C96E054228D09ED00E2CDDA /* ZCShopClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C96E053228D09ED00E2CDDA /* ZCShopClassifyModel.m */; };
+		6C96E057228D1C9800E2CDDA /* ZCShopClassifyWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C96E056228D1C9800E2CDDA /* ZCShopClassifyWordCell.m */; };
+		6CB0A363228D4F1400F77DBD /* ZCClassifyRightHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB0A362228D4F1400F77DBD /* ZCClassifyRightHeaderView.m */; };
 		6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6F422827B47001824A0 /* ShopTabbarViewController.m */; };
 		6CCAD6F822827CBE001824A0 /* ZC_HF_ShopHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6F722827CBE001824A0 /* ZC_HF_ShopHomeVC.m */; };
 		6CCAD6FF22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6FE22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m */; };
@@ -2300,6 +2304,14 @@
 		6C7D850722857C1800A8E9F7 /* ZCDisCountCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCDisCountCollectionCell.m; sourceTree = "<group>"; };
 		6C7D85092285845500A8E9F7 /* ZCRecommendCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCRecommendCollectionCell.h; sourceTree = "<group>"; };
 		6C7D850A2285845500A8E9F7 /* ZCRecommendCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCRecommendCollectionCell.m; sourceTree = "<group>"; };
+		6C96E04F228CF8C300E2CDDA /* ZCClassifyViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCClassifyViewModel.h; sourceTree = "<group>"; };
+		6C96E050228CF8C300E2CDDA /* ZCClassifyViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCClassifyViewModel.m; sourceTree = "<group>"; };
+		6C96E052228D09ED00E2CDDA /* ZCShopClassifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopClassifyModel.h; sourceTree = "<group>"; };
+		6C96E053228D09ED00E2CDDA /* ZCShopClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopClassifyModel.m; sourceTree = "<group>"; };
+		6C96E055228D1C9800E2CDDA /* ZCShopClassifyWordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopClassifyWordCell.h; sourceTree = "<group>"; };
+		6C96E056228D1C9800E2CDDA /* ZCShopClassifyWordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopClassifyWordCell.m; sourceTree = "<group>"; };
+		6CB0A361228D4F1400F77DBD /* ZCClassifyRightHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCClassifyRightHeaderView.h; sourceTree = "<group>"; };
+		6CB0A362228D4F1400F77DBD /* ZCClassifyRightHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCClassifyRightHeaderView.m; sourceTree = "<group>"; };
 		6CCAD6F322827B47001824A0 /* ShopTabbarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopTabbarViewController.h; sourceTree = "<group>"; };
 		6CCAD6F422827B47001824A0 /* ShopTabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopTabbarViewController.m; sourceTree = "<group>"; };
 		6CCAD6F622827CBE001824A0 /* ZC_HF_ShopHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ShopHomeVC.h; sourceTree = "<group>"; };
@@ -6642,6 +6654,10 @@
 				6C0A93162289212D0090623B /* ZCShopClassifyLeftCell.m */,
 				6C0A931C228948E40090623B /* ZCShopClassifyRightCell.h */,
 				6C0A931D228948E40090623B /* ZCShopClassifyRightCell.m */,
+				6C96E055228D1C9800E2CDDA /* ZCShopClassifyWordCell.h */,
+				6C96E056228D1C9800E2CDDA /* ZCShopClassifyWordCell.m */,
+				6CB0A361228D4F1400F77DBD /* ZCClassifyRightHeaderView.h */,
+				6CB0A362228D4F1400F77DBD /* ZCClassifyRightHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -6765,6 +6781,10 @@
 		6C96E04E228CF70700E2CDDA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6C96E04F228CF8C300E2CDDA /* ZCClassifyViewModel.h */,
+				6C96E050228CF8C300E2CDDA /* ZCClassifyViewModel.m */,
+				6C96E052228D09ED00E2CDDA /* ZCShopClassifyModel.h */,
+				6C96E053228D09ED00E2CDDA /* ZCShopClassifyModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -7232,6 +7252,7 @@
 				04153C0B228AA2F100AA5DAF /* WaimaiZhiquCell.m in Sources */,
 				658C39EC21E9FA5B00880B6A /* UIColor+JXAdd.m in Sources */,
 				658C39EE21E9FA5B00880B6A /* JXCategoryBaseCell.m in Sources */,
+				6C96E051228CF8C300E2CDDA /* ZCClassifyViewModel.m in Sources */,
 				04A5089D227EDD3A0013E8EC /* UIColor+WHColor.m in Sources */,
 				658B7CA821D749E100801CC8 /* AnimationScaleEnd.m in Sources */,
 				658C39EF21E9FA5B00880B6A /* JXCategoryBaseCellModel.m in Sources */,
@@ -7305,6 +7326,7 @@
 				04F52166228A77EA00ED4995 /* LoginVC.m in Sources */,
 				0461600D228AB1360042830B /* SXF_HF_paySuccessVC.m in Sources */,
 				6C2F5149222A663D0022EE03 /* UIImageView+HXExtension.m in Sources */,
+				6C96E057228D1C9800E2CDDA /* ZCShopClassifyWordCell.m in Sources */,
 				0453D17A228266D200880C2A /* SXF_HF_HomePageView.m in Sources */,
 				04A5089B227EDD3A0013E8EC /* NSArray+WHArray.m in Sources */,
 				658C3B0C21F57FBC00880B6A /* CityModel.m in Sources */,
@@ -7688,6 +7710,7 @@
 				048DAC5822857516006E6BA2 /* balanceRecoardView.m in Sources */,
 				658B7C4B21D749E100801CC8 /* NSArray+JSON.m in Sources */,
 				0453D1BF2283D99500880C2A /* UIFont+scaleSize.m in Sources */,
+				6CB0A363228D4F1400F77DBD /* ZCClassifyRightHeaderView.m in Sources */,
 				658B7C7821D749E100801CC8 /* LXAlertView.m in Sources */,
 				04A508D1227EDD3A0013E8EC /* NSString+PinYin.m in Sources */,
 				04A508E3227EDD3A0013E8EC /* HRJSON.m in Sources */,
@@ -7712,6 +7735,7 @@
 				04A50871227EDD3A0013E8EC /* UIColor+Chameleon.m in Sources */,
 				04B9D57922803E260084FA23 /* BaseViewController.m in Sources */,
 				658C3BFB21F815B100880B6A /* UIView+MHFrame.m in Sources */,
+				6C96E054228D09ED00E2CDDA /* ZCShopClassifyModel.m in Sources */,
 				048DAC4B22857516006E6BA2 /* exchangeFQ_VC.m in Sources */,
 				04F5217A228A789600ED4995 /* AboutVC.m in Sources */,
 				658C39ED21E9FA5B00880B6A /* JXCategoryBaseView.m in Sources */,

@@ -7,10 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "ZCShopClassifyModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZC_HF_ClassifyRightVC : BaseViewController
+
+@property(nonatomic, strong) NSArray <__kindof ZCShopClassifyListModel *> *dataArray;
 
 @end
 

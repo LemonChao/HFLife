@@ -24,32 +24,45 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self.contentView addSubview:self.imageView];
+//        [self.contentView addSubview:self.imageView];
         [self.contentView addSubview:self.titleLable];
         
-        [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.top.equalTo(self.contentView);
-            make.size.mas_equalTo(CGSizeMake(ScreenScale(55), ScreenScale(55)));
-        }];
+//        [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerX.top.equalTo(self.contentView);
+//            make.size.mas_equalTo(CGSizeMake(ScreenScale(55), ScreenScale(55)));
+//        }];
         
         [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(self.contentView);
+            make.edges.equalTo(self.contentView);
         }];
     }
     return self;
 }
 
+- (void)setModel:(ZCShopClassifyListModel *)model {
+    _model = model;
+    self.titleLable.text = model.gc_name;
+    NSInteger column = model.indexPath.row % 3;
+    if (column == 0) {
+        self.titleLable.textAlignment = NSTextAlignmentLeft;
+    }else if (column == 1) {
+        self.titleLable.textAlignment = NSTextAlignmentCenter;
+    }else {
+        self.titleLable.textAlignment = NSTextAlignmentRight;
+    }
+}
+
 
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [UITool imageViewImage:image(@"jiajujiazhuang") contentMode:UIViewContentModeScaleAspectFit];
+        _imageView = [UITool imageViewImage:nil contentMode:UIViewContentModeScaleAspectFit];
     }
     return _imageView;
 }
 
 - (UILabel *)titleLable {
     if (!_titleLable) {
-        _titleLable = [UITool labelWithText:@"苹果" textColor:ImportantColor font:SystemFont(12) alignment:NSTextAlignmentCenter numberofLines:1 backgroundColor:[UIColor whiteColor]];
+        _titleLable = [UITool labelWithText:nil textColor:ImportantColor font:SystemFont(12) alignment:NSTextAlignmentCenter numberofLines:1 backgroundColor:[UIColor whiteColor]];
     }
     return _titleLable;
 }

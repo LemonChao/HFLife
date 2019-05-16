@@ -1,8 +1,8 @@
 //
-//  ZCShopClassifyRightCell.h
+//  ZCClassifyRightHeaderView.h
 //  HFLife
 //
-//  Created by zchao on 2019/5/13.
+//  Created by zchao on 2019/5/16.
 //  Copyright © 2019 luyukeji. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZCShopClassifyRightCell : UICollectionViewCell
+@interface ZCClassifyRightHeaderView : UICollectionReusableView
 
 @property(nonatomic, strong) ZCShopClassifyListModel *model;
 

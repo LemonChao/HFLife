@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZCShopClassifyModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZCShopClassifyLeftCell : UITableViewCell
+
+@property(nonatomic, strong) ZCShopClassifyModel *model;
 
 @end
 
