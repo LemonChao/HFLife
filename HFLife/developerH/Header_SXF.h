@@ -11,6 +11,7 @@
 
 /************************yourTools************************/
 #import "HW3DBannerView.h"
+#import "SELUpdateAlert.h"
 #import "LYBmOcrManager.h"
 #import "SXF_HF_HomePageModel.h"
 #import "SXF_HF_MainPageModel.h"
@@ -23,6 +24,12 @@
 /************************subUrl************************/
 //申请列表(web)
 #define OPENSHOPURLLIST @"https://www.hfgld.net/app_html/enter_shop_model/#/list"
+
+
+
+static NSString *const appUpDateUrl = @"";
+static NSString *const upDateLocationUrl = @"";
+
 
 static NSString *const shopUrl = @"w=index&t=index";
 

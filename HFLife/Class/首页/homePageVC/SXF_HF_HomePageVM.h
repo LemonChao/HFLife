@@ -12,6 +12,34 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_HomePageVM : NSObject
 @property (nonatomic, strong)UIViewController *vc;
+
+
+
+/**
+ 更新位置
+ */
+- (void)upDataLocation;
+
+
+/**
+ 点击分区头
+ */
+- (void)clickHeaderBtn:(NSInteger) index;
+
+/**
+    点击分区cell
+ */
+- (void)clickCellItem:(NSIndexPath *)indexPath;
+
+
+/**
+ 开启定时器
+ */
+- (void)fireTimer;
+/**
+ 释放定时器
+ */
+- (void)cancleTimer;
 @end
 
 NS_ASSUME_NONNULL_END

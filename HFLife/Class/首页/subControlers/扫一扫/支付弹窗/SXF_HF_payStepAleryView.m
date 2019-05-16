@@ -58,6 +58,7 @@
 {
     NSArray *_titleArr;
     NSArray *_imageArr;
+    NSArray *_subTitle;
 }
 - (instancetype)init
 {
@@ -80,6 +81,7 @@
     
     _titleArr = @[@"余额(剩余:￥8888.88)", @"支付宝(*秋艳)", @"微信(*秋艳)", @"QQ钱包", @"中国工商银行储蓄卡(8888)", @"花呗"];
     _imageArr = @[@"余额", @"支付宝", @"微信 (1)", @"qqPay", @"工商银行", @"花呗"];
+    _subTitle = @[@"", @"", @"", @"", @"", @"当前交易暂不支付花呗，请选择其他方式交易"];
     
     self.showAlertView = [UIView new];
     self.titleLb       = [UILabel new];
@@ -207,7 +209,7 @@
     SXF_HF_payStepTowCel *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SXF_HF_payStepTowCel class]) forIndexPath:indexPath];
     
     cell.typeNameLb.text = _titleArr[indexPath.row];
-    cell.subLb.text = @"sub";
+    cell.subLb.text = _subTitle[indexPath.row];
     cell.headerImageV.image = MY_IMAHE(_imageArr[indexPath.row]);
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -219,7 +221,10 @@
     !self.clickStepTowCellCallback ? : self.clickStepTowCellCallback(indexPath);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return ScreenScale(49);
+    if ([_subTitle[indexPath.row] isEqualToString:@""]) {
+        return ScreenScale(49);
+    }
+    return ScreenScale(68);
 }
 
 
@@ -359,6 +364,8 @@
         _stepTowTableView = [UITableView new];
         _stepTowTableView.separatorColor = HEX_COLOR(0xF5F5F5);
         _stepTowTableView.separatorInset = UIEdgeInsetsMake(0, ScreenScale(-12), 0, ScreenScale(-12));
+        _stepTowTableView.estimatedRowHeight = 50;
+        _stepTowTableView.rowHeight = UITableViewAutomaticDimension;
         [_stepTowTableView registerClass:[SXF_HF_payStepTowCel class] forCellReuseIdentifier:NSStringFromClass([SXF_HF_payStepTowCel class])];
     }
     

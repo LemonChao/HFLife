@@ -25,5 +25,6 @@
 #import <Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDAutoLayout.h>
+#import <JZLocationConverter.h>
 
 #endif /* PodHeader_h */

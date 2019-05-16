@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "JFLocationSingleton.h"
 @protocol JFLocationDelegate <NSObject>
 
 /// 定位中
