@@ -111,14 +111,6 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    if (section == 0) {
-//        return 0;
-//    }
-//    else if (section == 4) {
-//        return 6;
-//    }else {
-//        return 1;
-//    }
     NSArray *sectionArray = self.viewModel.dataArray[section];
     return sectionArray.count;
 }
@@ -220,6 +212,7 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = BackGroundColor;
+        _collectionView.showsVerticalScrollIndicator = NO;
         
         [_collectionView registerClass:[ZCHomeDiscountCell class] forCellWithReuseIdentifier:NSStringFromClass([ZCHomeDiscountCell class])];
         

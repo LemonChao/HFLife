@@ -6665,6 +6665,13 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		6C96E04E228CF70700E2CDDA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		6CCAD6F922827CCC001824A0 /* ShopHome */ = {
 			isa = PBXGroup;
 			children = (
@@ -6683,6 +6690,7 @@
 				6CCAD6FE22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m */,
 				6C0A9319228929A10090623B /* ZC_HF_ClassifyRightVC.h */,
 				6C0A931A228929A10090623B /* ZC_HF_ClassifyRightVC.m */,
+				6C96E04E228CF70700E2CDDA /* ViewModel */,
 				6C0A93182289292C0090623B /* Views */,
 			);
 			path = ShopClassify;
