@@ -22,12 +22,16 @@
 
 @implementation UIFont (scaleSize)
 +(void)load {
-    //获取替换后的类方法
-    Method newMethod = class_getClassMethod([self class], @selector(adjustFont:));
-    //获取替换前的类方法
-    Method method = class_getClassMethod([self class], @selector(systemFontOfSize:));
-    //然后交换类方法
-    method_exchangeImplementations(newMethod, method);
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        method_exchangeImplementations(class_getClassMethod([self class], @selector(adjustFont:)),
+                                       class_getClassMethod([self class], @selector(systemFontOfSize:)));
+        
+        method_exchangeImplementations(class_getClassMethod(self.class, @selector(resizeSystemFontOfSize:weight:)),
+                                       class_getClassMethod(self.class, @selector(systemFontOfSize:weight:)));
+    });
+
 }
 
 //在6p上字体扩大1.5倍
@@ -54,19 +58,32 @@
 //在6s上字号是17,在6P是上字号扩大到18号（字号扩大1个字号），在4s和5s上字号缩小到15号字（字号缩小2个字号）
 +(UIFont *)adjustFont:(CGFloat)fontSize{
 
-    UIFont *newFont = nil;
-    if (IS_IPHONE_5 || IS_IPHONE_4){
-        newFont = [UIFont adjustFont:fontSize - IPHONE5_INCREMENT];
-    }else if (IS_IPHONE_6_PLUS){
-        newFont = [UIFont adjustFont:fontSize + IPHONE6PLUS_INCREMENT];
-    }else if (IS_IPHONE_6){
-        newFont = [UIFont adjustFont:fontSize];
-    }else{
-        newFont = [UIFont adjustFont:fontSize + IPHONE6PLUS_INCREMENT];
-    }
-    return newFont;
+//    UIFont *newFont = nil;
+//    if (IS_IPHONE_5 || IS_IPHONE_4){
+//        newFont = [UIFont adjustFont:fontSize - IPHONE5_INCREMENT];
+//    }else if (IS_IPHONE_6_PLUS){
+//        newFont = [UIFont adjustFont:fontSize + IPHONE6PLUS_INCREMENT];
+//    }else if (IS_IPHONE_6){
+//        newFont = [UIFont adjustFont:fontSize];
+//    }else{
+//        newFont = [UIFont adjustFont:fontSize + IPHONE6PLUS_INCREMENT];
+//    }
+//    return newFont;
+    
+    return [UIFont adjustFont:[self adjustSize:fontSize]];
 }
 
++ (UIFont *)resizeSystemFontOfSize:(CGFloat)size weight:(UIFontWeight)weight {
+    return [UIFont resizeSystemFontOfSize:size weight:weight];
+}
 
++ (CGFloat)adjustSize:(CGFloat)fontSize {
+    if (SCREEN_WIDTH < 375.0) {
+        fontSize -= IPHONE5_INCREMENT;
+    }else if (SCREEN_WIDTH > 375) {
+        fontSize += IPHONE6PLUS_INCREMENT;
+    }
+    return fontSize;
+}
 
 @end

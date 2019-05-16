@@ -38,6 +38,11 @@ static NSString *const kWXLogin = @"member/wxLogin";
 static NSString *const kLogout = @"member/logout";
 /** 发送验证码 */
 static NSString *const kSendsms = @"sms/send";
+/** 检查手机号 */
+static NSString *const kCheckMobile = @"member/checkMobile";
+/** 检测邀请码 */
+static NSString *const kCheckInviteCode = @"member/checkInviteCode";
+
 
 
 /** 分享数据 */

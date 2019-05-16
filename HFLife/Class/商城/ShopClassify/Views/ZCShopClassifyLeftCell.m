@@ -51,10 +51,10 @@
     self.contentView.backgroundColor = selected ? [UIColor whiteColor] : RGBA(245, 245, 245, 1);
 }
 
-//- (void)setModel:(ZCClassifyModel *)model {
-//    [self.titleButton setTitle:model.category_name forState:UIControlStateSelected];
-//    [self.titleButton setTitle:model.category_name forState:UIControlStateNormal];
-//}
+- (void)setModel:(ZCShopClassifyModel *)model {
+    [self.titleButton setTitle:model.gc_name forState:UIControlStateSelected];
+    [self.titleButton setTitle:model.gc_name forState:UIControlStateNormal];
+}
 
 
 

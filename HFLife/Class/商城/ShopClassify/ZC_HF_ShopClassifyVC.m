@@ -10,11 +10,12 @@
 #import "ZC_HF_ShopHomeSearchButton.h"
 #import "ZCShopClassifyLeftCell.h"
 #import "ZC_HF_ClassifyRightVC.h"
+#import "ZCClassifyViewModel.h"
 
 @interface ZC_HF_ShopClassifyVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic, strong) UITableView *leftTableView;
-
+@property(nonatomic, strong) ZCClassifyViewModel *viewModel;
 @property(nonatomic, strong) ZC_HF_ClassifyRightVC *rightVC;
 @end
 
@@ -34,12 +35,15 @@
     [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.equalTo(self.view);
         make.top.equalTo(self.customNavBar.mas_bottom);
-        make.width.mas_equalTo(84);
+        make.width.mas_equalTo(ScreenScale(84));
     }];
     [self.rightVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.bottom.equalTo(self.view);
         make.left.equalTo(self.leftTableView.mas_right);
     }];
+    
+
+    [self getData];
 }
 
 - (void)setupNavBar {
@@ -52,10 +56,14 @@
 
 #pragma mark - event response
 
-- (void)loadServerData{
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"" withParameters:@{} withResultBlock:^(BOOL result, id value) {
-        if (result){
+- (void)getData{
+    [[self.viewModel.classifyCmd execute:nil] subscribeNext:^(id  _Nullable x) {
+        if ([x boolValue]) {
+            [self.leftTableView reloadData];
         }
+        
+    } error:^(NSError * _Nullable error) {
+        
     }];
 }
 
@@ -63,7 +71,7 @@
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.viewModel.dataArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -72,9 +80,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ZCShopClassifyLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopClassifyLeftCell class])];
-    
+    ZCShopClassifyModel *model = self.viewModel.dataArray[indexPath.row];
+    cell.model = model;
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ZCShopClassifyModel *model = self.viewModel.dataArray[indexPath.row];
+
+    self.rightVC.dataArray = model.class_list;
+}
+
 
 #pragma mark - getters and setters
 - (UITableView *)leftTableView {
@@ -89,6 +105,13 @@
         _leftTableView.delegate = self;
     }
     return _leftTableView;
+}
+
+- (ZCClassifyViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[ZCClassifyViewModel alloc] init];
+    }
+    return _viewModel;
 }
 
 #pragma mark - private
