@@ -7,7 +7,8 @@
 //
 
 #import "SXF_HF_Password.h"
-@interface SXF_HF_Password()<UITextFieldDelegate>
+#import "APNumberPad.h"
+@interface SXF_HF_Password()<UITextFieldDelegate, APNumberPadDelegate>
 
 @property(nonatomic,strong)UITextField *pswTF;
 
@@ -27,6 +28,8 @@
         
         //添加对输入值的监视
         [_pswTF addTarget:self action:@selector(valueChange:) forControlEvents:UIControlEventEditingChanged];
+        
+       
     }
     
     return _pswTF;
@@ -49,6 +52,16 @@
 #pragma mark - 设置UI
 - (void)initUI{
     self.backgroundColor = [UIColor whiteColor];
+    
+    UIView *keyBoard = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 224)];
+    keyBoard.backgroundColor = [UIColor redColor];
+//    self.pswTF.inputAccessoryView = keyBoard;
+    self.pswTF.inputView = [UIView new];
+    
+    
+    APNumberPad *pad = [APNumberPad numberPadWithDelegate:self];
+    pad.frame = CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(224));
+    self.pswTF.inputAccessoryView = pad;
     
     [self addSubview:self.pswTF];
     

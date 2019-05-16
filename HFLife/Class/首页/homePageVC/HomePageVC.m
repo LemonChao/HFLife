@@ -158,7 +158,7 @@
     testBtn.backgroundColor = [UIColor orangeColor];
     testBtn.center = self.view.center;
     
-//    [self.view addSubview:testBtn];
+    [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{
         [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
             
