@@ -512,6 +512,7 @@
 		04F946F7228C1F9700085F78 /* APNumberPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946ED228C1F9600085F78 /* APNumberPad.m */; };
 		04F946F8228C1F9700085F78 /* 回删附号@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F946EE228C1F9600085F78 /* 回删附号@2x.png */; };
 		04F946F9228C1F9700085F78 /* 回删附号.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F946EF228C1F9600085F78 /* 回删附号.png */; };
+		04F9ABF0228E677C00A602CE /* NSString+shaEdenty.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9ABEF228E677C00A602CE /* NSString+shaEdenty.m */; };
 		04FB7F1522865A4900150CA7 /* 余额.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1322865A4900150CA7 /* 余额.gif */; };
 		04FB7F1622865A4900150CA7 /* 余额底图_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1422865A4900150CA7 /* 余额底图_00000.png */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
@@ -1759,6 +1760,8 @@
 		04F946F1228C1F9600085F78 /* APNumberPadDefaultStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APNumberPadDefaultStyle.h; sourceTree = "<group>"; };
 		04F946F2228C1F9600085F78 /* APNumberButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APNumberButton.h; sourceTree = "<group>"; };
 		04F946F3228C1F9600085F78 /* APNumberPadStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APNumberPadStyle.h; sourceTree = "<group>"; };
+		04F9ABEE228E677C00A602CE /* NSString+shaEdenty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+shaEdenty.h"; sourceTree = "<group>"; };
+		04F9ABEF228E677C00A602CE /* NSString+shaEdenty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+shaEdenty.m"; sourceTree = "<group>"; };
 		04FB7F1322865A4900150CA7 /* 余额.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "余额.gif"; sourceTree = "<group>"; };
 		04FB7F1422865A4900150CA7 /* 余额底图_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额底图_00000.png"; sourceTree = "<group>"; };
 		04FB7F1722866BE300150CA7 /* UIImageView+LoadGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadGif.h"; sourceTree = "<group>"; };
@@ -4340,6 +4343,7 @@
 			children = (
 				658B7A5821D749DF00801CC8 /* NSString+Helper.m */,
 				658B7A6F21D749DF00801CC8 /* NSString+Helper.h */,
+				04F9ABED228E674200A602CE /* sha256加密 */,
 				04A507D3227EDD390013E8EC /* 03 汉字转拼音 */,
 				04A507D6227EDD390013E8EC /* 01 正则表达式 */,
 				04A507D9227EDD390013E8EC /* 02 MD5加密 */,
@@ -5623,6 +5627,15 @@
 				04F946F3228C1F9600085F78 /* APNumberPadStyle.h */,
 			);
 			path = "键盘";
+			sourceTree = "<group>";
+		};
+		04F9ABED228E674200A602CE /* sha256加密 */ = {
+			isa = PBXGroup;
+			children = (
+				04F9ABEE228E677C00A602CE /* NSString+shaEdenty.h */,
+				04F9ABEF228E677C00A602CE /* NSString+shaEdenty.m */,
+			);
+			path = "sha256加密";
 			sourceTree = "<group>";
 		};
 		04FB7F1222865A3200150CA7 /* 动画资源图 */ = {
@@ -7759,6 +7772,7 @@
 				048DAC6322857516006E6BA2 /* BillDetailsCell.m in Sources */,
 				048DAC5022857516006E6BA2 /* FQ_homeTableV.m in Sources */,
 				658B7C4F21D749E100801CC8 /* UIView+TBFrame.m in Sources */,
+				04F9ABF0228E677C00A602CE /* NSString+shaEdenty.m in Sources */,
 				659EA04A22015FC4004471CD /* WBPCreate.m in Sources */,
 				04A50871227EDD3A0013E8EC /* UIColor+Chameleon.m in Sources */,
 				04B9D57922803E260084FA23 /* BaseViewController.m in Sources */,

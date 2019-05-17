@@ -22,6 +22,14 @@
 
 
 /************************subUrl************************/
+
+//存储token
+static NSString *const USER_TOKEN              = @"userToken";
+//存储登录状态
+static NSString *const LOGIN_STATES            = @"loginStates";
+
+
+
 //申请列表(web)
 #define OPENSHOPURLLIST @"https://www.hfgld.net/app_html/enter_shop_model/#/list"
 
@@ -30,6 +38,8 @@
 static NSString *const appUpDateUrl = @"";
 static NSString *const upDateLocationUrl = @"";
 
+//首页轮播导航接口
+static NSString *const HomeNavBanner  =@"api/index/navBanner";
 
 static NSString *const shopUrl = @"w=index&t=index";
 
