@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+/**
+ 获取系统版本号
+ */
+-(NSString *)getAppVersion;
 
 /**
  判断是否开启定位

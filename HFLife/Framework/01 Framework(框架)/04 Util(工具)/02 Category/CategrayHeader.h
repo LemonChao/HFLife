@@ -20,6 +20,7 @@
 #import "NSString+Regular.h"
 #import "NSString+MD5.h"
 #import "NSStrig+AttributeString.h"
+#import "NSString+shaEdenty.h"
 
 #import "NSArray+layoutViews.h"
 #import "NSArray+layoutViews.h"

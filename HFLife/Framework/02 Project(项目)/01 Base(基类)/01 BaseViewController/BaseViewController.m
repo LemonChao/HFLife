@@ -364,7 +364,7 @@ static BOOL IsUpdateRemind = YES;
         BOOL hasNewVersion = [CommonTools IsHasNewVersion] ;
         BOOL isForce =  [CommonTools IsForce] ;
         if (!hasNewVersion) {
-            if (!isForce) {
+            if (isForce) {
                 //强制更新
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // UI更新代码

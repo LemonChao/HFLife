@@ -13,7 +13,7 @@
 #import "HRRequest.h"
 #import "HR_dataManagerTool.h"
 #import "LoginVC.h"
-
+#import "RSAEncryptor.h"
 
 
 @interface networkingManagerTool()
@@ -91,6 +91,46 @@
 + (void) requestToServerWithType:(NSString *)RequestType withSubUrl:(NSString *)subUrl withParameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress withResultBlock:(ValueBlock)valueBlock witnVC:(UIViewController *)VC
 {
     HRRequest *requestManager = [HRRequest manager];
+    
+    
+    
+    /**********************配置g公参*************************/
+    
+//    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    
+    /*******************************************************/
+    
+    
+    
+    /**********************配置header*************************/
+    
+    
+    //做sin签名
+    NSString *sinStr = [NSString stringWithFormat:@"%@&%@&%@&%@", @"c9dfaa769668ac047ff0e72a7fecb991", subUrl, [NSDate currentTimeStamp10], [self getAppVersion]];
+    //转小写
+    NSString *newSinStr = [sinStr lowercaseString];
+    NSString *sha256Str = [newSinStr SHA256];
+    //设置请求头
+    //签名sin
+    [requestManager.sessionManager.requestSerializer setValue:sha256Str forHTTPHeaderField:@"SIGN"];
+    //appVersion
+    [requestManager.sessionManager.requestSerializer setValue:[self getAppVersion] forHTTPHeaderField:@"VERSION"];
+    
+    //currentTime
+    [requestManager.sessionManager.requestSerializer setValue:[NSDate currentTimeStamp10] forHTTPHeaderField:@"TIME"];
+    
+    //设置token
+    NSString *gettoken = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
+    //token 设置到请求头上
+    if (gettoken) {
+        [requestManager.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@" , gettoken] forHTTPHeaderField:@"APP-TOKEN"];
+    }
+    NSLog(@"httpHeaders : %@", requestManager.sessionManager.requestSerializer.HTTPRequestHeaders);
+    /********************************************************/
+    
+    
+    
+    
     //GET
     if ([RequestType isEqualToString:GET]) {
         [requestManager GET:subUrl para:parameters progress:^(NSProgress *progressResult) {

@@ -40,7 +40,8 @@ typedef NS_ENUM(NSUInteger, HRNetStatus) {
 };
 
 @interface HRBaseRequest : NSObject
-
+//网络请求(外层设置请求头)
+@property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 //0.1 请求类型
 @property (assign, nonatomic) HRRequestType requestType;
 //0.2 请求方式

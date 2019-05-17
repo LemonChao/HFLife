@@ -136,14 +136,14 @@
     NSDictionary *valueDict = [HR_dataManagerTool dataToJson:result];
     
     
-    if ([valueDict[@"code"] integerValue] == 1) {
-        //data 可修改，原理同上
-        success(valueDict);
-    } else {
-        //errorMsg 可修改，原理同上
-        success(valueDict);
-    }
-    
+//    if ([valueDict[@"code"] integerValue] == 1) {
+//        //data 可修改，原理同上
+//        success(valueDict);
+//    } else {
+//        //errorMsg 可修改，原理同上
+//        success(valueDict);
+//    }
+    success(valueDict);
     
 //    if ([valueDict[@"success"] integerValue] == 1) {
 //        //data 可修改，原理同上
