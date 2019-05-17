@@ -821,6 +821,7 @@
 		6CCAD70F2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD70E2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m */; };
 		6CCC1CE4228EA49900020A45 /* ZCShopCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE3228EA49900020A45 /* ZCShopCartTableViewCell.m */; };
 		6CCC1CE7228EBCF500020A45 /* ZCShopCartSctionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */; };
+		6CCC1CEA228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE9228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m */; };
 		6CFB99AE228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */; };
 		C001CFEA1B0E8AD33641E112 /* libPods-HFLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7358FE6F8201198FC2AE374D /* libPods-HFLife.a */; };
 /* End PBXBuildFile section */
@@ -2345,6 +2346,8 @@
 		6CCC1CE3228EA49900020A45 /* ZCShopCartTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartTableViewCell.m; sourceTree = "<group>"; };
 		6CCC1CE5228EBCF500020A45 /* ZCShopCartSctionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartSctionHeader.h; sourceTree = "<group>"; };
 		6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartSctionHeader.m; sourceTree = "<group>"; };
+		6CCC1CE8228ECD5500020A45 /* ZCShopCartTableHeaderFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartTableHeaderFooter.h; sourceTree = "<group>"; };
+		6CCC1CE9228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartTableHeaderFooter.m; sourceTree = "<group>"; };
 		6CFB99AC228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_HomeRushPurchaseCell.h; sourceTree = "<group>"; };
 		6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_HomeRushPurchaseCell.m; sourceTree = "<group>"; };
 		7358FE6F8201198FC2AE374D /* libPods-HFLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HFLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6910,6 +6913,8 @@
 				6CCC1CE3228EA49900020A45 /* ZCShopCartTableViewCell.m */,
 				6CCC1CE5228EBCF500020A45 /* ZCShopCartSctionHeader.h */,
 				6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */,
+				6CCC1CE8228ECD5500020A45 /* ZCShopCartTableHeaderFooter.h */,
+				6CCC1CE9228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -7641,6 +7646,7 @@
 				04A508D0227EDD3A0013E8EC /* UIButton+ChainTypeButton.m in Sources */,
 				6C0A93172289212D0090623B /* ZCShopClassifyLeftCell.m in Sources */,
 				04F5F24D228412630043BBB7 /* SXF_HF_AlertView.m in Sources */,
+				6CCC1CEA228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m in Sources */,
 				04B9D57722803E260084FA23 /* BaseTabBarController.m in Sources */,
 				658B7C5721D749E100801CC8 /* UIViewController+LKBubbleView.m in Sources */,
 				04F946F7228C1F9700085F78 /* APNumberPad.m in Sources */,

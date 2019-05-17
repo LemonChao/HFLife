@@ -9,6 +9,7 @@
 #import "ZC_HF_ShopCartVC.h"
 #import "ZCShopCartTableViewCell.h"
 #import "ZCShopCartSctionHeader.h"
+#import "ZCShopCartTableHeaderFooter.h"
 
 @interface ZC_HF_ShopCartVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -67,6 +68,9 @@
 //        } else {
 //            self.automaticallyAdjustsScrollViewInsets = NO;
 //        }
+        
+        _tableView.tableHeaderView = [[ZCShopCartTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(33))];
+        
         [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([UITableViewHeaderFooterView class])];
         [_tableView registerClass:[ZCShopCartSctionHeader class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([ZCShopCartSctionHeader class])];
         [_tableView registerClass:[ZCShopCartTableViewCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopCartTableViewCell class])];
