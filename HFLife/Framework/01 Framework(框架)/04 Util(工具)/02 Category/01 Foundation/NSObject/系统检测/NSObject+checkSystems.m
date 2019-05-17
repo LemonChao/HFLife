@@ -14,6 +14,14 @@
 @implementation NSObject (checkSystems)
 
 
+- (NSString *)getAppVersion{
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    //CFShow((__bridge CFTypeRef)(infoDictionary));
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    return app_Version;
+}
+
+
 
 + (BOOL)isLocationServiceOpen {
     if ([ CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {

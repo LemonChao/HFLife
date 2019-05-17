@@ -28,20 +28,20 @@
 
 static NSString *const yourTestUrl = @"w=index&t=index";
 /** 手机注册 */
-static NSString *const kRegisterMobile = @"member/registerMobile";
+static NSString *const kRegisterMobile = @"api/member/registerMobile";
 
 /** 手机登录 */
-static NSString *const kMobileLogin = @"member/mobileLogin";
+static NSString *const kMobileLogin = @"api/member/mobileLogin";
 /** 微信登录 */
-static NSString *const kWXLogin = @"member/wxLogin";
+static NSString *const kWXLogin = @"api/member/wxLogin";
 /** 注销登录 */
-static NSString *const kLogout = @"member/logout";
+static NSString *const kLogout = @"api/member/logout";
 /** 发送验证码 */
-static NSString *const kSendsms = @"sms/send";
+static NSString *const kSendsms = @"api/sms/send";
 /** 检查手机号 */
-static NSString *const kCheckMobile = @"member/checkMobile";
+static NSString *const kCheckMobile = @"api/member/checkMobile";
 /** 检测邀请码 */
-static NSString *const kCheckInviteCode = @"member/checkInviteCode";
+static NSString *const kCheckInviteCode = @"api/member/checkInviteCode";
 
 
 

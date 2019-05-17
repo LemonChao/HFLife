@@ -282,7 +282,7 @@
         tf.placeholder = @"请输入验证码";
         [tf setValue:HEX_COLOR(0xAAAAAA) forKeyPath:@"_placeholderLabel.textColor"];
         tf.textColor = HEX_COLOR(0x5b5b5b);
-        tf.secureTextEntry = YES;
+//        tf.secureTextEntry = YES;
         tf.font = [UIFont systemFontOfSize:HeightRatio(32)];
         tf.backgroundColor = [UIColor clearColor];
         
@@ -341,7 +341,9 @@
     
     
     //@{@"mobile":self.userName.text,@"event":@"mobilelogin"}
+    [[WBPCreate sharedInstance] showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.userName.text,@"event":@"mobilelogin"} withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
             [self openCountdown:send];
@@ -399,18 +401,23 @@
         return;
     }
 
-    
+    [[WBPCreate sharedInstance] showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileLogin withParameters:@{@"member_mobile":self.userName.text,@"captcha":self.vercodeText.text} withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 NSDictionary *dict = value;
-                [HeaderToken setToken:dict[@"data"]];
-                [CommonTools setToken:dict[@"data"]];
-                [UserCache setUserPhone:self.userName.text];
-//                [UserCache setUserPass:self.vercodeText.text];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    
-                }];
+                
+                NSDictionary *dataDic = dict[@"data"];
+                
+                if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                    [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
+                    [UserCache setUserPhone:self.userName.text];
+                    //                [UserCache setUserPass:self.vercodeText.text];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        
+                    }];
+                }
             }
             
         }else {

@@ -37,9 +37,11 @@
     NSDictionary *param = @{
                             @"page":@(page),
                             };
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"" withParameters:param withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
         if (result){
-            
+            if (value) {
+                NSLog(@"%@", value[@"msg"]);
+            }
         }
     } witnVC:self];
 }
@@ -53,7 +55,6 @@
     [self setUpActions];
     
     [self VersionBounced];
-    [self versionUpdateRequest];
     //加载数据
     [self loadServerData:1];
 }
@@ -95,9 +96,10 @@
     
     [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{
-        [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
-            
-        }];
+//        [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
+//
+//        }];
+        [self loadServerData:1];
     }];
     
     

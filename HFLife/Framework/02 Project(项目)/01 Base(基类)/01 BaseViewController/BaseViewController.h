@@ -63,6 +63,8 @@
 
 
 
+
+
 /** 计算手续费*/
 -(NSString *)computingCharge:(NSString *)percentage amount:(NSString *)amount;
 

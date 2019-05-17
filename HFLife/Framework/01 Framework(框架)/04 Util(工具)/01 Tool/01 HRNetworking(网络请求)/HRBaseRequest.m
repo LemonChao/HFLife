@@ -6,8 +6,8 @@
 
 @interface HRBaseRequest ()
 
-//网络请求
-@property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
+//网络请求(公开配置)
+//@property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 //成功block
 @property (copy, nonatomic) void(^successBlock)(id responseObject);
 //失败block

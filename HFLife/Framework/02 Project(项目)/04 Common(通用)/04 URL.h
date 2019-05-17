@@ -18,7 +18,7 @@ static NSString *const URL_PROTOCOL = @"https://";
 //http://xm_hanfu2.com/api/mobile/index.php?w=index&t=index
 //地址(host) （不能为空）http://hzf-takeout    备用@"hzf2-mall.zhongchangjy.com/
 #if DEBUG
-static NSString *const URL_HOST = @"ceshi-shop.hfgld.net/";//@"xm_hanfu2.com/";
+static NSString *const URL_HOST = @"ceshi-shop.hfgld.net/";//@"ceshi-ucenter.hfgld.net/";
 #else
 static NSString *const URL_HOST = @"<#www.xxx.xxx#>";
 #endif
@@ -27,7 +27,7 @@ static NSString *const URL_HOST = @"<#www.xxx.xxx#>";
 //端口（port），（含“:”前缀，如果 URL_PORT 为空，则不含）
 #if DEBUG
 
-static NSString *const URL_PORT = @"api/mobile/index.php?";//@"api/mobile/index.php?";
+static NSString *const URL_PORT = @"";//@"api/mobile/index.php?";
 #else
 static NSString *const URL_PORT = @"<#:xxxx#>";
 #endif

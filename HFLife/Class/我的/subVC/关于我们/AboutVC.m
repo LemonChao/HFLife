@@ -63,7 +63,7 @@
     appLabel.numberOfLines = 0;
         // app版本
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    CFShow((__bridge CFTypeRef)(infoDictionary));
+//    CFShow((__bridge CFTypeRef)(infoDictionary));
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     
     appLabel.text = MMNSStringFormat(@"汉富V%@",app_Version);

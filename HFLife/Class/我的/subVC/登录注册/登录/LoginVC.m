@@ -188,16 +188,19 @@
     
 }
 -(void)loginWithQQ {
+    [[WBPCreate sharedInstance] showWBProgress];
     [ShareSDK getUserInfo:SSDKPlatformTypeQQ
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error){
+               [[WBPCreate sharedInstance] hideAnimated];
                if (state == SSDKResponseStateSuccess){
                    [CommonTools setToken:@""];// !!!:三方登录 清空token
                    
                    //             NSDictionary *dataDict = @{@"type":@"qq",@"openId":user.uid,@"nickname":user.nickname,@"img":user.icon};
                    
                    NSDictionary *parm = @{@"openid":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
-                   
+                   [[WBPCreate sharedInstance] showWBProgress];
                    [networkingManagerTool requestToServerWithType:POST withSubUrl:kWXLogin withParameters:parm     withResultBlock:^(BOOL result, id value) {
+                       [[WBPCreate sharedInstance] hideAnimated];
                        if (result) {
                            if (value && [value isKindOfClass:[NSDictionary class]]) {
                                NSDictionary *dict = value;
@@ -283,17 +286,19 @@
 //    };
 //    [self.navigationController pushViewController:vc animated:YES];
 //    return;
-    
+    [[WBPCreate sharedInstance] showWBProgress];
     [ShareSDK getUserInfo:SSDKPlatformTypeWechat
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error){
+               [[WBPCreate sharedInstance] hideAnimated];
                if (state == SSDKResponseStateSuccess){
                    
                    [CommonTools setToken:@""];// !!!:三方登录 清空token
                    
                    
                    NSDictionary *dataDict = @{@"openId":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
-                   
+                   [[WBPCreate sharedInstance] showWBProgress];
                    [networkingManagerTool requestToServerWithType:POST withSubUrl:kWXLogin withParameters:dataDict withResultBlock:^(BOOL result, id value) {
+                       [[WBPCreate sharedInstance] hideAnimated];
                        if (result) {
                            NSDictionary *dict = value;
                            
@@ -305,12 +310,14 @@
                            }else {
                                SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
                                vc.tokenStr = dict[@"token"];
-                               vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-                                   [HeaderToken setToken:dict[@"data"]];
-                                   [CommonTools setToken:dict[@"data"]];
-                                   [self.navigationController popToRootViewControllerAnimated:YES];
-                               };
-                               [self.navigationController pushViewController:vc animated:YES];
+//                               vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
+//                                   [HeaderToken setToken:dict[@"data"]];
+//                                   [CommonTools setToken:dict[@"data"]];
+//                                   [self.navigationController popToRootViewControllerAnimated:YES];
+//                               };
+                               if ([self.navigationController.viewControllers.lastObject isKindOfClass:[LoginVC class]]) {
+                                   [self.navigationController pushViewController:vc animated:YES];
+                               }
                            }
                            
                        }else{
