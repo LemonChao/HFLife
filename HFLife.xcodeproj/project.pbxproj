@@ -818,6 +818,8 @@
 		6CCAD70522827FE4001824A0 /* ZC_HF_ShopOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD70422827FE4001824A0 /* ZC_HF_ShopOrderVC.m */; };
 		6CCAD70B2282E4E8001824A0 /* UIView+BadgeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD7092282E4E7001824A0 /* UIView+BadgeValue.m */; };
 		6CCAD70F2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD70E2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m */; };
+		6CCC1CE4228EA49900020A45 /* ZCShopCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE3228EA49900020A45 /* ZCShopCartTableViewCell.m */; };
+		6CCC1CE7228EBCF500020A45 /* ZCShopCartSctionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */; };
 		6CFB99AE228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */; };
 		C001CFEA1B0E8AD33641E112 /* libPods-HFLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7358FE6F8201198FC2AE374D /* libPods-HFLife.a */; };
 /* End PBXBuildFile section */
@@ -2336,6 +2338,10 @@
 		6CCAD70A2282E4E7001824A0 /* UIView+BadgeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BadgeValue.h"; sourceTree = "<group>"; };
 		6CCAD70D2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ShopHomeSearchButton.h; sourceTree = "<group>"; };
 		6CCAD70E2282E696001824A0 /* ZC_HF_ShopHomeSearchButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_ShopHomeSearchButton.m; sourceTree = "<group>"; };
+		6CCC1CE2228EA49900020A45 /* ZCShopCartTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartTableViewCell.h; sourceTree = "<group>"; };
+		6CCC1CE3228EA49900020A45 /* ZCShopCartTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartTableViewCell.m; sourceTree = "<group>"; };
+		6CCC1CE5228EBCF500020A45 /* ZCShopCartSctionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartSctionHeader.h; sourceTree = "<group>"; };
+		6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartSctionHeader.m; sourceTree = "<group>"; };
 		6CFB99AC228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_HomeRushPurchaseCell.h; sourceTree = "<group>"; };
 		6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_HomeRushPurchaseCell.m; sourceTree = "<group>"; };
 		7358FE6F8201198FC2AE374D /* libPods-HFLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HFLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6842,6 +6848,8 @@
 			children = (
 				6CCAD70022827FCD001824A0 /* ZC_HF_ShopCartVC.h */,
 				6CCAD70122827FCD001824A0 /* ZC_HF_ShopCartVC.m */,
+				6CCC1CE1228EA46600020A45 /* ViewModel */,
+				6CCC1CE0228EA45A00020A45 /* Views */,
 			);
 			path = ShopCart;
 			sourceTree = "<group>";
@@ -6880,6 +6888,24 @@
 				6C6BCD6A228975D500BE069A /* CountdDownView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		6CCC1CE0228EA45A00020A45 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6CCC1CE2228EA49900020A45 /* ZCShopCartTableViewCell.h */,
+				6CCC1CE3228EA49900020A45 /* ZCShopCartTableViewCell.m */,
+				6CCC1CE5228EBCF500020A45 /* ZCShopCartSctionHeader.h */,
+				6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6CCC1CE1228EA46600020A45 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		6FD4CD12E023F76504379A14 /* Frameworks */ = {
@@ -7668,6 +7694,7 @@
 				04FB7F3A2286C8E600150CA7 /* NSObject+checkSystems.m in Sources */,
 				6C2F514C222A663D0022EE03 /* HXPhotoModel.m in Sources */,
 				04A50849227EDD3A0013E8EC /* UIWindow+CurrentViewController.m in Sources */,
+				6CCC1CE4228EA49900020A45 /* ZCShopCartTableViewCell.m in Sources */,
 				04A50838227EDD390013E8EC /* segementView.m in Sources */,
 				049783942285957F00E143D7 /* CityChooseVC.m in Sources */,
 				049783902285957F00E143D7 /* SelectCheckDateCell.m in Sources */,
@@ -7737,6 +7764,7 @@
 				049783892285957F00E143D7 /* YYB_HF_guessLikeTableViewCell.m in Sources */,
 				048DAC5822857516006E6BA2 /* balanceRecoardView.m in Sources */,
 				658B7C4B21D749E100801CC8 /* NSArray+JSON.m in Sources */,
+				6CCC1CE7228EBCF500020A45 /* ZCShopCartSctionHeader.m in Sources */,
 				0453D1BF2283D99500880C2A /* UIFont+scaleSize.m in Sources */,
 				6CB0A363228D4F1400F77DBD /* ZCClassifyRightHeaderView.m in Sources */,
 				658B7C7821D749E100801CC8 /* LXAlertView.m in Sources */,
