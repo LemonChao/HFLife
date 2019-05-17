@@ -418,7 +418,9 @@
 //    }
     
 //    [self openCountdown:send];
+    [[WBPCreate sharedInstance] showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.userName.text,@"event":@"register"} withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
             [self openCountdown:send];
@@ -480,22 +482,29 @@
 //        return;
 //    }
     
-    
+    [[WBPCreate sharedInstance] showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:@{@"member_mobile":self.userName.text,@"captcha":self.vercodeText.text,@"invite_code":self.inviteCodeTextField.text ? self.inviteCodeTextField.text : @""} withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 NSDictionary *dict = value;
-                [HeaderToken setToken:dict[@"data"]];
-                [CommonTools setToken:dict[@"data"]];
-                [UserCache setUserPhone:self.userName.text];
-                [UserCache setUserPass:self.vercodeText.text];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    
-                }];
+                
+                NSDictionary *dataDic = dict[@"data"];
+                if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                    [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
+                    [UserCache setUserPhone:self.userName.text];
+                    //                [UserCache setUserPass:self.vercodeText.text];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        
+                    }];
+                }
+                
             }
             
         }else {
-            [WXZTipView showCenterWithText:value[@"msg"]];
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }
         }
     }];
     
@@ -531,26 +540,35 @@
 #pragma mark - textFiledDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (textField == self.userName) {
-        
+    if (textField == _userName) {
+        if (self.userName) {
+            
+        }
     }
-    if (textField == self.inviteCodeTextField) {
-        
+    if (textField == _inviteCodeTextField) {
+        if (self.inviteCodeTextField) {
+            
+        }
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (textField == self.userName) {
+    if (textField == _userName) {
         
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile withParameters:@{@"member_mobile":textField.text} withResultBlock:^(BOOL result, id value) {
             if (result) {
                 
             }else {
-                [self setRightView:textField string:@"该用户已存在"];
+                
+                if (value && [value isKindOfClass:[NSDictionary class]]) {
+                    [self setRightView:textField string:@"该用户已存在"];
+                }else {
+                    [self setRightView:textField string:@"校验接口错误"];
+                }
             }
         }];
     }
-    if (textField == self.inviteCodeTextField) {
+    if (textField == _inviteCodeTextField) {
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckInviteCode withParameters:@{@"invite_code":textField.text} withResultBlock:^(BOOL result, id value) {
             if (result) {
                 

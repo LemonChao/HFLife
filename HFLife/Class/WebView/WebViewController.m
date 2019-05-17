@@ -389,7 +389,7 @@ static BOOL IsUpdateRemind = YES;
 }
 -(void)detectionUpdateResponseCallback:(WVJBResponseCallback)responseCallback{
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    CFShow((__bridge CFTypeRef)(infoDictionary));
+//    CFShow((__bridge CFTypeRef)(infoDictionary));
     // app版本
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     NSLog(@"当前版本是：%@",app_Version);

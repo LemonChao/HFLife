@@ -1,0 +1,83 @@
+//
+//  ZCShopCartSctionHeader.m
+//  HFLife
+//
+//  Created by zchao on 2019/5/17.
+//  Copyright © 2019 luyukeji. All rights reserved.
+//
+
+#import "ZCShopCartSctionHeader.h"
+
+@interface ZCShopCartSctionHeader ()
+
+@property(nonatomic, strong) UIButton *selectButton;
+
+@property(nonatomic, strong) UIImageView *shopLogoView;
+
+@property(nonatomic, strong) UIButton *shopNameButton;
+
+@end
+
+
+
+@implementation ZCShopCartSctionHeader
+
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithReuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        [self.contentView addSubview:self.selectButton];
+        [self.contentView addSubview:self.shopLogoView];
+        [self.contentView addSubview:self.shopNameButton];
+        
+        [self.selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.contentView);
+            make.left.equalTo(self.contentView).inset(ScreenScale(12));
+        }];
+        
+        [self.shopLogoView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView).inset(ScreenScale(12));
+            make.bottom.equalTo(self.contentView).inset(ScreenScale(12));
+            make.left.equalTo(self.selectButton.mas_right).offset(ScreenScale(10));
+        }];
+        
+        [self.shopNameButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.contentView);
+            make.left.equalTo(self.shopLogoView.mas_right).offset(ScreenScale(10));
+        }];
+        
+    }
+    return self;
+}
+
+- (void)selectButtonAction:(UIButton *)button {
+    button.selected = !button.selected;
+}
+
+
+
+- (UIImageView *)shopLogoView {
+    if (!_shopLogoView) {
+        _shopLogoView = [[UIImageView alloc] initWithImage:image(@"shop_cart_shopLogo")];
+    }
+    return _shopLogoView;
+}
+
+- (UIButton *)shopNameButton {
+    if (!_shopNameButton) {
+        _shopNameButton = [UITool richButton:UIButtonTypeCustom title:@"董小姐的店" titleColor:ImportantColor font:MediumFont(14) bgColor:[UIColor clearColor] image:image(@"classify_arrow_right_gray")];
+    }
+    return _shopNameButton;
+}
+
+
+- (UIButton *)selectButton {
+    if (!_selectButton) {
+        _selectButton = [UITool imageButton:image(@"cart_gods_normal")];
+        [_selectButton setImage:image(@"cart_gods_select") forState:UIControlStateSelected];
+        [_selectButton addTarget:self action:@selector(selectButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_selectButton setEnlargeEdgeWithTop:15 right:10 bottom:15 left:10];
+    }
+    return _selectButton;
+}
+@end

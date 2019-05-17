@@ -349,7 +349,9 @@
     //    }
     
     //    [self openCountdown:send];
+    [[WBPCreate sharedInstance] showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"changemobile"} withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
             [self openCountdown:send];
@@ -411,8 +413,9 @@
 //        return;
 //    }
     
-    
+    [[WBPCreate sharedInstance] showWBProgress];
 //    [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:@{@"member_mobile":self.phoneText.text,@"captcha":self.vercodeText.text,@"invite_code":self.inviteCodeTextField.text ? self.inviteCodeTextField.text : @""} withResultBlock:^(BOOL result, id value) {
+    [[WBPCreate sharedInstance] hideAnimated];
 //        if (result) {
 //            if (value && [value isKindOfClass:[NSDictionary class]]) {
 //                NSDictionary *dict = value;
