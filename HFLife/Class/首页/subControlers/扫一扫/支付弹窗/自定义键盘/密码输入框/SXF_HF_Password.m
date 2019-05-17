@@ -138,7 +138,17 @@
     
     NSLog(@"%@",textField.text);
 }
-
+- (void)setEditingEable:(BOOL)editingEable{
+    _editingEable = editingEable;
+    if (editingEable) {
+        [self.pswTF becomeFirstResponder];
+    }else{
+        [self.pswTF endEditing:_editingEable];
+        //清空数据
+        self.pswTF.text = @"";
+        [self valueChange:self.pswTF];
+    }
+}
 #pragma mark - 点击view开始输入
 - (void)click{
     [self.pswTF becomeFirstResponder];

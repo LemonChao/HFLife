@@ -34,8 +34,22 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.scanView addTimer];
+    
+    
+    //禁用第三方键盘
+    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager]; // 获取类库的单例变量
+    
+    keyboardManager.enable = NO; // 控制整个功能是否启用
+    
+    
 }
-
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    //开启第三方键盘
+    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager]; // 获取类库的单例变量
+    
+    keyboardManager.enable = YES; // 控制整个功能是否启用
+}
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.scanView removeTimer];

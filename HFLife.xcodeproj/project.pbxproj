@@ -17,6 +17,8 @@
 		0406ED2A22755438000784D0 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; };
 		0406ED2B22755438000784D0 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
+		040B6A3D228CF3730078B5DB /* LoginForVercode.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B6A3C228CF3730078B5DB /* LoginForVercode.m */; };
+		040B6A41228D5ED70078B5DB /* SetingMobilePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B6A40228D5ED70078B5DB /* SetingMobilePhoneVC.m */; };
 		04153B75228A680B00AA5DAF /* BindingAlipayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B73228A680B00AA5DAF /* BindingAlipayVC.m */; };
 		04153B76228A680B00AA5DAF /* BindingPayWayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B74228A680B00AA5DAF /* BindingPayWayVC.m */; };
 		04153B87228A9C9600AA5DAF /* SynthesizeMerchantListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B78228A9C9600AA5DAF /* SynthesizeMerchantListVC.m */; };
@@ -187,6 +189,8 @@
 		048DAC7122857BBB006E6BA2 /* PaymentMethodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC6922857BBB006E6BA2 /* PaymentMethodsCell.m */; };
 		048DAC7422857BBB006E6BA2 /* PaymentMethodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC7022857BBB006E6BA2 /* PaymentMethodsVC.m */; };
 		048DAC7822857DF9006E6BA2 /* Per_MethodsToDealWithManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC7622857DF9006E6BA2 /* Per_MethodsToDealWithManage.m */; };
+		048E8803228D4D2000410405 /* VersionUpdate_Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 048E8802228D4D2000410405 /* VersionUpdate_Cancel.png */; };
+		048E8805228D4D2900410405 /* VersionUpdate_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 048E8804228D4D2800410405 /* VersionUpdate_Icon.png */; };
 		049783832285957E00E143D7 /* NearPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497834B2285957E00E143D7 /* NearPageVC.m */; };
 		049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497834E2285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m */; };
 		049783852285957E00E143D7 /* YYb_HF_CollReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049783522285957E00E143D7 /* YYb_HF_CollReusableView.m */; };
@@ -840,6 +844,10 @@
 		0406ED2222755421000784D0 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		0406ED2E227554E3000784D0 /* LYBmOcrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBmOcrManager.h; sourceTree = "<group>"; };
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
+		040B6A3B228CF3730078B5DB /* LoginForVercode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginForVercode.h; sourceTree = "<group>"; };
+		040B6A3C228CF3730078B5DB /* LoginForVercode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginForVercode.m; sourceTree = "<group>"; };
+		040B6A3F228D5ED70078B5DB /* SetingMobilePhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetingMobilePhoneVC.h; sourceTree = "<group>"; };
+		040B6A40228D5ED70078B5DB /* SetingMobilePhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetingMobilePhoneVC.m; sourceTree = "<group>"; };
 		04153B71228A680B00AA5DAF /* BindingAlipayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingAlipayVC.h; sourceTree = "<group>"; };
 		04153B72228A680B00AA5DAF /* BindingPayWayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingPayWayVC.h; sourceTree = "<group>"; };
 		04153B73228A680B00AA5DAF /* BindingAlipayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingAlipayVC.m; sourceTree = "<group>"; };
@@ -1133,6 +1141,8 @@
 		048DAC7022857BBB006E6BA2 /* PaymentMethodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodsVC.m; sourceTree = "<group>"; };
 		048DAC7622857DF9006E6BA2 /* Per_MethodsToDealWithManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Per_MethodsToDealWithManage.m; sourceTree = "<group>"; };
 		048DAC7722857DF9006E6BA2 /* Per_MethodsToDealWithManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Per_MethodsToDealWithManage.h; sourceTree = "<group>"; };
+		048E8802228D4D2000410405 /* VersionUpdate_Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VersionUpdate_Cancel.png; sourceTree = "<group>"; };
+		048E8804228D4D2800410405 /* VersionUpdate_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VersionUpdate_Icon.png; sourceTree = "<group>"; };
 		0497834A2285957E00E143D7 /* NearHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearHomeVC.h; sourceTree = "<group>"; };
 		0497834B2285957E00E143D7 /* NearPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearPageVC.m; sourceTree = "<group>"; };
 		0497834E2285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_LocaColumnCollectionCell.m; sourceTree = "<group>"; };
@@ -2378,6 +2388,15 @@
 				0406ED2F227554E3000784D0 /* LYBmOcrManager.m */,
 			);
 			path = "百度OCR";
+			sourceTree = "<group>";
+		};
+		040B6A3E228D5E500078B5DB /* 设置手机号 */ = {
+			isa = PBXGroup;
+			children = (
+				040B6A3F228D5ED70078B5DB /* SetingMobilePhoneVC.h */,
+				040B6A40228D5ED70078B5DB /* SetingMobilePhoneVC.m */,
+			);
+			path = "设置手机号";
 			sourceTree = "<group>";
 		};
 		04153B70228A680B00AA5DAF /* 绑定银行卡\支付宝 */ = {
@@ -5301,6 +5320,7 @@
 		04F52159228A77EA00ED4995 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
+				040B6A3E228D5E500078B5DB /* 设置手机号 */,
 				04F5215A228A77EA00ED4995 /* 注册 */,
 				04F5215E228A77EA00ED4995 /* 登录 */,
 				04F52161228A77EA00ED4995 /* 忘记密码 */,
@@ -5323,6 +5343,8 @@
 			children = (
 				04F5215F228A77EA00ED4995 /* LoginVC.m */,
 				04F52160228A77EA00ED4995 /* LoginVC.h */,
+				040B6A3B228CF3730078B5DB /* LoginForVercode.h */,
+				040B6A3C228CF3730078B5DB /* LoginForVercode.m */,
 			);
 			path = "登录";
 			sourceTree = "<group>";
@@ -5643,13 +5665,15 @@
 			isa = PBXGroup;
 			children = (
 				65229492225AE063001DF691 /* SELUpdateAlertConst.h */,
+				65229497225AE063001DF691 /* SELUpdateAlertConst.m */,
+				65229499225AE063001DF691 /* SELUpdateAlert.h */,
 				65229493225AE063001DF691 /* SELUpdateAlert.m */,
+				048E8804228D4D2800410405 /* VersionUpdate_Icon.png */,
 				65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */,
 				65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */,
-				65229496225AE063001DF691 /* VersionUpdate_Cancel@3x.png */,
-				65229497225AE063001DF691 /* SELUpdateAlertConst.m */,
+				048E8802228D4D2000410405 /* VersionUpdate_Cancel.png */,
 				65229498225AE063001DF691 /* VersionUpdate_Cancel@2x.png */,
-				65229499225AE063001DF691 /* SELUpdateAlert.h */,
+				65229496225AE063001DF691 /* VersionUpdate_Cancel@3x.png */,
 			);
 			path = UpdateAlert;
 			sourceTree = "<group>";
@@ -6949,6 +6973,7 @@
 				0453D1F42284033000880C2A /* empoty.html in Resources */,
 				04A50850227EDD3A0013E8EC /* ZFPlayer.bundle in Resources */,
 				0453D186228266D200880C2A /* 04.jpg in Resources */,
+				048E8803228D4D2000410405 /* VersionUpdate_Cancel.png in Resources */,
 				04F5214A228A76BA00ED4995 /* default_headportrait.png in Resources */,
 				659EA0B6220537EC004471CD /* 首牛.png in Resources */,
 				0497838C2285957F00E143D7 /* YYStarView.bundle in Resources */,
@@ -6957,6 +6982,7 @@
 				0461600E228AB1360042830B /* SXF_HF_paySuccessVC.xib in Resources */,
 				04A5085E227EDD3A0013E8EC /* ZFPlayerCell.xib in Resources */,
 				658B7CBC21D749E100801CC8 /* success.png in Resources */,
+				048E8805228D4D2900410405 /* VersionUpdate_Icon.png in Resources */,
 				6579784B21E6D6B600E606BE /* shop_area.sqlite in Resources */,
 				659EA0712203D5A1004471CD /* GuideImage.bundle in Resources */,
 				6522949D225AE063001DF691 /* VersionUpdate_Cancel@3x.png in Resources */,
@@ -7212,6 +7238,7 @@
 				04B9D57822803E260084FA23 /* BaseViewModel.m in Sources */,
 				04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */,
 				04153C01228AA2F100AA5DAF /* BuffetVC.m in Sources */,
+				040B6A41228D5ED70078B5DB /* SetingMobilePhoneVC.m in Sources */,
 				658B79EB21D71D1700801CC8 /* ViewController.m in Sources */,
 				04153BFD228AA2F100AA5DAF /* NearFoodListCell.m in Sources */,
 				04153B88228A9C9600AA5DAF /* SynthesizeMerchantCell.m in Sources */,
@@ -7240,6 +7267,7 @@
 				04A508C8227EDD3A0013E8EC /* UIView+ChainTypeView.m in Sources */,
 				04153C0D228AA2F100AA5DAF /* ZCBaseTableView.m in Sources */,
 				04A50880227EDD3A0013E8EC /* lookBigImageView.m in Sources */,
+				040B6A3D228CF3730078B5DB /* LoginForVercode.m in Sources */,
 				659EA0B3220537EC004471CD /* MoreMenuView.m in Sources */,
 				658B7C5C21D749E100801CC8 /* AddressItem.m in Sources */,
 				04B9D53F22803CF20084FA23 /* ShopPageVC.m in Sources */,

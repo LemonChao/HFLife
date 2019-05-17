@@ -418,6 +418,7 @@
                 }
                     break;
                 case 2:{
+                    weakAlert.passwordInputView.editingEable = NO;
                     [UIView animateWithDuration:0.2 animations:^{
                         weakAlert.stepThreeView.frame = CGRectMake(weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.origin.y, weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.size.height);
                     } completion:^(BOOL finished) {
@@ -461,6 +462,7 @@
     
     alertView.clickStepTowCellCallback = ^(NSIndexPath *indexPath) {
         weakAlert.step = 2;
+        weakAlert.passwordInputView.editingEable = YES;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [UIView animateWithDuration:0.2 animations:^{
                 NSLog(@"step3");
