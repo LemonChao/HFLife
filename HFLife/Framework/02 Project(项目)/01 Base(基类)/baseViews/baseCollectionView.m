@@ -51,7 +51,7 @@
 }
 
 
-- (void) addLodingView{
+- (void)addLodingView{
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
     self.mj_header = header;
     self.header = header;
@@ -124,7 +124,7 @@
     _refreshFooterBlock =  refreshFooterBlock;
 }
 
-- (void) refreshHeader{
+- (void)refreshHeader{
     self.page = 1;
     
     NSLog(@"下拉--第----%ld----页" , self.page);
@@ -136,7 +136,7 @@
         _refreshHeaderBlock();
     }
 }
-- (void) refreshFooter{
+- (void)refreshFooter{
     self.page += 1;
     if ([self.mj_header isRefreshing]) {
         [self.mj_header endRefreshing];
@@ -146,14 +146,14 @@
     }
     NSLog(@"上拉--第----%ld----页" , self.page);
 }
-- (void) endRefreshData{
+- (void)endRefreshData{
     [self.mj_header endRefreshing];
     [self.mj_footer endRefreshing];
 }
 
 
 //关闭加载数据 开始新的数据加载
-- (void) closeRequest{
+- (void)closeRequest{
     
 }
 

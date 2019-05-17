@@ -37,9 +37,9 @@
 - (RACCommand *)shopLoadMoreCmd {
     if (!_shopLoadMoreCmd) {
         @weakify(self);
-        _shopLoadMoreCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+        _shopLoadMoreCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(NSString *_Nullable page) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=index&t=index" withParameters:@{@"page":@(self.page),@"page_all":@"0"} withResultBlock:^(BOOL result, id value) {
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=index&t=get_tui_goods" withParameters:@{@"page":page,@"page_all":@"0"} withResultBlock:^(BOOL result, id value) {
                     @strongify(self);
                     NSMutableArray *originArray = [NSMutableArray arrayWithArray:self.dataArray[1]];
                     if (result){
@@ -47,6 +47,10 @@
                         NSArray *tempArray = [NSArray yy_modelArrayWithClass:[ZCExclusiveRecommendModel class] json:value[@"data"]];
                         [self exclusizeEnumerateObjects:tempArray];
                         [originArray addObjectsFromArray:tempArray];
+                        if (!self.restDataArray) {
+                            self.restDataArray = [NSArray array];
+                        }
+                        self.totalPage = [value[@"total_page"] unsignedIntegerValue];
                         self.dataArray = @[self.restDataArray,originArray];
                         [subscriber sendNext:@(1)];
                     }else {
@@ -72,6 +76,7 @@
                 section1 = [NSArray yy_modelArrayWithClass:[ZCExclusiveRecommendModel class] json:value[@"data"]];
                 [self exclusizeEnumerateObjects:section1];
             }
+            self.totalPage = [value[@"total_page"] unsignedIntegerValue];
             [subscriber sendNext:section1];
             [subscriber sendCompleted];
         }];

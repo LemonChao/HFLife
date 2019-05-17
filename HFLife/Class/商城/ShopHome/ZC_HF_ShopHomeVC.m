@@ -34,8 +34,7 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.collectionView];
-    
-    [self getData:@"1"];
+    [self refreshData];
 }
 
 
@@ -53,17 +52,45 @@
 
 #pragma mark - event response
 
-- (void)getData:(NSString *)page {
-    
-    [[self.viewModel.shopRefreshCmd execute:nil] subscribeNext:^(id  _Nullable x) {
+- (void)getData:(NSInteger)page {
+    @weakify(self);
+    [[self.viewModel.shopLoadMoreCmd execute:[NSString stringWithFormat:@"%ld", page]] subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
         if ([x boolValue]) {
             [self.collectionView reloadData];
         }
-    }error:^(NSError * _Nullable error) {
         
+        if (self.viewModel.page >= self.viewModel.totalPage) {
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        }else {
+            [self.collectionView.mj_footer endRefreshing];
+        }
+        [self.collectionView.mj_header endRefreshing];
+    } error:^(NSError * _Nullable error) {
+        @strongify(self);
+        [self.collectionView endRefreshData];
     }];
 }
 
+/** 刷新，内部两个接口 */
+- (void)refreshData {
+    @weakify(self);
+    [[self.viewModel.shopRefreshCmd execute:nil] subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        if ([x boolValue]) {
+            [self.collectionView reloadData];
+        }
+        if (self.viewModel.page >= self.viewModel.totalPage) {
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        }else {
+            [self.collectionView.mj_footer endRefreshing];
+        }
+        [self.collectionView.mj_header endRefreshing];
+    }error:^(NSError * _Nullable error) {
+        @strongify(self);
+        [self.collectionView endRefreshData];
+    }];
+}
 
 #pragma mark - UICollectionViewDelegate && UICollectionViewDataSource
 
@@ -233,6 +260,19 @@
         } else {
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
+        
+        @weakify(self);
+        self.collectionView.refreshHeaderBlock = ^{
+            @strongify(self);
+            self.viewModel.page = 1;
+            [self refreshData];
+        };
+        
+        self.collectionView.refreshFooterBlock = ^{
+            @strongify(self);
+            self.viewModel.page++;
+            [self getData:self.viewModel.page];
+        };
     }
     return _collectionView;
 }

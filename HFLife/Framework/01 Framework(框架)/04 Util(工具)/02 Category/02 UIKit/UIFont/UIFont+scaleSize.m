@@ -74,7 +74,7 @@
 }
 
 + (UIFont *)resizeSystemFontOfSize:(CGFloat)size weight:(UIFontWeight)weight {
-    return [UIFont resizeSystemFontOfSize:size weight:weight];
+    return [UIFont resizeSystemFontOfSize:[self adjustSize:size] weight:weight];
 }
 
 + (CGFloat)adjustSize:(CGFloat)fontSize {
