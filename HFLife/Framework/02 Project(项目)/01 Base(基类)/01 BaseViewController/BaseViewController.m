@@ -129,6 +129,13 @@ static BOOL IsUpdateRemind = YES;
     [self.view addSubview:self.customNavBar];
     self.navigationController.navigationBar.hidden = YES;
     //百度单页面统计
+    
+    NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
+    if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
+        
+    }else {
+        [self loginVC];
+    }
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -357,7 +364,7 @@ static BOOL IsUpdateRemind = YES;
     
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    CFShow((__bridge CFTypeRef)(infoDictionary));
+//    CFShow((__bridge CFTypeRef)(infoDictionary));
     // app版本
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     if (![app_Version isEqualToString:[CommonTools getVersionString]]&&![NSString isNOTNull:[CommonTools getVersionString]]) {
