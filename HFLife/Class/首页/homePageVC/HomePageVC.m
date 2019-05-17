@@ -96,10 +96,10 @@
     
     [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{
-//        [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
-//
-//        }];
-        [self loadServerData:1];
+        [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
+
+        }];
+//        [self loadServerData:1];
     }];
     
     

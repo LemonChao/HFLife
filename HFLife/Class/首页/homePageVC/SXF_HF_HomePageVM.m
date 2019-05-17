@@ -19,6 +19,10 @@
 #import "GatheringVC.h"
 #import "CardPackageVC.h"
 
+
+//新版
+#import "SXF_HF_GetMoneyVC.h"
+
 @interface SXF_HF_HomePageVM ()<JFLocationDelegate>
 
 @property (nonatomic, strong)JFLocation *locationManager;
@@ -53,7 +57,7 @@
  点击分区头
  */
 - (void)clickHeaderBtn:(NSInteger) index{
-    if ([NSString isNOTNull:[HeaderToken getAccessToken]]) {
+    if (![NSString isNOTNull:[HeaderToken getAccessToken]]) {
         [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
             if (btnBype) {
                 //登录页
@@ -75,7 +79,7 @@
         }else if (index == 1){
             vc = [PaymentVC new];//付款
         }else if (index == 2){
-            vc = [GatheringVC new];//收款
+            vc = [SXF_HF_GetMoneyVC new];//收款
         }else if (index == 3){
             vc = [CardPackageVC new];//卡包
         }else if (index == 4){

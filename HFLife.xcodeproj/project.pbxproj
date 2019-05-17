@@ -513,6 +513,12 @@
 		04F946F8228C1F9700085F78 /* 回删附号@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F946EE228C1F9600085F78 /* 回删附号@2x.png */; };
 		04F946F9228C1F9700085F78 /* 回删附号.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F946EF228C1F9600085F78 /* 回删附号.png */; };
 		04F9ABF0228E677C00A602CE /* NSString+shaEdenty.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9ABEF228E677C00A602CE /* NSString+shaEdenty.m */; };
+		04F9ABF4228EBD2100A602CE /* SXF_HF_GetMoneyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9ABF3228EBD2100A602CE /* SXF_HF_GetMoneyView.m */; };
+		04F9ABF7228EBD5300A602CE /* SXF_HF_GetMoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9ABF6228EBD5300A602CE /* SXF_HF_GetMoneyVC.m */; };
+		04F9ABFB228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9ABF9228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.m */; };
+		04F9ABFC228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F9ABFA228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.xib */; };
+		04F9AC00228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9ABFE228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m */; };
+		04F9AC01228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */; };
 		04FB7F1522865A4900150CA7 /* 余额.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1322865A4900150CA7 /* 余额.gif */; };
 		04FB7F1622865A4900150CA7 /* 余额底图_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1422865A4900150CA7 /* 余额底图_00000.png */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
@@ -1762,6 +1768,16 @@
 		04F946F3228C1F9600085F78 /* APNumberPadStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APNumberPadStyle.h; sourceTree = "<group>"; };
 		04F9ABEE228E677C00A602CE /* NSString+shaEdenty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+shaEdenty.h"; sourceTree = "<group>"; };
 		04F9ABEF228E677C00A602CE /* NSString+shaEdenty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+shaEdenty.m"; sourceTree = "<group>"; };
+		04F9ABF2228EBD2100A602CE /* SXF_HF_GetMoneyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_GetMoneyView.h; sourceTree = "<group>"; };
+		04F9ABF3228EBD2100A602CE /* SXF_HF_GetMoneyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_GetMoneyView.m; sourceTree = "<group>"; };
+		04F9ABF5228EBD5300A602CE /* SXF_HF_GetMoneyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_GetMoneyVC.h; sourceTree = "<group>"; };
+		04F9ABF6228EBD5300A602CE /* SXF_HF_GetMoneyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_GetMoneyVC.m; sourceTree = "<group>"; };
+		04F9ABF8228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_getMoneyTabHeaderView.h; sourceTree = "<group>"; };
+		04F9ABF9228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_getMoneyTabHeaderView.m; sourceTree = "<group>"; };
+		04F9ABFA228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_getMoneyTabHeaderView.xib; sourceTree = "<group>"; };
+		04F9ABFD228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_getMoneyCellTableViewCell.h; sourceTree = "<group>"; };
+		04F9ABFE228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_getMoneyCellTableViewCell.m; sourceTree = "<group>"; };
+		04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_getMoneyCellTableViewCell.xib; sourceTree = "<group>"; };
 		04FB7F1322865A4900150CA7 /* 余额.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "余额.gif"; sourceTree = "<group>"; };
 		04FB7F1422865A4900150CA7 /* 余额底图_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额底图_00000.png"; sourceTree = "<group>"; };
 		04FB7F1722866BE300150CA7 /* UIImageView+LoadGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadGif.h"; sourceTree = "<group>"; };
@@ -3079,6 +3095,7 @@
 		048DABE522856FE8006E6BA2 /* 收钱 */ = {
 			isa = PBXGroup;
 			children = (
+				04F9ABF1228EBCAE00A602CE /* 新版收钱 */,
 				048DABE622856FE8006E6BA2 /* saveCode.png */,
 				048DABEE22856FE8006E6BA2 /* GatheringVC.h */,
 				048DABE722856FE8006E6BA2 /* GatheringVC.m */,
@@ -3512,7 +3529,7 @@
 		04A50658227EDD350013E8EC /* 03 Control(控件) */ = {
 			isa = PBXGroup;
 			children = (
-				04F5F24A228412460043BBB7 /* 登录弹窗 */,
+				04F5F24A228412460043BBB7 /* 系统弹窗 */,
 				04A50659227EDD350013E8EC /* 上下滚动显示 */,
 				0453D1C02284032F00880C2A /* 缺省页 */,
 				04A5065E227EDD350013E8EC /* segementView */,
@@ -5535,13 +5552,13 @@
 			path = customView;
 			sourceTree = "<group>";
 		};
-		04F5F24A228412460043BBB7 /* 登录弹窗 */ = {
+		04F5F24A228412460043BBB7 /* 系统弹窗 */ = {
 			isa = PBXGroup;
 			children = (
 				04F5F24B228412620043BBB7 /* SXF_HF_AlertView.h */,
 				04F5F24C228412630043BBB7 /* SXF_HF_AlertView.m */,
 			);
-			path = "登录弹窗";
+			path = "系统弹窗";
 			sourceTree = "<group>";
 		};
 		04F5F25B22842FA00043BBB7 /* cells */ = {
@@ -5636,6 +5653,23 @@
 				04F9ABEF228E677C00A602CE /* NSString+shaEdenty.m */,
 			);
 			path = "sha256加密";
+			sourceTree = "<group>";
+		};
+		04F9ABF1228EBCAE00A602CE /* 新版收钱 */ = {
+			isa = PBXGroup;
+			children = (
+				04F9ABF2228EBD2100A602CE /* SXF_HF_GetMoneyView.h */,
+				04F9ABF3228EBD2100A602CE /* SXF_HF_GetMoneyView.m */,
+				04F9ABF8228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.h */,
+				04F9ABF9228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.m */,
+				04F9ABFA228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.xib */,
+				04F9ABFD228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.h */,
+				04F9ABFE228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m */,
+				04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */,
+				04F9ABF5228EBD5300A602CE /* SXF_HF_GetMoneyVC.h */,
+				04F9ABF6228EBD5300A602CE /* SXF_HF_GetMoneyVC.m */,
+			);
+			path = "新版收钱";
 			sourceTree = "<group>";
 		};
 		04FB7F1222865A3200150CA7 /* 动画资源图 */ = {
@@ -6986,6 +7020,7 @@
 				0453D1F42284033000880C2A /* empoty.html in Resources */,
 				04A50850227EDD3A0013E8EC /* ZFPlayer.bundle in Resources */,
 				0453D186228266D200880C2A /* 04.jpg in Resources */,
+				04F9ABFC228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.xib in Resources */,
 				048E8803228D4D2000410405 /* VersionUpdate_Cancel.png in Resources */,
 				04F5214A228A76BA00ED4995 /* default_headportrait.png in Resources */,
 				659EA0B6220537EC004471CD /* 首牛.png in Resources */,
@@ -7119,6 +7154,7 @@
 				04FB7F1522865A4900150CA7 /* 余额.gif in Resources */,
 				6C2F5164222A663D0022EE03 /* HXPhotoPicker.bundle in Resources */,
 				04F5214F228A76BA00ED4995 /* charactor@2x.png in Resources */,
+				04F9AC01228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib in Resources */,
 				04F52149228A76BA00ED4995 /* checkbox_selected_false.png in Resources */,
 				04153C16228AA2F100AA5DAF /* WaimaiYouxuanCell.xib in Resources */,
 				658902F2223B775F009C1B03 /* PYSearch.bundle in Resources */,
@@ -7208,6 +7244,7 @@
 			files = (
 				04A5083A227EDD390013E8EC /* ZXSegmentController.m in Sources */,
 				658B7C6321D749E100801CC8 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				04F9ABF4228EBD2100A602CE /* SXF_HF_GetMoneyView.m in Sources */,
 				048DABBA2285661B006E6BA2 /* FlickingVC.m in Sources */,
 				048DAC5122857516006E6BA2 /* FQ_homeHeaderView.m in Sources */,
 				048DAC4F22857516006E6BA2 /* RichRightRecordCell.m in Sources */,
@@ -7247,6 +7284,7 @@
 				0453D1AA2282C37C00880C2A /* SXF_HF_RecommentView.m in Sources */,
 				04A50867227EDD3A0013E8EC /* UITableView+JQMMnodata.m in Sources */,
 				658B7C5B21D749E100801CC8 /* UIView+Frame.m in Sources */,
+				04F9ABF7228EBD5300A602CE /* SXF_HF_GetMoneyVC.m in Sources */,
 				04F5F25422842EE80043BBB7 /* SXF_HF_MainPageView.m in Sources */,
 				04B9D57822803E260084FA23 /* BaseViewModel.m in Sources */,
 				04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */,
@@ -7485,6 +7523,7 @@
 				04F520FC228A764400ED4995 /* ModifyNicknameVC.m in Sources */,
 				049783872285957F00E143D7 /* NearColumnCollectionViewCell.m in Sources */,
 				04A50848227EDD3A0013E8EC /* UITabBarController+ZFPlayerRotation.m in Sources */,
+				04F9AC00228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m in Sources */,
 				658C39E521E9FA5B00880B6A /* JXCategoryNumberCell.m in Sources */,
 				04B9D4E822803C6B0084FA23 /* JMTabBarController.m in Sources */,
 				658B7C9721D749E100801CC8 /* AnimationWaveEnd.m in Sources */,
@@ -7773,6 +7812,7 @@
 				048DAC5022857516006E6BA2 /* FQ_homeTableV.m in Sources */,
 				658B7C4F21D749E100801CC8 /* UIView+TBFrame.m in Sources */,
 				04F9ABF0228E677C00A602CE /* NSString+shaEdenty.m in Sources */,
+				04F9ABFB228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.m in Sources */,
 				659EA04A22015FC4004471CD /* WBPCreate.m in Sources */,
 				04A50871227EDD3A0013E8EC /* UIColor+Chameleon.m in Sources */,
 				04B9D57922803E260084FA23 /* BaseViewController.m in Sources */,
