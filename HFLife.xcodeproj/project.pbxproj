@@ -17,6 +17,8 @@
 		0406ED2A22755438000784D0 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; };
 		0406ED2B22755438000784D0 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
+		040A42D8228FB9360003DDF4 /* AFAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */; };
+		040A42D9228FB9360003DDF4 /* AFAuthSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */; };
 		040B6A3D228CF3730078B5DB /* LoginForVercode.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B6A3C228CF3730078B5DB /* LoginForVercode.m */; };
 		040B6A41228D5ED70078B5DB /* SetingMobilePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B6A40228D5ED70078B5DB /* SetingMobilePhoneVC.m */; };
 		04153B75228A680B00AA5DAF /* BindingAlipayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B73228A680B00AA5DAF /* BindingAlipayVC.m */; };
@@ -854,6 +856,8 @@
 		0406ED2222755421000784D0 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		0406ED2E227554E3000784D0 /* LYBmOcrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBmOcrManager.h; sourceTree = "<group>"; };
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
+		040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFAuthSDK.framework; sourceTree = "<group>"; };
+		040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AFAuthSDK.bundle; sourceTree = "<group>"; };
 		040B6A3B228CF3730078B5DB /* LoginForVercode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginForVercode.h; sourceTree = "<group>"; };
 		040B6A3C228CF3730078B5DB /* LoginForVercode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginForVercode.m; sourceTree = "<group>"; };
 		040B6A3F228D5ED70078B5DB /* SetingMobilePhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetingMobilePhoneVC.h; sourceTree = "<group>"; };
@@ -2390,6 +2394,7 @@
 				65DC684022112D9400F1085E /* AVFoundation.framework in Frameworks */,
 				0406ED2322755422000784D0 /* IdcardQuality.framework in Frameworks */,
 				0406ED2422755422000784D0 /* AipOcrSdk.framework in Frameworks */,
+				040A42D8228FB9360003DDF4 /* AFAuthSDK.framework in Frameworks */,
 				C001CFEA1B0E8AD33641E112 /* libPods-HFLife.a in Frameworks */,
 				0406ED2A22755438000784D0 /* IdcardQuality.framework in Frameworks */,
 			);
@@ -2416,6 +2421,15 @@
 				0406ED2F227554E3000784D0 /* LYBmOcrManager.m */,
 			);
 			path = "百度OCR";
+			sourceTree = "<group>";
+		};
+		040A42D5228FB9360003DDF4 /* AFAuthSDK */ = {
+			isa = PBXGroup;
+			children = (
+				040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */,
+				040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */,
+			);
+			path = AFAuthSDK;
 			sourceTree = "<group>";
 		};
 		040B6A3E228D5E500078B5DB /* 设置手机号 */ = {
@@ -4753,6 +4767,7 @@
 		04B9D35E227FC10C0084FA23 /* 项目使用 */ = {
 			isa = PBXGroup;
 			children = (
+				040A42D5228FB9360003DDF4 /* AFAuthSDK */,
 				0453D1992282918400880C2A /* 防微信弹框 */,
 				659EA0B7220537F9004471CD /* 地图 */,
 				04B9D364227FD3D50084FA23 /* 支付 */,
@@ -7098,6 +7113,7 @@
 				04F5213F228A76BA00ED4995 /* chosencharactor@2x.png in Resources */,
 				04616014228AC9650042830B /* SXF_HF_PayVC.xib in Resources */,
 				04F52152228A76BA00ED4995 /* newcapsLock@3x.png in Resources */,
+				040A42D9228FB9360003DDF4 /* AFAuthSDK.bundle in Resources */,
 				04F54B3022811B9C009AAEF3 /* ProjectKit.md in Resources */,
 				04F5214D228A76BA00ED4995 /* newdelete@3x.png in Resources */,
 				04A5088C227EDD3A0013E8EC /* LICENSE in Resources */,
@@ -8069,6 +8085,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HFLife/lib",
+					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/AFAuthSDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HFLife/PrefixHeader.h";
@@ -8130,6 +8147,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HFLife/lib",
+					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/AFAuthSDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HFLife/PrefixHeader.h";

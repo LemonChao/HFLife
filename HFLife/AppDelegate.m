@@ -264,6 +264,8 @@
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
+    
+    
     NSString *string =[url absoluteString];
     if ([string hasPrefix:@"unifyPayHanPay://"])
     {
@@ -289,7 +291,20 @@
             openURL:(NSURL *)url
             options:(NSDictionary<NSString *,id> *)options{
     
+    
+   
     NSString *string =[url absoluteString];
+    
+    if ([string hasPrefix:@"hanFuLife"]) {
+        //授权返回码
+        [[AFAuthSDK defaultService]processAuthv2Result:url standbyCallback:^(NSDictionary *result) {
+            if (result) {
+                
+            }
+        }];
+        return YES;
+    }
+    
     if ([string hasPrefix:@"unifyPayHanPay://"])
     {
         return [UMSPPPayUnifyPayPlugin cloudPayHandleOpenURL:url];

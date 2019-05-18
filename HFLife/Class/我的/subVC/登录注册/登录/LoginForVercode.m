@@ -370,8 +370,8 @@
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置按钮的样式
-                [authCodeBtn setTitle:@"重新发送" forState:UIControlStateNormal];
-                [authCodeBtn setTitleColor:HEX_COLOR(0x54a8dd) forState:UIControlStateNormal];
+                [authCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [authCodeBtn setTitleColor:HEX_COLOR(0x666666) forState:UIControlStateNormal];
                 authCodeBtn.userInteractionEnabled = YES;
                 //                self.userPhoneTextField.userInteractionEnabled = YES;
             });
@@ -381,8 +381,8 @@
             int seconds = time % 60;
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置按钮显示读秒效果
-                [authCodeBtn setTitle:[NSString stringWithFormat:@"重新发送(%.2d)", seconds] forState:UIControlStateNormal];
-                [authCodeBtn setTitleColor:HEX_COLOR(0xffc077) forState:UIControlStateNormal];
+                [authCodeBtn setTitle:[NSString stringWithFormat:@"%.2ds后重新获取", seconds] forState:UIControlStateNormal];
+                [authCodeBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
                 authCodeBtn.userInteractionEnabled = NO;
                 //                self.userPhoneTextField.userInteractionEnabled = NO;
             });
