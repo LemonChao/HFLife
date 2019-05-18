@@ -26,7 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSArray <__kindof NSArray *>*dataArray;
 
 /** 轮播数据 */
-@property(nonatomic, copy) NSArray *bannerArray;
+@property(nonatomic, copy) NSArray <__kindof ZCShopHomeBannerModel*>*bannerArray;
+/** 分类数据 */
+@property(nonatomic, copy) NSArray <__kindof ZCShopHomeClassModel*>*classArray;
 
 
 @end

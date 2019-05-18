@@ -44,7 +44,7 @@
     
     ShopTabbarViewController *tabBarVc = [[ShopTabbarViewController alloc] initWithTabBarControllers:controllerArr NorImageArr:imageNormalArr SelImageArr:imageSelectedArr TitleArr:titleArr Config:config];
     tabBarVc.JM_TabBar.myDelegate = tabBarVc;
-    
+    tabBarVc.viewControllers = controllerArr;
     sxfTouchBtn *btn = [sxfTouchBtn buttonWithType:UIButtonTypeCustom];
     [btn setImage:[UIImage imageNamed:@"shop_hanfu"] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"shop_hanfu"] forState:UIControlStateHighlighted];

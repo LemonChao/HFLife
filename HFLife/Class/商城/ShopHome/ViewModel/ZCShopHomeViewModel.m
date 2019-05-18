@@ -97,6 +97,7 @@
                 
                 ZCShopHomeModel *model = [ZCShopHomeModel yy_modelWithDictionary:value[@"data"]];
                 self.bannerArray = model.banner_list.copy;
+                self.classArray = model.class_list.copy;
                 self.restDataArray = [self buildDataArrayWithModel:model];
             }
             [subscriber sendNext:self.restDataArray];
