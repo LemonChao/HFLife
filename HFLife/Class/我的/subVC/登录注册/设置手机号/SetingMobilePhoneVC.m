@@ -214,8 +214,20 @@
         [self.view addSubview:tf];
         _phoneText = tf;
     }
-    
-    _phoneText.rightView = [UIView new];
+    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(20), HeightRatio(69))];
+    rightView.backgroundColor = [UIColor clearColor];
+    UIButton *clearnButton = [UIButton new];
+    [clearnButton setImage:[UIImage imageNamed:@"icon_clear"] forState:UIControlStateNormal];
+    [clearnButton wh_addActionHandler:^{
+        self->_phoneText.text = @"";
+    }];
+    [rightView addSubview:clearnButton];
+    [clearnButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.left.mas_equalTo(rightView);
+        make.top.bottom.mas_equalTo(rightView);
+    }];
+    _phoneText.rightView = rightView;
+    _phoneText.rightViewMode = UITextFieldViewModeAlways;
     return _phoneText;
 }
 -(UITextField *)vercodeText{
@@ -351,13 +363,17 @@
     
     //    [self openCountdown:send];
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"changemobile"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"wx_bind_mobile"} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
             [self openCountdown:send];
         }else {
-            [WXZTipView showCenterWithText:value[@"msg"]];
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
         }
     }];
     
@@ -379,8 +395,8 @@
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置按钮的样式
-                [authCodeBtn setTitle:@"重新发送" forState:UIControlStateNormal];
-                [authCodeBtn setTitleColor:HEX_COLOR(0x54a8dd) forState:UIControlStateNormal];
+                [authCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [authCodeBtn setTitleColor:HEX_COLOR(0x666666) forState:UIControlStateNormal];
                 authCodeBtn.userInteractionEnabled = YES;
                 //                self.userPhoneTextField.userInteractionEnabled = YES;
             });
@@ -390,8 +406,8 @@
             int seconds = time % 60;
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置按钮显示读秒效果
-                [authCodeBtn setTitle:[NSString stringWithFormat:@"重新发送(%.2d)", seconds] forState:UIControlStateNormal];
-                [authCodeBtn setTitleColor:HEX_COLOR(0xffc077) forState:UIControlStateNormal];
+                [authCodeBtn setTitle:[NSString stringWithFormat:@"%.2ds后重新获取", seconds] forState:UIControlStateNormal];
+                [authCodeBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
                 authCodeBtn.userInteractionEnabled = NO;
                 //                self.userPhoneTextField.userInteractionEnabled = NO;
             });
@@ -413,27 +429,40 @@
 //        [WXZTipView showCenterWithText:@"邀请码不能为空"];
 //        return;
 //    }
+    NSString *subUrl;
+    if (self.loginType == LoginTypeWeiXin) {
+        subUrl = kWxBindmobile;
+    }
     
     [[WBPCreate sharedInstance] showWBProgress];
-//    [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:@{@"member_mobile":self.phoneText.text,@"captcha":self.vercodeText.text,@"invite_code":self.inviteCodeTextField.text ? self.inviteCodeTextField.text : @""} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:subUrl withParameters:@{@"member_mobile":self.phoneText.text,@"captcha":self.vercodeText.text,@"invite_code":self.inviteCodeTextField.text ? self.inviteCodeTextField.text : @"",@"openid":self.openIdStr} withResultBlock:^(BOOL result, id value) {
     [[WBPCreate sharedInstance] hideAnimated];
-//        if (result) {
-//            if (value && [value isKindOfClass:[NSDictionary class]]) {
-//                NSDictionary *dict = value;
-//                [HeaderToken setToken:dict[@"data"]];
-//                [CommonTools setToken:dict[@"data"]];
-//                [UserCache setUserPhone:self.phoneText.text];
-//                [UserCache setUserPass:self.vercodeText.text];
-//                [self dismissViewControllerAnimated:YES completion:^{
-//
-//                }];
-//            }
-//
-//        }else {
-//            [WXZTipView showCenterWithText:value[@"msg"]];
-//        }
-//    }];
-    
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = value;
+                NSDictionary *dataDic = [dict safeObjectForKey:@"data"];
+                
+                NSString *token = [dataDic safeObjectForKey:@"ucenter_token"];
+                
+                if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
+                    [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        
+                    }];
+                }else {
+                    [WXZTipView showCenterWithText:@"token获取错误"];
+                }
+            }
+
+        }else {
+            if ((value && [value isKindOfClass:[NSDictionary class]])) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
+        }
+    }];
+
     /*
      
      
@@ -481,17 +510,17 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField == _phoneText) {
         
-//        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile withParameters:@{@"member_mobile":textField.text} withResultBlock:^(BOOL result, id value) {
-//            if (result) {
-//
-//            }else {
-//                if (value && [value isKindOfClass:[NSDictionary class]]) {
-//                    [self setRightView:textField string:@"该用户已存在"];
-//                }else {
-//                    if (self.phoneText) {}
-//                }
-//            }
-//        }];
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile withParameters:@{@"member_mobile":textField.text} withResultBlock:^(BOOL result, id value) {
+            if (result) {
+
+            }else {
+                if (value && [value isKindOfClass:[NSDictionary class]]) {
+                    [self setRightView:textField string:@"该用户已存在"];
+                }else {
+                    if (self.phoneText) {}
+                }
+            }
+        }];
     }
     if (textField == _inviteCodeTextField && _inviteCodeTextField.text.length > 0) {
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckInviteCode withParameters:@{@"invite_code":textField.text} withResultBlock:^(BOOL result, id value) {

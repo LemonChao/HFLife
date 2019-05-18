@@ -26,5 +26,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDAutoLayout.h>
 #import <JZLocationConverter.h>
+#import <SGQRCode.h>
 
 #endif /* PodHeader_h */

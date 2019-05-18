@@ -49,8 +49,8 @@
     [self.view addSubview:self.amountTextField];
     self.amountTextField.delegate = self;
     [self.amountTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.view.mas_top).offset(self.navBarHeight+HeightRatio(10));
+        make.left.mas_equalTo(self.view);
+        make.right.mas_equalTo(self.view.mas_right).offset(ScreenScale(10)); make.top.mas_equalTo(self.view.mas_top).offset(self.navBarHeight+HeightRatio(10));
         make.height.mas_equalTo(HeightRatio(90));
     }];
     
@@ -58,25 +58,16 @@
     [button addTarget:self action:@selector(buttonClick) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(WidthRatio(20));
-        make.right.mas_equalTo(self.view.mas_right).offset(-WidthRatio(20));
+        make.left.mas_equalTo(self.view.mas_left).offset(ScreenScale(12));
+        make.right.mas_equalTo(self.view.mas_right).offset(-ScreenScale(12));
         make.top.mas_equalTo(self.amountTextField.mas_bottom).offset(HeightRatio(30));
         make.height.mas_equalTo(HeightRatio(88));
     }];
-        // 0.1秒后获取frame
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        CAGradientLayer *gradientLayer =  [CAGradientLayer layer];
-        gradientLayer.frame = CGRectMake(0, 0,  SCREEN_WIDTH-WidthRatio(20)-WidthRatio(20), HeightRatio(88));
-        gradientLayer.startPoint = CGPointMake(0, 0);
-        gradientLayer.endPoint = CGPointMake(1, 0);
-        gradientLayer.locations = @[@(0.38),@(0.6),@(0.8),@(1.0)];//渐变点
-        
-        [gradientLayer setColors:@[(id)[HEX_COLOR(0x9f22ff) CGColor],(id)[HEX_COLOR(0x9323ff) CGColor],(id)HEX_COLOR(0x7f23ff).CGColor]];//渐变数组
-        [button.layer addSublayer:gradientLayer];
-        MMViewBorderRadius(button, WidthRatio(10), 0, [UIColor clearColor]);
-        [button setTitle:@"确认修改" forState:(UIControlStateNormal)];
-        [button setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-    });
+    
+    MMViewBorderRadius(button, WidthRatio(10), 0, [UIColor clearColor]);
+    [button setTitle:@"确定" forState:(UIControlStateNormal)];
+    [button setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+    [button setBackgroundColor:HEX_COLOR(0xCA1400)];
 
 }
 #pragma mark 代理
@@ -90,6 +81,7 @@
         tf.placeholder = @"请输入金额";
         [tf setValue:HEX_COLOR(0x666666) forKeyPath:@"_placeholderLabel.textColor"];
         tf.textColor = HEX_COLOR(0x333333);
+        tf.clearButtonMode = UITextFieldViewModeAlways;
         tf.font = [UIFont systemFontOfSize:HeightRatio(25)];
         tf.backgroundColor = [UIColor whiteColor];
         tf.keyboardType = UIKeyboardTypeDecimalPad;
@@ -102,7 +94,7 @@
         titleLabel.font = [UIFont systemFontOfSize:WidthRatio(27)];
         [lv addSubview:titleLabel];
         [titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(lv.mas_left).offset(WidthRatio(10));
+            make.left.mas_equalTo(lv.mas_left).offset(ScreenScale(12));
             make.centerY.mas_equalTo(lv.mas_centerY);
             make.height.mas_equalTo(HeightRatio(27));
             make.width.mas_greaterThanOrEqualTo(1);

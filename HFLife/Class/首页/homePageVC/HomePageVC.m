@@ -103,13 +103,19 @@
 //        [self loadServerData:1];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-//            [SXF_HF_AlertView showAlertType:AlertType_time Complete:^(BOOL btnBype) {
+            [SXF_HF_AlertView showAlertType:AlertType_topRight Complete:^(BOOL btnBype) {
+                if (btnBype) {
+                    //收款码介绍
+                    BaseViewController *vc = [BaseViewController new];
+                    vc.customNavBar.title = @"收款码介绍";
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+
+            }];
+            
+//            [SXF_HF_AlertView showTimeSlecterAlertComplete:^(NSString * _Nonnull year, NSString * _Nonnull month) {
 //
 //            }];
-            
-            [SXF_HF_AlertView showTimeSlecterAlertComplete:^(NSString * _Nonnull year, NSString * _Nonnull month) {
-                
-            }];
         });
     }];
     

@@ -355,7 +355,7 @@ static BOOL IsUpdateRemind = YES;
 #warning 临时添加
     [CommonTools setUpdateDescription:@"汉富新生活"];
     
-    
+    [CommonTools setVersionString:@"1.0.5"];
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
 //    CFShow((__bridge CFTypeRef)(infoDictionary));

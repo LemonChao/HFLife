@@ -106,10 +106,8 @@
     
     
     //做sin签名
-    NSString *sinStr = [NSString stringWithFormat:@"%@&%@&%@&%@", @"c9dfaa769668ac047ff0e72a7fecb991", subUrl, [NSDate currentTimeStamp10], [self getAppVersion]];
-    //转小写
-    NSString *newSinStr = [sinStr lowercaseString];
-    NSString *sha256Str = [newSinStr SHA256];
+    NSString *sinStr = [[NSString stringWithFormat:@"%@&%@&%@&%@", @"c9dfaa769668ac047ff0e72a7fecb991", subUrl, [NSDate currentTimeStamp10], [self getAppVersion]] lowercaseString];
+    NSString *sha256Str = [sinStr SHA256];
     //设置请求头
     //签名sin
     [requestManager.sessionManager.requestSerializer setValue:sha256Str forHTTPHeaderField:@"SIGN"];
@@ -124,6 +122,8 @@
     //token 设置到请求头上
     if (gettoken) {
         [requestManager.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@" , gettoken] forHTTPHeaderField:@"APP-TOKEN"];
+    }else {
+        [self loginVC];
     }
     NSLog(@"httpHeaders : %@", requestManager.sessionManager.requestSerializer.HTTPRequestHeaders);
     /********************************************************/

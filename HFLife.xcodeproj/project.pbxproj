@@ -17,6 +17,8 @@
 		0406ED2A22755438000784D0 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; };
 		0406ED2B22755438000784D0 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
+		040A42D8228FB9360003DDF4 /* AFAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */; };
+		040A42D9228FB9360003DDF4 /* AFAuthSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */; };
 		040B6A3D228CF3730078B5DB /* LoginForVercode.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B6A3C228CF3730078B5DB /* LoginForVercode.m */; };
 		040B6A41228D5ED70078B5DB /* SetingMobilePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B6A40228D5ED70078B5DB /* SetingMobilePhoneVC.m */; };
 		04153B75228A680B00AA5DAF /* BindingAlipayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B73228A680B00AA5DAF /* BindingAlipayVC.m */; };
@@ -526,6 +528,9 @@
 		04FB7F1D2286A40700150CA7 /* UILabel+atributeText.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1C2286A40700150CA7 /* UILabel+atributeText.m */; };
 		04FB7F332286C02600150CA7 /* NSObject+currentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F322286C02500150CA7 /* NSObject+currentController.m */; };
 		04FB7F3A2286C8E600150CA7 /* NSObject+checkSystems.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F392286C8E600150CA7 /* NSObject+checkSystems.m */; };
+		04FCEA1C228FF0ED00F95486 /* SXF_HF_leftRightAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA1B228FF0ED00F95486 /* SXF_HF_leftRightAlert.m */; };
+		04FCEA20228FF7FE00F95486 /* SXF_HF_saveCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */; };
+		04FCEA23228FF94B00F95486 /* SXF_HF_saveCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */; };
 		6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 65229493225AE063001DF691 /* SELUpdateAlert.m */; };
 		6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */; };
 		6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */; };
@@ -856,6 +861,8 @@
 		0406ED2222755421000784D0 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		0406ED2E227554E3000784D0 /* LYBmOcrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBmOcrManager.h; sourceTree = "<group>"; };
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
+		040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFAuthSDK.framework; sourceTree = "<group>"; };
+		040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AFAuthSDK.bundle; sourceTree = "<group>"; };
 		040B6A3B228CF3730078B5DB /* LoginForVercode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginForVercode.h; sourceTree = "<group>"; };
 		040B6A3C228CF3730078B5DB /* LoginForVercode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginForVercode.m; sourceTree = "<group>"; };
 		040B6A3F228D5ED70078B5DB /* SetingMobilePhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetingMobilePhoneVC.h; sourceTree = "<group>"; };
@@ -1796,6 +1803,11 @@
 		04FB7F382286C8E600150CA7 /* NSObject+checkSystems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+checkSystems.h"; sourceTree = "<group>"; };
 		04FB7F392286C8E600150CA7 /* NSObject+checkSystems.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+checkSystems.m"; sourceTree = "<group>"; };
 		04FB7F3B2286CED200150CA7 /* projectUse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = projectUse.h; sourceTree = "<group>"; };
+		04FCEA1A228FF0ED00F95486 /* SXF_HF_leftRightAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_leftRightAlert.h; sourceTree = "<group>"; };
+		04FCEA1B228FF0ED00F95486 /* SXF_HF_leftRightAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_leftRightAlert.m; sourceTree = "<group>"; };
+		04FCEA1D228FF7FE00F95486 /* SXF_HF_saveCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_saveCodeView.h; sourceTree = "<group>"; };
+		04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_saveCodeView.m; sourceTree = "<group>"; };
+		04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_saveCodeView.xib; sourceTree = "<group>"; };
 		65229492225AE063001DF691 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		65229493225AE063001DF691 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VersionUpdate_Icon@3x.png"; sourceTree = "<group>"; };
@@ -2396,6 +2408,7 @@
 				65DC684022112D9400F1085E /* AVFoundation.framework in Frameworks */,
 				0406ED2322755422000784D0 /* IdcardQuality.framework in Frameworks */,
 				0406ED2422755422000784D0 /* AipOcrSdk.framework in Frameworks */,
+				040A42D8228FB9360003DDF4 /* AFAuthSDK.framework in Frameworks */,
 				C001CFEA1B0E8AD33641E112 /* libPods-HFLife.a in Frameworks */,
 				0406ED2A22755438000784D0 /* IdcardQuality.framework in Frameworks */,
 			);
@@ -2422,6 +2435,15 @@
 				0406ED2F227554E3000784D0 /* LYBmOcrManager.m */,
 			);
 			path = "百度OCR";
+			sourceTree = "<group>";
+		};
+		040A42D5228FB9360003DDF4 /* AFAuthSDK */ = {
+			isa = PBXGroup;
+			children = (
+				040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */,
+				040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */,
+			);
+			path = AFAuthSDK;
 			sourceTree = "<group>";
 		};
 		040B6A3E228D5E500078B5DB /* 设置手机号 */ = {
@@ -3114,15 +3136,15 @@
 				048DABE622856FE8006E6BA2 /* saveCode.png */,
 				048DABEE22856FE8006E6BA2 /* GatheringVC.h */,
 				048DABE722856FE8006E6BA2 /* GatheringVC.m */,
-				048DABE822856FE8006E6BA2 /* receiptRecordCell.h */,
-				048DABEA22856FE8006E6BA2 /* receiptRecordListCell.m */,
-				048DABEB22856FE8006E6BA2 /* receiptRecordListView.m */,
+				048DABF422856FE8006E6BA2 /* receiptRecordListVC.h */,
 				048DABEC22856FE8006E6BA2 /* receiptRecordListVC.m */,
+				048DABF322856FE8006E6BA2 /* receiptRecordListCell.h */,
+				048DABEA22856FE8006E6BA2 /* receiptRecordListCell.m */,
+				048DABF522856FE8006E6BA2 /* receiptRecordListView.h */,
+				048DABEB22856FE8006E6BA2 /* receiptRecordListView.m */,
+				048DABE822856FE8006E6BA2 /* receiptRecordCell.h */,
 				048DABED22856FE8006E6BA2 /* receiptRecordCell.m */,
 				048DABF022856FE8006E6BA2 /* 设置金额 */,
-				048DABF322856FE8006E6BA2 /* receiptRecordListCell.h */,
-				048DABF422856FE8006E6BA2 /* receiptRecordListVC.h */,
-				048DABF522856FE8006E6BA2 /* receiptRecordListView.h */,
 			);
 			path = "收钱";
 			sourceTree = "<group>";
@@ -4759,6 +4781,7 @@
 		04B9D35E227FC10C0084FA23 /* 项目使用 */ = {
 			isa = PBXGroup;
 			children = (
+				040A42D5228FB9360003DDF4 /* AFAuthSDK */,
 				0453D1992282918400880C2A /* 防微信弹框 */,
 				659EA0B7220537F9004471CD /* 地图 */,
 				04B9D364227FD3D50084FA23 /* 支付 */,
@@ -5574,6 +5597,8 @@
 				04F5F24C228412630043BBB7 /* SXF_HF_AlertView.m */,
 				04F9AC02228ED5A600A602CE /* SXF_HF_TimeSelectedView.h */,
 				04F9AC03228ED5A600A602CE /* SXF_HF_TimeSelectedView.m */,
+				04FCEA1A228FF0ED00F95486 /* SXF_HF_leftRightAlert.h */,
+				04FCEA1B228FF0ED00F95486 /* SXF_HF_leftRightAlert.m */,
 			);
 			path = "系统弹窗";
 			sourceTree = "<group>";
@@ -5685,6 +5710,9 @@
 				04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */,
 				04F9ABF5228EBD5300A602CE /* SXF_HF_GetMoneyVC.h */,
 				04F9ABF6228EBD5300A602CE /* SXF_HF_GetMoneyVC.m */,
+				04FCEA1D228FF7FE00F95486 /* SXF_HF_saveCodeView.h */,
+				04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */,
+				04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */,
 			);
 			path = "新版收钱";
 			sourceTree = "<group>";
@@ -7107,7 +7135,9 @@
 				04F5213D228A76BA00ED4995 /* number@2x.png in Resources */,
 				04F5213F228A76BA00ED4995 /* chosencharactor@2x.png in Resources */,
 				04616014228AC9650042830B /* SXF_HF_PayVC.xib in Resources */,
+				04FCEA23228FF94B00F95486 /* SXF_HF_saveCodeView.xib in Resources */,
 				04F52152228A76BA00ED4995 /* newcapsLock@3x.png in Resources */,
+				040A42D9228FB9360003DDF4 /* AFAuthSDK.bundle in Resources */,
 				04F54B3022811B9C009AAEF3 /* ProjectKit.md in Resources */,
 				04F5214D228A76BA00ED4995 /* newdelete@3x.png in Resources */,
 				04A5088C227EDD3A0013E8EC /* LICENSE in Resources */,
@@ -7307,6 +7337,7 @@
 				658C3AE721F31A5000880B6A /* MKShowDynamic.m in Sources */,
 				658B7CBE21D749E100801CC8 /* MsgPlaySound.m in Sources */,
 				6C2F5152222A663D0022EE03 /* HXDatePhotoViewFlowLayout.m in Sources */,
+				04FCEA1C228FF0ED00F95486 /* SXF_HF_leftRightAlert.m in Sources */,
 				048DAC5322857516006E6BA2 /* CardPackageCell.m in Sources */,
 				048DABFD22856FE9006E6BA2 /* SetAmountVC.m in Sources */,
 				04F52047228A61B200ED4995 /* friendListView.m in Sources */,
@@ -7492,6 +7523,7 @@
 				658B7C9F21D749E100801CC8 /* AnimationFadeBegin.m in Sources */,
 				04153BF8228AA2F100AA5DAF /* NearFoodDelegateManage.m in Sources */,
 				6C7D84F92285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m in Sources */,
+				04FCEA20228FF7FE00F95486 /* SXF_HF_saveCodeView.m in Sources */,
 				6C2F5153222A663D0022EE03 /* HXDatePhotoViewController.m in Sources */,
 				04F5213A228A76BA00ED4995 /* LDDKeyboardView.m in Sources */,
 				04A50890227EDD3A0013E8EC /* NSNumber+WHNumber.m in Sources */,
@@ -8081,6 +8113,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HFLife/lib",
+					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/AFAuthSDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HFLife/PrefixHeader.h";
@@ -8142,6 +8175,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HFLife/lib",
+					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/AFAuthSDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HFLife/PrefixHeader.h";

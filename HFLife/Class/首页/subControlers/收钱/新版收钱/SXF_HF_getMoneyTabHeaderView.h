@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SXF_HF_getMoneyTabHeaderView : UIView
-
+@property (nonatomic, strong)void (^clickHeaderBtn)(NSInteger tag);
+- (void)setDataForView:(id)data;
 @end
