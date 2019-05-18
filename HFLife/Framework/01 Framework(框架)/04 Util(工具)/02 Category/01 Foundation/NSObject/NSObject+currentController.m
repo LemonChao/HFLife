@@ -57,7 +57,6 @@
 /** 跳转登录 */
 - (void)loginVC {
     //跳转登录
-    
     Class loginClass = NSClassFromString(@"LoginVC");
     id loginVC = [[loginClass alloc] init];
     if (loginVC && ![loginClass isKindOfClass:[self class]]) {

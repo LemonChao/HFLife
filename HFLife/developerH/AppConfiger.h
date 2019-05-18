@@ -1,25 +1,15 @@
 //
-//  KeyMacro.h
-//  MedicalMall
+//  AppConfiger.h
+//  HFLife
 //
-//  Created by mac on 2018/3/22.
+//  Created by mac on 2019/5/18.
+//  Copyright © 2019 luyukeji. All rights reserved.
 //
+#ifndef AppConfiger_h
+#define AppConfiger_h
 
-#ifndef KeyMacro_h
-#define KeyMacro_h
-#define USERPASSWORD @"USERPASSWORD"//用户保存密码
-#define ISSAVEPASSWORD @"ISSAVEPASSWORD" //是否保存密码
-#define EXIT_LOGIN @"Exit_Login"//退出登录
-#define LOG_BACK_IN @"Log back in"//重新登录
-#define REREQUEST_DATA @"Rerequest data"//重新请求数据
-#define NETWORK_CHANGES    @"NETWORK_CHANGES"//网络变化通知
-#define RETURN_TFCHOME @"RETURN_TFCHOME" //返回主界面
-#define CLICK_SUSPENSIONBTN @"CLICK_SUSPENSION" //点击悬浮的按钮
-
-#define LOGIN_RYIM @"LOGIN_RYIM"//登录融云
 
 #pragma mark - 第三方Key
-
 //微信
 #define WX_APP_ID          @"wxf9817e2bc71f2351"
 #define WX_APP_SECRET      @"755227d32d21a5ac8470bb22258f6bdd"
@@ -43,5 +33,15 @@
 //私钥
 #define  AMOUNTRSAPUBLICKEY @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAKyKAD5KpjoZAmGk+HpHF/wvqqbiqP/OjML5+Xofd7W3HjQhj5QME/P7orWIebCZS+jxKXazMrVeWVC/6w+tqHZhplvn6MLWJrm8LBK/PeDCps5dxx88Gm0QaZ1bR2SBxL0W3qRAiCNnzkFVtht5zayFDU3cG32XxoX+JS3f1rCnAgMBAAECgYEAqT2EF5XpjztQ1q6W/HoX0MqAvcm+s4zLDcVdLKkJJzlDaycwSqu+NqgxZZdEpjD4ALntTf1gU/8D5O0biPlyL272hkUm6CichblWlHkRexzV+EmYKuXY8+1VvpxIpxtt5XQChwVSwKVLZ0a4XjttB6KfOsk35lDgzfehKHH6m2ECQQDjGs0l3Ho2aoUwOCxGRqjfr2i7VL0v0Y5Pp8ciK4NGoQkMQ8sTJ9+ScDpFFEfWCqTaG7bijAGyDIuzK60Z9V5FAkEAwn3mvKSsmSdWJm8bN0Py95ct8omfNWID9GjGtz16Ju/lzAjcLCydQqyOjR8C6zEa8ZAYw941YA0Z+XvWHBfn+wJBALqzDNXEVEAp/8ZtV5CKhEgn1uyyNDl8iAbaAi4IIYrN1jdcADWGQRkM5ApoKso+w9l+kTHbMYWjJLGuBUdi3RUCQGvnfgRbOIcgE+Pu8KKQyFQlRBCz2ei8IIWRO+6d5Q+FOXEh2UWI2xcKtWwGMJBcBh7PW24P8nz/x9Fqqzea69ECQCUbtPMJqNI2H/jvrcjoLZlzfALRtEb/FgmOJWrYIZ7oaYVlnh350lahsPttGzeJXOZr/mZqLKCBxUGH5YH42CU="
 
-#endif /* KeyMacro_h */
 
+//登录配置
+//static NSString *LogInSyccessFully         = @"logInSyccessFully";
+static NSString * LOGIN_APP                = @"LOGIN_MYAPP";
+//存储token
+static NSString *const USER_TOKEN              = @"userToken";
+//存储登录状态
+static NSString *const LOGIN_STATES            = @"loginStates";
+
+#define LogIn_Success                  [[[NSUserDefaults standardUserDefaults] objectForKey:LOGIN_APP] integerValue] == 1
+#define GetUserToken                      [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]
+#endif /* AppConfiger_h */

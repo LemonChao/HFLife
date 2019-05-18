@@ -240,7 +240,7 @@
     amountLabel.text = MMNSStringFormat(@"¥%@",amount);
     amountLabel.hidden = NO;
     setAmountBtn.selected = YES;
-    qrCodeImageView.image =  [SGQRCodeObtain generateQRCodeWithData:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[UserCache getUserId]) publicKey:AMOUNTRSAPRIVATEKEY] size:WidthRatio(387) color:[UIColor blackColor] backgroundColor:[UIColor whiteColor]];
+//    qrCodeImageView.image =  [SGQRCodeObtain generateQRCodeWithData:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[UserCache getUserId]) publicKey:AMOUNTRSAPRIVATEKEY] size:WidthRatio(387) color:[UIColor blackColor] backgroundColor:[UIColor whiteColor]];
 }
 - (UIImage *)addImage:(UIImage *)image1 withImage:(UIImage *)image2 {
     

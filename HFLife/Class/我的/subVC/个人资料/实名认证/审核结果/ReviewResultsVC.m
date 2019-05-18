@@ -91,7 +91,7 @@
     }];
     
     headImageView = [UIImageView new];
-    [headImageView sd_setImageWithURL:[NSURL URLWithString:[UserCache getUserPic]] placeholderImage:MMGetImage(@"user__easyico")];
+//    [headImageView sd_setImageWithURL:[NSURL URLWithString:[UserCache getUserPic]] placeholderImage:MMGetImage(@"user__easyico")];
     [self.view addSubview:headImageView];
     [headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -101,7 +101,7 @@
     MMViewBorderRadius(headImageView, WidthRatio(142)/2, WidthRatio(7), [UIColor whiteColor]);
     
     nameLabel = [UILabel new];
-    nameLabel.text = [UserCache getUserRealName] ? [UserCache getUserRealName] : [UserCache getSaveRealNameWriteName];//@"***";
+//    nameLabel.text = [UserCache getUserRealName] ? [UserCache getUserRealName] : [UserCache getSaveRealNameWriteName];//@"***";
     nameLabel.textAlignment = NSTextAlignmentCenter;
     nameLabel.textColor = [UIColor blackColor];
     nameLabel.font = [UIFont systemFontOfSize:WidthRatio(32)];
@@ -114,7 +114,7 @@
     }];
     
     phoneLabel = [UILabel new];
-    phoneLabel.text = [NSString mobileNumberEncryption:[UserCache getUserPhone]];
+//    phoneLabel.text = [NSString mobileNumberEncryption:[UserCache getUserPhone]];
     phoneLabel.textAlignment = NSTextAlignmentCenter;
     phoneLabel.textColor = HEX_COLOR(0x9a9a9a);
     phoneLabel.font = [UIFont systemFontOfSize:WidthRatio(27)];
@@ -128,7 +128,7 @@
     
     
     idLabel = [UILabel new];
-    idLabel.text = [NSString EncodeidCard:[UserCache getSaveRealNameWriteIDCare]];
+//    idLabel.text = [NSString EncodeidCard:[UserCache getSaveRealNameWriteIDCare]];
     idLabel.textAlignment = NSTextAlignmentCenter;
     idLabel.textColor = HEX_COLOR(0x9a9a9a);
     idLabel.font = [UIFont systemFontOfSize:WidthRatio(27)];
@@ -139,7 +139,8 @@
         make.top.mas_equalTo(self->phoneLabel.mas_bottom).offset(HeightRatio(43));
         make.height.mas_equalTo(HeightRatio(27));
     }];
-    if ([UserCache getUserXinXi]) {
+//     if ([UserCache getUserXinXi]) {
+    if (YES) {
         UILabel *promptingLabel = [UILabel new];
         promptingLabel.text = @"审核成功";
         promptingLabel.textColor = HEX_COLOR(0xA221FF);
@@ -188,7 +189,8 @@
         make.height.mas_greaterThanOrEqualTo(1);
         make.width.mas_greaterThanOrEqualTo(1);
     }];
-    if ([UserCache getUserXinXi]) {// !!!: 审核成功隐藏提交提示
+//     if ([UserCache getUserXinXi]) {
+    if (YES) {// !!!: 审核成功隐藏提交提示
         [button setHidden:YES];
         [label setHidden:YES];
     }

@@ -216,15 +216,15 @@
                            };
     
     [networkingManagerTool requestToServerWithType:POST withSubUrl:@"忘记密码接口" withParameters:nil withResultBlock:^(BOOL result, id value) {
-        if (result) {
-            [UserCache setUserPhone:self.phoneTextField.text];
-            [UserCache setUserPass:self.passwordTextField.text];
-            if (self.isSetPas) {
-                [UserCache setUserPassword:@"1"];
-            }
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        [WXZTipView showCenterWithText:value[@"msg"]];
+//        if (result) {
+//            [UserCache setUserPhone:self.phoneTextField.text];
+//            [UserCache setUserPass:self.passwordTextField.text];
+//            if (self.isSetPas) {
+//                [UserCache setUserPassword:@"1"];
+//            }
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }
+//        [WXZTipView showCenterWithText:value[@"msg"]];
         
     }];
     

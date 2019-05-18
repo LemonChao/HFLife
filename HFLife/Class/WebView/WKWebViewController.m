@@ -505,8 +505,8 @@
 -(void)rushBuyParameter:(NSDictionary *)dict{
     NSLog(@"dict = %@",dict);
     if ([NSString isNOTNull:[HeaderToken getAccessToken]]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:LOG_BACK_IN object:nil userInfo:nil];
-        return;
+//        [[NSNotificationCenter defaultCenter] postNotificationName:LOG_BACK_IN object:nil userInfo:nil];
+//        return;
     }
 }
 #pragma mark -酒店预定(抢购)--
@@ -520,8 +520,8 @@
 #pragma mark --提交订单---
 -(void)submitOrderParameter:(NSDictionary *)dict{
     if ([NSString isNOTNull:[HeaderToken getAccessToken]]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:LOG_BACK_IN object:nil userInfo:nil];
-        return;
+//        [[NSNotificationCenter defaultCenter] postNotificationName:LOG_BACK_IN object:nil userInfo:nil];
+//        return;
     }
     NSLog(@"dict = %@",dict);
     NSString *mobile = dict[@"mobile"];

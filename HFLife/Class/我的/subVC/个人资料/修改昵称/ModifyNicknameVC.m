@@ -59,7 +59,7 @@
     userNameTextField.leftView = leftView;
     userNameTextField.leftViewMode = UITextFieldViewModeAlways;
     userNameTextField.placeholder = @"请输入昵称";
-    userNameTextField.text = [UserCache getUserNickName];
+//    userNameTextField.text = [UserCache getUserNickName];
     
     [self.view addSubview:userNameTextField];
     [userNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {

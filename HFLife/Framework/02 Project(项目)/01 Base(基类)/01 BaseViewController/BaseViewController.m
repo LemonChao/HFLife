@@ -364,7 +364,7 @@ static BOOL IsUpdateRemind = YES;
     if (![app_Version isEqualToString:[CommonTools getVersionString]]&&![NSString isNOTNull:[CommonTools getVersionString]]) {
         BOOL hasNewVersion = [CommonTools IsHasNewVersion] ;
         BOOL isForce =  [CommonTools IsForce] ;
-        if (!hasNewVersion) {
+        if (hasNewVersion) {
             if (isForce) {
                 //强制更新
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -439,7 +439,8 @@ static BOOL IsUpdateRemind = YES;
     //        alert.animationStyle=LXASAnimationTopShake;
     //        [alert showLXAlertView];
     //    }
-    return [UserCache getUserTradePassword];
+//    return [UserCache getUserTradePassword];
+    return NO ;
 }
 - (CGFloat)cellContentViewWith
 {

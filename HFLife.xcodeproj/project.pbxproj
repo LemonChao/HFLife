@@ -531,6 +531,7 @@
 		04FCEA1C228FF0ED00F95486 /* SXF_HF_leftRightAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA1B228FF0ED00F95486 /* SXF_HF_leftRightAlert.m */; };
 		04FCEA20228FF7FE00F95486 /* SXF_HF_saveCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */; };
 		04FCEA23228FF94B00F95486 /* SXF_HF_saveCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */; };
+		04FCEA272290220500F95486 /* userInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA262290220500F95486 /* userInfoModel.m */; };
 		6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 65229493225AE063001DF691 /* SELUpdateAlert.m */; };
 		6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */; };
 		6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */; };
@@ -659,7 +660,6 @@
 		658B7CC421D749E100801CC8 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B7BC421D749E000801CC8 /* AlertView.m */; };
 		658B7CC521D749E100801CC8 /* AlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B7BC521D749E000801CC8 /* AlertAction.m */; };
 		658B7CC621D749E100801CC8 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B7BC721D749E000801CC8 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		658B7CF421D749E100801CC8 /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 658B7C2021D749E100801CC8 /* UserCache.m */; };
 		658C39CE21E9FA5B00880B6A /* JXCategoryIndicatorLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658C398321E9FA5A00880B6A /* JXCategoryIndicatorLineView.m */; };
 		658C39CF21E9FA5B00880B6A /* JXCategoryIndicatorTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658C398421E9FA5A00880B6A /* JXCategoryIndicatorTriangleView.m */; };
 		658C39D021E9FA5B00880B6A /* JXCategoryIndicatorRainbowLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658C398521E9FA5A00880B6A /* JXCategoryIndicatorRainbowLineView.m */; };
@@ -1808,6 +1808,9 @@
 		04FCEA1D228FF7FE00F95486 /* SXF_HF_saveCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_saveCodeView.h; sourceTree = "<group>"; };
 		04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_saveCodeView.m; sourceTree = "<group>"; };
 		04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_saveCodeView.xib; sourceTree = "<group>"; };
+		04FCEA2422901BDD00F95486 /* AppConfiger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfiger.h; sourceTree = "<group>"; };
+		04FCEA252290220500F95486 /* userInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInfoModel.h; sourceTree = "<group>"; };
+		04FCEA262290220500F95486 /* userInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userInfoModel.m; sourceTree = "<group>"; };
 		65229492225AE063001DF691 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		65229493225AE063001DF691 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VersionUpdate_Icon@3x.png"; sourceTree = "<group>"; };
@@ -1870,7 +1873,6 @@
 		658B79F221D71D1800801CC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		658B79F421D71D1800801CC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		658B79F521D71D1800801CC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		658B7A3321D749DF00801CC8 /* KeyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyMacro.h; sourceTree = "<group>"; };
 		658B7A3521D749DF00801CC8 /* ToolMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolMacro.h; sourceTree = "<group>"; };
 		658B7A3621D749DF00801CC8 /* LayoutMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutMacro.h; sourceTree = "<group>"; };
 		658B7A5821D749DF00801CC8 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
@@ -2051,8 +2053,6 @@
 		658B7BC521D749E000801CC8 /* AlertAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertAction.m; sourceTree = "<group>"; };
 		658B7BC721D749E000801CC8 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		658B7BC821D749E000801CC8 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
-		658B7C1F21D749E100801CC8 /* UserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCache.h; sourceTree = "<group>"; };
-		658B7C2021D749E100801CC8 /* UserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCache.m; sourceTree = "<group>"; };
 		658B7CFD21D74AE800801CC8 /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		658C397F21E9FA5A00880B6A /* JXCategoryIndicatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryIndicatorCell.h; sourceTree = "<group>"; };
 		658C398021E9FA5A00880B6A /* JXCategoryIndicatorCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryIndicatorCellModel.h; sourceTree = "<group>"; };
@@ -3946,7 +3946,6 @@
 				04A5071D227EDD350013E8EC /* 02 Macro.h */,
 				04A5071E227EDD350013E8EC /* 04 URL.h */,
 				04A5071F227EDD350013E8EC /* 03 Constant.h */,
-				658B7A3321D749DF00801CC8 /* KeyMacro.h */,
 				658B7A3521D749DF00801CC8 /* ToolMacro.h */,
 				658B7A3621D749DF00801CC8 /* LayoutMacro.h */,
 				6C3D4ABA22255A0E0007AF9A /* AppColorHeader.h */,
@@ -5543,6 +5542,8 @@
 			children = (
 				04F54B3222811DC8009AAEF3 /* subModels.h */,
 				04F54B3322811DC8009AAEF3 /* subModels.m */,
+				04FCEA252290220500F95486 /* userInfoModel.h */,
+				04FCEA262290220500F95486 /* userInfoModel.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -5551,6 +5552,7 @@
 			isa = PBXGroup;
 			children = (
 				04FB7F3B2286CED200150CA7 /* projectUse.h */,
+				04FCEA2422901BDD00F95486 /* AppConfiger.h */,
 				04F54B3622811FBB009AAEF3 /* Header_SXF.h */,
 				04F54B3722811FC8009AAEF3 /* Header_YYB.h */,
 				04F54B3822811FDA009AAEF3 /* Header_ZC.h */,
@@ -5926,7 +5928,6 @@
 				04B9D3D92280050C0084FA23 /* NetWorkHelper.m */,
 				04B9D585228040DF0084FA23 /* HeaderToken.h */,
 				04B9D584228040DF0084FA23 /* HeaderToken.m */,
-				658B7C1E21D749E100801CC8 /* 用户数据缓存类 */,
 				658B7A5721D749DF00801CC8 /* cotagary */,
 			);
 			path = Other;
@@ -6293,15 +6294,6 @@
 				658B7BC821D749E000801CC8 /* SFHFKeychainUtils.h */,
 			);
 			path = "获取设备UUID";
-			sourceTree = "<group>";
-		};
-		658B7C1E21D749E100801CC8 /* 用户数据缓存类 */ = {
-			isa = PBXGroup;
-			children = (
-				658B7C1F21D749E100801CC8 /* UserCache.h */,
-				658B7C2021D749E100801CC8 /* UserCache.m */,
-			);
-			path = "用户数据缓存类";
 			sourceTree = "<group>";
 		};
 		658B7D0421D7541900801CC8 /* Class */ = {
@@ -7535,6 +7527,7 @@
 				04A5084D227EDD3A0013E8EC /* UIImageView+ZFCache.m in Sources */,
 				0453D17E228266D200880C2A /* bannerCollectionViewCell.m in Sources */,
 				04A5089C227EDD3A0013E8EC /* NSObject+WHRuntime.m in Sources */,
+				04FCEA272290220500F95486 /* userInfoModel.m in Sources */,
 				04153BFA228AA2F100AA5DAF /* FoodClassifyCell.m in Sources */,
 				658B7C4421D749E100801CC8 /* JSONKit.m in Sources */,
 				658B7C4D21D749E100801CC8 /* UIButton+Extension.m in Sources */,
@@ -7807,7 +7800,6 @@
 				6C7D85022285726700A8E9F7 /* ZCHomeDiscountCell.m in Sources */,
 				658B7C4221D749E100801CC8 /* UITabBar+TBBadge.m in Sources */,
 				04A50857227EDD3A0013E8EC /* ZFCollectionViewCell.m in Sources */,
-				658B7CF421D749E100801CC8 /* UserCache.m in Sources */,
 				04A50896227EDD3A0013E8EC /* UIView+WHView.m in Sources */,
 				65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */,
 				658902EE223B775F009C1B03 /* UIColor+PYSearchExtension.m in Sources */,

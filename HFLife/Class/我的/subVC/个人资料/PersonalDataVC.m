@@ -33,7 +33,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor  = [UIColor whiteColor];
     dataArray = @[@[@"头像",@"昵称",@"用户名",@"实名认证",@"手机号码"],@[@"退出登录"]];
-    valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
+//    valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
     [self initWithUI];
     [self setupNavBar];
 }
@@ -42,7 +42,7 @@
     self.navigationController.navigationBar.hidden = YES;
     [self.permanage getPersonalData:^(id request) {
         if ([request boolValue]) {
-            self->valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
+//            self->valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
             [self.contentTableView reloadData];
         }
     }];
@@ -152,18 +152,18 @@
     }else if ([title_value isEqualToString:@"实名认证"]){
 //        IdentityInformationVC *ident = [[IdentityInformationVC alloc]init];
 //        [self.navigationController pushViewController:ident animated:YES];
-        if ([[UserCache getUserXinXiCode]  isEqualToString:@"0"] || [[UserCache getUserXinXiCode] isEqualToString:@"3"] ) {
-            IdentityInformationVC *ident = [[IdentityInformationVC alloc]init];
-            [self.navigationController pushViewController:ident animated:YES];
-        }else{
-            ReviewResultsVC *re = [[ReviewResultsVC alloc]init];
-            [self.navigationController pushViewController:re animated:YES];
-        }
+//        if ([[UserCache getUserXinXiCode]  isEqualToString:@"0"] || [[UserCache getUserXinXiCode] isEqualToString:@"3"] ) {
+//            IdentityInformationVC *ident = [[IdentityInformationVC alloc]init];
+//            [self.navigationController pushViewController:ident animated:YES];
+//        }else{
+//            ReviewResultsVC *re = [[ReviewResultsVC alloc]init];
+//            [self.navigationController pushViewController:re animated:YES];
+//        }
        
     }else if ([title_value isEqualToString:@"退出登录"]){
         LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:@"您确定要退出登录吗？" cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
             if(clickIndex == 1){
-                [[NSNotificationCenter defaultCenter] postNotificationName:EXIT_LOGIN object:nil userInfo:nil];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:EXIT_LOGIN object:nil userInfo:nil];
                 [self.navigationController popToRootViewControllerAnimated:YES];
                 [ShareSDK cancelAuthorize:(SSDKPlatformTypeQQ) result:^(NSError *error) {
                     

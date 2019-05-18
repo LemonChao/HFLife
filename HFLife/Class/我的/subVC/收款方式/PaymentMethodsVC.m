@@ -54,15 +54,15 @@
     [self.customNavBar setOnClickRightButton:^{
         NSLog(@"添加");
         
-        if ([NSString isNOTNull:[UserCache getUserPhone]]) {
-            //设置手机号
-            LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:MMNSStringFormat(@"您未进行手机号绑定,暂时无法进行银行卡添加") cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
-                
-            }];
-            alert.animationStyle=LXASAnimationTopShake;
-            [alert showLXAlertView];
-            return;// 手机号未绑定返回
-        }
+//        if ([NSString isNOTNull:[UserCache getUserPhone]]) {
+//            //设置手机号
+//            LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:MMNSStringFormat(@"您未进行手机号绑定,暂时无法进行银行卡添加") cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
+//                
+//            }];
+//            alert.animationStyle=LXASAnimationTopShake;
+//            [alert showLXAlertView];
+//            return;// 手机号未绑定返回
+//        }
         
         NSArray *arrayTitle = @[@"银行卡",@"支付宝"];
         

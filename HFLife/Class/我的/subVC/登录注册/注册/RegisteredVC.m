@@ -494,7 +494,7 @@
                 NSDictionary *dataDic = dict[@"data"];
                 if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                     [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
-                    [UserCache setUserPhone:self.userName.text];
+//                    [UserCache setUserPhone:self.userName.text];
                     //                [UserCache setUserPass:self.vercodeText.text];
                     [self dismissViewControllerAnimated:YES completion:^{
                         
