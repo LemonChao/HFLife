@@ -7,13 +7,16 @@
 //
 
 #import "SXF_HF_AlertView.h"
-
+//时间选择器
+#import "SXF_HF_TimeSelectedView.h"
 @interface SXF_HF_AlertView ()
 @property (nonatomic, strong)UILabel *titleLb;
 @property (nonatomic, strong)UILabel *msgLb;
 @property (nonatomic, strong)UIButton *sureBtn;
 @property (nonatomic, strong)UIButton *cancleBtn;
 @property (nonatomic, strong)void(^clickBtn)(BOOL btnType);
+@property (nonatomic, strong)SXF_HF_TimeSelectedView *timerAlert;
+@property (nonatomic, strong)void(^selecteTime)(NSString *year, NSString *month);
 @end
 
 
@@ -42,11 +45,13 @@
     self.msgLb        = [UILabel new];
     self.sureBtn      = [UIButton new];
     self.cancleBtn    = [UIButton new];
+    self.timerAlert   = [SXF_HF_TimeSelectedView new];
     
     [self addSubview:self.titleLb];
     [self addSubview:self.msgLb];
     [self addSubview:self.sureBtn];
     [self addSubview:self.cancleBtn];
+    [self addSubview:self.timerAlert];
     
     
     
@@ -83,6 +88,10 @@
             
         }
         break;
+        case AlertType_time:{
+            
+        }
+            break;
         default:
             break;
     }
@@ -118,6 +127,14 @@
             [self.sureBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
         }
             break;
+        case AlertType_time:{
+            self.titleLb.hidden = YES;
+            self.sureBtn.hidden = YES;
+            self.cancleBtn.hidden = YES;
+            self.msgLb.hidden = YES;
+            
+        }
+            break;
         default:
             break;
     }
@@ -139,11 +156,21 @@
         case AlertType_Pay:
             [self layoutPayType];
             break;
+        case AlertType_time:{
+            [self layoutTimeType];
+        }
+            break;
         default:
             break;
     }
 }
 
+//时间选择
+- (void)layoutTimeType{
+    [self.timerAlert mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.mas_equalTo(self);
+    }];
+}
 
 /**
   安全提示
@@ -225,8 +252,14 @@
 }
 
 
-+ (void) showAlertType:(HF_AlertType)alertType Complete:(void(^__nullable)(BOOL btnBype))complate{
-    
++ (void) showTimeSlecterAlertComplete:(void(^__nullable)(NSString *year, NSString *month))complate{
+    SXF_HF_AlertView * alert = [SXF_HF_AlertView showAlertType:AlertType_time Complete:nil];
+    alert.selecteTime = complate;
+}
+
+
++ (SXF_HF_AlertView *) showAlertType:(HF_AlertType)alertType Complete:(void(^__nullable)(BOOL btnBype))complate{
+
     UIWindow *kwin = [UIApplication sharedApplication].keyWindow;
     if (!kwin) {
         kwin =  [UIApplication sharedApplication].windows.lastObject;
@@ -263,6 +296,10 @@
         break;
         case AlertType_Pay:{
             alertView.frame = CGRectMake(0, 0, ScreenScale(287), ScreenScale(120));
+        }
+            break;
+        case AlertType_time:{
+            alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(297));
         }
             break;
         default:
@@ -316,6 +353,29 @@
         }];
         
     };
+    
+    alertView.timerAlert.confirmBtnCallback = ^(NSString * _Nonnull year, NSString * _Nonnull month) {
+        !weakAlert.selecteTime ? : weakAlert.selecteTime(year, month);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [UIView animateWithDuration:0.2 animations:^{
+                
+                weakAlert.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
+                weakAlert.transform = CGAffineTransformMakeScale(0.01, 0.01);
+            } completion:^(BOOL finished) {
+                
+                [weakAlert removeFromSuperview];
+                [bgView removeFromSuperview];
+            }];
+                
+        }];
+        
+        
+    };
+    
+    
+    
+    
+    return alertView;
 }
 
 

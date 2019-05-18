@@ -519,6 +519,7 @@
 		04F9ABFC228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F9ABFA228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.xib */; };
 		04F9AC00228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9ABFE228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m */; };
 		04F9AC01228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */; };
+		04F9AC04228ED5A600A602CE /* SXF_HF_TimeSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9AC03228ED5A600A602CE /* SXF_HF_TimeSelectedView.m */; };
 		04FB7F1522865A4900150CA7 /* 余额.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1322865A4900150CA7 /* 余额.gif */; };
 		04FB7F1622865A4900150CA7 /* 余额底图_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1422865A4900150CA7 /* 余额底图_00000.png */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
@@ -1781,6 +1782,8 @@
 		04F9ABFD228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_getMoneyCellTableViewCell.h; sourceTree = "<group>"; };
 		04F9ABFE228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_getMoneyCellTableViewCell.m; sourceTree = "<group>"; };
 		04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_getMoneyCellTableViewCell.xib; sourceTree = "<group>"; };
+		04F9AC02228ED5A600A602CE /* SXF_HF_TimeSelectedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_TimeSelectedView.h; sourceTree = "<group>"; };
+		04F9AC03228ED5A600A602CE /* SXF_HF_TimeSelectedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_TimeSelectedView.m; sourceTree = "<group>"; };
 		04FB7F1322865A4900150CA7 /* 余额.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "余额.gif"; sourceTree = "<group>"; };
 		04FB7F1422865A4900150CA7 /* 余额底图_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额底图_00000.png"; sourceTree = "<group>"; };
 		04FB7F1722866BE300150CA7 /* UIImageView+LoadGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadGif.h"; sourceTree = "<group>"; };
@@ -5566,6 +5569,8 @@
 			children = (
 				04F5F24B228412620043BBB7 /* SXF_HF_AlertView.h */,
 				04F5F24C228412630043BBB7 /* SXF_HF_AlertView.m */,
+				04F9AC02228ED5A600A602CE /* SXF_HF_TimeSelectedView.h */,
+				04F9AC03228ED5A600A602CE /* SXF_HF_TimeSelectedView.m */,
 			);
 			path = "系统弹窗";
 			sourceTree = "<group>";
@@ -7839,6 +7844,7 @@
 				658C3AE221F31A5000880B6A /* MKShowView.m in Sources */,
 				04A508E7227EDD3A0013E8EC /* HRBaseWebViewController.m in Sources */,
 				658B7CC521D749E100801CC8 /* AlertAction.m in Sources */,
+				04F9AC04228ED5A600A602CE /* SXF_HF_TimeSelectedView.m in Sources */,
 				658B7CAA21D749E100801CC8 /* UIImageView+LBBlurredImage.m in Sources */,
 				04F54B4422813B23009AAEF3 /* WRCustomNavigationBar.m in Sources */,
 				658C3B0B21F57FBC00880B6A /* TownModel.m in Sources */,

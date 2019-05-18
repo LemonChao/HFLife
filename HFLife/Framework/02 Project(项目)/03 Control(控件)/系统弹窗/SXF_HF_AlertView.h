@@ -12,6 +12,7 @@ typedef NS_ENUM(NSUInteger, HF_AlertType) {
     AlertType_login,//登录提示
     AlertType_save,//安全提示,
     AlertType_Pay,//支付提示
+    AlertType_time,//时间选择
 };
 
 
@@ -26,7 +27,16 @@ NS_ASSUME_NONNULL_BEGIN
  @param alertType <#alertType description#>
  @param complate <#complate description#>
  */
-+ (void) showAlertType:(HF_AlertType) alertType Complete:(void(^__nullable)(BOOL btnBype))complate;
++ (SXF_HF_AlertView *) showAlertType:(HF_AlertType) alertType Complete:(void(^__nullable)(BOOL btnBype))complate;
+
+
+/**
+ 时间选择
+
+ @param complate <#complate description#>
+ */
++ (void) showTimeSlecterAlertComplete:(void(^__nullable)(NSString *year, NSString *month))complate;
+
 @end
 
 NS_ASSUME_NONNULL_END
