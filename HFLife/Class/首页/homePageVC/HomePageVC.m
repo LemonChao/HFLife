@@ -104,6 +104,12 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [SXF_HF_AlertView showAlertType:AlertType_topRight Complete:^(BOOL btnBype) {
+                if (btnBype) {
+                    //收款码介绍
+                    BaseViewController *vc = [BaseViewController new];
+                    vc.customNavBar.title = @"收款码介绍";
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
 
             }];
             

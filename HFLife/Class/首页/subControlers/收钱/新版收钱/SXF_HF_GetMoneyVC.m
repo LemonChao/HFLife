@@ -55,7 +55,15 @@
     
     [self.customNavBar wr_setRightButtonWithImage:MY_IMAHE(@"更多")];
     [self.customNavBar setOnClickRightButton:^{
-        
+        [SXF_HF_AlertView showAlertType:AlertType_topRight Complete:^(BOOL btnBype) {
+            if (btnBype) {
+                //收款码介绍
+                BaseViewController *vc = [BaseViewController new];
+                vc.customNavBar.title = @"收款码介绍";
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+            
+        }];
     }];
 }
 

@@ -53,7 +53,8 @@
     _bgImgeV.image = MY_IMAHE(@"右上弹窗");
     [_btn1 addTarget:self action:@selector(clickAkertBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_btn2 addTarget:self action:@selector(clickAkertBtn:) forControlEvents:UIControlEventTouchUpInside];
-    
+    _btn1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    _btn2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     _btn1.tag = 399;
     _btn2.tag = 400;
 }
@@ -69,8 +70,9 @@
     
     [self.btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(ScreenScale(13));
-        make.top.mas_equalTo(self.mas_top).offset(ScreenScale(22));
+        make.top.mas_equalTo(self.mas_top).offset(ScreenScale(4));
         make.right.mas_equalTo(self.mas_right);
+        make.height.mas_equalTo(ScreenScale(43));
     }];
     
     [self.lineV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,14 +80,14 @@
         make.height.mas_equalTo(1);
         make.left.mas_equalTo(self.mas_left).offset(ScreenScale(12));
         make.top.mas_equalTo(self.btn1.mas_bottom);
-        make.centerY.mas_equalTo(self.mas_centerY).offset(ScreenScale(2));
+        
     }];
     
     [self.btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(ScreenScale(13));
-        make.bottom.mas_equalTo(self.mas_bottom).offset(ScreenScale(-15));
-        make.top.mas_equalTo(self.lineV.mas_bottom);
+        make.bottom.mas_equalTo(self.mas_bottom).offset(0);
         make.right.mas_equalTo(self.mas_right);
+        make.top.mas_equalTo(self.lineV.mas_bottom);
     }];
 }
 

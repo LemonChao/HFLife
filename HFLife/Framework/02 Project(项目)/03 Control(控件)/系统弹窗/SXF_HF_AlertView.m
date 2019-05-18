@@ -416,12 +416,10 @@
     };
     
     alertView.topRightAlertV.clickAlertBtn = ^(NSInteger index) {
+        complate(index);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [UIView animateWithDuration:0.2 animations:^{
                 
-//                weakAlert.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
-//                weakAlert.transform = CGAffineTransformMakeScale(0.01, 0.01);
-//                weakAlert.center = CGPointMake(CGRectGetMaxX(weakAlert.frame), CGRectGetMinY(weakAlert.frame));
             } completion:^(BOOL finished) {
                 
                 [weakAlert removeFromSuperview];
