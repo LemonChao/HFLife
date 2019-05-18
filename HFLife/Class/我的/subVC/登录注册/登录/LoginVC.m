@@ -16,6 +16,7 @@
 
 #import "ReviseMobilePhone.h"//设置手机号
 #import "SetingMobilePhoneVC.h"//设置手机号
+
 @interface LoginVC ()
 
 @end
@@ -35,6 +36,8 @@
         self.navigationController.navigationBar.hidden = YES;
         self.customNavBar.hidden = YES;
     });
+    
+    [[NSUserDefaults standardUserDefaults] setValue:nil  forKey:USER_TOKEN];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -171,7 +174,7 @@
     alipyBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(25)];
     [alipyBtn setImage:MMGetImage(@"icon_alipy") forState:(UIControlStateNormal)];
     
-    [alipyBtn addTarget:self action:@selector(loginWithWeChat) forControlEvents:(UIControlEventTouchUpInside)];
+    [alipyBtn addTarget:self action:@selector(loginWithAliPay) forControlEvents:(UIControlEventTouchUpInside)];
     [alipyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.mas_equalTo(phoneBtn.mas_right).offset(ScreenScale(50));
@@ -292,84 +295,68 @@
                [[WBPCreate sharedInstance] hideAnimated];
                if (state == SSDKResponseStateSuccess){
                    
-                   [CommonTools setToken:@""];// !!!:三方登录 清空token
-                   
-                   
-                   NSDictionary *dataDict = @{@"openId":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
+                   // !!!:三方登录 清空token
+                   NSDictionary *dataDict = @{@"openid":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
                    [[WBPCreate sharedInstance] showWBProgress];
                    [networkingManagerTool requestToServerWithType:POST withSubUrl:kWXLogin withParameters:dataDict withResultBlock:^(BOOL result, id value) {
                        [[WBPCreate sharedInstance] hideAnimated];
                        if (result) {
                            NSDictionary *dict = value;
-                           NSDictionary *dataDic = [dict safeKeyForValue:@"data"];
+                           NSDictionary *dataDic = [dict safeObjectForKey:@"data"];
                            
-                           NSString *user_mobile = [dataDic safeKeyForValue:@"user_mobile"];
+                           NSString *ucenter_token = [dataDic safeObjectForKey:@"ucenter_token"];
                            
-                           if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
-//                               [HeaderToken setToken:dict[@"data"]];
-//                               [CommonTools setToken:dict[@"data"]];
-                               [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeKeyForValue:@"ucenter_token"]  forKey:USER_TOKEN];
+                           if (ucenter_token && [ucenter_token isKindOfClass:[NSString class]] && ucenter_token.length > 0) {
+                               [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
                                [self dismissViewControllerAnimated:YES completion:^{
                                    
                                }];
                            }else {
                                SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
-                               vc.tokenStr = [dataDic safeKeyForValue:@"ucenter_token"];
-                               //                               vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-                               //                                   [HeaderToken setToken:dict[@"data"]];
-                               //                                   [CommonTools setToken:dict[@"data"]];
-                               //                                   [self.navigationController popToRootViewControllerAnimated:YES];
-                               //                               };
+                               vc.openIdStr = user.uid;
+                               vc.loginType = LoginTypeWeiXin;
                                if ([self.navigationController.viewControllers.lastObject isKindOfClass:[LoginVC class]]) {
                                    [self.navigationController pushViewController:vc animated:YES];
                                }
                            }
                            
                        }else{
-                           [WXZTipView showCenterWithText:value[@"msg"]];
+                           if (value && [value isKindOfClass:[NSDictionary class]]) {
+                               [WXZTipView showCenterWithText:value[@"msg"]];
+                           }else {
+                               [WXZTipView showCenterWithText:@"网络请求错误"];
+                           }
                        }
                    }];
-                   /*
-                    
-                    NSDictionary *dataDict = @{@"type":@"wx",@"openId":user.uid,@"nickname":user.nickname,@"img":user.icon};
-                    HP_ThirdPartyLoginNetApi *thirdParty = [[HP_ThirdPartyLoginNetApi alloc]initWithParameter:dataDict];
-                    [thirdParty startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-                    HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
-                    if ([thirdPartyRequest getCodeStatus] == 1) {
-                    NSDictionary *dict = [thirdPartyRequest getContent];
-                    
-                    NSString *user_mobile = dict[@"user_mobile"];
-                    if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
-                    [HeaderToken setToken:dict[@"token"]];
-                    [CommonTools setToken:dict[@"token"]];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    }else {
-                    ReviseMobilePhone *vc = [[ReviseMobilePhone alloc]init];
-                    vc.tokenStr = dict[@"token"];
-                    vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-                    [HeaderToken setToken:dict[@"token"]];
-                    [CommonTools setToken:dict[@"token"]];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    };
-                    [self.navigationController pushViewController:vc animated:YES];
-                    }
-                    
-                    }else{
-                    [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
-                    }
-                    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-                    HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
-                    [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
-                    }];
-                    
-                    
-                    */
-                   
-                   
                }else{
                    NSLog(@"error = %@",error);
                }
            }];
+}
+
+- (void)loginWithAliPay {
+    
+    
+    NSString *appScheme = @"hanFuLife";//@"你的appScheme";
+    //authStr参数后台获取！和开发中心配置的app有关系，包含appid\name等等信息。
+    NSString *authStr = @"2019051864996655";//@"后台获取的authStr";
+    //没有安装支付宝客户端的跳到网页授权时会在这个方法里回调
+    [[AFAuthSDK defaultService] authv2WithInfo:authStr fromScheme:appScheme callback:^(NSDictionary *result) {
+        // 解析 auth code
+        NSString *resultString = result[@"result"];
+        NSString *authCode = nil;
+        if (resultString.length>0) {
+            NSArray *resultArr = [resultString componentsSeparatedByString:@"&"];
+            for (NSString *subResult in resultArr) {
+                if (subResult.length > 10 && [subResult hasPrefix:@"auth_code="]) {
+                    authCode = [subResult substringFromIndex:10];
+                    break;
+                }
+            }
+        }
+        NSLog(@"resultString = %@",resultString);
+        NSLog(@"authv2WithInfo授权结果 authCode = %@", authCode?:@"");
+    }];
 }
 -(void)registeredClick{
     [self.navigationController pushViewController:[[RegisteredVC alloc]init] animated:YES];

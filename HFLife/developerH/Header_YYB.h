@@ -16,6 +16,9 @@
 /** 网络异常界面 */
 #import "UIView+alertView.h"
 
+#import <AFAuthSDK/AFAuthSDK.h>// 支付宝登录
+
+
 /************************yourTools************************/
 
 /************************yourTools************************/
@@ -26,6 +29,7 @@
 /************************subUrl************************/
 #define GP_BASEURL  @"http://test.hfgld.net"
 
+#pragma mark - 登录注册 ---------------
 static NSString *const yourTestUrl = @"w=index&t=index";
 /** 手机注册 */
 static NSString *const kRegisterMobile = @"api/member/registerMobile";
@@ -34,6 +38,8 @@ static NSString *const kRegisterMobile = @"api/member/registerMobile";
 static NSString *const kMobileLogin = @"api/member/mobileLogin";
 /** 微信登录 */
 static NSString *const kWXLogin = @"api/member/wxLogin";
+/** 微信绑定手机号 */
+static NSString *const kWxBindmobile =@"api/member/wxBindmobile";
 /** 注销登录 */
 static NSString *const kLogout = @"api/member/logout";
 /** 发送验证码 */
@@ -42,6 +48,7 @@ static NSString *const kSendsms = @"api/sms/send";
 static NSString *const kCheckMobile = @"api/member/checkMobile";
 /** 检测邀请码 */
 static NSString *const kCheckInviteCode = @"api/member/checkInviteCode";
+
 
 
 
