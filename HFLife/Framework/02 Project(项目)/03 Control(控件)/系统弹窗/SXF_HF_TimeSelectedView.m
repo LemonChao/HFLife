@@ -50,7 +50,7 @@
             [_monthArrM addObject:[NSString stringWithFormat:@"%d", 1 + i]];
         }
     }
-    NSLog(@"%@--%@", _yearArrM, _monthArrM);
+//    NSLog(@"%@--%@", _yearArrM, _monthArrM);
     
     
     self.yearStr = _yearArrM.firstObject;
