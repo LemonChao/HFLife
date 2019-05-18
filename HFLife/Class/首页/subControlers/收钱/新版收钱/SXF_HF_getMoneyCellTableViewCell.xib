@@ -115,8 +115,12 @@
             <connections>
                 <outlet property="firstCellView" destination="EE3-g6-cVc" id="Vyb-gT-zSA"/>
                 <outlet property="secondCellView" destination="2sL-tW-bzC" id="xPY-4O-Nh5"/>
+                <outlet property="titleLb" destination="Mfe-nr-kUz" id="7MV-5d-kqi"/>
+                <outlet property="titltImageV" destination="fZo-R8-0Uv" id="FF2-wU-7aL"/>
+                <outlet property="userHeaderImageV" destination="5jP-3d-4it" id="WCd-Pt-IqE"/>
+                <outlet property="userNameLb" destination="Zb0-Lc-5Pi" id="ZcV-19-fCG"/>
             </connections>
-            <point key="canvasLocation" x="-125.36231884057972" y="36.160714285714285"/>
+            <point key="canvasLocation" x="174.63768115942031" y="26.785714285714285"/>
         </tableViewCell>
     </objects>
     <resources>

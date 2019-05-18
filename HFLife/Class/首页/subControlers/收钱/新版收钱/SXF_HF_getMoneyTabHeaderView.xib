@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SXF_HF_getMoneyTabHeaderView"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="Ea1-XH-QPZ">
+        <view contentMode="scaleToFill" id="Ea1-XH-QPZ" customClass="SXF_HF_getMoneyTabHeaderView">
             <rect key="frame" x="0.0" y="0.0" width="438" height="440"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -74,11 +74,14 @@
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value="5"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="clickBtn:" destination="Ea1-XH-QPZ" eventType="touchUpInside" id="CIR-Pd-4BB"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJR-OV-fHL">
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJR-OV-fHL">
                             <rect key="frame" x="284" y="361" width="90" height="28"/>
                             <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -91,9 +94,12 @@
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value="5"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="clickBtn:" destination="Ea1-XH-QPZ" eventType="touchUpInside" id="CRN-hw-Bts"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -126,7 +132,12 @@
                 <constraint firstItem="Oh3-9s-zQW" firstAttribute="leading" secondItem="Ea1-XH-QPZ" secondAttribute="leading" constant="12" id="Qpp-rn-Mfl"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-44.799999999999997" y="-474.06296851574217"/>
+            <connections>
+                <outlet property="meddileTitleLb" destination="Wbf-U4-Swm" id="Qdf-hk-YOj"/>
+                <outlet property="qCodeImageV" destination="7GY-wu-pdJ" id="Yh6-AW-PQG"/>
+                <outlet property="userNameLb" destination="x3V-Al-5cP" id="zA9-Gn-0yV"/>
+            </connections>
+            <point key="canvasLocation" x="58" y="-548"/>
         </view>
     </objects>
 </document>

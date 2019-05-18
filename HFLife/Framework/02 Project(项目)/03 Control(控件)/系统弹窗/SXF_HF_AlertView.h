@@ -13,6 +13,7 @@ typedef NS_ENUM(NSUInteger, HF_AlertType) {
     AlertType_save,//安全提示,
     AlertType_Pay,//支付提示
     AlertType_time,//时间选择
+    AlertType_topRight,//右上角选择弹窗
 };
 
 

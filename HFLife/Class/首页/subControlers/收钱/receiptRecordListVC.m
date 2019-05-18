@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavBar];
-    
+    self.customNavBar.title = @"收款记录";
     self.listView = [[receiptRecordListView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
     
     [self.view addSubview:self.listView];
@@ -103,14 +103,6 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
-}
--(void)setupNavBar{
-    [super setupNavBar];
-    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"fanhuianniu"]];
-    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@"topFoodImage"];
-    [self.customNavBar wr_setBottomLineHidden:YES];
-   self.customNavBar.title = @"收款记录";
-    self.customNavBar.titleLabelColor = [UIColor whiteColor];
 }
 
 @end

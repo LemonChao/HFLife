@@ -9,6 +9,7 @@
 #import "SXF_HF_AlertView.h"
 //时间选择器
 #import "SXF_HF_TimeSelectedView.h"
+#import "SXF_HF_leftRightAlert.h"
 @interface SXF_HF_AlertView ()
 @property (nonatomic, strong)UILabel *titleLb;
 @property (nonatomic, strong)UILabel *msgLb;
@@ -17,6 +18,9 @@
 @property (nonatomic, strong)void(^clickBtn)(BOOL btnType);
 @property (nonatomic, strong)SXF_HF_TimeSelectedView *timerAlert;
 @property (nonatomic, strong)void(^selecteTime)(NSString *year, NSString *month);
+
+@property (nonatomic, strong)SXF_HF_leftRightAlert *topRightAlertV;
+@property (nonatomic, strong)void(^clickTopRightBtn)(NSInteger index);
 @end
 
 
@@ -46,12 +50,14 @@
     self.sureBtn      = [UIButton new];
     self.cancleBtn    = [UIButton new];
     self.timerAlert   = [SXF_HF_TimeSelectedView new];
+    self.topRightAlertV = [SXF_HF_leftRightAlert new];
     
     [self addSubview:self.titleLb];
     [self addSubview:self.msgLb];
     [self addSubview:self.sureBtn];
     [self addSubview:self.cancleBtn];
     [self addSubview:self.timerAlert];
+    [self addSubview:self.topRightAlertV];
     
     
     
@@ -160,11 +166,19 @@
             [self layoutTimeType];
         }
             break;
+        case AlertType_topRight:{
+            [self layoutTopRightView];
+        }
+            break;
         default:
             break;
     }
 }
-
+- (void)layoutTopRightView{
+    [self.topRightAlertV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.mas_equalTo(self);
+    }];
+}
 //时间选择
 - (void)layoutTimeType{
     [self.timerAlert mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -302,23 +316,52 @@
             alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(297));
         }
             break;
+        case AlertType_topRight:{
+//            alertView.frame = CGRectMake(0, 0, ScreenScale(136), ScreenScale(90));
+            [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(kwin.mas_right).offset(ScreenScale(-12));
+                make.top.mas_equalTo(kwin.mas_top).offset(ScreenScale(40 + statusBarHeight));
+                make.width.mas_equalTo(ScreenScale(136));
+                make.height.mas_equalTo(ScreenScale(90));
+            }];
+            alertView.backgroundColor = [UIColor clearColor];
+        }
+            break;
         default:
             break;
     }
-    
     alertView.alertType = alertType;
     [alertView layoutIfNeeded];
-    alertView.center = bgView.center;
-    alertView.transform = CGAffineTransformMakeScale(0.01, 0.01);
-    [UIView animateWithDuration:0.2 animations:^{
-        bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
-        alertView.transform = CGAffineTransformMakeScale(1.1, 1.1);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.1 animations:^{
-            alertView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    
+    
+    if (alertType == AlertType_topRight) {
+        bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
+        alertView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+        alertView.center = CGPointMake(CGRectGetMaxX(alertView.frame), CGRectGetMinY(alertView.frame));
+        
+        [UIView animateWithDuration:0.2 animations:^{
             bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+            alertView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            alertView.center = CGPointMake(CGRectGetMaxX(alertView.frame) - ScreenScale(136) * 0.5, CGRectGetMaxX(alertView.frame) - ScreenScale(90) * 0.5);
+        } completion:^(BOOL finished) {
+            
         }];
-    }];
+    }else{
+        alertView.center = bgView.center;
+        alertView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+        [UIView animateWithDuration:0.2 animations:^{
+            bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+            alertView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.1 animations:^{
+                alertView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+            }];
+        }];
+    }
+    
+    
+    
     
     __weak typeof(alertView)weakAlert = alertView;
     alertView.clickBtn = ^(BOOL btnType) {
@@ -362,7 +405,7 @@
                 weakAlert.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
                 weakAlert.transform = CGAffineTransformMakeScale(0.01, 0.01);
             } completion:^(BOOL finished) {
-                
+
                 [weakAlert removeFromSuperview];
                 [bgView removeFromSuperview];
             }];
@@ -370,6 +413,22 @@
         }];
         
         
+    };
+    
+    alertView.topRightAlertV.clickAlertBtn = ^(NSInteger index) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [UIView animateWithDuration:0.2 animations:^{
+                
+//                weakAlert.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
+//                weakAlert.transform = CGAffineTransformMakeScale(0.01, 0.01);
+//                weakAlert.center = CGPointMake(CGRectGetMaxX(weakAlert.frame), CGRectGetMinY(weakAlert.frame));
+            } completion:^(BOOL finished) {
+                
+                [weakAlert removeFromSuperview];
+                [bgView removeFromSuperview];
+            }];
+            
+        }];
     };
     
     
