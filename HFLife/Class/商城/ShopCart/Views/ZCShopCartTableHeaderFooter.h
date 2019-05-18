@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+/// tableHeader
 @interface ZCShopCartTableHeaderView : UIView
 
 @end
 
 
+/// tableFooter
 @interface ZCShopCartTableFooterView : UIView
+
+@property(nonatomic, copy) NSArray *dataArray;
 
 
 @end

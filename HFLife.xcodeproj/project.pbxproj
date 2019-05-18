@@ -812,6 +812,7 @@
 		6C96E054228D09ED00E2CDDA /* ZCShopClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C96E053228D09ED00E2CDDA /* ZCShopClassifyModel.m */; };
 		6C96E057228D1C9800E2CDDA /* ZCShopClassifyWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C96E056228D1C9800E2CDDA /* ZCShopClassifyWordCell.m */; };
 		6CB0A363228D4F1400F77DBD /* ZCClassifyRightHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB0A362228D4F1400F77DBD /* ZCClassifyRightHeaderView.m */; };
+		6CBC82BA228FA89000500543 /* ZCShopCartGuessLikeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBC82B9228FA89000500543 /* ZCShopCartGuessLikeCell.m */; };
 		6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6F422827B47001824A0 /* ShopTabbarViewController.m */; };
 		6CCAD6F822827CBE001824A0 /* ZC_HF_ShopHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6F722827CBE001824A0 /* ZC_HF_ShopHomeVC.m */; };
 		6CCAD6FF22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6FE22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m */; };
@@ -2328,6 +2329,8 @@
 		6C96E056228D1C9800E2CDDA /* ZCShopClassifyWordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopClassifyWordCell.m; sourceTree = "<group>"; };
 		6CB0A361228D4F1400F77DBD /* ZCClassifyRightHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCClassifyRightHeaderView.h; sourceTree = "<group>"; };
 		6CB0A362228D4F1400F77DBD /* ZCClassifyRightHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCClassifyRightHeaderView.m; sourceTree = "<group>"; };
+		6CBC82B8228FA89000500543 /* ZCShopCartGuessLikeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartGuessLikeCell.h; sourceTree = "<group>"; };
+		6CBC82B9228FA89000500543 /* ZCShopCartGuessLikeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartGuessLikeCell.m; sourceTree = "<group>"; };
 		6CCAD6F322827B47001824A0 /* ShopTabbarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopTabbarViewController.h; sourceTree = "<group>"; };
 		6CCAD6F422827B47001824A0 /* ShopTabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopTabbarViewController.m; sourceTree = "<group>"; };
 		6CCAD6F622827CBE001824A0 /* ZC_HF_ShopHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ShopHomeVC.h; sourceTree = "<group>"; };
@@ -6911,6 +6914,8 @@
 			children = (
 				6CCC1CE2228EA49900020A45 /* ZCShopCartTableViewCell.h */,
 				6CCC1CE3228EA49900020A45 /* ZCShopCartTableViewCell.m */,
+				6CBC82B8228FA89000500543 /* ZCShopCartGuessLikeCell.h */,
+				6CBC82B9228FA89000500543 /* ZCShopCartGuessLikeCell.m */,
 				6CCC1CE5228EBCF500020A45 /* ZCShopCartSctionHeader.h */,
 				6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */,
 				6CCC1CE8228ECD5500020A45 /* ZCShopCartTableHeaderFooter.h */,
@@ -7736,6 +7741,7 @@
 				04153BFF228AA2F100AA5DAF /* DiscountCouponVC.m in Sources */,
 				0453D17B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m in Sources */,
 				04FB7F332286C02600150CA7 /* NSObject+currentController.m in Sources */,
+				6CBC82BA228FA89000500543 /* ZCShopCartGuessLikeCell.m in Sources */,
 				04F52037228A563100ED4995 /* AddressListCell.m in Sources */,
 				04A50881227EDD3A0013E8EC /* customTableViewCell.m in Sources */,
 				04153C03228AA2F100AA5DAF /* NewStoresPreferential.m in Sources */,

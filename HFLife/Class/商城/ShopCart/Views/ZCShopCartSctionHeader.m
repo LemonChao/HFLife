@@ -26,10 +26,13 @@
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
         self.contentView.backgroundColor = [UIColor whiteColor];
+        UIView *lineView = [UITool viewWithColor:LineColor];
+
         [self.contentView addSubview:self.selectButton];
         [self.contentView addSubview:self.shopLogoView];
         [self.contentView addSubview:self.shopNameButton];
-        
+        [self.contentView addSubview:lineView];
+
         [self.selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.contentView);
             make.left.equalTo(self.contentView).inset(ScreenScale(12));
@@ -46,6 +49,12 @@
             make.left.equalTo(self.shopLogoView.mas_right).offset(ScreenScale(10));
         }];
         
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self);
+            make.bottom.equalTo(self);
+            make.height.mas_equalTo(0.7);
+        }];
+
     }
     return self;
 }

@@ -24,6 +24,11 @@
     self.customNavBar.title = @"购物车";
     
     [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.customNavBar.mas_bottom);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(SCREEN_HEIGHT-88-TabBarHeight);
+    }];
 }
 
 
@@ -54,7 +59,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableView.estimatedRowHeight = ScreenScale(96);
         _tableView.estimatedSectionHeaderHeight = ScreenScale(44);
         _tableView.estimatedSectionFooterHeight = ScreenScale(12);
@@ -70,7 +75,7 @@
 //        }
         
         _tableView.tableHeaderView = [[ZCShopCartTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(33))];
-        
+        _tableView.tableFooterView = [[ZCShopCartTableFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
         [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([UITableViewHeaderFooterView class])];
         [_tableView registerClass:[ZCShopCartSctionHeader class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([ZCShopCartSctionHeader class])];
         [_tableView registerClass:[ZCShopCartTableViewCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopCartTableViewCell class])];
