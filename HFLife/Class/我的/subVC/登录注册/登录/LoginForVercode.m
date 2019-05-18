@@ -106,6 +106,8 @@
         make.bottom.mas_equalTo(self.view).mas_offset(-27);
     }];
     
+    self.userName.text = @"15621402093";
+    
 //    UIButton *forgotPasswordBtn = [UIButton new];
 //    forgotPasswordBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(23)];
 //    [forgotPasswordBtn setTitle:@"忘记密码 ？" forState:(UIControlStateNormal)];
