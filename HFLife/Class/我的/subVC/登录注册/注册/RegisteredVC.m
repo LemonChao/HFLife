@@ -234,7 +234,7 @@
         UITextField *tf = [[UITextField alloc] init];
         //        tf.borderStyle = UITextBorderStyleRoundedRect;
         tf.keyboardType = UIKeyboardTypeTwitter;
-        tf.placeholder = @"请输入手机号/用户名";
+        tf.placeholder = @"请输入手机号";
         [tf setValue:HEX_COLOR(0xAAAAAA) forKeyPath:@"_placeholderLabel.textColor"];
         tf.textColor = HEX_COLOR(0x5b5b5b);
         tf.font = [UIFont systemFontOfSize:HeightRatio(32)];
@@ -339,7 +339,7 @@
             make.left.bottom.right.mas_equalTo(tf);
             make.height.mas_equalTo(HeightRatio(3));
         }];
-        [self.view addSubview:tf];
+        
         [self.view addSubview:tf];
         _vercodeText = tf;
     }
@@ -387,6 +387,8 @@
         _inviteCodeTextField = tf;
     }
     _inviteCodeTextField.rightView = [UIView new];
+    _inviteCodeTextField.rightViewMode = UITextFieldViewModeAlways;
+
     return _inviteCodeTextField;
 }
 
@@ -408,18 +410,18 @@
 }
 
 -(void)getRegistCode:(UIButton *)send{
-    if (![self.userName.text isValidateMobile]) {
+    if (![_userName.text isValidateMobile]) {
         [WXZTipView showCenterWithText:@"请输入正确的手机号"];
         return;
     }
-//    if ([NSString isNOTNull:self.inviteCodeTextField.text]) {
+//    if ([NSString isNOTNull:_inviteCodeTextField.text]) {
 //        [WXZTipView showCenterWithText:@"邀请码不能为空"];
 //        return;
 //    }
     
 //    [self openCountdown:send];
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.userName.text,@"event":@"register"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":_userName.text,@"event":@"register"} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
@@ -469,7 +471,7 @@
     dispatch_resume(_timer);
 }
 -(void)reginBtnClick{
-    if ([NSString isNOTNull:self.userName.text]) {
+    if ([NSString isNOTNull:_userName.text]) {
         [WXZTipView showCenterWithText:@"请输入用户名"];
         return;
     }
@@ -483,7 +485,7 @@
 //    }
     
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:@{@"member_mobile":self.userName.text,@"captcha":self.vercodeText.text,@"invite_code":self.inviteCodeTextField.text ? self.inviteCodeTextField.text : @""} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:@{@"member_mobile":_userName.text,@"captcha":self.vercodeText.text,@"invite_code":_inviteCodeTextField.text ? _inviteCodeTextField.text : @""} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -563,12 +565,12 @@
                 if (value && [value isKindOfClass:[NSDictionary class]]) {
                     [self setRightView:textField string:@"该用户已存在"];
                 }else {
-                    [self setRightView:textField string:@"校验接口错误"];
+                    if (self.userName) {}
                 }
             }
         }];
     }
-    if (textField == _inviteCodeTextField) {
+    if (textField == _inviteCodeTextField && _inviteCodeTextField.text.length > 0) {
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckInviteCode withParameters:@{@"invite_code":textField.text} withResultBlock:^(BOOL result, id value) {
             if (result) {
                 

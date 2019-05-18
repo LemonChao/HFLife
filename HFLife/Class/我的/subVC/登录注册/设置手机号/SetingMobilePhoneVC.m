@@ -185,7 +185,7 @@
         tf.clearButtonMode = UITextFieldViewModeAlways;
         tf.delegate = self;
         
-        UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(30), ScreenScale(24))];
+        UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(12), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
         
 //        UIImageView *iconImageView = [UIImageView new];
@@ -230,7 +230,7 @@
         tf.font = [UIFont systemFontOfSize:HeightRatio(32)];
         tf.backgroundColor = [UIColor clearColor];
         
-        UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(30), ScreenScale(24))];
+        UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(12), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
         
 //        UIImageView *iconImageView = [UIImageView new];
@@ -271,7 +271,6 @@
             make.height.mas_equalTo(1);
         }];
         [self.view addSubview:tf];
-        [self.view addSubview:tf];
         _vercodeText = tf;
     }
     return _vercodeText;
@@ -290,7 +289,7 @@
         tf.backgroundColor = [UIColor clearColor];
         tf.delegate = self;
         
-        UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(30), ScreenScale(24))];
+        UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(12), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
         
 //        UIImageView *iconImageView = [UIImageView new];
@@ -318,6 +317,8 @@
         _inviteCodeTextField = tf;
     }
     _inviteCodeTextField.rightView = [UIView new];
+    _inviteCodeTextField.rightViewMode = UITextFieldViewModeAlways;
+
     return _inviteCodeTextField;
 }
 
@@ -465,26 +466,34 @@
 #pragma mark - textFiledDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (textField == self.phoneText) {
-        
+    if (textField == _phoneText) {
+        if (self.phoneText) {
+            
+        }
     }
-    if (textField == self.inviteCodeTextField) {
-        
+    if (textField == _inviteCodeTextField) {
+        if (self.inviteCodeTextField) {
+            
+        }
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (textField == self.phoneText) {
+    if (textField == _phoneText) {
         
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile withParameters:@{@"member_mobile":textField.text} withResultBlock:^(BOOL result, id value) {
-            if (result) {
-                
-            }else {
-                [self setRightView:textField string:@"手机号已存在"];
-            }
-        }];
+//        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile withParameters:@{@"member_mobile":textField.text} withResultBlock:^(BOOL result, id value) {
+//            if (result) {
+//
+//            }else {
+//                if (value && [value isKindOfClass:[NSDictionary class]]) {
+//                    [self setRightView:textField string:@"该用户已存在"];
+//                }else {
+//                    if (self.phoneText) {}
+//                }
+//            }
+//        }];
     }
-    if (textField == self.inviteCodeTextField) {
+    if (textField == _inviteCodeTextField && _inviteCodeTextField.text.length > 0) {
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckInviteCode withParameters:@{@"invite_code":textField.text} withResultBlock:^(BOOL result, id value) {
             if (result) {
                 

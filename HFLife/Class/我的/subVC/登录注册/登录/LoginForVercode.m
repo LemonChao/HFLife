@@ -223,7 +223,7 @@
         UITextField *tf = [[UITextField alloc] init];
         //        tf.borderStyle = UITextBorderStyleRoundedRect;
         tf.keyboardType = UIKeyboardTypeTwitter;
-        tf.placeholder = @"请输入手机号/用户名";
+        tf.placeholder = @"请输入手机号";
         [tf setValue:HEX_COLOR(0xAAAAAA) forKeyPath:@"_placeholderLabel.textColor"];
         tf.textColor = HEX_COLOR(0x5b5b5b);
         tf.font = [UIFont systemFontOfSize:HeightRatio(32)];
