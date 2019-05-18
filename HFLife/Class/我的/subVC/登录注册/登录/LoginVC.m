@@ -207,8 +207,8 @@
                                
                                NSString *user_mobile = dict[@"user_mobile"];
                                if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
-                                   [HeaderToken setToken:dict[@"data"]];
-                                   [CommonTools setToken:dict[@"data"]];
+//                                   [HeaderToken setToken:dict[@"data"]];
+//                                   [CommonTools setToken:dict[@"data"]];
                                    [self dismissViewControllerAnimated:YES completion:^{
                                        
                                    }];
@@ -216,8 +216,8 @@
                                    ReviseMobilePhone *vc = [[ReviseMobilePhone alloc]init];
                                    vc.tokenStr = dict[@"token"];
                                    vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-                                       [HeaderToken setToken:dict[@"data"]];
-                                       [CommonTools setToken:dict[@"data"]];
+//                                       [HeaderToken setToken:dict[@"data"]];
+//                                       [CommonTools setToken:dict[@"data"]];
                                        [self dismissViewControllerAnimated:YES completion:^{
                                            
                                        }];
@@ -301,20 +301,25 @@
                        [[WBPCreate sharedInstance] hideAnimated];
                        if (result) {
                            NSDictionary *dict = value;
+                           NSDictionary *dataDic = [dict safeKeyForValue:@"data"];
                            
-                           NSString *user_mobile = dict[@"user_mobile"];
+                           NSString *user_mobile = [dataDic safeKeyForValue:@"user_mobile"];
+                           
                            if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
-                               [HeaderToken setToken:dict[@"data"]];
-                               [CommonTools setToken:dict[@"data"]];
-                               [self.navigationController popToRootViewControllerAnimated:YES];
+//                               [HeaderToken setToken:dict[@"data"]];
+//                               [CommonTools setToken:dict[@"data"]];
+                               [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeKeyForValue:@"ucenter_token"]  forKey:USER_TOKEN];
+                               [self dismissViewControllerAnimated:YES completion:^{
+                                   
+                               }];
                            }else {
                                SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
-                               vc.tokenStr = dict[@"token"];
-//                               vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-//                                   [HeaderToken setToken:dict[@"data"]];
-//                                   [CommonTools setToken:dict[@"data"]];
-//                                   [self.navigationController popToRootViewControllerAnimated:YES];
-//                               };
+                               vc.tokenStr = [dataDic safeKeyForValue:@"ucenter_token"];
+                               //                               vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
+                               //                                   [HeaderToken setToken:dict[@"data"]];
+                               //                                   [CommonTools setToken:dict[@"data"]];
+                               //                                   [self.navigationController popToRootViewControllerAnimated:YES];
+                               //                               };
                                if ([self.navigationController.viewControllers.lastObject isKindOfClass:[LoginVC class]]) {
                                    [self.navigationController pushViewController:vc animated:YES];
                                }

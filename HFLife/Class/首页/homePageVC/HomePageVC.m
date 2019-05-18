@@ -99,7 +99,18 @@
 //        [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
 //
 //        }];
-        [self loadServerData:1];
+        
+//        [self loadServerData:1];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            [SXF_HF_AlertView showAlertType:AlertType_time Complete:^(BOOL btnBype) {
+//
+//            }];
+            
+            [SXF_HF_AlertView showTimeSlecterAlertComplete:^(NSString * _Nonnull year, NSString * _Nonnull month) {
+                
+            }];
+        });
     }];
     
     

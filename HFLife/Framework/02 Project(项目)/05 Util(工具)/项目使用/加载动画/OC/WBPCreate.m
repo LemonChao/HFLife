@@ -56,6 +56,7 @@
             _isGIF = YES;
         }else {
             _isGIF = NO;
+            lodingImage.image = MMGetImage(@"logo");
         }
     }
     [window addSubview:bgView];

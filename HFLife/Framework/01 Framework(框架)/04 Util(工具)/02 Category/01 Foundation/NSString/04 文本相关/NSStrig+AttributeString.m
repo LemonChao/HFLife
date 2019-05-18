@@ -155,7 +155,6 @@
     NSString *newStr;
     //    newStr = [NSString stringWithFormat:@"%@%@%@", frontStr, middleStr, behindStr];
     newStr = [[frontStr stringByAppendingString:middleStr] stringByAppendingString:behindStr];
-    NSLog(@"%@", newStr);
     
     NSMutableAttributedString *newAtributeStrM = [[NSMutableAttributedString alloc] initWithString:newStr];
     
@@ -216,7 +215,6 @@
     NSString *newStr;
     //    newStr = [NSString stringWithFormat:@"%@%@%@", frontStr, middleStr, behindStr];
     newStr = [[frontStr stringByAppendingString:middleStr] stringByAppendingString:behindStr];
-    NSLog(@"%@", newStr);
     
     NSMutableAttributedString *newAtributeStrM = [[NSMutableAttributedString alloc] initWithString:newStr];
     
