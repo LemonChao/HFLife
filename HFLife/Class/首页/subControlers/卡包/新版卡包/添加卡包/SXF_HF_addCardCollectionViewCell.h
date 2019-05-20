@@ -1,5 +1,5 @@
 //
-//  SXF_HP_cardPacketView.h
+//  SXF_HF_CollectionViewCell.h
 //  HFLife
 //
 //  Created by mac on 2019/5/20.
@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SXF_HP_cardPacketView : UIView
-@property (nonatomic, copy)void(^selectRow)(NSIndexPath *indexP);
+@interface SXF_HF_addCardCollectionViewCell : UICollectionViewCell
+
 @end
 
 NS_ASSUME_NONNULL_END

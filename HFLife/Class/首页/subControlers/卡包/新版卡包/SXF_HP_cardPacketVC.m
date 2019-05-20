@@ -10,6 +10,7 @@
 #import "SXF_HP_cardPacketVC.h"
 #import "SXF_HF_addCardVC.h"
 #import "SXF_HP_cardPacketView.h"
+#import "SXF_HF_vipCardVC.h"
 @interface SXF_HP_cardPacketVC ()
 @property (nonatomic, strong)SXF_HP_cardPacketView *tableV;
 @end
@@ -28,6 +29,7 @@
 }
 - (void)setUpUI{
     WEAK(weakSelf);
+    [self.customNavBar wr_setBottomLineHidden:NO];
     [self.customNavBar wr_setRightButtonWithTitle:@"添加" titleColor:HEX_COLOR(0xCA1400)];
     self.customNavBar.rightButton.setTitleFontSize(14);
     [self.customNavBar setOnClickRightButton:^{
@@ -41,6 +43,9 @@
     
     [self.view addSubview:self.tableV];
     
+    self.tableV.selectRow = ^(NSIndexPath * _Nonnull indexP) {
+        [weakSelf.navigationController pushViewController:[SXF_HF_vipCardVC new] animated:YES];
+    };
     
 }
 @end

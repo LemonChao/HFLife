@@ -22,6 +22,7 @@
 
 //新版
 #import "SXF_HF_GetMoneyVC.h"
+#import "SXF_HP_cardPacketVC.h"
 
 @interface SXF_HF_HomePageVM ()<JFLocationDelegate>
 
@@ -81,7 +82,7 @@
         }else if (index == 2){
             vc = [SXF_HF_GetMoneyVC new];//收款
         }else if (index == 3){
-            vc = [CardPackageVC new];//卡包
+            vc = [SXF_HP_cardPacketVC new];//卡包
         }else if (index == 4){
             //搜索
             

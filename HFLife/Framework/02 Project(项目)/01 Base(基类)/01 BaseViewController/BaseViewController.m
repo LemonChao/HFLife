@@ -55,7 +55,7 @@ static BOOL IsUpdateRemind = YES;
     self.customNavBar.backgroundColor = [UIColor whiteColor];
     // 设置自定义导航栏标题颜色
     self.customNavBar.titleLabelColor = HEX_COLOR(0x0C0B0B);
-    
+     
     if (self.navigationController.childViewControllers.count != 1) {
         for (UIViewController *vc in self.navigationController.childViewControllers) {
             NSLog(@"vc = %@", NSStringFromClass([vc class]));
