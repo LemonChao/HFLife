@@ -518,6 +518,10 @@
 		04F893492292A1690075918A /* SXF_HF_vipShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F893482292A1690075918A /* SXF_HF_vipShopView.m */; };
 		04F8934C2292A18C0075918A /* SXF_HF_vipShopCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8934B2292A18C0075918A /* SXF_HF_vipShopCellTableViewCell.m */; };
 		04F893502292A8830075918A /* SXF_HF_nearMapShopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8934F2292A8830075918A /* SXF_HF_nearMapShopVC.m */; };
+		04F893542292B1ED0075918A /* SXF_HF_moreVipCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F893532292B1ED0075918A /* SXF_HF_moreVipCardVC.m */; };
+		04F893572292B2230075918A /* SXF_HF_moreVipCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F893562292B2230075918A /* SXF_HF_moreVipCardView.m */; };
+		04F8935A2292B2390075918A /* SXF_HF_moreVipCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F893592292B2390075918A /* SXF_HF_moreVipCardCell.m */; };
+		04F8935E2292BDC50075918A /* SXF_HF_cardDetaileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8935D2292BDC50075918A /* SXF_HF_cardDetaileVC.m */; };
 		04F946D3228B9E9600085F78 /* SXF_HF_payStepAleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */; };
 		04F946D6228BBC6300085F78 /* SXF_HF_payStepTowCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946D5228BBC6300085F78 /* SXF_HF_payStepTowCel.m */; };
 		04F946E3228C0C7400085F78 /* SXF_HF_Password.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946E0228C0C7300085F78 /* SXF_HF_Password.m */; };
@@ -1805,6 +1809,14 @@
 		04F8934B2292A18C0075918A /* SXF_HF_vipShopCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_vipShopCellTableViewCell.m; sourceTree = "<group>"; };
 		04F8934E2292A8830075918A /* SXF_HF_nearMapShopVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_nearMapShopVC.h; sourceTree = "<group>"; };
 		04F8934F2292A8830075918A /* SXF_HF_nearMapShopVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_nearMapShopVC.m; sourceTree = "<group>"; };
+		04F893522292B1ED0075918A /* SXF_HF_moreVipCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_moreVipCardVC.h; sourceTree = "<group>"; };
+		04F893532292B1ED0075918A /* SXF_HF_moreVipCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_moreVipCardVC.m; sourceTree = "<group>"; };
+		04F893552292B2230075918A /* SXF_HF_moreVipCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_moreVipCardView.h; sourceTree = "<group>"; };
+		04F893562292B2230075918A /* SXF_HF_moreVipCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_moreVipCardView.m; sourceTree = "<group>"; };
+		04F893582292B2390075918A /* SXF_HF_moreVipCardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_moreVipCardCell.h; sourceTree = "<group>"; };
+		04F893592292B2390075918A /* SXF_HF_moreVipCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_moreVipCardCell.m; sourceTree = "<group>"; };
+		04F8935C2292BDC50075918A /* SXF_HF_cardDetaileVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_cardDetaileVC.h; sourceTree = "<group>"; };
+		04F8935D2292BDC50075918A /* SXF_HF_cardDetaileVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_cardDetaileVC.m; sourceTree = "<group>"; };
 		04F946D1228B9E9600085F78 /* SXF_HF_payStepAleryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payStepAleryView.h; sourceTree = "<group>"; };
 		04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_payStepAleryView.m; sourceTree = "<group>"; };
 		04F946D4228BBC6300085F78 /* SXF_HF_payStepTowCel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payStepTowCel.h; sourceTree = "<group>"; };
@@ -5709,6 +5721,7 @@
 				04F8931D229255710075918A /* SXF_HF_cardCellTableViewCell.h */,
 				04F8931E229255710075918A /* SXF_HF_cardCellTableViewCell.m */,
 				04F8931F229255710075918A /* SXF_HF_cardCellTableViewCell.xib */,
+				04F8935B2292BDA50075918A /* 会员卡详情 */,
 				04F89336229292380075918A /* 会员卡 */,
 				04F89319229254E50075918A /* 添加卡包 */,
 			);
@@ -5743,6 +5756,7 @@
 				04F8933B229292770075918A /* SXF_HF_vipCardHeaderV.m */,
 				04F8933D229292960075918A /* SXF_HF_vipCardCellTableViewCell.h */,
 				04F8933E229292960075918A /* SXF_HF_vipCardCellTableViewCell.m */,
+				04F893512292B1C90075918A /* 更多会员卡 */,
 				04F893432292A0FE0075918A /* 附近门店 */,
 			);
 			path = "会员卡";
@@ -5769,6 +5783,28 @@
 				04F8934F2292A8830075918A /* SXF_HF_nearMapShopVC.m */,
 			);
 			path = "附近地图门店";
+			sourceTree = "<group>";
+		};
+		04F893512292B1C90075918A /* 更多会员卡 */ = {
+			isa = PBXGroup;
+			children = (
+				04F893522292B1ED0075918A /* SXF_HF_moreVipCardVC.h */,
+				04F893532292B1ED0075918A /* SXF_HF_moreVipCardVC.m */,
+				04F893552292B2230075918A /* SXF_HF_moreVipCardView.h */,
+				04F893562292B2230075918A /* SXF_HF_moreVipCardView.m */,
+				04F893582292B2390075918A /* SXF_HF_moreVipCardCell.h */,
+				04F893592292B2390075918A /* SXF_HF_moreVipCardCell.m */,
+			);
+			path = "更多会员卡";
+			sourceTree = "<group>";
+		};
+		04F8935B2292BDA50075918A /* 会员卡详情 */ = {
+			isa = PBXGroup;
+			children = (
+				04F8935C2292BDC50075918A /* SXF_HF_cardDetaileVC.h */,
+				04F8935D2292BDC50075918A /* SXF_HF_cardDetaileVC.m */,
+			);
+			path = "会员卡详情";
 			sourceTree = "<group>";
 		};
 		04F946DF228C0C5700085F78 /* 密码输入框 */ = {
@@ -7570,6 +7606,7 @@
 				049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */,
 				04A508E4227EDD3A0013E8EC /* HREmail.m in Sources */,
 				04153C00228AA2F100AA5DAF /* DiscountCouponCell.m in Sources */,
+				04F8935E2292BDC50075918A /* SXF_HF_cardDetaileVC.m in Sources */,
 				04F5F25E2284309D0043BBB7 /* SXF_HF_MainTableHeaderView.m in Sources */,
 				658B7C7D21D749E100801CC8 /* LYEmptyView.m in Sources */,
 				04153B8A228A9C9600AA5DAF /* ZKCycleScrollView.m in Sources */,
@@ -7625,6 +7662,7 @@
 				658902F4223B775F009C1B03 /* UIView+PYSearchExtension.m in Sources */,
 				658B7CA221D749E100801CC8 /* VCInteractionDelegate.m in Sources */,
 				659EA07D2203D5A1004471CD /* DHGuidePageHUD.m in Sources */,
+				04F8935A2292B2390075918A /* SXF_HF_moreVipCardCell.m in Sources */,
 				6C2B2FF9228A64F10075E5AE /* ZCShopHomeModel.m in Sources */,
 				04153C07228AA2F100AA5DAF /* TakeOutVC.m in Sources */,
 				658B7CA421D749E100801CC8 /* AnimationErectBegin.m in Sources */,
@@ -7686,6 +7724,7 @@
 				04A50853227EDD3A0013E8EC /* ZFPlayerView.m in Sources */,
 				04A5086C227EDD3A0013E8EC /* sxf_NetworkAnomalies.m in Sources */,
 				0453D1932282764E00880C2A /* myCenterCollectionView.m in Sources */,
+				04F893572292B2230075918A /* SXF_HF_moreVipCardView.m in Sources */,
 				658B7CC121D749E100801CC8 /* TXScrollLabelView.m in Sources */,
 				04F52036228A563100ED4995 /* ShippingAddressVC.m in Sources */,
 				0453D1F02284033000880C2A /* UIView+alertView.m in Sources */,
@@ -7918,6 +7957,7 @@
 				04F5203B228A573B00ED4995 /* SXF_HF_MainPageModel.m in Sources */,
 				658B7CC021D749E100801CC8 /* UIImage+ImageEffects.m in Sources */,
 				6C2F5170222A76DD0022EE03 /* UITool.m in Sources */,
+				04F893542292B1ED0075918A /* SXF_HF_moreVipCardVC.m in Sources */,
 				04FB7F3A2286C8E600150CA7 /* NSObject+checkSystems.m in Sources */,
 				6C2F514C222A663D0022EE03 /* HXPhotoModel.m in Sources */,
 				04A50849227EDD3A0013E8EC /* UIWindow+CurrentViewController.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  SXF_HF_addCardViewCell.h
+//  SXF_HF_moreVipCardCell.h
 //  HFLife
 //
 //  Created by mac on 2019/5/20.
@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SXF_HF_addCardViewCell : UITableViewCell
-@property (nonatomic, copy)void(^selectedItem)(NSInteger index);
+@interface SXF_HF_moreVipCardCell : UITableViewCell
+- (void)setDataForCell:(id)data;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1,5 +1,5 @@
 //
-//  SXF_HF_addCardView.h
+//  SXF_HF_moreVipCardView.h
 //  HFLife
 //
 //  Created by mac on 2019/5/20.
@@ -10,8 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SXF_HF_addCardView : UIView
-@property (nonatomic, strong)void(^moreCardCallback)(NSInteger section);
+@interface SXF_HF_moreVipCardView : UIView
 @property (nonatomic, copy)void(^selectRow)(NSIndexPath *indexP);
 
 @end
