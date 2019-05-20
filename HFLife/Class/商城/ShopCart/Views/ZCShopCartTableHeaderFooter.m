@@ -37,6 +37,66 @@
 
 
 
+@interface ZCShopCartEmptyHeaderView ()
+
+@property(nonatomic, strong) UIButton *emptyButton;
+
+@property(nonatomic, strong) UILabel *descriptLabel;
+
+@end
+
+@implementation ZCShopCartEmptyHeaderView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [UIColor whiteColor];
+        [self addSubview:self.emptyButton];
+        [self addSubview:self.descriptLabel];
+        
+        [self.emptyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(ScreenScale(47));
+            make.left.right.equalTo(self);
+            make.height.mas_equalTo(ScreenScale(124));
+        }];
+        
+        [self.descriptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self);
+            make.top.equalTo(self.emptyButton.mas_bottom).offset(ScreenScale(5));
+        }];
+        
+        [self layoutIfNeeded];
+        [self.emptyButton setImagePosition:ImagePositionTypeTop spacing:ScreenScale(10)];
+    }
+    return self;
+}
+
+
+
+- (UIButton *)emptyButton {
+    if (!_emptyButton) {
+        _emptyButton = [UITool richButton:UIButtonTypeCustom title:@"购物车还是空的" titleColor:ImportantColor font:SystemFont(18) bgColor:[UIColor clearColor] image:image(@"shop_cart_empty")];
+    }
+    return _emptyButton;
+}
+
+- (UILabel *)descriptLabel {
+    if (!_descriptLabel) {
+        _descriptLabel = [UITool labelWithText:@"去商城找找自己喜欢的商品吧" textColor:ImportantColor font:SystemFont(18) alignment:NSTextAlignmentCenter numberofLines:1 backgroundColor:[UIColor clearColor]];
+    }
+    return _descriptLabel;
+}
+
+
+@end
+
+
+
+
+
+
+
 @interface ZCShopCartTableFooterView ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property(nonatomic, strong) UICollectionView *collectionView;

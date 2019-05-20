@@ -19,7 +19,11 @@
 /** 促销价 */
 @property(nonatomic, strong) UILabel *priceLab;
 
+@property(nonatomic, strong) UIButton *addButton;
 
+@property(nonatomic, strong) UIButton *subtractionButton;
+
+@property(nonatomic, strong) UILabel *countLabel;
 
 @end
 
@@ -36,6 +40,9 @@
         [self.contentView addSubview:self.godsImgView];
         [self.contentView addSubview:self.nameLab];
         [self.contentView addSubview:self.priceLab];
+        [self.contentView addSubview:self.subtractionButton];
+        [self.contentView addSubview:self.countLabel];
+        [self.contentView addSubview:self.addButton];
         
         [self initConstraints];
     }
@@ -61,13 +68,28 @@
         make.left.equalTo(self.godsImgView.mas_right).offset(ScreenScale(10));
         make.right.equalTo(self.contentView).inset(ScreenScale(22));
         make.height.mas_lessThanOrEqualTo(ScreenScale(30));
-//        make.height.mas_equalTo(ScreenScale(35));
     }];
     
     [self.priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nameLab.mas_bottom).offset(ScreenScale(16));
         make.left.equalTo(self.nameLab);
         make.bottom.equalTo(self.contentView).inset(ScreenScale(24));
+    }];
+    
+    [self.subtractionButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.priceLab);
+    }];
+    
+    [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.height.equalTo(self.subtractionButton);
+        make.left.equalTo(self.subtractionButton.mas_right).offset(ScreenScale(6));
+        make.width.mas_equalTo(ScreenScale(30));
+    }];
+    
+    [self.addButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.countLabel);
+        make.left.equalTo(self.countLabel.mas_right).offset(ScreenScale(6));
+        make.right.equalTo(self.contentView).inset(ScreenScale(12));
     }];
     
 }
@@ -113,5 +135,27 @@
     return _priceLab;
 }
 
+- (UIButton *)addButton {
+    if (!_addButton) {
+        _addButton = [UITool imageButton:image(@"shop_cart_add")];
+    }
+    return _addButton;
+}
+
+- (UIButton *)subtractionButton {
+    if (!_subtractionButton) {
+        _subtractionButton = [UITool imageButton:image(@"shop_cart_subtraction")];
+    }
+    return _subtractionButton;
+}
+
+- (UILabel *)countLabel {
+    if (!_countLabel) {
+        _countLabel = [UITool labelWithTextColor:ImportantColor font:SystemFont(14) alignment:NSTextAlignmentCenter ];
+        _countLabel.backgroundColor = BackGroundColor;
+        _countLabel.text = @"1";
+    }
+    return _countLabel;
+}
 
 @end
