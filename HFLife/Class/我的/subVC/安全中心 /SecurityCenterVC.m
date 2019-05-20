@@ -28,7 +28,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     titleArray = @[@"设置登录密码",@"设置交易密码",@"修改手机号"];
-    valueArray = @[[UserCache getUserPasswordStatus] ? @"去修改" : @"去设置",[UserCache getUserTradePassword]?@"去修改":@"待设置",[NSString isNOTNull:[UserCache getUserPhone]] ?@"待设置":@"去修改" ];
+//    valueArray = @[[UserCache getUserPasswordStatus] ? @"去修改" : @"去设置",[UserCache getUserTradePassword]?@"去修改":@"待设置",[NSString isNOTNull:[UserCache getUserPhone]] ?@"待设置":@"去修改" ];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initWithUI];
     [self setupNavBar];
@@ -91,7 +91,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *value = titleArray[indexPath.row];
     if ([value isEqualToString:@"设置登录密码"]) {
-        if (![UserCache getUserPasswordStatus]) {
+//        if (![UserCache getUserPasswordStatus])
+        if (YES) {
             //            LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:@"您还没有设置登录密码，暂无法进行入驻，是否进行密码设置？" cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
             //                if(clickIndex == 1){
             
@@ -120,6 +121,8 @@
     }else if ([value isEqualToString:@"修改手机号"]){
         [self.navigationController pushViewController:[[ReviseMobilePhone alloc]init] animated:YES];
     }else if ([value isEqualToString:@"设置交易密码"]){
+        /*
+        
         if ([[UserCache getUserXinXiTitle] isEqualToString:@"已认证"]) {
             [self.navigationController pushViewController:[[ConfirmInformationVC alloc]init] animated:YES];
         }else{
@@ -137,6 +140,8 @@
             alert.animationStyle=LXASAnimationTopShake;
             [alert showLXAlertView];
         }
+         
+         */
         
     }
 }

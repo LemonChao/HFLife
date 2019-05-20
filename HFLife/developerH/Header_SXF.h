@@ -22,14 +22,6 @@
 
 
 /************************subUrl************************/
-
-//存储token
-static NSString *const USER_TOKEN              = @"userToken";
-//存储登录状态
-static NSString *const LOGIN_STATES            = @"loginStates";
-
-
-
 //申请列表(web)
 #define OPENSHOPURLLIST @"https://www.hfgld.net/app_html/enter_shop_model/#/list"
 

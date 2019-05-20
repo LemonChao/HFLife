@@ -25,11 +25,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     titleArray = @[@"居民身份证(大陆)", @"军官证",@"护照", @"港澳台居民身份证"];
-    if ([UserCache getSaveCertificateType].length > 0) {
-        certificateTypeString = MMNSStringFormat(@"%ld",[titleArray indexOfObject:[UserCache getSaveCertificateType]]);
-    }else{
-        certificateTypeString = @"";
-    }
+//    if ([UserCache getSaveCertificateType].length > 0) {
+//        certificateTypeString = MMNSStringFormat(@"%ld",[titleArray indexOfObject:[UserCache getSaveCertificateType]]);
+//    }else{
+//        certificateTypeString = @"";
+//    }
     
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
@@ -87,7 +87,7 @@
     }];
     
     self.userName = [self getTextFieldPlaceholder:@"请输入您的姓名" title:@"您的姓名"];
-    self.userName.text =  [UserCache getSaveRealNameWriteName];
+//    self.userName.text =  [UserCache getSaveRealNameWriteName];
     [self.view addSubview:self.userName];
     [self.userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(textBgImageView.mas_top);
@@ -106,7 +106,7 @@
     }];
     
     self.certificateType = [self getTextFieldPlaceholder:@"请选择证件类型" title:@"证件类型"];
-    self.certificateType.text =  [UserCache getSaveCertificateType];
+//    self.certificateType.text =  [UserCache getSaveCertificateType];
     [self.view addSubview:self.certificateType];
     [self.certificateType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(lin.mas_bottom);
@@ -145,7 +145,7 @@
     }];
     
     self.idNumberTextField = [self getTextFieldPlaceholder:@"请输入证件号码" title:@"证件号码"];
-    self.idNumberTextField.text = [UserCache getSaveRealNameWriteIDCare];
+//    self.idNumberTextField.text = [UserCache getSaveRealNameWriteIDCare];
     [self.view addSubview:self.idNumberTextField];
     [self.idNumberTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(lin_2.mas_bottom);
@@ -251,9 +251,9 @@
         return;
     }
     
-    [UserCache setSaveRealNameWriteName:self.userName.text];
-    [UserCache setSaveRealNameWriteIDCare:self.idNumberTextField.text];
-    [UserCache setSaveCertificateType:self.certificateType.text];
+//    [UserCache setSaveRealNameWriteName:self.userName.text];
+//    [UserCache setSaveRealNameWriteIDCare:self.idNumberTextField.text];
+//    [UserCache setSaveCertificateType:self.certificateType.text];
     NSDictionary *dic = @{@"true_name":self.userName.text,
                           @"idcard":self.idNumberTextField.text,
                           @"certificateType":certificateTypeString

@@ -229,13 +229,13 @@ static NSMutableArray *OrderIdArray;
 - (void)networkDidLogin:(NSNotification *)notification {
     NSLog(@"已登录");
     [JPUSHService crashLogON];
-    if (![NSString isNOTNull:[UserCache getUserId]]) {
-        NSString *bieMing = [NSString stringWithFormat:@"HL_%@",[UserCache getUserId]];
-        NSLog(@"设置的别名 %@",bieMing);
-        [JPUSHService setAlias:bieMing completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
-            NSLog(@"rescode: %ld, \nseq: %ld, \nalias: %@\n", (long)iResCode, (long)seq , iAlias);
-        } seq:0];
-    }
+//    if (![NSString isNOTNull:[UserCache getUserId]]) {
+//        NSString *bieMing = [NSString stringWithFormat:@"HL_%@",[UserCache getUserId]];
+//        NSLog(@"设置的别名 %@",bieMing);
+//        [JPUSHService setAlias:bieMing completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+//            NSLog(@"rescode: %ld, \nseq: %ld, \nalias: %@\n", (long)iResCode, (long)seq , iAlias);
+//        } seq:0];
+//    }
     [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
             //NSLog(@"registrationID = %@",registrationID);
         [[NSUserDefaults standardUserDefaults] setValue:registrationID forKey:@"registID"];

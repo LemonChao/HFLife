@@ -110,10 +110,10 @@
     
     idCardPositiveImageView =  [UIImageView new];
     idCardPositiveImageView.image = MMGetImage(@"renwu");
-    if ([UserCache getSaveRealNamePositiveImage] != nil) {
+//    if ([UserCache getSaveRealNamePositiveImage] != nil) {
 //        idCardPositiveImageView.image = [UserCache getSaveRealNamePositiveImage];
 //        idCardPositiveImage = [UserCache getSaveRealNamePositiveImage];
-    }
+//    }
     [self.view addSubview:idCardPositiveImageView];
     [idCardPositiveImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(scanningBgImageView.mas_top).offset(HeightRatio(50));
@@ -147,10 +147,10 @@
     
     idCardBackImageView =  [UIImageView new];
     idCardBackImageView.image = MMGetImage(@"guohui");
-    if ([UserCache getSaveRealNameNegativeImage] != nil) {
+//    if ([UserCache getSaveRealNameNegativeImage] != nil) {
 //       idCardBackImageView.image = [UserCache getSaveRealNameNegativeImage];
 //       idCardBackImage =  [UserCache getSaveRealNameNegativeImage];
-    }
+//    }
     [self.view addSubview:idCardBackImageView];
     [idCardBackImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(idCardBackdemo.mas_top);
@@ -250,8 +250,8 @@
         return;
     }
     sender.selected = YES;
-    [UserCache setSaveRealNameNegativeImage:idCardBackImage];
-    [UserCache setSaveRealNamePositiveImage:idCardPositiveImage];
+//    [UserCache setSaveRealNameNegativeImage:idCardBackImage];
+//    [UserCache setSaveRealNamePositiveImage:idCardPositiveImage];
     [[WBPCreate sharedInstance] showWBProgress];
     [self.manage idCardPhotographVerify:@{@"img0":idCardBackImage,@"img1":idCardPositiveImage} requestEnd:^{
         [[WBPCreate sharedInstance] hideAnimated];
@@ -288,15 +288,15 @@
            
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                NSString *writeIDCard = [UserCache getSaveRealNameWriteIDCare];
-                NSString *writeRealName = [UserCache getSaveRealNameWriteName];
+//                NSString *writeIDCard = [UserCache getSaveRealNameWriteIDCare];
+//                NSString *writeRealName = [UserCache getSaveRealNameWriteName];
                 // !!!: 保存身份证信息验证第一步的输入信息
-                if (![writeIDCard isEqualToString:result[@"words_result"][@"公民身份号码"][@"words"]]) {
-                    return [WXZTipView showCenterWithText:@"身份证号码和输入号码不一致!" duration:1.5];
-                }
-                if (![writeRealName isEqualToString:result[@"words_result"][@"姓名"][@"words"]]) {
-                    return [WXZTipView showCenterWithText:@"身份证姓名和输入姓名不一致!" duration:1.5];
-                }
+//                if (![writeIDCard isEqualToString:result[@"words_result"][@"公民身份号码"][@"words"]]) {
+//                    return [WXZTipView showCenterWithText:@"身份证号码和输入号码不一致!" duration:1.5];
+//                }
+//                if (![writeRealName isEqualToString:result[@"words_result"][@"姓名"][@"words"]]) {
+//                    return [WXZTipView showCenterWithText:@"身份证姓名和输入姓名不一致!" duration:1.5];
+//                }
                 
                 self->idCardPositiveImageView.image = image;
                 [WXZTipView showCenterWithText:@"识别成功"];

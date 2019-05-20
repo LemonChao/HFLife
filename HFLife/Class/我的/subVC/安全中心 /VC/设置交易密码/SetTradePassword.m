@@ -73,7 +73,7 @@
     
     self.phoneTextField = [self getTextFieldPlaceholder:@"" isCode:NO Title:@"手机号码"];
     self.phoneTextField.userInteractionEnabled = NO;
-    self.phoneTextField.text = [[UserCache getUserPhone] EncodeTel];
+//    self.phoneTextField.text = [[UserCache getUserPhone] EncodeTel];
     [self.view addSubview:self.phoneTextField];
     [self.phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(WidthRatio(20));
@@ -237,10 +237,10 @@
     return tf;
 }
 -(void)getLoginCode:(UIButton *)send{
-    if (![[UserCache getUserPhone] isValidateMobile]) {
-        [WXZTipView showCenterWithText:@"请输入正确的手机号"];
-        return;
-    }
+//    if (![[UserCache getUserPhone] isValidateMobile]) {
+//        [WXZTipView showCenterWithText:@"请输入正确的手机号"];
+//        return;
+//    }
     
     /*
     HP_GetVerificationCodeNetApi *getVerCode = [[HP_GetVerificationCodeNetApi alloc]initWithParameter:@{@"phone":[UserCache getUserPhone],@"type":@"4"}];

@@ -42,7 +42,7 @@
     }];
     //    [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:YES];
-    self.customNavBar.title = [NSString isNOTNull:[UserCache getUserPhone]] ? @"设置手机号" : @"修改手机号";
+//    self.customNavBar.title = [NSString isNOTNull:[UserCache getUserPhone]] ? @"设置手机号" : @"修改手机号";
     self.customNavBar.backgroundColor = RGBA(136, 53, 230, 1);//[UIColor whiteColor];
     self.customNavBar.titleLabelColor = [UIColor whiteColor];
     
@@ -61,7 +61,7 @@
     }];
     
     UILabel *instructionsLabel = [UILabel new];
-    instructionsLabel.text = [NSString isNOTNull:[UserCache getUserPhone]] ? @"" : MMNSStringFormat(@"您当前的手机号码为%@",[[UserCache getUserPhone] EncodeTel]);
+//    instructionsLabel.text = [NSString isNOTNull:[UserCache getUserPhone]] ? @"" : MMNSStringFormat(@"您当前的手机号码为%@",[[UserCache getUserPhone] EncodeTel]);
     instructionsLabel.textColor = HEX_COLOR(0x999999);
     instructionsLabel.font = [UIFont systemFontOfSize:WidthRatio(26)];
     [self.view addSubview:instructionsLabel];
@@ -72,7 +72,7 @@
         make.height.mas_greaterThanOrEqualTo(1);
     }];
     
-    self.phoneTextField = [self getTextFieldPlaceholder:[NSString isNOTNull:[UserCache getUserPhone]] ? @"请输入您当前使用的新手机号码" : @"请输入您当前使用的新手机号码" isCode:NO];
+//    self.phoneTextField = [self getTextFieldPlaceholder:[NSString isNOTNull:[UserCache getUserPhone]] ? @"请输入您当前使用的新手机号码" : @"请输入您当前使用的新手机号码" isCode:NO];
     self.phoneTextField.keyboardType = UIKeyboardTypeNumberPad;
     [self.phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(WidthRatio(20));
@@ -92,7 +92,7 @@
     
     
     UILabel *label = [UILabel new];
-    label.text = [NSString isNOTNull:[UserCache getUserPhone]] ? @"" :@"修改后，您当前的账号的信息，个人资产不变";
+//    label.text = [NSString isNOTNull:[UserCache getUserPhone]] ? @"" :@"修改后，您当前的账号的信息，个人资产不变";
     label.textColor = HEX_COLOR(0x999999);
     label.font = [UIFont systemFontOfSize:WidthRatio(26)];
     [self.view addSubview:label];
@@ -126,7 +126,7 @@
         [gradientLayer setColors:@[(id)[HEX_COLOR(0x9f22ff) CGColor],(id)[HEX_COLOR(0x9323ff) CGColor],(id)HEX_COLOR(0x7f23ff).CGColor]];//渐变数组
         [button.layer addSublayer:gradientLayer];
         MMViewBorderRadius(button, WidthRatio(10), 0, [UIColor clearColor]);
-        [button setTitle: [NSString isNOTNull:[UserCache getUserPhone]] ? @"确认设置" : @"确认修改" forState:(UIControlStateNormal)];
+//        [button setTitle: [NSString isNOTNull:[UserCache getUserPhone]] ? @"确认设置" : @"确认修改" forState:(UIControlStateNormal)];
         [button setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
     });
     
@@ -210,6 +210,10 @@
         return;
     }
     
+    
+    /*
+    
+    
     if ([NSString isNOTNull:[UserCache getUserPhone]] && self.tokenStr) {
         // !!!: 第三方没有手机号登录 绑定手机号
         [[Per_MethodsToDealWithManage sharedInstance]ModifyBindPhoneNotHeadTokenParameter:@{@"code":self.codeTextField.text,@"newphone":self.phoneTextField.text,@"Token":self.tokenStr} SuccessBlock:^(id  _Nonnull request) {
@@ -229,6 +233,8 @@
             }
         }];
     }
+     
+     */
     
     
 }

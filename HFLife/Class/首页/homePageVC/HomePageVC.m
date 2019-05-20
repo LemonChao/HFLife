@@ -92,7 +92,7 @@
     
     UIButton *testBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
     testBtn.backgroundColor = [UIColor orangeColor];
-    testBtn.center = self.view.center;
+//    testBtn.center = self.view.center;
     
     [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{

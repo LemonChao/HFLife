@@ -14,7 +14,6 @@
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "WBPCreate.h"
 #import "WXZTipView.h"
-#import "UserCache.h"
 #import "LXAlertView.h"
 #import "CommonTools.h"
 #import "SFHFKeychainUtils.h"

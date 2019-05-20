@@ -43,7 +43,7 @@
     }];
         //    [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:YES];
-    self.customNavBar.title = [UserCache getUserPasswordStatus] ? @"修改登录密码" : @"设置登录密码";
+//    self.customNavBar.title = [UserCache getUserPasswordStatus] ? @"修改登录密码" : @"设置登录密码";
     self.customNavBar.backgroundColor = RGBA(136, 53, 230, 1);//[UIColor whiteColor];
     self.customNavBar.titleLabelColor = [UIColor whiteColor];
     
@@ -98,7 +98,7 @@
     }];
     
     UILabel *label = [UILabel new];
-    label.text = [UserCache getUserPasswordStatus] ? @"修改后，您当前的账号的信息，个人资产不变" : @"";
+//    label.text = [UserCache getUserPasswordStatus] ? @"修改后，您当前的账号的信息，个人资产不变" : @"";
     label.textColor = HEX_COLOR(0x999999);
     label.font = [UIFont systemFontOfSize:WidthRatio(26)];
     [self.view addSubview:label];

@@ -67,7 +67,14 @@
     }];
 }
 
-
+- (void)selectedIndex:(NSUInteger)index {
+    if (self.viewModel.dataArray.count) {
+        [self.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+        
+        ZCShopClassifyModel *model = self.viewModel.dataArray[index];
+        self.rightVC.dataArray = model.class_list;
+    }
+}
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -166,7 +166,7 @@
         if (indexPath.section == 0) {
             ZC_HF_CollectionCycleHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ZC_HF_CollectionCycleHeader class]) forIndexPath:indexPath];
             header.bannerList = self.viewModel.bannerArray;
-            
+            header.classList = self.viewModel.classArray;
             return header;
         }
         else {

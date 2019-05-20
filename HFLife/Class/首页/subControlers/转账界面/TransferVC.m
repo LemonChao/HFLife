@@ -81,7 +81,7 @@
     }];
     
     UILabel *phoneLabel = [UILabel new];
-    phoneLabel.text = [NSString isNOTNull:[UserCache getUserPhone]] ?@"" : [[UserCache getUserPhone] EncodeTel];
+//    phoneLabel.text = [NSString isNOTNull:[UserCache getUserPhone]] ?@"" : [[UserCache getUserPhone] EncodeTel];
     phoneLabel.font = [UIFont systemFontOfSize:WidthRatio(22)];
     phoneLabel.textColor = HEX_COLOR(0x999999);
     [self.view addSubview:phoneLabel];

@@ -12,7 +12,7 @@
 
 
 #import "ShippingAddressVC.h"
-#import "BindingPayWayVC.h"
+//#import "BindingPayWayVC.h"
 #import "InviteVC.h"
 #import "SecurityCenterVC.h"
 #import "EnterVC.h"
@@ -63,9 +63,9 @@
                         break;
                     case 1:
                     {
-                        BindingPayWayVC *bindingVC = [BindingPayWayVC new];
-                        bindingVC.isAlipay = NO;
-                        vc = bindingVC;
+//                        BindingPayWayVC *bindingVC = [BindingPayWayVC new];
+//                        bindingVC.isAlipay = NO;
+//                        vc = bindingVC;
                     }
                         break;
                     case 2:

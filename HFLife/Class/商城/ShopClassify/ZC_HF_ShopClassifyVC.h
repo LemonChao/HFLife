@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZC_HF_ShopClassifyVC : BaseViewController
 
+- (void)selectedIndex:(NSUInteger)index;
+
 @end
 
 NS_ASSUME_NONNULL_END

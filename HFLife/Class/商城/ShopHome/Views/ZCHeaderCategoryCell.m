@@ -28,17 +28,14 @@
     return self;
 }
 
-- (void)setParams:(NSDictionary *)params {
-    if (params == _params) return;
-    _params = params.copy;
+- (void)setModel:(ZCShopHomeClassModel *)model {
+    _model = model;
     
-    [self.button setTitle:params[@"title"] forState:UIControlStateNormal];
-    [self.button setImage:image(params[@"imageName"]) forState:UIControlStateNormal];
-    [self.button setImage:image(params[@"imageName"]) forState:UIControlStateHighlighted];
+    [self.button setTitle:model.gc_name forState:UIControlStateNormal];
+    [self.button sd_setImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
+    [self.button sd_setImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateHighlighted];
     [self.button setImagePosition:ImagePositionTypeTop WithMargin:ScreenScale(6)];
 }
-
-
 
 
 - (UIButton *)button {

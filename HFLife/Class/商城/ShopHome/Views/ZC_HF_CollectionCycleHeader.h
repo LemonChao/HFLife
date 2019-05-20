@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy) NSArray<__kindof ZCShopHomeBannerModel *> *bannerList;
 
+@property(nonatomic, copy) NSArray <__kindof ZCShopHomeClassModel *>*classList;
+
 @end
 
 @interface ZC_HF_CollectionWordsHeader : UICollectionReusableView

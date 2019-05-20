@@ -9,6 +9,8 @@
 #import "ZC_HF_CollectionCycleHeader.h"
 #import "SDCycleScrollView.h"
 #import "ZCHeaderCategoryCell.h"
+#import "ZC_HF_ShopClassifyVC.h"
+#import "ShopTabbarViewController.h"
 
 @interface ZC_HF_CollectionCycleHeader ()<SDCycleScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -17,7 +19,6 @@
 @property(nonatomic, strong) UILabel *pageIndexLabel;
 @property(nonatomic, strong) UIView *collectionBgView;
 @property(nonatomic, strong) UICollectionView *collectionView;
-@property(nonatomic, copy) NSArray *dataArray;
 @end
 
 @implementation ZC_HF_CollectionCycleHeader
@@ -45,14 +46,32 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return self.classList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZCHeaderCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCHeaderCategoryCell class]) forIndexPath:indexPath];
-    cell.params = self.dataArray[indexPath.row];
+    ZCShopHomeClassModel *model = self.classList[indexPath.row];
+    cell.model = model;
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    [self tabBarController].selectedIndex = 1;
+//    ZC_HF_ShopClassifyVC *classifyVC = (ZC_HF_ShopClassifyVC *)[(BaseNavigationController*)[self tabBarController].viewControllers[1] topViewController];
+//    ZCShopHomeClassModel *model = self.classList[indexPath.row];
+//    [classifyVC selectedIndex:model.gc_id.integerValue];
+
+    
+    ShopTabbarViewController *tabBarVC =[self tabBarController];
+    tabBarVC.selectedIndex = 1;
+    ZC_HF_ShopClassifyVC *classifyVC = (ZC_HF_ShopClassifyVC *)[(BaseNavigationController*)tabBarVC.viewControllers[1] topViewController];
+    [classifyVC selectedIndex:indexPath.row+1];
+    
+
+}
+
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
     self.pageIndexLabel.text = [NSString stringWithFormat:@"%ld/%ld", index+1, self.bannerList.count];
@@ -70,6 +89,12 @@
 }
 
 
+- (void)setClassList:(NSArray<__kindof ZCShopHomeClassModel *> *)classList {
+    _classList = classList;
+    
+    [self.collectionView reloadData];
+}
+
 - (SDCycleScrollView *)cycleView {
     if (!_cycleView) {
         _cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(240)) delegate:self placeholderImage:image(@"banner")];
@@ -82,7 +107,7 @@
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         CGFloat width = floorf((SCREEN_WIDTH-ScreenScale(20))/5);
         CGFloat height = floorf(ScreenScale(132)/2);//151-top-bottom
         layout.itemSize = CGSizeMake(width, height);
@@ -91,6 +116,8 @@
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        _collectionView.pagingEnabled = YES;
+        _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerClass:[ZCHeaderCategoryCell class] forCellWithReuseIdentifier:NSStringFromClass([ZCHeaderCategoryCell class])];
     }
@@ -109,20 +136,7 @@
     return _collectionBgView;
 }
 
-- (NSArray *)dataArray {
-    if (!_dataArray) {
-        NSMutableArray *array = [NSMutableArray array];
-        
-        NSArray *titls = @[@"珠宝手表",@"家具家装",@"家用电器",@"汽车用品",@"食品饮料",@"礼品箱包",@"厨房用具",@"母婴用品",@"服饰鞋帽",@"运动健身"];
-        NSArray *images = @[@"zhubaoshoubiao",@"jiajujiazhuang",@"jiayongdianqi",@"qicheyongpin",@"shipinyinliao",@"lipinxiangbao",@"chufangyongpin",@"muyingyongpin",@"fushixiemao",@"yundongjianshen"];
-        for (int i = 0; i < titls.count; i++) {
-            NSDictionary *dic = @{@"title":titls[i],@"imageName":images[i]};
-            [array addObject:dic];
-        }
-        _dataArray = array.copy;
-    }
-    return _dataArray;
-}
+
 
 - (UILabel *)pageIndexLabel {
     if (!_pageIndexLabel) {
@@ -132,6 +146,17 @@
     }
     return _pageIndexLabel;
 }
+
+- (UITabBarController *)tabBarController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:NSClassFromString(@"ShopTabbarViewController")]) {
+            return (UITabBarController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
 
 @end
 

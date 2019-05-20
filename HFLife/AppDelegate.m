@@ -54,8 +54,8 @@
     [self.window makeKeyAndVisible];
     [self initWithKeyboard];
     [self registerShare];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LogOut:) name:EXIT_LOGIN object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RefreshTokeNotification:) name:LOG_BACK_IN object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LogOut:) name:EXIT_LOGIN object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RefreshTokeNotification:) name:LOG_BACK_IN object:nil];
     //设置APIKEY
     [AMapServices sharedServices].apiKey = MAP_KEY;
     [AMapServices sharedServices].enableHTTPS = YES;
@@ -81,9 +81,9 @@
             }];
             [[ZAlertViewManager shareManager] dismissAlertWithTime:5];
         }
-        NSNotification *notification =[NSNotification notificationWithName:NETWORK_CHANGES object:nil userInfo:nil];
+//        NSNotification *notification =[NSNotification notificationWithName:NETWORK_CHANGES object:nil userInfo:nil];
         // 3.通过 通知中心 发送 通知
-        [[NSNotificationCenter defaultCenter] postNotification:notification];
+//        [[NSNotificationCenter defaultCenter] postNotification:notification];
         
     }];
 }
@@ -207,14 +207,14 @@
         
     } seq:0];
     //清除用户相关信息
-    [UserCache valueEmpty];
-    [UserCache UserPassEmpty];
+//    [UserCache valueEmpty];
+//    [UserCache UserPassEmpty];
     [HeaderToken valueEmpty];
 }
 -(void)RefreshTokeNotification:(NSNotification *)noti{
     //清除用户相关信息
-    [UserCache valueEmpty];
-    [UserCache UserPassEmpty];
+//    [UserCache valueEmpty];
+//    [UserCache UserPassEmpty];
     [HeaderToken valueEmpty];
     if ([[self topViewController] isKindOfClass:[LoginVC class]]) {
         return ;

@@ -205,7 +205,7 @@ static AFHTTPSessionManager *_sessionManager;
         }
         manager.requestSerializer = requestSerializer;
     }else{
-        [[NSNotificationCenter defaultCenter] postNotificationName:LOG_BACK_IN object:nil userInfo:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:LOG_BACK_IN object:nil userInfo:nil];
         return nil;
     }
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

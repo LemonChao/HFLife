@@ -11,7 +11,7 @@
 #import "withdrawAlertView.h"
 //#import "widthrawNetApi.h"
 #import "BalanceListVC.h"
-#import "BindingPayWayVC.h"
+//#import "BindingPayWayVC.h"
 //#import "getMoneyNetApi.h"
 #import "HHPayPasswordView.h"
 #import "balanceOrderDetaileVC.h"
@@ -98,15 +98,15 @@
                 self->selectedModel = bankModel;
             } bottomBtn:^{
                //跳转添加新卡
-                BindingPayWayVC *vc = [BindingPayWayVC new];
-                vc.isAlipay = NO;
-                [self.navigationController pushViewController:vc animated:YES];
+//                BindingPayWayVC *vc = [BindingPayWayVC new];
+//                vc.isAlipay = NO;
+//                [self.navigationController pushViewController:vc animated:YES];
             }];
         }else{
             //跳转添加银行卡
-            BindingPayWayVC *vc = [BindingPayWayVC new];
-            vc.isAlipay = NO;
-            [self.navigationController pushViewController:vc animated:YES];
+//            BindingPayWayVC *vc = [BindingPayWayVC new];
+//            vc.isAlipay = NO;
+//            [self.navigationController pushViewController:vc animated:YES];
             
         }
         

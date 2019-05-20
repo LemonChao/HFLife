@@ -102,9 +102,9 @@
     
     idCardPositiveImageView =  [UIImageView new];
 //    idCardPositiveImageView.image = MMGetImage(@"renwu");
-    if ([UserCache getSaveRealNamePositiveImage] != nil) {
+//    if ([UserCache getSaveRealNamePositiveImage] != nil) {
 //        idCardPositiveImageView.image = [UserCache getSaveRealNamePositiveImage];
-    }
+//    }
 //    idCardPositiveImageView.backgroundColor = [UIColor redColor];
     [self.view addSubview:idCardPositiveImageView];
     [idCardPositiveImageView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -25,6 +25,32 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface ZCShopHomeClassModel : BaseModel
+//"gc_id": "1",
+//"gc_name": "服饰鞋帽",
+//"type_id": "1",
+//"type_name": "女鞋",
+//"gc_parent_id": "0",
+//"commis_rate": "0",
+//"gc_sort": "255",
+//"gc_virtual": "0",
+//"gc_title": "",
+//"gc_keywords": "",
+//"gc_description": "",
+//"show_type": "1",
+//"image": "http://ceshi-shop.hfgld.net/system/upfiles/mobile/category/05015381809285330.png",
+//"text": "儿童帽/女装/男装/内衣/运动/女鞋/男鞋/配饰/童装"
+
+@property(nonatomic, copy) NSString *gc_id;
+
+@property(nonatomic, copy) NSString *gc_name;
+
+@property(nonatomic, copy) NSString *image;
+
+
+@end
+
 @interface ZCShopHomeLimitModel : BaseModel
 //"xianshi_goods_id": "19",
 //"xianshi_id": "14",
@@ -96,10 +122,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 轮播列表 */
 @property(nonatomic, copy) NSArray <__kindof ZCShopHomeBannerModel *>*banner_list;
+/** 分类数据 */
+@property(nonatomic, copy) NSArray <__kindof ZCShopHomeClassModel *>*class_list;
 /** 限时抢购 */
 @property(nonatomic, copy) NSArray <__kindof ZCShopHomeLimitModel *>*limit_time_goods;
 /** 新品推荐 */
 @property(nonatomic, copy) NSArray <__kindof ZCShopNewGoodsModel *>*shop_newGoods;
+
 @end
 
 NS_ASSUME_NONNULL_END

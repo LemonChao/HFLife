@@ -15,6 +15,14 @@
 
 @end
 
+@implementation ZCShopHomeClassModel
+
+
+
+@end
+
+
+
 @implementation ZCShopHomeLimitModel
 
 
@@ -42,6 +50,7 @@
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"banner_list":[ZCShopHomeBannerModel class],
+             @"class_list":[ZCShopHomeClassModel class],
              @"limit_time_goods":[ZCShopHomeLimitModel class],
              @"shop_newGoods":[ZCShopNewGoodsModel class]
              };
