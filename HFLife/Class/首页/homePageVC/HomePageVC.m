@@ -37,13 +37,13 @@
     NSDictionary *param = @{
                             @"page":@(page),
                             };
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
-        if (result){
-            if (value) {
-                NSLog(@"%@", value[@"msg"]);
-            }
-        }
-    } witnVC:self];
+//    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
+//        if (result){
+//            if (value) {
+//                NSLog(@"%@", value[@"msg"]);
+//            }
+//        }
+//    } witnVC:self];
 }
 
 - (void)viewDidLoad {

@@ -54,22 +54,5 @@
     NSAssert(window, @"The window is empty");
     return window.rootViewController;
 }
-/** 跳转登录 */
-- (void)loginVC {
-    //跳转登录
-    
-    Class loginClass = NSClassFromString(@"LoginVC");
-    id loginVC = [[loginClass alloc] init];
-    if (loginVC && ![loginClass isKindOfClass:[self class]]) {
-        UIViewController *currentVC = [self getCurrentViewController];
-        if ([currentVC.navigationController.rootViewController class] != loginClass) {
-            BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
-            [currentVC presentViewController:navi animated:YES completion:nil];
-        }
-    }else{
-        
-        [CustomPromptBox showTextHud:@"您还未创建登录VC"];
-    }
-}
 
 @end

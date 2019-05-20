@@ -25,10 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIViewController *)getCurrentViewController;
 
-/**
- 跳转登录
- */
-- (void)loginVC;
 @end
 
 NS_ASSUME_NONNULL_END

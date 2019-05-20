@@ -339,7 +339,7 @@
     
     NSString *appScheme = @"hanFuLife";//@"你的appScheme";
     //authStr参数后台获取！和开发中心配置的app有关系，包含appid\name等等信息。
-    NSString *authStr = @"2019051864996655";//@"后台获取的authStr";
+    NSString *authStr = @"";//@"后台获取的authStr";
     //没有安装支付宝客户端的跳到网页授权时会在这个方法里回调
     [[AFAuthSDK defaultService] authv2WithInfo:authStr fromScheme:appScheme callback:^(NSDictionary *result) {
         // 解析 auth code
@@ -364,14 +364,22 @@
 -(void)forgotPasswordBtnClick{
     [self.navigationController pushViewController:[[ForgotPasswordVC alloc]init] animated:YES];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+/** 跳转登录 */
++ (void)login{
+    //跳转登录
+    
+    Class loginClass = NSClassFromString(@"LoginVC");
+    id loginVC = [[loginClass alloc] init];
+    if (loginVC) {
+        UIViewController *currentVC = [NSObject getCurrentViewController];
+        if ([currentVC.navigationController.rootViewController class] != loginClass) {
+            BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
+            [currentVC presentViewController:navi animated:NO completion:nil];
+        }
+    }else{
+        
+        [CustomPromptBox showTextHud:@"您还未创建登录VC"];
+    }
 }
-*/
 
 @end

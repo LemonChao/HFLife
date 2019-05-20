@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  是否是Present进来的
  */
 @property (nonatomic,assign)BOOL isPresent;
+/** 跳转登录 */
++ (void)login;
 @end
 
 NS_ASSUME_NONNULL_END

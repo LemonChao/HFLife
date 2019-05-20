@@ -442,15 +442,14 @@
                 NSDictionary *dict = value;
                 NSDictionary *dataDic = [dict safeObjectForKey:@"data"];
                 
-                NSString *token = [dataDic safeObjectForKey:@"ucenter_token"];
-                
+                NSString *token = dataDic[@"ucenter_token"];
                 if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
-                    [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
+                    [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
                     [self dismissViewControllerAnimated:YES completion:^{
                         
                     }];
                 }else {
-                    [WXZTipView showCenterWithText:@"token获取错误"];
+                    [WXZTipView showCenterWithText:@"未请求到token"];
                 }
             }
 

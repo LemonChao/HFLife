@@ -493,19 +493,24 @@
                 
                 NSDictionary *dataDic = dict[@"data"];
                 if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                    [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
-                    [UserCache setUserPhone:self.userName.text];
-                    //                [UserCache setUserPass:self.vercodeText.text];
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        
-                    }];
+                    NSString *token = dataDic[@"ucenter_token"];
+                    if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
+                        [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            
+                        }];
+                    }else {
+                        [WXZTipView showCenterWithText:@"未请求到token"];
+                    }
                 }
                 
             }
             
         }else {
-            if (value && [value isKindOfClass:[NSDictionary class]]) {
+            if ((value && [value isKindOfClass:[NSDictionary class]])) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
             }
         }
     }];

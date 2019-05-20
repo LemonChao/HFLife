@@ -17,7 +17,7 @@
 #import "UIView+alertView.h"
 
 #import <AFAuthSDK/AFAuthSDK.h>// 支付宝登录
-
+#import "LoginVC.h"
 
 /************************yourTools************************/
 

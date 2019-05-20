@@ -399,7 +399,7 @@
         return;
     }
     if ([NSString isNOTNull:self.vercodeText.text]) {
-        [WXZTipView showCenterWithText:@"请输入密码"];
+        [WXZTipView showCenterWithText:@"请输入验证码"];
         return;
     }
 
@@ -413,62 +413,26 @@
                 NSDictionary *dataDic = dict[@"data"];
                 
                 if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                    [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
-                    [UserCache setUserPhone:self.userName.text];
-                    //                [UserCache setUserPass:self.vercodeText.text];
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        
-                    }];
+                    NSString *token = dataDic[@"ucenter_token"];
+                    if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
+                        [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            
+                        }];
+                    }else {
+                        [WXZTipView showCenterWithText:@"未请求到token"];
+                    }
                 }
             }
             
         }else {
-            [WXZTipView showCenterWithText:value[@"msg"]];
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
         }
     }];
-    
-    
-//    [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileLogin withParameters:@{@"account":self.userName.text,@"password":self.passwordText.text} withResultBlock:^(BOOL result, id value) {
-//        if (result) {
-//            if (value && [value isKindOfClass:[NSDictionary class]]) {
-//                NSDictionary *dict = value;
-//                [HeaderToken setToken:dict[@"token"]];
-//                [CommonTools setToken:dict[@"token"]];
-//                [UserCache setUserPhone:self.userName.text];
-//                [UserCache setUserPass:self.passwordText.text];
-//                [self dismissViewControllerAnimated:YES completion:^{
-//
-//                }];
-//            }
-//
-//        }else {
-//            [WXZTipView showCenterWithText:value[@"msg"]];
-//        }
-//    }];
-    
-    /*
-     
-     
-     HP_LoginNetApi *loginNetApi  = [[HP_LoginNetApi alloc]initWithParameter:@{@"account":self.userName.text,@"password":self.passwordText.text}];
-     [loginNetApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-     HP_LoginNetApi *loginRequest = (HP_LoginNetApi *)request;
-     if ([loginRequest getCodeStatus] == 1) {
-     NSDictionary *dict = [loginRequest getContent];
-     [HeaderToken setToken:dict[@"token"]];
-     [CommonTools setToken:dict[@"token"]];
-     [UserCache setUserPhone:self.userName.text];
-     [UserCache setUserPass:self.passwordText.text];
-     [self.navigationController popToRootViewControllerAnimated:YES];
-     }else{
-     [WXZTipView showCenterWithText:[loginRequest getMsg]];
-     }
-     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-     HP_LoginNetApi *loginRequest = (HP_LoginNetApi *)request;
-     [WXZTipView showCenterWithText:[loginRequest getMsg]];
-     }];
-     
-     
-     */
 }
 //-(void)loginWithQQ {
 //    [ShareSDK getUserInfo:SSDKPlatformTypeQQ
