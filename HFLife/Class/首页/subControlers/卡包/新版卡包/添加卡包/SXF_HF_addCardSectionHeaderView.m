@@ -49,9 +49,12 @@
     
     self.contentView.backgroundColor = [UIColor whiteColor];
     
-    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickSectionHeader)];
+    [self addGestureRecognizer:tap];
 }
-
+- (void)clickSectionHeader{
+    !self.clickSectionHeaderCallBack ? : self.clickSectionHeaderCallBack();
+}
 - (void)setDataForView:(id)data{
     self.titleLb.text = @"购物";
     self.subTitleLb.text = @"服饰、超市等";

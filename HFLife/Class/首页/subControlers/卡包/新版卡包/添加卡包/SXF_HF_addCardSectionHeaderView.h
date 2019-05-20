@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SXF_HF_addCardSectionHeaderView : UITableViewHeaderFooterView
+@property (nonatomic, strong)void(^clickSectionHeaderCallBack)(void);
 - (void)setDataForView:(id)data;
 @end
