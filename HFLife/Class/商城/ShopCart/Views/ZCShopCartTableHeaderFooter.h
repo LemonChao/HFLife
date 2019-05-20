@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+// 空空如也header
+@interface ZCShopCartEmptyHeaderView : UIView
+
+@end
 
 /// tableFooter
 @interface ZCShopCartTableFooterView : UIView

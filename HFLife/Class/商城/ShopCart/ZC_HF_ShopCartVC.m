@@ -10,11 +10,12 @@
 #import "ZCShopCartTableViewCell.h"
 #import "ZCShopCartSctionHeader.h"
 #import "ZCShopCartTableHeaderFooter.h"
+#import "ZCShopCartBottomView.h"
 
 @interface ZC_HF_ShopCartVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic, strong) UITableView *tableView;
-
+@property(nonatomic, strong) ZCShopCartBottomView *bottomView;
 @end
 
 @implementation ZC_HF_ShopCartVC
@@ -24,10 +25,17 @@
     self.customNavBar.title = @"购物车";
     
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.bottomView];
+    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.customNavBar.mas_bottom);
         make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(SCREEN_HEIGHT-88-TabBarHeight);
+    }];
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tableView.mas_bottom);
+        make.bottom.equalTo(self.view).inset(TabBarHeight);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(49);
     }];
 }
 
@@ -74,13 +82,21 @@
 //            self.automaticallyAdjustsScrollViewInsets = NO;
 //        }
         
-        _tableView.tableHeaderView = [[ZCShopCartTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(33))];
+//        _tableView.tableHeaderView = [[ZCShopCartTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(33))];
+        _tableView.tableHeaderView = [[ZCShopCartEmptyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(250))];
         _tableView.tableFooterView = [[ZCShopCartTableFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
         [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([UITableViewHeaderFooterView class])];
         [_tableView registerClass:[ZCShopCartSctionHeader class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([ZCShopCartSctionHeader class])];
         [_tableView registerClass:[ZCShopCartTableViewCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopCartTableViewCell class])];
     }
     return _tableView;
+}
+
+- (ZCShopCartBottomView *)bottomView {
+    if (!_bottomView) {
+        _bottomView = [[ZCShopCartBottomView alloc] init];
+    }
+    return _bottomView;
 }
 
 @end

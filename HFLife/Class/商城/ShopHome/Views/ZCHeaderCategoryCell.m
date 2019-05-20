@@ -12,6 +12,10 @@
 
 @property(nonatomic, strong) UIButton *button;
 
+@property(nonatomic, strong) UIImageView *imageView;
+
+@property(nonatomic, strong) UILabel *titleLabel;
+
 @end
 
 @implementation ZCHeaderCategoryCell
@@ -20,9 +24,18 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addSubview:self.button];
-        [self.button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+        [self.contentView addSubview:self.imageView];
+        [self.contentView addSubview:self.titleLabel];
+        
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.contentView);
+            make.bottom.equalTo(self.contentView);
+        }];
+        
+        [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.contentView);
+            make.top.equalTo(self.contentView).inset(ScreenScale(12));
+            make.bottom.equalTo(self.titleLabel.mas_top).inset(ScreenScale(10));
         }];
     }
     return self;
@@ -31,24 +44,24 @@
 - (void)setModel:(ZCShopHomeClassModel *)model {
     _model = model;
     
-    [self.button setTitle:model.gc_name forState:UIControlStateNormal];
-    [self.button sd_setImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
-    [self.button sd_setImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateHighlighted];
-    [self.button setImagePosition:ImagePositionTypeTop WithMargin:ScreenScale(6)];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
+    self.titleLabel.text = model.gc_name;
 }
 
 
-- (UIButton *)button {
-    if (!_button) {
-        _button = [UITool richButton:UIButtonTypeCustom title:nil titleColor:ImportantColor font:SystemFont(12) bgColor:[UIColor whiteColor] image:nil];
-        _button.userInteractionEnabled = NO;
-        [_button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+- (UIImageView *)imageView {
+    if (!_imageView) {
+        _imageView  = [UITool imageViewImage:nil contentMode:UIViewContentModeScaleAspectFit];
     }
-    return _button;
+    return _imageView;
 }
 
-- (void)buttonAction:(UIButton *)button {
-    
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [UITool labelWithTextColor:ImportantColor font:SystemFont(12) alignment:NSTextAlignmentCenter];
+    }
+    return _titleLabel;
 }
+
 
 @end
