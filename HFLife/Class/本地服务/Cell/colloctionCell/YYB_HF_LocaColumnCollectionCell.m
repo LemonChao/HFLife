@@ -7,9 +7,12 @@
 //
 
 #import "YYB_HF_LocaColumnCollectionCell.h"
+#import "WKWebViewController.h"
+#import "SynthesizeMerchantListVC.h"
 @interface YYB_HF_LocaColumnCollectionCell()<UICollectionViewDelegate, UICollectionViewDataSource> {
-    NSArray *imageNameArray;
-    NSArray *titleArray;
+    NSArray *imageNameArray;//图片数组
+    NSArray *titleArray;//title数组
+    NSArray *VcArr;//跳转webvcurlid或class
 }
 @property(nonatomic,strong) UICollectionView *collectionView;
 
@@ -21,6 +24,17 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self initView];
+        VcArr = @[@"NearFoodVC",
+                  @(1),
+                  @(2),
+                  @(3),
+                  @(4),
+                  @(5),
+                  @"经济连锁",
+                  @"GuesthouseVC",
+                  @"商务酒店",
+                  @"NearHotelVC"
+                  ];
     }
     return self;
 }
@@ -74,7 +88,42 @@
     //    cell.backgroundColor = [UIColor redColor];
     return cell;
 }
+//本地分类点击事件
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 0) {
+        UIViewController *vc;
+        
+        if (indexPath.row == 6 || indexPath.row == 8) {
+            WKWebViewController *web = [[WKWebViewController alloc]init];
+            web.webTitle = VcArr[indexPath.row];
+            web.isNavigationHidden = YES;
+            if (indexPath.row == 5) {
+                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=1",GP_BASEURL);
+            }else if (indexPath.row == 6){
+                web.isNavigationHidden = NO;
+                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/ecoChainHotel.html?cate_id=2",GP_BASEURL);
+                
+            }else if (indexPath.row == 8){
+                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=4",GP_BASEURL);
+            }
+            vc = web;
+        }else{
+            if (VcArr.count > indexPath.row) {
+                if ([VcArr[indexPath.row] isKindOfClass:[NSString class]]) {
+                    Class vcClass = NSClassFromString(VcArr[indexPath.row]);
+                    vc = [[vcClass alloc] init];
+                }else{
+                    SynthesizeMerchantListVC *syn = [[SynthesizeMerchantListVC alloc]init];
+                    syn.type = MMNSStringFormat(@"%@",VcArr[indexPath.row]);
+                    vc = syn;
+                }
+            }
+        }
+        if (vc) {
+            [self.viewController.navigationController pushViewController:vc animated:YES];
+        }
+    }
     
 }
 

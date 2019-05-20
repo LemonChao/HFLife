@@ -32,6 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor  = [UIColor whiteColor];
+    self.view.backgroundColor = HEX_COLOR(0xf4f7f7);
     dataArray = @[@[@"头像",@"昵称",@"用户名",@"实名认证",@"手机号码"],@[@"退出登录"]];
 //    valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
     [self initWithUI];
@@ -66,14 +67,15 @@
         //    [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:YES];
     self.customNavBar.title = @"个人资料";
-    self.customNavBar.titleLabelColor = [UIColor whiteColor];
-    self.customNavBar.backgroundColor = RGBA(136, 53, 230, 1);
+    self.customNavBar.titleLabelColor = [UIColor blackColor];
+//    self.customNavBar.backgroundColor = RGBA(136, 53, 230, 1);
 }
 -(void)initWithUI{
+    
     [self.view addSubview:self.contentTableView];
     [self.contentTableView  mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.view.mas_top).offset(self.navBarHeight);
+        make.top.mas_equalTo(self.view.mas_top).offset(self.navBarHeight + 8);
     }];
 }
 #pragma mark 列表代理
@@ -147,6 +149,8 @@
         }];
         [self.navigationController pushViewController:modify animated:YES];
     }else if ([title_value isEqualToString:@"头像"]){
+        
+        
         self.manager.configuration.saveSystemAblum = YES;
         [self hx_presentAlbumListViewControllerWithManager:self.manager delegate:self];
     }else if ([title_value isEqualToString:@"实名认证"]){

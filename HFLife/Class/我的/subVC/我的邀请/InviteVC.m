@@ -66,7 +66,7 @@
     }];
     [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:YES];
-    self.customNavBar.title = @"";
+    self.customNavBar.title = @"分享";
 //    self.customNavBar.titleLabelColor = [UIColor whiteColor];
 }
 -(void)initWithUI{

@@ -13,14 +13,9 @@
 #import "YYB_HF_cycleScrollCollectionViewCell.h"
 #import "YYB_HF_guessLikeCollectionViewCell.h"
 #import "YYb_HF_CollReusableView.h"
-#import "WKWebViewController.h"
-#import "SynthesizeMerchantListVC.h"
-@interface YYB_HF_LifeLocaView()<XPCollectionViewWaterfallFlowLayoutDataSource,UICollectionViewDelegate,UICollectionViewDataSource> {
-    
-    NSArray *imageNameArray;
-    NSArray *titleArray;
-    NSArray *VcArr;
-}
+//#import "WKWebViewController.h"
+//#import "SynthesizeMerchantListVC.h"
+@interface YYB_HF_LifeLocaView()<XPCollectionViewWaterfallFlowLayoutDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property(nonatomic, strong) baseCollectionView *collectionView;
 @property(nonatomic, strong) XPCollectionViewWaterfallFlowLayout *layout;
 
@@ -31,25 +26,13 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setUpUI];
-        VcArr = @[@"NearFoodVC",
-                  @(1),
-                  @(2),
-                  @(3),
-                  @(4),
-                  @(5),
-                  @"经济连锁",
-                  @"GuesthouseVC",
-                  @"商务酒店",
-                  @"NearHotelVC"
-                  ];
+        
     }
     return self;
 }
 
 - (void)setUpUI {
-    imageNameArray = @[@"icon_ruzhu",@"icon_meishi",@"icon_jiudian",@"icon_shenxian",@"icon_meifa",@"icon_xiuxian",@"icon_jiehun",@"icon_qinzi",@"icon_waimai",@"icon_jiaju",@"icon_youyong",@"icon_yake",@"icon_jiaoyu",@"icon_meirong",@"icon_gengduo"];
     
-    titleArray = @[@"商家入驻",@"美食", @"酒店住宿", @"超市生鲜", @"美在中国", @"休闲娱乐", @"结婚摄影", @"亲子乐园", @"外卖", @"家具装修",@"游泳健身",@"医疗牙科",@"教育培训",@"医学美容",@"更多"];
     [self addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
@@ -64,7 +47,7 @@
     };
 }
 
-- (UICollectionView *)collectionView{
+- (UICollectionView *)collectionView {
     if (!_collectionView) {
         _collectionView = [[baseCollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.layout];
         _collectionView.delegate = self;
@@ -82,7 +65,7 @@
     }
     return _collectionView;
 }
-- (XPCollectionViewWaterfallFlowLayout *)layout{
+- (XPCollectionViewWaterfallFlowLayout *)layout {
     if (!_layout) {
         _layout = [[XPCollectionViewWaterfallFlowLayout alloc] init];
         
@@ -151,37 +134,7 @@
     NSLog(@"section %ld item %ld",indexPath.section,indexPath.row);
     
     if (indexPath.section == 0) {
-        UIViewController *vc;
         
-        if (indexPath.row == 6 || indexPath.row == 8) {
-            WKWebViewController *web = [[WKWebViewController alloc]init];
-            web.webTitle = VcArr[indexPath.row];
-            web.isNavigationHidden = YES;
-            if (indexPath.row == 5) {
-                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=1",GP_BASEURL);
-            }else if (indexPath.row == 6){
-                web.isNavigationHidden = NO;
-                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/ecoChainHotel.html?cate_id=2",GP_BASEURL);
-                
-            }else if (indexPath.row == 8){
-                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=4",GP_BASEURL);
-            }
-            vc = web;
-        }else{
-            if (VcArr.count > indexPath.row) {
-                if ([VcArr[indexPath.row] isKindOfClass:[NSString class]]) {
-                    Class vcClass = NSClassFromString(VcArr[indexPath.row]);
-                    vc = [[vcClass alloc] init];
-                }else{
-                    SynthesizeMerchantListVC *syn = [[SynthesizeMerchantListVC alloc]init];
-                    syn.type = MMNSStringFormat(@"%@",VcArr[indexPath.row]);
-                    vc = syn;
-                }
-            }
-        }
-        if (vc) {
-            [self.viewController.navigationController pushViewController:vc animated:YES];
-        }
     }
     
 }

@@ -16,7 +16,7 @@
 
 #import "ReviseMobilePhone.h"//设置手机号
 #import "SetingMobilePhoneVC.h"//设置手机号
-
+#import "ServiceAgreementVC.h"//注册i协议
 @interface LoginVC ()
 
 @end
@@ -95,7 +95,7 @@
     [self.view addSubview:lin];
     [lin mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view).mas_offset(ScreenScale(40));
-        make.top.mas_equalTo(loginBtn.mas_bottom).offset(ScreenScale(10));
+        make.top.mas_equalTo(loginBtn.mas_bottom).offset(ScreenScale(14));
         make.height.mas_equalTo(HeightRatio(21));
     }];
     
@@ -110,6 +110,15 @@
     }];
     lin2.font = FONT(14);
     lin2.text = @"《汉富商城用户注册协议》";
+    lin2.userInteractionEnabled = YES;
+    [lin2 wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
+        NSLog(@"协议");
+        NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"APP_agreement" ofType:@"doc"];
+        ServiceAgreementVC *serv = [[ServiceAgreementVC alloc]init];
+        serv.htmlPath = htmlPath;
+        serv.title = @"注册协议";
+        [self.navigationController pushViewController:serv animated:YES];
+    }];
     
     UILabel *fastLogin = [UILabel new];
     fastLogin.textColor = HEX_COLOR(0x0C0B0B);
@@ -184,7 +193,7 @@
     }];
     
 }
-
+//手机验证码登录
 -(void)loginBtnClick{
     
     [self.navigationController pushViewController:[NSClassFromString(@"LoginForVercode") new] animated:YES];
@@ -201,39 +210,7 @@
                    //             NSDictionary *dataDict = @{@"type":@"qq",@"openId":user.uid,@"nickname":user.nickname,@"img":user.icon};
                    
                    NSDictionary *parm = @{@"openid":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
-                   [[WBPCreate sharedInstance] showWBProgress];
-                   [networkingManagerTool requestToServerWithType:POST withSubUrl:kWXLogin withParameters:parm     withResultBlock:^(BOOL result, id value) {
-                       [[WBPCreate sharedInstance] hideAnimated];
-                       if (result) {
-                           if (value && [value isKindOfClass:[NSDictionary class]]) {
-                               NSDictionary *dict = value;
-                               
-                               NSString *user_mobile = dict[@"user_mobile"];
-                               if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
-//                                   [HeaderToken setToken:dict[@"data"]];
-//                                   [CommonTools setToken:dict[@"data"]];
-                                   [self dismissViewControllerAnimated:YES completion:^{
-                                       
-                                   }];
-                               }else {
-                                   ReviseMobilePhone *vc = [[ReviseMobilePhone alloc]init];
-                                   vc.tokenStr = dict[@"token"];
-                                   vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-//                                       [HeaderToken setToken:dict[@"data"]];
-//                                       [CommonTools setToken:dict[@"data"]];
-                                       [self dismissViewControllerAnimated:YES completion:^{
-                                           
-                                       }];
-                                   };
-                                   [self.navigationController pushViewController:vc animated:YES];
-                               }
-                               
-                           }
-                           
-                       }else {
-                           [WXZTipView showCenterWithText:value[@"msg"]];
-                       }
-                   }];
+//                   [[WBPCreate sharedInstance] showWBProgress];
                    
                    /*
                     
@@ -334,12 +311,12 @@
            }];
 }
 
-- (void)loginWithAliPay {
+-(void)loginWithAliPay {
     
     
     NSString *appScheme = @"hanFuLife";//@"你的appScheme";
     //authStr参数后台获取！和开发中心配置的app有关系，包含appid\name等等信息。
-    NSString *authStr = @"";//@"后台获取的authStr";
+    NSString *authStr = @"apiname=com.alipay.account.auth&app_id=xxxxx&app_name=mc&auth_type=AUTHACCOUNT&biz_type=openservice&method=alipay.open.auth.sdk.code.get&pid=xxxxx&product_id=APP_FAST_LOGIN&scope=kuaijie&sign_type=RSA2&target_id=20141225xxxx&sign=fMcp4GtiM6rxSIeFnJCVePJKV43eXrUP86CQgiLhDHH2u%2FdN75eEvmywc2ulkm7qKRetkU9fbVZtJIqFdMJcJ9Yp%2BJI%2FF%2FpESafFR6rB2fRjiQQLGXvxmDGVMjPSxHxVtIqpZy5FDoKUSjQ2%2FILDKpu3%2F%2BtAtm2jRw1rUoMhgt0%3D";//@"后台获取的authStr";
     //没有安装支付宝客户端的跳到网页授权时会在这个方法里回调
     [[AFAuthSDK defaultService] authv2WithInfo:authStr fromScheme:appScheme callback:^(NSDictionary *result) {
         // 解析 auth code
@@ -358,6 +335,7 @@
         NSLog(@"authv2WithInfo授权结果 authCode = %@", authCode?:@"");
     }];
 }
+//注册
 -(void)registeredClick{
     [self.navigationController pushViewController:[[RegisteredVC alloc]init] animated:YES];
 }

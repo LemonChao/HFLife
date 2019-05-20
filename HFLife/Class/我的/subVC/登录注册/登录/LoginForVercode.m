@@ -14,8 +14,8 @@
 #import "ReviseMobilePhone.h"//设置手机号
 
 @interface LoginForVercode ()
-@property (nonatomic,strong)UITextField *userName;
-@property (nonatomic,strong)UITextField *vercodeText;
+@property (nonatomic,strong)UITextField *userName;//手机号
+@property (nonatomic,strong)UITextField *vercodeText;//验证码
 @end
 
 @implementation LoginForVercode
@@ -44,9 +44,6 @@
     [self.customNavBar setOnClickLeftButton:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
-    [self.customNavBar setOnClickRightButton:^{
-        NSLog(@"搜索");
-    }];
     //    [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:YES];
     self.customNavBar.title = @"";
@@ -66,8 +63,7 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(bgImageView);
     }];
-    
-    
+
     UIImageView *iconImageView = [UIImageView new];
     iconImageView.image = MMGetImage(@"icon_phone_login");
     [self.view addSubview:iconImageView];
@@ -108,32 +104,6 @@
     
     self.userName.text = @"15621402093";
     
-//    UIButton *forgotPasswordBtn = [UIButton new];
-//    forgotPasswordBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(23)];
-//    [forgotPasswordBtn setTitle:@"忘记密码 ？" forState:(UIControlStateNormal)];
-//    [forgotPasswordBtn setTitleColor:HEX_COLOR(0x656565) forState:(UIControlStateNormal)];
-//    [forgotPasswordBtn addTarget:self action:@selector(forgotPasswordBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
-//    [self.view addSubview:forgotPasswordBtn];
-//    [forgotPasswordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.userName.mas_left);
-//        make.top.mas_equalTo(self.passwordText.mas_bottom).offset(HeightRatio(45));
-//        make.width.mas_greaterThanOrEqualTo(1);
-//        make.height.mas_equalTo(HeightRatio(23));
-//    }];
-//
-//    UIButton *registeredBtn = [UIButton new];
-//    registeredBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(23)];
-//    [registeredBtn setTitle:@"还没有账号，去注册" forState:(UIControlStateNormal)];
-//    [registeredBtn setTitleColor:HEX_COLOR(0x656565) forState:(UIControlStateNormal)];
-//    [registeredBtn addTarget:self action:@selector(registeredClick) forControlEvents:(UIControlEventTouchUpInside)];
-//    [self.view addSubview:registeredBtn];
-//    [registeredBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.mas_equalTo(self.userName.mas_right);
-//        make.top.mas_equalTo(self.passwordText.mas_bottom).offset(HeightRatio(45));
-//        make.width.mas_greaterThanOrEqualTo(1);
-//        make.height.mas_equalTo(HeightRatio(23));
-//    }];
-    
     UIButton *loginBtn = [UIButton new];
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(31)];
     loginBtn.backgroundColor = [UIColor redColor];
@@ -148,76 +118,6 @@
         make.height.mas_equalTo(HeightRatio(90));
     }];
     MMViewBorderRadius(loginBtn, WidthRatio(45), 0, [UIColor clearColor]);
-    
-//    UILabel *lin = [UILabel new];
-//    lin.backgroundColor = HEX_COLOR(0xdddddd);
-//    [self.view addSubview:lin];
-//    [lin mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.userName.mas_left);
-//        make.top.mas_equalTo(loginBtn.mas_bottom).offset(HeightRatio(97));
-//        make.width.mas_equalTo(WidthRatio(194));
-//        make.height.mas_equalTo(HeightRatio(3));
-//    }];
-    
-//    UILabel *la =[UILabel new];
-//    la.text = @"第三方登录";
-//    la.font = [UIFont systemFontOfSize:WidthRatio(21)];
-//    la.textColor = HEX_COLOR(0x828282);
-//    [self.view addSubview:la];
-//    [la mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.mas_equalTo(self.view.mas_centerX);
-//        make.centerY.mas_equalTo(lin.mas_centerY);
-//        make.width.mas_greaterThanOrEqualTo(1);
-//        make.height.mas_equalTo(HeightRatio(21));
-//    }];
-//
-//    UILabel *lin2 = [UILabel new];
-//    lin2.backgroundColor = HEX_COLOR(0xdddddd);
-//    [self.view addSubview:lin2];
-//    [lin2 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(la.mas_right).offset(WidthRatio(33));
-//        make.centerY.mas_equalTo(lin.mas_centerY);
-//        make.width.mas_equalTo(WidthRatio(194));
-//        make.height.mas_equalTo(HeightRatio(3));
-//    }];
-//
-//    UIButton *QQBtn = [UIButton new];
-//    QQBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(25)];
-//    [QQBtn setImage:MMGetImage(@"QQ") forState:(UIControlStateNormal)];
-//    [QQBtn setTitle:@"QQ登录" forState:(UIControlStateNormal)];
-//    [QQBtn setTitleColor:HEX_COLOR(0x828282) forState:(UIControlStateNormal)];
-//    [QQBtn setImagePosition:ImagePositionTypeLeft spacing:ScreenScale(15)];
-//
-//    [QQBtn addTarget:self action:@selector(loginWithQQ) forControlEvents:(UIControlEventTouchUpInside)];
-//    [self.view addSubview:QQBtn];
-//    [QQBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.view.mas_left).offset(WidthRatio(162));
-//        make.top.mas_equalTo(la.mas_bottom).offset(HeightRatio(54));
-//        make.width.mas_equalTo(WidthRatio(153));
-//        make.height.mas_equalTo(HeightRatio(57));
-//    }];
-//
-//    UIButton *WeChatBtn = [UIButton new];
-//    WeChatBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(25)];
-//    [WeChatBtn setImage:MMGetImage(@"weixin") forState:(UIControlStateNormal)];
-//    [WeChatBtn setTitle:@"微信登录" forState:(UIControlStateNormal)];
-//    [WeChatBtn setTitleColor:HEX_COLOR(0x828282) forState:(UIControlStateNormal)];
-//    [WeChatBtn setImagePosition:ImagePositionTypeLeft spacing:ScreenScale(15)];
-//
-//    [WeChatBtn addTarget:self action:@selector(loginWithWeChat) forControlEvents:(UIControlEventTouchUpInside)];
-//    [self.view addSubview:WeChatBtn];
-//    [WeChatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.mas_equalTo(self.view.mas_right).offset(-WidthRatio(150));
-//        make.top.mas_equalTo(la.mas_bottom).offset(HeightRatio(54));
-//        make.width.mas_equalTo(WidthRatio(188));
-//        make.height.mas_equalTo(HeightRatio(57));
-//    }];
-    
-    //    lin.hidden = YES;
-    //    la.hidden = YES;
-    //    lin2.hidden = YES;
-    //    QQBtn.hidden = YES;
-    //    WeChatBtn.hidden = YES;
 }
 
 -(UITextField *)userName{
@@ -393,6 +293,7 @@
     });
     dispatch_resume(_timer);
 }
+//手机验证码登录
 -(void)loginBtnClick{
     if ([NSString isNOTNull:self.userName.text]) {
         [WXZTipView showCenterWithText:@"请输入用户名"];
@@ -434,158 +335,13 @@
         }
     }];
 }
-//-(void)loginWithQQ {
-//    [ShareSDK getUserInfo:SSDKPlatformTypeQQ
-//           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error){
-//               if (state == SSDKResponseStateSuccess){
-//                   [CommonTools setToken:@""];// !!!:三方登录 清空token
-//
-//                   //             NSDictionary *dataDict = @{@"type":@"qq",@"openId":user.uid,@"nickname":user.nickname,@"img":user.icon};
-//
-//                   NSDictionary *parm = @{@"openid":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
-//
-//                   [networkingManagerTool requestToServerWithType:POST withSubUrl:kWXLogin withParameters:parm     withResultBlock:^(BOOL result, id value) {
-//                       if (result) {
-//                           if (value && [value isKindOfClass:[NSDictionary class]]) {
-//                               NSDictionary *dict = value;
-//
-//                               NSString *user_mobile = dict[@"user_mobile"];
-//                               if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
-//                                   [HeaderToken setToken:dict[@"token"]];
-//                                   [CommonTools setToken:dict[@"token"]];
-//                                   [self dismissViewControllerAnimated:YES completion:^{
-//
-//                                   }];
-//                               }else {
-//                                   ReviseMobilePhone *vc = [[ReviseMobilePhone alloc]init];
-//                                   vc.tokenStr = dict[@"token"];
-//                                   vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-//                                       [HeaderToken setToken:dict[@"token"]];
-//                                       [CommonTools setToken:dict[@"token"]];
-//                                       [self dismissViewControllerAnimated:YES completion:^{
-//
-//                                       }];
-//                                   };
-//                                   [self.navigationController pushViewController:vc animated:YES];
-//                               }
-//
-//                           }
-//
-//                       }else {
-//                           [WXZTipView showCenterWithText:value[@"msg"]];
-//                       }
-//                   }];
-//
-//                   /*
-//
-//
-//                    HP_ThirdPartyLoginNetApi *thirdParty = [[HP_ThirdPartyLoginNetApi alloc]initWithParameter:dataDict];
-//                    [thirdParty startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-//                    HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
-//                    if ([thirdPartyRequest getCodeStatus] == 1) {
-//                    NSDictionary *dict = [thirdPartyRequest getContent];
-//
-//                    NSString *user_mobile = dict[@"user_mobile"];
-//                    if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
-//                    [HeaderToken setToken:dict[@"token"]];
-//                    [CommonTools setToken:dict[@"token"]];
-//                    [self.navigationController popToRootViewControllerAnimated:YES];
-//                    }else {
-//                    ReviseMobilePhone *vc = [[ReviseMobilePhone alloc]init];
-//                    vc.tokenStr = dict[@"token"];
-//                    vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-//                    [HeaderToken setToken:dict[@"token"]];
-//                    [CommonTools setToken:dict[@"token"]];
-//                    [self.navigationController popToRootViewControllerAnimated:YES];
-//                    };
-//                    [self.navigationController pushViewController:vc animated:YES];
-//                    }
-//
-//                    }else{
-//                    [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
-//                    }
-//                    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-//                    HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
-//                    [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
-//                    }];
-//
-//
-//                    */
-//
-//               }else{
-//                   NSLog(@"%@",error);
-//               }
-//           }];
-//}
--(void)loginWithWeChat{
-    
-    [ShareSDK getUserInfo:SSDKPlatformTypeWechat
-           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error){
-               if (state == SSDKResponseStateSuccess){
-                   
-                   [CommonTools setToken:@""];// !!!:三方登录 清空token
-                   
-                   
-                   NSDictionary *dataDict = @{@"type":@"wx",@"openId":user.uid,@"nickname":user.nickname,@"img":user.icon};
-                   
-                   
-                   /*
-                    
-                    
-                    HP_ThirdPartyLoginNetApi *thirdParty = [[HP_ThirdPartyLoginNetApi alloc]initWithParameter:dataDict];
-                    [thirdParty startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-                    HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
-                    if ([thirdPartyRequest getCodeStatus] == 1) {
-                    NSDictionary *dict = [thirdPartyRequest getContent];
-                    
-                    NSString *user_mobile = dict[@"user_mobile"];
-                    if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
-                    [HeaderToken setToken:dict[@"token"]];
-                    [CommonTools setToken:dict[@"token"]];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    }else {
-                    ReviseMobilePhone *vc = [[ReviseMobilePhone alloc]init];
-                    vc.tokenStr = dict[@"token"];
-                    vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-                    [HeaderToken setToken:dict[@"token"]];
-                    [CommonTools setToken:dict[@"token"]];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    };
-                    [self.navigationController pushViewController:vc animated:YES];
-                    }
-                    
-                    }else{
-                    [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
-                    }
-                    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-                    HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
-                    [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
-                    }];
-                    
-                    
-                    */
-                   
-                   
-               }else{
-                   NSLog(@"error = %@",error);
-               }
-           }];
-}
+
+
 -(void)registeredClick{
     [self.navigationController pushViewController:[[RegisteredVC alloc]init] animated:YES];
 }
 -(void)forgotPasswordBtnClick{
     [self.navigationController pushViewController:[[ForgotPasswordVC alloc]init] animated:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

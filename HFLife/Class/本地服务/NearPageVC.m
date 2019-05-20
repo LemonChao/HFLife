@@ -12,8 +12,6 @@
 #import "YBPopupMenu.h"
 
 
-extern NSString *CTSettingCopyMyPhoneNumber();
-
 @interface NearPageVC (){
     int arc;
 }
@@ -51,9 +49,6 @@ extern NSString *CTSettingCopyMyPhoneNumber();
     [self.customNavBar setHidden:YES];
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.translucent = YES;
-    NSString *ss = CTSettingCopyMyPhoneNumber();
-    
-    NSLog(@"");
 }
 
 - (CGFloat)cellContentViewWith

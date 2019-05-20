@@ -9,9 +9,9 @@
 #import "SetingMobilePhoneVC.h"
 
 @interface SetingMobilePhoneVC ()<UITextFieldDelegate>
-@property(nonatomic, strong) UITextField *phoneText;
-@property (nonatomic,strong)UITextField *vercodeText;
-@property (nonatomic,strong)UITextField *inviteCodeTextField;
+@property(nonatomic, strong) UITextField *phoneText;//手机号
+@property (nonatomic,strong)UITextField *vercodeText;//验证码
+@property (nonatomic,strong)UITextField *inviteCodeTextField;//邀请码
 
 @end
 
@@ -25,24 +25,21 @@
     // Do any additional setup after loading the view.
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
--(void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
 }
--(void)setupNavBar{
+- (void)setupNavBar{
     WS(weakSelf);
     [super setupNavBar];
     [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
     self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
     [self.customNavBar setOnClickLeftButton:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
-    }];
-    [self.customNavBar setOnClickRightButton:^{
-        NSLog(@"搜索");
     }];
     //    [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:YES];
@@ -51,7 +48,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
--(void)initWithUI{
+- (void)initWithUI{
    
     
     UILabel *lin = [UILabel new];
@@ -172,7 +169,7 @@
     //    WeChatBtn.hidden = YES;
 }
 
--(UITextField *)phoneText{
+- (UITextField *)phoneText{
     if (_phoneText == nil) {
         UITextField *tf = [[UITextField alloc] init];
         //        tf.borderStyle = UITextBorderStyleRoundedRect;
@@ -230,7 +227,7 @@
     _phoneText.rightViewMode = UITextFieldViewModeAlways;
     return _phoneText;
 }
--(UITextField *)vercodeText{
+- (UITextField *)vercodeText{
     if (!_vercodeText) {
         UITextField *tf = [[UITextField alloc] init];
         //        tf.keyboardType = UIKeyboardTypeASCIICapable;
@@ -287,8 +284,7 @@
     }
     return _vercodeText;
 }
-
--(UITextField *)inviteCodeTextField{
+- (UITextField *)inviteCodeTextField{
     if (!_inviteCodeTextField) {
         UITextField *tf = [[UITextField alloc] init];
         //        tf.keyboardType = UIKeyboardTypeASCIICapable;
@@ -350,8 +346,8 @@
     }];
     tf.rightView = rightView;
 }
-
--(void)getSetingCode:(UIButton *)send{
+//邀请码
+- (void)getSetingCode:(UIButton *)send{
     if (![self.phoneText.text isValidateMobile]) {
         [WXZTipView showCenterWithText:@"请输入正确的手机号"];
         return;
@@ -377,10 +373,9 @@
         }
     }];
     
-    
 }
 // 开启倒计时效果
--(void)openCountdown:(UIButton *)authCodeBtn{
+- (void)openCountdown:(UIButton *)authCodeBtn{
     __block NSInteger time = 59; //倒计时时间
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -416,7 +411,7 @@
     });
     dispatch_resume(_timer);
 }
--(void)sureBtnClick{
+- (void)sureBtnClick{
     if ([NSString isNOTNull:self.phoneText.text]) {
         [WXZTipView showCenterWithText:@"请输入手机号"];
         return;
@@ -462,32 +457,9 @@
         }
     }];
 
-    /*
-     
-     
-     HP_LoginNetApi *loginNetApi  = [[HP_LoginNetApi alloc]initWithParameter:@{@"account":self.phoneText.text,@"password":self.vercodeText.text}];
-     [loginNetApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-     HP_LoginNetApi *loginRequest = (HP_LoginNetApi *)request;
-     if ([loginRequest getCodeStatus] == 1) {
-     NSDictionary *dict = [loginRequest getContent];
-     [HeaderToken setToken:dict[@"token"]];
-     [CommonTools setToken:dict[@"token"]];
-     [UserCache setUserPhone:self.phoneText.text];
-     [UserCache setUserPass:self.vercodeText.text];
-     [self.navigationController popToRootViewControllerAnimated:YES];
-     }else{
-     [WXZTipView showCenterWithText:[loginRequest getMsg]];
-     }
-     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-     HP_LoginNetApi *loginRequest = (HP_LoginNetApi *)request;
-     [WXZTipView showCenterWithText:[loginRequest getMsg]];
-     }];
-     
-     
-     */
 }
 
--(void)forgotPasswordBtnClick{
+- (void)forgotPasswordBtnClick{
     
 }
 

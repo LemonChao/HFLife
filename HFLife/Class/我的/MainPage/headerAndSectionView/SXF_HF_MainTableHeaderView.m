@@ -97,6 +97,7 @@
     
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickHeaderImageV)];
+    self.headerImageV.userInteractionEnabled = YES;
     [self.headerImageV addGestureRecognizer:tap];
     
     
@@ -107,7 +108,8 @@
     
 }
 - (void)clickHeaderImageV{
-    
+   
+    [[self getCurrentViewController].navigationController pushViewController:[[NSClassFromString(@"PersonalDataVC") alloc]init] animated:YES];
 }
 - (void)copyText{
     [UIPasteboard generalPasteboard].string = self.myJoinTitleLb.text;
