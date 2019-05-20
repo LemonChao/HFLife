@@ -449,7 +449,7 @@
 #pragma mark -参数跳转
 -(void)getNearParameter:(NSDictionary *)dict{
     WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
-        //    NSString *city = [MMNSUserDefaults objectForKey:@"currentCity"];
+        //    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
         //    NSString *coupon_id = MMNSStringFormat(@"%@",dict[@"coupon_id"]);
     wkWebView.isNavigationHidden = YES;
     NSString *shop_id = MMNSStringFormat(@"%@",dict[@"shop_id"]);

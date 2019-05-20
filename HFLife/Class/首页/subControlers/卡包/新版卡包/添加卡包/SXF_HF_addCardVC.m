@@ -17,17 +17,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.customNavBar.title = @"卡包";
+    
+    
+    [self setUpUI];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setUpUI{
+    
+    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
+    
+    [self.customNavBar wr_setRightButtonWithTitle:city titleColor:HEX_COLOR(0xCA1400)];
+    self.customNavBar.rightButton.setTitleFontSize(14);
+    [self.customNavBar setOnClickRightButton:^{
+        //添加
+        
+    }];
+    
 }
-*/
-
 @end
