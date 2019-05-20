@@ -42,6 +42,8 @@ static NSString *const USER_TOKEN              = @"userToken";
 //存储登录状态
 static NSString *const LOGIN_STATES            = @"loginStates";
 
-#define LogIn_Success                  [[[NSUserDefaults standardUserDefaults] objectForKey:LOGIN_APP] integerValue] == 1
+
+
+#define LogIn_Success                  [[[NSUserDefaults standardUserDefaults] objectForKey:LO IN_APP] integerValue] == 1
 #define GetUserToken                      [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]
 #endif /* AppConfiger_h */
