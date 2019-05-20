@@ -1,17 +1,17 @@
 //
-//  SXF_HP_cardPacketView.h
+//  SXF_HF_vipCardVC.h
 //  HFLife
 //
 //  Created by mac on 2019/5/20.
 //  Copyright © 2019 luyukeji. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SXF_HP_cardPacketView : UIView
-@property (nonatomic, copy)void(^selectRow)(NSIndexPath *indexP);
+@interface SXF_HF_vipCardVC : BaseViewController
+
 @end
 
 NS_ASSUME_NONNULL_END

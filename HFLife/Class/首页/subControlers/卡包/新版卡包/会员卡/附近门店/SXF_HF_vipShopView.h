@@ -1,5 +1,5 @@
 //
-//  SXF_HP_cardPacketView.h
+//  SXF_HF_vipShopView.h
 //  HFLife
 //
 //  Created by mac on 2019/5/20.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SXF_HP_cardPacketView : UIView
+@interface SXF_HF_vipShopView : UIView
 @property (nonatomic, copy)void(^selectRow)(NSIndexPath *indexP);
 @end
 

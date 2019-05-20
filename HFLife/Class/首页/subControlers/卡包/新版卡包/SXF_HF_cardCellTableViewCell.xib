@@ -112,6 +112,12 @@
                             <constraint firstAttribute="trailing" secondItem="MGA-5P-jC7" secondAttribute="trailing" id="n5Y-du-eLh"/>
                             <constraint firstItem="gcd-bT-DTf" firstAttribute="leading" secondItem="ciX-Ut-gLZ" secondAttribute="leading" id="yYK-qu-nIJ"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
@@ -126,7 +132,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="-13.768115942028986" y="83.035714285714278"/>
+            <point key="canvasLocation" x="-307" y="72"/>
         </tableViewCell>
     </objects>
     <resources>

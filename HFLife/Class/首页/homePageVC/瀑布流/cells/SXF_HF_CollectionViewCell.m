@@ -17,7 +17,7 @@
 @property (nonatomic ,strong) UILabel *time1;
 @property (nonatomic, strong) UILabel *time2;
 @property (nonatomic ,strong) UIImageView *incoderImageV;
-
+@property (nonatomic, strong)UIView *cycleView;
 @end
 
 
@@ -44,6 +44,7 @@
     self.incoderImageV = [UIImageView new];
     self.time1 = [UILabel new];
     self.time2 = [UILabel new];
+    self.cycleView = [UIView new];
     
     [self.contentView addSubview:self.bgView];
     [self.bgView addSubview:self.imageV];
@@ -52,9 +53,10 @@
     [self.bgView addSubview:self.incoderImageV];
     [self.bgView addSubview:self.time1];
     [self.bgView addSubview:self.time2];
+    [self.bgView addSubview:self.cycleView];
     
     self.bgView.backgroundColor = [UIColor whiteColor];
-    self.incoderImageV.image = [UIImage imageNamed:@"更多"];
+    self.incoderImageV.image = [UIImage imageNamed:@"homePage更多"];
     self.imageV.image = [UIImage imageNamed:@"homeLoge"];
     self.titleLb.font = FONT(12);
     self.titleLb.textColor = HEX_COLOR(0x131313);
@@ -64,6 +66,8 @@
     self.time1.textColor = HEX_COLOR(0x868686);
     self.time2.font = FONT(12);
     self.time2.textColor = HEX_COLOR(0x868686);
+    self.cycleView.backgroundColor = colorCA1400;
+    self.cycleView.layer.cornerRadius = ScreenScale(4);
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCell)];
 //    [self.bgView addGestureRecognizer:tap];
@@ -128,6 +132,11 @@
     
     self.bgView.layer.cornerRadius = 5;
     [self.bgView addShadowForViewColor:HEX_COLOR(0x808080) offSet:CGSizeMake(-1,2) shadowRadius:3 cornerRadius:5 opacity:0.3];
+    [self.cycleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.incoderImageV.mas_left).offset(ScreenScale(-10));
+        make.centerY.mas_equalTo(self.incoderImageV.mas_centerY);
+        make.width.height.mas_equalTo(ScreenScale(8));
+    }];
     
 }
 

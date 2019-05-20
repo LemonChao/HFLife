@@ -27,5 +27,6 @@
 #import <SDAutoLayout.h>
 #import <JZLocationConverter.h>
 #import <SGQRCode.h>
+#import <MAMapKit/MAMapKit.h>
 
 #endif /* PodHeader_h */

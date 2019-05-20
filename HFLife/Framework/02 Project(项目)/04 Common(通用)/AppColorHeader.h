@@ -33,5 +33,10 @@
 /** 通用红 CA1400 */
 #define GeneralRedColor RGBA(202,20,0,1)
 
-
+//字体黑
+#define color0C0B0B        HEX_COLOR(0x0C0B0B)
+//字体红
+#define colorCA1400        HEX_COLOR(0xCA1400)
+//字体灰
+#define colorAAAAAA        HEX_COLOR(0xAAAAAA)
 #endif /* AppColorHeader_h */

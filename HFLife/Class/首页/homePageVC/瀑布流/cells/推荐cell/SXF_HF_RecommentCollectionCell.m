@@ -70,7 +70,7 @@
     self.inviteeButton = [UIButton new];
     self.rightIncoderImgV = [UIImageView new];
     self.rightIncoderImgV.tintColor = [UIColor whiteColor];
-    self.rightIncoderImgV.image = [UIImage imageNamed:@"更多"];
+    self.rightIncoderImgV.image = [UIImage imageNamed:@"homePage更多"];
     
     [self.bgView addSubview:self.titleLb];
     [self.bgView addSubview:self.inviteesNumberLb];
