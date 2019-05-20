@@ -58,11 +58,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-//    [self tabBarController].selectedIndex = 1;
-//    ZC_HF_ShopClassifyVC *classifyVC = (ZC_HF_ShopClassifyVC *)[(BaseNavigationController*)[self tabBarController].viewControllers[1] topViewController];
-//    ZCShopHomeClassModel *model = self.classList[indexPath.row];
-//    [classifyVC selectedIndex:model.gc_id.integerValue];
-
     
     ShopTabbarViewController *tabBarVC =[self tabBarController];
     tabBarVC.selectedIndex = 1;
@@ -147,11 +142,11 @@
     return _pageIndexLabel;
 }
 
-- (UITabBarController *)tabBarController {
+- (ShopTabbarViewController *)tabBarController {
     for (UIView* next = [self superview]; next; next = next.superview) {
         UIResponder* nextResponder = [next nextResponder];
         if ([nextResponder isKindOfClass:NSClassFromString(@"ShopTabbarViewController")]) {
-            return (UITabBarController*)nextResponder;
+            return (ShopTabbarViewController*)nextResponder;
         }
     }
     return nil;
