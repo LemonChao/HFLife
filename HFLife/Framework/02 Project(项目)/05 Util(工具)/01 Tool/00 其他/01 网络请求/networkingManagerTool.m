@@ -123,7 +123,7 @@
     if (gettoken) {
         [requestManager.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@" , gettoken] forHTTPHeaderField:@"APP-TOKEN"];
     }else {
-        [LoginVC login];
+//        [LoginVC login];
 
         return;
     }
