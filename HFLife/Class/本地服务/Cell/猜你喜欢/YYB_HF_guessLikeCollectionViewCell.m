@@ -105,11 +105,11 @@
     self.distanceLabel.text = @"4.5km";
     self.distanceLabel.font = FONT(9);
     self.distanceLabel.textColor = HEX_COLOR(0x333333);
-    self.priceLabel.text = @"￥3580";
+    self.priceLabel.text = @"￥35800";
     self.priceLabel.font = FONT(17);
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
     
-    self.oldPriceLabel.text = @"￥3580";
+    self.oldPriceLabel.text = @"￥35800";
     self.oldPriceLabel.textColor = HEX_COLOR(0xAAAAAA);
     self.oldPriceLabel.font = FONT(11);
     
@@ -286,11 +286,11 @@
     self.nameLabel.numberOfLines = 2;
     self.distanceLabel.text = @"4.5km";
     self.distanceLabel.font = FONT(9);
-    self.priceLabel.text = @"￥3580";
+    self.priceLabel.text = @"￥35800";
     self.priceLabel.font = FONT(17);
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
     
-    self.oldPriceLabel.text = @"￥3580";
+    self.oldPriceLabel.text = @"￥35800";
     self.oldPriceLabel.textColor = HEX_COLOR(0xAAAAAA);
     self.oldPriceLabel.font = FONT(11);
     

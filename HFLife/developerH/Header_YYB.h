@@ -19,6 +19,9 @@
 #import <AFAuthSDK/AFAuthSDK.h>// 支付宝登录
 #import "LoginVC.h"
 
+/** 用户信息 */
+#import "userInfoModel.h"
+
 /************************yourTools************************/
 
 /************************yourTools************************/
@@ -31,6 +34,8 @@
 
 #pragma mark - 登录注册 ---------------
 static NSString *const yourTestUrl = @"w=index&t=index";
+
+
 /** 手机注册 */
 static NSString *const kRegisterMobile = @"api/member/registerMobile";
 

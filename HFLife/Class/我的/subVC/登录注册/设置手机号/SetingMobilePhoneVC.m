@@ -445,7 +445,7 @@
                 NSString *token = dataDic[@"ucenter_token"];
                 if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
                     [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
-                    [self dismissViewControllerAnimated:YES completion:^{
+                    [self dismissViewControllerAnimated:NO completion:^{
                         
                     }];
                 }else {
