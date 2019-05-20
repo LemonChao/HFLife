@@ -501,6 +501,11 @@
 		04F5F266228440860043BBB7 /* SXF_HF_CycleContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */; };
 		04F67AB22285199A008124A3 /* UIView+cornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB12285199A008124A3 /* UIView+cornerRadius.m */; };
 		04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */; };
+		04F89318229254370075918A /* SXF_HP_cardPacketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F89317229254370075918A /* SXF_HP_cardPacketVC.m */; };
+		04F8931C229255030075918A /* SXF_HF_addCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8931B229255030075918A /* SXF_HF_addCardVC.m */; };
+		04F89320229255710075918A /* SXF_HF_cardCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8931E229255710075918A /* SXF_HF_cardCellTableViewCell.m */; };
+		04F89321229255710075918A /* SXF_HF_cardCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F8931F229255710075918A /* SXF_HF_cardCellTableViewCell.xib */; };
+		04F893242292585F0075918A /* SXF_HP_cardPacketView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F893232292585F0075918A /* SXF_HP_cardPacketView.m */; };
 		04F946D3228B9E9600085F78 /* SXF_HF_payStepAleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */; };
 		04F946D6228BBC6300085F78 /* SXF_HF_payStepTowCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946D5228BBC6300085F78 /* SXF_HF_payStepTowCel.m */; };
 		04F946E3228C0C7400085F78 /* SXF_HF_Password.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946E0228C0C7300085F78 /* SXF_HF_Password.m */; };
@@ -1755,6 +1760,15 @@
 		04F67AB12285199A008124A3 /* UIView+cornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+cornerRadius.m"; sourceTree = "<group>"; };
 		04F67AB4228522BA008124A3 /* NSArray+layoutViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+layoutViews.h"; sourceTree = "<group>"; };
 		04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+layoutViews.m"; sourceTree = "<group>"; };
+		04F89316229254370075918A /* SXF_HP_cardPacketVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HP_cardPacketVC.h; sourceTree = "<group>"; };
+		04F89317229254370075918A /* SXF_HP_cardPacketVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HP_cardPacketVC.m; sourceTree = "<group>"; };
+		04F8931A229255030075918A /* SXF_HF_addCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_addCardVC.h; sourceTree = "<group>"; };
+		04F8931B229255030075918A /* SXF_HF_addCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_addCardVC.m; sourceTree = "<group>"; };
+		04F8931D229255710075918A /* SXF_HF_cardCellTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_cardCellTableViewCell.h; sourceTree = "<group>"; };
+		04F8931E229255710075918A /* SXF_HF_cardCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_cardCellTableViewCell.m; sourceTree = "<group>"; };
+		04F8931F229255710075918A /* SXF_HF_cardCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_cardCellTableViewCell.xib; sourceTree = "<group>"; };
+		04F893222292585F0075918A /* SXF_HP_cardPacketView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HP_cardPacketView.h; sourceTree = "<group>"; };
+		04F893232292585F0075918A /* SXF_HP_cardPacketView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HP_cardPacketView.m; sourceTree = "<group>"; };
 		04F946D1228B9E9600085F78 /* SXF_HF_payStepAleryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payStepAleryView.h; sourceTree = "<group>"; };
 		04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_payStepAleryView.m; sourceTree = "<group>"; };
 		04F946D4228BBC6300085F78 /* SXF_HF_payStepTowCel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payStepTowCel.h; sourceTree = "<group>"; };
@@ -3157,6 +3171,7 @@
 		048DAC0122857516006E6BA2 /* 卡包 */ = {
 			isa = PBXGroup;
 			children = (
+				04F89315229254270075918A /* 新版卡包 */,
 				048DAC4722857516006E6BA2 /* CardPackageVC.h */,
 				048DAC0222857516006E6BA2 /* CardPackageVC.m */,
 				048DAC0322857516006E6BA2 /* 富权 */,
@@ -5648,6 +5663,30 @@
 			path = "对Masonry扩展";
 			sourceTree = "<group>";
 		};
+		04F89315229254270075918A /* 新版卡包 */ = {
+			isa = PBXGroup;
+			children = (
+				04F89316229254370075918A /* SXF_HP_cardPacketVC.h */,
+				04F89317229254370075918A /* SXF_HP_cardPacketVC.m */,
+				04F893222292585F0075918A /* SXF_HP_cardPacketView.h */,
+				04F893232292585F0075918A /* SXF_HP_cardPacketView.m */,
+				04F8931D229255710075918A /* SXF_HF_cardCellTableViewCell.h */,
+				04F8931E229255710075918A /* SXF_HF_cardCellTableViewCell.m */,
+				04F8931F229255710075918A /* SXF_HF_cardCellTableViewCell.xib */,
+				04F89319229254E50075918A /* 添加卡包 */,
+			);
+			path = "新版卡包";
+			sourceTree = "<group>";
+		};
+		04F89319229254E50075918A /* 添加卡包 */ = {
+			isa = PBXGroup;
+			children = (
+				04F8931A229255030075918A /* SXF_HF_addCardVC.h */,
+				04F8931B229255030075918A /* SXF_HF_addCardVC.m */,
+			);
+			path = "添加卡包";
+			sourceTree = "<group>";
+		};
 		04F946DF228C0C5700085F78 /* 密码输入框 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7084,6 +7123,7 @@
 				04F9ABFC228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.xib in Resources */,
 				048E8803228D4D2000410405 /* VersionUpdate_Cancel.png in Resources */,
 				04F5214A228A76BA00ED4995 /* default_headportrait.png in Resources */,
+				04F89321229255710075918A /* SXF_HF_cardCellTableViewCell.xib in Resources */,
 				659EA0B6220537EC004471CD /* 首牛.png in Resources */,
 				0497838C2285957F00E143D7 /* YYStarView.bundle in Resources */,
 				0453D1EA2284033000880C2A /* sxf_空@3x.png in Resources */,
@@ -7548,6 +7588,7 @@
 				658B7C4E21D749E100801CC8 /* UIView+Extension.m in Sources */,
 				658C3B0D21F57FBC00880B6A /* HttpRequest.m in Sources */,
 				658B7C9C21D749E100801CC8 /* AnimationBackBegin.m in Sources */,
+				04F89320229255710075918A /* SXF_HF_cardCellTableViewCell.m in Sources */,
 				04153C0E228AA2F100AA5DAF /* WaimaiCategoryCell.m in Sources */,
 				6CCAD6FF22827FB4001824A0 /* ZC_HF_ShopClassifyVC.m in Sources */,
 				048DABD822856656006E6BA2 /* RYNumberKeyboard.m in Sources */,
@@ -7736,6 +7777,7 @@
 				04153C0A228AA2F100AA5DAF /* WaimaiYouxuanCell.m in Sources */,
 				04153C1A228AA2F100AA5DAF /* SubscribeSubmitVC.m in Sources */,
 				04A50847227EDD3A0013E8EC /* ZFPlayerModel.m in Sources */,
+				04F89318229254370075918A /* SXF_HP_cardPacketVC.m in Sources */,
 				04A50877227EDD3A0013E8EC /* UILabel+Chameleon.m in Sources */,
 				04A5084C227EDD3A0013E8EC /* UIAlertController+ZFPlayerRotation.m in Sources */,
 				658B7CB621D749E100801CC8 /* TLMenuButtonView.m in Sources */,
@@ -7807,6 +7849,7 @@
 				6579784521E6D6B600E606BE /* JFCityHeaderView.m in Sources */,
 				04153BFF228AA2F100AA5DAF /* DiscountCouponVC.m in Sources */,
 				0453D17B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m in Sources */,
+				04F8931C229255030075918A /* SXF_HF_addCardVC.m in Sources */,
 				04FB7F332286C02600150CA7 /* NSObject+currentController.m in Sources */,
 				6CBC82BA228FA89000500543 /* ZCShopCartGuessLikeCell.m in Sources */,
 				04F52037228A563100ED4995 /* AddressListCell.m in Sources */,
@@ -7916,6 +7959,7 @@
 				04153C13228AA2F100AA5DAF /* WaimaiCycleCell.m in Sources */,
 				658B7CB121D749E100801CC8 /* TADotView.m in Sources */,
 				048DAC0022857057006E6BA2 /* SXF_HF_HomePageModel.m in Sources */,
+				04F893242292585F0075918A /* SXF_HP_cardPacketView.m in Sources */,
 				04A5087B227EDD3A0013E8EC /* RLPieChart.m in Sources */,
 				048DAC7422857BBB006E6BA2 /* PaymentMethodsVC.m in Sources */,
 				04153C0F228AA2F100AA5DAF /* WaimaiRecommendCell.m in Sources */,

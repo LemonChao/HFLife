@@ -74,7 +74,7 @@
     self.containerTableView.tableFooterView = [UIView new];
     
     // !!!:[self axcBaseRequestData];
-    NSString *city = [MMNSUserDefaults objectForKey:@"currentCity"];
+    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
     if ([NSString isNOTNull:city]) {
 //        [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
 //        }];
@@ -96,7 +96,7 @@
 }
 //-(void)axcBaseRequestData{
 //    WS(weakSelf);
-//    NSString *city = [MMNSUserDefaults objectForKey:@"currentCity"];
+//    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
 //    if (![NSString isNOTNull:city]) {
 //        NSDictionary *dict = @{@"city_name":city};
 //        [[NearNetRequest sharedInstance]getFoodHomeDataParameter:dict successBlock:^(id  _Nonnull request) {
@@ -134,7 +134,7 @@
 //    }
 //}
 //-(void)axcBaseRequestClassifyData{
-//    NSString *city = [MMNSUserDefaults objectForKey:@"currentCity"];
+//    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
 //    WS(weakSelf);
 //    if ([JFLocationSingleton sharedInstance].locationArray.count>0) {
 //        CLLocation *newLocation = [[JFLocationSingleton sharedInstance].locationArray lastObject];

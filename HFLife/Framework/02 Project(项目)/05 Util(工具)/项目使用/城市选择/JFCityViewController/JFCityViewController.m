@@ -129,7 +129,7 @@ JFSearchViewDelegate>
     if ([[cityDic valueForKey:@"cityName"] isEqualToString:@"全城"]) {
         __weak typeof(self) weakSelf = self;
         [_manager currentCity:[kCurrentCityInfoDefaults objectForKey:@"cityNumber"] currentCityName:^(NSString *name) {
-            [kCurrentCityInfoDefaults setObject:name forKey:@"currentCity"];
+            [kCurrentCityInfoDefaults setObject:name forKey:selectedCity];
             __strong typeof(self) strongSelf = weakSelf;
             if (strongSelf) {
                 strongSelf.headerView.cityName = name;
@@ -142,7 +142,7 @@ JFSearchViewDelegate>
     }else {
         cityName = [cityDic valueForKey:@"cityName"];
         _headerView.cityName = cityName;
-        [kCurrentCityInfoDefaults setObject:[cityDic valueForKey:@"cityName"] forKey:@"currentCity"];
+        [kCurrentCityInfoDefaults setObject:[cityDic valueForKey:@"cityName"] forKey:selectedCity];
         if (self.delegate && [self.delegate respondsToSelector:@selector(cityName:)]) {
             [self.delegate cityName:cityName];
         }
@@ -171,7 +171,7 @@ JFSearchViewDelegate>
         _headerView.delegate = self;
         _headerView.backgroundColor = [UIColor whiteColor];
         _headerView.buttonTitle = @"选择区县";
-        _headerView.cityName = [kCurrentCityInfoDefaults objectForKey:@"currentCity"] ? [kCurrentCityInfoDefaults objectForKey:@"currentCity"] : [kCurrentCityInfoDefaults objectForKey:@"locationCity"];
+        _headerView.cityName = [kCurrentCityInfoDefaults objectForKey:selectedCity] ? [kCurrentCityInfoDefaults objectForKey:selectedCity] : [kCurrentCityInfoDefaults objectForKey:@"locationCity"];
     }
     return _headerView;
 }
@@ -408,7 +408,7 @@ JFSearchViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     _headerView.cityName = cell.textLabel.text;
-    [kCurrentCityInfoDefaults setObject:cell.textLabel.text forKey:@"currentCity"];
+    [kCurrentCityInfoDefaults setObject:cell.textLabel.text forKey:selectedCity];
     [_manager cityNumberWithCity:cell.textLabel.text cityNumber:^(NSString *cityNumber) {
         [kCurrentCityInfoDefaults setObject:cityNumber forKey:@"cityNumber"];
     }];
@@ -476,7 +476,7 @@ JFSearchViewDelegate>
 #pragma mark - JFSearchViewDelegate
 
 - (void)searchResults:(NSDictionary *)dic {
-    [kCurrentCityInfoDefaults setObject:[dic valueForKey:@"city"] forKey:@"currentCity"];
+    [kCurrentCityInfoDefaults setObject:[dic valueForKey:@"city"] forKey:selectedCity];
     [kCurrentCityInfoDefaults setObject:[dic valueForKey:@"city_number"] forKey:@"cityNumber"];
     NSString *nameStr = [dic valueForKey:@"city"];
     if (self.delegate && [self.delegate respondsToSelector:@selector(cityName:)]) {

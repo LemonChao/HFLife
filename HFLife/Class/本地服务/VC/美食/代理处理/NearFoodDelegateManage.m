@@ -69,7 +69,7 @@ static NearFoodDelegateManage *manager = nil;
         [self.superVC.navigationController pushViewController:wkWebView animated:YES];
     }
     
-//    NSString *city = [MMNSUserDefaults objectForKey:@"currentCity"];
+//    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
 //    NSString *coupon_id = MMNSStringFormat(@"%@",dict[@"coupon_id"]);
 //    wkWebView.fileName = @"foodDetail";
    

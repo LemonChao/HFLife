@@ -46,7 +46,7 @@
     [self axcBaseRequestData];
 }
 -(void)axcBaseRequestData{
-    NSString *city = [MMNSUserDefaults objectForKey:@"currentCity"];
+    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
     if (![NSString isNOTNull:city]) {
         WS(weakSelf);
 //        [[NearNetRequest sharedInstance]getNearGoodNotesDataParameter:@{@"city_name":city} successBlock:^(id  _Nonnull request) {
@@ -222,7 +222,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dict = dataArray[indexPath.section];
     WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
-//    NSString *city = [MMNSUserDefaults objectForKey:@"currentCity"];
+//    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
 //    NSString *coupon_id = MMNSStringFormat(@"%@",dict[@"coupon_id"]);
 //    wkWebView.fileName = @"discountDetail";
 //    wkWebView.jointParameter = MMNSStringFormat(@"?coupon_id=%@&city_name=%@",coupon_id,city);
