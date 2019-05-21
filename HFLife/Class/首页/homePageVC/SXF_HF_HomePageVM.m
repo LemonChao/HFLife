@@ -125,7 +125,7 @@
     
     //3.要调用的任务
     dispatch_source_set_event_handler(timer, ^{
-        NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
+        NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
         [self uploadBackLocation:city];
         
     });
@@ -170,14 +170,16 @@
 //定位成功
 - (void)currentLocation:(NSDictionary *)locationDictionary {
     NSString *city = [locationDictionary valueForKey:@"City"];
-    NSString *city_nsu = [MMNSUserDefaults objectForKey:selectedCity];
+    NSString *city_nsu = [MMNSUserDefaults objectForKey:SelectedCity];
     
     if (![city_nsu isEqualToString:city]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"您定位到%@，确定切换城市吗？",city] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [MMNSUserDefaults setObject:city forKey:@"locationCity"];
-            // [MMNSUserDefaults setObject:city forKey:selectedCity];
+            [MMNSUserDefaults setObject:city forKey:LocationCity];
+            
+            //把已选择的城市更改成定位城市
+             [MMNSUserDefaults setObject:city forKey:SelectedCity];
             [self uploadBackLocation:city];
             
         }];

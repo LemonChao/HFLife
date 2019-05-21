@@ -298,7 +298,7 @@
     
     [self layoutIfNeeded];
     [self.vipBgColorView changeBgView:@[HEX_COLOR(0xFEC436), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 1.0)];
-    [self.bottomColorView changeBgView:@[HEX_COLOR(0xF8B331), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 0.0)];
+    [self.bottomColorView changeBgView:@[HEX_COLOR(0xF8B331), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 1.0)];
     
 }
 @end

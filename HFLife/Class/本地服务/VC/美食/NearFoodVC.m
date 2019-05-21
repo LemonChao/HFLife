@@ -74,7 +74,7 @@
     self.containerTableView.tableFooterView = [UIView new];
     
     // !!!:[self axcBaseRequestData];
-    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
+    NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
     if ([NSString isNOTNull:city]) {
 //        [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
 //        }];

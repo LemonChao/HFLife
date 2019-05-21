@@ -46,7 +46,7 @@
     [self axcBaseRequestData];
 }
 -(void)axcBaseRequestData{
-    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
+    NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
     if (![NSString isNOTNull:city]) {
         WS(weakSelf);
 //        [[NearNetRequest sharedInstance]getNearGoodNotesDataParameter:@{@"city_name":city} successBlock:^(id  _Nonnull request) {

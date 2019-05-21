@@ -38,11 +38,11 @@
 
 //城市存储
 //选择的城市
-static NSString *const selectedCity         = @"selectedCity";
-static NSString *const selectedCityID       = @"selectedCityID";
+static NSString *const SelectedCity         = @"selectedCity";
+static NSString *const SelectedCityID       = @"selectedCityID";
 //定位的城市
-static NSString *const locationCity         = @"locationCity";
-static NSString *const locationCityID       = @"locationCityID";
+static NSString *const LocationCity         = @"locationCity";
+static NSString *const LocationCityID       = @"locationCityID";
 
 
 

@@ -117,7 +117,7 @@
 }
 -(void)axcBaseRequestData{
     WS(weakSelf);
-     NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
+     NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
     if (![NSString isNOTNull:city]) {
 //        [self getDiscountCouponDataParameter:@{@"city_name":city,@"type":type} ListRequestDataType:requestType successBlock:^(id  _Nonnull request) {
 //            if ([request isKindOfClass:[NSArray class]]) {
