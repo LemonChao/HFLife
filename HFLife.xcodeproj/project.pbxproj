@@ -2872,8 +2872,8 @@
 			children = (
 				0453D160228266D200880C2A /* CollectionReusableView.h */,
 				0453D176228266D200880C2A /* CollectionReusableView.m */,
-				0453D15A228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m */,
 				0453D15B228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.h */,
+				0453D15A228266D200880C2A /* XPCollectionViewWaterfallFlowLayout.m */,
 			);
 			path = WaterfallLayout;
 			sourceTree = "<group>";

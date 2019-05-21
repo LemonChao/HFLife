@@ -98,6 +98,13 @@
     self.subTitleLb.text = @"收益奖励可兑富权";
     
 }
+
+- (void)setDataForCell:(homeListModel *)model{
+//    self.titleLb.text = [NSString stringWithFormat:@"%@ | 邀请有礼"];
+}
+
+
+
 - (void) inviteeButtonClick{
     NSLog(@"点击邀请");
 }

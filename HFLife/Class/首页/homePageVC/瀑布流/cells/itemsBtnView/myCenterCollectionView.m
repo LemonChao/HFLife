@@ -42,7 +42,10 @@
 
     [self addSubview:self.collectionV];
 }
-
+- (void)setDataSourceArr:(NSArray *)dataSourceArr{
+    _dataSourceArr = dataSourceArr;
+    [self.collectionV reloadData];
+}
 
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -60,12 +63,14 @@
 
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _titleArr.count;
+    return self.dataSourceArr.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     myCenterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([myCenterCollectionViewCell class]) forIndexPath:indexPath];
-    [cell setTitleForCell:_titleArr[indexPath.row] image:_imageArr[indexPath.row]];
+    homeListModel *model = self.dataSourceArr[indexPath.row];
+    [cell setTitleForCell:model.title image:URL_IMAGE(model.iconimage)];
+//    [cell setTitleForCell:_titleArr[indexPath.row] image:_imageArr[indexPath.row]];
     return cell;
 }
 

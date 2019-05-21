@@ -33,8 +33,6 @@
 }
 
 - (void)addChildrenViews{
-   
-    
     self.bgView = [UIView new];
     
     self.bgView.backgroundColor = [UIColor whiteColor];
@@ -47,6 +45,17 @@
         !weakSelf.selectItemBlock ? : weakSelf.selectItemBlock(index);
     };
 }
+
+- (void)setItemDataSourceArr:(NSArray *)itemDataSourceArr{
+    _itemDataSourceArr = itemDataSourceArr;
+    self.collectionV.dataSourceArr = _itemDataSourceArr;
+}
+
+
+
+
+
+
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {

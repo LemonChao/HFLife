@@ -35,7 +35,12 @@
     self.nums = _modelArr.count;
 
     self.pageControl.numberOfPages = self.nums;
-    self.cycleScroll.imageURLStringsGroup = @[@"http://img0.imgtn.bdimg.com/it/u=260329114,3367670618&fm=26&gp=0.jpg", @"http://img1.3lian.com/img013/v5/21/d/84.jpg", @"http://img1.imgtn.bdimg.com/it/u=2917799186,1224386513&fm=26&gp=0.jpg"];
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (homeListModel *model in modelArr) {
+        [arrM addObject:URL_IMAGE(model.image)];
+    }
+    self.cycleScroll.imageURLStringsGroup = arrM;
     [self addPageControl];
     
 }

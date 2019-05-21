@@ -29,6 +29,13 @@
 @property (nonatomic, strong)JFLocation *locationManager;
 @property (nonatomic, strong)NSTimer *circleTimer;
 
+
+@property (nonatomic, strong)NSDictionary <NSString *, NSArray *>*homePageListDic;//数据原数组
+//新闻数组
+@property (nonatomic, strong)NSMutableArray *newsListArrM;
+
+
+
 @end
 
 
@@ -40,6 +47,11 @@
     if (self) {
         self.locationManager.delegate = self;
         [self timingTask];
+        self.homePageListDic = @{@"nav" : [NSArray array],
+                                 @"banner" : [NSArray array],
+                                 @"activity" : [NSArray array],
+                                 };
+        self.newsListArrM = [NSMutableArray array];
     }
     return self;
 }
@@ -49,6 +61,65 @@
 - (void) circleLoadData{
     
 }
+
+
+
+
+- (void) getBannerData{
+    WEAK(weakSelf);
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
+        [self.collectionView endRefreshData];
+        if (result){
+            if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = value[@"data"];
+                NSMutableDictionary *dataSourceDicM = [NSMutableDictionary dictionary];
+                if ([dict objectForKey:@"nav"] && [[dict objectForKey:@"nav"] isKindOfClass:[NSArray class]]) {
+                    NSArray *navListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"nav"] withClass:[homeListModel class]];
+                    [dataSourceDicM  setObject:navListArr forKey:@"nav"];
+                }
+                if ([dict objectForKey:@"banner"] && [[dict objectForKey:@"banner"] isKindOfClass:[NSArray class]]) {
+                    NSArray *bannerListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"banner"] withClass:[homeListModel class]];
+                    [dataSourceDicM setValue:bannerListArr forKey:@"banner"];
+                }
+                if ([dict objectForKey:@"activity"] && [[dict objectForKey:@"activity"] isKindOfClass:[NSArray class]]) {
+                    NSArray *activityListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"activity"] withClass:[homeListModel class]];
+                    [dataSourceDicM setValue:activityListArr forKey:@"activity"];
+                }
+                self.homePageListDic = dataSourceDicM;
+                self.collectionView.dataSourceDict = self.homePageListDic;
+            }else{
+                [WXZTipView showCenterWithText:@"数据异常"];
+            }
+            
+        }else{
+            
+        }
+    }];
+}
+
+- (void) getNewsListData:(NSInteger)page{
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNewsList withParameters:@{} withResultBlock:^(BOOL result, id value) {
+        [self.collectionView endRefreshData];
+        if (result){
+            [self.collectionView endRefreshData];
+            if ([value[@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *newsModels = [HR_dataManagerTool   getModelArrWithArr:value[@"data"] withClass:[homeListModel class]];
+                if (page == 1) {
+                    [self.newsListArrM removeAllObjects];
+                    self.newsListArrM = [newsModels mutableCopy];
+                }else{
+                    [self.newsListArrM addObjectsFromArray:newsModels];
+                }
+                self.collectionView.newsListModelArr = [self.newsListArrM copy];
+            }
+            
+            
+            
+        }
+    }];
+}
+
+
 
 
 

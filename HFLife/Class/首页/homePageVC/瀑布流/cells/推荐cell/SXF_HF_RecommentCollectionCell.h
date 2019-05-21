@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_RecommentCollectionCell : UICollectionViewCell
-
+- (void)setDataForCell:(homeListModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

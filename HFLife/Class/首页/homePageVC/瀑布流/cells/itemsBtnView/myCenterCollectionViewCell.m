@@ -46,9 +46,14 @@
 
 
 
-- (void)setTitleForCell:(NSString *)title image:(NSString *)image{
+- (void)setTitleForCell:(NSString *)title image:(id)image{
     self.titleLb.text = title;
-    self.imageV.image = [UIImage imageNamed:image];
+//    self.imageV.image = [UIImage imageNamed:image];
+    if ([image isKindOfClass:[NSURL class]]) {
+        [self.imageV sd_setImageWithURL:image];
+    }else{
+        self.imageV.image = [UIImage imageNamed:image];
+    }
 }
 
 - (void)layoutSubviews{
