@@ -48,12 +48,12 @@ static NSString *const locationCityID       = @"locationCityID";
 
 //登录配置
 //static NSString *LogInSyccessFully         = @"logInSyccessFully";
-static NSString * LOGIN_APP                 = @"LOGIN_MYAPP";
+//static NSString * LOGIN_APP                 = @"LOGIN_MYAPP";
 //存储token
 static NSString *const USER_TOKEN           = @"userToken";
 //存储登录状态
 static NSString *const LOGIN_STATES         = @"loginStates";
 
-#define LogIn_Success                  [[[NSUserDefaults standardUserDefaults] objectForKey:LO IN_APP] integerValue] == 1
+#define LogIn_Success                  [[[NSUserDefaults standardUserDefaults] objectForKey:LOGIN_STATES] integerValue] == 1
 #define GetUserToken                      [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]
 #endif /* AppConfiger_h */

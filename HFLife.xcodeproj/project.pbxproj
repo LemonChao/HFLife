@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04058A492292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04058A482292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m */; };
 		0406ED2322755422000784D0 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; };
 		0406ED2422755422000784D0 /* AipOcrSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2122755421000784D0 /* AipOcrSdk.framework */; };
 		0406ED2522755422000784D0 /* AipBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2222755421000784D0 /* AipBase.framework */; };
@@ -19,6 +20,7 @@
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
 		040A42D8228FB9360003DDF4 /* AFAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */; };
 		040A42D9228FB9360003DDF4 /* AFAuthSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */; };
+		040AAC7B229395C3002AB524 /* YYB_HF_SexChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040AAC7A229395C3002AB524 /* YYB_HF_SexChoiceView.m */; };
 		040B6A3D228CF3730078B5DB /* LoginForVercode.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B6A3C228CF3730078B5DB /* LoginForVercode.m */; };
 		040B6A41228D5ED70078B5DB /* SetingMobilePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B6A40228D5ED70078B5DB /* SetingMobilePhoneVC.m */; };
 		04153B87228A9C9600AA5DAF /* SynthesizeMerchantListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153B78228A9C9600AA5DAF /* SynthesizeMerchantListVC.m */; };
@@ -877,6 +879,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04058A472292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_ModifyHeadIconVC.h; sourceTree = "<group>"; };
+		04058A482292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_ModifyHeadIconVC.m; sourceTree = "<group>"; };
 		0406ED2022755421000784D0 /* IdcardQuality.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IdcardQuality.framework; sourceTree = "<group>"; };
 		0406ED2122755421000784D0 /* AipOcrSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipOcrSdk.framework; sourceTree = "<group>"; };
 		0406ED2222755421000784D0 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
@@ -884,6 +888,8 @@
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
 		040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFAuthSDK.framework; sourceTree = "<group>"; };
 		040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AFAuthSDK.bundle; sourceTree = "<group>"; };
+		040AAC79229395C3002AB524 /* YYB_HF_SexChoiceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SexChoiceView.h; sourceTree = "<group>"; };
+		040AAC7A229395C3002AB524 /* YYB_HF_SexChoiceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_SexChoiceView.m; sourceTree = "<group>"; };
 		040B6A3B228CF3730078B5DB /* LoginForVercode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginForVercode.h; sourceTree = "<group>"; };
 		040B6A3C228CF3730078B5DB /* LoginForVercode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginForVercode.m; sourceTree = "<group>"; };
 		040B6A3F228D5ED70078B5DB /* SetingMobilePhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetingMobilePhoneVC.h; sourceTree = "<group>"; };
@@ -2479,6 +2485,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04058A462292B3E200CC8ACF /* 头像 */ = {
+			isa = PBXGroup;
+			children = (
+				04058A472292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.h */,
+				04058A482292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m */,
+			);
+			path = "头像";
+			sourceTree = "<group>";
+		};
 		0406ED1F22755405000784D0 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -2506,6 +2521,15 @@
 				040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */,
 			);
 			path = AFAuthSDK;
+			sourceTree = "<group>";
+		};
+		040AAC7822939565002AB524 /* 性别 */ = {
+			isa = PBXGroup;
+			children = (
+				040AAC79229395C3002AB524 /* YYB_HF_SexChoiceView.h */,
+				040AAC7A229395C3002AB524 /* YYB_HF_SexChoiceView.m */,
+			);
+			path = "性别";
 			sourceTree = "<group>";
 		};
 		040B6A3E228D5E500078B5DB /* 设置手机号 */ = {
@@ -5261,6 +5285,8 @@
 		04F520E6228A764400ED4995 /* 个人资料 */ = {
 			isa = PBXGroup;
 			children = (
+				040AAC7822939565002AB524 /* 性别 */,
+				04058A462292B3E200CC8ACF /* 头像 */,
 				04F520F7228A764400ED4995 /* PersonalDataVC.h */,
 				04F520E7228A764400ED4995 /* PersonalDataVC.m */,
 				04F520E8228A764400ED4995 /* 修改昵称 */,
@@ -7480,6 +7506,7 @@
 				049783952285957F00E143D7 /* YYB_HF_LocalHeadView.m in Sources */,
 				658B7C5021D749E100801CC8 /* AxcAE_TabBarBadge.m in Sources */,
 				6C7D850822857C1800A8E9F7 /* ZCDisCountCollectionCell.m in Sources */,
+				040AAC7B229395C3002AB524 /* YYB_HF_SexChoiceView.m in Sources */,
 				0453D1A42282B2DE00880C2A /* SXF_HF_HeadlineCell2.m in Sources */,
 				048DAC5522857516006E6BA2 /* WithdrawVC.m in Sources */,
 				04A508CD227EDD3A0013E8EC /* UILabel+FitSize.m in Sources */,
@@ -7753,6 +7780,7 @@
 				04A508D6227EDD3A0013E8EC /* NSDictionary+Category.m in Sources */,
 				04F520FC228A764400ED4995 /* ModifyNicknameVC.m in Sources */,
 				049783872285957F00E143D7 /* NearColumnCollectionViewCell.m in Sources */,
+				04058A492292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m in Sources */,
 				04A50848227EDD3A0013E8EC /* UITabBarController+ZFPlayerRotation.m in Sources */,
 				04F9AC00228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m in Sources */,
 				04F8934C2292A18C0075918A /* SXF_HF_vipShopCellTableViewCell.m in Sources */,

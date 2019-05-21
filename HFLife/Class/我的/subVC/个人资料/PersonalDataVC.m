@@ -14,7 +14,7 @@
 #import "ReviewResultsVC.h"
 #import "Per_MethodsToDealWithManage.h"
 #import <ShareSDK/ShareSDK.h>
-
+#import "YYB_HF_ModifyHeadIconVC.h"
 @interface PersonalDataVC ()<UITableViewDelegate,UITableViewDataSource,HXAlbumListViewControllerDelegate>
 {
     NSArray *dataArray;
@@ -33,7 +33,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor  = [UIColor whiteColor];
     self.view.backgroundColor = HEX_COLOR(0xf4f7f7);
-    dataArray = @[@[@"头像",@"昵称",@"用户名",@"实名认证",@"手机号码"],@[@"退出登录"]];
+    dataArray = @[@[@"头像",@"用户名称",@"昵称",@"性别",@"年龄"],@[@"实名认证"],@[@"退出登录"]];
 //    valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
     [self initWithUI];
     [self setupNavBar];
@@ -101,14 +101,18 @@
     NSString *value = val[indexPath.row];
     if (indexPath.section==0) {
         if (indexPath.row == 0) {
+            cell.isArrowHiden = NO;
             cell.imageName = value;
-        }else if (indexPath.row == 2) {
+        }else if (indexPath.row == 1) {
             cell.isArrowHiden = YES;
             cell.subtitleString = value;
         }else{
             cell.subtitleString = value;
             cell.isArrowHiden = NO;
         }
+    }else if (indexPath.section==1) {
+        cell.subtitleString = @"";
+        cell.isArrowHiden = NO;
     }else{
         cell.subtitleString = @"";
         cell.isArrowHiden = YES;
@@ -147,12 +151,22 @@
             PersonalDataCell *cell =(PersonalDataCell *)[tableView cellForRowAtIndexPath:indexPath];
             cell.subtitleString = value;
         }];
+        modify.type = @"昵称";
+        [self.navigationController pushViewController:modify animated:YES];
+    }else if ([title_value isEqualToString:@"年龄"]) {
+        ModifyNicknameVC *modify  = [[ModifyNicknameVC alloc]init];
+        [modify setModifiedSuccessfulBlock:^(NSString * _Nonnull value) {
+            PersonalDataCell *cell =(PersonalDataCell *)[tableView cellForRowAtIndexPath:indexPath];
+            cell.subtitleString = value;
+        }];
+        modify.type = @"年龄";
         [self.navigationController pushViewController:modify animated:YES];
     }else if ([title_value isEqualToString:@"头像"]){
-        
-        
-        self.manager.configuration.saveSystemAblum = YES;
-        [self hx_presentAlbumListViewControllerWithManager:self.manager delegate:self];
+        // !!!:头像设置
+        YYB_HF_ModifyHeadIconVC *vc = [[YYB_HF_ModifyHeadIconVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+//        self.manager.configuration.saveSystemAblum = YES;
+//        [self hx_presentAlbumListViewControllerWithManager:self.manager delegate:self];
     }else if ([title_value isEqualToString:@"实名认证"]){
 //        IdentityInformationVC *ident = [[IdentityInformationVC alloc]init];
 //        [self.navigationController pushViewController:ident animated:YES];
