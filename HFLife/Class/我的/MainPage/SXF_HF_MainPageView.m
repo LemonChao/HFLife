@@ -46,6 +46,7 @@
         
     };
     self.tableView.mj_footer = nil;
+    self.tableView.mj_header = nil;
 }
 
 - (void)layoutSubviews{

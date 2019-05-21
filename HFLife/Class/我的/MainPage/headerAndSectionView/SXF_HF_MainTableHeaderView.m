@@ -27,6 +27,16 @@
  赋值到剪切板
  */
 @property (nonatomic, strong)UIButton *getTextBtn;
+
+@property (nonatomic, strong)UIView *vipBgView;
+@property (nonatomic, strong)UIView *vipBgColorView;
+@property (nonatomic, strong)UILabel *moneyLb1;
+@property (nonatomic, strong)UILabel *moneyLb2;
+@property (nonatomic, strong)UILabel *moneyTitle1;
+@property (nonatomic, strong)UILabel *moneyTitle2;
+@property (nonatomic, strong)UIView *bottomColorView;
+@property (nonatomic, strong)UIImageView *leftImageV;
+@property (nonatomic, strong)UILabel *bottomLb;
 @end
 
 
@@ -59,7 +69,20 @@
     self.myJoinTitleLb          = [UILabel new];
     self.getTextBtn             = [UIButton new];
     
+    //vip模块
+    self.vipBgView              = [UIView new];
+    self.vipBgColorView         = [UIView new];
+    self.moneyLb1               = [UILabel new];
+    self.moneyLb2               = [UILabel new];
+    self.moneyTitle1            = [UILabel new];
+    self.moneyTitle2            = [UILabel new];
+    self.bottomColorView        = [UIView new];
+    self.leftImageV             = [UIImageView new];
+    self.bottomLb               = [UILabel new];
+    
+    
     [self addSubview:self.headerBgView];
+    
     [self.headerBgView addSubview:self.bgImageV];
     [self.headerBgView addSubview:self.headerImageV];
     [self.headerBgView addSubview:self.userNameLb];
@@ -67,6 +90,16 @@
     [self.headerBgView addSubview:self.bottomBarView];
     [self.bottomBarView addSubview:self.myJoinTitleLb];
     [self.bottomBarView addSubview:self.getTextBtn];
+    [self.headerBgView addSubview:self.vipBgView];
+    
+    [self.vipBgView addSubview:self.vipBgColorView];
+    [self.vipBgView addSubview:self.moneyLb1];
+    [self.vipBgView addSubview:self.moneyLb2];
+    [self.vipBgView addSubview:self.moneyTitle1];
+    [self.vipBgView addSubview:self.moneyTitle2];
+    [self.vipBgView addSubview:self.bottomColorView];
+    [self.vipBgView addSubview:self.leftImageV];
+    [self.vipBgView addSubview:self.bottomLb];
     
     
     self.bgImageV.image = MY_IMAHE(@"我的headerBg");
@@ -101,10 +134,34 @@
     [self.headerImageV addGestureRecognizer:tap];
     
     
+    //vip模块
+    self.moneyLb1.font = self.moneyLb2.font = FONT(14);
+    self.moneyLb1.textColor = self.moneyLb2.textColor = colorCA1400;
+    self.moneyTitle1.font = self.moneyTitle2.font = FONT(10);
+    self.moneyTitle1.textColor = self.moneyTitle2.textColor = [UIColor whiteColor];
+    self.bottomLb.textColor = [UIColor whiteColor];
+    self.bottomLb.font = FONT(10);
+    self.leftImageV.image = MY_IMAHE(@"皇冠");
+    self.vipBgView.cornerRadius = ScreenScale(5);
+    self.vipBgView.masksToBounds = YES;
+    self.moneyLb1.textAlignment = self.moneyLb2.textAlignment = NSTextAlignmentCenter;
+    self.bottomColorView.layer.cornerRadius = ScreenScale(5);
+    self.bottomColorView.layer.masksToBounds = YES;
+    
+    
+    
+    
+    
     self.headerImageV.image = MY_IMAHE(@"head_icon");
     self.userNameLb.text = @"sxf";
     self.userLeveLb.text = @"LV：VIP1";
     self.myJoinTitleLb.text = @"我的邀请码：X34FV";
+    
+    self.moneyLb1.text = @"888";
+    self.moneyLb2.text = @"999";
+    self.moneyTitle1.text = @"昨日营业额(元)";
+    self.moneyTitle2.text = @"昨日商家让利(元)";
+    self.bottomLb.text = @"管城区代理";
     
 }
 - (void)clickHeaderImageV{
@@ -113,6 +170,7 @@
 }
 - (void)copyText{
     [UIPasteboard generalPasteboard].string = self.myJoinTitleLb.text;
+    [WXZTipView showCenterWithText:@"邀请码已复制"];
     NSLog(@"剪切板数据 : %@", [UIPasteboard generalPasteboard].string);
 }
 
@@ -184,6 +242,63 @@
         make.centerY.mas_equalTo(self.myJoinTitleLb.mas_centerY);
         make.top.bottom.mas_equalTo(self.bottomBarView);
     }];
+    
+    
+    [self.vipBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.headerBgView.mas_right).offset(ScreenScale(-12));
+        make.bottom.mas_equalTo(self.bottomBarView.mas_top).offset(ScreenScale(-27));
+        make.width.mas_equalTo(ScreenScale(170));
+        make.height.mas_equalTo(ScreenScale(99));
+    }];
+    
+    [self.vipBgColorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.mas_equalTo(self.vipBgView);
+    }];
+    
+    [self.moneyLb1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.vipBgView.mas_left);
+        make.top.mas_equalTo(self.vipBgView.mas_top).offset(ScreenScale(16));
+        make.height.mas_equalTo(ScreenScale(14));
+        make.width.mas_equalTo(self.vipBgView.mas_width).multipliedBy(0.5);
+    }];
+    [self.moneyLb2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.vipBgView.mas_right);
+        make.centerY.mas_equalTo(self.moneyLb1.mas_centerY);
+        make.width.mas_equalTo(self.moneyLb1.mas_width);
+    }];
+    
+    [self.moneyTitle1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.moneyLb1.mas_bottom).offset(ScreenScale(8));
+        make.height.mas_equalTo(ScreenScale(10));
+        make.centerX.mas_equalTo(self.moneyLb1.mas_centerX);
+    }];
+    
+    [self.moneyTitle2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.moneyLb2.mas_centerX);
+        make.centerY.mas_equalTo(self.moneyTitle1.mas_centerY);
+    }];
+    
+    [self.bottomColorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.vipBgView.mas_right).offset(ScreenScale(-10));
+        make.left.mas_equalTo(self.vipBgView.mas_left).offset(ScreenScale(10));
+        make.top.mas_equalTo(self.moneyTitle1.mas_bottom).offset(ScreenScale(19));
+        make.height.mas_equalTo(ScreenScale(16));
+    }];
+    
+    [self.leftImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.vipBgView.mas_left);
+        make.bottom.mas_equalTo(self.bottomColorView.mas_bottom);
+        make.width.mas_equalTo(ScreenScale(30));
+        make.height.mas_equalTo(ScreenScale(24));
+    }];
+    [self.bottomLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.bottomColorView.mas_centerX);
+        make.centerY.mas_equalTo(self.bottomColorView.mas_centerY);
+    }];
+    
+    [self layoutIfNeeded];
+    [self.vipBgColorView changeBgView:@[HEX_COLOR(0xFEC436), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 1.0)];
+    [self.bottomColorView changeBgView:@[HEX_COLOR(0xF8B331), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 0.0)];
     
 }
 @end
