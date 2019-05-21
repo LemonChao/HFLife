@@ -19,6 +19,12 @@
 /************************yourTools************************/
 
 
+//y图片拼接
+
+
+#define URL_IMAGE(url)  [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, url ? url : @""]]
+
+
 
 
 /************************subUrl************************/
@@ -31,9 +37,11 @@ static NSString *const appUpDateUrl = @"";
 static NSString *const upDateLocationUrl = @"";
 
 //首页轮播导航接口
-static NSString *const HomeNavBanner  =@"api/index/navBanner";
-
-static NSString *const shopUrl = @"w=index&t=index";
+static NSString *const HomeNavBanner                            = @"api/index/navBanner";
+//首页头条列表
+static NSString *const HomeNewsList                             = @"api/index/newsList";
+//首页头条详情
+static NSString *const HomeNewsDetaile                          = @"api/index/getDetail";
 
 /************************subUrl************************/
 

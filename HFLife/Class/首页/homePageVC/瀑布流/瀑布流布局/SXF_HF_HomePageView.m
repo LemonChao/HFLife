@@ -140,7 +140,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
     
     //解析得到的数据
     
-    
+    [self.collectionView reloadData];
     
 }
 
@@ -289,7 +289,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
     //item的高
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return ScreenScale(170);
+            return ScreenScale(170  / 2 + ScreenScale(10));
         }else if(indexPath.row == 1){
             return ScreenScale(80);
         }
@@ -418,4 +418,24 @@ static NSString * const footerReuseIdentifier = @"Footer";
     }
     return _tableHeader;
 }
+
+
+
+
+
+
+//判断有几行
+- (NSInteger)getItemCount{
+    NSInteger rowNum = 4;//每行4 个
+    if (self.bannerModelsArr.count <= rowNum) {
+        return 1;
+    }else if (self.bannerModelsArr.count % rowNum == 0) {
+        return self.bannerModelsArr.count / rowNum;
+    }else{
+        return self.bannerModelsArr.count / rowNum + 1;
+    }
+    
+}
+
+
 @end

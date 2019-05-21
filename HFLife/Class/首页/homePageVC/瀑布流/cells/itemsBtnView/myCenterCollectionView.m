@@ -69,7 +69,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     myCenterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([myCenterCollectionViewCell class]) forIndexPath:indexPath];
     homeListModel *model = self.dataSourceArr[indexPath.row];
-    [cell setTitleForCell:model.title image:URL_IMAGE(model.iconimage)];
+    [cell setTitleForCell:model.title image:[NSURL URLWithString:[NSString stringWithFormat:@"%@", model.iconimage ? model.iconimage : @""]]];
 //    [cell setTitleForCell:_titleArr[indexPath.row] image:_imageArr[indexPath.row]];
     return cell;
 }
