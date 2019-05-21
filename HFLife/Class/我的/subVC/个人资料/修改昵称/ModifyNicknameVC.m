@@ -74,10 +74,12 @@
 
     NSString *placeStr = @"请输入昵称";
     NSString *markStr = @"好昵称可以让大家更容易记住你。";
+    NSString *nameStr = [userInfoModel sharedUser].nickname;
     if ([self.type isEqualToString:@"年龄"]) {
         placeStr = @"请输入年龄";
         markStr = @"永远活在18岁。";
         userNameTextField.keyboardType = UIKeyboardTypeNumberPad;
+        nameStr = [userInfoModel sharedUser].member_age.stringValue;
     }
     userNameTextField.backgroundColor = [UIColor whiteColor];
     userNameTextField.textColor = [UIColor blackColor];
@@ -87,7 +89,7 @@
     userNameTextField.leftView = leftView;
     userNameTextField.leftViewMode = UITextFieldViewModeAlways;
     userNameTextField.placeholder = placeStr;
-    //    userNameTextField.text = [UserCache getUserNickName];
+    userNameTextField.text = nameStr;
     
     [self.view addSubview:userNameTextField];
     [userNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -134,15 +136,44 @@
     //    [self.view addSubview:button];
     //    MMViewBorderRadius(button, WidthRatio(10), 0, [UIColor clearColor]);
 }
+//请求修改信息
 -(void)buttonClick{
     if ([NSString isNOTNull:userNameTextField.text]) {
         [WXZTipView showCenterWithText:userNameTextField.placeholder];
         return;
     }
     
+    NSDictionary *parm = @{@"field":@"nickname",@"value":userNameTextField.text};
+    
     if ([self.type isEqualToString:@"年龄"]) {
-       
+        parm =  @{@"field":@"member_age",@"value":userNameTextField.text};
     }
+    
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSaveMemberBase withParameters:parm withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            
+            if (self.modifiedSuccessfulBlock) {
+                self.modifiedSuccessfulBlock(self->userNameTextField.text);
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dataDic = value[@"data"];
+                NSString *token = [dataDic safeObjectForKey:@"ucenter_token"];
+                if (token && token.length > 0) {
+                    [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
+                }else {
+                    [WXZTipView showCenterWithText:@"资料修改成功,token获取x失败"];
+                }
+            }
+            
+        }else {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络x错误"];
+            }
+        }
+    }];
     
     /*
      

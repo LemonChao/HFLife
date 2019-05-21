@@ -63,7 +63,7 @@
     //处理显示请求信息
     [self handleShowRequestMessageUrlWithPath:path params:params];
     //请求
-    [self Update_URL:path params:params progress:^(NSProgress *progress) {
+    [self Update_URL:composeUrl(path) params:params progress:^(NSProgress *progress) {
         if (progressBlock) {
             progressBlock(progress);
         }
@@ -87,7 +87,7 @@
     //处理显示请求信息
     [self handleShowRequestMessageUrlWithPath:path params:params];
     //请求
-    [self Update_URL:path params:params progress:^(NSProgress *progress) {
+    [self Update_URL:composeUrl(path) params:params progress:^(NSProgress *progress) {
         if (progressBlock) {
             progressBlock(progress);
         }
