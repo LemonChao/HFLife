@@ -15,6 +15,7 @@
 #import "Per_MethodsToDealWithManage.h"
 #import <ShareSDK/ShareSDK.h>
 #import "YYB_HF_ModifyHeadIconVC.h"
+#import "YYB_HF_SexChoiceView.h"
 @interface PersonalDataVC ()<UITableViewDelegate,UITableViewDataSource,HXAlbumListViewControllerDelegate>
 {
     NSArray *dataArray;
@@ -41,12 +42,17 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    [self.permanage getPersonalData:^(id request) {
-        if ([request boolValue]) {
-//            self->valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
-            [self.contentTableView reloadData];
-        }
-    }];
+//    [self.permanage getPersonalData:^(id request) {
+//        if ([request boolValue]) {
+////            self->valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
+//            [self.contentTableView reloadData];
+//        }
+//    }];
+    userInfoModel *user = [userInfoModel sharedUser];
+    if(user.id && user.id > 0) {
+        self->valueArray = @[@[user.member_avatar?user.member_avatar : @"",user.member_mobile,user.nickname ? user.nickname : @"",user.member_sexName,user.member_age ? user.member_age.stringValue : @""],@[user.rz_statusName],@[@""]];
+        [self.contentTableView reloadData];
+    }
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -150,6 +156,7 @@
         [modify setModifiedSuccessfulBlock:^(NSString * _Nonnull value) {
             PersonalDataCell *cell =(PersonalDataCell *)[tableView cellForRowAtIndexPath:indexPath];
             cell.subtitleString = value;
+            [userInfoModel sharedUser].nickname = value;
         }];
         modify.type = @"昵称";
         [self.navigationController pushViewController:modify animated:YES];
@@ -158,9 +165,18 @@
         [modify setModifiedSuccessfulBlock:^(NSString * _Nonnull value) {
             PersonalDataCell *cell =(PersonalDataCell *)[tableView cellForRowAtIndexPath:indexPath];
             cell.subtitleString = value;
+            [userInfoModel sharedUser].member_age = value;
         }];
         modify.type = @"年龄";
         [self.navigationController pushViewController:modify animated:YES];
+    }else if ([title_value isEqualToString:@"性别"]) {
+        YYB_HF_SexChoiceView *view = [[YYB_HF_SexChoiceView alloc]initWithFrame:self.view.frame];
+        view.sex = [userInfoModel sharedUser].member_sexName;
+        view.selectSexBlock = ^(NSString * _Nonnull gender) {
+            PersonalDataCell *cell =(PersonalDataCell *)[tableView cellForRowAtIndexPath:indexPath];
+            cell.subtitleString = gender;
+        };
+        [view show];
     }else if ([title_value isEqualToString:@"头像"]){
         // !!!:头像设置
         YYB_HF_ModifyHeadIconVC *vc = [[YYB_HF_ModifyHeadIconVC alloc]init];

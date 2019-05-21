@@ -19,25 +19,34 @@ NS_ASSUME_NONNULL_BEGIN
 +(instancetype)sharedUser;
 //单例的销毁
 +(void)attempDealloc;
-@property (nonatomic ,strong) NSNumber *ID;//小哥id
-@property (nonatomic ,copy) NSString *courier_name;//用户名
-/*
-    身份验证状态 0：新增 1：已上传身份信息待验证；3：验证通过；4：验证不通过
- */
-@property (nonatomic ,strong) NSNumber *verified_status;
-@property (nonatomic ,strong) NSNumber *courier_status;//账户状态 1：启用中；0：已冻结
-@property (nonatomic ,copy) NSString *courier_phone;//骑手手机号
-@property (nonatomic ,strong) NSString *courier_img;//骑手头像
-@property (nonatomic ,strong) NSNumber *account_amount;//骑手账户金额
-@property (nonatomic ,strong) NSString *token;//登录token(使用持久化的token)
-@property (nonatomic ,strong) NSNumber *work_status;//工作状态 0：休息中 1：工作中
-@property (nonatomic ,strong) NSString *courier_status_msg;// "启用中",
-@property (nonatomic ,strong) NSString *verified_status_msg;// "已上传身份信息待验证",
+
+//@property (nonatomic ,strong) NSNumber *ID;//小哥id
+//@property (nonatomic ,copy) NSString *courier_name;//用户名
+///*
+//    身份验证状态 0：新增 1：已上传身份信息待验证；3：验证通过；4：验证不通过
+// */
+//@property (nonatomic ,strong) NSNumber *verified_status;
+
+
+@property (nonatomic ,strong) NSNumber *id;//用户id
+@property (nonatomic ,copy) NSString *member_mobile;///用户名
+@property (nonatomic ,strong) NSNumber *member_sex;//性别 0保密 1男 2女
+@property (nonatomic ,copy) NSString *member_sexName;//性别 0保密 1男 2女
+
+@property (nonatomic ,copy) NSString *member_avatar;//头像
+@property (nonatomic ,strong) NSNumber *member_age;//年龄
+@property (nonatomic ,copy) NSString *nickname;//昵称
+@property (nonatomic ,strong) NSNumber *rz_status;// 实名认证状态 0未认证   1已认证   2审核中   3未通过
+@property (nonatomic ,copy) NSString *realname;// //真实姓名
+@property (nonatomic ,copy) NSString *rz_statusName;//实名认证状态
+
+
 @property (nonatomic ,strong) NSString *work_status_msg; //休息中
 @property (nonatomic ,strong) NSString *idcard; //休息中
 @property (nonatomic ,strong) NSNumber *comment_number;//评论数量
 @property (nonatomic ,strong) NSNumber *order_number;//订单数量
 @property (nonatomic ,strong) NSString *yinlian_card;//默认绑定银行卡
 @end
+
 
 NS_ASSUME_NONNULL_END

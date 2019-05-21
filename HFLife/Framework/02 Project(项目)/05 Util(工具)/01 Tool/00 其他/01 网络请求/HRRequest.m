@@ -64,6 +64,15 @@
 }
 //上传图片
 - (void) UpDate:(NSString *)path para:(NSDictionary *)para progress:(Progress)progressResult success:(Success)success faiulre:(Failure)failure{
+    
+    
+    //处理图片
+    if (![para valueForKey:@"image"]) {
+        [CustomPromptBox showTextHud:@"请按照约定传入图片参数"];
+    }
+    
+    
+    
     //网络异常处理
     if ([self handleNetNotWork:failure]) {
         return;

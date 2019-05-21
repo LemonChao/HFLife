@@ -167,7 +167,7 @@
 - (void)Update {
     //
     //1. 创建会话管理者
-   
+    
     
     //2. 发送post请求上传文件
     /*
@@ -178,37 +178,79 @@
      第五个参数:成功回调 responseObject:响应体信息
      第六个参数:失败回调
      */
-#pragma mark - 随机文件名上传 
-    [self.sessionManager POST:self.requestUrl parameters:self.requestParams constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+#pragma mark - 随机文件名上传
+    
+    
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:self.requestParams];
+    [dictM removeObjectForKey:@"image"];
+    [self.sessionManager POST:self.requestUrl parameters:dictM constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         // 单独添加配置 配置下请求
-        self.sessionManager.responseSerializer.acceptableContentTypes = nil;
+        //        self.sessionManager.responseSerializer.acceptableContentTypes = nil;
         
         //设置timeout
         [self.sessionManager.requestSerializer setTimeoutInterval:20.0];
-        
+        self.sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"image/jpeg",@"image/png", @"application/octet-stream", @"text/json",@"multipart/form-data",@"image/jpg",  nil];
         //设置请求头类型
         [self.sessionManager.requestSerializer setValue:@"form/data" forHTTPHeaderField:@"Content-Type"];
         
         UIImage *image;
-        NSData *imageData = UIImageJPEGRepresentation(image, 0);
-        
-        
-        // 使用formData来拼接数据
-        /*
-         param1: 二进制数据 要上传的文件参数
-         param2: 服务器规定的
-         param3: 该文件上传到服务器以什么名称保存
-         */
-        //通过data上传
-        // [formData appendPartWithFileData:imageData name:@"file" fileName:@"zy.jpg" mimeType:@"image/jpg"];
-        //通过本地路径上传
-//         [formData appendPartWithFileURL:[NSURL fileURLWithPath:self.requestParams[@"filePath"]] name:@"file" error:nil];
-        NSError *error;
-         BOOL success = [formData appendPartWithFileURL:[NSURL fileURLWithPath:@""] name:@"file" fileName:@"zy.jpg" mimeType:@"image/jpg" error:nil];
-        if (!success) {
-            NSLog(@"formData拼接失败！！！");
-            NSLog(@"appendPartWithFileURL error: %@", error);
+        NSURL *fileUrl;
+        if ([self->_requestParams valueForKey:@"image"]) {
+            if ([[self->_requestParams valueForKey:@"image"] isKindOfClass:[UIImage class]]) {
+                //图片
+                image =  self->_requestParams[@"image"];
+            }else if([[self->_requestParams valueForKey:@"image"] isKindOfClass:[NSString class]]){
+                //图片地址
+                fileUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [NSURL URLWithString:self->_requestParams[@"image"]]]];
+                image = [UIImage imageWithContentsOfFile:self->_requestParams[@"image"]];
+            }else if ([[self->_requestParams valueForKey:@"image"] isKindOfClass:[NSURL class]]){
+                //图片地址
+                fileUrl = self->_requestParams[@"image"];
+                image = [[UIImage alloc] initWithContentsOfFile:fileUrl.absoluteString];
+            }
+            
+        }else{
+            NSLog(@"error :请拼接图片 image: @"" ");
+            [CustomPromptBox showTextHud:@"error :请拼接图片 image: @"" "];
+            return ;
         }
+        // 使用formData来拼接数据
+        
+        {
+            /*
+             param1: 二进制数据 要上传的文件参数
+             param2: 服务器规定的
+             param3: 该文件上传到服务器以什么名称保存
+             */
+            NSData *imageData = UIImagePNGRepresentation([self getNewImage : image]);
+            
+            NSLog(@"图片大小%.2f M", imageData.length / 1024.0 / 1024.0);
+            //随机图片名
+            NSString *imageName = [self generateTradeNO];
+            //通过data上传
+            [formData appendPartWithFileData:imageData name:@"file" fileName:[NSString stringWithFormat:@"%@.png", imageName] mimeType:@"image/jpg/png"];
+        }
+
+        /*
+         {
+         //路径上传
+         NSError *error;
+         //name 必须为服务器的约定的
+         //filename 自己定义  xxx.png/jpg
+         
+         
+         
+         NSInteger imgCount = 0;
+         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+         formatter.dateFormat = @"yyyyMMddHHmmss";
+         NSString *fileName = [NSString stringWithFormat:@"%@%@.png",[formatter stringFromDate:[NSDate date]],@(imgCount)];
+         BOOL success = [formData appendPartWithFileURL:fileUrl name:@"img" fileName:fileName mimeType:@"image/jpg/png" error:nil];
+         if (!success) {
+         NSLog(@"formData拼接失败！！！");
+         NSLog(@"appendPartWithFileURL error: %@", error);
+         }
+         }
+         */
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         NSLog(@"%f",1.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
         if (self.progressBlock) {
@@ -276,4 +318,126 @@
     //4. 执行task
     [download resume];
 }
+
+
+
+- (UIImage *) getNewImage:(UIImage *)image{
+    //设定为 1M
+    return  [self compressImageQuality:image toByte:1024 * 1024];
+}
+
+
+
+//产生随机字符串
+- (NSString *)generateTradeNO
+{
+    static int kNumber = 15;
+    
+    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRST";
+    NSMutableString *resultStr = [[NSMutableString alloc] init];
+    srand(time(0));
+    for (int i = 0; i < kNumber; i++)
+    {
+        unsigned index = rand() % [sourceStr length];
+        NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
+        [resultStr appendString:oneStr];
+    }
+    return resultStr;
+}
+
+
+//压缩图片（通过压缩图片质量）
+- (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size{
+    NSData * data = UIImageJPEGRepresentation(image, 1.0);
+    CGFloat dataKBytes = data.length/1000.0;
+    CGFloat maxQuality = 0.9f;
+    CGFloat lastData = dataKBytes;
+    while (dataKBytes > size && maxQuality > 0.01f) {
+        maxQuality = maxQuality - 0.01f;
+        data = UIImageJPEGRepresentation(image, maxQuality);
+        dataKBytes = data.length / 1000.0;
+        if (lastData == dataKBytes) {
+            break;
+        }else{
+            lastData = dataKBytes;
+        }
+    }
+    return data;
+}
+
+//压缩图片质量 循环次数较少 消耗低 优于上一种
+/**
+ 当图片大小小于 maxLength，大于 maxLength * 0.9 时，不再继续压缩。最多压缩 6 次，1/(2^6) = 0.015625 < 0.02，也能达到每次循环 compression 减小 0.02 的效果。这样的压缩次数比循环减小 compression 少，耗时短。需要注意的是，当图片质量低于一定程度时，继续压缩没有效果。也就是说，compression 继续减小，data 也不再继续减小。压缩图片质量的优点在于，尽可能保留图片清晰度，图片不会明显模糊；缺点在于，不能保证图片压缩后小于指定大小。
+ 
+ 设定小于1M  就是  maxLength = 1024 x 1024
+ */
+- (UIImage *)compressImageQuality:(UIImage *)image toByte:(NSInteger)maxLength {
+    CGFloat compression = 1;
+    NSData *data = UIImageJPEGRepresentation(image, compression);
+    if (data.length < maxLength) return image;
+    CGFloat max = 1;
+    CGFloat min = 0;
+    for (int i = 0; i < 6; ++i) {
+        compression = (max + min) / 2;
+        data = UIImageJPEGRepresentation(image, compression);
+        if (data.length < maxLength * 0.9) {
+            min = compression;
+        } else if (data.length > maxLength) {
+            max = compression;
+        } else {
+            break;
+        }
+    }
+    UIImage *resultImage = [UIImage imageWithData:data];
+    return resultImage;
+}
+
+//压缩图片尺寸来达到目的
+/**
+ 与之前类似，比较容易想到的方法是，通过循环逐渐减小图片尺寸，直到图片稍小于指定大小(maxLength)。具体代码省略。同样的问题是循环次数多，效率低，耗时长。可以用二分法来提高效率，具体代码省略。这里介绍另外一种方法，比二分法更好，压缩次数少，而且可以使图片压缩后刚好小于指定大小(不只是 < maxLength， > maxLength * 0.9)。
+ */
++ (UIImage *)compressImageSize:(UIImage *)image toByte:(NSUInteger)maxLength {
+    UIImage *resultImage = image;
+    NSData *data = UIImageJPEGRepresentation(resultImage, 1);
+    NSUInteger lastDataLength = 0;
+    while (data.length > maxLength && data.length != lastDataLength) {
+        lastDataLength = data.length;
+        CGFloat ratio = (CGFloat)maxLength / data.length;
+        CGSize size = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
+                                 (NSUInteger)(resultImage.size.height * sqrtf(ratio))); // Use NSUInteger to prevent white blank
+        UIGraphicsBeginImageContext(size);
+        // Use image to draw (drawInRect:), image is larger but more compression time
+        // Use result image to draw, image is smaller but less compression time
+        [resultImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        resultImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        data = UIImageJPEGRepresentation(resultImage, 1);
+    }
+    return resultImage;
+}
+
+
+
+
+
+/** 生成缩略图的方法 */
+- (UIImage *) thumnaiWithImage:(UIImage *) image size:(CGSize) size
+{
+    //    image lenth = 11314085byt
+    //    newimage lenth = 29378byt
+    //    sendData lenth = 1505
+    //    压缩了400倍
+    UIImage *newImage = nil;
+    if (!newImage)
+    {
+        UIGraphicsBeginImageContext(size);//获取绘制开始的上下文
+        [image drawInRect:CGRectMake(0, 0, size.width, size.width)];//重新绘制一个图片
+        newImage = UIGraphicsGetImageFromCurrentImageContext();//获取绘制过得图片上下文
+        UIGraphicsEndImageContext();//结束绘制
+    }
+    return newImage;
+}
+
+
+
 @end
