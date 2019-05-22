@@ -110,4 +110,9 @@
     self.countDownView.timeInteval -= 1;
 }
 
+- (void)dealloc {
+    [self.timer invalidate];
+}
+
+
 @end
