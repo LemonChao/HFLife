@@ -148,10 +148,10 @@
     if ([self.type isEqualToString:@"年龄"]) {
         parm =  @{@"field":@"member_age",@"value":userNameTextField.text};
     }
-    
+    [[WBPCreate sharedInstance]showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kSaveMemberBase withParameters:parm withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
-            
             if (self.modifiedSuccessfulBlock) {
                 self.modifiedSuccessfulBlock(self->userNameTextField.text);
             }
@@ -160,6 +160,7 @@
                 NSDictionary *dataDic = value[@"data"];
                 NSString *token = [dataDic safeObjectForKey:@"ucenter_token"];
                 if (token && token.length > 0) {
+                    [WXZTipView showCenterWithText:value[@"msg"]];
                     [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
                 }else {
                     [WXZTipView showCenterWithText:@"资料修改成功,token获取x失败"];

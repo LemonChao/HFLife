@@ -34,7 +34,7 @@
     [super viewWillAppear:animated];
     userInfoModel *user = [userInfoModel sharedUser];
     if(user.id && user.id > 0) {
-        
+        [self.mainPageView reSetHeadData];
     }else {
         //未获取
         

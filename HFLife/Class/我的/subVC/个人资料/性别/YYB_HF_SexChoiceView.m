@@ -125,7 +125,9 @@
 }
 
 - (void)reqData:(NSDictionary *)parm {
+    [[WBPCreate sharedInstance]showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kSaveMemberBase withParameters:parm withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             //保存到单例
             [userInfoModel sharedUser].member_sex = parm[@"value"];
@@ -137,6 +139,7 @@
                 }
             }
             if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
                 NSDictionary *dataDic = value[@"data"];
                 NSString *token = [dataDic safeObjectForKey:@"ucenter_token"];
                 if (token && token.length > 0) {

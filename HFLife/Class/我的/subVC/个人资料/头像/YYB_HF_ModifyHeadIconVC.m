@@ -138,12 +138,12 @@
                             if (value && [value isKindOfClass:[NSDictionary class]]) {
                                 [WXZTipView showCenterWithText:value[@"msg"]];
                             }else {
-                                [WXZTipView showCenterWithText:@"网络x错误"];
+                                [WXZTipView showCenterWithText:@"网络错误"];
                             }
                         }
                     }];
                     [userInfoModel sharedUser].member_avatar = urlStr;
-                    [self.imageBtn sd_setImageWithURL:[NSURL URLWithString:urlStr] forState:UIControlStateNormal placeholderImage:image(@"dumpling")];
+                    [self.imageBtn sd_setImageWithURL:[NSURL URLWithString:urlStr] forState:UIControlStateNormal placeholderImage:self.imageBtn.imageView.image];
                 }
             }else {
                 [WXZTipView showCenterWithText:@"返回上传地址错误"];
