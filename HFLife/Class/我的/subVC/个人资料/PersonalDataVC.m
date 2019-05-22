@@ -198,6 +198,13 @@
         LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:@"您确定要退出登录吗？" cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
             if(clickIndex == 1){
 //                [[NSNotificationCenter defaultCenter] postNotificationName:EXIT_LOGIN object:nil userInfo:nil];
+                
+                [LoginVC login];
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:kLogout withParameters:nil withResultBlock:^(BOOL result, id value) {
+                    if (result) {
+                        
+                    }
+                }];
                 [self.navigationController popToRootViewControllerAnimated:YES];
                 [ShareSDK cancelAuthorize:(SSDKPlatformTypeQQ) result:^(NSError *error) {
                     

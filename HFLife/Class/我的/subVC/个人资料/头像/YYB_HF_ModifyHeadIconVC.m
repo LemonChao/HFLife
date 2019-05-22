@@ -45,7 +45,7 @@
         
         NSLog(@"改头像");
         ZHB_HP_PreventWeChatPopout *preView = [[ZHB_HP_PreventWeChatPopout alloc]initWithTitle:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"从相册上传",@"拍照上传"] actionSheetBlock:^(NSInteger index) {
-            
+            //相册
             if (index == 0) {
                 HXAlbumListViewController *vc = [[HXAlbumListViewController alloc] init];
                 vc.doneBlock = ^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL original, HXAlbumListViewController *viewController) {
@@ -60,7 +60,7 @@
                 nav.supportRotation = YES;
                 [weakSelf presentViewController:nav animated:YES completion:nil];
                 
-            }else if(index == 1) {
+            }else if(index == 1) {//相机
                 HXCustomCameraViewController *vc = [[HXCustomCameraViewController alloc] init];
                 vc.doneBlock = ^(HXPhotoModel *model, HXCustomCameraViewController *viewController) {
                     if (model) {
@@ -92,8 +92,8 @@
         make.width.mas_equalTo(SCREEN_WIDTH);
     }];
     self.imageBtn = imageV;
-    [imageV setImage:image(@"dumpling") forState:UIControlStateNormal];
-    
+    [self.imageBtn sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] forState:UIControlStateNormal placeholderImage:image(@"dumpling")];
+
 }
 
 - (HXPhotoManager *)photo_manager {
@@ -108,9 +108,53 @@
 }
 
 - (void) setHeadIcon:(UIImage *)image {
+    [[WBPCreate sharedInstance]showWBProgress];
     [networkingManagerTool requestToServerWithType:UPDATE withSubUrl:kUploadFiles withParameters:@{@"image" : image} withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                
+                NSDictionary *data = value[@"data"];
+                NSString *urlStr = [data safeObjectForKey:@"url"];
+                [userInfoModel sharedUser].member_avatar = urlStr;
+                
+                if (urlStr && [urlStr isKindOfClass:[NSString class]] && urlStr.length > 0) {
+                    [[WBPCreate sharedInstance] showWBProgress];
+                    
+                    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSaveMemberBase withParameters:@{@"field":@"member_avatar",@"value":urlStr} withResultBlock:^(BOOL result, id value) {
+                        [[WBPCreate sharedInstance] hideAnimated];
+                        if (result) {
+                            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                                NSDictionary *dataDic = value[@"data"];
+                                NSString *token = [dataDic safeObjectForKey:@"ucenter_token"];
+                                if (token && token.length > 0) {
+                                    [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
+                                }else {
+                                    [WXZTipView showCenterWithText:@"资料修改成功,token获取x失败"];
+                                }
+                            }
+                            
+                        }else {
+                            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                                [WXZTipView showCenterWithText:value[@"msg"]];
+                            }else {
+                                [WXZTipView showCenterWithText:@"网络x错误"];
+                            }
+                        }
+                    }];
+                    [userInfoModel sharedUser].member_avatar = urlStr;
+                    [self.imageBtn sd_setImageWithURL:[NSURL URLWithString:urlStr] forState:UIControlStateNormal placeholderImage:image(@"dumpling")];
+                }
+            }else {
+                [WXZTipView showCenterWithText:@"返回上传地址错误"];
+            }
             
+        }else {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络x错误"];
+            }
         }
     }];
 

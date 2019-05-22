@@ -222,8 +222,9 @@
              param2: 服务器规定的
              param3: 该文件上传到服务器以什么名称保存
              */
-            NSData *imageData = UIImagePNGRepresentation([self getNewImage : image]);
-            
+//            NSData *imageData = UIImagePNGRepresentation([self getNewImage : image]);
+            NSData *imageData = UIImageJPEGRepresentation([self getNewImage : image], 1);
+//            imageData = [self imageData:image];
             NSLog(@"图片大小%.2f M", imageData.length / 1024.0 / 1024.0);
             //随机图片名
             NSString *imageName = [self generateTradeNO];
@@ -323,7 +324,7 @@
 
 - (UIImage *) getNewImage:(UIImage *)image{
     //设定为 1M
-    return  [self compressImageQuality:image toByte:1024 * 1024];
+    return  [self compressImageQuality:image toByte:1000 * 1000];
 }
 
 
@@ -373,12 +374,17 @@
  */
 - (UIImage *)compressImageQuality:(UIImage *)image toByte:(NSInteger)maxLength {
     CGFloat compression = 1;
+    
+    
+    NSData *data1 = UIImagePNGRepresentation(image);
     NSData *data = UIImageJPEGRepresentation(image, compression);
-    if (data.length < maxLength) return image;
+    if (data.length < maxLength){
+        return image;;
+    }
     CGFloat max = 1;
     CGFloat min = 0;
     for (int i = 0; i < 6; ++i) {
-        compression = (max + min) / 2;
+        compression = (max + min) / 2.0;
         data = UIImageJPEGRepresentation(image, compression);
         if (data.length < maxLength * 0.9) {
             min = compression;
@@ -438,6 +444,33 @@
     return newImage;
 }
 
+-(NSData *)imageData:(UIImage *)myimage
+
+{
+    
+    NSData *data=UIImageJPEGRepresentation(myimage, 1.0);
+    
+    if (data.length>100*1024) {
+        
+        if (data.length>1024*1024) {//1M以及以上
+            
+            data=UIImageJPEGRepresentation(myimage, 0.1);
+            
+        }else if (data.length>512*1024) {//0.5M-1M
+            
+            data=UIImageJPEGRepresentation(myimage, 0.5);
+            
+        }else if (data.length>200*1024) {//0.25M-0.5M
+            
+            data=UIImageJPEGRepresentation(myimage, 0.9);
+            
+        }
+        
+    }
+    
+    return data;
+    
+}
 
 
 @end

@@ -255,11 +255,7 @@
 
 - (void)gotoCityVC {
     NSLog(@"choseCity");
-    BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:[[NSClassFromString(@"LoginVC")  alloc]init]];
-
-    [self.viewController presentViewController:navi animated:NO completion:^{
-        
-    }];
+    
 //    CityChooseVC *cityChoose = [[CityChooseVC alloc]init];
 //    cityChoose.delegate = self;
 //    BaseNavigationController *navigationController = [[BaseNavigationController alloc] initWithRootViewController:cityChoose];
