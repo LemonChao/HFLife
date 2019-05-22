@@ -34,7 +34,13 @@
 
 
 //版本信息
-static NSString *const appUpDateUrl = @"api/version/getVersion";
+static NSString *const appUpDateUrl                          = @"api/version/getVersion";
+
+//获取版本说明
+static NSString *const VersionContent                         = @"api/version/getVersionContent";
+
+//获取服务协议
+static NSString *const ServiceAgreement                       = @"api/system/getServiceAgreement";
 
 //获取版本信息
 static NSString *const upDateLocationUrl = @"";
