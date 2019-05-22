@@ -36,6 +36,11 @@
 
 
 
+//上次登录的appversion
+static NSString *const HFAppVersion         = @"appVersion";
+
+
+
 //城市存储
 //选择的城市
 static NSString *const SelectedCity         = @"selectedCity";

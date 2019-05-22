@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
     点击分区cell
  */
-- (void)clickCellItem:(NSIndexPath *)indexPath;
+- (void)clickCellItem:(NSIndexPath *)indexPath value:(id)value;
 
 
 /**

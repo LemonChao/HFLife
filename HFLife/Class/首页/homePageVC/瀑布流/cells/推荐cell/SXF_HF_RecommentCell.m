@@ -29,8 +29,8 @@
     [self.contentView addSubview:self.collectionV];
     self.collectionV.dataSource = self.dataSourceArr;
     WEAK(weakSelf);
-    self.collectionV.selectedItem = ^(NSInteger indexPath) {
-        !weakSelf.selectedItem ? : weakSelf.selectedItem(indexPath);
+    self.collectionV.selectedItem = ^(NSInteger indexPath, id value) {
+        !weakSelf.selectedItem ? : weakSelf.selectedItem(indexPath, value);
     };
     
 }

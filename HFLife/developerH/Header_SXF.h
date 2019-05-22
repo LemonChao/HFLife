@@ -33,7 +33,10 @@
 
 
 
-static NSString *const appUpDateUrl = @"";
+//版本信息
+static NSString *const appUpDateUrl = @"api/version/getVersion";
+
+//获取版本信息
 static NSString *const upDateLocationUrl = @"";
 
 //首页轮播导航接口

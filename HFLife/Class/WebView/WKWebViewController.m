@@ -437,12 +437,12 @@
 #pragma mark -获取地理位置
 -(void)getAddressParameter:(NSDictionary *)dict{
     MapViewController *map = [[MapViewController alloc]init];
-//    CLLocationCoordinate2D gaocoor;
-//    gaocoor.latitude = [MMNSStringFormat(@"%@",dict[@"latitude"]) floatValue];
-//    gaocoor.longitude = [MMNSStringFormat(@"%@",dict[@"longitude"]) floatValue];
-//    CLLocationCoordinate2D coor = [JZLocationConverter bd09ToGcj02:gaocoor];
-//    map.latitude = coor.latitude;
-//    map.longitude = coor.longitude;
+    CLLocationCoordinate2D gaocoor;
+    gaocoor.latitude = [MMNSStringFormat(@"%@",dict[@"latitude"]) floatValue];
+    gaocoor.longitude = [MMNSStringFormat(@"%@",dict[@"longitude"]) floatValue];
+    CLLocationCoordinate2D coor = [JZLocationConverter bd09ToGcj02:gaocoor];
+    map.latitude = coor.latitude;
+    map.longitude = coor.longitude;
     map.isMark = YES;
     [self.navigationController pushViewController:map animated:YES];
 }

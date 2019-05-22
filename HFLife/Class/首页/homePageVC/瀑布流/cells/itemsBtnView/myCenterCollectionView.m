@@ -78,7 +78,10 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    !self.selectedItem ? : self.selectedItem(indexPath.row);
+    id value;
+    homeListModel *model = self.dataSourceArr[indexPath.row];
+    value = model.url;
+    !self.selectedItem ? : self.selectedItem(indexPath.row, value);
 }
 
 

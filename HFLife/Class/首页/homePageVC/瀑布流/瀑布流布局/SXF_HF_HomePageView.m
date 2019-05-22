@@ -126,9 +126,9 @@ static NSString * const footerReuseIdentifier = @"Footer";
     [self.collectionView endRefreshData];
 }
 //集合点击事件
-- (void) collectionViewSelection:(NSInteger )section itemIndex:(NSInteger)index{
+- (void) collectionViewSelection:(NSInteger )section itemIndex:(NSInteger)index value:(id)value{
     NSIndexPath *indexP = [NSIndexPath indexPathForRow:index inSection:section];
-    !self.selectedItem ? : self.selectedItem(indexP);
+    !self.selectedItem ? : self.selectedItem(indexP, value);
 }
 
 - (void)setDataSourceDict:(NSDictionary *)dataSourceDict{
@@ -139,13 +139,11 @@ static NSString * const footerReuseIdentifier = @"Footer";
     self.activityModelsArr = dataSourceDict[@"activity"];
     
     //解析得到的数据
-    
-    
-    NSMutableArray *arrTest = [NSMutableArray array];
-    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
-    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
-    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
-    self.navModelsArr = arrTest;
+//    NSMutableArray *arrTest = [NSMutableArray array];
+//    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
+//    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
+//    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
+//    self.navModelsArr = arrTest;
     
     
     
@@ -203,7 +201,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
 
 
 #pragma mark <UICollectionViewDataSource>
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath value:(id)value{
     NSInteger mySection;
     //点击事件
     if (indexPath.section == 0) {
@@ -213,7 +211,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
     }else if (indexPath.section == 3){
         mySection = 5;
     }
-    [self collectionViewSelection:mySection itemIndex:indexPath.row];
+    [self collectionViewSelection:mySection itemIndex:indexPath.row value:value];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -239,8 +237,8 @@ static NSString * const footerReuseIdentifier = @"Footer";
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             SXF_HF_ItemsViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_ItemsViewCell class]) forIndexPath:indexPath];
-            cell.selectItemBlock = ^(NSInteger index) {
-                [weakSelf collectionViewSelection:0 itemIndex:index];
+            cell.selectItemBlock = ^(NSInteger index, id value) {
+                [weakSelf collectionViewSelection:0 itemIndex:index value:value];
             };
             cell.itemDataSourceArr = self.navModelsArr;
             return cell;
@@ -250,15 +248,15 @@ static NSString * const footerReuseIdentifier = @"Footer";
         }else if (indexPath.row == 2) {
             cycleScrollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([cycleScrollCell class]) forIndexPath:indexPath];
             cell.modelArr = self.bannerModelsArr;
-            cell.selectItemBlock = ^(NSInteger index) {
-                [weakSelf collectionViewSelection:2 itemIndex:index];
+            cell.selectItemBlock = ^(NSInteger index, id value) {
+                [weakSelf collectionViewSelection:2 itemIndex:index value:value];
             };
             return cell;
         }
     }else if (indexPath.section == 1){
         SXF_HF_RecommentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_RecommentCell class]) forIndexPath:indexPath];
-        cell.selectedItem = ^(NSInteger index) {
-            [weakSelf collectionViewSelection:3 itemIndex:index];;
+        cell.selectedItem = ^(NSInteger index, id value) {
+            [weakSelf collectionViewSelection:3 itemIndex:index value:value];
         };
         cell.dataSourceArr = self.activityModelsArr;
         return cell;
