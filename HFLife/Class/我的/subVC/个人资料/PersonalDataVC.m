@@ -39,19 +39,37 @@
     [self initWithUI];
     [self setupNavBar];
 }
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-//    [self.permanage getPersonalData:^(id request) {
-//        if ([request boolValue]) {
-////            self->valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
-//            [self.contentTableView reloadData];
-//        }
-//    }];
+    
     userInfoModel *user = [userInfoModel sharedUser];
     if(user.id && user.id > 0) {
         self->valueArray = @[@[user.member_avatar?user.member_avatar : @"",user.member_mobile,user.nickname ? user.nickname : @"",user.member_sexName,user.member_age ? user.member_age.stringValue : @""],@[user.rz_statusName],@[@""]];
         [self.contentTableView reloadData];
+    } else {
+        //未获取个人资料
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberBaseInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+            if (result) {
+                if (value && [value isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSDictionary *dataDic = value[@"data"];
+                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                        [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
+                        self->valueArray = @[@[user.member_avatar?user.member_avatar : @"",user.member_mobile,user.nickname ? user.nickname : @"",user.member_sexName,user.member_age ? user.member_age.stringValue : @""],@[user.rz_statusName],@[@""]];
+                        [self.contentTableView reloadData];
+                    }else {
+                        [WXZTipView showCenterWithText:@"个人信息获取错误"];
+                    }
+                }
+            }else {
+                if (value && [value isKindOfClass:[NSDictionary class]]) {
+                    [WXZTipView showCenterWithText:value[@"msg"]];
+                }else {
+                    [WXZTipView showCenterWithText:@"网络错误"];
+                }
+            }
+        }];
     }
 }
 -(void)viewWillDisappear:(BOOL)animated{

@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_SexChoiceView : UIView
+
+/**
+ 当前的性别 男/女
+ */
 @property(nonatomic, copy) NSString *sex;
 
 @property(nonatomic, copy) void (^selectSexBlock)(NSString *gender);

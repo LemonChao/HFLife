@@ -166,10 +166,29 @@
     
 }
 
+#pragma mark - 设置头像昵称
 - (void)reSetData {
     [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
     NSString *nameStr = [userInfoModel sharedUser].nickname;
     self.userNameLb.text = nameStr ? nameStr : @"sxf";
+}
+
+#pragma mark - 设置信息
+- (void)setMemberInfoModel:(MemberInfoModel *)memberInfoModel {
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:memberInfoModel.member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
+    NSString *nameStr = memberInfoModel.nickname;
+    self.userNameLb.text = nameStr ? nameStr : @"sxf";
+    self.userLeveLb.text = memberInfoModel.level_name ? memberInfoModel.level_name : @"无等级信息";
+    self.myJoinTitleLb.text = [NSString stringWithFormat:@"我的邀请码:%@",memberInfoModel.invite_code];
+    if (memberInfoModel.i_agent_level.intValue >= 0) {
+        self.moneyLb1.text = memberInfoModel.yesterday_turnover.stringValue ? memberInfoModel.yesterday_turnover.stringValue : @"666";
+        self.moneyLb2.text = memberInfoModel.yesterday_benefit.stringValue ? memberInfoModel.yesterday_benefit.stringValue : @"666";
+        self.moneyTitle1.text = @"昨日营业额(元)";
+        self.moneyTitle2.text = @"昨日商家让利(元)";
+        self.bottomLb.text = memberInfoModel.i_agent_name ? memberInfoModel.i_agent_name : @"代理区域";
+    }else {
+        self.vipBgView.hidden = YES;
+    }
 }
 
 - (void)clickHeaderImageV{
@@ -177,7 +196,7 @@
     [[self getCurrentViewController].navigationController pushViewController:[[NSClassFromString(@"PersonalDataVC") alloc]init] animated:YES];
 }
 - (void)copyText{
-    [UIPasteboard generalPasteboard].string = self.myJoinTitleLb.text;
+    [UIPasteboard generalPasteboard].string = [self.myJoinTitleLb.text componentsSeparatedByString:@":"].lastObject;
     [WXZTipView showCenterWithText:@"邀请码已复制"];
     NSLog(@"剪切板数据 : %@", [UIPasteboard generalPasteboard].string);
 }
@@ -306,7 +325,7 @@
     
     [self layoutIfNeeded];
     [self.vipBgColorView changeBgView:@[HEX_COLOR(0xFEC436), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 1.0)];
-    [self.bottomColorView changeBgView:@[HEX_COLOR(0xF8B331), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 1.0)];
+    [self.bottomColorView changeBgView:@[HEX_COLOR(0xF8B331), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 0.0)];
     
 }
 @end

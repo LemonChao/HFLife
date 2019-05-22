@@ -56,6 +56,11 @@
 - (void)reSetHeadData {
     [self.headerView reSetData];
 }
+//设置数据
+- (void)setMemberInfoModel:(MemberInfoModel *)memberInfoModel {
+    _memberInfoModel = memberInfoModel;
+    self.headerView.memberInfoModel = memberInfoModel;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return _titleArr.count;
