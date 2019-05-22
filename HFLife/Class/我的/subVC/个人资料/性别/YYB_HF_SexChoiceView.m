@@ -44,7 +44,7 @@
 }
 
 - (void)setUpVeiw {
-    self.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.7];
+    self.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.6];
     [self wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
         [self removeFromSuperview];
     }];
@@ -73,7 +73,7 @@
     [view addSubview:sexbtn1];
     [view addSubview:sexbtn2];
     
-    titleLabel.setText(@"性别").setTextColor([UIColor blackColor]).setFontSize(17);
+    titleLabel.setText(@"性别").setTextColor([UIColor blackColor]).setFontSize(18);
 
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(view).mas_offset(30);
@@ -123,6 +123,8 @@
     self.button2 = sexbtn2;
     
 }
+
+
 
 - (void)reqData:(NSDictionary *)parm {
     [[WBPCreate sharedInstance]showWBProgress];

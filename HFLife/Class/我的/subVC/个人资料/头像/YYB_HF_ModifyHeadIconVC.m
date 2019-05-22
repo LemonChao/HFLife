@@ -27,6 +27,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    self.customNavBar.hidden  = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.customNavBar.hidden = YES;
 }
 
 -(void)setupNavBar{
@@ -68,7 +74,6 @@
                     }
                 };
                 HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithRootViewController:vc];
-
                 [weakSelf presentViewController:nav animated:YES completion:nil];
             }
             

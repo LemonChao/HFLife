@@ -17,6 +17,8 @@
 @property(nonatomic, strong) UIButton *selectBtn;
 /** 搜索内容 */
 @property(nonatomic, strong) UILabel *searchlabel;
+/** 订单列表icon */
+@property(nonatomic, strong) UIImageView *orderAlertImageView;
 @end
 @implementation YYB_HF_LocalHeadView
 
@@ -40,11 +42,13 @@
     self.localLabel = [UILabel new];
     self.selectBtn = [UIButton new];
     self.searchlabel = [UILabel new];
+    self.orderAlertImageView = [UIImageView new];
     
     
     [self addSubview:self.headImageV];
     [self addSubview:self.localLabel];
     [self addSubview:self.selectBtn];
+    [self addSubview:self.orderAlertImageView];
     
 //    self.headImageV.backgroundColor = [UIColor redColor];
     self.headImageV.image = MMGetImage(@"icon_touxiang");
@@ -80,7 +84,7 @@
     [searchBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.headImageV);
         make.left.mas_equalTo(self.selectBtn.mas_right).mas_offset(ScreenScale(20));
-        make.right.mas_equalTo(self).mas_offset(-ScreenScale(20));
+        make.right.mas_equalTo(self).mas_offset(-ScreenScale(67));
         make.height.mas_equalTo(ScreenScale(33));
     }];
     
@@ -104,7 +108,21 @@
         make.right.mas_equalTo(searchBgView);
     }];
     
+    [self.orderAlertImageView setImage:image(@"icon_orderAlert1")];
+    [self.orderAlertImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self).mas_offset(ScreenScale(-25));
+        make.centerY.mas_equalTo(searchBgView);
+        make.height.mas_equalTo(25);
+        make.width.mas_equalTo(21);
+    }];
+    self.orderAlertImageView.userInteractionEnabled = YES;
+    [self.orderAlertImageView wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
+        //订单列表
+        NSLog(@"orderAlertImageView");
+    }];
+    
     self.localLabel.userInteractionEnabled = YES;
+    //城市列表
     [self.localLabel wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
         [self gotoCityVC];
     }];
