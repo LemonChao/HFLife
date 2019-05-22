@@ -27,13 +27,19 @@
 - (void) addChildrenViews{
     self.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.collectionV];
-    self.collectionV.dataSource = @[@"", @"", @"", @"", @""];
+    self.collectionV.dataSource = self.dataSourceArr;
     WEAK(weakSelf);
     self.collectionV.selectedItem = ^(NSInteger indexPath) {
         !weakSelf.selectedItem ? : weakSelf.selectedItem(indexPath);
     };
     
 }
+
+- (void)setDataSourceArr:(NSArray *)dataSourceArr{
+    _dataSourceArr = dataSourceArr;
+    self.collectionV.dataSource = dataSourceArr;
+}
+
 
 - (void)layoutSubviews{
     [super layoutSubviews];

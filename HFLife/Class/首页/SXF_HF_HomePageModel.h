@@ -14,6 +14,31 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+/**
+ 新闻列表 导航item 轮播  合并model
+ 
+ "id": 3,
+ "title": "汉富头条",
+ "tuiswitch": 0, //是否推荐
+ "image": "/uploads/20190509/d05ed6874894eabea689d0c96da34d38.jpg",
+ "addtime": 1557543667,
+ "addtime_text": "2019-05-11 11:01:07"
+ */
+@interface homeListModel : BaseModel
+@property (nonatomic, strong)NSNumber *ID;
+@property (nonatomic, strong)NSString *title;
+@property (nonatomic, strong)NSNumber *tuiswitch;
+@property (nonatomic, strong)NSString *image;
+@property (nonatomic, strong)NSString *addtime;
+@property (nonatomic, strong)NSString *addtime_text;
+@property (nonatomic, strong)NSString *iconimage;
+@end
+
+
+
+
+
 //银行卡列表
 @interface bankListModel : BaseModel
 

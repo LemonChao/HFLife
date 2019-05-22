@@ -150,7 +150,7 @@ static BOOL IsUpdateRemind = YES;
 //        NSString *fileHtml= @"/Users/apple/Library/Application Support/iPhone Simulator/6.0/Applications/EF63CAA5-F7A7-480C-B292-A58D5688FBA7/Documents/data/page/common/detail.html?i=1213";
 
         NSString *urlString = @"http://192.168.0.210:9997";
-        NSString *fileHtml =  MMNSStringFormat(@"%@?cityName=%@&cityID=%@&title=%@",urlString,[MMNSUserDefaults objectForKey:selectedCity],[MMNSUserDefaults objectForKey:@"cityNumber"],self.titleVC);
+        NSString *fileHtml =  MMNSStringFormat(@"%@?cityName=%@&cityID=%@&title=%@",urlString,[MMNSUserDefaults objectForKey:SelectedCity],[MMNSUserDefaults objectForKey:@"cityNumber"],self.titleVC);
             //    NSURL *url = [NSURL URLWithString:@"http://192.168.0.210:9997"];
         NSString *encodString = [NSString stringWithFormat:@"%@",[fileHtml stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
@@ -447,7 +447,7 @@ static BOOL IsUpdateRemind = YES;
     
     [myProgressView removeFromSuperview];
     NSDictionary *dict = @{@"status":@"1",
-                           @"data"  :@{@"cityName":[MMNSUserDefaults objectForKey:selectedCity],
+                           @"data"  :@{@"cityName":[MMNSUserDefaults objectForKey:SelectedCity],
                                        @"cityID":[MMNSUserDefaults objectForKey:@"cityNumber"]
                                        },
                            @"msg"    :@"操作成功"

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface myCenterCollectionViewCell : UICollectionViewCell
-- (void)setTitleForCell:(NSString *)title image:(NSString *)image;
+- (void)setTitleForCell:(NSString *)title image:(id)image;
 @end
 
 NS_ASSUME_NONNULL_END

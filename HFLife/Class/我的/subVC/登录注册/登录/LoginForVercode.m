@@ -182,6 +182,7 @@
         //        tf.keyboardType = UIKeyboardTypeASCIICapable;
         tf.keyboardType = UIKeyboardTypeTwitter;
         tf.placeholder = @"请输入验证码";
+        tf.keyboardType = UIKeyboardTypeNumberPad;
         [tf setValue:HEX_COLOR(0xAAAAAA) forKeyPath:@"_placeholderLabel.textColor"];
         tf.textColor = HEX_COLOR(0x5b5b5b);
 //        tf.secureTextEntry = YES;
@@ -317,6 +318,8 @@
                     NSString *token = dataDic[@"ucenter_token"];
                     if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
                         [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
+                        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
+
                         [self dismissViewControllerAnimated:NO completion:^{
                             
                         }];

@@ -29,6 +29,13 @@
 @property (nonatomic, strong)JFLocation *locationManager;
 @property (nonatomic, strong)NSTimer *circleTimer;
 
+
+@property (nonatomic, strong)NSDictionary <NSString *, NSArray *>*homePageListDic;//数据原数组
+//新闻数组
+@property (nonatomic, strong)NSMutableArray *newsListArrM;
+
+
+
 @end
 
 
@@ -40,6 +47,11 @@
     if (self) {
         self.locationManager.delegate = self;
         [self timingTask];
+        self.homePageListDic = @{@"nav" : [NSArray array],
+                                 @"banner" : [NSArray array],
+                                 @"activity" : [NSArray array],
+                                 };
+        self.newsListArrM = [NSMutableArray array];
     }
     return self;
 }
@@ -53,12 +65,68 @@
 
 
 
+- (void) getBannerData{
+    WEAK(weakSelf);
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
+        [self.collectionView endRefreshData];
+        if (result){
+            if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = value[@"data"];
+                NSMutableDictionary *dataSourceDicM = [NSMutableDictionary dictionary];
+                if ([dict objectForKey:@"nav"] && [[dict objectForKey:@"nav"] isKindOfClass:[NSArray class]]) {
+                    NSArray *navListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"nav"] withClass:[homeListModel class]];
+                    [dataSourceDicM  setObject:navListArr forKey:@"nav"];
+                }
+                if ([dict objectForKey:@"banner"] && [[dict objectForKey:@"banner"] isKindOfClass:[NSArray class]]) {
+                    NSArray *bannerListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"banner"] withClass:[homeListModel class]];
+                    [dataSourceDicM setValue:bannerListArr forKey:@"banner"];
+                }
+                if ([dict objectForKey:@"activity"] && [[dict objectForKey:@"activity"] isKindOfClass:[NSArray class]]) {
+                    NSArray *activityListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"activity"] withClass:[homeListModel class]];
+                    [dataSourceDicM setValue:activityListArr forKey:@"activity"];
+                }
+                self.homePageListDic = dataSourceDicM;
+                self.collectionView.dataSourceDict = self.homePageListDic;
+            }else{
+                [WXZTipView showCenterWithText:@"数据异常"];
+            }
+            
+        }else{
+            
+        }
+    }];
+}
+
+- (void) getNewsListData:(NSInteger)page{
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNewsList withParameters:@{@"page" :@(page)} withResultBlock:^(BOOL result, id value) {
+        [self.collectionView endRefreshData];
+        if (result){
+            [self.collectionView endRefreshData];
+            if ([value[@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *newsModels = [HR_dataManagerTool   getModelArrWithArr:value[@"data"] withClass:[homeListModel class]];
+                if (page == 1) {
+                    [self.newsListArrM removeAllObjects];
+                    self.newsListArrM = [newsModels mutableCopy];
+                }else{
+                    [self.newsListArrM addObjectsFromArray:newsModels];
+                }
+                self.collectionView.newsListModelArr = [self.newsListArrM copy];
+            }
+        }
+    }];
+}
+
+
+
+
+
+
 //actions
 /**
  点击分区头
  */
 - (void)clickHeaderBtn:(NSInteger) index{
-    if (![NSString isNOTNull:[HeaderToken getAccessToken]]) {
+    if (!LogIn_Success) {
         [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
             if (btnBype) {
                 //登录页
@@ -125,7 +193,7 @@
     
     //3.要调用的任务
     dispatch_source_set_event_handler(timer, ^{
-        NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
+        NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
         [self uploadBackLocation:city];
         
     });
@@ -170,20 +238,24 @@
 //定位成功
 - (void)currentLocation:(NSDictionary *)locationDictionary {
     NSString *city = [locationDictionary valueForKey:@"City"];
-    NSString *city_nsu = [MMNSUserDefaults objectForKey:selectedCity];
+    NSString *city_nsu = [MMNSUserDefaults objectForKey:SelectedCity];
     
     if (![city_nsu isEqualToString:city]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"您定位到%@，确定切换城市吗？",city] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [MMNSUserDefaults setObject:city forKey:@"locationCity"];
-            // [MMNSUserDefaults setObject:city forKey:selectedCity];
+            [MMNSUserDefaults setObject:city forKey:LocationCity];
+            
+            //把已选择的城市更改成定位城市
+             [MMNSUserDefaults setObject:city forKey:SelectedCity];
             [self uploadBackLocation:city];
             
         }];
         [alertController addAction:cancelAction];
         [alertController addAction:okAction];
         [self.vc presentViewController:alertController animated:YES completion:nil];
+    }else{
+        [self uploadBackLocation:city];
     }
 }
 

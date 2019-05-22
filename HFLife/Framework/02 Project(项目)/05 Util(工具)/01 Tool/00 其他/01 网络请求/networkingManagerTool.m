@@ -230,7 +230,7 @@
     }
     
     
-    NSDictionary *parameters = @{@"content" : encodedImageStr , @"token" :gettoken};
+    NSDictionary *parameters = @{@"file" : encodedImageStr , @"token" :gettoken};
     NSLog(@"请求参数是：%@" , parameters);
     
     
@@ -267,6 +267,10 @@
         }else if([valueDic[@"status"] integerValue]  == -1){
             //登陆过期
             valueBlock(NO , valueDic);
+            [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
+            [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
+            [userInfoModel attempDealloc];
+
             [currentVC presentViewController:[LoginVC new] animated:YES completion:nil];
         }else{
             
@@ -289,13 +293,12 @@
 
 
 
-/*
+
 #pragma mark --  AFNetWorking post请求上传图片   -----
 + (void)postRequestWithURL: (NSString *)url  //
                      image: (UIImage *)image  //  上传图片对象
                picFileName: (NSString *)picFileName//随机生成的文件名
-                     block:(block)dic
-
+                     block: (void(^)(NSDictionary *dict))dic
 {
     //根据url初始化request
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -303,7 +306,8 @@
     //接收类型不一致请替换一致text/html或别的
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"image/jpeg",@"image/png", @"application/octet-stream", @"text/json",@"multipart/form-data",  nil];
 //    [manager.requestSerializer setValue:[NSString stringWithFormat:@"farm/ios %@" ,[userInfoDataModel shareduserInfoDataModel].versionNumStr] forHTTPHeaderField:@"User-Agent"];
-    [manager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    NSString *urls = [NSString stringWithFormat:@"http://ceshi-ucenter.hfgld.net/%@",url];
+    [manager POST:urls parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSData* data;
         NSData *newData;
         NSString *type;
@@ -401,7 +405,6 @@
 }
 
 
-*/
 
 
 

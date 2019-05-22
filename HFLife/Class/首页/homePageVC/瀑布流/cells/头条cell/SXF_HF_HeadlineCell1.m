@@ -54,10 +54,21 @@
     self.timeLb.font = FONT(ScreenScale(11));
     self.timeLb.textColor = HEX_COLOR(0xAAAAAA);
     
-    self.titleLb.text = @"汉富新生活本地商家服务 正式开放入驻";
-    self.timeLb.text = @"2019-04-25";
-    self.imageV.backgroundColor = HEX_COLOR(0xe1e1e1);
+    self.imageV.contentMode = UIViewContentModeScaleAspectFill;
+    
+//    self.titleLb.text = @"汉富新生活本地商家服务 正式开放入驻";
+//    self.timeLb.text = @"2019-04-25";
+//    self.imageV.backgroundColor = HEX_COLOR(0xe1e1e1);
 }
+
+- (void)setDataForCell:(homeListModel *)model{
+    self.titleLb.text = model.title;
+    self.timeLb.text = model.addtime_text;
+    [self.imageV sd_setImageWithURL:URL_IMAGE(model.image)];
+}
+
+
+
 
 - (void)layoutSubviews{
     [super layoutSubviews];

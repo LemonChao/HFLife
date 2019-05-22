@@ -27,9 +27,12 @@
     [super prepareLayout];
     
     NSAssert(self.dataSource != nil, @"XPCollectionViewWaterfallFlowLayout.dataSource cann't be nil.");
-    if (self.collectionView.isDecelerating || self.collectionView.isDragging) {
-        return;
-    }
+    
+    //注释掉防止刷新不及时
+    
+//    if (self.collectionView.isDecelerating || self.collectionView.isDragging) {
+//        return;
+//    }
     
     _contentHeight = 0.0;
     _itemLayoutAttributes = [NSMutableArray array];

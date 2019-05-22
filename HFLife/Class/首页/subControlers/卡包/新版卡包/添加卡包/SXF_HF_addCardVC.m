@@ -28,7 +28,7 @@
 
 - (void)setUpUI{
     [self.customNavBar wr_setBottomLineHidden:NO];
-    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
+    NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
     if (!city) {
         city = @"郑州市";
     }

@@ -42,7 +42,7 @@ static NSString *cellid = @"PreorderTableCell_id";
     [self setupHeader];
 }
 -(void)axcBaseRequestData{
-    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
+    NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
     WS(weakSelf);
 //    if ([JFLocationSingleton sharedInstance].locationArray.count>0) {
 //        CLLocation *newLocation = [[JFLocationSingleton sharedInstance].locationArray lastObject];

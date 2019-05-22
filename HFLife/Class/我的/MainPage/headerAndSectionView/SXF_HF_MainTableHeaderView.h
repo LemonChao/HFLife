@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_MainTableHeaderView : UIView
-
+- (void)reSetData;
 @end
 
 NS_ASSUME_NONNULL_END

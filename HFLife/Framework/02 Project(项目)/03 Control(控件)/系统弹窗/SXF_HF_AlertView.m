@@ -282,8 +282,14 @@
     UIView *bgView = [[UIView alloc] initWithFrame:kwin.bounds];
     bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
     [kwin addSubview:bgView];
-    SXF_HF_AlertView *alertView = [[SXF_HF_AlertView alloc] init];
     
+    
+    
+    
+    
+    
+    SXF_HF_AlertView *alertView = [[SXF_HF_AlertView alloc] init];
+    __weak typeof(alertView)weakAlert = alertView;
     [kwin addSubview:alertView];
     alertView.backgroundColor = [UIColor redColor];
     alertView.layer.cornerRadius = 5;
@@ -325,6 +331,21 @@
                 make.height.mas_equalTo(ScreenScale(90));
             }];
             alertView.backgroundColor = [UIColor clearColor];
+            
+            //给bgView添加点击事件
+            [bgView wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [UIView animateWithDuration:0.2 animations:^{
+                        
+                    } completion:^(BOOL finished) {
+                        [weakAlert removeFromSuperview];
+                        [bgView removeFromSuperview];
+                    }];
+                    
+                }];
+            }];
+            
+            
         }
             break;
         default:
@@ -363,7 +384,7 @@
     
     
     
-    __weak typeof(alertView)weakAlert = alertView;
+    
     alertView.clickBtn = ^(BOOL btnType) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [UIView animateWithDuration:0.2 animations:^{

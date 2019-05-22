@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "SXF_HF_HomePageView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_HomePageVM : NSObject
 @property (nonatomic, strong)UIViewController *vc;
+@property (nonatomic, strong)SXF_HF_HomePageView *collectionView;
+
+- (void) getBannerData;
+
+- (void) getNewsListData:(NSInteger)page;
 
 
 

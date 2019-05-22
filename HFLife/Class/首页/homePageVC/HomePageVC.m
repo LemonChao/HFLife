@@ -22,43 +22,32 @@
 @property (nonatomic, strong)SXF_HF_HomePageView *collectionView;
 @property (nonatomic, strong)SXF_HF_CustomSearchBar *searchBar;
 @property (nonatomic, strong)SXF_HF_HomePageVM *homePageVM;
+@property (nonatomic, strong)NSArray *bannerModelArr;
 @end
 
 @implementation HomePageVC
 
-
-
-- (void)loadServerData:(NSInteger)page{
-    WEAK(weakSelf);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf.collectionView endRefreshData];
-    });
-    //刷新数据
-    NSDictionary *param = @{
-                            @"page":@(page),
-                            };
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
-        if (result){
-            if (value) {
-                NSLog(@"%@", value[@"msg"]);
-            }
-        }
-    } witnVC:self];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     //引导页
     [self addGuideView];
     [self setUpUI];
     [self setUpActions];
     
-//    [self VersionBounced];
+    
     //加载数据
-    [self loadServerData:1];
+    [self loadServerData];
+    
+//    [self VersionBounced];
+    
 }
-
+//网络数据
+- (void)loadServerData{
+    [self.homePageVM  getBannerData];
+    [self.homePageVM getNewsListData:1];
+}
 - (void)setUpActions{
     WEAK(weakSelf);
     //headerAction
@@ -75,7 +64,11 @@
         [weakSelf.homePageVM clickCellItem:indexPath];
     };
     self.collectionView.refreshDataCallBack = ^(NSInteger page) {
-        [weakSelf loadServerData:page];
+        [weakSelf.homePageVM getNewsListData:page];
+        if (page == 1) {
+            //刷新 header 数据  banner数据
+            [weakSelf.homePageVM getBannerData];
+        }
     };
 }
 
@@ -158,6 +151,7 @@
     if (!_homePageVM) {
         _homePageVM = [[SXF_HF_HomePageVM alloc] init];
         _homePageVM.vc = self;
+        _homePageVM.collectionView = self.collectionView;
     }
     return _homePageVM;
 }

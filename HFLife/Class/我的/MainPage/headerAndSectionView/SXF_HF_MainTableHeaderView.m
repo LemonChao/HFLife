@@ -152,8 +152,9 @@
     
     
     
-    self.headerImageV.image = MY_IMAHE(@"head_icon");
-    self.userNameLb.text = @"sxf";
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
+    NSString *nameStr = [userInfoModel sharedUser].nickname;
+    self.userNameLb.text = nameStr ? nameStr : @"sxf";
     self.userLeveLb.text = @"LV：VIP1";
     self.myJoinTitleLb.text = @"我的邀请码：X34FV";
     
@@ -164,6 +165,13 @@
     self.bottomLb.text = @"管城区代理";
     
 }
+
+- (void)reSetData {
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
+    NSString *nameStr = [userInfoModel sharedUser].nickname;
+    self.userNameLb.text = nameStr ? nameStr : @"sxf";
+}
+
 - (void)clickHeaderImageV{
    
     [[self getCurrentViewController].navigationController pushViewController:[[NSClassFromString(@"PersonalDataVC") alloc]init] animated:YES];
@@ -298,7 +306,7 @@
     
     [self layoutIfNeeded];
     [self.vipBgColorView changeBgView:@[HEX_COLOR(0xFEC436), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 1.0)];
-    [self.bottomColorView changeBgView:@[HEX_COLOR(0xF8B331), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 0.0)];
+    [self.bottomColorView changeBgView:@[HEX_COLOR(0xF8B331), HEX_COLOR(0xD12D08)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1.0, 1.0)];
     
 }
 @end

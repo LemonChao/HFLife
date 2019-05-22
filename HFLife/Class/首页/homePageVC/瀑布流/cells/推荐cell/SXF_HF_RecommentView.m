@@ -48,8 +48,6 @@
     self.nums = _dataSource.count;
     self.pageControl.numberOfPages = self.nums;
     [self addPageControl];
-    
-    
     [self.collectionView reloadData];
 }
 - (void) addPageControl{
@@ -80,7 +78,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     SXF_HF_RecommentCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_RecommentCollectionCell class]) forIndexPath:indexPath];
     
-    
+    [cell setDataForCell:self.dataSource[indexPath.row]];
     return cell;
 }
 

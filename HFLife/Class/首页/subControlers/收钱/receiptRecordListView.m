@@ -57,6 +57,7 @@
 
 - (void)setReciveModelArr:(NSArray<reciveModel *> *)reciveModelArr{
     _reciveModelArr = reciveModelArr;
+    
     [self.tableView reloadData];
 }
 
@@ -93,7 +94,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *header = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 51)];
+    UIView *header = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,ScreenScale(54))];
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, 200, header.frame.size.height)];
     title.text = @"2019年3月21";
     reciveModel *model = self.reciveModelArr[section];
@@ -103,7 +104,31 @@
         header.hidden = NO;
         title.text = model.log_date;
     }
-    [header addSubview:title];
+//    [header addSubview:title];
+    
+    if (section == 0) {
+        title.text = @"本月";
+    }else{
+        title.text = @"2018年8月";
+    }
+    
+    
+    UIButton *btn = [[UIButton alloc] init];
+    btn.backgroundColor = [UIColor whiteColor];
+    btn.layer.cornerRadius = ScreenScale(12);
+    [btn setTitle:title.text forState:UIControlStateNormal];
+    btn.titleLabel.font = FONT(14);
+    CGFloat btnW = [title.text isEqualToString:@"本月"] ? ScreenScale(60) : ScreenScale(100);
+    btn.frame = CGRectMake(ScreenScale(12), (header.size.height - ScreenScale(24)) * 0.5, btnW, ScreenScale(24));
+    [btn setImage:MY_IMAHE(@"三角下拉") forState:UIControlStateNormal];
+    [btn setImagePosition:ImagePositionTypeRight WithMargin:10];
+    
+    [btn setTitleColor:color0C0B0B forState:UIControlStateNormal];
+    [header addSubview:btn];
+    
+    
+    
+    
     header.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0];
     return header;
 }
@@ -126,7 +151,7 @@
     if ([model.log_count integerValue] == 0) {
         return 0.01;
     }
-    return 51;
+    return ScreenScale(54);
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
@@ -141,7 +166,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.estimatedRowHeight = 100;
-        _tableView.separatorColor = HEX_COLOR(0xE1E1E1);
+        _tableView.separatorColor = colorF5F5F5;
         _tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
         [_tableView registerClass:[receiptRecordCell class] forCellReuseIdentifier:NSStringFromClass([receiptRecordCell class])];
         _tableView.rowHeight = UITableViewAutomaticDimension;

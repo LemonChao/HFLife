@@ -366,7 +366,7 @@
     
     
     
-    NSLog(@"%lf--%lf---%lf", _scrollY, CGRectGetMaxX(self.bottomBarFrame), self.bottomBarFrame.origin.y);
+//    NSLog(@"%lf--%lf---%lf", _scrollY, CGRectGetMaxX(self.bottomBarFrame), self.bottomBarFrame.origin.y);
     
     self.bottomBarBgView.alpha = self.bottomBarAlpha;
     

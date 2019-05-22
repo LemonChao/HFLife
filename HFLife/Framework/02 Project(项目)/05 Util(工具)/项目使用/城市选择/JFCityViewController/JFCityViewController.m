@@ -129,7 +129,7 @@ JFSearchViewDelegate>
     if ([[cityDic valueForKey:@"cityName"] isEqualToString:@"全城"]) {
         __weak typeof(self) weakSelf = self;
         [_manager currentCity:[kCurrentCityInfoDefaults objectForKey:@"cityNumber"] currentCityName:^(NSString *name) {
-            [kCurrentCityInfoDefaults setObject:name forKey:selectedCity];
+            [kCurrentCityInfoDefaults setObject:name forKey:SelectedCity];
             __strong typeof(self) strongSelf = weakSelf;
             if (strongSelf) {
                 strongSelf.headerView.cityName = name;
@@ -142,7 +142,7 @@ JFSearchViewDelegate>
     }else {
         cityName = [cityDic valueForKey:@"cityName"];
         _headerView.cityName = cityName;
-        [kCurrentCityInfoDefaults setObject:[cityDic valueForKey:@"cityName"] forKey:selectedCity];
+        [kCurrentCityInfoDefaults setObject:[cityDic valueForKey:@"cityName"] forKey:SelectedCity];
         if (self.delegate && [self.delegate respondsToSelector:@selector(cityName:)]) {
             [self.delegate cityName:cityName];
         }
@@ -171,7 +171,7 @@ JFSearchViewDelegate>
         _headerView.delegate = self;
         _headerView.backgroundColor = [UIColor whiteColor];
         _headerView.buttonTitle = @"选择区县";
-        _headerView.cityName = [kCurrentCityInfoDefaults objectForKey:selectedCity] ? [kCurrentCityInfoDefaults objectForKey:selectedCity] : [kCurrentCityInfoDefaults objectForKey:@"locationCity"];
+        _headerView.cityName = [kCurrentCityInfoDefaults objectForKey:SelectedCity] ? [kCurrentCityInfoDefaults objectForKey:SelectedCity] : [kCurrentCityInfoDefaults objectForKey:LocationCity];
     }
     return _headerView;
 }
@@ -408,9 +408,9 @@ JFSearchViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     _headerView.cityName = cell.textLabel.text;
-    [kCurrentCityInfoDefaults setObject:cell.textLabel.text forKey:selectedCity];
+    [kCurrentCityInfoDefaults setObject:cell.textLabel.text forKey:SelectedCity];
     [_manager cityNumberWithCity:cell.textLabel.text cityNumber:^(NSString *cityNumber) {
-        [kCurrentCityInfoDefaults setObject:cityNumber forKey:@"cityNumber"];
+        [kCurrentCityInfoDefaults setObject:cityNumber forKey:SelectedCityID];
     }];
     if (self.delegate && [self.delegate respondsToSelector:@selector(cityName:)]) {
         [self.delegate cityName:cell.textLabel.text];
@@ -424,15 +424,15 @@ JFSearchViewDelegate>
 - (void)cityNameWithSelected:(BOOL)selected {
     //获取当前城市的所有辖区
     if (selected) {
-        [_manager areaData:[kCurrentCityInfoDefaults objectForKey:@"cityNumber"] areaData:^(NSMutableArray *areaData) {
+        [_manager areaData:[kCurrentCityInfoDefaults objectForKey:SelectedCityID] areaData:^(NSMutableArray *areaData) {
             [self.areaMutableArray addObjectsFromArray:areaData];
             if (0 == (self.areaMutableArray.count % 3)) {
-                _cellHeight = self.areaMutableArray.count / 3 * 50;
+                self->_cellHeight = self.areaMutableArray.count / 3 * 50;
             }else {
-                _cellHeight = (self.areaMutableArray.count / 3 + 1) * 50;
+                self->_cellHeight = (self.areaMutableArray.count / 3 + 1) * 50;
             }
-            if (_cellHeight > 300) {
-                _cellHeight = 300;
+            if (self->_cellHeight > 300) {
+                self->_cellHeight = 300;
             }
         }];
         
@@ -476,8 +476,8 @@ JFSearchViewDelegate>
 #pragma mark - JFSearchViewDelegate
 
 - (void)searchResults:(NSDictionary *)dic {
-    [kCurrentCityInfoDefaults setObject:[dic valueForKey:@"city"] forKey:selectedCity];
-    [kCurrentCityInfoDefaults setObject:[dic valueForKey:@"city_number"] forKey:@"cityNumber"];
+    [kCurrentCityInfoDefaults setObject:[dic valueForKey:@"city"] forKey:SelectedCity];
+    [kCurrentCityInfoDefaults setObject:[dic valueForKey:@"city_number"] forKey:SelectedCityID];
     NSString *nameStr = [dic valueForKey:@"city"];
     if (self.delegate && [self.delegate respondsToSelector:@selector(cityName:)]) {
         [self.delegate cityName:nameStr];
@@ -499,9 +499,9 @@ JFSearchViewDelegate>
 //定位成功
 - (void)currentLocation:(NSDictionary *)locationDictionary {
     NSString *city = [locationDictionary valueForKey:@"City"];
-    [kCurrentCityInfoDefaults setObject:city forKey:@"locationCity"];
+    [kCurrentCityInfoDefaults setObject:city forKey:LocationCity];
     [_manager cityNumberWithCity:city cityNumber:^(NSString *cityNumber) {
-        [kCurrentCityInfoDefaults setObject:cityNumber forKey:@"cityNumber"];
+        [kCurrentCityInfoDefaults setObject:cityNumber forKey:LocationCityID];
     }];
     _headerView.cityName = city;
     [self historyCity:city];

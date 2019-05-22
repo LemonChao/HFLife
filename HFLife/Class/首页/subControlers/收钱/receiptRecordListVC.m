@@ -38,6 +38,24 @@
     
 //    [self.listView.tableView beginRefreshing];
     
+    
+    //假数据
+    NSMutableArray *arr = [NSMutableArray array];
+    for (int i = 0; i<10; i++) {
+        reciveModel *model = [[reciveModel alloc] init];
+        model.log_date = @"2019-05";
+        model.log_count = @(2);
+        model.log_date_amount = @(2);
+        subReciveModel *subModel = [[subReciveModel alloc] init];
+        subModel.real_num = @(100);
+        subModel.pay_username = @"sxf";
+        subModel.createdate = @"2019-06";
+        subModel.createtime = @"2019-09";
+        model.logModelArr = @[subModel, subModel];
+        [arr addObject:model];
+    }
+    self.listView.reciveModelArr = arr;
+    
 }
 
 

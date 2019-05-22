@@ -29,12 +29,36 @@
     [super viewDidLoad];
     self.customNavBar.title = @"";
     [self setUpUI];
-    
-    
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:shopUrl withParameters:@{@"key1" : @"value1"} withResultBlock:^(BOOL result, id value) {
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    userInfoModel *user = [userInfoModel sharedUser];
+    if(user.id && user.id > 0) {
+        [self.mainPageView reSetHeadData];
+    }else {
+        //未获取
         
-    }];
-    
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberBaseInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+            if (result) {
+                if (value && [value isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSDictionary *dataDic = value[@"data"];
+                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                        [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
+                        [self.mainPageView reSetHeadData];
+                    }else {
+                        [WXZTipView showCenterWithText:@"个人信息获取错误"];
+                    }
+                }
+            }else {
+                if (value && [value isKindOfClass:[NSDictionary class]]) {
+                    [WXZTipView showCenterWithText:value[@"msg"]];
+                }else {
+                    [WXZTipView showCenterWithText:@"网络错误"];
+                }
+            }
+        }];
+    }
 }
 - (void)setUpUI{
     self.mainPageView = [[SXF_HF_MainPageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight - self.tabBarHeight)];
