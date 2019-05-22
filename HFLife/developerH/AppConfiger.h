@@ -59,6 +59,17 @@ static NSString *const USER_TOKEN           = @"userToken";
 //存储登录状态
 static NSString *const LOGIN_STATES         = @"loginStates";
 
-#define LogIn_Success                  ([[[NSUserDefaults standardUserDefaults] objectForKey:LOGIN_STATES] integerValue] == 1)
+
+
+#pragma mark - notificationKey
+// 购物车改变通知
+#define cartValueChangedNotification     @"CartValueChangedNotification"
+
+
+#pragma mark - NSUserDefaultsKey
+#define LogIn_Success                     ([[[NSUserDefaults standardUserDefaults] objectForKey:LOGIN_STATES] integerValue] == 1)
 #define GetUserToken                      [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]
+
+
+
 #endif /* AppConfiger_h */

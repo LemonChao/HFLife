@@ -19,7 +19,9 @@
 #import "MyCollectionVC.h"
 #import "myFriendListVC.h"
 #import "AboutVC.h"
-@interface MainPageVC ()
+@interface MainPageVC () {
+    BOOL isFirstLoad;
+}
 @property (nonatomic, strong)SXF_HF_MainPageView *mainPageView;
 @end
 
@@ -27,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    isFirstLoad = YES;
     self.customNavBar.title = @"";
     [self setUpUI];
 }
@@ -35,29 +38,11 @@
     userInfoModel *user = [userInfoModel sharedUser];
     if(user.id && user.id > 0) {
         [self.mainPageView reSetHeadData];
-    }else {
-        //未获取
-        
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberBaseInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
-            if (result) {
-                if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    
-                    NSDictionary *dataDic = value[@"data"];
-                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                        [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
-                        [self.mainPageView reSetHeadData];
-                    }else {
-                        [WXZTipView showCenterWithText:@"个人信息获取错误"];
-                    }
-                }
-            }else {
-                if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    [WXZTipView showCenterWithText:value[@"msg"]];
-                }else {
-                    [WXZTipView showCenterWithText:@"网络错误"];
-                }
-            }
-        }];
+    }
+    if (isFirstLoad) {
+        isFirstLoad = NO;
+        //我的信息
+        [self loadData];
     }
 }
 - (void)setUpUI{
@@ -124,6 +109,30 @@
     [self.customNavBar wr_setLeftButtonWithTitle:@"我的" titleColor:HEX_COLOR(0x000000)];
     
     
+}
+#pragma mark - 加载数据
+- (void)loadData {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                
+                NSDictionary *dataDic = value[@"data"];
+                if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                    MemberInfoModel *memberModel = [[MemberInfoModel alloc]init];
+                    [memberModel setValuesForKeysWithDictionary:dataDic];
+                    self.mainPageView.memberInfoModel = memberModel;
+                }else {
+                    [WXZTipView showCenterWithText:@"个人信息获取错误"];
+                }
+            }
+        }else {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
+        }
+    }];
 }
 
 

@@ -16,6 +16,7 @@
 
 @property(nonatomic, strong) UIButton *jieSuanButton;
 
+@property(nonatomic, strong) UILabel *priceLabel;
 
 @end
 
@@ -27,7 +28,17 @@
     self = [super init];
     if (self) {
         [self commonInit];
+     
+        @weakify(self);
+        [RACObserve(self, viewModel.selectCount) subscribeNext:^(NSNumber *_Nullable value) {
+            @strongify(self);
+            [self.jieSuanButton setTitle:[NSString stringWithFormat:@"结算(%@)",value] forState:UIControlStateNormal];
+        }];
         
+        RAC(self.priceLabel,text) = [RACObserve(self, viewModel.totalPrice) map:^id _Nullable(NSNumber *_Nullable value) {
+            return [NSString stringWithFormat:@"￥%.2f", value.floatValue];
+        }];
+        RAC(self.selectAllBtn,selected) = [RACObserve(self, viewModel.selectAll) skip:1];
     }
     return self;
 }
@@ -42,6 +53,7 @@
     [self addSubview:self.countLabel];
     [self addSubview:yunfeiLab];
     [self addSubview:self.jieSuanButton];
+    [self addSubview:self.priceLabel];
     
     [self.selectAllBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).inset(ScreenScale(12));
@@ -56,31 +68,49 @@
         make.centerY.equalTo(hejiLab);
         make.left.equalTo(hejiLab.mas_right).offset(ScreenScale(6));
     }];
+    
+    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.countLabel);
+        make.left.equalTo(self.countLabel);
+    }];
+    
     [yunfeiLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.selectAllBtn.mas_right).offset(ScreenScale(12));
         make.top.equalTo(self.selectAllBtn.mas_centerY).offset(ScreenScale(2));
     }];
     [self.jieSuanButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self).inset(ScreenScale(8));
         make.right.equalTo(self).inset(ScreenScale(15));
-        make.width.mas_equalTo(ScreenScale(90));
+        make.size.mas_equalTo(CGSizeMake(ScreenScale(90), ScreenScale(33)));
+        make.centerY.equalTo(self);
     }];
     
     [self layoutIfNeeded];
     [_selectAllBtn setImagePosition:ImagePositionTypeLeft spacing:ScreenScale(10)];
-//    [self.jieSuanButton setImagePosition:ImagePositionRight spacing:WidthRatio(10)];
     
 }
+
 
 
 - (void)selectAllButtonAction:(UIButton *)button {
-    button.selected = !button.selected;
+    //购物车为空直接返回
+    if (!self.viewModel.cartArray.count) return;
+    
+    
+    BOOL selected = ![self.viewModel.selectAll boolValue];
+    self.viewModel.selectAll = [NSNumber numberWithBool:selected];
+    [self.viewModel.cartArray enumerateObjectsUsingBlock:^(__kindof ZCShopCartModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+        model.selectAll = selected;
+        for (ZCShopCartGoodsModel *goods in model.goods) {
+            goods.selected = selected;
+        }
+    }];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:cartValueChangedNotification object:@"selectAction"];
+
 }
 
 - (void)jieSuanButtonAction:(UIButton *)button {
-    
 }
-
 
 #pragma mark - setter && getter
 - (UILabel *)countLabel {
@@ -111,6 +141,10 @@
     return _jieSuanButton;
 }
 
-
-
+- (UILabel *)priceLabel {
+    if (!_priceLabel) {
+        _priceLabel = [UITool labelWithTextColor:GeneralRedColor font:SystemFont(14)];
+    }
+    return _priceLabel;
+}
 @end

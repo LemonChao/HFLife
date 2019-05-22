@@ -61,8 +61,34 @@
 
 - (void)selectButtonAction:(UIButton *)button {
     button.selected = !button.selected;
+    
+    self.model.selectAll = !self.model.isSelectAll;
+    for (ZCShopCartGoodsModel *item in self.model.goods) {
+        item.selected = self.model.selectAll;
+    }
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:cartValueChangedNotification object:@"selectAction"];
 }
 
+
+- (void)setModel:(ZCShopCartModel *)model {
+    _model = model;
+    
+    self.selectButton.selected = model.isSelectAll;
+    [self.shopNameButton setTitle:model.store_name forState:UIControlStateNormal];
+    [self.shopNameButton setTitle:model.store_name forState:UIControlStateHighlighted];
+    
+    CGSize size = [self.shopNameButton intrinsicContentSize];
+    [self.shopNameButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(size.width+ScreenScale(6), size.height));
+    }];
+    
+    [self layoutIfNeeded];
+    
+    [self.shopNameButton setImagePosition:ImagePositionTypeRight spacing:ScreenScale(6)];
+    
+}
 
 
 - (UIImageView *)shopLogoView {
@@ -74,7 +100,7 @@
 
 - (UIButton *)shopNameButton {
     if (!_shopNameButton) {
-        _shopNameButton = [UITool richButton:UIButtonTypeCustom title:@"董小姐的店" titleColor:ImportantColor font:MediumFont(14) bgColor:[UIColor clearColor] image:image(@"classify_arrow_right_gray")];
+        _shopNameButton = [UITool richButton:UIButtonTypeCustom title:nil titleColor:ImportantColor font:MediumFont(14) bgColor:[UIColor clearColor] image:image(@"classify_arrow_right_gray")];
     }
     return _shopNameButton;
 }

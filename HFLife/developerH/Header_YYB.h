@@ -55,11 +55,12 @@ static NSString *const kSendsms = @"api/sms/send";
 static NSString *const kCheckMobile = @"api/member/checkMobile";
 /** 检测邀请码 */
 static NSString *const kCheckInviteCode = @"api/member/checkInviteCode";
-/** 获取个人资料 */
+/** 获取个人基础资料 */
 static NSString *const kMemberBaseInfo = @"api/member/memberBaseInfo";
 /** 获取个人资料 修改基础资料接口 //修改基础资料会重新生成token 前端需要替换*/
 static NSString *const kSaveMemberBase = @"api/member/saveMemberBase";
-
+/** 获取个人详细资料 */
+static NSString *const kMemberInfo = @"api/member/memberInfo";
 
 /** 分享数据 */
 static NSString *const kGet_invite_info = @"w=user&t=get_invite_info";

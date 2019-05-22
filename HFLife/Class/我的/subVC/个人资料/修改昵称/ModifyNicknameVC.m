@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = HEX_COLOR(0xf4f7f7);
+    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
     [self initWithUI];
     [self setupNavBar];
@@ -91,12 +91,24 @@
     userNameTextField.placeholder = placeStr;
     userNameTextField.text = nameStr;
     
+    UIView *line1 = [UIView new];
+    line1.setBackgroundColor(HEX_COLOR(0xf4f7f7)).setCornerRadius(0).setBoardWidth(0);
+    
+    [self.view addSubview:line1];
+    
     [self.view addSubview:userNameTextField];
     [userNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(2 + self.navBarHeight);
         make.right.mas_equalTo(self.view).mas_offset(-0);
         make.left.mas_equalTo(self.view).mas_offset(0);
         make.height.mas_equalTo(HeightRatio(90));
+    }];
+    
+    [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self->userNameTextField.mas_top);
+        make.right.mas_equalTo(self.view).mas_offset(-0);
+        make.left.mas_equalTo(self.view).mas_offset(0);
+        make.height.mas_equalTo(2);
     }];
     
     UIView *line = [UIView new];

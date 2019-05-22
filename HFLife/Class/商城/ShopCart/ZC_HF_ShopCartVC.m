@@ -11,18 +11,20 @@
 #import "ZCShopCartSctionHeader.h"
 #import "ZCShopCartTableHeaderFooter.h"
 #import "ZCShopCartBottomView.h"
+#import "ZCShopCartViewModel.h"
+
 
 @interface ZC_HF_ShopCartVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) ZCShopCartBottomView *bottomView;
+@property(nonatomic, strong) ZCShopCartViewModel *viewModel;
 @end
 
 @implementation ZC_HF_ShopCartVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.customNavBar.title = @"购物车";
     
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottomView];
@@ -35,14 +37,69 @@
         make.top.equalTo(self.tableView.mas_bottom);
         make.bottom.equalTo(self.view).inset(TabBarHeight);
         make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(49);
+        make.height.mas_equalTo(ScreenScale(49));
+    }];
+    
+    [self bindViewModel];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.viewModel.cartCmd execute:nil];
+    
+}
+
+- (void)setupNavBar {
+    [super setupNavBar];
+    
+    self.customNavBar.title = @"购物车";
+    @weakify(self);
+    [self.customNavBar setOnClickRightButton:^{
+        @strongify(self);
+        [self.viewModel.deleteCmd execute:nil];
     }];
 }
 
 
+
+
+- (void)bindViewModel {
+    
+    @weakify(self);
+    
+    [[RACObserve(self, viewModel.cartArray) skip:1] subscribeNext:^(NSArray <__kindof ZCShopCartModel *> * _Nullable cartArray) {
+        @strongify(self);
+        if (cartArray.count) {
+            ZCShopCartTableHeaderView *tableHeader = [[ZCShopCartTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(33))];
+            tableHeader.title = [NSString stringWithFormat:@"共%@件商品", self.viewModel.totalCount];
+            self.tableView.tableHeaderView = tableHeader;
+            
+            [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.bottom.equalTo(self.view).inset(TabBarHeight);
+            }];
+            
+        }else {
+            self.tableView.tableHeaderView = [[ZCShopCartEmptyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(250))];
+            [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.bottom.equalTo(self.view).inset(TabBarHeight-49);
+            }];
+        }
+        [self.customNavBar wr_setRightButtonWithTitle:cartArray.count?@"删除 ":@"" titleColor:AssistColor];
+        [self.tableView reloadData];
+    }];
+    
+}
+
+
+
+
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     ZCShopCartSctionHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([ZCShopCartSctionHeader class])];
-    return header;
+    ZCShopCartModel *shopModel = self.viewModel.cartArray[section];
+    header.model = shopModel;
+  return header;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -52,16 +109,20 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return self.viewModel.cartArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    ZCShopCartModel *shopModel = self.viewModel.cartArray[section];
+    
+    return shopModel.goods.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ZCShopCartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopCartTableViewCell class])];
-    
+    ZCShopCartModel *shopModel = self.viewModel.cartArray[indexPath.section];
+
+    cell.model = shopModel.goods[indexPath.row];
     return cell;
 }
 
@@ -82,9 +143,9 @@
 //            self.automaticallyAdjustsScrollViewInsets = NO;
 //        }
         
-//        _tableView.tableHeaderView = [[ZCShopCartTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(33))];
-        _tableView.tableHeaderView = [[ZCShopCartEmptyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(250))];
-        _tableView.tableFooterView = [[ZCShopCartTableFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
+        ZCShopCartTableFooterView *footer = [[ZCShopCartTableFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
+        footer.viewModel = self.viewModel;
+        _tableView.tableFooterView = footer;
         [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([UITableViewHeaderFooterView class])];
         [_tableView registerClass:[ZCShopCartSctionHeader class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([ZCShopCartSctionHeader class])];
         [_tableView registerClass:[ZCShopCartTableViewCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopCartTableViewCell class])];
@@ -95,8 +156,16 @@
 - (ZCShopCartBottomView *)bottomView {
     if (!_bottomView) {
         _bottomView = [[ZCShopCartBottomView alloc] init];
+        _bottomView.viewModel = self.viewModel;
     }
     return _bottomView;
+}
+
+- (ZCShopCartViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[ZCShopCartViewModel alloc] init];
+    }
+    return _viewModel;
 }
 
 @end

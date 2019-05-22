@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZCShopCartViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// tableHeader
 @interface ZCShopCartTableHeaderView : UIView
+
+@property(nonatomic, copy) NSString *title;
 
 @end
 
@@ -24,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy) NSArray *dataArray;
 
-
+@property(nonatomic, strong) ZCShopCartViewModel *viewModel;
 @end
 
 
