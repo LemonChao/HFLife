@@ -68,7 +68,10 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    !self.selectedItem ? : self.selectedItem(indexPath.row);
+    id value;
+    homeListModel *model = self.dataSource[indexPath.row];
+    value = model.url;
+    !self.selectedItem ? : self.selectedItem(indexPath.row, value);
 }
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{

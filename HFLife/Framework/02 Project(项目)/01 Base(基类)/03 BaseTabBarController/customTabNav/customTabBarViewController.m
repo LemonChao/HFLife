@@ -9,7 +9,6 @@
 #import "BaseNavigationController.h"//自定义导航栏
 #import "HomePageVC.h"
 #import "NearPageVC.h"
-#import "ShopPageVC.h"
 #import "VRMarket.h"
 #import "MainPageVC.h"
 #import "ShopTabbarViewController.h"

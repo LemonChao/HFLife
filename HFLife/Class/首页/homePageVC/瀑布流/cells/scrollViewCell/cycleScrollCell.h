@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface cycleScrollCell : UICollectionViewCell
-@property (nonatomic ,strong) void(^selectItemBlock)(NSInteger index);
+@property (nonatomic ,strong) void(^selectItemBlock)(NSInteger index, id value);
 
 @property (nonatomic ,strong) NSArray *modelArr;
 @property (nonatomic, assign)BOOL pausePlay;//暂停、开启

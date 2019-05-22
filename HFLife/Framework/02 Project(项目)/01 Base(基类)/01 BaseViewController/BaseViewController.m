@@ -292,10 +292,15 @@ static BOOL IsUpdateRemind = YES;
 
 #pragma mark APP更新
 -(void)versionUpdateRequest{
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:appUpDateUrl withParameters:@{} withResultBlock:^(BOOL result, id value) {
+    NSDictionary *dict = @{
+                           @"appname" : APP_NAME,
+                           @"type" : @"2",
+                           @"ver_nod" : APP_VERSION,
+                           };
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:appUpDateUrl withParameters:dict withResultBlock:^(BOOL result, id value) {
         if (result) {
             if ([value isKindOfClass:[NSDictionary class]]) {
-                [self setUpVersion:value];
+                [self setUpVersion:value[@"data"]];
             }else{
                 if (self->updateAlert) {
                     [self->updateAlert removeFromSuperview];
@@ -304,6 +309,38 @@ static BOOL IsUpdateRemind = YES;
         }
     }];
 }
+
+
+
+//判断是否有版本更新
+- (BOOL)compareVersionsFormAppStore:(NSString*)AppStoreVersion WithAppVersion:(NSString*)AppVersion{
+    
+    BOOL littleSunResult = false;
+    
+    NSMutableArray* a = (NSMutableArray*) [AppStoreVersion componentsSeparatedByString: @"."];
+    NSMutableArray* b = (NSMutableArray*) [AppVersion componentsSeparatedByString: @"."];
+    
+    while (a.count < b.count) { [a addObject: @"0"]; }
+    while (b.count < a.count) { [b addObject: @"0"]; }
+    
+    for (int j = 0; j<a.count; j++) {
+        if ([[a objectAtIndex:j] integerValue] > [[b objectAtIndex:j] integerValue]) {
+            littleSunResult = true;
+            break;
+        }else if([[a objectAtIndex:j] integerValue] < [[b objectAtIndex:j] integerValue]){
+            littleSunResult = false;
+            break;
+        }else{
+            littleSunResult = false;
+        }
+    }
+    return littleSunResult;//true就是有新版本，false就是没有新版本
+    
+}
+
+
+
+
 //版本设置
 -(void)setUpVersion:(NSDictionary *)dataDict{
     if (dataDict != nil) {
@@ -320,10 +357,18 @@ static BOOL IsUpdateRemind = YES;
         BOOL hasNewVersion = [dataDict[@"is_update"] boolValue];
         [CommonTools setIsHasNewVersion:hasNewVersion];
         NSString *version = [NSString stringWithFormat:@"%@",dataDict[@"ver_nod"]];
+        
+        
+        
+        
         [CommonTools setVersionString:version];
         if (![NSString isNOTNull:[NSString stringWithFormat:@"%@",dataDict[@"url"]]]) {
             [CommonTools setUpdateVersionAddress:[NSString stringWithFormat:@"%@",dataDict[@"url"]]];
         }
+        //测试
+//        version = @"1.0.2";
+//        [CommonTools setUpdateVersionAddress:[NSString stringWithFormat:@"%@",@"http://www.baidu.com"]];
+        
         if (hasNewVersion) {
             if (updateAlert == nil) {
                 [self VersionBounced];
@@ -352,9 +397,8 @@ static BOOL IsUpdateRemind = YES;
     __weak __typeof(&*self)weakSelf = self;
     
 #warning 临时添加
-    [CommonTools setUpdateDescription:@"汉富新生活"];
-    
-    [CommonTools setVersionString:@"1.0.5"];
+//    [CommonTools setUpdateDescription:@"汉富新生活"];
+//    [CommonTools setVersionString:@"1.0.5"];
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
 //    CFShow((__bridge CFTypeRef)(infoDictionary));
@@ -384,7 +428,6 @@ static BOOL IsUpdateRemind = YES;
                 });
                 
             }else{
-                
                 if (IsUpdateRemind) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         // UI更新代码
@@ -409,7 +452,22 @@ static BOOL IsUpdateRemind = YES;
     
 }
 
-
+#pragma mark - 判断是不是首次登录或者版本更新
+-(BOOL )isFirstLauch{
+    //获取当前版本号
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *currentAppVersion = infoDic[@"CFBundleShortVersionString"];
+    //获取上次启动应用保存的appVersion
+    NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:HFAppVersion];
+    //版本升级或首次登录
+    if (version == nil || ![version isEqualToString:currentAppVersion]) {
+        [[NSUserDefaults standardUserDefaults] setObject:currentAppVersion forKey:HFAppVersion];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return YES;
+    }else{
+        return NO;
+    }
+}
 
 
 

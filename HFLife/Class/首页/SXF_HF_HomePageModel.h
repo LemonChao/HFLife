@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSString *addtime;
 @property (nonatomic, strong)NSString *addtime_text;
 @property (nonatomic, strong)NSString *iconimage;
+@property (nonatomic, strong)NSString *url;//轮播链接、活动链接，item链接
 @end
 
 

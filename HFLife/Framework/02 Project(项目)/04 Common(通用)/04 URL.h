@@ -18,7 +18,7 @@ static NSString *const URL_PROTOCOL = @"https://";
 //http://xm_hanfu2.com/api/mobile/index.php?w=index&t=index
 //地址(host) （不能为空）http://hzf-takeout    备用@"hzf2-mall.zhongchangjy.com/
 #if DEBUG
-static NSString *const URL_HOST = @"ceshi-ucenter.hfgld.net/";//@"ceshi-shop.hfgld.net/api/mobile/index.php?";//;
+static NSString *const URL_HOST = @"ceshi-shop.hfgld.net/api/mobile/index.php?";//ceshi-ucenter.hfgld.net/;
 #else
 static NSString *const URL_HOST = @"<#www.xxx.xxx#>";
 #endif

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface myCenterCollectionView : UIView
-@property (nonatomic ,strong) void(^selectedItem)(NSInteger index);
+@property (nonatomic ,strong) void(^selectedItem)(NSInteger index, id value);
 @property (nonatomic, strong)NSArray *dataSourceArr;
 @end
 

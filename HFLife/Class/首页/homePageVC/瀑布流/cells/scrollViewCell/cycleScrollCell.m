@@ -93,7 +93,8 @@
 
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    !self.selectItemBlock ? : self.selectItemBlock(index);
+    homeListModel *model = self.modelArr[index];
+    !self.selectItemBlock ? : self.selectItemBlock(index, model.url);
 }
 
 /** 图片滚动回调 */

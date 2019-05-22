@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_ItemsViewCell : UICollectionViewCell
-@property (nonatomic ,strong) void(^selectItemBlock)(NSInteger index);
+@property (nonatomic ,strong) void(^selectItemBlock)(NSInteger index , id value);
 @property (nonatomic, strong)NSArray *itemDataSourceArr;
 @end
 

@@ -42,6 +42,8 @@
     
 //    [self VersionBounced];
     
+    [self versionUpdateRequest];
+    
 }
 //网络数据
 - (void)loadServerData{
@@ -60,8 +62,8 @@
         NSLog(@"tag = %ld", tag);
         [weakSelf.homePageVM clickHeaderBtn:tag];
     };
-    self.collectionView.selectedItem = ^(NSIndexPath * _Nonnull indexPath) {
-        [weakSelf.homePageVM clickCellItem:indexPath];
+    self.collectionView.selectedItem = ^(NSIndexPath * _Nonnull indexPath, id value) {
+        [weakSelf.homePageVM clickCellItem:indexPath value:value];
     };
     self.collectionView.refreshDataCallBack = ^(NSInteger page) {
         [weakSelf.homePageVM getNewsListData:page];
