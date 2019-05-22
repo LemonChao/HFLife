@@ -160,8 +160,14 @@
 }
 
 //点击cell
-- (void)clickCellItem:(NSIndexPath *)indexPath{
-    NSLog(@"%ld分区   %ld个", (long)indexPath.section, (long)indexPath.row);
+- (void)clickCellItem:(NSIndexPath *)indexPath value:(id)value{
+    NSLog(@"%ld分区   %ld个    %@", (long)indexPath.section, (long)indexPath.row, value);
+    //加载web页面
+    WKWebViewController *webV = [WKWebViewController new];
+    if (value) {
+        webV.urlString = value;
+    }
+    [self.vc.navigationController pushViewController:webV animated:YES];
 }
 
 /**

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_RecommentView : UIView
-@property (nonatomic, strong) void(^selectedItem)(NSInteger indexPath);
+@property (nonatomic, strong) void(^selectedItem)(NSInteger indexPath, id value);
 
 @property (nonatomic, strong) NSArray *dataSource;
 @end

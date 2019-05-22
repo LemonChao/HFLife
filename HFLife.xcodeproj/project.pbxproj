@@ -5066,11 +5066,11 @@
 		04B9D4FE22803CF10084FA23 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				04B9D50A22803CF10084FA23 /* WKWebViewController.h */,
 				04B9D4FF22803CF10084FA23 /* WKWebViewController.m */,
+				04B9D50B22803CF10084FA23 /* WebViewController.h */,
 				04B9D50022803CF10084FA23 /* WebViewController.m */,
 				04B9D50122803CF10084FA23 /* STMURLCache */,
-				04B9D50A22803CF10084FA23 /* WKWebViewController.h */,
-				04B9D50B22803CF10084FA23 /* WebViewController.h */,
 			);
 			path = WebView;
 			sourceTree = "<group>";

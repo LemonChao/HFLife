@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_HomePageView : UIView
-@property (nonatomic, strong)void (^selectedItem)(NSIndexPath* indexPath);
+@property (nonatomic, strong)void (^selectedItem)(NSIndexPath* indexPath, id value);
 @property (nonatomic, strong)void(^selectedHeaderBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong)void(^refreshDataCallBack)(NSInteger page);

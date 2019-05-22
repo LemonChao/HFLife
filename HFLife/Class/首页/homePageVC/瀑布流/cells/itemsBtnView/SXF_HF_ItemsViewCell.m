@@ -41,8 +41,8 @@
     self.collectionV = [[myCenterCollectionView alloc] init];
     [self.bgView addSubview:self.collectionV];
     WEAK(weakSelf);
-    self.collectionV.selectedItem = ^(NSInteger index) {
-        !weakSelf.selectItemBlock ? : weakSelf.selectItemBlock(index);
+    self.collectionV.selectedItem = ^(NSInteger index, id value) {
+        !weakSelf.selectItemBlock ? : weakSelf.selectItemBlock(index, value);
     };
 }
 
