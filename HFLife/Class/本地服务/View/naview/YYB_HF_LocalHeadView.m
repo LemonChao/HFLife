@@ -101,6 +101,7 @@
         make.centerY.mas_equalTo(self.headImageV);
         make.left.mas_equalTo(searchIcon.mas_right).mas_offset(ScreenScale(10));
         make.height.mas_equalTo(ScreenScale(13));
+        make.right.mas_equalTo(searchBgView);
     }];
     
     self.localLabel.userInteractionEnabled = YES;

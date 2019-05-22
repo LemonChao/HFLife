@@ -199,19 +199,31 @@
             if(clickIndex == 1){
 //                [[NSNotificationCenter defaultCenter] postNotificationName:EXIT_LOGIN object:nil userInfo:nil];
                 
-                [LoginVC login];
+                [[WBPCreate sharedInstance]showWBProgress];
                 [networkingManagerTool requestToServerWithType:POST withSubUrl:kLogout withParameters:nil withResultBlock:^(BOOL result, id value) {
+                    [[WBPCreate sharedInstance]hideAnimated];
                     if (result) {
-                        
+                        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
+                        [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
+                        [userInfoModel attempDealloc];
+                        [LoginVC login];
+
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                        [ShareSDK cancelAuthorize:(SSDKPlatformTypeQQ) result:^(NSError *error) {
+                            
+                        }];
+                        [ShareSDK cancelAuthorize:(SSDKPlatformTypeWechat) result:^(NSError *error) {
+                            
+                        }];
+                    }else {
+                        if (value && [value isKindOfClass:[NSDictionary class]]) {
+                            [WXZTipView showCenterWithText:value[@"msg"]];
+                        }else {
+                            [WXZTipView showCenterWithText:@"网络错误"];
+                        }
                     }
                 }];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                [ShareSDK cancelAuthorize:(SSDKPlatformTypeQQ) result:^(NSError *error) {
-                    
-                }];
-                [ShareSDK cancelAuthorize:(SSDKPlatformTypeWechat) result:^(NSError *error) {
-                    
-                }];
+               
             }
         }];
         alert.animationStyle=LXASAnimationTopShake;
