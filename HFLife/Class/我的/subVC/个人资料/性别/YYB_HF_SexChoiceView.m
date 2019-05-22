@@ -155,7 +155,7 @@
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
             }else {
-                [WXZTipView showCenterWithText:@"网络x错误"];
+                [WXZTipView showCenterWithText:@"网络错误"];
             }
         }
     }];

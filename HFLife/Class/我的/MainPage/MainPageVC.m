@@ -126,6 +126,7 @@
                 }
             }
         }else {
+            self->isFirstLoad = YES;
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
             }else {
