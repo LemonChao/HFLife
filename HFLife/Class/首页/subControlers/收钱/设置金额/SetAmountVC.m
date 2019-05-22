@@ -32,12 +32,6 @@
 -(void)setupNavBar{
     WS(weakSelf);
     [super setupNavBar];
-    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
-    [self.customNavBar setOnClickLeftButton:^{
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    }];
-        //    [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:YES];
     self.customNavBar.title = @"设置金额";
     self.customNavBar.backgroundColor = [UIColor whiteColor];

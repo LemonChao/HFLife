@@ -98,7 +98,7 @@
 }
 
 - (void) getNewsListData:(NSInteger)page{
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNewsList withParameters:@{} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNewsList withParameters:@{@"page" :@(page)} withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         if (result){
             [self.collectionView endRefreshData];
@@ -112,9 +112,6 @@
                 }
                 self.collectionView.newsListModelArr = [self.newsListArrM copy];
             }
-            
-            
-            
         }
     }];
 }
@@ -129,7 +126,7 @@
  点击分区头
  */
 - (void)clickHeaderBtn:(NSInteger) index{
-    if (![NSString isNOTNull:[HeaderToken getAccessToken]]) {
+    if (!LogIn_Success) {
         [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
             if (btnBype) {
                 //登录页
@@ -257,6 +254,8 @@
         [alertController addAction:cancelAction];
         [alertController addAction:okAction];
         [self.vc presentViewController:alertController animated:YES completion:nil];
+    }else{
+        [self uploadBackLocation:city];
     }
 }
 

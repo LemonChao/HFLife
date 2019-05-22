@@ -39,4 +39,7 @@
 #define colorCA1400        HEX_COLOR(0xCA1400)
 //字体灰
 #define colorAAAAAA        HEX_COLOR(0xAAAAAA)
+
+
+#define colorF5F5F5        HEX_COLOR(0xF5F5F5)
 #endif /* AppColorHeader_h */

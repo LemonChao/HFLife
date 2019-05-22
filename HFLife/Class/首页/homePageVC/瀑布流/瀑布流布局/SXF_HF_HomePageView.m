@@ -140,6 +140,15 @@ static NSString * const footerReuseIdentifier = @"Footer";
     
     //解析得到的数据
     
+    
+    NSMutableArray *arrTest = [NSMutableArray array];
+    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
+    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
+    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
+    self.navModelsArr = arrTest;
+    
+    
+    
     [self.collectionView reloadData];
     
 }
@@ -162,7 +171,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
     NSMutableArray *hotArrM = [NSMutableArray array];
     NSMutableArray *newsArrM = [NSMutableArray array];
     
-    for (homeListModel *model in self.newsListModelArr  ) {
+    for (homeListModel *model in self.newsListModelArr) {
         if ([model.tuiswitch integerValue] == 1) {
             //hot
             [hotArrM addObject:model];
@@ -170,9 +179,25 @@ static NSString * const footerReuseIdentifier = @"Footer";
             [newsArrM addObject:model];
         }
     }
+    //如果没有hot 筛选出 2个位hot 如果 不足两个  那么全部为hot
+    if (hotArrM.count == 0) {
+        
+        if (newsArrM.count > 2) {
+            hotArrM = [NSMutableArray arrayWithObjects:newsArrM[0],newsArrM[1], nil];
+            
+            //移除前两个
+            [newsArrM removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)]];
+        }else{
+            hotArrM = [newsArrM mutableCopy];
+            
+            //移除所有
+            [newsArrM removeAllObjects];
+        }
+    }
     
     self.hotNewsModelsArr = hotArrM;
     self.noHotNewsModelArr = newsArrM;
+    
 }
 
 
@@ -204,7 +229,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
     }else if (section == 2){
         return self.hotNewsModelsArr.count;//热点新闻
     }else{
-        return self.newsListModelArr.count;
+        return self.noHotNewsModelArr.count;//非hot新闻
     }
 //    return [self.dataSource objectAtIndex:section].count;
 }
@@ -289,7 +314,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
     //item的高
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return ScreenScale(170  / 2 + ScreenScale(10));
+            return ScreenScale(85 *[self getItemCount] + (([self getItemCount] == 1) ? ScreenScale(15) : 0));
         }else if(indexPath.row == 1){
             return ScreenScale(80);
         }
@@ -427,12 +452,12 @@ static NSString * const footerReuseIdentifier = @"Footer";
 //判断有几行
 - (NSInteger)getItemCount{
     NSInteger rowNum = 4;//每行4 个
-    if (self.bannerModelsArr.count <= rowNum) {
+    if (self.navModelsArr.count <= rowNum) {
         return 1;
-    }else if (self.bannerModelsArr.count % rowNum == 0) {
-        return self.bannerModelsArr.count / rowNum;
+    }else if (self.navModelsArr.count % rowNum == 0) {
+        return self.navModelsArr.count / rowNum;
     }else{
-        return self.bannerModelsArr.count / rowNum + 1;
+        return self.navModelsArr.count / rowNum + 1;
     }
     
 }
