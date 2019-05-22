@@ -152,8 +152,9 @@
     
     
     
-    self.headerImageV.image = MY_IMAHE(@"head_icon");
-    self.userNameLb.text = @"sxf";
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
+    NSString *nameStr = [userInfoModel sharedUser].nickname;
+    self.userNameLb.text = nameStr ? nameStr : @"sxf";
     self.userLeveLb.text = @"LV：VIP1";
     self.myJoinTitleLb.text = @"我的邀请码：X34FV";
     
@@ -164,6 +165,13 @@
     self.bottomLb.text = @"管城区代理";
     
 }
+
+- (void)reSetData {
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
+    NSString *nameStr = [userInfoModel sharedUser].nickname;
+    self.userNameLb.text = nameStr ? nameStr : @"sxf";
+}
+
 - (void)clickHeaderImageV{
    
     [[self getCurrentViewController].navigationController pushViewController:[[NSClassFromString(@"PersonalDataVC") alloc]init] animated:YES];

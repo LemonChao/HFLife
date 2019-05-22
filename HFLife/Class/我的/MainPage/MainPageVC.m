@@ -45,7 +45,7 @@
                     NSDictionary *dataDic = value[@"data"];
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
-                        
+                        [self.mainPageView reSetHeadData];
                     }else {
                         [WXZTipView showCenterWithText:@"个人信息获取错误"];
                     }

@@ -53,6 +53,10 @@
     [super layoutSubviews];
 }
 
+- (void)reSetHeadData {
+    [self.headerView reSetData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return _titleArr.count;
 }
