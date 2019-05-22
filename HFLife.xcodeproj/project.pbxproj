@@ -858,6 +858,7 @@
 		6CCC1CE4228EA49900020A45 /* ZCShopCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE3228EA49900020A45 /* ZCShopCartTableViewCell.m */; };
 		6CCC1CE7228EBCF500020A45 /* ZCShopCartSctionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */; };
 		6CCC1CEA228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE9228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m */; };
+		6CE808BB2293A0B4000CD2F9 /* ZCShopCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE808BA2293A0B4000CD2F9 /* ZCShopCartModel.m */; };
 		6CFB99AE228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */; };
 		C001CFEA1B0E8AD33641E112 /* libPods-HFLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7358FE6F8201198FC2AE374D /* libPods-HFLife.a */; };
 /* End PBXBuildFile section */
@@ -2450,6 +2451,8 @@
 		6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartSctionHeader.m; sourceTree = "<group>"; };
 		6CCC1CE8228ECD5500020A45 /* ZCShopCartTableHeaderFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartTableHeaderFooter.h; sourceTree = "<group>"; };
 		6CCC1CE9228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartTableHeaderFooter.m; sourceTree = "<group>"; };
+		6CE808B92293A0B4000CD2F9 /* ZCShopCartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartModel.h; sourceTree = "<group>"; };
+		6CE808BA2293A0B4000CD2F9 /* ZCShopCartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartModel.m; sourceTree = "<group>"; };
 		6CFB99AC228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_HomeRushPurchaseCell.h; sourceTree = "<group>"; };
 		6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_HomeRushPurchaseCell.m; sourceTree = "<group>"; };
 		7358FE6F8201198FC2AE374D /* libPods-HFLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HFLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -7171,6 +7174,8 @@
 			children = (
 				6C1F299C2292A8B500F1F909 /* ZCShopCartViewModel.h */,
 				6C1F299D2292A8B500F1F909 /* ZCShopCartViewModel.m */,
+				6CE808B92293A0B4000CD2F9 /* ZCShopCartModel.h */,
+				6CE808BA2293A0B4000CD2F9 /* ZCShopCartModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -8083,6 +8088,7 @@
 				658B7CAA21D749E100801CC8 /* UIImageView+LBBlurredImage.m in Sources */,
 				04F54B4422813B23009AAEF3 /* WRCustomNavigationBar.m in Sources */,
 				658C3B0B21F57FBC00880B6A /* TownModel.m in Sources */,
+				6CE808BB2293A0B4000CD2F9 /* ZCShopCartModel.m in Sources */,
 				048DAC6322857516006E6BA2 /* BillDetailsCell.m in Sources */,
 				048DAC5022857516006E6BA2 /* FQ_homeTableV.m in Sources */,
 				658B7C4F21D749E100801CC8 /* UIView+TBFrame.m in Sources */,

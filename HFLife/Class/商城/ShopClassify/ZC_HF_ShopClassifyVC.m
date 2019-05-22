@@ -60,6 +60,7 @@
     [[self.viewModel.classifyCmd execute:nil] subscribeNext:^(id  _Nullable x) {
         if ([x boolValue]) {
             [self.leftTableView reloadData];
+            [self selectedIndex:0];
         }
         
     } error:^(NSError * _Nullable error) {

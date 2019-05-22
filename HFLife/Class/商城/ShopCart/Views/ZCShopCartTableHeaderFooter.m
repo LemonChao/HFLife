@@ -33,6 +33,12 @@
     return self;
 }
 
+- (void)setTitle:(NSString *)title {
+    _title = title;
+    self.titleLable.text = title;
+}
+
+
 @end
 
 
@@ -103,6 +109,8 @@
 
 @property(nonatomic, strong) UICollectionViewFlowLayout *layout;
 
+@property(nonatomic, strong) UIButton *likeButton;
+
 @end
 
 @implementation ZCShopCartTableFooterView
@@ -112,51 +120,58 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.clipsToBounds = YES;
-        UIButton *likeButton = [UITool wordButton:@"猜你喜欢" titleColor:ImportantColor font:MediumFont(18) bgImage:image(@"cainixihuan")];
+        self.likeButton = [UITool wordButton:@"猜你喜欢" titleColor:ImportantColor font:MediumFont(18) bgImage:image(@"cainixihuan")];
 
-        [self addSubview:likeButton];
+        [self addSubview:self.likeButton];
         [self addSubview:self.collectionView];
         
-        [likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.likeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.top.equalTo(self).inset(ScreenScale(8));
+            make.top.lessThanOrEqualTo(self).inset(ScreenScale(8));
         }];
         
-        [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(ScreenScale(49));
+        [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.likeButton.mas_bottom).offset(ScreenScale(12));
             make.left.right.bottom.equalTo(self);
         }];
-        
-        
-        [self performSelector:@selector(update) withObject:nil afterDelay:3.f];
     }
     return self;
 }
 
 
-- (void)update {
-    self.dataArray = @[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
-//    self.dataArray = @[@"",@"",@""];
-
-    [self.collectionView reloadData];
+- (void)setViewModel:(ZCShopCartViewModel *)viewModel {
+    _viewModel = viewModel;
     
-    
-    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC));
-    dispatch_after(delayTime, dispatch_get_main_queue(), ^(void){
-        self.height = self.collectionView.collectionViewLayout.collectionViewContentSize.height + ScreenScale(49);
-        NSLog(@"layoutH:%f--%f", self.collectionView.collectionViewLayout.collectionViewContentSize.height,self.collectionView.contentSize.height);
-        [(UITableView*)self.superview reloadData];
-    });
+    [self bindViewModel];
 }
 
 
+- (void)bindViewModel {
+    @weakify(self);
+    [[self.viewModel.gussLikeCmd execute:nil] subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        [self.collectionView reloadData];
+        
+        CGFloat margin = [self.likeButton intrinsicContentSize].height +ScreenScale(20);
+        self.height = self.collectionView.collectionViewLayout.collectionViewContentSize.height + margin;
+        
+        [(UITableView*)self.superview reloadData];
+        
+    } error:^(NSError * _Nullable error) {
+        
+    }];
+}
+
+
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return self.viewModel.likeArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZCShopCartGuessLikeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZCShopCartGuessLikeCell class]) forIndexPath:indexPath];
-    
+    ZCShopCartLikeModel *model = self.viewModel.likeArray[indexPath.row];
+    cell.model = model;
     return cell;
 }
 - (UICollectionView *)collectionView {
@@ -178,7 +193,6 @@
         _layout = [[UICollectionViewFlowLayout alloc] init];
         _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         CGFloat width = (SCREEN_WIDTH - ScreenScale(36))/2;
-//        _layout.estimatedItemSize = CGSizeMake(width, width+ScreenScale(81));
         _layout.itemSize = CGSizeMake(width, width+ScreenScale(100));
         _layout.sectionInset = UIEdgeInsetsMake(0, ScreenScale(12), ScreenScale(10), ScreenScale(12));
         _layout.minimumInteritemSpacing = ScreenScale(12);

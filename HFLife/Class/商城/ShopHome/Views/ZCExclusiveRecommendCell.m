@@ -125,8 +125,22 @@
 - (UIButton *)cartButton {
     if (!_cartButton) {
         _cartButton = [UITool imageButton:image(@"shop_cartButton")];
+        _cartButton.rac_command = [self addCartCmd];
     }
     return _cartButton;
+}
+
+
+- (RACCommand *)addCartCmd {
+    RACCommand *cmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+        return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=member_cart&t=cart_add" withParameters:@{@"goods_id":self.model.goods_id,@"quantity":@"1"} withResultBlock:^(BOOL result, id value) {
+                [subscriber sendCompleted];
+            }];
+            return nil;
+        }];
+    }];
+    return cmd;
 }
 
 @end

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZCShopCartModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZCShopCartTableViewCell : UITableViewCell
+
+@property(nonatomic, strong) ZCShopCartGoodsModel *model;
 
 @end
 

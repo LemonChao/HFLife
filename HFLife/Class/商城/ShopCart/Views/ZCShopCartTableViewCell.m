@@ -25,6 +25,11 @@
 
 @property(nonatomic, strong) UILabel *countLabel;
 
+/** 商品数量操作 */
+@property(nonatomic, strong) RACCommand *addCmd;
+
+@property(nonatomic, strong) RACCommand *subtractionCmd;
+
 @end
 
 @implementation ZCShopCartTableViewCell
@@ -91,13 +96,27 @@
         make.left.equalTo(self.countLabel.mas_right).offset(ScreenScale(6));
         make.right.equalTo(self.contentView).inset(ScreenScale(12));
     }];
-    
 }
 
+- (void)setModel:(ZCShopCartGoodsModel *)model {
+    _model = model;
+    
+    [self.godsImgView sd_setImageWithURL:[NSURL URLWithString:model.goods_image]];
+    self.nameLab.text = model.goods_name;
+    self.priceLab.text = model.goods_price;
+    self.selectButton.selected = model.selected;
+    self.countLabel.text = model.goods_num;
+}
 
 - (void)selectButtonAction:(UIButton *)button {
-    button.selected = !button.selected;
+    
+    self.model.selected = !self.model.isSelected;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:cartValueChangedNotification object:@"selectAction"];
 }
+
+
+
 
 
 - (UIButton *)selectButton {
@@ -122,7 +141,6 @@
     if (!_nameLab) {
         _nameLab = [UITool labelWithTextColor:ImportantColor font:SystemFont(14)];
         _nameLab.numberOfLines = 2;
-        _nameLab.text = @"泰国进口即食牛油果泰国进口即食牛 油果 拷贝";
     }
     return _nameLab;
 }
@@ -130,7 +148,6 @@
 - (UILabel *)priceLab {
     if (!_priceLab) {
         _priceLab = [UITool labelWithTextColor:GeneralRedColor font:MediumFont(14)];
-        _priceLab.text = @"￥58.00";
     }
     return _priceLab;
 }
@@ -138,6 +155,7 @@
 - (UIButton *)addButton {
     if (!_addButton) {
         _addButton = [UITool imageButton:image(@"shop_cart_add")];
+        _addButton.rac_command = self.addCmd;
     }
     return _addButton;
 }
@@ -145,6 +163,7 @@
 - (UIButton *)subtractionButton {
     if (!_subtractionButton) {
         _subtractionButton = [UITool imageButton:image(@"shop_cart_subtraction")];
+        _subtractionButton.rac_command = self.subtractionCmd;
     }
     return _subtractionButton;
 }
@@ -153,9 +172,64 @@
     if (!_countLabel) {
         _countLabel = [UITool labelWithTextColor:ImportantColor font:SystemFont(14) alignment:NSTextAlignmentCenter ];
         _countLabel.backgroundColor = BackGroundColor;
-        _countLabel.text = @"1";
     }
     return _countLabel;
 }
 
+- (RACCommand *)addCmd {
+    if (!_addCmd) {
+        @weakify(self);
+        _addCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                @strongify(self);
+                NSInteger count = self.model.goods_num.integerValue+1;
+                [self executeCmdWithSubscriber:subscriber goodsCount:count];
+
+                return nil;
+            }];
+        }];
+    }
+    return _addCmd;
+}
+
+
+- (RACCommand *)subtractionCmd {
+    if (!_subtractionCmd) {
+        @weakify(self);
+        _subtractionCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                @strongify(self);
+                NSInteger count = self.model.goods_num.integerValue-1;
+                if (count <= 0) {
+                    [WXZTipView showCenterWithText:@"商品数量最小为1"];
+                    [subscriber sendCompleted];
+                    return nil;
+                }
+                [self executeCmdWithSubscriber:subscriber goodsCount:count];
+                return nil;
+            }];
+        }];
+    }
+    return _subtractionCmd;
+}
+
+
+- (void)executeCmdWithSubscriber:(id<RACSubscriber>  _Nonnull) subscriber goodsCount:(NSInteger)count{
+    @weakify(self);
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=member_cart&t=cart_edit_quantity" withParameters:@{@"cart_id":self.model.cart_id,@"quantity":@(count)} withResultBlock:^(BOOL result, id value) {
+        @strongify(self);
+        if (result) {
+            self.model.goods_num = [NSString stringWithFormat:@"%ld",count];
+            self.countLabel.text = self.model.goods_num;
+            [subscriber sendCompleted];
+            [[NSNotificationCenter defaultCenter] postNotificationName:cartValueChangedNotification object:@"selectAction"];
+        }else {
+            if (value) {
+                
+            }
+            
+            [subscriber sendError:nil];
+        }
+    }];
+}
 @end
