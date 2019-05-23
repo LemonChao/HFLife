@@ -343,19 +343,19 @@
         if (_scrollY > 0) {
             if (self) {
                 self.bottomBarAlpha =  (CGRectGetMaxY(self.bottomBarFrame) - _scrollY) / self.bottomBarFrame.size.height;
-                NSLog(@"开始出现");
+//                NSLog(@"开始出现");
                 !self.appearCallback ? : self.appearCallback(self.bottomBarAlpha, YES);
             }
         }else{
             self.bottomBarAlpha = 1.0;
         }
     }else{
-        NSLog(@"上拉");
+//        NSLog(@"上拉");
         if (_scrollY - self.bottomBarFrame.origin.y  >= 0) {
             //开始隐藏
             if (self.bottomBarAlpha > 0) {
                 self.bottomBarAlpha = 1 - (_scrollY - self.bottomBarFrame.origin.y) / self.bottomBarFrame.size.height;
-                NSLog(@"开始隐藏");
+//                NSLog(@"开始隐藏");
                 !self.appearCallback ? : self.appearCallback(self.bottomBarAlpha, NO);
             }
         }else{

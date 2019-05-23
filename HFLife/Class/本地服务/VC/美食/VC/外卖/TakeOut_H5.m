@@ -79,7 +79,7 @@
     //原生跳转
     [userContentController addScriptMessageHandler:self name:@"nativeToJump"];
     //返回首页
-    [userContentController addScriptMessageHandler:self name:@"GoToHome"];
+    [userContentController addScriptMessageHandler:self name:@"goToHome"];
     //抢购
     [userContentController addScriptMessageHandler:self name:@"rushBuy"];
     //抢购

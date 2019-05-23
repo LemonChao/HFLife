@@ -319,7 +319,7 @@
                     if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
                         [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
                         [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
-
+                        NSLog(@"%@", [USERDEFAULT valueForKey:LOGIN_STATES]);
                         [self dismissViewControllerAnimated:NO completion:^{
                             
                         }];

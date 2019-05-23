@@ -23,6 +23,41 @@ static dispatch_once_t onceToken;
     
 }
 
+- (void) setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    NSLog(@"找不到的：key-%@=====value-%@" , key , value);
+    if ([value isKindOfClass:[NSNull class]] || value == nil) {
+        NSLog(@"！！！！！！！！！---------------------数据类型位---<Null>---value = %@" , value);
+        //设置数据为@"";
+        value = @"";
+        [self setValue:value forKeyPath:key];
+    }
+    if ([key isEqualToString:@"description"]) {
+        key = @"Mydescription";//
+        [self setValue:value forKeyPath:@"Mydescription"];
+    }
+    if ([key isEqualToString:@"id"]) {
+        key = @"ID";//小写id转大写ID
+        [self setValue:value forKeyPath:@"ID"];
+    } else {
+        NSLog(@"您尝试设置的key：%@不存在",key);
+        NSLog(@"您尝试设置的value：%@",value);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -62,6 +97,22 @@ static dispatch_once_t onceToken;
     }
     return @"";
 }
+
+
+//拼接推送的别名
+// 拼接id 不够补0
+- (NSString *)appendStr:(NSString *)user_id{
+    NSString *firstStr = JPUSH_TYPERIES;
+    NSString *sourceStr = @"000000000000";
+    
+    NSString *appendStr = [sourceStr substringWithRange:NSMakeRange(0, 7 - user_id.length)];
+    NSString *backStr = [NSString stringWithFormat:@"%@%@%@",firstStr,appendStr, user_id];
+    NSLog(@"拼接后的字符串");
+    return backStr;
+}
+
+
+
 @end
 
 #pragma mark - 个人中心数据

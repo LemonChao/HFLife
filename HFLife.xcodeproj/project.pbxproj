@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0403569022963EDD00DAA165 /* YYB_HF_WKWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403568E22963EDC00DAA165 /* YYB_HF_WKWebVC.m */; };
 		04058A492292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04058A482292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m */; };
 		0406ED2322755422000784D0 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; };
 		0406ED2422755422000784D0 /* AipOcrSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2122755421000784D0 /* AipOcrSdk.framework */; };
@@ -75,6 +76,9 @@
 		04153C20228AA2F100AA5DAF /* NearDiscountCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BEF228AA2F100AA5DAF /* NearDiscountCouponCell.m */; };
 		04153C21228AA2F100AA5DAF /* NearDiscountCouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BF1228AA2F100AA5DAF /* NearDiscountCouponVC.m */; };
 		04153C22228AA2F100AA5DAF /* LunchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BF4228AA2F100AA5DAF /* LunchVC.m */; };
+		042638D622969B7600041A91 /* YYB_HF_setDealPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042638D522969B7600041A91 /* YYB_HF_setDealPassWordVC.m */; };
+		042638D92296A5D000041A91 /* YYB_HF_submitDealPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042638D82296A5D000041A91 /* YYB_HF_submitDealPassWordVC.m */; };
+		042638DD2296B2C900041A91 /* YYB_HF_destroyAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042638DC2296B2C900041A91 /* YYB_HF_destroyAccountVC.m */; };
 		0428EB5322797379000E4B4E /* callTelephone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428EB5122797379000E4B4E /* callTelephone.m */; };
 		0453D1502281935E00880C2A /* customItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14C2281935E00880C2A /* customItemView.m */; };
 		0453D1512281935E00880C2A /* myTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14F2281935E00880C2A /* myTopView.m */; };
@@ -539,6 +543,13 @@
 		04F9AC00228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9ABFE228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m */; };
 		04F9AC01228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */; };
 		04F9AC04228ED5A600A602CE /* SXF_HF_TimeSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9AC03228ED5A600A602CE /* SXF_HF_TimeSelectedView.m */; };
+		04FA264F22964DC800F4E9EB /* voiceHeaper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA264E22964DC800F4E9EB /* voiceHeaper.m */; };
+		04FA26532296551800F4E9EB /* touchID_helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA26522296551800F4E9EB /* touchID_helper.m */; };
+		04FA265622967E6D00F4E9EB /* balanceHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA265522967E6D00F4E9EB /* balanceHomeView.m */; };
+		04FA265B2296981600F4E9EB /* SXF_HF_bindingAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA26592296981600F4E9EB /* SXF_HF_bindingAccount.m */; };
+		04FA265C2296981600F4E9EB /* SXF_HF_bindingAccount.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA265A2296981600F4E9EB /* SXF_HF_bindingAccount.xib */; };
+		04FA26612296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA265F2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m */; };
+		04FA26622296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */; };
 		04FB7F1522865A4900150CA7 /* 余额.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1322865A4900150CA7 /* 余额.gif */; };
 		04FB7F1622865A4900150CA7 /* 余额底图_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1422865A4900150CA7 /* 余额底图_00000.png */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
@@ -876,6 +887,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0403568E22963EDC00DAA165 /* YYB_HF_WKWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_WKWebVC.m; sourceTree = "<group>"; };
+		0403568F22963EDD00DAA165 /* YYB_HF_WKWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYB_HF_WKWebVC.h; sourceTree = "<group>"; };
 		04058A472292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_ModifyHeadIconVC.h; sourceTree = "<group>"; };
 		04058A482292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_ModifyHeadIconVC.m; sourceTree = "<group>"; };
 		0406ED2022755421000784D0 /* IdcardQuality.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IdcardQuality.framework; sourceTree = "<group>"; };
@@ -985,6 +998,12 @@
 		04153BF3228AA2F100AA5DAF /* LunchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunchVC.h; sourceTree = "<group>"; };
 		04153BF4228AA2F100AA5DAF /* LunchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunchVC.m; sourceTree = "<group>"; };
 		04153BF5228AA2F100AA5DAF /* NearFoodVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearFoodVC.h; sourceTree = "<group>"; };
+		042638D422969B7600041A91 /* YYB_HF_setDealPassWordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_setDealPassWordVC.h; sourceTree = "<group>"; };
+		042638D522969B7600041A91 /* YYB_HF_setDealPassWordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_setDealPassWordVC.m; sourceTree = "<group>"; };
+		042638D72296A5D000041A91 /* YYB_HF_submitDealPassWordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_submitDealPassWordVC.h; sourceTree = "<group>"; };
+		042638D82296A5D000041A91 /* YYB_HF_submitDealPassWordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_submitDealPassWordVC.m; sourceTree = "<group>"; };
+		042638DB2296B2C900041A91 /* YYB_HF_destroyAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_destroyAccountVC.h; sourceTree = "<group>"; };
+		042638DC2296B2C900041A91 /* YYB_HF_destroyAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_destroyAccountVC.m; sourceTree = "<group>"; };
 		0428EB5122797379000E4B4E /* callTelephone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callTelephone.m; sourceTree = "<group>"; };
 		0428EB5222797379000E4B4E /* callTelephone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callTelephone.h; sourceTree = "<group>"; };
 		0453D14C2281935E00880C2A /* customItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customItemView.m; sourceTree = "<group>"; };
@@ -1845,6 +1864,18 @@
 		04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_getMoneyCellTableViewCell.xib; sourceTree = "<group>"; };
 		04F9AC02228ED5A600A602CE /* SXF_HF_TimeSelectedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_TimeSelectedView.h; sourceTree = "<group>"; };
 		04F9AC03228ED5A600A602CE /* SXF_HF_TimeSelectedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_TimeSelectedView.m; sourceTree = "<group>"; };
+		04FA264D22964DC800F4E9EB /* voiceHeaper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = voiceHeaper.h; sourceTree = "<group>"; };
+		04FA264E22964DC800F4E9EB /* voiceHeaper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = voiceHeaper.m; sourceTree = "<group>"; };
+		04FA26512296551800F4E9EB /* touchID_helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = touchID_helper.h; sourceTree = "<group>"; };
+		04FA26522296551800F4E9EB /* touchID_helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = touchID_helper.m; sourceTree = "<group>"; };
+		04FA265422967E6D00F4E9EB /* balanceHomeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = balanceHomeView.h; sourceTree = "<group>"; };
+		04FA265522967E6D00F4E9EB /* balanceHomeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = balanceHomeView.m; sourceTree = "<group>"; };
+		04FA26582296981600F4E9EB /* SXF_HF_bindingAccount.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_bindingAccount.h; sourceTree = "<group>"; };
+		04FA26592296981600F4E9EB /* SXF_HF_bindingAccount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_bindingAccount.m; sourceTree = "<group>"; };
+		04FA265A2296981600F4E9EB /* SXF_HF_bindingAccount.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_bindingAccount.xib; sourceTree = "<group>"; };
+		04FA265E2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_exchangePhoneVc.h; sourceTree = "<group>"; };
+		04FA265F2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_exchangePhoneVc.m; sourceTree = "<group>"; };
+		04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_exchangePhoneVc.xib; sourceTree = "<group>"; };
 		04FB7F1322865A4900150CA7 /* 余额.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "余额.gif"; sourceTree = "<group>"; };
 		04FB7F1422865A4900150CA7 /* 余额底图_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额底图_00000.png"; sourceTree = "<group>"; };
 		04FB7F1722866BE300150CA7 /* UIImageView+LoadGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadGif.h"; sourceTree = "<group>"; };
@@ -2476,6 +2507,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0403568A2296365200DAA165 /* YYBweb */ = {
+			isa = PBXGroup;
+			children = (
+				0403568F22963EDD00DAA165 /* YYB_HF_WKWebVC.h */,
+				0403568E22963EDC00DAA165 /* YYB_HF_WKWebVC.m */,
+			);
+			path = YYBweb;
+			sourceTree = "<group>";
+		};
 		04058A462292B3E200CC8ACF /* 头像 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2837,6 +2877,26 @@
 				04153BF4228AA2F100AA5DAF /* LunchVC.m */,
 			);
 			path = "午餐";
+			sourceTree = "<group>";
+		};
+		042638D322969AB300041A91 /* 交易密码 */ = {
+			isa = PBXGroup;
+			children = (
+				042638D422969B7600041A91 /* YYB_HF_setDealPassWordVC.h */,
+				042638D522969B7600041A91 /* YYB_HF_setDealPassWordVC.m */,
+				042638D72296A5D000041A91 /* YYB_HF_submitDealPassWordVC.h */,
+				042638D82296A5D000041A91 /* YYB_HF_submitDealPassWordVC.m */,
+			);
+			path = "交易密码";
+			sourceTree = "<group>";
+		};
+		042638DA2296B26B00041A91 /* 注销账号 */ = {
+			isa = PBXGroup;
+			children = (
+				042638DB2296B2C900041A91 /* YYB_HF_destroyAccountVC.h */,
+				042638DC2296B2C900041A91 /* YYB_HF_destroyAccountVC.m */,
+			);
+			path = "注销账号";
 			sourceTree = "<group>";
 		};
 		0428EB5022797379000E4B4E /* 打电话 */ = {
@@ -3246,17 +3306,17 @@
 		048DAC0322857516006E6BA2 /* 富权 */ = {
 			isa = PBXGroup;
 			children = (
-				048DAC0422857516006E6BA2 /* FQ_homeHeaderView.xib */,
-				048DAC0522857516006E6BA2 /* RichRightListVC.h */,
-				048DAC0622857516006E6BA2 /* FQ_homeTableV.h */,
-				048DAC0722857516006E6BA2 /* FQ_homeHeaderView.h */,
-				048DAC0822857516006E6BA2 /* 兑换富权 */,
 				048DAC0F22857516006E6BA2 /* FQ_homeVC.h */,
-				048DAC1022857516006E6BA2 /* RichRightListVC.m */,
-				048DAC1122857516006E6BA2 /* Cell */,
-				048DAC1422857516006E6BA2 /* FQ_homeTableV.m */,
-				048DAC1522857516006E6BA2 /* FQ_homeHeaderView.m */,
 				048DAC1622857516006E6BA2 /* FQ_homeVC.m */,
+				048DAC0622857516006E6BA2 /* FQ_homeTableV.h */,
+				048DAC1422857516006E6BA2 /* FQ_homeTableV.m */,
+				048DAC0522857516006E6BA2 /* RichRightListVC.h */,
+				048DAC1022857516006E6BA2 /* RichRightListVC.m */,
+				048DAC0722857516006E6BA2 /* FQ_homeHeaderView.h */,
+				048DAC1522857516006E6BA2 /* FQ_homeHeaderView.m */,
+				048DAC0422857516006E6BA2 /* FQ_homeHeaderView.xib */,
+				048DAC0822857516006E6BA2 /* 兑换富权 */,
+				048DAC1122857516006E6BA2 /* Cell */,
 			);
 			path = "富权";
 			sourceTree = "<group>";
@@ -3295,15 +3355,17 @@
 		048DAC1A22857516006E6BA2 /* 余额 */ = {
 			isa = PBXGroup;
 			children = (
+				048DAC3C22857516006E6BA2 /* BalanceHomeVC.h */,
 				048DAC1B22857516006E6BA2 /* BalanceHomeVC.m */,
-				048DAC1C22857516006E6BA2 /* 提现 */,
+				04FA265422967E6D00F4E9EB /* balanceHomeView.h */,
+				04FA265522967E6D00F4E9EB /* balanceHomeView.m */,
 				048DAC4022857516006E6BA2 /* balanceRecoardView.h */,
 				048DAC2322857516006E6BA2 /* balanceRecoardView.m */,
+				048DAC1C22857516006E6BA2 /* 提现 */,
 				048DAC2422857516006E6BA2 /* 余额记录 */,
 				048DAC2A22857516006E6BA2 /* 转账 */,
 				048DAC3222857516006E6BA2 /* 提现详情 */,
 				048DAC3522857516006E6BA2 /* 转账详情 */,
-				048DAC3C22857516006E6BA2 /* BalanceHomeVC.h */,
 				048DAC3D22857516006E6BA2 /* Model */,
 				048DAC4122857516006E6BA2 /* 账单详情 */,
 			);
@@ -3313,12 +3375,12 @@
 		048DAC1C22857516006E6BA2 /* 提现 */ = {
 			isa = PBXGroup;
 			children = (
-				048DAC1D22857516006E6BA2 /* withdrawAlertView.h */,
-				048DAC1E22857516006E6BA2 /* WithdrawVC.m */,
-				048DAC1F22857516006E6BA2 /* WithdrawItemView.m */,
-				048DAC2022857516006E6BA2 /* withdrawAlertView.m */,
-				048DAC2122857516006E6BA2 /* WithdrawItemView.h */,
 				048DAC2222857516006E6BA2 /* WithdrawVC.h */,
+				048DAC1E22857516006E6BA2 /* WithdrawVC.m */,
+				048DAC2122857516006E6BA2 /* WithdrawItemView.h */,
+				048DAC1F22857516006E6BA2 /* WithdrawItemView.m */,
+				048DAC1D22857516006E6BA2 /* withdrawAlertView.h */,
+				048DAC2022857516006E6BA2 /* withdrawAlertView.m */,
 			);
 			path = "提现";
 			sourceTree = "<group>";
@@ -3639,6 +3701,8 @@
 		04A50658227EDD350013E8EC /* 03 Control(控件) */ = {
 			isa = PBXGroup;
 			children = (
+				04FA2650229654F200F4E9EB /* 指纹识别 */,
+				04FA264C22964DA400F4E9EB /* 语音助手 */,
 				04F5F24A228412460043BBB7 /* 系统弹窗 */,
 				04A50659227EDD350013E8EC /* 上下滚动显示 */,
 				0453D1C02284032F00880C2A /* 缺省页 */,
@@ -5026,8 +5090,8 @@
 			children = (
 				048DABFE22857057006E6BA2 /* SXF_HF_HomePageModel.h */,
 				048DABFF22857057006E6BA2 /* SXF_HF_HomePageModel.m */,
-				048DABB622855DCF006E6BA2 /* subControlers */,
 				0453D1B12283B60100880C2A /* homePageVC */,
+				048DABB622855DCF006E6BA2 /* subControlers */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -5066,6 +5130,7 @@
 		04B9D4FE22803CF10084FA23 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				0403568A2296365200DAA165 /* YYBweb */,
 				04B9D50A22803CF10084FA23 /* WKWebViewController.h */,
 				04B9D4FF22803CF10084FA23 /* WKWebViewController.m */,
 				04B9D50B22803CF10084FA23 /* WebViewController.h */,
@@ -5344,6 +5409,10 @@
 		04F52102228A76BA00ED4995 /* 安全中心  */ = {
 			isa = PBXGroup;
 			children = (
+				04FA265D2296A66D00F4E9EB /* 修改手机号（new） */,
+				04FA2657229697DB00F4E9EB /* 关联账户 */,
+				042638DA2296B26B00041A91 /* 注销账号 */,
+				042638D322969AB300041A91 /* 交易密码 */,
 				04F52103228A76BA00ED4995 /* SecurityCenterVC.h */,
 				04F52135228A76BA00ED4995 /* SecurityCenterVC.m */,
 				04F52104228A76BA00ED4995 /* VC */,
@@ -5472,8 +5541,8 @@
 		04F5215E228A77EA00ED4995 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
-				04F5215F228A77EA00ED4995 /* LoginVC.m */,
 				04F52160228A77EA00ED4995 /* LoginVC.h */,
+				04F5215F228A77EA00ED4995 /* LoginVC.m */,
 				040B6A3B228CF3730078B5DB /* LoginForVercode.h */,
 				040B6A3C228CF3730078B5DB /* LoginForVercode.m */,
 			);
@@ -5873,6 +5942,44 @@
 				04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */,
 			);
 			path = "新版收钱";
+			sourceTree = "<group>";
+		};
+		04FA264C22964DA400F4E9EB /* 语音助手 */ = {
+			isa = PBXGroup;
+			children = (
+				04FA264D22964DC800F4E9EB /* voiceHeaper.h */,
+				04FA264E22964DC800F4E9EB /* voiceHeaper.m */,
+			);
+			path = "语音助手";
+			sourceTree = "<group>";
+		};
+		04FA2650229654F200F4E9EB /* 指纹识别 */ = {
+			isa = PBXGroup;
+			children = (
+				04FA26512296551800F4E9EB /* touchID_helper.h */,
+				04FA26522296551800F4E9EB /* touchID_helper.m */,
+			);
+			path = "指纹识别";
+			sourceTree = "<group>";
+		};
+		04FA2657229697DB00F4E9EB /* 关联账户 */ = {
+			isa = PBXGroup;
+			children = (
+				04FA26582296981600F4E9EB /* SXF_HF_bindingAccount.h */,
+				04FA26592296981600F4E9EB /* SXF_HF_bindingAccount.m */,
+				04FA265A2296981600F4E9EB /* SXF_HF_bindingAccount.xib */,
+			);
+			path = "关联账户";
+			sourceTree = "<group>";
+		};
+		04FA265D2296A66D00F4E9EB /* 修改手机号（new） */ = {
+			isa = PBXGroup;
+			children = (
+				04FA265E2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.h */,
+				04FA265F2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m */,
+				04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */,
+			);
+			path = "修改手机号（new）";
 			sourceTree = "<group>";
 		};
 		04FB7F1222865A3200150CA7 /* 动画资源图 */ = {
@@ -7252,6 +7359,7 @@
 				0453D1EA2284033000880C2A /* sxf_空@3x.png in Resources */,
 				658B79F321D71D1800801CC8 /* LaunchScreen.storyboard in Resources */,
 				0461600E228AB1360042830B /* SXF_HF_paySuccessVC.xib in Resources */,
+				04FA26622296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib in Resources */,
 				04A5085E227EDD3A0013E8EC /* ZFPlayerCell.xib in Resources */,
 				658B7CBC21D749E100801CC8 /* success.png in Resources */,
 				048E8805228D4D2900410405 /* VersionUpdate_Icon.png in Resources */,
@@ -7387,6 +7495,7 @@
 				04F5213E228A76BA00ED4995 /* sign@2x.png in Resources */,
 				658B79EE21D71D1700801CC8 /* Main.storyboard in Resources */,
 				65DC682F2211253200F1085E /* shareView_qq.png in Resources */,
+				04FA265C2296981600F4E9EB /* SXF_HF_bindingAccount.xib in Resources */,
 				6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */,
 				048DABD422856656006E6BA2 /* password_loading_a@2x.png in Resources */,
 				04F52147228A76BA00ED4995 /* zx@2x.png in Resources */,
@@ -7570,6 +7679,7 @@
 				04153C1F228AA2F100AA5DAF /* ConfigOrderInfoVC.m in Sources */,
 				04153C04228AA2F100AA5DAF /* NearFoodListVC.m in Sources */,
 				658C39DE21E9FA5B00880B6A /* JXCategoryTitleCellModel.m in Sources */,
+				04FA26612296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m in Sources */,
 				048DAC6122857516006E6BA2 /* RemarkBallView.m in Sources */,
 				04A5084A227EDD3A0013E8EC /* UIView+CustomControlView.m in Sources */,
 				04A508A6227EDD3A0013E8EC /* sxf_updteMangerTool.m in Sources */,
@@ -7735,6 +7845,7 @@
 				658C39DF21E9FA5B00880B6A /* JXCategoryTitleCell.m in Sources */,
 				04A508A9227EDD3A0013E8EC /* networkingManagerTool.m in Sources */,
 				04153C06228AA2F100AA5DAF /* Cake_MilkyTeaVC.m in Sources */,
+				04FA264F22964DC800F4E9EB /* voiceHeaper.m in Sources */,
 				04B9D57C22803E260084FA23 /* BaseManage.m in Sources */,
 				04F52101228A764400ED4995 /* PersonalDataCell.m in Sources */,
 				0428EB5322797379000E4B4E /* callTelephone.m in Sources */,
@@ -7827,6 +7938,7 @@
 				049783912285957F00E143D7 /* DayCell.m in Sources */,
 				04F946F5228C1F9700085F78 /* APNumberButton.m in Sources */,
 				04F52167228A77EA00ED4995 /* ForgotPasswordVC.m in Sources */,
+				042638DD2296B2C900041A91 /* YYB_HF_destroyAccountVC.m in Sources */,
 				04B9D54122803CF20084FA23 /* WebViewController.m in Sources */,
 				04B9D58122803E260084FA23 /* StatusBarView.m in Sources */,
 				04A50874227EDD3A0013E8EC /* Chameleon_.m in Sources */,
@@ -7836,6 +7948,8 @@
 				04F89339229292680075918A /* SXF_HF_vipCardView.m in Sources */,
 				04A508D5227EDD3A0013E8EC /* NSDictionary+UnicodeToChinese.m in Sources */,
 				049783882285957F00E143D7 /* NearColumnCell.m in Sources */,
+				04FA265B2296981600F4E9EB /* SXF_HF_bindingAccount.m in Sources */,
+				04FA26532296551800F4E9EB /* touchID_helper.m in Sources */,
 				04A50882227EDD3A0013E8EC /* MXPullDownMenu.m in Sources */,
 				658B7CAC21D749E100801CC8 /* SDCycleScrollView.m in Sources */,
 				0497838D2285957F00E143D7 /* SelectCheckDateViewController.m in Sources */,
@@ -7850,6 +7964,7 @@
 				04F8932B229260DC0075918A /* SXF_HF_addCardSectionHeaderView.m in Sources */,
 				6579784721E6D6B600E606BE /* JFCityViewController.m in Sources */,
 				04A508A1227EDD3A0013E8EC /* UIScrollView+WHScrollView.m in Sources */,
+				04FA265622967E6D00F4E9EB /* balanceHomeView.m in Sources */,
 				04A50859227EDD3A0013E8EC /* ZFTableViewController.m in Sources */,
 				04A508DA227EDD3A0013E8EC /* HRUserInfoManager.m in Sources */,
 				04A50837227EDD390013E8EC /* UIView+FrameExtension.m in Sources */,
@@ -7929,6 +8044,7 @@
 				0453D1542281A54900880C2A /* DigitalRollingView.m in Sources */,
 				04A50855227EDD3A0013E8EC /* ASValueTrackingSlider.m in Sources */,
 				658902F1223B775F009C1B03 /* PYSearchConst.m in Sources */,
+				042638D92296A5D000041A91 /* YYB_HF_submitDealPassWordVC.m in Sources */,
 				04B9D57B22803E260084FA23 /* BaseWebViewController.m in Sources */,
 				659EA04622015F94004471CD /* WBProgressHUD.m in Sources */,
 				048DAC6022857516006E6BA2 /* HeadUserView.m in Sources */,
@@ -7980,6 +8096,8 @@
 				04A50896227EDD3A0013E8EC /* UIView+WHView.m in Sources */,
 				65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */,
 				658902EE223B775F009C1B03 /* UIColor+PYSearchExtension.m in Sources */,
+				042638D622969B7600041A91 /* YYB_HF_setDealPassWordVC.m in Sources */,
+				0403569022963EDD00DAA165 /* YYB_HF_WKWebVC.m in Sources */,
 				04153BFC228AA2F100AA5DAF /* FoodPreferentialCell.m in Sources */,
 				6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */,
 				6579784521E6D6B600E606BE /* JFCityHeaderView.m in Sources */,

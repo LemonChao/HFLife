@@ -347,7 +347,7 @@
     }];
     tf.rightView = rightView;
 }
-//邀请码
+//验证码
 - (void)getSetingCode:(UIButton *)send{
     if (![self.phoneText.text isValidateMobile]) {
         [WXZTipView showCenterWithText:@"请输入正确的手机号"];

@@ -153,12 +153,6 @@
 - (void) setValue:(id)value forUndefinedKey:(NSString *)key
 {
     NSLog(@"找不到的：key-%@=====value-%@" , key , value);
-    if ([value isKindOfClass:[NSNull class]] || value == nil) {
-        NSLog(@"！！！！！！！！！---------------------数据类型位---<Null>---value = %@" , value);
-        //设置数据为@"";
-        value = @"";
-        [self setValue:value forKeyPath:key];
-    }
     if ([key isEqualToString:@"description"]) {
         key = @"Mydescription";//
         [self setValue:value forKeyPath:@"Mydescription"];
@@ -171,6 +165,27 @@
         NSLog(@"您尝试设置的value：%@",value);
     }
 }
+
+//- (void)setValue:(id)value forKey:(NSString *)key{
+//    NSLog(@"value : %@  ----  key : %@", value, key);
+//}
+- (void)setValue:(id)value forKeyPath:(NSString *)keyPath{
+    NSLog(@"value : %@  ----  key : %@", value, keyPath);
+    
+//    if ([value isKindOfClass:[NSNull class]] || value == nil) {
+//        NSLog(@"！！！！！！！！！---------------------数据类型位---<Null>---value = %@" , value);
+//        //设置数据为@"";
+//        value = @"";
+//        [self setValue:value forKey:keyPath];
+//    }
+    
+    
+}
+
+
+
+
+
 
 /**
  归档解档

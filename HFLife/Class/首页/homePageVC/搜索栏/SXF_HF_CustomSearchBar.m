@@ -88,7 +88,7 @@
     
 }
 - (void)hiddenSearchBar:(NSNotification *)notifi{
-    NSLog(@"%@", notifi.object);
+//    NSLog(@"%@", notifi.object);
     self.searchBgView.alpha = [notifi.object floatValue];
     self.btnBgView.alpha = 1-[notifi.object floatValue];
     //透明度低于0.5不交互

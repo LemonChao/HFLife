@@ -14,6 +14,8 @@
 #import "IdentityInformationVC.h"
 #import "ReviewResultsVC.h"
 #import "ForgotPasswordVC.h"
+#import "YYB_HF_setDealPassWordVC.h"//交易密码
+#import "YYB_HF_destroyAccountVC.h"//注销
 @interface SecurityCenterVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *titleArray;
@@ -27,34 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    titleArray = @[@"设置登录密码",@"设置交易密码",@"修改手机号"];
+    titleArray = @[@[@"关联账号",@"修改交易密码"],@[@"注销账号",@"切换账号"]];
+    
+    self.customNavBar.title = @"安全中心";
 //    valueArray = @[[UserCache getUserPasswordStatus] ? @"去修改" : @"去设置",[UserCache getUserTradePassword]?@"去修改":@"待设置",[NSString isNOTNull:[UserCache getUserPhone]] ?@"待设置":@"去修改" ];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initWithUI];
     [self setupNavBar];
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-}
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
--(void)setupNavBar{
-    WS(weakSelf);
-    [super setupNavBar];
-//    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
-    [self.customNavBar setOnClickLeftButton:^{
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-    }];
-    //    [self.customNavBar wr_setBackgroundAlpha:0];
-    [self.customNavBar wr_setBottomLineHidden:YES];
-    self.customNavBar.title = @"安全中心";
-    self.customNavBar.backgroundColor = RGBA(136, 53, 230, 1);//[UIColor whiteColor];
-    self.customNavBar.titleLabelColor = [UIColor whiteColor];
-    
 }
 -(void)initWithUI{
     [self.view addSubview:self.contentTableView];
@@ -65,12 +46,13 @@
 }
 #pragma mark 列表代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return titleArray.count;
+    NSArray *subArr = titleArray[section];
+    return subArr.count;
     
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1;
+    return titleArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PersonalDataCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonalDataCell"];
@@ -78,8 +60,8 @@
         cell = [[PersonalDataCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"PersonalDataCell"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.titleString = titleArray[indexPath.row];
-    cell.subtitleString = valueArray[indexPath.row];
+    cell.titleString = titleArray[indexPath.section][indexPath.row];
+    cell.subtitleString = valueArray[indexPath.section][indexPath.row];
     cell.isArrowHiden = NO;
     
     return cell;
@@ -87,29 +69,23 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return HeightRatio(96);
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return ScreenScale(8);
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString *value = titleArray[indexPath.row];
+    NSString *value = titleArray[indexPath.section][indexPath.row];
     if ([value isEqualToString:@"设置登录密码"]) {
 //        if (![UserCache getUserPasswordStatus])
         if (YES) {
             //            LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:@"您还没有设置登录密码，暂无法进行入驻，是否进行密码设置？" cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
             //                if(clickIndex == 1){
-            
-            
-            
-            
-            
-            
+
             ForgotPasswordVC *rev = [[ForgotPasswordVC alloc]init];
             rev.isSetPas = YES;
             [self.navigationController pushViewController:rev animated:YES];
-            
-        
-            
-            
-            
-            
+
             
             //                }
             //            }];
@@ -121,14 +97,12 @@
     }else if ([value isEqualToString:@"修改手机号"]){
         [self.navigationController pushViewController:[[ReviseMobilePhone alloc]init] animated:YES];
     }else if ([value isEqualToString:@"设置交易密码"]){
-        /*
-        
-        if ([[UserCache getUserXinXiTitle] isEqualToString:@"已认证"]) {
+        if ([[userInfoModel sharedUser].rz_status integerValue] == 1) {
             [self.navigationController pushViewController:[[ConfirmInformationVC alloc]init] animated:YES];
         }else{
-            LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:MMNSStringFormat(@"您的身份信息%@,暂时无法进行交易密码的修改",[UserCache getUserXinXiTitle]) cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
+            LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:MMNSStringFormat(@"您的身份信息%@,暂时无法进行交易密码的修改",[userInfoModel sharedUser].rz_statusName) cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
                 if(clickIndex == 1){
-                    if ([[UserCache getUserXinXiCode]  isEqualToString:@"0"] || [[UserCache getUserXinXiCode] isEqualToString:@"3"] ) {
+                    if ([[userInfoModel sharedUser].rz_status integerValue]  == 0 || [[userInfoModel sharedUser].rz_status integerValue]  == 3) {
                         IdentityInformationVC *ident = [[IdentityInformationVC alloc]init];
                         [self.navigationController pushViewController:ident animated:YES];
                     }else{
@@ -139,9 +113,18 @@
             }];
             alert.animationStyle=LXASAnimationTopShake;
             [alert showLXAlertView];
-        }
-         
-         */
+        }        
+    }else if ([value isEqualToString:@"修改交易密码"]){
+        YYB_HF_setDealPassWordVC *vc = [[YYB_HF_setDealPassWordVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([value isEqualToString:@"注销账号"]){
+        
+        YYB_HF_destroyAccountVC *vc = [[YYB_HF_destroyAccountVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else if ([value isEqualToString:@"关联账号"]){
+        [self.navigationController pushViewController:[NSClassFromString(@"SXF_HF_bindingAccount") new] animated:YES];
+    }else if ([value isEqualToString:@"切换账号"]){
         
     }
 }

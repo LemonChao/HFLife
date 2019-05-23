@@ -189,8 +189,10 @@
     UILabel *fqCountLb            = [UILabel new];
     UIButton *fqGoExchangeBtn     = [UIButton new];
     
-    [self.view addSubview:balanceView];
+    UIView *bottomBtnView         = [UIView new];
     
+    [self.view addSubview:balanceView];
+    [self.view addSubview:bottomBtnView];
     WithdrawItemView *itemView = [WithdrawItemView new];
     [self.view addSubview:itemView];
     WS(weakSelf);

@@ -141,7 +141,7 @@
     //原生跳转
     [userContentController addScriptMessageHandler:self name:@"nativeToJump"];
     //返回首页
-    [userContentController addScriptMessageHandler:self name:@"GoToHome"];
+    [userContentController addScriptMessageHandler:self name:@"goToHome"];
 	//抢购
     [userContentController addScriptMessageHandler:self name:@"rushBuy"];
     //抢购
@@ -396,7 +396,7 @@
         [self goShoppingParameter:message.body];
     }else if ([message.name isEqualToString:@"nativeToJump"]){
         [self nativeToJumpParameter:message.body];
-    }else if ([message.name isEqualToString:@"GoToHome"]){
+    }else if ([message.name isEqualToString:@"goToHome"]){
         [self goToHome];
     }else if ([message.name isEqualToString:@"rushBuy"]){
         [self rushBuyParameter:message.body];

@@ -51,7 +51,7 @@ static BOOL IsUpdateRemind = YES;
     
     // 设置自定义导航栏背景图片
 //    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@"navi_bg"];
-    [self.customNavBar wr_setBottomLineHidden:YES];
+    [self.customNavBar wr_setBottomLineHidden:NO];
     self.customNavBar.backgroundColor = [UIColor whiteColor];
     // 设置自定义导航栏标题颜色
     self.customNavBar.titleLabelColor = HEX_COLOR(0x0C0B0B);

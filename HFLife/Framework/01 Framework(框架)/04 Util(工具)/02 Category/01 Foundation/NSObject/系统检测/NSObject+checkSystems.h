@@ -69,6 +69,20 @@ NS_ASSUME_NONNULL_BEGIN
  跳转到相册 ,相机 设置
  */
 + (void)goSettingOpenPhoto;
+
+/**
+ 检测相机是否可用
+ */
++ (BOOL)isCameraAvailable;
+/**
+ 检测闪光灯是否可用(前置)
+ */
++ (BOOL)isRearForgroundCameraAvailable;
+
+/**
+ 检测闪光灯是否可用(后置)
+ */
++ (BOOL)isRearBackCameraAvailable;
 @end
 
 NS_ASSUME_NONNULL_END
