@@ -202,6 +202,14 @@
 //        self.manager.configuration.saveSystemAblum = YES;
 //        [self hx_presentAlbumListViewControllerWithManager:self.manager delegate:self];
     }else if ([title_value isEqualToString:@"实名认证"]){
+        
+        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+        vc.urlString = @"http://192.168.0.105:8080/certification";
+        vc.isTop = YES;
+        vc.isNavigationHidden = YES;
+
+        [self.navigationController pushViewController:vc animated:YES];
+
 //        IdentityInformationVC *ident = [[IdentityInformationVC alloc]init];
 //        [self.navigationController pushViewController:ident animated:YES];
 //        if ([[UserCache getUserXinXiCode]  isEqualToString:@"0"] || [[UserCache getUserXinXiCode] isEqualToString:@"3"] ) {

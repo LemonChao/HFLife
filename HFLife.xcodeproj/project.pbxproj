@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0403569022963EDD00DAA165 /* YYB_HF_WKWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403568E22963EDC00DAA165 /* YYB_HF_WKWebVC.m */; };
 		04058A492292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04058A482292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m */; };
 		0406ED2322755422000784D0 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; };
 		0406ED2422755422000784D0 /* AipOcrSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2122755421000784D0 /* AipOcrSdk.framework */; };
@@ -879,6 +880,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0403568E22963EDC00DAA165 /* YYB_HF_WKWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_WKWebVC.m; sourceTree = "<group>"; };
+		0403568F22963EDD00DAA165 /* YYB_HF_WKWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYB_HF_WKWebVC.h; sourceTree = "<group>"; };
 		04058A472292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_ModifyHeadIconVC.h; sourceTree = "<group>"; };
 		04058A482292B43400CC8ACF /* YYB_HF_ModifyHeadIconVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_ModifyHeadIconVC.m; sourceTree = "<group>"; };
 		0406ED2022755421000784D0 /* IdcardQuality.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IdcardQuality.framework; sourceTree = "<group>"; };
@@ -2485,6 +2488,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0403568A2296365200DAA165 /* YYBweb */ = {
+			isa = PBXGroup;
+			children = (
+				0403568F22963EDD00DAA165 /* YYB_HF_WKWebVC.h */,
+				0403568E22963EDC00DAA165 /* YYB_HF_WKWebVC.m */,
+			);
+			path = YYBweb;
+			sourceTree = "<group>";
+		};
 		04058A462292B3E200CC8ACF /* 头像 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5079,6 +5091,7 @@
 		04B9D4FE22803CF10084FA23 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				0403568A2296365200DAA165 /* YYBweb */,
 				04B9D50A22803CF10084FA23 /* WKWebViewController.h */,
 				04B9D4FF22803CF10084FA23 /* WKWebViewController.m */,
 				04B9D50B22803CF10084FA23 /* WebViewController.h */,
@@ -8014,6 +8027,7 @@
 				04A50896227EDD3A0013E8EC /* UIView+WHView.m in Sources */,
 				65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */,
 				658902EE223B775F009C1B03 /* UIColor+PYSearchExtension.m in Sources */,
+				0403569022963EDD00DAA165 /* YYB_HF_WKWebVC.m in Sources */,
 				04153BFC228AA2F100AA5DAF /* FoodPreferentialCell.m in Sources */,
 				6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */,
 				6579784521E6D6B600E606BE /* JFCityHeaderView.m in Sources */,
