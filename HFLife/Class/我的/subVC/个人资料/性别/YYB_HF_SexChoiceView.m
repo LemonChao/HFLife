@@ -9,8 +9,9 @@
 #import "YYB_HF_SexChoiceView.h"
 
 @interface YYB_HF_SexChoiceView()
+@property(nonatomic, strong) UIView *bgView;//
 @property(nonatomic, strong) UIButton *button1;//男
-@property(nonatomic, strong) UIButton *button2;//男
+@property(nonatomic, strong) UIButton *button2;//女
 
 @end
 
@@ -46,7 +47,12 @@
 - (void)setUpVeiw {
     self.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.6];
     [self wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
-        [self removeFromSuperview];
+        self.bgView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        [UIView animateWithDuration:.2 animations:^{
+            self.bgView.transform = CGAffineTransformMakeScale(0.0, 0.0);
+        } completion:^(BOOL finished) {
+            [self removeFromSuperview];
+        }];
     }];
     UIButton *view = [UIButton new];
     view.userInteractionEnabled = YES;
@@ -54,6 +60,7 @@
     view.layer.cornerRadius = 5;
     view.setBackgroundColor([UIColor whiteColor]);
     [self addSubview:view];
+    self.bgView = view;
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(ScreenScale(300));
@@ -98,7 +105,6 @@
     sexbtn1.setImage([UIImage imageNamed:@"icon_unSel"],UIControlStateNormal).setBackgroundColor([UIColor clearColor]).setImage([UIImage imageNamed:@"icon_sel"],UIControlStateSelected).addAction(^{
         NSDictionary *parm = @{@"field":@"member_sex",@"value":@"1"};
         [self reqData:parm];
-        [self removeFromSuperview];
     });
     
     [sexbtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -110,7 +116,6 @@
     sexbtn2.setImage([UIImage imageNamed:@"icon_unSel"],UIControlStateNormal).setBackgroundColor([UIColor clearColor]).setImage([UIImage imageNamed:@"icon_sel"],UIControlStateSelected).addAction(^{
         NSDictionary *parm = @{@"field":@"member_sex",@"value":@"2"};
         [self reqData:parm];
-        [self removeFromSuperview];
     });
     
     [sexbtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,6 +132,14 @@
 
 
 - (void)reqData:(NSDictionary *)parm {
+    
+    self.bgView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    [UIView animateWithDuration:.2 animations:^{
+        self.bgView.transform = CGAffineTransformMakeScale(0.0, 0.0);
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+
     [[WBPCreate sharedInstance]showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kSaveMemberBase withParameters:parm withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
@@ -173,6 +186,11 @@
 - (void)show {
     
     [[UIApplication sharedApplication].keyWindow addSubview:self];
+
+    self.bgView.transform = CGAffineTransformMakeScale(0.0, 0.0);
+    [UIView animateWithDuration:0.2 animations:^{
+        self.bgView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    }];
 
 }
 
