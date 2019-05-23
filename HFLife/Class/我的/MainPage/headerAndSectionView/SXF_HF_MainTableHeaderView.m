@@ -152,7 +152,7 @@
     
     
     
-    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"user__easyico")];
     NSString *nameStr = [userInfoModel sharedUser].nickname;
     self.userNameLb.text = nameStr ? nameStr : @"";
     self.userLeveLb.text = @"LV：";
@@ -168,7 +168,7 @@
 
 #pragma mark - 设置头像昵称
 - (void)reSetData {
-    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"user__easyico")];
     NSString *nameStr = [userInfoModel sharedUser].nickname;
     self.userNameLb.text = nameStr ? nameStr : @"";
 }

@@ -97,16 +97,16 @@
         make.width.mas_equalTo(SCREEN_WIDTH);
     }];
     self.imageBtn = imageV;
-    [self.imageBtn sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] forState:UIControlStateNormal placeholderImage:image(@"dumpling")];
+    [self.imageBtn sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] forState:UIControlStateNormal placeholderImage:image(@"user__easyico")];
 
 }
 
 - (HXPhotoManager *)photo_manager {
     if (!_photo_manager) {
-        _photo_manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
+        _photo_manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
         _photo_manager.configuration.singleSelected = YES;
         _photo_manager.configuration.albumListTableView = ^(UITableView *tableView) {
-            
+
         };
     }
     return _photo_manager;
@@ -158,7 +158,7 @@
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
             }else {
-                [WXZTipView showCenterWithText:@"网络x错误"];
+                [WXZTipView showCenterWithText:@"网络错误"];
             }
         }
     }];
