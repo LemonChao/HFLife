@@ -21,6 +21,9 @@
 
 @property (nonatomic, strong)SXF_HF_leftRightAlert *topRightAlertV;
 @property (nonatomic, strong)void(^clickTopRightBtn)(NSInteger index);
+
+
+@property (nonatomic, strong)UIImageView *topImageV;
 @end
 
 
@@ -51,6 +54,7 @@
     self.cancleBtn    = [UIButton new];
     self.timerAlert   = [SXF_HF_TimeSelectedView new];
     self.topRightAlertV = [SXF_HF_leftRightAlert new];
+    self.topImageV    = [UIImageView new];
     
     [self addSubview:self.titleLb];
     [self addSubview:self.msgLb];
@@ -58,6 +62,7 @@
     [self addSubview:self.cancleBtn];
     [self addSubview:self.timerAlert];
     [self addSubview:self.topRightAlertV];
+    [self addSubview:self.topImageV];
     
     
     
@@ -141,6 +146,53 @@
             
         }
             break;
+            
+        case AlertType_binding:{
+            self.titleLb.font = [UIFont systemFontOfSize:15];
+            self.titleLb.textColor = colorAAAAAA;
+            
+            self.msgLb.font = [UIFont systemFontOfSize:15];
+            self.msgLb.textColor = color0C0B0B;
+            
+            self.cancleBtn.backgroundColor = colorCA1400;
+            self.sureBtn.backgroundColor = colorAAAAAA;
+            self.cancleBtn.setTitleColor([UIColor whiteColor], UIControlStateNormal);
+            self.sureBtn.setTitleColor([UIColor whiteColor], UIControlStateNormal);
+            self.titleLb.numberOfLines = 0;
+            self.msgLb.numberOfLines = 0;
+            
+            NSString *phone = [userInfoModel sharedUser].member_mobile ? [userInfoModel sharedUser].member_mobile : @"1213";
+            NSString *phoneStr = [NSString stringWithFormat:@"您的汉富号%@已与微信关联，是否解除?", phone];
+            NSAttributedString *atrS = [phoneStr setAtrbiuteStringWithFont:FONT(15) color:color0C0B0B range:NSRangeFromString(phone)];
+            self.titleLb.attributedText = atrS;
+            [self.titleLb setLabelWithLineSpace:ScreenScale(8)];
+            
+            self.msgLb.text = @"解除关联后将无法使用微信进行快速登录";
+            [self.msgLb setLabelWithLineSpace:ScreenScale(8)];
+            
+            self.cancleBtn.setTitle(@"取消", UIControlStateNormal);
+            self.sureBtn.setTitle(@"解除关联", UIControlStateNormal);
+            self.titleLb.textAlignment = NSTextAlignmentCenter;
+            self.msgLb.textAlignment = NSTextAlignmentCenter;
+        }
+            break;
+        case AlertType_exchnageSuccess:{
+            self.titleLb.font = FONT(17);
+            self.titleLb.textColor = color0C0B0B;
+            self.titleLb.text = @"更换成功";
+            self.topImageV.image = MY_IMAHE(@"完成 (3)");
+           
+        }
+            break;
+        case AlertType_exchnage:{
+            self.titleLb.font = FONT(15);
+            self.titleLb.textColor = color0C0B0B;
+            self.titleLb.numberOfLines = 0;
+            self.titleLb.text = @"一个月只能更换一次手机号";
+            self.cancleBtn.setTitleColor(colorCA1400, UIControlStateNormal).setTitleFontSize(15).setTitle(@"我知道了", UIControlStateNormal);
+            self.titleLb.textAlignment = NSTextAlignmentCenter;
+        }
+            break;
         default:
             break;
     }
@@ -170,9 +222,34 @@
             [self layoutTopRightView];
         }
             break;
+            
+        case AlertType_binding:{
+            [self layoutBindingView];
+        }
+            break;
+        case AlertType_exchnageSuccess:{
+            [self layoutExchangePhoneView];
+        }
+            break;
+        case AlertType_exchnage:{
+            [self layoutExchangeAlertView];
+        }
+            break;
         default:
             break;
     }
+}
+- (void)layoutExchangeAlertView{
+    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(12));
+        make.right.mas_equalTo(self.mas_right).offset(ScreenScale(-12));
+        make.top.mas_equalTo(self.mas_top).offset(ScreenScale(40));
+    }];
+    [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.mas_bottom);
+        make.centerX.mas_equalTo(self.mas_centerX);
+        make.height.mas_equalTo(ScreenScale(44));
+    }];
 }
 - (void)layoutTopRightView{
     [self.topRightAlertV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -185,6 +262,24 @@
         make.top.bottom.left.right.mas_equalTo(self);
     }];
 }
+
+
+
+
+//更换成功
+- (void)layoutExchangePhoneView{
+    [self.topImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.mas_centerX);
+        make.top.mas_equalTo(self.mas_top).offset(ScreenScale(24));
+        make.width.height.mas_equalTo(ScreenScale(50));
+    }];
+    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.mas_bottom).offset(ScreenScale(-25));
+        make.centerX.mas_equalTo(self.topImageV.mas_centerX);
+    }];
+}
+
+
 
 /**
   安全提示
@@ -241,8 +336,34 @@
     [self layoutIfNeeded];
 }
 
-
-
+/**
+ 绑定解绑
+ */
+- (void)layoutBindingView{
+    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(26));
+        make.right.mas_equalTo(self.mas_right).offset(ScreenScale(-27));
+        make.top.mas_equalTo(self.mas_top).offset(28);
+    }];
+    
+    [self.msgLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.self.titleLb.mas_bottom).offset(24);
+        make.left.right.mas_equalTo(self.titleLb);
+    }];
+    
+    [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.mas_equalTo(self);
+        make.width.mas_equalTo(self.mas_width).multipliedBy(0.5);
+        make.height.mas_equalTo(ScreenScale(44));
+        make.top.mas_equalTo(self.msgLb.mas_bottom).offset(ScreenScale(29));
+    }];
+    [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.cancleBtn.mas_right);
+        make.right.mas_equalTo(self.mas_right);
+        make.bottom.mas_equalTo(self.mas_bottom);
+        make.height.mas_equalTo(self.cancleBtn.mas_height);
+    }];
+}
 /**
  支付提示
  */
@@ -344,8 +465,31 @@
                     
                 }];
             }];
-            
-            
+        }
+            break;
+        case AlertType_binding:{
+            alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(227));
+        }
+            break;
+        case AlertType_exchnageSuccess:{
+            alertView.frame = CGRectMake(0, 0, ScreenScale(121), ScreenScale(134));
+            //2秒后自动销毁
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                   
+                    [UIView animateWithDuration:0.1 animations:^{
+                        weakAlert.alpha = 0.0;
+                        bgView.alpha = 0.0;
+                    } completion:^(BOOL finished) {
+                        [bgView removeFromSuperview];
+                        [weakAlert removeFromSuperview];
+                    }];
+                });
+            }];
+        }
+            break;
+        case AlertType_exchnage:{
+            alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(121));
         }
             break;
         default:

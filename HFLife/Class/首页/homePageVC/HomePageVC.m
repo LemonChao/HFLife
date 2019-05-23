@@ -18,6 +18,10 @@
 #import "SXF_HF_HomePageVM.h"
 
 #import "SXF_HF_payStepAleryView.h"
+
+
+//test
+#import "ReviseMobilePhone.h"
 @interface HomePageVC ()
 @property (nonatomic, strong)SXF_HF_HomePageView *collectionView;
 @property (nonatomic, strong)SXF_HF_CustomSearchBar *searchBar;
@@ -99,22 +103,22 @@
         
         
         //语音朗读
-        [voiceHeaper say:@"我靠!下班吃饭了!"];
-        [touchID_helper showTouchIDshowType:@"" complate:^(BOOL success, NSError * _Nullable error) {
-            
-        }];
-        return ;
+//        [voiceHeaper say:@"我靠!下班吃饭了!"];
+//        [touchID_helper showTouchIDshowType:@"" complate:^(BOOL success, NSError * _Nullable error) {
+//
+//        }];
+//        return ;
         
         
         
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [SXF_HF_AlertView showAlertType:AlertType_topRight Complete:^(BOOL btnBype) {
+            [SXF_HF_AlertView showAlertType:AlertType_binding Complete:^(BOOL btnBype) {
                 if (btnBype) {
                     //收款码介绍
-                    BaseViewController *vc = [BaseViewController new];
-                    vc.customNavBar.title = @"收款码介绍";
+                    BaseViewController *vc = [ReviseMobilePhone new];
+                    vc.customNavBar.title = @"更换手机号";
                     [self.navigationController pushViewController:vc animated:YES];
                 }
 

@@ -14,6 +14,9 @@ typedef NS_ENUM(NSUInteger, HF_AlertType) {
     AlertType_Pay,//支付提示
     AlertType_time,//时间选择
     AlertType_topRight,//右上角选择弹窗
+    AlertType_binding,//解绑弹窗
+    AlertType_exchnageSuccess,//更换成功！
+    AlertType_exchnage,//一月更新一次
 };
 
 
