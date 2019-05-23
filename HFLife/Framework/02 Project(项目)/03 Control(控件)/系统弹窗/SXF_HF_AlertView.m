@@ -86,6 +86,19 @@
     }
 }
 
+- (void)setTitle:(NSString *)title{
+    _title = title;
+    self.titleLb.text = title;
+    [self configerAlert];
+}
+
+- (void)setMsg:(NSString *)msg{
+    _msg = msg;
+    self.msgLb.text = _msg;
+    [self configerAlert];
+}
+
+
 
 - (void)setAlertType:(HF_AlertType)alertType{
     _alertType = alertType;
@@ -179,7 +192,7 @@
         case AlertType_exchnageSuccess:{
             self.titleLb.font = FONT(17);
             self.titleLb.textColor = color0C0B0B;
-            self.titleLb.text = @"更换成功";
+            self.titleLb.text = self.title;
             self.topImageV.image = MY_IMAHE(@"完成 (3)");
            
         }
@@ -193,6 +206,15 @@
             self.titleLb.textAlignment = NSTextAlignmentCenter;
         }
             break;
+            
+        case AlertType_realyCheck:{
+            self.titleLb.font = FONT(14);
+            self.titleLb.textColor = color0C0B0B;
+            self.cancleBtn.setTitleColor(colorAAAAAA, UIControlStateNormal).setTitleFontSize(14).setTitle(@"取消", UIControlStateNormal);
+            self.sureBtn.setTitleColor(colorCA1400, UIControlStateNormal).setTitleFontSize(14).setTitle(@"去认证", UIControlStateNormal);
+            self.titleLb.textAlignment = NSTextAlignmentCenter;
+            self.titleLb.text = @"使用银行卡前请先进行实名认证";
+        }
         default:
             break;
     }
@@ -235,10 +257,39 @@
             [self layoutExchangeAlertView];
         }
             break;
+        case AlertType_realyCheck:{
+            [self layoutRealyCheck];
+        }
+            break;
         default:
             break;
     }
 }
+
+//实名认证
+- (void)layoutRealyCheck{
+    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(12));
+        make.right.mas_equalTo(self.mas_right).offset(ScreenScale(-12));
+        make.top.mas_equalTo(self.mas_top).offset(ScreenScale(28));
+    }];
+    
+    [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.mas_equalTo(self);
+        make.width.mas_equalTo(self.mas_width).multipliedBy(0.5);
+        make.height.mas_equalTo(ScreenScale(50));
+        make.top.mas_equalTo(self.msgLb.mas_bottom).offset(ScreenScale(29));
+    }];
+    [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.cancleBtn.mas_right);
+        make.right.mas_equalTo(self.mas_right);
+        make.bottom.mas_equalTo(self.mas_bottom);
+        make.height.mas_equalTo(self.cancleBtn.mas_height);
+    }];
+}
+
+
+//更换成功
 - (void)layoutExchangeAlertView{
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(ScreenScale(12));
@@ -490,6 +541,10 @@
             break;
         case AlertType_exchnage:{
             alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(121));
+        }
+            break;
+        case AlertType_realyCheck:{
+            alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(119));
         }
             break;
         default:

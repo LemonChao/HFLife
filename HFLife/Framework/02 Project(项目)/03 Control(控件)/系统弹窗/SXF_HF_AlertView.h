@@ -17,6 +17,8 @@ typedef NS_ENUM(NSUInteger, HF_AlertType) {
     AlertType_binding,//解绑弹窗
     AlertType_exchnageSuccess,//更换成功！
     AlertType_exchnage,//一月更新一次
+    
+    AlertType_realyCheck,//实名认证
 };
 
 
@@ -24,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_AlertView : UIView
 @property (nonatomic, assign)HF_AlertType alertType;
+
+@property (nonatomic, strong)NSString *title;
+@property (nonatomic, strong)NSString *msg;
+
 
 /**
  app弹窗封装
