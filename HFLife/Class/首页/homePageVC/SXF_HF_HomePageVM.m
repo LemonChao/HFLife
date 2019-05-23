@@ -138,7 +138,7 @@
         UIViewController *vc = [BaseViewController new];
         if (index == 0) {
             //检测相机权限
-            if ([NSObject isCanUseCamare]) {
+            if ([NSObject isCameraAvailable]) {
                 vc = [FlickingVC new];//扫一扫
             }else{
                 [WXZTipView showCenterWithText:@"相机不可用"];

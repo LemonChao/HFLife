@@ -25,18 +25,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupNavBar];
-    
+    self.customNavBar.title = self.title;
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
     [self.view addSubview:self.webView];
+    
+    
+    UITextView *tv = [[UITextView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
+    tv.backgroundColor = [UIColor orangeColor];
+    
+    
+    NSString *subUrl;
+    if (self.row == 0) {
+        subUrl = VersionContent;//版本说明
+    }else{
+        subUrl = ServiceAgreement;
+    }
     
     
     //加载 html字符串
     [networkingManagerTool requestToServerWithType:POST withSubUrl:ServiceAgreement withParameters:@{} withResultBlock:^(BOOL result, id value) {
         if (result) {
             if (value) {
-                self.htmlStr = value[@"data"][@"app_service_agreement"];
+                if (self.row == 0) {
+                    self.htmlStr = value[@"data"][@"content"];
+                }else{
+                    self.htmlStr = value[@"data"][@"app_service_agreement"];
+                }
+                
+                
+                
+//                NSString *newStr = [NSString stringWithFormat:@""]
+                
+                
+                
                 [self.webView loadHTMLString:self.htmlStr baseURL:nil];
             }
         }
@@ -73,36 +95,7 @@
 //
 //    [self loadWKwebViewData];
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-    
-    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
-    self.fd_interactivePopDisabled = YES;
-}
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-    
-    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
-    self.fd_interactivePopDisabled = NO;
-    
-}
--(void)setupNavBar{
-    WS(weakSelf);
-    [super setupNavBar];
-    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
-    [self.customNavBar setOnClickLeftButton:^{
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-    }];
-        //    [self.customNavBar wr_setBackgroundAlpha:0];
-    [self.customNavBar wr_setBottomLineHidden:YES];
-    self.customNavBar.title = self.title;
-    self.customNavBar.backgroundColor = [UIColor whiteColor];
-    self.customNavBar.titleLabelColor = [UIColor blackColor];
-    
-}
+
 - (void)initWKWebView{
     
         //创建并配置WKWebView的相关参数

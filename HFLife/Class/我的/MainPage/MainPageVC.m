@@ -19,6 +19,11 @@
 #import "MyCollectionVC.h"
 #import "myFriendListVC.h"
 #import "AboutVC.h"
+
+//富权
+#import "FQ_homeVC.h"
+//余额
+#import "BalanceHomeVC.h"
 @interface MainPageVC () {
     BOOL isFirstLoad;
 }
@@ -53,10 +58,8 @@
     self.mainPageView.selectedItemCallback = ^(NSIndexPath * _Nonnull indexPath) {
         NSLog(@"分区 %ld   行%ld", (long)indexPath.section, (long)indexPath.row);
         BaseViewController *vc = [BaseViewController new];
-        
         //token不存在 跳转 登录
-#warning 需要取反
-        if (![NSString isNOTNull:[HeaderToken getAccessToken]]) {
+        if (!LogIn_Success) {
             [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
                 if (btnBype) {
                     //登录页
@@ -65,6 +68,15 @@
                 }
             }];
         }else {
+            if (indexPath.section == 0) {
+                if (indexPath.row == 0) {
+                    //富权
+                    vc = [FQ_homeVC new];
+                }else if (indexPath.row == 1){
+                    //余额
+                    vc = [BalanceHomeVC new];
+                }
+            }else
             if (indexPath.section == 1) {
                 switch (indexPath.row) {
                     case 0:

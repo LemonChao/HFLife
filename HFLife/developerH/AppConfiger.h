@@ -36,6 +36,12 @@
 
 
 
+/**
+ 推送 别名
+ */
+static NSString *const JPUSH_TYPERIES       = @"HFWM_COURIER_";
+
+
 //上次登录的appversion
 static NSString *const HFAppVersion         = @"appVersion";
 

@@ -87,7 +87,7 @@
     
     UIButton *testBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
     testBtn.backgroundColor = [UIColor orangeColor];
-//    testBtn.center = self.view.center;
+    testBtn.center = self.view.center;
     
     [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{
@@ -96,6 +96,18 @@
 //        }];
         
 //        [self loadServerData:1];
+        
+        
+        //语音朗读
+        [voiceHeaper say:@"我靠!下班吃饭了!"];
+        [touchID_helper showTouchIDshowType:@"" complate:^(BOOL success, NSError * _Nullable error) {
+            
+        }];
+        return ;
+        
+        
+        
+        
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [SXF_HF_AlertView showAlertType:AlertType_topRight Complete:^(BOOL btnBype) {

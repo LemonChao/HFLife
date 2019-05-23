@@ -28,33 +28,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     titleArray = @[@"设置登录密码",@"设置交易密码",@"修改手机号"];
+    
+    self.customNavBar.title = @"安全中心";
 //    valueArray = @[[UserCache getUserPasswordStatus] ? @"去修改" : @"去设置",[UserCache getUserTradePassword]?@"去修改":@"待设置",[NSString isNOTNull:[UserCache getUserPhone]] ?@"待设置":@"去修改" ];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initWithUI];
     [self setupNavBar];
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-}
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
--(void)setupNavBar{
-    WS(weakSelf);
-    [super setupNavBar];
-//    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
-    [self.customNavBar setOnClickLeftButton:^{
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-    }];
-    //    [self.customNavBar wr_setBackgroundAlpha:0];
-    [self.customNavBar wr_setBottomLineHidden:YES];
-    self.customNavBar.title = @"安全中心";
-    self.customNavBar.backgroundColor = RGBA(136, 53, 230, 1);//[UIColor whiteColor];
-    self.customNavBar.titleLabelColor = [UIColor whiteColor];
-    
 }
 -(void)initWithUI{
     [self.view addSubview:self.contentTableView];
@@ -121,14 +100,12 @@
     }else if ([value isEqualToString:@"修改手机号"]){
         [self.navigationController pushViewController:[[ReviseMobilePhone alloc]init] animated:YES];
     }else if ([value isEqualToString:@"设置交易密码"]){
-        /*
-        
-        if ([[UserCache getUserXinXiTitle] isEqualToString:@"已认证"]) {
+        if ([[userInfoModel sharedUser].rz_status integerValue] == 1) {
             [self.navigationController pushViewController:[[ConfirmInformationVC alloc]init] animated:YES];
         }else{
-            LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:MMNSStringFormat(@"您的身份信息%@,暂时无法进行交易密码的修改",[UserCache getUserXinXiTitle]) cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
+            LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:MMNSStringFormat(@"您的身份信息%@,暂时无法进行交易密码的修改",[userInfoModel sharedUser].rz_statusName) cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
                 if(clickIndex == 1){
-                    if ([[UserCache getUserXinXiCode]  isEqualToString:@"0"] || [[UserCache getUserXinXiCode] isEqualToString:@"3"] ) {
+                    if ([[userInfoModel sharedUser].rz_status integerValue]  == 0 || [[userInfoModel sharedUser].rz_status integerValue]  == 3) {
                         IdentityInformationVC *ident = [[IdentityInformationVC alloc]init];
                         [self.navigationController pushViewController:ident animated:YES];
                     }else{
@@ -139,10 +116,7 @@
             }];
             alert.animationStyle=LXASAnimationTopShake;
             [alert showLXAlertView];
-        }
-         
-         */
-        
+        }        
     }
 }
 #pragma mark 懒加载

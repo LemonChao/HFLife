@@ -15,7 +15,8 @@
 #import "LYBmOcrManager.h"
 #import "SXF_HF_HomePageModel.h"
 #import "SXF_HF_MainPageModel.h"
-
+#import "voiceHeaper.h"
+#import "touchID_helper.h"
 /************************yourTools************************/
 
 

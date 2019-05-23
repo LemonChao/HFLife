@@ -147,6 +147,21 @@
     return YES;
 }
 
+//检测相机是否可用
++ (BOOL)isCameraAvailable{
+    return [UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera];
+}
+//检测闪光灯是否可用(前置)
++ (BOOL)isRearForgroundCameraAvailable {
+    return [UIImagePickerController isFlashAvailableForCameraDevice:UIImagePickerControllerCameraDeviceRear]; //后置摄像头的闪光灯
+    //    return [UIImagePickerController isFlashAvailableForCameraDevice:UIImagePickerControllerCameraDeviceFront]; 前置摄像头的闪光灯
+}
+//检测闪光灯是否可用(后置)
++ (BOOL)isRearBackCameraAvailable {
+//    return [UIImagePickerController isFlashAvailableForCameraDevice:UIImagePickerControllerCameraDeviceRear]; //后置摄像头的闪光灯
+        return [UIImagePickerController isFlashAvailableForCameraDevice:UIImagePickerControllerCameraDeviceFront];// 前置摄像头的闪光灯
+}
+
 /**跳转到相册设置*/
 + (void)goSettingOpenPhoto{
     // 系统是否大于10

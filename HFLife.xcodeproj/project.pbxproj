@@ -539,6 +539,9 @@
 		04F9AC00228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9ABFE228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m */; };
 		04F9AC01228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */; };
 		04F9AC04228ED5A600A602CE /* SXF_HF_TimeSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9AC03228ED5A600A602CE /* SXF_HF_TimeSelectedView.m */; };
+		04FA264F22964DC800F4E9EB /* voiceHeaper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA264E22964DC800F4E9EB /* voiceHeaper.m */; };
+		04FA26532296551800F4E9EB /* touchID_helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA26522296551800F4E9EB /* touchID_helper.m */; };
+		04FA265622967E6D00F4E9EB /* balanceHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA265522967E6D00F4E9EB /* balanceHomeView.m */; };
 		04FB7F1522865A4900150CA7 /* 余额.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1322865A4900150CA7 /* 余额.gif */; };
 		04FB7F1622865A4900150CA7 /* 余额底图_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1422865A4900150CA7 /* 余额底图_00000.png */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
@@ -1845,6 +1848,12 @@
 		04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_getMoneyCellTableViewCell.xib; sourceTree = "<group>"; };
 		04F9AC02228ED5A600A602CE /* SXF_HF_TimeSelectedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_TimeSelectedView.h; sourceTree = "<group>"; };
 		04F9AC03228ED5A600A602CE /* SXF_HF_TimeSelectedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_TimeSelectedView.m; sourceTree = "<group>"; };
+		04FA264D22964DC800F4E9EB /* voiceHeaper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = voiceHeaper.h; sourceTree = "<group>"; };
+		04FA264E22964DC800F4E9EB /* voiceHeaper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = voiceHeaper.m; sourceTree = "<group>"; };
+		04FA26512296551800F4E9EB /* touchID_helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = touchID_helper.h; sourceTree = "<group>"; };
+		04FA26522296551800F4E9EB /* touchID_helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = touchID_helper.m; sourceTree = "<group>"; };
+		04FA265422967E6D00F4E9EB /* balanceHomeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = balanceHomeView.h; sourceTree = "<group>"; };
+		04FA265522967E6D00F4E9EB /* balanceHomeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = balanceHomeView.m; sourceTree = "<group>"; };
 		04FB7F1322865A4900150CA7 /* 余额.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "余额.gif"; sourceTree = "<group>"; };
 		04FB7F1422865A4900150CA7 /* 余额底图_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额底图_00000.png"; sourceTree = "<group>"; };
 		04FB7F1722866BE300150CA7 /* UIImageView+LoadGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadGif.h"; sourceTree = "<group>"; };
@@ -3246,17 +3255,17 @@
 		048DAC0322857516006E6BA2 /* 富权 */ = {
 			isa = PBXGroup;
 			children = (
-				048DAC0422857516006E6BA2 /* FQ_homeHeaderView.xib */,
-				048DAC0522857516006E6BA2 /* RichRightListVC.h */,
-				048DAC0622857516006E6BA2 /* FQ_homeTableV.h */,
-				048DAC0722857516006E6BA2 /* FQ_homeHeaderView.h */,
-				048DAC0822857516006E6BA2 /* 兑换富权 */,
 				048DAC0F22857516006E6BA2 /* FQ_homeVC.h */,
-				048DAC1022857516006E6BA2 /* RichRightListVC.m */,
-				048DAC1122857516006E6BA2 /* Cell */,
-				048DAC1422857516006E6BA2 /* FQ_homeTableV.m */,
-				048DAC1522857516006E6BA2 /* FQ_homeHeaderView.m */,
 				048DAC1622857516006E6BA2 /* FQ_homeVC.m */,
+				048DAC0622857516006E6BA2 /* FQ_homeTableV.h */,
+				048DAC1422857516006E6BA2 /* FQ_homeTableV.m */,
+				048DAC0522857516006E6BA2 /* RichRightListVC.h */,
+				048DAC1022857516006E6BA2 /* RichRightListVC.m */,
+				048DAC0722857516006E6BA2 /* FQ_homeHeaderView.h */,
+				048DAC1522857516006E6BA2 /* FQ_homeHeaderView.m */,
+				048DAC0422857516006E6BA2 /* FQ_homeHeaderView.xib */,
+				048DAC0822857516006E6BA2 /* 兑换富权 */,
+				048DAC1122857516006E6BA2 /* Cell */,
 			);
 			path = "富权";
 			sourceTree = "<group>";
@@ -3295,15 +3304,17 @@
 		048DAC1A22857516006E6BA2 /* 余额 */ = {
 			isa = PBXGroup;
 			children = (
+				048DAC3C22857516006E6BA2 /* BalanceHomeVC.h */,
 				048DAC1B22857516006E6BA2 /* BalanceHomeVC.m */,
-				048DAC1C22857516006E6BA2 /* 提现 */,
+				04FA265422967E6D00F4E9EB /* balanceHomeView.h */,
+				04FA265522967E6D00F4E9EB /* balanceHomeView.m */,
 				048DAC4022857516006E6BA2 /* balanceRecoardView.h */,
 				048DAC2322857516006E6BA2 /* balanceRecoardView.m */,
+				048DAC1C22857516006E6BA2 /* 提现 */,
 				048DAC2422857516006E6BA2 /* 余额记录 */,
 				048DAC2A22857516006E6BA2 /* 转账 */,
 				048DAC3222857516006E6BA2 /* 提现详情 */,
 				048DAC3522857516006E6BA2 /* 转账详情 */,
-				048DAC3C22857516006E6BA2 /* BalanceHomeVC.h */,
 				048DAC3D22857516006E6BA2 /* Model */,
 				048DAC4122857516006E6BA2 /* 账单详情 */,
 			);
@@ -3313,12 +3324,12 @@
 		048DAC1C22857516006E6BA2 /* 提现 */ = {
 			isa = PBXGroup;
 			children = (
-				048DAC1D22857516006E6BA2 /* withdrawAlertView.h */,
-				048DAC1E22857516006E6BA2 /* WithdrawVC.m */,
-				048DAC1F22857516006E6BA2 /* WithdrawItemView.m */,
-				048DAC2022857516006E6BA2 /* withdrawAlertView.m */,
-				048DAC2122857516006E6BA2 /* WithdrawItemView.h */,
 				048DAC2222857516006E6BA2 /* WithdrawVC.h */,
+				048DAC1E22857516006E6BA2 /* WithdrawVC.m */,
+				048DAC2122857516006E6BA2 /* WithdrawItemView.h */,
+				048DAC1F22857516006E6BA2 /* WithdrawItemView.m */,
+				048DAC1D22857516006E6BA2 /* withdrawAlertView.h */,
+				048DAC2022857516006E6BA2 /* withdrawAlertView.m */,
 			);
 			path = "提现";
 			sourceTree = "<group>";
@@ -3639,6 +3650,8 @@
 		04A50658227EDD350013E8EC /* 03 Control(控件) */ = {
 			isa = PBXGroup;
 			children = (
+				04FA2650229654F200F4E9EB /* 指纹识别 */,
+				04FA264C22964DA400F4E9EB /* 语音助手 */,
 				04F5F24A228412460043BBB7 /* 系统弹窗 */,
 				04A50659227EDD350013E8EC /* 上下滚动显示 */,
 				0453D1C02284032F00880C2A /* 缺省页 */,
@@ -5472,8 +5485,8 @@
 		04F5215E228A77EA00ED4995 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
-				04F5215F228A77EA00ED4995 /* LoginVC.m */,
 				04F52160228A77EA00ED4995 /* LoginVC.h */,
+				04F5215F228A77EA00ED4995 /* LoginVC.m */,
 				040B6A3B228CF3730078B5DB /* LoginForVercode.h */,
 				040B6A3C228CF3730078B5DB /* LoginForVercode.m */,
 			);
@@ -5873,6 +5886,24 @@
 				04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */,
 			);
 			path = "新版收钱";
+			sourceTree = "<group>";
+		};
+		04FA264C22964DA400F4E9EB /* 语音助手 */ = {
+			isa = PBXGroup;
+			children = (
+				04FA264D22964DC800F4E9EB /* voiceHeaper.h */,
+				04FA264E22964DC800F4E9EB /* voiceHeaper.m */,
+			);
+			path = "语音助手";
+			sourceTree = "<group>";
+		};
+		04FA2650229654F200F4E9EB /* 指纹识别 */ = {
+			isa = PBXGroup;
+			children = (
+				04FA26512296551800F4E9EB /* touchID_helper.h */,
+				04FA26522296551800F4E9EB /* touchID_helper.m */,
+			);
+			path = "指纹识别";
 			sourceTree = "<group>";
 		};
 		04FB7F1222865A3200150CA7 /* 动画资源图 */ = {
@@ -7735,6 +7766,7 @@
 				658C39DF21E9FA5B00880B6A /* JXCategoryTitleCell.m in Sources */,
 				04A508A9227EDD3A0013E8EC /* networkingManagerTool.m in Sources */,
 				04153C06228AA2F100AA5DAF /* Cake_MilkyTeaVC.m in Sources */,
+				04FA264F22964DC800F4E9EB /* voiceHeaper.m in Sources */,
 				04B9D57C22803E260084FA23 /* BaseManage.m in Sources */,
 				04F52101228A764400ED4995 /* PersonalDataCell.m in Sources */,
 				0428EB5322797379000E4B4E /* callTelephone.m in Sources */,
@@ -7836,6 +7868,7 @@
 				04F89339229292680075918A /* SXF_HF_vipCardView.m in Sources */,
 				04A508D5227EDD3A0013E8EC /* NSDictionary+UnicodeToChinese.m in Sources */,
 				049783882285957F00E143D7 /* NearColumnCell.m in Sources */,
+				04FA26532296551800F4E9EB /* touchID_helper.m in Sources */,
 				04A50882227EDD3A0013E8EC /* MXPullDownMenu.m in Sources */,
 				658B7CAC21D749E100801CC8 /* SDCycleScrollView.m in Sources */,
 				0497838D2285957F00E143D7 /* SelectCheckDateViewController.m in Sources */,
@@ -7850,6 +7883,7 @@
 				04F8932B229260DC0075918A /* SXF_HF_addCardSectionHeaderView.m in Sources */,
 				6579784721E6D6B600E606BE /* JFCityViewController.m in Sources */,
 				04A508A1227EDD3A0013E8EC /* UIScrollView+WHScrollView.m in Sources */,
+				04FA265622967E6D00F4E9EB /* balanceHomeView.m in Sources */,
 				04A50859227EDD3A0013E8EC /* ZFTableViewController.m in Sources */,
 				04A508DA227EDD3A0013E8EC /* HRUserInfoManager.m in Sources */,
 				04A50837227EDD390013E8EC /* UIView+FrameExtension.m in Sources */,
