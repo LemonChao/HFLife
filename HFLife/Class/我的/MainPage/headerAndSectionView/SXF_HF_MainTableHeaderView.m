@@ -179,7 +179,7 @@
     NSString *nameStr = memberInfoModel.nickname;
     self.userNameLb.text = nameStr ? nameStr : @"sxf";
     self.userLeveLb.text = memberInfoModel.level_name ? memberInfoModel.level_name : @"无等级信息";
-    self.myJoinTitleLb.text = [NSString stringWithFormat:@"我的邀请码:%@",memberInfoModel.invite_code];
+    self.myJoinTitleLb.text = memberInfoModel.invite_code ? [NSString stringWithFormat:@"我的邀请码:%@",memberInfoModel.invite_code] : @"";
     if (memberInfoModel.i_agent_level.intValue >= 0) {
         self.moneyLb1.text = memberInfoModel.yesterday_turnover.stringValue ? memberInfoModel.yesterday_turnover.stringValue : @"666";
         self.moneyLb2.text = memberInfoModel.yesterday_benefit.stringValue ? memberInfoModel.yesterday_benefit.stringValue : @"666";
@@ -196,8 +196,13 @@
     [[self getCurrentViewController].navigationController pushViewController:[[NSClassFromString(@"PersonalDataVC") alloc]init] animated:YES];
 }
 - (void)copyText{
-    [UIPasteboard generalPasteboard].string = [self.myJoinTitleLb.text componentsSeparatedByString:@":"].lastObject;
-    [WXZTipView showCenterWithText:@"邀请码已复制"];
+    if ([self.myJoinTitleLb.text componentsSeparatedByString:@":"].lastObject) {
+        [UIPasteboard generalPasteboard].string = [self.myJoinTitleLb.text componentsSeparatedByString:@":"].lastObject;
+        [WXZTipView showCenterWithText:@"邀请码已复制"];
+    }else {
+        [WXZTipView showCenterWithText:@"邀请码不存在"];
+    }
+    
     NSLog(@"剪切板数据 : %@", [UIPasteboard generalPasteboard].string);
 }
 
