@@ -64,7 +64,7 @@
         [self.emptyButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(ScreenScale(47));
             make.left.right.equalTo(self);
-            make.height.mas_equalTo(ScreenScale(124));
+            make.height.mas_equalTo(ScreenScale(135));
         }];
         
         [self.descriptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,7 +73,7 @@
         }];
         
         [self layoutIfNeeded];
-        [self.emptyButton setImagePosition:ImagePositionTypeTop spacing:ScreenScale(10)];
+        [self.emptyButton setImagePosition:ImagePositionTypeTop WithMargin:0];
     }
     return self;
 }

@@ -59,7 +59,7 @@
                     [subscriber sendCompleted];
                 }else {
                     self.cartArray = @[];
-                    [subscriber sendError:nil];
+                    [subscriber sendCompleted];
                 }
             }];
             return nil;
