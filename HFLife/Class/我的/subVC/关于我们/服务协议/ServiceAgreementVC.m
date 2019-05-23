@@ -14,21 +14,64 @@
 }
 @property(nonatomic, strong)WKWebView *webView;
 
+
+
+@property (nonatomic, strong)NSString *htmlStr;
+
+
 @end
 
 @implementation ServiceAgreementVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self removeWebCache];
-    [self initWKWebView];
-    maskView = [UIView new];
-    [self.view addSubview:maskView];
-    [maskView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.view);
-    }];
     [self setupNavBar];
-    [self loadWKwebViewData];
+    
+    
+    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
+    [self.view addSubview:self.webView];
+    
+    
+    //加载 html字符串
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:ServiceAgreement withParameters:@{} withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            if (value) {
+                self.htmlStr = value[@"data"][@"app_service_agreement"];
+                [self.webView loadHTMLString:self.htmlStr baseURL:nil];
+            }
+        }
+        
+    }];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    [self removeWebCache];
+//    [self initWKWebView];
+//    maskView = [UIView new];
+//    [self.view addSubview:maskView];
+//    [maskView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.mas_equalTo(self.view);
+//    }];
+//
+//    [self loadWKwebViewData];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

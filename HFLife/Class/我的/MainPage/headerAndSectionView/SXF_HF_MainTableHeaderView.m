@@ -154,15 +154,15 @@
     
     [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
     NSString *nameStr = [userInfoModel sharedUser].nickname;
-    self.userNameLb.text = nameStr ? nameStr : @"sxf";
-    self.userLeveLb.text = @"LV：VIP1";
-    self.myJoinTitleLb.text = @"我的邀请码：X34FV";
+    self.userNameLb.text = nameStr ? nameStr : @"";
+    self.userLeveLb.text = @"LV：";
+    self.myJoinTitleLb.text = @"我的邀请码:6666";
     
-    self.moneyLb1.text = @"888";
-    self.moneyLb2.text = @"999";
+    self.moneyLb1.text = @"";
+    self.moneyLb2.text = @"";
     self.moneyTitle1.text = @"昨日营业额(元)";
     self.moneyTitle2.text = @"昨日商家让利(元)";
-    self.bottomLb.text = @"管城区代理";
+    self.bottomLb.text = @"";
     
 }
 
@@ -170,19 +170,19 @@
 - (void)reSetData {
     [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
     NSString *nameStr = [userInfoModel sharedUser].nickname;
-    self.userNameLb.text = nameStr ? nameStr : @"sxf";
+    self.userNameLb.text = nameStr ? nameStr : @"";
 }
 
 #pragma mark - 设置信息
 - (void)setMemberInfoModel:(MemberInfoModel *)memberInfoModel {
     [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:memberInfoModel.member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
     NSString *nameStr = memberInfoModel.nickname;
-    self.userNameLb.text = nameStr ? nameStr : @"sxf";
+    self.userNameLb.text = nameStr ? nameStr : @"";
     self.userLeveLb.text = memberInfoModel.level_name ? memberInfoModel.level_name : @"无等级信息";
     self.myJoinTitleLb.text = [NSString stringWithFormat:@"我的邀请码:%@",memberInfoModel.invite_code];
     if (memberInfoModel.i_agent_level.intValue >= 0) {
-        self.moneyLb1.text = memberInfoModel.yesterday_turnover.stringValue ? memberInfoModel.yesterday_turnover.stringValue : @"666";
-        self.moneyLb2.text = memberInfoModel.yesterday_benefit.stringValue ? memberInfoModel.yesterday_benefit.stringValue : @"666";
+        self.moneyLb1.text = memberInfoModel.yesterday_turnover.stringValue ? memberInfoModel.yesterday_turnover.stringValue : @"0";
+        self.moneyLb2.text = memberInfoModel.yesterday_benefit.stringValue ? memberInfoModel.yesterday_benefit.stringValue : @"0";
         self.moneyTitle1.text = @"昨日营业额(元)";
         self.moneyTitle2.text = @"昨日商家让利(元)";
         self.bottomLb.text = memberInfoModel.i_agent_name ? memberInfoModel.i_agent_name : @"代理区域";

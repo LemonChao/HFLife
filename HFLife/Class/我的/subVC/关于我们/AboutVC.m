@@ -36,17 +36,8 @@
 -(void)setupNavBar{
     WS(weakSelf);
     [super setupNavBar];
-//    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
-    [self.customNavBar setOnClickLeftButton:^{
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-    }];
-        //    [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:YES];
     self.customNavBar.title = @"关于汉富";
-    self.customNavBar.backgroundColor = RGBA(136, 53, 230, 1);//[UIColor whiteColor];
-    self.customNavBar.titleLabelColor = [UIColor whiteColor];
-    
 }
 -(void)initWithUI{
     UIImageView *imageView = [UIImageView new];
@@ -145,6 +136,7 @@
     ServiceAgreementVC *serv = [[ServiceAgreementVC alloc]init];
     serv.htmlPath = htmlPath;
     serv.title = title;
+    serv.row = indexPath.row;
     [self.navigationController pushViewController:serv animated:YES];
 }
 #pragma mark 懒加载

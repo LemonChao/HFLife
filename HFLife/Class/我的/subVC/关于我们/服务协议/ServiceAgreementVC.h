@@ -11,9 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ServiceAgreementVC : BaseViewController
-@property (nonatomic,strong) NSString *htmlPath;
-@property (nonatomic,strong) NSString *url;
-@property (nonatomic,strong) NSString *title;
+@property (nonatomic, strong) NSString *htmlPath;
+@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, assign) NSInteger row;
 @end
 
 NS_ASSUME_NONNULL_END
