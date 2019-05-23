@@ -56,7 +56,7 @@
         
         //token不存在 跳转 登录
 #warning 需要取反
-        if (![NSString isNOTNull:[HeaderToken getAccessToken]]) {
+        if (LogIn_Success) {
             [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
                 if (btnBype) {
                     //登录页
@@ -66,15 +66,36 @@
             }];
         }else {
             if (indexPath.section == 1) {
+                // h5界面
+                YYB_HF_WKWebVC *h5webVC = [[YYB_HF_WKWebVC alloc]init];
+                h5webVC.isTop = YES;
+                h5webVC.isNavigationHidden = YES;
+                
                 switch (indexPath.row) {
                     case 0:
-                        vc = [ShippingAddressVC new];
+                    {// 收货地址
+                        //                        vc = [ShippingAddressVC new];
+                        h5webVC.urlString = @"http://192.168.0.105:8080/addressList";
+                        vc = h5webVC;
+                    }
                         break;
                     case 1:
-                    {
-//                        BindingPayWayVC *bindingVC = [BindingPayWayVC new];
-//                        bindingVC.isAlipay = NO;
-//                        vc = bindingVC;
+                    {//银行卡
+                        //                        BindingPayWayVC *bindingVC = [BindingPayWayVC new];
+                        //                        bindingVC.isAlipay = NO;
+                        //                        vc = bindingVC;
+                        if (![[userInfoModel sharedUser].rz_statusName isEqualToString:@"已认证"]) {
+                            [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
+                                if (btnBype) {
+                                    //登录页
+                                    [WXZTipView showCenterWithText:@"去登陆"];
+                                    return ;
+                                }
+                            }];
+                            return ;
+                        }
+                        h5webVC.urlString = @"http://192.168.0.105:8080/bankCardList";
+                        vc = h5webVC;
                     }
                         break;
                     case 2:
@@ -84,10 +105,28 @@
                         vc = [SecurityCenterVC new];
                         break;
                     case 4:
+                    {
+                        if (![[userInfoModel sharedUser].rz_statusName isEqualToString:@"已认证"]) {
+                            [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
+                                if (btnBype) {
+                                    //登录页
+                                    [WXZTipView showCenterWithText:@"去登陆"];
+                                    return ;
+                                }
+                            }];
+                            return ;
+                        }
                         vc = [EnterVC new];
+                        
+                    }
                         break;
                     case 5:
-                        vc = [MyCollectionVC new];
+                    {
+                        //                            vc = [MyCollectionVC new];
+                        
+                        h5webVC.urlString = @"http://192.168.0.105:8080/myCollection";
+                        vc = h5webVC;
+                    }
                         break;
                     case 6:
                         vc = [myFriendListVC new];
@@ -112,6 +151,28 @@
 }
 #pragma mark - 加载数据
 - (void)loadData {
+    
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberBaseInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                
+                NSDictionary *dataDic = value[@"data"];
+                if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                    [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
+                }else {
+                    [WXZTipView showCenterWithText:@"个人信息获取错误"];
+                }
+            }
+        }else {
+            self->isFirstLoad = YES;
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
+        }
+    }];
+    
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
