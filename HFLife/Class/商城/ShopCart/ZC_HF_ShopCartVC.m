@@ -80,7 +80,7 @@
             }];
             
         }else {
-            self.tableView.tableHeaderView = [[ZCShopCartEmptyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(250))];
+            self.tableView.tableHeaderView = [[ZCShopCartEmptyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(135)+115)];
             [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(self.view).inset(TabBarHeight-49);
             }];

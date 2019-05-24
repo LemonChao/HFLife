@@ -64,7 +64,7 @@
         [self.emptyButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(ScreenScale(47));
             make.left.right.equalTo(self);
-            make.height.mas_equalTo(ScreenScale(135));
+            make.height.mas_equalTo(115+ScreenScale(10));
         }];
         
         [self.descriptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
