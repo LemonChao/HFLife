@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,6 +13,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SXF_HF_exchangePhoneVc">
             <connections>
                 <outlet property="configerBtn" destination="O8U-y3-kID" id="Mqh-AJ-Fps"/>
+                <outlet property="phoneNumLabel" destination="MDW-uq-rKa" id="eGr-u8-lE5"/>
+                <outlet property="phoneTextF" destination="StE-UX-BlW" id="Pbh-9N-Z8p"/>
+                <outlet property="verCodeTextf" destination="5PP-b3-Qbj" id="A31-a2-aGD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -53,6 +56,16 @@
                         <constraint firstItem="jq3-nH-KHi" firstAttribute="leading" secondItem="RBb-Ea-P0W" secondAttribute="leading" constant="12" id="zQP-oZ-Hku"/>
                     </constraints>
                 </view>
+                <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新的手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="StE-UX-BlW">
+                    <rect key="frame" x="12" y="98" width="390" height="65"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="phoneTF:" destination="-1" eventType="editingChanged" id="rCP-9L-ERk"/>
+                    </connections>
+                </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bso-1f-u2R">
                     <rect key="frame" x="0.0" y="164" width="414" height="65"/>
                     <subviews>
@@ -125,28 +138,35 @@
                             <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="subMitBtnClick:" destination="-1" eventType="touchUpInside" id="w44-Kz-vij"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="jof-Db-HuZ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="1Ku-N6-gOR"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="RBb-Ea-P0W" secondAttribute="trailing" id="4hb-pL-17Y"/>
+                <constraint firstItem="StE-UX-BlW" firstAttribute="top" secondItem="c82-vf-YEn" secondAttribute="bottom" id="5FU-i1-UWg"/>
                 <constraint firstItem="RBb-Ea-P0W" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="5XK-yf-f0l"/>
                 <constraint firstItem="c82-vf-YEn" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="44" id="7BX-nA-OBJ"/>
                 <constraint firstItem="jof-Db-HuZ" firstAttribute="top" secondItem="RBb-Ea-P0W" secondAttribute="bottom" id="BxP-So-ydo"/>
                 <constraint firstItem="Bso-1f-u2R" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="EgI-UW-p1u"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="StE-UX-BlW" secondAttribute="trailing" constant="12" id="HVb-NA-gKh"/>
                 <constraint firstItem="RBb-Ea-P0W" firstAttribute="top" secondItem="c82-vf-YEn" secondAttribute="bottom" id="Sep-Bb-qMy"/>
+                <constraint firstItem="StE-UX-BlW" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="12" id="bbM-9O-amK"/>
                 <constraint firstItem="Bso-1f-u2R" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="fRo-0D-n9G"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="O8U-y3-kID" secondAttribute="trailing" constant="12" id="fW4-13-HC8"/>
                 <constraint firstItem="O8U-y3-kID" firstAttribute="top" secondItem="Bso-1f-u2R" secondAttribute="bottom" constant="45" id="fqv-o0-fTj"/>
                 <constraint firstAttribute="trailing" secondItem="jof-Db-HuZ" secondAttribute="trailing" id="gpU-tf-hfX"/>
+                <constraint firstItem="jof-Db-HuZ" firstAttribute="top" secondItem="StE-UX-BlW" secondAttribute="bottom" id="gvI-5G-nBo"/>
                 <constraint firstItem="Bso-1f-u2R" firstAttribute="top" secondItem="jof-Db-HuZ" secondAttribute="bottom" id="olz-sv-t4u"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="c82-vf-YEn" secondAttribute="trailing" id="pxn-3U-2JP"/>
                 <constraint firstItem="O8U-y3-kID" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="12" id="qEF-YL-kMW"/>
                 <constraint firstItem="c82-vf-YEn" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="z8R-Bw-66O"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="94" y="77"/>
+            <point key="canvasLocation" x="92.753623188405811" y="76.339285714285708"/>
         </view>
     </objects>
 </document>

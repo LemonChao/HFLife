@@ -14,6 +14,7 @@
 
 @interface NearPageVC (){
     int arc;
+    BOOL isFirstLoad;
 }
 /** 容器TableView*/
 @property(nonatomic, strong) UIView *headView;
@@ -26,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.cellHeightDic = [NSMutableDictionary dictionary];
+    isFirstLoad = YES;
     
     YYB_HF_LocalHeadView *headView = [[YYB_HF_LocalHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,NavBarHeight)];
     [self.view addSubview:headView];
@@ -49,6 +51,40 @@
     [self.customNavBar setHidden:YES];
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.translucent = YES;
+    
+    if (isFirstLoad) {
+        isFirstLoad = NO;
+        [self.myLocaVeiw loadData];
+    }
+    
+}
+
+- (void)loadData {
+    [[WBPCreate sharedInstance]showWBProgress];
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kNearLife withParameters:nil  withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance]hideAnimated];
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                
+                [YYB_HF_nearLifeModel mj_setupObjectClassInArray:^NSDictionary *{
+                    return @{@"entrance":[EntranceDetail className]};
+                }];
+                
+                YYB_HF_nearLifeModel *model = [[YYB_HF_nearLifeModel alloc]init];
+                [model setValuesForKeysWithDictionary:value];
+                if (model) {
+                    
+                }
+            }
+            
+        }else {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络x错误"];
+            }
+        }
+    }];
 }
 
 - (CGFloat)cellContentViewWith

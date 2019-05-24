@@ -39,7 +39,8 @@
     }];
     WEAK(weakSelf)
     self.collectionView.refreshHeaderBlock = ^{
-        [weakSelf.collectionView endRefreshData];
+       
+        [weakSelf loadData];
     };
     
     self.collectionView.refreshFooterBlock = ^{
@@ -77,6 +78,10 @@
         _layout.dataSource = self;//设置数据源代理
     }
     return _layout;
+}
+
+- (void)loadData {
+    
 }
 
 #pragma mark - collctionview

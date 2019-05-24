@@ -19,17 +19,28 @@
     [super viewDidLoad];
     
     self.customNavBar.title = @"关联账号";
+    self.wechatStateLabel.text = [userInfoModel sharedUser].weixin_unionid ? @"已绑定":@"未绑定";
+    self.alipayStateLabel.text = [userInfoModel sharedUser].alipay_unionid ? @"已绑定":@"未绑定";
+    self.phoneNumLabel.text = [[userInfoModel sharedUser].member_mobile EncodeTel];
+    
 }
+
 
 //微信
 - (IBAction)tapWechatCell:(UITapGestureRecognizer *)sender {
     [SXF_HF_AlertView showAlertType:AlertType_binding Complete:^(BOOL btnBype) {
+        if (btnBype) {
+            
+        }
     }];
 }
 
 //支付宝
 - (IBAction)tapAlipyCell:(UITapGestureRecognizer *)sender {
     [SXF_HF_AlertView showAlertType:AlertType_binding Complete:^(BOOL btnBype) {
+        if (btnBype) {
+            
+        }
     }];
 }
 

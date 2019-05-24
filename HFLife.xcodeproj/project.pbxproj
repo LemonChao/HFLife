@@ -84,6 +84,7 @@
 		042638D92296A5D000041A91 /* YYB_HF_submitDealPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042638D82296A5D000041A91 /* YYB_HF_submitDealPassWordVC.m */; };
 		042638DD2296B2C900041A91 /* YYB_HF_destroyAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042638DC2296B2C900041A91 /* YYB_HF_destroyAccountVC.m */; };
 		0428EB5322797379000E4B4E /* callTelephone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428EB5122797379000E4B4E /* callTelephone.m */; };
+		0444B9CF2297C9D100941AA7 /* YYB_HF_nearLifeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0444B9CE2297C9D100941AA7 /* YYB_HF_nearLifeModel.m */; };
 		0453D1502281935E00880C2A /* customItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14C2281935E00880C2A /* customItemView.m */; };
 		0453D1512281935E00880C2A /* myTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D14F2281935E00880C2A /* myTopView.m */; };
 		0453D1542281A54900880C2A /* DigitalRollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D1532281A54800880C2A /* DigitalRollingView.m */; };
@@ -1018,6 +1019,8 @@
 		042638DC2296B2C900041A91 /* YYB_HF_destroyAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_destroyAccountVC.m; sourceTree = "<group>"; };
 		0428EB5122797379000E4B4E /* callTelephone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callTelephone.m; sourceTree = "<group>"; };
 		0428EB5222797379000E4B4E /* callTelephone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callTelephone.h; sourceTree = "<group>"; };
+		0444B9CD2297C9D100941AA7 /* YYB_HF_nearLifeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_nearLifeModel.h; sourceTree = "<group>"; };
+		0444B9CE2297C9D100941AA7 /* YYB_HF_nearLifeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_nearLifeModel.m; sourceTree = "<group>"; };
 		0453D14C2281935E00880C2A /* customItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customItemView.m; sourceTree = "<group>"; };
 		0453D14D2281935E00880C2A /* myTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTopView.h; sourceTree = "<group>"; };
 		0453D14E2281935E00880C2A /* customItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customItemView.h; sourceTree = "<group>"; };
@@ -2936,6 +2939,15 @@
 			path = "打电话";
 			sourceTree = "<group>";
 		};
+		0444B9CC2297C99700941AA7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0444B9CD2297C9D100941AA7 /* YYB_HF_nearLifeModel.h */,
+				0444B9CE2297C9D100941AA7 /* YYB_HF_nearLifeModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		0453D155228266A800880C2A /* 瀑布流 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3535,6 +3547,7 @@
 		049783492285957E00E143D7 /* 本地服务 */ = {
 			isa = PBXGroup;
 			children = (
+				0444B9CC2297C99700941AA7 /* model */,
 				0497834A2285957E00E143D7 /* NearHomeVC.h */,
 				049783812285957E00E143D7 /* NearHomeVC.m */,
 				049783822285957E00E143D7 /* NearPageVC.h */,
@@ -8132,6 +8145,7 @@
 				04A50896227EDD3A0013E8EC /* UIView+WHView.m in Sources */,
 				65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */,
 				658902EE223B775F009C1B03 /* UIColor+PYSearchExtension.m in Sources */,
+				0444B9CF2297C9D100941AA7 /* YYB_HF_nearLifeModel.m in Sources */,
 				042638D622969B7600041A91 /* YYB_HF_setDealPassWordVC.m in Sources */,
 				0403569022963EDD00DAA165 /* YYB_HF_WKWebVC.m in Sources */,
 				04153BFC228AA2F100AA5DAF /* FoodPreferentialCell.m in Sources */,
