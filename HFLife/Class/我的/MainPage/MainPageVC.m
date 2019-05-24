@@ -49,6 +49,8 @@
         //我的信息
         [self loadData];
     }
+    
+    [self getBaseUserInfo];
 }
 - (void)setUpUI{
     self.mainPageView = [[SXF_HF_MainPageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight - self.tabBarHeight)];
@@ -194,6 +196,9 @@
                 if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                     MemberInfoModel *memberModel = [[MemberInfoModel alloc]init];
                     [memberModel setValuesForKeysWithDictionary:dataDic];
+                    
+                    [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
+                    
                     self.mainPageView.memberInfoModel = memberModel;
                 }else {
                     [WXZTipView showCenterWithText:@"个人信息获取错误"];
@@ -211,17 +216,29 @@
 }
 
 
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
-    [SXF_HF_AlertView showAlertType:AlertType_save Complete:^(BOOL btnBype) {
-        if (btnBype) {
-            NSLog(@"right");
-        }else{
-            NSLog(@"left");
+//获取基本信息
+- (void) getBaseUserInfo{
+    //未获取个人资料
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberBaseInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                
+                NSDictionary *dataDic = value[@"data"];
+                if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                    [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
+                }else {
+                    [WXZTipView showCenterWithText:@"个人信息获取错误"];
+                }
+            }
+        }else {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
         }
     }];
-    
-    
 }
+
+
 @end

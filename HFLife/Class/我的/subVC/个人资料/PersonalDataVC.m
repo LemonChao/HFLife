@@ -44,10 +44,6 @@
     self.navigationController.navigationBar.hidden = YES;
     
     userInfoModel *user = [userInfoModel sharedUser];
-    if(user.id && user.id > 0) {
-        self->valueArray = @[@[user.member_avatar?user.member_avatar : @"",user.member_mobile,user.nickname ? user.nickname : @"",user.member_sexName,user.member_age ? user.member_age.stringValue : @""],@[user.rz_statusName],@[@""]];
-        [self.contentTableView reloadData];
-    } else {
         //未获取个人资料
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberBaseInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
             if (result) {
@@ -70,7 +66,6 @@
                 }
             }
         }];
-    }
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

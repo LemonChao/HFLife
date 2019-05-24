@@ -98,14 +98,18 @@
 
 - (void)selectIndex:(NSInteger)index{
     //滚动到
-    //    NSLog(@"滚动到section3  %ld", index);
     self.pageControl.currentPage = index;
     //在当前cell播放动画
     NSString *iamgePath = [[NSBundle mainBundle] pathForResource:@"余额" ofType:@"gif"];
-    UIImage *gifImage = [UIImage sd_animatedGIFWithData:[NSData dataWithContentsOfFile:iamgePath]];
-//    self.animImageV.image = gifImage;
     
-    [self.animImageV playGifImageData:[NSData dataWithContentsOfFile:iamgePath] repeatCount:1];
+    
+
+//    NSData  *imageData = [NSData dataWithContentsOfFile:iamgePath];
+//    self.animImageV.image = [UIImage sd_animatedGIFWithData:imageData];
+    
+    
+    
+    [self.animImageV playGifImagePath:iamgePath repeatCount:1];
 }
 //点击item
 - (void)clickItemFromIndex:(NSInteger)index{

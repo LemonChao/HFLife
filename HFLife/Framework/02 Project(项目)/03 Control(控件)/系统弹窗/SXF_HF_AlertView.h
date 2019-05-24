@@ -17,8 +17,8 @@ typedef NS_ENUM(NSUInteger, HF_AlertType) {
     AlertType_binding,//解绑弹窗
     AlertType_exchnageSuccess,//更换成功！
     AlertType_exchnage,//一月更新一次
-    
     AlertType_realyCheck,//实名认证
+    AlertType_cancellation,//注销
 };
 
 

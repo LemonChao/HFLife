@@ -419,6 +419,8 @@ static NSString * const footerReuseIdentifier = @"Footer";
         [_collectionView registerClass:[SXF_HF_HeadlineCell2 class] forCellWithReuseIdentifier:NSStringFromClass([SXF_HF_HeadlineCell2 class])];
         
         [_collectionView registerClass:[SXF_HF_RecommentCell class] forCellWithReuseIdentifier:NSStringFromClass([SXF_HF_RecommentCell class])];
+        
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"item"];
     }
     return _collectionView;
 }
