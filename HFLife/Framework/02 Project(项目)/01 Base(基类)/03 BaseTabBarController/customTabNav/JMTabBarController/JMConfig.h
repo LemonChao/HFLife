@@ -74,6 +74,19 @@ typedef void (^JMConfigCustomBtnBlock) (UIButton *btn, NSInteger index);
  */
 - (void)configNormal;
 
+
+/**
+ 主动选择下标
+ */
+@property (nonatomic, assign)NSInteger selectedIndex;
+
+
+
+
+
+
+
+
 /******************************** tabBar 基本配置 ********************************/
 
 /** 布局类型 (默认是 图片在上, 文字在下) */

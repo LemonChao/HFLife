@@ -22,6 +22,12 @@
 
 //test
 #import "ReviseMobilePhone.h"
+
+
+
+#import "JMTabBarController.h"
+#import "JMConfig.h"
+
 @interface HomePageVC ()
 @property (nonatomic, strong)SXF_HF_HomePageView *collectionView;
 @property (nonatomic, strong)SXF_HF_CustomSearchBar *searchBar;
@@ -95,6 +101,13 @@
     
     [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{
+        
+        [JMConfig config].selectedIndex = 1;
+        
+        return ;
+        
+        
+        
 //        [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
 //
 //        }];

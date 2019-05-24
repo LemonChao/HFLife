@@ -69,6 +69,14 @@ static id _instance = nil;
     _imageOffset = 2.f;
 }
 
+
+- (void)setSelectedIndex:(NSInteger)selectedIndex{
+    _selectedIndex = selectedIndex;
+    [self.tabBarController.JM_TabBar setSelectedIndex:selectedIndex];
+    self.tabBarController.selectedIndex = selectedIndex;
+}
+
+
 - (void)setBadgeSize:(CGSize)badgeSize {
     _badgeSize = badgeSize;
     NSMutableArray *arrM = [self getTabBarButtons];

@@ -75,8 +75,6 @@
     config.tabBarTopLineColor = [UIColor groupTableViewBackgroundColor];
     customTabBarViewController *tabBarVc = [[customTabBarViewController alloc] initWithTabBarControllers:controllersArr NorImageArr:imageNormalArr SelImageArr:imageSelectedArr TitleArr:titleArr Config:config];
     tabBarVc.JM_TabBar.myDelegate = tabBarVc;
-    
-    
     //第三个baritem
     UIButton *btn = [[UIButton alloc] init];
     CGFloat btnW = [UIScreen mainScreen].bounds.size.width / 4;
@@ -101,7 +99,6 @@
 }
 
 - (void) clickMyBtn:(UIButton *)secder{
-    
     ShopTabbarViewController *shopTabbarVC = [ShopTabbarViewController configerTableBarVC];
     [self presentViewController:shopTabbarVC animated:YES completion:nil];
 }
