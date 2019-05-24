@@ -70,10 +70,12 @@
     [self.view addSubview:self.saveImageView];
     [self.view addSubview:self.saveLabel];
     [self.view addSubview:self.vercodeerr];
+    
     [self.view addSubview:self.phoneText];
     [self.view addSubview:self.vercodeText];
 
-    self.saveImageView.backgroundColor = [UIColor redColor];
+//    self.saveImageView.backgroundColor = [UIColor redColor];
+    [self.saveImageView setImage:image(@"icon_safe")];
     self.saveLabel.text = @"为了您的资金安全 \n请先验证手机号";
     self.saveLabel.font = FONT(14);
     self.saveLabel.textColor = HEX_COLOR(0x0C0B0B);
@@ -248,7 +250,7 @@
         UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WidthRatio(120), HeightRatio(69))];
         rightView.backgroundColor = [UIColor clearColor];
         UIButton *codeButton = [UIButton new];
-        codeButton.titleLabel.font =[UIFont systemFontOfSize:WidthRatio(24)];
+        codeButton.titleLabel.font =[UIFont systemFontOfSize:WidthRatio(32)];
         [codeButton addTarget:self action:@selector(getSetingCode:) forControlEvents:(UIControlEventTouchUpInside)];
         [codeButton setTitleColor:HEX_COLOR(0xCA1400) forState:(UIControlStateNormal)];
         [codeButton setTitle:@"获取验证码" forState:(UIControlStateNormal)];
