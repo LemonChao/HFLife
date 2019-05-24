@@ -230,7 +230,8 @@
             self.cancleBtn.layer.borderWidth = self.sureBtn.layer.borderWidth = 1.0f;
             self.cancleBtn.layer.borderColor = self.sureBtn.layer.borderColor = [HEX_COLOR(0xE5E5E5) CGColor];
             self.sureBtn.setTitleColor(colorAAAAAA, UIControlStateNormal).setTitleFontSize(14).setTitle(@"确定注销", UIControlStateNormal);
-            self.msgLb.text = @"1.我去偶尔抛弃我弄清楚闻鸡起舞\2.我去额偶进去我而近期我普及饿哦权威检测前往为群殴碰巧我测就抛弃我就去问拼接哦我脾气哦吉普车\n3.请问抛弃我饿颇为汽车及其偶家二七王请我饿口气我陪可从抛弃我测科帕奇我饿局我怕v！";
+            self.msgLb.text = self.msg;
+            
             [self.msgLb setLabelWithLineSpace:ScreenScale(8)];
         }
             break;
