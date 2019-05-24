@@ -550,6 +550,7 @@
 		04FA265C2296981600F4E9EB /* SXF_HF_bindingAccount.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA265A2296981600F4E9EB /* SXF_HF_bindingAccount.xib */; };
 		04FA26612296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA265F2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m */; };
 		04FA26622296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */; };
+		04FAC56322977DE500C5B716 /* UIButton+timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAC56222977DE500C5B716 /* UIButton+timer.m */; };
 		04FB7F1522865A4900150CA7 /* 余额.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1322865A4900150CA7 /* 余额.gif */; };
 		04FB7F1622865A4900150CA7 /* 余额底图_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1422865A4900150CA7 /* 余额底图_00000.png */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
@@ -1876,6 +1877,8 @@
 		04FA265E2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_exchangePhoneVc.h; sourceTree = "<group>"; };
 		04FA265F2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_exchangePhoneVc.m; sourceTree = "<group>"; };
 		04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_exchangePhoneVc.xib; sourceTree = "<group>"; };
+		04FAC56122977DE500C5B716 /* UIButton+timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+timer.h"; sourceTree = "<group>"; };
+		04FAC56222977DE500C5B716 /* UIButton+timer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+timer.m"; sourceTree = "<group>"; };
 		04FB7F1322865A4900150CA7 /* 余额.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "余额.gif"; sourceTree = "<group>"; };
 		04FB7F1422865A4900150CA7 /* 余额底图_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额底图_00000.png"; sourceTree = "<group>"; };
 		04FB7F1722866BE300150CA7 /* UIImageView+LoadGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadGif.h"; sourceTree = "<group>"; };
@@ -4494,6 +4497,8 @@
 				0453D1BA2283D38E00880C2A /* UIButton+EnlargeEdge.m */,
 				04A507CB227EDD390013E8EC /* 01 block点击事件 */,
 				04A507CE227EDD390013E8EC /* 链式创建 */,
+				04FAC56122977DE500C5B716 /* UIButton+timer.h */,
+				04FAC56222977DE500C5B716 /* UIButton+timer.m */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -7801,6 +7806,7 @@
 				04A508A7227EDD3A0013E8EC /* HRRequest.m in Sources */,
 				04A5084D227EDD3A0013E8EC /* UIImageView+ZFCache.m in Sources */,
 				0453D17E228266D200880C2A /* bannerCollectionViewCell.m in Sources */,
+				04FAC56322977DE500C5B716 /* UIButton+timer.m in Sources */,
 				04A5089C227EDD3A0013E8EC /* NSObject+WHRuntime.m in Sources */,
 				04FCEA272290220500F95486 /* userInfoModel.m in Sources */,
 				04153BFA228AA2F100AA5DAF /* FoodClassifyCell.m in Sources */,

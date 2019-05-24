@@ -70,6 +70,7 @@
 #import "UIButton+EnlargeEdge.h"
 #import "UIButton+EdgeInsets.h"
 #import "UIButton+Extension.h"
+#import "UIButton+timer.h"
 
 #import "UITextField+ChainTypeTextField.h"
 #import "UITextField+Placeholder.h"
