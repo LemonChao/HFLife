@@ -71,7 +71,7 @@
     [self.view addSubview:self.passWordText];
     [self.view addSubview:self.confirmPassWordText];
     
-    self.saveImageView.backgroundColor = [UIColor redColor];
+    [self.saveImageView setImage:image(@"icon_safe")];
     self.saveLabel.text = @"为了您的资金安全 \n请先设置交易密码";
     self.saveLabel.font = FONT(14);
     self.saveLabel.textColor = HEX_COLOR(0x0C0B0B);
@@ -167,6 +167,7 @@
         tf.font = [UIFont systemFontOfSize:HeightRatio(32)];
         tf.backgroundColor = [UIColor clearColor];
         tf.clearButtonMode = UITextFieldViewModeAlways;
+        tf.secureTextEntry = YES;
         
         UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(12), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
@@ -236,6 +237,7 @@
         //        tf.secureTextEntry = YES;
         tf.font = [UIFont systemFontOfSize:HeightRatio(32)];
         tf.backgroundColor = [UIColor clearColor];
+        tf.secureTextEntry = YES;
         
         UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(12), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];

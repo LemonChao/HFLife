@@ -19,6 +19,10 @@
 		0406ED2A22755438000784D0 /* IdcardQuality.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; };
 		0406ED2B22755438000784D0 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
+		040915DD229782C9007BEB12 /* YYB_HF_destroyFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040915DC229782C9007BEB12 /* YYB_HF_destroyFailView.m */; };
+		040915E722978F4B007BEB12 /* YYB_HF_changeAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 040915E622978F4B007BEB12 /* YYB_HF_changeAccountVC.m */; };
+		040915EB2297926E007BEB12 /* YYB_HF_changeAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040915E92297926E007BEB12 /* YYB_HF_changeAccountCell.m */; };
+		040915EC2297926E007BEB12 /* YYB_HF_changeAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040915EA2297926E007BEB12 /* YYB_HF_changeAccountCell.xib */; };
 		040A42D8228FB9360003DDF4 /* AFAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */; };
 		040A42D9228FB9360003DDF4 /* AFAuthSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */; };
 		040AAC7B229395C3002AB524 /* YYB_HF_SexChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040AAC7A229395C3002AB524 /* YYB_HF_SexChoiceView.m */; };
@@ -896,6 +900,13 @@
 		0406ED2222755421000784D0 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		0406ED2E227554E3000784D0 /* LYBmOcrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBmOcrManager.h; sourceTree = "<group>"; };
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
+		040915DB229782C9007BEB12 /* YYB_HF_destroyFailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_destroyFailView.h; sourceTree = "<group>"; };
+		040915DC229782C9007BEB12 /* YYB_HF_destroyFailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_destroyFailView.m; sourceTree = "<group>"; };
+		040915E522978F4B007BEB12 /* YYB_HF_changeAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_changeAccountVC.h; sourceTree = "<group>"; };
+		040915E622978F4B007BEB12 /* YYB_HF_changeAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_changeAccountVC.m; sourceTree = "<group>"; };
+		040915E82297926E007BEB12 /* YYB_HF_changeAccountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_changeAccountCell.h; sourceTree = "<group>"; };
+		040915E92297926E007BEB12 /* YYB_HF_changeAccountCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_changeAccountCell.m; sourceTree = "<group>"; };
+		040915EA2297926E007BEB12 /* YYB_HF_changeAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YYB_HF_changeAccountCell.xib; sourceTree = "<group>"; };
 		040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFAuthSDK.framework; sourceTree = "<group>"; };
 		040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AFAuthSDK.bundle; sourceTree = "<group>"; };
 		040AAC79229395C3002AB524 /* YYB_HF_SexChoiceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SexChoiceView.h; sourceTree = "<group>"; };
@@ -2545,6 +2556,18 @@
 			path = "百度OCR";
 			sourceTree = "<group>";
 		};
+		040915DE22978DFA007BEB12 /* 切换账号 */ = {
+			isa = PBXGroup;
+			children = (
+				040915E522978F4B007BEB12 /* YYB_HF_changeAccountVC.h */,
+				040915E622978F4B007BEB12 /* YYB_HF_changeAccountVC.m */,
+				040915E82297926E007BEB12 /* YYB_HF_changeAccountCell.h */,
+				040915E92297926E007BEB12 /* YYB_HF_changeAccountCell.m */,
+				040915EA2297926E007BEB12 /* YYB_HF_changeAccountCell.xib */,
+			);
+			path = "切换账号";
+			sourceTree = "<group>";
+		};
 		040A42D5228FB9360003DDF4 /* AFAuthSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2895,6 +2918,8 @@
 			children = (
 				042638DB2296B2C900041A91 /* YYB_HF_destroyAccountVC.h */,
 				042638DC2296B2C900041A91 /* YYB_HF_destroyAccountVC.m */,
+				040915DB229782C9007BEB12 /* YYB_HF_destroyFailView.h */,
+				040915DC229782C9007BEB12 /* YYB_HF_destroyFailView.m */,
 			);
 			path = "注销账号";
 			sourceTree = "<group>";
@@ -5409,6 +5434,7 @@
 		04F52102228A76BA00ED4995 /* 安全中心  */ = {
 			isa = PBXGroup;
 			children = (
+				040915DE22978DFA007BEB12 /* 切换账号 */,
 				04FA265D2296A66D00F4E9EB /* 修改手机号（new） */,
 				04FA2657229697DB00F4E9EB /* 关联账户 */,
 				042638DA2296B26B00041A91 /* 注销账号 */,
@@ -7419,6 +7445,7 @@
 				658B7CBF21D749E100801CC8 /* message.png in Resources */,
 				04153C09228AA2F100AA5DAF /* TableHeaderView.xib in Resources */,
 				04F52141228A76BA00ED4995 /* chosennumber@2x.png in Resources */,
+				040915EC2297926E007BEB12 /* YYB_HF_changeAccountCell.xib in Resources */,
 				04F52176228A789600ED4995 /* style.css in Resources */,
 				04A5087F227EDD3A0013E8EC /* 关闭1.png in Resources */,
 				65DC683D22112C4300F1085E /* 定位@2x.png in Resources */,
@@ -7716,6 +7743,7 @@
 				04F52197228A9C4C00ED4995 /* UIView+UIScreenDisplaying.m in Sources */,
 				04F52049228A61B200ED4995 /* friendViewCell.m in Sources */,
 				658902F3223B775F009C1B03 /* NSBundle+PYSearchExtension.m in Sources */,
+				040915EB2297926E007BEB12 /* YYB_HF_changeAccountCell.m in Sources */,
 				049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */,
 				04A508E4227EDD3A0013E8EC /* HREmail.m in Sources */,
 				04153C00228AA2F100AA5DAF /* DiscountCouponCell.m in Sources */,
@@ -8030,6 +8058,7 @@
 				04A5084C227EDD3A0013E8EC /* UIAlertController+ZFPlayerRotation.m in Sources */,
 				658B7CB621D749E100801CC8 /* TLMenuButtonView.m in Sources */,
 				04A5083D227EDD390013E8EC /* UIColor+RGB.m in Sources */,
+				040915DD229782C9007BEB12 /* YYB_HF_destroyFailView.m in Sources */,
 				04A50839227EDD390013E8EC /* ZXSegmentHeaderCell.m in Sources */,
 				6579784421E6D6B600E606BE /* JFAreaDataManager.m in Sources */,
 				048DAC5D22857516006E6BA2 /* transferAccountsView.m in Sources */,
@@ -8045,6 +8074,7 @@
 				04A50855227EDD3A0013E8EC /* ASValueTrackingSlider.m in Sources */,
 				658902F1223B775F009C1B03 /* PYSearchConst.m in Sources */,
 				042638D92296A5D000041A91 /* YYB_HF_submitDealPassWordVC.m in Sources */,
+				040915E722978F4B007BEB12 /* YYB_HF_changeAccountVC.m in Sources */,
 				04B9D57B22803E260084FA23 /* BaseWebViewController.m in Sources */,
 				659EA04622015F94004471CD /* WBProgressHUD.m in Sources */,
 				048DAC6022857516006E6BA2 /* HeadUserView.m in Sources */,

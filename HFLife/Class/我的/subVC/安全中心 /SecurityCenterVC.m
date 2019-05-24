@@ -73,30 +73,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return ScreenScale(8);
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8)];
+    view.backgroundColor = HEX_COLOR(0xF5F5F5);
+    return view;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *value = titleArray[indexPath.section][indexPath.row];
-    if ([value isEqualToString:@"设置登录密码"]) {
-//        if (![UserCache getUserPasswordStatus])
-        if (YES) {
-            //            LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:@"您还没有设置登录密码，暂无法进行入驻，是否进行密码设置？" cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
-            //                if(clickIndex == 1){
-
-            ForgotPasswordVC *rev = [[ForgotPasswordVC alloc]init];
-            rev.isSetPas = YES;
-            [self.navigationController pushViewController:rev animated:YES];
-
-            
-            //                }
-            //            }];
-            //            alert.animationStyle=LXASAnimationTopShake;
-            //            [alert showLXAlertView];
-            return;
-        }
-        [self.navigationController pushViewController:[[SetLoginPassword alloc]init] animated:YES];
-    }else if ([value isEqualToString:@"修改手机号"]){
-        [self.navigationController pushViewController:[[ReviseMobilePhone alloc]init] animated:YES];
-    }else if ([value isEqualToString:@"设置交易密码"]){
+    if ([value isEqualToString:@"设置交易密码"]){
         if ([[userInfoModel sharedUser].rz_status integerValue] == 1) {
             [self.navigationController pushViewController:[[ConfirmInformationVC alloc]init] animated:YES];
         }else{
@@ -125,7 +111,7 @@
     }else if ([value isEqualToString:@"关联账号"]){
         [self.navigationController pushViewController:[NSClassFromString(@"SXF_HF_bindingAccount") new] animated:YES];
     }else if ([value isEqualToString:@"切换账号"]){
-        
+        [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_changeAccountVC") new] animated:YES];
     }
 }
 #pragma mark 懒加载
