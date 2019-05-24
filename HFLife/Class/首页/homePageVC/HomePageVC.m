@@ -114,7 +114,7 @@
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           SXF_HF_AlertView *alertVC = [SXF_HF_AlertView showAlertType:AlertType_exchnageSuccess Complete:^(BOOL btnBype) {
+           SXF_HF_AlertView *alertVC = [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
                 if (btnBype) {
                     //收款码介绍
                     BaseViewController *vc = [ReviseMobilePhone new];

@@ -278,7 +278,6 @@
         make.left.bottom.mas_equalTo(self);
         make.width.mas_equalTo(self.mas_width).multipliedBy(0.5);
         make.height.mas_equalTo(ScreenScale(50));
-        make.top.mas_equalTo(self.msgLb.mas_bottom).offset(ScreenScale(29));
     }];
     [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.cancleBtn.mas_right);

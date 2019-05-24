@@ -10,6 +10,7 @@
 #import "SXF_HF_exchangePhoneVc.h"
 
 @interface SXF_HF_exchangePhoneVc ()
+@property (weak, nonatomic) IBOutlet UIButton *configerBtn;
 
 @end
 
@@ -17,17 +18,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.customNavBar.title = @"更换手机号";
+    self.configerBtn.enabled = NO;
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+
+
+
+- (IBAction)phoneTF:(UITextField *)sender {
+    if (sender.text.length == 0) {
+        self.configerBtn.backgroundColor = colorAAAAAA;
+        self.configerBtn.enabled = NO;
+    }else{
+        self.configerBtn.backgroundColor = colorCA1400;
+        self.configerBtn.enabled = YES;
+    }
 }
-*/
+
+
+- (IBAction)authCodeBtnClick:(UIButton *)sender {
+    [sender setTheCountdownStartWithTime:60 title:@"重新获取" countDownTitle:@"s" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
+}
 
 @end
