@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_MainTableHeaderView : UIView
 - (void)reSetData;
-@property(nonatomic, strong) MemberInfoModel *memberInfoModel;
+@property(nonatomic, strong) userInfoModel *memberInfoModel;
 @end
 
 NS_ASSUME_NONNULL_END

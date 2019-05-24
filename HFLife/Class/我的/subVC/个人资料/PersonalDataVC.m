@@ -45,27 +45,27 @@
     
     userInfoModel *user = [userInfoModel sharedUser];
         //未获取个人资料
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberBaseInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
-            if (result) {
-                if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    
-                    NSDictionary *dataDic = value[@"data"];
-                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                        [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
-                        self->valueArray = @[@[user.member_avatar?user.member_avatar : @"",user.member_mobile,user.nickname ? user.nickname : @"",user.member_sexName,user.member_age ? user.member_age.stringValue : @""],@[user.rz_statusName],@[@""]];
-                        [self.contentTableView reloadData];
-                    }else {
-                        [WXZTipView showCenterWithText:@"个人信息获取错误"];
-                    }
-                }
-            }else {
-                if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    [WXZTipView showCenterWithText:value[@"msg"]];
-                }else {
-                    [WXZTipView showCenterWithText:@"网络错误"];
-                }
-            }
-        }];
+//        [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberBaseInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+//            if (result) {
+//                if (value && [value isKindOfClass:[NSDictionary class]]) {
+//
+//                    NSDictionary *dataDic = value[@"data"];
+//                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+//                        [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
+//                        self->valueArray = @[@[user.member_avatar?user.member_avatar : @"",user.member_mobile,user.nickname ? user.nickname : @"",user.member_sexName,user.member_age ? user.member_age.stringValue : @""],@[user.rz_statusName],@[@""]];
+//                        [self.contentTableView reloadData];
+//                    }else {
+//                        [WXZTipView showCenterWithText:@"个人信息获取错误"];
+//                    }
+//                }
+//            }else {
+//                if (value && [value isKindOfClass:[NSDictionary class]]) {
+//                    [WXZTipView showCenterWithText:value[@"msg"]];
+//                }else {
+//                    [WXZTipView showCenterWithText:@"网络错误"];
+//                }
+//            }
+//        }];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -219,28 +219,26 @@
         LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:@"您确定要退出登录吗？" cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
             if(clickIndex == 1){
 //                [[NSNotificationCenter defaultCenter] postNotificationName:EXIT_LOGIN object:nil userInfo:nil];
+                [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
+                [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
+                [userInfoModel attempDealloc];
+                [LoginVC login];
                 
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                [ShareSDK cancelAuthorize:(SSDKPlatformTypeQQ) result:^(NSError *error) {
+                    
+                }];
+                [ShareSDK cancelAuthorize:(SSDKPlatformTypeWechat) result:^(NSError *error) {
+                    
+                }];
                 [[WBPCreate sharedInstance]showWBProgress];
                 [networkingManagerTool requestToServerWithType:POST withSubUrl:kLogout withParameters:nil withResultBlock:^(BOOL result, id value) {
                     [[WBPCreate sharedInstance]hideAnimated];
                     if (result) {
-                        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
-                        [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
-                        [userInfoModel attempDealloc];
-                        [LoginVC login];
-
-                        [self.navigationController popToRootViewControllerAnimated:YES];
-                        [ShareSDK cancelAuthorize:(SSDKPlatformTypeQQ) result:^(NSError *error) {
-                            
-                        }];
-                        [ShareSDK cancelAuthorize:(SSDKPlatformTypeWechat) result:^(NSError *error) {
-                            
-                        }];
+                        
                     }else {
                         if (value && [value isKindOfClass:[NSDictionary class]]) {
-                            [WXZTipView showCenterWithText:value[@"msg"]];
                         }else {
-                            [WXZTipView showCenterWithText:@"网络错误"];
                         }
                     }
                 }];

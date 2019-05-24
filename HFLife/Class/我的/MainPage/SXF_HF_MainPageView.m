@@ -57,7 +57,7 @@
     [self.headerView reSetData];
 }
 //设置数据
-- (void)setMemberInfoModel:(MemberInfoModel *)memberInfoModel {
+- (void)setMemberInfoModel:(userInfoModel *)memberInfoModel {
     _memberInfoModel = memberInfoModel;
     self.headerView.memberInfoModel = memberInfoModel;
 }

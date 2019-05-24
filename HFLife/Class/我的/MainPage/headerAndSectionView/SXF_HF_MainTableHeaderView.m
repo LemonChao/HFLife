@@ -174,7 +174,7 @@
 }
 
 #pragma mark - 设置信息
-- (void)setMemberInfoModel:(MemberInfoModel *)memberInfoModel {
+- (void)setMemberInfoModel:(userInfoModel *)memberInfoModel {
     [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:memberInfoModel.member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
     NSString *nameStr = memberInfoModel.nickname;
     self.userNameLb.text = [NSString judgeNullReturnString:nameStr];

@@ -12,7 +12,8 @@
 #import "RegisteredVC.h"
 #import "ForgotPasswordVC.h"
 #import "ReviseMobilePhone.h"//设置手机号
-
+#import "JMConfig.h"
+#import "JMTabBarController.h"
 @interface LoginForVercode ()
 @property (nonatomic,strong)UITextField *userName;//手机号
 @property (nonatomic,strong)UITextField *vercodeText;//验证码
@@ -321,6 +322,7 @@
                         [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
                         NSLog(@"%@", [USERDEFAULT valueForKey:LOGIN_STATES]);
                         [self dismissViewControllerAnimated:NO completion:^{
+                            [[JMConfig config].tabBarController.JM_TabBar setSelectedIndex:0];
                             
                         }];
                     }else {

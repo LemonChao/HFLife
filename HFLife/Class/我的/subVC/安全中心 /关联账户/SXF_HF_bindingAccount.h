@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_bindingAccount : BaseViewController
+@property (strong, nonatomic) IBOutlet UILabel *wechatStateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *alipayStateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *phoneNumLabel;
 
 @end
 
