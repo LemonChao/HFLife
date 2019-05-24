@@ -215,6 +215,25 @@
             self.titleLb.textAlignment = NSTextAlignmentCenter;
             self.titleLb.text = @"使用银行卡前请先进行实名认证";
         }
+            break;
+        case AlertType_cancellation:{
+            self.titleLb.font = FONT(14);
+            self.titleLb.textColor = color0C0B0B;
+            self.titleLb.textAlignment = NSTextAlignmentCenter;
+            self.titleLb.text = [NSString stringWithFormat:@"您如果注销账户%@后会：", [userInfoModel sharedUser].member_mobile];
+            self.msgLb.font = FONT(11);
+            self.msgLb.textColor = HEX_COLOR(0x333333);
+            self.msgLb.numberOfLines = 0;
+            self.msgLb.text = self.msg;
+            
+            self.cancleBtn.setTitleColor(colorCA1400, UIControlStateNormal).setTitleFontSize(14).setTitle(@"我再想想", UIControlStateNormal);
+            self.cancleBtn.layer.borderWidth = self.sureBtn.layer.borderWidth = 1.0f;
+            self.cancleBtn.layer.borderColor = self.sureBtn.layer.borderColor = [HEX_COLOR(0xE5E5E5) CGColor];
+            self.sureBtn.setTitleColor(colorAAAAAA, UIControlStateNormal).setTitleFontSize(14).setTitle(@"确定注销", UIControlStateNormal);
+            self.msgLb.text = @"1.我去偶尔抛弃我弄清楚闻鸡起舞\2.我去额偶进去我而近期我普及饿哦权威检测前往为群殴碰巧我测就抛弃我就去问拼接哦我脾气哦吉普车\n3.请问抛弃我饿颇为汽车及其偶家二七王请我饿口气我陪可从抛弃我测科帕奇我饿局我怕v！";
+            [self.msgLb setLabelWithLineSpace:ScreenScale(8)];
+        }
+            break;
         default:
             break;
     }
@@ -261,10 +280,47 @@
             [self layoutRealyCheck];
         }
             break;
+        case AlertType_cancellation:{
+            [self layoutCancleView];
+        }
+            break;
         default:
             break;
     }
 }
+
+//注销
+- (void)layoutCancleView{
+    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_top).offset(ScreenScale(20));
+        make.centerX.mas_equalTo(self.mas_centerX);
+        make.height.mas_equalTo(ScreenScale(14));
+    }];
+    
+    [self.msgLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.titleLb.mas_bottom).offset(ScreenScale(42));
+        make.left.mas_equalTo(ScreenScale(27));
+        make.right.mas_equalTo(ScreenScale(-27));
+        
+    }];
+    
+    [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.msgLb.mas_bottom).offset(ScreenScale(82));
+        make.bottom.mas_equalTo(self.mas_bottom).offset(1);
+        make.left.mas_equalTo(self.mas_left).offset(-1);
+        make.height.mas_equalTo(ScreenScale(45));
+        make.width.mas_equalTo(self.mas_width).multipliedBy(0.5);
+    }];
+    [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.sureBtn.mas_right).offset(-1);
+        make.bottom.mas_equalTo(self.sureBtn.mas_bottom);
+        make.height.mas_equalTo(self.sureBtn.mas_height);
+        make.right.mas_equalTo(self.mas_right).offset(1);
+    }];
+}
+
+
+
 
 //实名认证
 - (void)layoutRealyCheck{
@@ -286,6 +342,8 @@
         make.height.mas_equalTo(self.cancleBtn.mas_height);
     }];
 }
+
+
 
 
 //更换成功
@@ -546,6 +604,15 @@
             alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(119));
         }
             break;
+        case AlertType_cancellation:{
+            [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(kwin.mas_left).offset(ScreenScale(25));
+                make.right.mas_equalTo(kwin.mas_right).offset(ScreenScale(-25));
+                make.centerY.mas_equalTo(kwin.mas_centerY);
+                make.centerX.mas_equalTo(kwin.mas_centerX);
+            }];
+        }
+            break;
         default:
             break;
     }
@@ -647,10 +714,6 @@
             
         }];
     };
-    
-    
-    
-    
     return alertView;
 }
 

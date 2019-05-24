@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  播放gif
  */
-- (void)playGifImageData:(NSData *)imageData repeatCount:(NSInteger)repeatCount;
+- (void)playGifImagePath:(NSString *)imagePath repeatCount:(NSInteger)repeatCount;
 
 
 /**
