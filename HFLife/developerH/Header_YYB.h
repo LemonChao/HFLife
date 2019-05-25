@@ -76,7 +76,8 @@ static NSString *const kChangemobile = @"api/member_security/changemobile";
 static NSString *const kMobileRemoveWx = @"api/member_security/mobileRemoveWx";
 /** 绑定微信 */
 static NSString *const kMobileBindWx = @"api/member_security/mobileBindWx";
-
+/** 注销协议 */
+static NSString *const kGetCloseAgreement = @"api/system/getCloseAgreement";
 /** 注销 */
 static NSString *const kCloseAccount = @"api/member_security/closeAccount";
 /** 设置交易密码 */

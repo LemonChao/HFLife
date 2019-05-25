@@ -111,6 +111,10 @@
     if (indexPath) {
         [WXZTipView showCenterWithText:@"切换成功"];
     }
+    
+    if (indexPath.section == 1) {
+        [LoginVC login];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

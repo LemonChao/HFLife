@@ -105,10 +105,33 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([value isEqualToString:@"注销账号"]){
         
-        [SXF_HF_AlertView showAlertType:AlertType_exchnageSuccess Complete:^(BOOL btnBype) {
-            if (btnBype) {
-                YYB_HF_destroyAccountVC *vc = [[YYB_HF_destroyAccountVC alloc]init];
-                [self.navigationController pushViewController:vc animated:YES];
+        [[WBPCreate sharedInstance]showWBProgress];
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kGetCloseAgreement withParameters:nil withResultBlock:^(BOOL result, id value) {
+            [[WBPCreate sharedInstance]hideAnimated];
+            if (result) {
+                
+                NSString *msg = @"";
+                if (value && [value isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *dataDic = value[@"data"];
+                    
+                    NSString *app_close_agreementStr = [dataDic safeObjectForKey:@"app_close_agreement"];
+                    if (app_close_agreementStr && [app_close_agreementStr isKindOfClass:[NSString class]] && app_close_agreementStr.length > 0) {
+                        msg = app_close_agreementStr;
+                    }
+                }
+                SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_cancellation Complete:^(BOOL btnBype) {
+                    if (btnBype) {
+                        YYB_HF_destroyAccountVC *vc = [[YYB_HF_destroyAccountVC alloc]init];
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                }];
+                alert.msg = msg;
+            }else {
+                if (value && [value isKindOfClass:[NSDictionary class]]) {
+                    [WXZTipView showCenterWithText:value[@"msg"]];
+                }else {
+                    [WXZTipView showCenterWithText:@"网络错误"];
+                }
             }
         }];
 
