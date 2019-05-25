@@ -105,8 +105,13 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([value isEqualToString:@"注销账号"]){
         
-        YYB_HF_destroyAccountVC *vc = [[YYB_HF_destroyAccountVC alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+        [SXF_HF_AlertView showAlertType:AlertType_exchnageSuccess Complete:^(BOOL btnBype) {
+            if (btnBype) {
+                YYB_HF_destroyAccountVC *vc = [[YYB_HF_destroyAccountVC alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }];
+
         
     }else if ([value isEqualToString:@"关联账号"]){
         [self.navigationController pushViewController:[NSClassFromString(@"SXF_HF_bindingAccount") new] animated:YES];

@@ -64,13 +64,16 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.contentView removeAllSubviews];
     [cell.contentView addSubview:[self failView]];
+    cell.contentView.backgroundColor = HEX_COLOR(0xF5F5F5);
     return cell;
 }
 
 //head
 - (UIView *)headView {
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH - 24, 120)];
+    view.clipsToBounds = YES;
+    view.layer.cornerRadius = 5;
     
     UIImageView *imageVeiw = [UIImageView new];
 //    imageVeiw.backgroundColor = [UIColor redColor];
