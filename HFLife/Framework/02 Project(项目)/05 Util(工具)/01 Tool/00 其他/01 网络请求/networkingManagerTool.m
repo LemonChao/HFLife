@@ -116,12 +116,12 @@
     
     //currentTime
     [requestManager.sessionManager.requestSerializer setValue:[NSDate currentTimeStamp10] forHTTPHeaderField:@"TIME"];
-    
+    [requestManager.sessionManager.requestSerializer setValue:@"ffffffff-8fb3-968f-0000-00004bcc6045" forHTTPHeaderField:@"device"];
+
     //设置token
     NSString *gettoken = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
     //token 设置到请求头上
-//    gettoken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaW5mbyI6eyJpZCI6MjgsIm1lbWJlcl9tb2JpbGUiOiIxNTYyMTQwMjA5MyIsImFsaXBheV91bmlvbmlkIjpudWxsLCJ3ZWl4aW5fdW5pb25pZCI6Im9NUFpDNW9lNUlPRk9VdXcyc1R2T3dRZ3cwV3ciLCJyZWFsbmFtZSI6IiIsIm1lbWJlcl9hdmF0YXIiOiJodHRwOlwvXC90aGlyZHd4LnFsb2dvLmNuXC9tbW9wZW5cL3ZpXzMyXC9SaG1RR1djaEtPWXhkSklrMGFSalB5TjYyTkVjQ3RTSE1QaWFnSVlPQTdPVDV4YWdXVjF1UGJUMmliNWhKM1EzR2F1YVpmVElFTHg5UHRDa2ljRFVNenBVZ1wvMTMyIiwibWVtYmVyX3NleCI6MCwibWVtYmVyX2VtYWlsIjpudWxsLCJpbnZpdGVyX2lkIjowLCJuaWNrbmFtZSI6Ilx1NzBkZlx1NmNlMlx1NmUzYSIsInJ6X3N0YXR1cyI6MCwidG9rZW4iOiI4MjMzMzJjMjQ0Nzg0NjIzYjNiN2ZkMTJlOTBhYWFkNjUyMDgyNjAyIn0sInRpbWUiOjE1NjEyODY3NjAsInRva2VuIjoiODIzMzMyYzI0NDc4NDYyM2IzYjdmZDEyZTkwYWFhZDY1MjA4MjYwMiJ9.DwBi_CSS2LhpoX-Du43RJZv4byJDcEJ1UJxFT9KXBEU";
-//    gettoken = @"05bd0b6950c78fac59335515f5fcfdab";
+    gettoken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaW5mbyI6eyJpZCI6MzIsIm1lbWJlcl9tb2JpbGUiOiIxODU2OTkzOTEyNCIsImFsaXBheV91bmlvbmlkIjpudWxsLCJ3ZWl4aW5fdW5pb25pZCI6bnVsbCwicmVhbG5hbWUiOiIiLCJtZW1iZXJfYXZhdGFyIjoiIiwibWVtYmVyX3NleCI6MCwibWVtYmVyX2VtYWlsIjpudWxsLCJpbnZpdGVyX2lkIjowLCJuaWNrbmFtZSI6IjE4NTY5OTM5MTI0Iiwicnpfc3RhdHVzIjowLCJ0b2tlbiI6IjE0MmQ4NjdiZDg4MTAzYzIxMDBjM2FkYzM1NWIwODdjMmM5MDVmNGYifSwidGltZSI6MTU2MTM0ODQxMCwidG9rZW4iOiIxNDJkODY3YmQ4ODEwM2MyMTAwYzNhZGMzNTViMDg3YzJjOTA1ZjRmIn0.hk0CKWYf6yo2nfsQ58zL65wnJshA7G5jZXp6fwXDzsA";
     if (gettoken) {
         [requestManager.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@" , gettoken] forHTTPHeaderField:@"TOKEN"];
     }else {

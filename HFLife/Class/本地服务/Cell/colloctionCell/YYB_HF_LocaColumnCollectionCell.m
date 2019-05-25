@@ -16,7 +16,7 @@
 }
 @property(nonatomic,strong) UICollectionView *collectionView;
 
-
+@property(nonatomic, strong) NSArray *itemDataArr;
 @end
 
 @implementation YYB_HF_LocaColumnCollectionCell
@@ -40,9 +40,9 @@
 }
 - (void)initView {
     
-    imageNameArray = @[@"icon_ruzhu",@"icon_meishi",@"icon_jiudian",@"icon_shenxian",@"icon_meifa",@"icon_xiuxian",@"icon_jiehun",@"icon_qinzi",@"icon_waimai",@"icon_jiaju",@"icon_youyong",@"icon_yake",@"icon_jiaoyu",@"icon_meirong",@"icon_gengduo"];
-    
-    titleArray = @[@"商家入驻",@"美食", @"酒店住宿", @"超市生鲜", @"美在中国", @"休闲娱乐", @"结婚摄影", @"亲子乐园", @"外卖", @"家具装修",@"游泳健身",@"医疗牙科",@"教育培训",@"医学美容",@"更多"];
+//    imageNameArray = @[@"icon_ruzhu",@"icon_meishi",@"icon_jiudian",@"icon_shenxian",@"icon_meifa",@"icon_xiuxian",@"icon_jiehun",@"icon_qinzi",@"icon_waimai",@"icon_jiaju",@"icon_youyong",@"icon_yake",@"icon_jiaoyu",@"icon_meirong",@"icon_gengduo"];
+//
+//    titleArray = @[@"商家入驻",@"美食", @"酒店住宿", @"超市生鲜", @"美在中国", @"休闲娱乐", @"结婚摄影", @"亲子乐园", @"外卖", @"家具装修",@"游泳健身",@"医疗牙科",@"教育培训",@"医学美容",@"更多"];
     
 //    UIScrollView *scroll = [UIScrollView new];
 //    [self.contentView addSubview:scroll];
@@ -59,17 +59,33 @@
     [self.contentView addSubview:self.collectionView];
     self.collectionView.scrollEnabled = NO;
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(ScreenScale(65) * 3);
+        make.height.mas_equalTo(ScreenScale(65) * (self.itemDataArr.count / 5 + (self.itemDataArr.count % 5 > 0 ? 1 : 0)));
         make.top.right.left.mas_equalTo(self.contentView);
     }];
 }
+
+- (void)reFreshData:(NSArray *)dataArr {
+    self.itemDataArr = dataArr;
+    [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(ScreenScale(65) * (self.itemDataArr.count / 5 + (self.itemDataArr.count % 5 > 0 ? 1 : 0)));
+        make.top.right.left.mas_equalTo(self.contentView);
+    }];
+    
+    [self.collectionView reloadData];
+}
+
+
 #pragma mark - collectionView代理
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return imageNameArray.count;
+    if (self.itemDataArr) {
+        return self.itemDataArr.count;
+    }else {
+        return 0;
+    }
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -83,8 +99,12 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YYB_HF_LocaColumnCollectionCellItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_LocaColumnCollectionCellItem" forIndexPath:indexPath];
-    cell.imgView.image = MMGetImage(imageNameArray[indexPath.row]);
-    cell.title.text = titleArray[indexPath.row];
+    EntranceDetail *itemModel = (EntranceDetail *)self.itemDataArr[indexPath.row];
+    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:itemModel.icon] placeholderImage:image(@"icon_phone_login")];
+    cell.title.text = itemModel.name;
+    
+//    cell.imgView.image = MMGetImage(imageNameArray[indexPath.row]);
+//    cell.title.text = titleArray[indexPath.row];
     //    cell.backgroundColor = [UIColor redColor];
     return cell;
 }

@@ -11,6 +11,11 @@
 @implementation YYB_HF_nearLifeModel
 
 @end
+
 @implementation EntranceDetail
+
+@end
+
+@implementation GuessLikeModel
 
 @end

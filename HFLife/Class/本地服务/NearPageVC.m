@@ -17,7 +17,7 @@
     BOOL isFirstLoad;
 }
 /** 容器TableView*/
-@property(nonatomic, strong) UIView *headView;
+@property(nonatomic, strong) YYB_HF_LocalHeadView *headView;
 @property(nonatomic, strong) NSMutableDictionary *cellHeightDic;
 @property(nonatomic, strong) YYB_HF_LifeLocaView *myLocaVeiw;
 @end
@@ -34,6 +34,16 @@
     self.headView = headView;
     
     self.myLocaVeiw = [[YYB_HF_LifeLocaView alloc]initWithFrame:CGRectZero];
+    WEAK(weakSelf);
+    self.myLocaVeiw.reFreshData = ^(YYB_HF_nearLifeModel * _Nonnull nearModel) {
+        //数据更新
+        if (nearModel.city_now) {
+            weakSelf.headView.setLocalStr = nearModel.city_now;
+        }else {
+            weakSelf.headView.setLocalStr = @"正在定位...";
+        }
+        weakSelf.headView.is_notice = nearModel.is_notice;
+    };
     
     [self.view addSubview:self.myLocaVeiw];
 //    [self.myLocaVeiw setFrame:CGRectMake(0, NavBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NavBarHeight - TabBarHeight)];
@@ -59,33 +69,6 @@
     
 }
 
-- (void)loadData {
-    [[WBPCreate sharedInstance]showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kNearLife withParameters:nil  withResultBlock:^(BOOL result, id value) {
-        [[WBPCreate sharedInstance]hideAnimated];
-        if (result) {
-            if (value && [value isKindOfClass:[NSDictionary class]]) {
-                
-                [YYB_HF_nearLifeModel mj_setupObjectClassInArray:^NSDictionary *{
-                    return @{@"entrance":[EntranceDetail className]};
-                }];
-                
-                YYB_HF_nearLifeModel *model = [[YYB_HF_nearLifeModel alloc]init];
-                [model setValuesForKeysWithDictionary:value];
-                if (model) {
-                    
-                }
-            }
-            
-        }else {
-            if (value && [value isKindOfClass:[NSDictionary class]]) {
-                [WXZTipView showCenterWithText:value[@"msg"]];
-            }else {
-                [WXZTipView showCenterWithText:@"网络x错误"];
-            }
-        }
-    }];
-}
 
 - (CGFloat)cellContentViewWith
 {

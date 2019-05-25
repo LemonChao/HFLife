@@ -104,6 +104,8 @@
     self.adLabel.textColor = HEX_COLOR(0x333333);
     self.distanceLabel.text = @"4.5km";
     self.distanceLabel.font = FONT(9);
+    self.distanceLabel.textAlignment = NSTextAlignmentRight;
+
     self.distanceLabel.textColor = HEX_COLOR(0x333333);
     self.priceLabel.text = @"￥35800";
     self.priceLabel.font = FONT(17);
@@ -116,6 +118,8 @@
     self.concessionMoney.textColor = [UIColor whiteColor];
     self.concessionMoney.text = @"让利$100";
     self.concessionMoney.font = FONT(10);
+    self.concessionMoney.textAlignment = NSTextAlignmentCenter;
+
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.oldPriceLabel.text
                                                                                 attributes:@{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle)}];
@@ -168,8 +172,9 @@
         make.height.mas_equalTo(13);
     }];
     [self.concessionIamgeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.concessionMoney);
-        make.left.mas_equalTo(self.concessionMoney).mas_offset(-5);
+        make.top.bottom.mas_equalTo(self.concessionMoney);
+        make.left.mas_equalTo(self.concessionMoney).mas_offset(0);
+        make.width.mas_equalTo(self.concessionMoney);
     }];
     
     [self.picBgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -219,6 +224,21 @@
 
 - (void)setSetConcessionMoneyStr:(NSString *)setConcessionMoneyStr {
     self.concessionMoney.text = setConcessionMoneyStr;
+}
+
+- (void)setSetImageArr:(NSArray *)setImageArr {
+    
+    for (int i = 0; i < self.picImageViewArr.count; i ++) {
+        UIImageView *imgView = self.picImageViewArr[i];
+        if (setImageArr.count > i) {
+            [imgView setHidden:NO];
+            NSString *imgUrlStr = setImageArr[i];
+            [imgView sd_setImageWithURL:[NSURL URLWithString:imgUrlStr] placeholderImage:image(@"icon_shenxian")];
+
+        }else {
+            [imgView setHidden:YES];
+        }
+    }
 }
 
 
@@ -286,6 +306,7 @@
     self.nameLabel.numberOfLines = 2;
     self.distanceLabel.text = @"4.5km";
     self.distanceLabel.font = FONT(9);
+    self.distanceLabel.textAlignment = NSTextAlignmentRight;
     self.priceLabel.text = @"￥35800";
     self.priceLabel.font = FONT(17);
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
@@ -297,6 +318,7 @@
     self.concessionMoney.textColor = [UIColor whiteColor];
     self.concessionMoney.text = @"让利$100";
     self.concessionMoney.font = FONT(10);
+    self.concessionMoney.textAlignment = NSTextAlignmentCenter;
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.oldPriceLabel.text
                                                                                 attributes:@{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle)}];
@@ -345,7 +367,7 @@
         make.width.mas_greaterThanOrEqualTo(1);
     }];
     [self.concessionIamgeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.concessionMoney).mas_offset(-5);
+        make.left.mas_equalTo(self.concessionMoney).mas_offset(0);
         make.right.mas_equalTo(self.concessionMoney);
         make.bottom.mas_equalTo(self.concessionMoney);
         make.top.mas_equalTo(self.concessionMoney);
@@ -381,6 +403,10 @@
 
 - (void)setSetConcessionMoneyStr:(NSString *)setConcessionMoneyStr {
     self.concessionMoney.text = setConcessionMoneyStr;
+}
+
+- (void)setSetImageUrl:(NSString *)setImageUrl {
+    [self.showImage sd_setImageWithURL:[NSURL URLWithString:setImageUrl] placeholderImage:image(@"icon_shenxian")];
 }
 
 

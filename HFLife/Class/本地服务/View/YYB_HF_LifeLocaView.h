@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_LifeLocaView : UIView
 - (void)loadData;
-//@property(nonatomic, copy) void (^<#blockName#>)(<#parameterTypes#>);
+@property(nonatomic, copy) void (^reFreshData)(YYB_HF_nearLifeModel *nearModel);
 @end
 
 NS_ASSUME_NONNULL_END

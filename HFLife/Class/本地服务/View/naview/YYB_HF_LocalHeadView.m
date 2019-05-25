@@ -296,6 +296,14 @@
     [self.headImageV sd_setImageWithURL:[NSURL URLWithString:setHeadImageStr] placeholderImage:image(@"icon_touxiang")];
 }
 
+- (void)setIs_notice:(NSNumber *)is_notice {
+    if (is_notice.intValue == 1) {
+        [self.orderAlertImageView setImage:image(@"icon_orderAlert1")];
+    }else {
+        [self.orderAlertImageView setImage:image(@"icon_orderAlert0")];
+    }
+}
+
 
 #pragma mark - cityDeleage
 - (void)cityChooseName:(NSString *)name {

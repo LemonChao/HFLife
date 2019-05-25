@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_cycleScrollCollectionViewCell : UICollectionViewCell
 
-- (void)setCycleImageArr;
+- (void)setCycleImageArr:(NSArray *)imageUrlArr;
 @end
 
 NS_ASSUME_NONNULL_END

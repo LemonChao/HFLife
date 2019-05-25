@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ 分类商家项
+ */
 @interface EntranceDetail : BaseModel
 //{
 //    "name": "商家入驻",  //名称
@@ -44,6 +47,40 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, copy) NSString *icon;
 @property(nonatomic, copy) NSString *url;
+
+@end
+
+/**
+ 猜你喜欢
+ */
+@interface GuessLikeModel : BaseModel
+/** 店铺id */
+@property(nonatomic, strong) NSNumber *id;
+/** 详情图（为空时返回空对象） */
+@property(nonatomic, strong) NSArray *detail_photo;
+/** 距离（km）） */
+@property(nonatomic, copy) NSString *distance;
+/** 返利 */
+@property(nonatomic, copy) NSString *fan_price;
+/** 经纬度 */
+@property(nonatomic, copy) NSString *lat;
+@property(nonatomic, copy) NSString *lng;
+/** 原价 */
+@property(nonatomic, copy) NSString *original_price;
+/** 简介 */
+@property(nonatomic, copy) NSString *product_intro;
+/** 产品名称 */
+@property(nonatomic, copy) NSString *product_name;
+/** 预览图 */
+@property(nonatomic, copy) NSString *product_photo;
+/** 售价 */
+@property(nonatomic, copy) NSString *product_price;
+/** 店铺类型 1：美食套餐 2：酒店 3：综合商家 */
+@property(nonatomic, copy) NSNumber *product_type;
+/** 店铺id */
+@property(nonatomic, copy) NSNumber *store_id;
+/** 店铺名称 */
+@property(nonatomic, copy) NSString *store_name;
 
 @end
 
