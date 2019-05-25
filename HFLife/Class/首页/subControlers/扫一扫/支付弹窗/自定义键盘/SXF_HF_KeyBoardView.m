@@ -12,7 +12,7 @@
 @interface SXF_HF_KeyBoardView()<APNumberPadDelegate>
 
 @property (nonatomic, strong)SXF_HF_Password *passwordInputView;
-@property (nonatomic, strong)APNumberPad *pad;
+//@property (nonatomic, strong)APNumberPad *pad;
 @end
 
 
@@ -37,13 +37,6 @@
     return self;
 }
 - (void) addChildrenViews{
-    
-    //初始化键盘
-    APNumberPad *pad = [APNumberPad numberPadWithDelegate:self numberPadStyleClass:[APNumberPadDefaultStyle class]];
-    
-//    [self addSubview:pad];
-    
-    
     self.passwordInputView = [[SXF_HF_Password alloc] initWithFrame:CGRectMake(ScreenScale(12), ScreenScale(25), SCREEN_WIDTH - ScreenScale(24), ScreenScale(49))];
     [self addSubview:self.passwordInputView];
     
@@ -59,6 +52,10 @@
     //遮挡第三方键盘的点击效应
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapKeyBoard)];
     [self addGestureRecognizer:tap];
+    WEAK(weakSelf);
+    self.passwordInputView.keyBoardCallback = ^(NSString *contentStr) {
+        !weakSelf.passwordCallback ? : weakSelf.passwordCallback(contentStr);
+    };
 }
 
 - (void)setEditingEable:(BOOL)editingEable{
@@ -74,10 +71,10 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    [self.pad mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.mas_equalTo(self);
-        make.height.mas_equalTo(ScreenScale(224));
-    }];
+//    [self.pad mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.left.right.mas_equalTo(self);
+//        make.height.mas_equalTo(ScreenScale(224));
+//    }];
 }
 
 

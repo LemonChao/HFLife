@@ -13,7 +13,7 @@
 @property(nonatomic,strong)UITextField *pswTF;
 
 @property (nonatomic, strong)NSMutableArray *imageVArrM;
-
+@property (nonatomic, assign)BOOL isComplate;//输入完成 回调一次
 @end
 
 @implementation SXF_HF_Password
@@ -128,15 +128,14 @@
         }
     }
     else{
-        textField.text = [text substringWithRange:NSMakeRange(0, 6)];
-        //回调
-        
+        if (!self.isComplate) {
+            textField.text = [text substringWithRange:NSMakeRange(0, 6)];
+            //回调
+            !self.keyBoardCallback ? : self.keyBoardCallback(textField.text);
+            self.isComplate = YES;
+        }
     }
     
-    
-    !self.keyBoardCallback ? : self.keyBoardCallback(textField.text);
-    
-    NSLog(@"%@",textField.text);
 }
 - (void)setEditingEable:(BOOL)editingEable{
     _editingEable = editingEable;

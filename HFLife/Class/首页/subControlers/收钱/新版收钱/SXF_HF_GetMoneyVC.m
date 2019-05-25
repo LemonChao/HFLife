@@ -11,7 +11,7 @@
 #import "SXF_HF_GetMoneyView.h"
 #import "receiptRecordListVC.h"
 #import "SetAmountVC.h"
-@interface SXF_HF_GetMoneyVC ()
+@interface SXF_HF_GetMoneyVC ()<SetAmountDelegate>
 @property (nonatomic, strong)SXF_HF_GetMoneyView *getMoneyView;
 @end
 
@@ -39,7 +39,7 @@
     //模拟网络请求 获取收款码
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //临时数据
-        [self.getMoneyView setDataForView:@"https://www.hfgld.net/app_html/qrcode_pay/show_pay.html?show_code=5A005141F931A300"];
+        [self.getMoneyView setDataForView:@"https://www.hfgld.net/app_html/qrcode_pay/show_pay.html?show_code=5A005141F931A300" type:NO];
     });
     
     
@@ -57,7 +57,9 @@
         BaseViewController *vc = [BaseViewController new];
         if (index == 0) {
             //设置金额
-            vc = [SetAmountVC new];
+            SetAmountVC *setAmVC = [SetAmountVC new];
+            vc = setAmVC;
+            setAmVC.amountDelegate = self;
         }else if (index == 2){
             //收款记录
             vc = [[receiptRecordListVC alloc] init];
@@ -81,13 +83,21 @@
                 BaseViewController *vc = [BaseViewController new];
                 vc.customNavBar.title = @"收款码介绍";
                 [weakSelf.navigationController pushViewController:vc animated:YES];
+            }else{
+                //开启或关闭到账通知
+                setGetMoneyStatus(OpenMoneyNotiStatus)
+                [WXZTipView showCenterWithText:OpenMoneyNotiStatus ? @"已开启" : @"已关闭"];
+                
             }
             
         }];
     }];
 }
 
-
+#pragma mark 代理
+-(void)SetAmountNumber:(NSString *)amount{
+    [self.getMoneyView setDataForView:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[userInfoModel sharedUser].id) publicKey:AMOUNTRSAPRIVATEKEY] type:YES];
+}
 
 
 @end

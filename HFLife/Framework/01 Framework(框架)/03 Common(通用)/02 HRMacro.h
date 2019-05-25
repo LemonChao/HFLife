@@ -80,7 +80,7 @@
 #define FONT(size) [UIFont systemFontOfSize:size]
 #define MY_FONT(size)             [UIFont boldSystemFontOfSize:size]
 #define MY_IMAHE(name)            [UIImage imageNamed:name]
-#define MY_URL_IMG(URL_STR)       [NSURL URLWithString:URL_STR]
+#define MY_URL_IMG(URL_STR)       [NSURL URLWithString:(URL_STR ?URL_STR : @"http://www.")]
 #define Format(str)               [NSString stringWithFormat:@"%@", str];
 #define HF_xyRatio [UIScreen mainScreen].bounds.size.height / 568
 #define HF_Ratio [UIScreen mainScreen].bounds.size.width / 667

@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_PayVC : BaseViewController
-
+@property (nonatomic, strong)NSString *payName;
+@property (nonatomic, strong)NSString *payHeaderUrl;
 @end
 
 NS_ASSUME_NONNULL_END

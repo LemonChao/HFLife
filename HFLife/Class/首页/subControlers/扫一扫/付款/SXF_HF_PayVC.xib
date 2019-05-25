@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SXF_HF_PayVC">
             <connections>
+                <outlet property="moneyTF" destination="L8K-ag-bp9" id="vE6-Wm-1Ui"/>
+                <outlet property="payHeaderImageV" destination="xvh-hP-EIo" id="Y9R-dw-55H"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -64,14 +66,14 @@
                                 <constraint firstAttribute="height" constant="1" id="bZC-l7-vYF"/>
                             </constraints>
                         </view>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="888" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L8K-ag-bp9">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L8K-ag-bp9">
                             <rect key="frame" x="54" y="165" width="348" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="ASj-Si-CdR"/>
                             </constraints>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="32"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eP9-LE-W6S">
                             <rect key="frame" x="372" y="165" width="30" height="30"/>
@@ -80,6 +82,9 @@
                                 <constraint firstAttribute="width" constant="30" id="NX4-DL-3ZN"/>
                             </constraints>
                             <state key="normal" image="删除"/>
+                            <connections>
+                                <action selector="clearMoneyTF:" destination="-1" eventType="touchUpInside" id="ru5-LL-dh5"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOs-pU-g4Z">
                             <rect key="frame" x="12" y="275" width="390" height="49"/>
@@ -95,6 +100,9 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="confirmBtnClick:" destination="-1" eventType="touchUpInside" id="a9n-AI-fOQ"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -129,7 +137,7 @@
                 <constraint firstItem="Zoc-RA-OrC" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="wOz-tT-2Jt"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="184" y="91"/>
+            <point key="canvasLocation" x="248" y="61"/>
         </view>
     </objects>
     <resources>

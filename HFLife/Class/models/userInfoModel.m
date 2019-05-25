@@ -51,16 +51,6 @@ static dispatch_once_t onceToken;
 
 
 
-
-
-
-
-
-
-
-
-
-
 //单例的销毁
 +(void)attempDealloc{
     onceToken = 0; // 只有置成0,GCD才会认为它从未执行过.它默认为0.这样才能保证下次再次调用shareInstance的时候,再次创建对象.
@@ -111,7 +101,33 @@ static dispatch_once_t onceToken;
     return backStr;
 }
 
-
++ (void) getUserInfo{
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                
+                NSDictionary *dataDic = value[@"data"];
+                if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                    
+                    [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
+                    
+                    //初始化头像
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [userInfoModel sharedUser].userHeaderImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar)]];
+                    }];
+                }else {
+                    [WXZTipView showCenterWithText:@"个人信息获取错误"];
+                }
+            }
+        }else {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
+        }
+    }];
+}
 
 @end
 

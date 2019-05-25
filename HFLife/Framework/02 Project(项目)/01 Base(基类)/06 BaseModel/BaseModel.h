@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NSObject+Extension.h"
-@interface BaseModel : NSObject
+@interface BaseModel : NSObject<NSCoding, NSCopying>
 /**
  *  初始化方法
  *

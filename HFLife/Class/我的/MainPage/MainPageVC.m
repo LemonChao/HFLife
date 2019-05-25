@@ -174,6 +174,10 @@
                     
                     [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
                     
+                    //初始化头像
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [userInfoModel sharedUser].userHeaderImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar)]];
+                    }];
                     self.mainPageView.memberInfoModel = [userInfoModel sharedUser];
                 }else {
                     [WXZTipView showCenterWithText:@"个人信息获取错误"];

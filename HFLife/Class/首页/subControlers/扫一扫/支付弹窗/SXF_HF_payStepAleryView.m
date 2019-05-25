@@ -42,15 +42,12 @@
 @property (nonatomic, strong)void(^clickStepTowCellCallback)(NSIndexPath *indexPath);
 @property (nonatomic, strong)UIView *stepThreeView;//子控件3
 @property (nonatomic, strong)SXF_HF_KeyBoardView *passwordInputView;
-
-
-
-
-
-
-
+@property (nonatomic, strong)void(^passwordCallback)(NSString *password);
 
 @property (nonatomic, assign)NSInteger step;//第几步
+
+
+@property (nonatomic, strong)UIView *bgView;//存储背景 用于销毁
 @end
 
 
@@ -155,7 +152,7 @@
     self.stepOneline1.backgroundColor = self.stepOneline2.backgroundColor = HEX_COLOR(0xF5F5F5);
     self.rightImageV.image = MY_IMAHE(@"gengduo");
     self.stepOneIncoderLb.text = @"¥";
-    self.stepOneMoneyLb.text = @"888";
+    self.stepOneMoneyLb.text = @"";
     self.goStep2Btn.backgroundColor = [UIColor clearColor];
     self.nowPayBtn.layer.cornerRadius = 5;
     self.nowPayBtn.layer.masksToBounds = YES;
@@ -182,8 +179,16 @@
     self.stepTwoView.backgroundColor = [UIColor whiteColor];
     self.stepThreeView.backgroundColor = [UIColor whiteColor];
     
+    WEAK(weakSelf);
+    self.passwordInputView.passwordCallback = ^(NSString * _Nonnull password) {
+        !weakSelf.passwordCallback ? : weakSelf.passwordCallback(password);
+    };
+}
 
-    
+//设置付款金额
+- (void)setPayMoneyStr:(NSString *)payMoneyStr{
+    _payMoneyStr = payMoneyStr;
+    self.stepOneMoneyLb.text = self.payMoneyStr;
 }
 
 
@@ -377,8 +382,7 @@
 
 
 
-+ (void)showAlertComplete:(void(^__nullable)(BOOL btnBype))complate{
-    
++ (SXF_HF_payStepAleryView *)showAlertComplete:(void(^__nullable)(BOOL btnBype))complate password:(void(^)(NSString *pwd))password{
     UIWindow *kwin = [UIApplication sharedApplication].keyWindow;
     if (!kwin) {
         kwin =  [UIApplication sharedApplication].windows.lastObject;
@@ -386,12 +390,16 @@
     
     UIView *bgView = [[UIView alloc] initWithFrame:kwin.bounds];
     bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
+    
     [kwin addSubview:bgView];
     SXF_HF_payStepAleryView *alertView = [[SXF_HF_payStepAleryView alloc] initWithFrame:CGRectMake(0, kwin.bounds.size.height, SCREEN_WIDTH, kwin.bounds.size.height * (2.0 / 3.0))];
     alertView.showAlertView.backgroundColor = [UIColor whiteColor];
     [kwin addSubview:alertView];
+    alertView.bgView = bgView;
     alertView.step = 0;
-
+    
+    //传递值
+    alertView.passwordCallback = password;
     
     __weak typeof(alertView)weakAlert = alertView;
     alertView.cancleBtnCallback = ^(NSInteger step) {
@@ -412,6 +420,7 @@
                     weakAlert.step = 0;
                     [UIView animateWithDuration:0.2 animations:^{
                         weakAlert.stepTwoView.frame = CGRectMake(weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.origin.y, weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.size.height);
+                        weakAlert.stepThreeView.frame = CGRectMake(weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.origin.y, weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.size.height);
                     } completion:^(BOOL finished) {
                         weakAlert.step = 0;
                     }];
@@ -457,6 +466,14 @@
             }];
         }else{
             NSLog(@"立即付款");
+            //跳转到支付密码页面
+            weakAlert.passwordInputView.editingEable = YES;//调起支付密码框
+            [UIView animateWithDuration:0.2 animations:^{
+                weakAlert.stepThreeView.frame = weakAlert.stepOneView.frame;
+            } completion:^(BOOL finished) {
+                weakAlert.step = 1;
+            }];
+            
         }
     };
     
@@ -471,6 +488,14 @@
         }];
     };
     
+    return alertView;
+    
 }
+
+- (void) cancleAlertView{
+    [self removeFromSuperview];
+    [self.bgView removeFromSuperview];
+}
+
 
 @end

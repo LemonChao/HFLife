@@ -37,13 +37,10 @@
     [self monitoringNetwork];
     [self initWithKeyboard];
     [self changeRootViewController];
-    //    self.window.rootViewController = [[ViewController alloc]init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [self initWithKeyboard];
     [self configNotification:launchOptions];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LogOut:) name:EXIT_LOGIN object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RefreshTokeNotification:) name:LOG_BACK_IN object:nil];
     //设置APIKEY
     [AMapServices sharedServices].apiKey = MAP_KEY;
     [AMapServices sharedServices].enableHTTPS = YES;
@@ -60,6 +57,9 @@
     [[LYBmOcrManager ocrShareManaer] configOcr];
     //share
     [self registerShare];
+    
+    
+    
     return YES;
 }
 -(void)registerShare{
@@ -231,7 +231,12 @@
     //写入到沙盒
     NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *fileName = [array.firstObject stringByAppendingPathComponent:@"userInfo"];
-    [NSKeyedArchiver archiveRootObject:[userInfoModel sharedUser] toFile:fileName];
+    
+    userInfoModel *user = [userInfoModel sharedUser];
+    
+    [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+    
+    [self archiver];
 }
 
 //按Home键使App进入后台
@@ -261,11 +266,12 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     //读取用户信息
-    //写入到沙盒
     NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *fileName = [array.firstObject stringByAppendingPathComponent:@"userInfo"];
+    
     userInfoModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
     NSLog(@"user ==  %@", user);
+    
     NSLog(@"开始活跃");
 }
 
@@ -356,6 +362,39 @@
 -(void)receive:(NSDictionary *)userInfo{
     NSLog(@"收到数据：%@",userInfo);
 }
+
+
+
+- (void)archiver {
+    
+    //把复杂文件写入文件，先转化为nsdata对象
+    //归档：归档的实质就是把其他类型的数据（person），先转化为NSData,再写入文件。
+    userInfoModel *user = [userInfoModel sharedUser];
+    //    NSKeyedArchiver  压缩工具类，继承自NSCoder，主要用于编码
+    NSMutableData *data = [NSMutableData data] ;
+    NSKeyedArchiver *achiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    //使用压缩工具讲Person压到data中
+    [achiver encodeObject:user forKey:@"userInfo"];
+    //完成压缩，停掉压缩工具
+    [achiver finishEncoding];
+    
+    
+    NSString *homePath = NSHomeDirectory();
+    NSString *toPath = [homePath stringByAppendingPathComponent:@"userInfo.txt"];
+    BOOL isSuccess = [data writeToFile:toPath atomically:YES];
+    NSLog(@"%@",isSuccess ? @"成功" : @"失败");
+    
+    //复杂对象的读取，反归档
+    //    NSKeyedUnarchiver
+    NSData *getData = [NSData dataWithContentsOfFile:toPath];
+    NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:getData];
+    //解压
+    userInfoModel *user1 = [unArchiver decodeObjectForKey:@"userInfo"];
+    NSLog(@"%@", user1);
+    [unArchiver finishDecoding];
+}
+
+
 
 
 

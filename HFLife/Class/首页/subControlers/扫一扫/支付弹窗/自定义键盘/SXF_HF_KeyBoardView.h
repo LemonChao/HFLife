@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SXF_HF_KeyBoardView : UIView
 @property (nonatomic, strong)UILabel *msgLb;
 @property (nonatomic, assign)BOOL editingEable;
+@property (nonatomic, strong)void(^passwordCallback)(NSString *password);
 @end
 
 NS_ASSUME_NONNULL_END

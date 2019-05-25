@@ -12,12 +12,6 @@
 @interface SXF_HF_saveCodeView ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
-
-
-
-
-
-
 @property (nonatomic, weak)IBOutlet UILabel *leveLb;
 @property (nonatomic, weak)IBOutlet UIImageView *topHeaderView;
 @property (nonatomic, weak)IBOutlet UILabel *subTitleLb;
@@ -29,7 +23,13 @@
 
 @implementation SXF_HF_saveCodeView
 
-
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    self.titleLb.text = [userInfoModel sharedUser].nickname;
+    self.topHeaderView.image = [userInfoModel sharedUser].userHeaderImage;
+    self.nameLb.text = [userInfoModel sharedUser].nickname;
+    self.leveLb.text = [NSString stringWithFormat:@"LV:%@", [userInfoModel sharedUser].level_name];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -42,7 +42,7 @@
 }
 
 - (void)setDataForView:(id )code{
-    self.codeImageV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@", code] size:self.codeImageV.bounds.size.width logoImage:[UIImage imageNamed:@"logo"] ratio:0.3];
+    self.codeImageV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@", code] size:self.codeImageV.bounds.size.width logoImage:[userInfoModel sharedUser].userHeaderImage ratio:0.3];
 }
 
 

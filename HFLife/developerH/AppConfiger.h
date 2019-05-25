@@ -36,6 +36,14 @@
 
 
 
+
+/**
+ 开启到账通知
+ */
+static NSString *const OpenGetMoneyNoti     = @"openGetMoneyNoti";
+#define OpenMoneyNotiStatus     [USERDEFAULT boolForKey:OpenGetMoneyNoti]
+#define setGetMoneyStatus(bool) [USERDEFAULT setBool:bool forKey:OpenGetMoneyNoti];
+
 /**
  推送 别名
  */

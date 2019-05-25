@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 //单例的销毁
 +(void)attempDealloc;
 
+//获取用户信息
++ (void) getUserInfo;
+
 //@property (nonatomic ,strong) NSNumber *ID;//小哥id
 //@property (nonatomic ,copy) NSString *courier_name;//用户名
 ///*
@@ -62,6 +65,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy,nullable)  NSString  *weixin_unionid;//微信id
 @property (nonatomic ,copy) NSString *alipay_unionid;//支付宝id
 
+
+@property (nonatomic, strong)UIImage *userHeaderImage;//用户头像
+
+
 @end
 //@interface MemberInfoModel : BaseModel
 //@property (nonatomic ,strong) NSNumber *id;//用户id
@@ -79,6 +86,8 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic ,copy) NSString *level_name;//等级名称
 //
 //@end
+
+
 
 
 NS_ASSUME_NONNULL_END

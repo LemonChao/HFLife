@@ -12,6 +12,7 @@
 #import "RSAEncryptor.h"
 #import "TransferVC.h"
 #import "WKWebViewController.h"
+#import "SXF_HF_PayVC.h"//付款
 @interface FlickingVC () {
     SGQRCodeObtain *obtain;
 }
@@ -254,16 +255,40 @@
 -(void)decodingString:(NSString *)string{
     WS(weakSelf);
     
-    TransferVC *tran = [[TransferVC alloc]init];
-    tran.userName = @"textName";
-    tran.uesrImage = @"thhp://www.baidu.com";
-    tran.code_str = string;
-    tran.ispayment = YES;
-    [weakSelf.navigationController pushViewController:tran animated:YES];
+    SXF_HF_PayVC *payVC = [SXF_HF_PayVC new];
+    //获取到对方的用户信息
+    payVC.payName = @"sxf";
+    payVC.payHeaderUrl = @"url";
+    [self.navigationController pushViewController:payVC animated:YES];
+    return;
+    
+    //扫描到w二维码后 获取对方的用户信息用以显示
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"sub" withParameters:@{@"code_str":string} withResultBlock:^(BOOL result, id value) {
+        if (result && value) {
+            if (value[@"data"][@"type"]) {
+                NSString *type = [NSString stringWithFormat:@"%@", value[@"data"][@"type"]];
+                if ([type isEqualToString:@"2"]) {
+                    [WXZTipView showCenterWithText:@"内测中，敬请期待。。。"];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }else if ([type isEqualToString:@"0"]) {
+                    //加载页面
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString judgeNullReturnString:string]]];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                }else if([type isEqualToString:@"1"]){
+                    //付款页面
+                    SXF_HF_PayVC *payVC = [SXF_HF_PayVC new];
+                    [weakSelf.navigationController pushViewController:payVC animated:YES];
+                }
+                
+            }
+        }
+    }];
     
     
     
     
+    
+
     
     /*
     

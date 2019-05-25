@@ -3250,8 +3250,8 @@
 			children = (
 				048DABBC22856656006E6BA2 /* 密码输入 */,
 				048DABC622856656006E6BA2 /* RYNumberkeyboard */,
-				048DABCD22856656006E6BA2 /* TransferVC.m */,
 				048DABCE22856656006E6BA2 /* TransferVC.h */,
+				048DABCD22856656006E6BA2 /* TransferVC.m */,
 			);
 			path = "转账界面";
 			sourceTree = "<group>";
@@ -3321,8 +3321,8 @@
 		048DABF022856FE8006E6BA2 /* 设置金额 */ = {
 			isa = PBXGroup;
 			children = (
-				048DABF122856FE8006E6BA2 /* SetAmountVC.m */,
 				048DABF222856FE8006E6BA2 /* SetAmountVC.h */,
+				048DABF122856FE8006E6BA2 /* SetAmountVC.m */,
 			);
 			path = "设置金额";
 			sourceTree = "<group>";

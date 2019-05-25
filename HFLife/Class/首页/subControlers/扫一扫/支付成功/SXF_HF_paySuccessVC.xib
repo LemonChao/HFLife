@@ -12,6 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SXF_HF_paySuccessVC">
             <connections>
+                <outlet property="headerImageV" destination="l37-gZ-EaH" id="zCl-NA-CAD"/>
+                <outlet property="payMoneyLb" destination="4HS-0l-uM0" id="mOL-JC-8Wk"/>
+                <outlet property="payMoneyLb2" destination="bzN-4y-Iv0" id="yNL-lq-dWF"/>
+                <outlet property="payNameLb" destination="X8d-z4-YVI" id="rfH-mI-Snn"/>
+                <outlet property="payStatusLb" destination="JgB-tj-vfQ" id="QMB-Vc-RFD"/>
+                <outlet property="payTypeLb" destination="14w-wJ-fEZ" id="abl-Gl-GWw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

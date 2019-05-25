@@ -45,15 +45,13 @@
     [self addGuideView];
     [self setUpUI];
     [self setUpActions];
-    
-    
     //加载数据
     [self loadServerData];
-    
-//    [self VersionBounced];
-    
     [self versionUpdateRequest];
     
+    
+    //用户信息
+    [userInfoModel getUserInfo];
 }
 //网络数据
 - (void)loadServerData{
@@ -99,7 +97,7 @@
     testBtn.backgroundColor = [UIColor orangeColor];
     testBtn.center = self.view.center;
     
-    [self.view addSubview:testBtn];
+//    [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{
         
         [JMConfig config].selectedIndex = 1;

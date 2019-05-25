@@ -75,9 +75,11 @@
     [self insertSubview:self.saveCodeView atIndex:0];
 }
 
-- (void)setDataForView:(id)code{
+- (void)setDataForView:(id)code type:(BOOL)isCustom{
     [self.tableHeader setDataForView:code];
-    [self.saveCodeView setDataForView:code];
+    if (!isCustom) {
+        [self.saveCodeView setDataForView:code];
+    }
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
@@ -90,8 +92,8 @@
     SXF_HF_getMoneyCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SXF_HF_getMoneyCellTableViewCell class]) forIndexPath:indexPath];
     if (indexPath.section == 1) {
         cell.cellType = NO;
-        cell.userNameLb.text = @"SXF";
-        cell.userHeaderImageV.image = MY_IMAHE(@"logo_title");
+        cell.userNameLb.text = [userInfoModel sharedUser].nickname;
+        [cell.userHeaderImageV sd_setImageWithURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar) placeholderImage:MY_IMAHE(@"user__easyico")];
     }else{
         cell.cellType = YES;
         cell.titleLb.text = _titleArr[indexPath.section];

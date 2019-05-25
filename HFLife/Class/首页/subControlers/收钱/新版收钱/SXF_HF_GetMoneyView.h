@@ -12,7 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_GetMoneyView : UIView
 @property (nonatomic, strong)void(^tabBtnCallback)(NSInteger index);
-- (void)setDataForView:(id)code;
+
+/**
+ 
+
+ @param code <#code description#>
+ @param isCustom 是否是自己设置的付款金额
+ */
+- (void)setDataForView:(id)code type:(BOOL)isCustom;
 @end
 
 NS_ASSUME_NONNULL_END

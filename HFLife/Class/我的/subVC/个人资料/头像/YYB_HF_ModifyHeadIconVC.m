@@ -138,6 +138,8 @@
                                     [WXZTipView showCenterWithText:@"资料修改成功,token获取x失败"];
                                 }
                             }
+                            [userInfoModel sharedUser].userHeaderImage = image;
+                            [self.navigationController popViewControllerAnimated:YES];
                             
                         }else {
                             if (value && [value isKindOfClass:[NSDictionary class]]) {

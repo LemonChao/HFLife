@@ -10,6 +10,12 @@
 #import "SXF_HF_paySuccessVC.h"
 
 @interface SXF_HF_paySuccessVC ()
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageV;
+@property (weak, nonatomic) IBOutlet UILabel *payTypeLb;
+@property (weak, nonatomic) IBOutlet UILabel *payMoneyLb;
+@property (weak, nonatomic) IBOutlet UILabel *payNameLb;
+@property (weak, nonatomic) IBOutlet UILabel *payMoneyLb2;
+@property (weak, nonatomic) IBOutlet UILabel *payStatusLb;
 
 @end
 
@@ -17,7 +23,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self setupNavBar];
+    
+    
+    self.payNameLb.text = self.payName;
+    self.payMoneyLb.text = self.payMoneyLb2.text = self.payMoney;
+    self.headerImageV.image = self.payImage;
+    self.payStatusLb.text = self.payStatus ? @"支付成功" : @"支付失败";
+    self.payTypeLb.text = self.payType;
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+- (void)setupNavBar{
+    [super setupNavBar];
+    [self.customNavBar wr_setBottomLineHidden:YES];
+    [self.customNavBar wr_setRightButtonWithTitle:@"完成" titleColor:colorCA1400];
+    WEAK(weakSelf);
+    [self.customNavBar setOnClickRightButton:^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
+    [self.customNavBar wr_setLeftButtonWithNormal:image(@"") highlighted:image(@"")];
 }
 
 /*
