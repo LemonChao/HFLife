@@ -443,7 +443,7 @@
                     [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
                     [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
                     [self dismissViewControllerAnimated:NO completion:^{
-                        self.tabBarController.selectedIndex = 0;
+                        [LoginVC changeIndxHome];
                     }];
                 }else {
                     [WXZTipView showCenterWithText:@"未请求到token"];

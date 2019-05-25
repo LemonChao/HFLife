@@ -17,6 +17,9 @@
 #import "ReviseMobilePhone.h"//设置手机号
 #import "SetingMobilePhoneVC.h"//设置手机号
 #import "ServiceAgreementVC.h"//注册i协议
+
+#import "JMTabBarController.h"
+#import "JMConfig.h"
 @interface LoginVC ()
 
 @end
@@ -287,7 +290,7 @@
                                [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
                                [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
                                [self dismissViewControllerAnimated:YES completion:^{
-                                   
+                                   [LoginVC changeIndxHome];
                                }];
                            }else {
                                SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
@@ -359,6 +362,11 @@
         
         [CustomPromptBox showTextHud:@"您还未创建登录VC"];
     }
+}
+
++ (void)changeIndxHome{
+    [JMConfig config].selectedIndex = 0;
+
 }
 
 @end

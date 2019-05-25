@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign)BOOL isPresent;
 /** 跳转登录 */
 + (void)login;
+/** 切换到首页 */
++ (void)changeIndxHome;
 @end
 
 NS_ASSUME_NONNULL_END

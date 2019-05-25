@@ -322,7 +322,7 @@
                         [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
                         NSLog(@"%@", [USERDEFAULT valueForKey:LOGIN_STATES]);
                         [self dismissViewControllerAnimated:NO completion:^{
-                            [[JMConfig config].tabBarController.JM_TabBar setSelectedIndex:0];
+                            [LoginVC changeIndxHome];
                             
                         }];
                     }else {

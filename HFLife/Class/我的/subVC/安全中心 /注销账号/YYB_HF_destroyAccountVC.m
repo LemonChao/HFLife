@@ -142,7 +142,7 @@
     UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(100), HeightRatio(69))];
     rightView.backgroundColor = [UIColor clearColor];
     UIButton *clearnButton = [UIButton new];
-    [clearnButton setTitle:@"182****6406" forState:UIControlStateNormal];
+    [clearnButton setTitle:[[userInfoModel sharedUser].member_mobile EncodeTel] forState:UIControlStateNormal];
     [clearnButton setTitleColor:HEX_COLOR(0x5b5b5b) forState:UIControlStateNormal];
     [clearnButton.titleLabel setFont:FONT(16)];
 //    [clearnButton setImage:[UIImage imageNamed:@"icon_clear"] forState:UIControlStateNormal];
@@ -228,7 +228,7 @@
     
     //    [self openCountdown:send];
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"close_mobile"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":[userInfoModel sharedUser].member_mobile,@"event":@"close_mobile"} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
@@ -288,9 +288,12 @@
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kCloseAccount withParameters:@{@"captcha":self.vercodeText.text} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
-            if (value && [value isKindOfClass:[NSDictionary class]]) {
-                
-            }
+            SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_exchnageSuccess Complete:nil];
+            alert.title = @"注销成功";
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [LoginVC login];
+            });
             
         }else {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
