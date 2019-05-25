@@ -115,37 +115,3 @@ static dispatch_once_t onceToken;
 
 @end
 
-#pragma mark - 个人中心数据
-@implementation MemberInfoModel
-
-//实名认证状态 0未认证   1已认证   2审核中   3未通过
-- (NSString *)rz_statusName {
-    if (self.rz_status.intValue == 0) {
-        return @"未认证";
-    }
-    if (self.rz_status.intValue == 1) {
-        return @"已认证";
-    }
-    if (self.rz_status.intValue == 2) {
-        return @"审核中";
-    }
-    if (self.rz_status.intValue == 3) {
-        return @"未通过";
-    }
-    return @"";
-}
-
-//性别 0保密 1男 2女
-- (NSString *)member_sexName {
-    if (self.member_sex.intValue == 0) {
-        return @"保密";
-    }
-    if (self.member_sex.intValue == 1) {
-        return @"男";
-    }
-    if (self.member_sex.intValue == 2) {
-        return @"女";
-    }
-    return @"";
-}
-@end

@@ -189,6 +189,8 @@
         
         UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WidthRatio(120), HeightRatio(69))];
         rightView.backgroundColor = [UIColor clearColor];
+        
+        
         UIButton *codeButton = [UIButton new];
         codeButton.titleLabel.font =[UIFont systemFontOfSize:WidthRatio(32)];
         [codeButton addTarget:self action:@selector(getSetingCode:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -219,14 +221,10 @@
 
 //验证码
 - (void)getSetingCode:(UIButton *)send{
-    if (![self.phoneText.text isValidateMobile]) {
-        [WXZTipView showCenterWithText:@"请输入正确的手机号"];
+    if (![[userInfoModel sharedUser].member_mobile isValidateMobile]) {
+        [WXZTipView showCenterWithText:@"手机号不正确"];
         return;
     }
-    //    if ([NSString isNOTNull:self.inviteCodeTextField.text]) {
-    //        [WXZTipView showCenterWithText:@"邀请码不能为空"];
-    //        return;
-    //    }
     
     //    [self openCountdown:send];
     [[WBPCreate sharedInstance] showWBProgress];

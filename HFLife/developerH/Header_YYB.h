@@ -25,6 +25,9 @@
 /** web加载 */
 #import "YYB_HF_WKWebVC.h"
 
+/** 数据model */
+#import "YYB_HF_nearLifeModel.h"
+
 /************************yourTools************************/
 
 /************************yourTools************************/
@@ -35,7 +38,7 @@
 /************************subUrl************************/
 #define GP_BASEURL  @"http://test.hfgld.net"
 
-#pragma mark - 登录注册 ---------------
+#pragma mark - 登录注册 ---------------------------
 static NSString *const yourTestUrl = @"w=index&t=index";
 
 
@@ -64,6 +67,21 @@ static NSString *const kMemberBaseInfo = @"api/member/memberBaseInfo";
 static NSString *const kSaveMemberBase = @"api/member/saveMemberBase";
 /** 获取个人详细资料 */
 static NSString *const kMemberInfo = @"api/member/memberInfo";
+
+/** 验证当前手机号 */
+static NSString *const kCheckMobile_security = @"api/member_security/checkMobile";
+/** 验证当前手机号 */
+static NSString *const kChangemobile = @"api/member_security/changemobile";
+
+#pragma mark - 本地生活 ---------------------------
+
+/** 首页快捷入口及banner等接口 */
+static NSString *const kNearLife = @"/index.php/api/index/index";
+/** 首页猜你喜欢接口（未完）*/
+static NSString *const kGetIndexRecommendList = @"/index.php/api/index/getIndexRecommendList";
+
+
+
 
 /** 分享数据 */
 static NSString *const kGet_invite_info = @"w=user&t=get_invite_info";
