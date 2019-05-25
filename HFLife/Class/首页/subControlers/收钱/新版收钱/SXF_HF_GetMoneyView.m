@@ -70,13 +70,15 @@
         }
         !weakSelf.tabBtnCallback ? : weakSelf.tabBtnCallback(tag);
     };
-    [self.tableHeader setDataForView:@""];
-    
     //需要保存的view
-    self.saveCodeView = [[SXF_HF_saveCodeView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [self.saveCodeView setDataForView:@""];
+    self.saveCodeView = [[SXF_HF_saveCodeView alloc] initWithFrame:self.bounds];
+    [self insertSubview:self.saveCodeView atIndex:0];
 }
 
+- (void)setDataForView:(id)code{
+    [self.tableHeader setDataForView:code];
+    [self.saveCodeView setDataForView:code];
+}
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return 3;

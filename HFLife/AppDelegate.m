@@ -51,7 +51,8 @@
     [UMSPPPayPluginSettings sharedInstance].umspEnviroment = UMSP_PROD;
     //不设置调起银联的启动页
     [UMSPPPayPluginSettings sharedInstance].umspSplash = NO;
-    [UMSPPPayUnifyPayPlugin registerApp:@"wx58d13dc9d936cb41"];
+    //调起支付使用
+    [UMSPPPayUnifyPayPlugin registerApp:WX_APP_ID];
     // 极光统计
     [self JAnalyticsApplication:application didFinishLaunchingWithOptions:launchOptions];
     

@@ -51,7 +51,7 @@
     return self;
 }
 - (void)setDataForView:(id)data{
-    self.qCodeImageV.image = [SGQRCodeObtain generateQRCodeWithData:@"哈哈哈嘻嘻嘻啊啊啊" size:self.qCodeImageV.bounds.size.width logoImage:[UIImage imageNamed:@"logo"] ratio:0.3];
+    self.qCodeImageV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@",data] size:self.qCodeImageV.bounds.size.width logoImage:[UIImage imageNamed:@"logo"] ratio:0.3];
 }
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     

@@ -201,14 +201,23 @@ static NSString * const footerReuseIdentifier = @"Footer";
 
 
 #pragma mark <UICollectionViewDataSource>
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath value:(id)value{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger mySection;
+    id value;
+    homeListModel *model;
     //点击事件
     if (indexPath.section == 0) {
         mySection = 1;
     }else if (indexPath.section == 2) {
+        //热点头条
         mySection = 4;
+#warning 数据结构中暂无该字段
+        model = self.hotNewsModelsArr[indexPath.row];
+        value = model.url;
     }else if (indexPath.section == 3){
+        //头条
+         model = self.hotNewsModelsArr[indexPath.row];
+         value = model.url;
         mySection = 5;
     }
     [self collectionViewSelection:mySection itemIndex:indexPath.row value:value];

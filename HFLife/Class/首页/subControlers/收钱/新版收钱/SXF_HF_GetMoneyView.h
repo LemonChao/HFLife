@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_GetMoneyView : UIView
 @property (nonatomic, strong)void(^tabBtnCallback)(NSInteger index);
+- (void)setDataForView:(id)code;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -21,8 +21,30 @@
     [super viewDidLoad];
     self.customNavBar.title = @"收钱";
     [self setUpUI];
+    
+    [self loadServerData];
+    
 }
-
+- (void)loadServerData{
+    NSDictionary *param = @{
+                            @"type":@"1",
+                            };
+//    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"" withParameters:param withResultBlock:^(BOOL result, id value) {
+//        if (result){
+//            
+//        }
+//    } witnVC:self];
+    
+    
+    //模拟网络请求 获取收款码
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //临时数据
+        [self.getMoneyView setDataForView:@"https://www.hfgld.net/app_html/qrcode_pay/show_pay.html?show_code=5A005141F931A300"];
+    });
+    
+    
+    
+}
 
 
 - (void)setUpUI{
@@ -46,9 +68,7 @@
         }
         
         [weakSelf.navigationController pushViewController:vc animated:YES];
-        
-        
-        
+
     };
     
     
