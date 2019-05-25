@@ -166,8 +166,11 @@
     WKWebViewController *webV = [WKWebViewController new];
     if (value) {
         webV.urlString = value;
+        [self.vc.navigationController pushViewController:webV animated:YES];
+    }else{
+        [WXZTipView showCenterWithText:@"暂无该条详情数据"];
     }
-    [self.vc.navigationController pushViewController:webV animated:YES];
+    
 }
 
 /**

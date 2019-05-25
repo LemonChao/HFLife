@@ -5968,19 +5968,19 @@
 		04F9ABF1228EBCAE00A602CE /* 新版收钱 */ = {
 			isa = PBXGroup;
 			children = (
+				04F9ABF5228EBD5300A602CE /* SXF_HF_GetMoneyVC.h */,
+				04F9ABF6228EBD5300A602CE /* SXF_HF_GetMoneyVC.m */,
 				04F9ABF2228EBD2100A602CE /* SXF_HF_GetMoneyView.h */,
 				04F9ABF3228EBD2100A602CE /* SXF_HF_GetMoneyView.m */,
+				04FCEA1D228FF7FE00F95486 /* SXF_HF_saveCodeView.h */,
+				04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */,
+				04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */,
 				04F9ABF8228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.h */,
 				04F9ABF9228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.m */,
 				04F9ABFA228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.xib */,
 				04F9ABFD228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.h */,
 				04F9ABFE228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.m */,
 				04F9ABFF228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib */,
-				04F9ABF5228EBD5300A602CE /* SXF_HF_GetMoneyVC.h */,
-				04F9ABF6228EBD5300A602CE /* SXF_HF_GetMoneyVC.m */,
-				04FCEA1D228FF7FE00F95486 /* SXF_HF_saveCodeView.h */,
-				04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */,
-				04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */,
 			);
 			path = "新版收钱";
 			sourceTree = "<group>";
