@@ -72,6 +72,15 @@ static NSString *const kMemberInfo = @"api/member/memberInfo";
 static NSString *const kCheckMobile_security = @"api/member_security/checkMobile";
 /** 验证当前手机号 */
 static NSString *const kChangemobile = @"api/member_security/changemobile";
+/** 解绑微信 */
+static NSString *const kMobileRemoveWx = @"api/member_security/mobileRemoveWx";
+/** 绑定微信 */
+static NSString *const kMobileBindWx = @"api/member_security/mobileBindWx";
+
+/** 绑定微信 */
+static NSString *const kCloseAccount = @"api/member_security/closeAccount";
+/** 设置交易密码 */
+static NSString *const kSetPayPassword = @"api/member_security/setPayPassword";
 
 #pragma mark - 本地生活 ---------------------------
 

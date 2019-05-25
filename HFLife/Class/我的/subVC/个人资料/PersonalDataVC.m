@@ -44,28 +44,8 @@
     self.navigationController.navigationBar.hidden = YES;
     
     userInfoModel *user = [userInfoModel sharedUser];
-        //未获取个人资料
-//        [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberBaseInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
-//            if (result) {
-//                if (value && [value isKindOfClass:[NSDictionary class]]) {
-//
-//                    NSDictionary *dataDic = value[@"data"];
-//                    if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-//                        [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
-//                        self->valueArray = @[@[user.member_avatar?user.member_avatar : @"",user.member_mobile,user.nickname ? user.nickname : @"",user.member_sexName,user.member_age ? user.member_age.stringValue : @""],@[user.rz_statusName],@[@""]];
-//                        [self.contentTableView reloadData];
-//                    }else {
-//                        [WXZTipView showCenterWithText:@"个人信息获取错误"];
-//                    }
-//                }
-//            }else {
-//                if (value && [value isKindOfClass:[NSDictionary class]]) {
-//                    [WXZTipView showCenterWithText:value[@"msg"]];
-//                }else {
-//                    [WXZTipView showCenterWithText:@"网络错误"];
-//                }
-//            }
-//        }];
+    self->valueArray = @[@[[NSString judgeNullReturnString:user.member_avatar],[NSString judgeNullReturnString:user.member_mobile],[NSString judgeNullReturnString:user.nickname],[NSString judgeNullReturnString:user.member_sexName],user.member_age ? user.member_age.stringValue : @""],@[[NSString judgeNullReturnString:user.rz_statusName]],@[@""]];
+    [self.contentTableView reloadData];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

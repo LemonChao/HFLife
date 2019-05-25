@@ -228,7 +228,7 @@
     
     //    [self openCountdown:send];
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"wx_bind_mobile"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"close_mobile"} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
@@ -283,16 +283,36 @@
 
 //提交
 - (void)sureBtnClick {
-    YYB_HF_destroyFailView *view = [[YYB_HF_destroyFailView alloc]init];
-    view.sureBlock = ^{
-        [self.navigationController popViewControllerAnimated:YES];
-    };
-    [self.view addSubview:view];
     
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.customNavBar.mas_bottom);
+    [[WBPCreate sharedInstance]showWBProgress];
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCloseAccount withParameters:@{@"captcha":self.vercodeText.text} withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance]hideAnimated];
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                
+            }
+            
+        }else {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                YYB_HF_destroyFailView *view = [[YYB_HF_destroyFailView alloc]init];
+                view.tipMsg = [value safeObjectForKey:@"msg"];
+                view.sureBlock = ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                };
+                [self.view addSubview:view];
+                
+                [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.right.bottom.mas_equalTo(self.view);
+                    make.top.mas_equalTo(self.customNavBar.mas_bottom);
+                }];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
+        }
     }];
+    
+    
+   
     
 }
 

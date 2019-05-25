@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_submitDealPassWordVC : BaseViewController
-
+@property(nonatomic, copy) NSString *verCode;//验证码
 @end
 
 NS_ASSUME_NONNULL_END

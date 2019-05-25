@@ -48,7 +48,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -61,6 +61,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.contentView removeAllSubviews];
     [cell.contentView addSubview:[self failView]];
     return cell;
@@ -133,7 +134,7 @@
     UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(36, 20, 300, 0)];
     textLabel.font = FONT(14);
     textLabel.numberOfLines = 0;
-    textLabel.text = @"您的账户在15天内有过交易记录，为了保证交易的安全性和完整性，请结束交易15天后再申请注销查看订单";
+    textLabel.text = self.tipMsg;
     [view addSubview:textLabel];
     
     [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {

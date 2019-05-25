@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_destroyFailView : UIView
 @property(nonatomic, copy) void (^sureBlock)(void);
+@property(nonatomic, copy) NSString *tipMsg;//
 @end
 
 NS_ASSUME_NONNULL_END

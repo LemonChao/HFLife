@@ -40,7 +40,7 @@
     }
     
     if (!changeNum) {
-        
+        //验证旧手机号
         [[WBPCreate sharedInstance]showWBProgress];
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile_security withParameters:@{@"captcha":self.verCodeTextf.text} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
@@ -61,16 +61,25 @@
             }
         }];
         
-    }else {
+    }
+    else {
+        //修改手机号
         [[WBPCreate sharedInstance]showWBProgress];
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kChangemobile withParameters:@{@"mobile":self.phoneNumLabel.text,@"captcha":self.verCodeTextf.text} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kChangemobile withParameters:@{@"mobile":self.phoneTextF.text,@"captcha":self.verCodeTextf.text} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
             if (result) {
-                //注销成功退出登录
+                //
                 if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    
+                    [WXZTipView showCenterWithText:@"修改成功"];
+                    NSString *token = [value safeObjectForKey:@"ucenter_token"];
+                    if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
+                        [[NSUserDefaults standardUserDefaults]setValue:token forKey:USER_TOKEN];
+                        [userInfoModel sharedUser].member_mobile = self.phoneTextF.text;
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }else {
+                        [WXZTipView showCenterWithText:@"未获取到token"];
+                    }
                 }
-                [WXZTipView showCenterWithText:@"注销成功"];
                 
             }else {
                 if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -118,7 +127,7 @@
     }else {
         //注销手机号
         [[WBPCreate sharedInstance]showWBProgress];
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneNumLabel.text,@"event":@"close_mobile"} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneTextF.text,@"event":@"changemobile"} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
             if (result) {
                 if (value && [value isKindOfClass:[NSDictionary class]]) {
