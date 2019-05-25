@@ -142,15 +142,45 @@
 }
 //提交
 - (void)submitBtnClick {
-    if (self.passWordText.text.length == 0) {
-        [WXZTipView showCenterWithText:@"请输入交易密码"];
+    
+    SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_exchnageSuccess Complete:nil];
+    alert.title = @"设置成功";
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    });
+    return;
+    if (self.passWordText.text.length != 6) {
+        [WXZTipView showCenterWithText:@"请输入6位交易密码"];
         return;
     }
     if (![self.passWordText.text isEqualToString:self.confirmPassWordText.text]) {
-        [WXZTipView showCenterWithText:@"交易密码不一致"];
+        [WXZTipView showCenterWithText:@"交易密码输入不一致,请重新输入"];
         [self.notEqualerr setHidden:NO];
         return;
     }
+    NSDictionary *parm = @{@"password":self.passWordText.text,@"captcha":self.verCode};
+    
+    [[WBPCreate sharedInstance]showWBProgress];
+    
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSetPayPassword withParameters:parm withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance]hideAnimated];
+        if (result) {
+            SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_exchnageSuccess Complete:nil];
+            alert.title = @"设置成功";
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            });
+            
+        }else {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
+        }
+    }];
 }
 
 - (UITextField *)passWordText{
@@ -168,6 +198,7 @@
         tf.backgroundColor = [UIColor clearColor];
         tf.clearButtonMode = UITextFieldViewModeAlways;
         tf.secureTextEntry = YES;
+        tf.delegate = self;
         
         UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(12), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
@@ -185,7 +216,6 @@
         tf.leftViewMode = UITextFieldViewModeAlways;
         tf.leftView = lv;
         [tf sizeToFit];
-        tf.delegate = self;
         
         UILabel *tipLabe = [UILabel new];
         tipLabe.font = FONT(15);
@@ -292,6 +322,14 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     [self.notEqualerr setHidden:YES];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField.text.length >= 6) {
+        textField.text = [textField.text substringToIndex:6];
+        return NO;
+    }
+    return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {

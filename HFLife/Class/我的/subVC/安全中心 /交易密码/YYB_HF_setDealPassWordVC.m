@@ -84,6 +84,7 @@
     self.vercodeerr.textColor = HEX_COLOR(0xCA1400);
     self.vercodeerr.font = FONT(11);
     self.vercodeerr.text = @"验证码错误";
+    [self.vercodeerr setHidden:YES];
     
     [self.saveImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(bgView).mas_offset(52);
@@ -155,6 +156,7 @@
     }
     
     YYB_HF_submitDealPassWordVC *vc = [[YYB_HF_submitDealPassWordVC alloc]init];
+    vc.verCode = self.vercodeText.text;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -289,7 +291,7 @@
     
     //    [self openCountdown:send];
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"wx_bind_mobile"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"set_pay_password"} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];

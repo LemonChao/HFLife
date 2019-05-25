@@ -28,11 +28,66 @@
 
 //微信
 - (IBAction)tapWechatCell:(UITapGestureRecognizer *)sender {
-    [SXF_HF_AlertView showAlertType:AlertType_binding Complete:^(BOOL btnBype) {
-        if (btnBype) {
-            
-        }
-    }];
+    
+    if ([userInfoModel sharedUser].weixin_unionid) {
+        //解绑
+        [SXF_HF_AlertView showAlertType:AlertType_binding Complete:^(BOOL btnBype) {
+            if (btnBype) {
+                
+                [[WBPCreate sharedInstance]showWBProgress];
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileRemoveWx withParameters:nil withResultBlock:^(BOOL result, id value) {
+                    [[WBPCreate sharedInstance]hideAnimated];
+                    if (result) {
+                        [userInfoModel sharedUser].weixin_unionid = nil;
+                        SXF_HF_AlertView *alert =  [SXF_HF_AlertView showAlertType:(AlertType_exchnageSuccess) Complete:nil];
+                        alert.title = @"解绑成功";
+                        self.wechatStateLabel.text = @"未绑定";
+                        
+                    }else {
+                        if (value && [value isKindOfClass:[NSDictionary class]]) {
+                            [WXZTipView showCenterWithText:value[@"msg"]];
+                        }else {
+                            [WXZTipView showCenterWithText:@"网络错误"];
+                        }
+                    }
+                }];
+                
+            }
+        }];
+    }
+    else {
+        //绑定微信
+        [[WBPCreate sharedInstance] showWBProgress];
+        [ShareSDK getUserInfo:SSDKPlatformTypeWechat
+               onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error){
+                   [[WBPCreate sharedInstance] hideAnimated];
+                   if (state == SSDKResponseStateSuccess){
+                    
+                       NSDictionary *dataDict = @{@"openid":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
+                       [[WBPCreate sharedInstance] showWBProgress];
+                       [[WBPCreate sharedInstance]showWBProgress];
+                       [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileBindWx withParameters:dataDict withResultBlock:^(BOOL result, id value) {
+                           [[WBPCreate sharedInstance]hideAnimated];
+                           if (result) {
+                               self.wechatStateLabel.text = @"已绑定";
+                               [userInfoModel sharedUser].weixin_unionid = user.uid;
+                               SXF_HF_AlertView *alert =  [SXF_HF_AlertView showAlertType:(AlertType_exchnageSuccess) Complete:nil];
+                               alert.title = @"绑定成功";
+                               
+                           }else {
+                               if (value && [value isKindOfClass:[NSDictionary class]]) {
+                                   [WXZTipView showCenterWithText:value[@"msg"]];
+                               }else {
+                                   [WXZTipView showCenterWithText:@"网络错误"];
+                               }
+                           }
+                       }];
+                   }else{
+                       NSLog(@"error = %@",error);
+                   }
+               }];
+    }
+
 }
 
 //支付宝

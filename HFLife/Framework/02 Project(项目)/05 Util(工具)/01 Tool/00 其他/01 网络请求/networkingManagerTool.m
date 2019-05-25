@@ -120,7 +120,7 @@
     //设置token
     NSString *gettoken = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
     //token 设置到请求头上
-    gettoken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaW5mbyI6eyJpZCI6MjAsIm1lbWJlcl9tb2JpbGUiOiIxNTYyMTQwMjA5MyIsImFsaXBheV91bmlvbmlkIjpudWxsLCJ3ZWl4aW5fdW5pb25pZCI6Im9NUFpDNW9lNUlPRk9VdXcyc1R2T3dRZ3cwV3ciLCJyZWFsbmFtZSI6IiIsIm1lbWJlcl9hdmF0YXIiOm51bGwsIm1lbWJlcl9zZXgiOjEsIm1lbWJlcl9lbWFpbCI6bnVsbCwiaW52aXRlcl9pZCI6MCwibmlja25hbWUiOm51bGwsInJ6X3N0YXR1cyI6MCwidG9rZW4iOiJjMWNmNzkyODA0NWExZGMzZjEzY2EzOGJkMzI4YjdiYWQ2OTllNDVlIn0sInRpbWUiOjE1NjA5OTcyODksInRva2VuIjoiYzFjZjc5MjgwNDVhMWRjM2YxM2NhMzhiZDMyOGI3YmFkNjk5ZTQ1ZSJ9.SJvmaJIRFOpNLQgNh2MuFjAFmRwERohPTsKM-HiCiEg";
+//    gettoken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaW5mbyI6eyJpZCI6MjgsIm1lbWJlcl9tb2JpbGUiOiIxNTYyMTQwMjA5MyIsImFsaXBheV91bmlvbmlkIjpudWxsLCJ3ZWl4aW5fdW5pb25pZCI6Im9NUFpDNW9lNUlPRk9VdXcyc1R2T3dRZ3cwV3ciLCJyZWFsbmFtZSI6IiIsIm1lbWJlcl9hdmF0YXIiOiJodHRwOlwvXC90aGlyZHd4LnFsb2dvLmNuXC9tbW9wZW5cL3ZpXzMyXC9SaG1RR1djaEtPWXhkSklrMGFSalB5TjYyTkVjQ3RTSE1QaWFnSVlPQTdPVDV4YWdXVjF1UGJUMmliNWhKM1EzR2F1YVpmVElFTHg5UHRDa2ljRFVNenBVZ1wvMTMyIiwibWVtYmVyX3NleCI6MCwibWVtYmVyX2VtYWlsIjpudWxsLCJpbnZpdGVyX2lkIjowLCJuaWNrbmFtZSI6Ilx1NzBkZlx1NmNlMlx1NmUzYSIsInJ6X3N0YXR1cyI6MCwidG9rZW4iOiI4MjMzMzJjMjQ0Nzg0NjIzYjNiN2ZkMTJlOTBhYWFkNjUyMDgyNjAyIn0sInRpbWUiOjE1NjEyODY3NjAsInRva2VuIjoiODIzMzMyYzI0NDc4NDYyM2IzYjdmZDEyZTkwYWFhZDY1MjA4MjYwMiJ9.DwBi_CSS2LhpoX-Du43RJZv4byJDcEJ1UJxFT9KXBEU";
 //    gettoken = @"05bd0b6950c78fac59335515f5fcfdab";
     if (gettoken) {
         [requestManager.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@" , gettoken] forHTTPHeaderField:@"TOKEN"];
@@ -271,7 +271,7 @@
             [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
             [userInfoModel attempDealloc];
 
-            [currentVC presentViewController:[LoginVC new] animated:YES completion:nil];
+            [LoginVC login];
         }else{
             
         }
