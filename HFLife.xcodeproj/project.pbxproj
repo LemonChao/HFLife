@@ -497,6 +497,7 @@
 		04F54B4422813B23009AAEF3 /* WRCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B4022813B23009AAEF3 /* WRCustomNavigationBar.m */; };
 		04F54B5422816189009AAEF3 /* SXF_HF_CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5322816189009AAEF3 /* SXF_HF_CustomSearchBar.m */; };
 		04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */; };
+		04F5DFFD2297FADA00F298B6 /* JpushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5DFFB2297FAD900F298B6 /* JpushManager.m */; };
 		04F5F24D228412630043BBB7 /* SXF_HF_AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F24C228412630043BBB7 /* SXF_HF_AlertView.m */; };
 		04F5F251228418880043BBB7 /* SXF_HF_HomePageVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F250228418880043BBB7 /* SXF_HF_HomePageVM.m */; };
 		04F5F25422842EE80043BBB7 /* SXF_HF_MainPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F25322842EE80043BBB7 /* SXF_HF_MainPageView.m */; };
@@ -793,8 +794,6 @@
 		65DC683E22112C4300F1085E /* 定位@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DC683B22112C4200F1085E /* 定位@3x.png */; };
 		65DC684022112D9400F1085E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC683F22112D9400F1085E /* AVFoundation.framework */; };
 		65DC68782217C5A900F1085E /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DC68772217C5A900F1085E /* RSAEncryptor.m */; };
-		65DC6881221A3FA100F1085E /* AppDelegate+JPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DC687F221A3FA100F1085E /* AppDelegate+JPush.m */; };
-		65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DC6880221A3FA100F1085E /* SDJPushHelper.m */; };
 		65DC6892221A6C9700F1085E /* luxian2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DC688F221A6C9700F1085E /* luxian2x.png */; };
 		65DC6893221A6C9700F1085E /* luxian.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DC6890221A6C9700F1085E /* luxian.png */; };
 		65DC6894221A6C9700F1085E /* luxian@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DC6891221A6C9700F1085E /* luxian@3x.png */; };
@@ -1781,6 +1780,8 @@
 		04F54B5322816189009AAEF3 /* SXF_HF_CustomSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_CustomSearchBar.m; sourceTree = "<group>"; };
 		04F54B5522816268009AAEF3 /* SXF_HF_HomePageTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_HomePageTableHeader.h; sourceTree = "<group>"; };
 		04F54B5622816268009AAEF3 /* SXF_HF_HomePageTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_HomePageTableHeader.m; sourceTree = "<group>"; };
+		04F5DFFB2297FAD900F298B6 /* JpushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpushManager.m; sourceTree = "<group>"; };
+		04F5DFFC2297FADA00F298B6 /* JpushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpushManager.h; sourceTree = "<group>"; };
 		04F5F24B228412620043BBB7 /* SXF_HF_AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXF_HF_AlertView.h; sourceTree = "<group>"; };
 		04F5F24C228412630043BBB7 /* SXF_HF_AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_AlertView.m; sourceTree = "<group>"; };
 		04F5F24E228414B00043BBB7 /* frameworkUtiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frameworkUtiles.h; sourceTree = "<group>"; };
@@ -2331,10 +2332,6 @@
 		65DC683F22112D9400F1085E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		65DC68762217C5A900F1085E /* RSAEncryptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		65DC68772217C5A900F1085E /* RSAEncryptor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
-		65DC687D221A3FA100F1085E /* SDJPushHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDJPushHelper.h; sourceTree = "<group>"; };
-		65DC687E221A3FA100F1085E /* AppDelegate+JPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+JPush.h"; sourceTree = "<group>"; };
-		65DC687F221A3FA100F1085E /* AppDelegate+JPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+JPush.m"; sourceTree = "<group>"; };
-		65DC6880221A3FA100F1085E /* SDJPushHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDJPushHelper.m; sourceTree = "<group>"; };
 		65DC688F221A6C9700F1085E /* luxian2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luxian2x.png; sourceTree = "<group>"; };
 		65DC6890221A6C9700F1085E /* luxian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luxian.png; sourceTree = "<group>"; };
 		65DC6891221A6C9700F1085E /* luxian@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "luxian@3x.png"; sourceTree = "<group>"; };
@@ -7041,10 +7038,8 @@
 		65DC687C221A3FA100F1085E /* 极光推送工具 */ = {
 			isa = PBXGroup;
 			children = (
-				65DC687D221A3FA100F1085E /* SDJPushHelper.h */,
-				65DC6880221A3FA100F1085E /* SDJPushHelper.m */,
-				65DC687E221A3FA100F1085E /* AppDelegate+JPush.h */,
-				65DC687F221A3FA100F1085E /* AppDelegate+JPush.m */,
+				04F5DFFC2297FADA00F298B6 /* JpushManager.h */,
+				04F5DFFB2297FAD900F298B6 /* JpushManager.m */,
 			);
 			path = "极光推送工具";
 			sourceTree = "<group>";
@@ -7919,7 +7914,6 @@
 				04153C02228AA2F100AA5DAF /* NewStoresCell.m in Sources */,
 				658B7CB421D749E100801CC8 /* TAAbstractDotView.m in Sources */,
 				0453D1AD2282C4C100880C2A /* SXF_HF_RecommentCollectionCell.m in Sources */,
-				65DC6881221A3FA100F1085E /* AppDelegate+JPush.m in Sources */,
 				04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */,
 				04F52136228A76BA00ED4995 /* SetLoginPassword.m in Sources */,
 				04A508E8227EDD3A0013E8EC /* HRBaseNavigationController.m in Sources */,
@@ -8086,6 +8080,7 @@
 				048DAC6022857516006E6BA2 /* HeadUserView.m in Sources */,
 				04F8934222929BA90075918A /* SXF_HF_vipCardVC.m in Sources */,
 				658B7C4A21D749E100801CC8 /* NSObject+Extension.m in Sources */,
+				04F5DFFD2297FADA00F298B6 /* JpushManager.m in Sources */,
 				658B7C4521D749E100801CC8 /* UITableView+Refresh.m in Sources */,
 				048DABD922856656006E6BA2 /* TransferVC.m in Sources */,
 				6C2F5155222A663D0022EE03 /* HXDatePhotoViewPresentTransition.m in Sources */,
@@ -8130,7 +8125,6 @@
 				658B7C4221D749E100801CC8 /* UITabBar+TBBadge.m in Sources */,
 				04A50857227EDD3A0013E8EC /* ZFCollectionViewCell.m in Sources */,
 				04A50896227EDD3A0013E8EC /* UIView+WHView.m in Sources */,
-				65DC6882221A3FA100F1085E /* SDJPushHelper.m in Sources */,
 				658902EE223B775F009C1B03 /* UIColor+PYSearchExtension.m in Sources */,
 				042638D622969B7600041A91 /* YYB_HF_setDealPassWordVC.m in Sources */,
 				0403569022963EDD00DAA165 /* YYB_HF_WKWebVC.m in Sources */,

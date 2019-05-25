@@ -12,29 +12,17 @@
 #import "ZAlertViewManager.h"
 #import "BaseNavigationController.h"
 #import "LoginVC.h"
-#import <IQKeyboardManager/IQKeyboardManager.h>
+
 #import "ViewController.h"
-//第三方
-#import <WXApi.h>
-#import <ShareSDK/ShareSDK.h>
-#import <ShareSDKConnector/ShareSDKConnector.h>
-#import <TencentOpenAPI/QQApiInterface.h>
-#import <TencentOpenAPI/TencentOAuth.h>
-
-//基础定位类
-#import <AMapFoundationKit/AMapFoundationKit.h>
-//高德地图基础类
-#import <MAMapKit/MAMapKit.h>
-
-#import "AppDelegate+JPush.h"
-
 
 #import "UMSPPPayUnifyPayPlugin.h"
 #import "UMSPPPayPluginSettings.h"
 //极光统计
 #import "JANALYTICSService.h"
+
 #import "LYBmOcrManager.h"
 #import "AppDelegate+JAnalytics.h"
+#import "JpushManager.h"
 @interface AppDelegate ()
 @property(nonatomic,strong)UITabBarController *tabbar;
 @end
@@ -44,7 +32,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [self JPushApplication:application didFinishLaunchingWithOptions:launchOptions delegate:self];
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self monitoringNetwork];
     [self initWithKeyboard];
@@ -53,7 +41,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [self initWithKeyboard];
-    [self registerShare];
+    [self configNotification:launchOptions];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LogOut:) name:EXIT_LOGIN object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RefreshTokeNotification:) name:LOG_BACK_IN object:nil];
     //设置APIKEY
@@ -70,6 +58,9 @@
     //百度Acr
     [[LYBmOcrManager ocrShareManaer] configOcr];
     return YES;
+}
+- (void)configNotification: (NSDictionary *)launchOptions{
+    [[JpushManager sharedManager] registNotification:self options:launchOptions];
 }
 #pragma mark 监测网络
 -(void)monitoringNetwork{
@@ -119,85 +110,7 @@
 -(void)changLoginRootViewController{
     [[self topViewController].navigationController pushViewController:[[LoginVC alloc]init] animated:YES];
 }
--(void)registerShare{
-    
-    [ShareSDK registPlatforms:^(SSDKRegister *platformsRegister) {
-        //QQ
-        [platformsRegister setupQQWithAppId:QQ_APP_ID appkey:QQ_APP_SECRET];
-        
-        //微信
-        [platformsRegister setupWeChatWithAppId:WX_APP_ID appSecret:WX_APP_SECRET];
-    }];
-    //    @(SSDKPlatformTypeSinaWeibo),//新浪微博
-    /**
-     [ShareSDK registerActivePlatforms:@[
-     @(SSDKPlatformTypeUnknown),
-     @(SSDKPlatformSubTypeWechatSession),
-     @(SSDKPlatformSubTypeWechatTimeline),
-     @(SSDKPlatformTypeQQ)] onImport:^(SSDKPlatformType platformType) {
-     switch (platformType)
-     {
-     case SSDKPlatformTypeWechat:
-     [ShareSDKConnector connectWeChat:[WXApi class]];
-     break;
-     case SSDKPlatformTypeQQ:
-     [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
-     break;
-     default:
-     break;
-     }
-     } onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo) {
-     switch (platformType)
-     {
-     //                                                case SSDKPlatformTypeSinaWeibo:
-     //
-     //                                                    //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-     //                                                    [appInfo SSDKSetupSinaWeiboByAppKey:@"1028008656"
-     //                                                                              appSecret:@"b035fd31098fa8803d984d3325b5cbc8"
-     //                                                                            redirectUri:@"http://sns.whalecloud.com/sina2/callback"
-     //                                                                               authType:SSDKAuthTypeBoth];
-     //                                                    break;
-     case SSDKPlatformTypeTencentWeibo:
-     
-     //设置腾讯微博应用信息
-     [appInfo SSDKSetupTencentWeiboByAppKey:QQ_APP_WB_ID
-     appSecret:QQ_APP_WB_SECRET
-     redirectUri:@"http://www.sharesdk.cn"];
-     break;
-     //                                                case SSDKPlatformTypeFacebook:
-     //
-     //                                                    //设置Facebook应用信息，其中authType设置为只用Web形式授权
-     //                                                    [appInfo SSDKSetupFacebookByApiKey:@"107704292745179"
-     //                                                                             appSecret:@"38053202e1a5fe26c80c753071f0b573"
-     //                                                                              authType:SSDKAuthTypeWeb];
-     //                                                    break;
-     //                                                case SSDKPlatformTypeTwitter:
-     //
-     //                                                    //设置Twitter应用信息
-     //                                                    [appInfo SSDKSetupTwitterByConsumerKey:@"LRBM0H75rWrU9gNHvlEAA2aOy"
-     //                                                                            consumerSecret:@"gbeWsZvA9ELJSdoBzJ5oLKX0TU09UOwrzdGfo9Tg7DjyGuMe8G"
-     //                                                                               redirectUri:@"http://mob.com"];
-     //                                                    break;
-     case SSDKPlatformTypeWechat:
-     
-     //设置微信应用信息
-     [appInfo SSDKSetupWeChatByAppId:WX_APP_ID
-     appSecret:WX_APP_SECRET];
-     
-     break;
-     case SSDKPlatformTypeQQ:
-     
-     //设置QQ应用信息，其中authType设置为只用SSO形式授权
-     [appInfo SSDKSetupQQByAppId:QQ_APP_ID
-     appKey:QQ_APP_SECRET
-     authType:SSDKAuthTypeSSO];
-     break;
-     default:
-     break;
-     }
-     }];
-     */
-}
+
 //退出登录
 -(void)LogOut:(NSNotification *)noti{
     //    [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {

@@ -8,9 +8,8 @@
 
 #import "UIButton+timer.h"
 
+
 @implementation UIButton (timer)
-
-
 
 //获取倒计时
 - (void)setTheCountdownStartWithTime:(NSInteger)timeLine title:(NSString *)title countDownTitle:(NSString *)subTitle mainColor:(UIColor *)mColor countColor:(UIColor *)color{
@@ -44,6 +43,10 @@
     dispatch_resume(_timer);
 }
 
+//关闭计时器
+- (void) cancleTimer:(void(^)(void))complate{
+    dispatch_cancel(self.source);
+}
 
 
 @end

@@ -29,5 +29,16 @@
 #import <SGQRCode.h>
 #import <MAMapKit/MAMapKit.h>
 #import <JPUSHService.h>
+//第三方
+#import <IQKeyboardManager/IQKeyboardManager.h>
+#import <WXApi.h>
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+//基础定位类
+#import <AMapFoundationKit/AMapFoundationKit.h>
+//高德地图基础类
+#import <MAMapKit/MAMapKit.h>
 
 #endif /* PodHeader_h */
