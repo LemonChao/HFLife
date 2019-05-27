@@ -48,7 +48,9 @@
                 if (value && [value isKindOfClass:[NSDictionary class]]) {
                     self.verCodeTextf.text = @"";
                     [self.phoneTextF setHidden:NO];
-                    [self.verBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                    [self.verBtn cancleTimer:^{
+                        
+                    }];
                     self->changeNum = YES;
                 }
                 

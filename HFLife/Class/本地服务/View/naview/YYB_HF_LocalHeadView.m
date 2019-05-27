@@ -60,7 +60,7 @@
         make.width.height.mas_equalTo(ScreenScale(33));
     }];
     
-    self.localLabel.text = @"郑州";
+    self.localLabel.text = @"定位中...";
     self.localLabel.font = FONT(15);
     [self.localLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.headImageV);

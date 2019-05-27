@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) NSNumber *yesterday_benefit;//昨日让利
 
 @property (nonatomic ,copy,nullable)  NSString  *weixin_unionid;//微信id
-@property (nonatomic ,copy) NSString *alipay_unionid;//支付宝id
+@property (nonatomic ,copy,nullable) NSString *alipay_unionid;//支付宝id
 
 
 @property (nonatomic, strong)UIImage *userHeaderImage;//用户头像

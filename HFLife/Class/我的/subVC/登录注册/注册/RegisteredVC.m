@@ -446,7 +446,7 @@
             }else {
                 
                 if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    [self setRightView:textField string:@"该用户已存在"];
+                    [self setRightView:textField string:value[@"msg"]];
                 }else {
                     if (self.userName) {}
                 }
