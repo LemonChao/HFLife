@@ -858,6 +858,9 @@
 		6C96E051228CF8C300E2CDDA /* ZCClassifyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C96E050228CF8C300E2CDDA /* ZCClassifyViewModel.m */; };
 		6C96E054228D09ED00E2CDDA /* ZCShopClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C96E053228D09ED00E2CDDA /* ZCShopClassifyModel.m */; };
 		6C96E057228D1C9800E2CDDA /* ZCShopClassifyWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C96E056228D1C9800E2CDDA /* ZCShopClassifyWordCell.m */; };
+		6C988786229BD0B100AA7037 /* ZCShopOrderTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C988785229BD0B100AA7037 /* ZCShopOrderTableHeader.m */; };
+		6C988789229BD2EE00AA7037 /* ZCShopOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C988788229BD2EE00AA7037 /* ZCShopOrderCell.m */; };
+		6C98878C229BEFC000AA7037 /* ZCShopCouponsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C98878B229BEFC000AA7037 /* ZCShopCouponsCell.m */; };
 		6CB0A363228D4F1400F77DBD /* ZCClassifyRightHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB0A362228D4F1400F77DBD /* ZCClassifyRightHeaderView.m */; };
 		6CBC82BA228FA89000500543 /* ZCShopCartGuessLikeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBC82B9228FA89000500543 /* ZCShopCartGuessLikeCell.m */; };
 		6CCAD6F522827B47001824A0 /* ShopTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAD6F422827B47001824A0 /* ShopTabbarViewController.m */; };
@@ -2460,6 +2463,12 @@
 		6C96E053228D09ED00E2CDDA /* ZCShopClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopClassifyModel.m; sourceTree = "<group>"; };
 		6C96E055228D1C9800E2CDDA /* ZCShopClassifyWordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopClassifyWordCell.h; sourceTree = "<group>"; };
 		6C96E056228D1C9800E2CDDA /* ZCShopClassifyWordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopClassifyWordCell.m; sourceTree = "<group>"; };
+		6C988784229BD0B100AA7037 /* ZCShopOrderTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopOrderTableHeader.h; sourceTree = "<group>"; };
+		6C988785229BD0B100AA7037 /* ZCShopOrderTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopOrderTableHeader.m; sourceTree = "<group>"; };
+		6C988787229BD2EE00AA7037 /* ZCShopOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopOrderCell.h; sourceTree = "<group>"; };
+		6C988788229BD2EE00AA7037 /* ZCShopOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopOrderCell.m; sourceTree = "<group>"; };
+		6C98878A229BEFC000AA7037 /* ZCShopCouponsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCouponsCell.h; sourceTree = "<group>"; };
+		6C98878B229BEFC000AA7037 /* ZCShopCouponsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCouponsCell.m; sourceTree = "<group>"; };
 		6CB0A361228D4F1400F77DBD /* ZCClassifyRightHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCClassifyRightHeaderView.h; sourceTree = "<group>"; };
 		6CB0A362228D4F1400F77DBD /* ZCClassifyRightHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCClassifyRightHeaderView.m; sourceTree = "<group>"; };
 		6CBC82B8228FA89000500543 /* ZCShopCartGuessLikeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartGuessLikeCell.h; sourceTree = "<group>"; };
@@ -7199,6 +7208,26 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		6C988782229BCFFE00AA7037 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6C988784229BD0B100AA7037 /* ZCShopOrderTableHeader.h */,
+				6C988785229BD0B100AA7037 /* ZCShopOrderTableHeader.m */,
+				6C988787229BD2EE00AA7037 /* ZCShopOrderCell.h */,
+				6C988788229BD2EE00AA7037 /* ZCShopOrderCell.m */,
+				6C98878A229BEFC000AA7037 /* ZCShopCouponsCell.h */,
+				6C98878B229BEFC000AA7037 /* ZCShopCouponsCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6C988783229BD01000AA7037 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		6CCAD6F922827CCC001824A0 /* ShopHome */ = {
 			isa = PBXGroup;
 			children = (
@@ -7239,6 +7268,8 @@
 			children = (
 				6CCAD70322827FE4001824A0 /* ZC_HF_ShopOrderVC.h */,
 				6CCAD70422827FE4001824A0 /* ZC_HF_ShopOrderVC.m */,
+				6C988783229BD01000AA7037 /* ViewModel */,
+				6C988782229BCFFE00AA7037 /* Views */,
 			);
 			path = ShopOrder;
 			sourceTree = "<group>";
@@ -7913,6 +7944,7 @@
 				04F8934C2292A18C0075918A /* SXF_HF_vipShopCellTableViewCell.m in Sources */,
 				658C39E521E9FA5B00880B6A /* JXCategoryNumberCell.m in Sources */,
 				04B9D4E822803C6B0084FA23 /* JMTabBarController.m in Sources */,
+				6C98878C229BEFC000AA7037 /* ZCShopCouponsCell.m in Sources */,
 				658B7C9721D749E100801CC8 /* AnimationWaveEnd.m in Sources */,
 				04A50891227EDD3A0013E8EC /* NSObject+WHObject.m in Sources */,
 				659EA0BA220538D5004471CD /* MapViewController.m in Sources */,
@@ -7934,6 +7966,7 @@
 				0453D17C228266D200880C2A /* cycleScrollCell.m in Sources */,
 				658902F0223B775F009C1B03 /* PYSearchSuggestionViewController.m in Sources */,
 				658C39D421E9FA5B00880B6A /* JXCategoryIndicatorBackgroundView.m in Sources */,
+				6C988786229BD0B100AA7037 /* ZCShopOrderTableHeader.m in Sources */,
 				0453D19C2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m in Sources */,
 				04A50895227EDD3A0013E8EC /* WHMethods.m in Sources */,
 				04A508AB227EDD3A0013E8EC /* LYDataCache.m in Sources */,
@@ -8035,6 +8068,7 @@
 				04A5083F227EDD390013E8EC /* NinaPagerView.m in Sources */,
 				04A508DB227EDD3A0013E8EC /* HRSandbox.m in Sources */,
 				658B7CBD21D749E100801CC8 /* ZAlertView.m in Sources */,
+				6C988789229BD2EE00AA7037 /* ZCShopOrderCell.m in Sources */,
 				04F52027228A4AD600ED4995 /* CWCarousel.m in Sources */,
 				6C2F514B222A663D0022EE03 /* HXDatePhotoInteractiveTransition.m in Sources */,
 				04F52038228A563100ED4995 /* AddAddressVC.m in Sources */,

@@ -7,8 +7,12 @@
 //
 
 #import "ZC_HF_ShopOrderVC.h"
+#import "ZCShopOrderTableHeader.h"
+#import "ZCShopOrderCell.h"
+#import "ZCShopCouponsCell.h"
 
-@interface ZC_HF_ShopOrderVC ()
+@interface ZC_HF_ShopOrderVC ()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic, strong) UITableView *tableView;
 
 @end
 
@@ -16,7 +20,97 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.customNavBar.title = @"订单";
+    [self.view addSubview:self.tableView];
+    
+    @weakify(self);
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self);
+        make.edges.equalTo(self.view);
+    }];
+    
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        @strongify(self);
+        [self getData];
+    }];
 }
+
+- (void)setupNavBar {
+    [super setupNavBar];
+    [self.customNavBar wr_setBackgroundAlpha:0];
+    self.customNavBar.backgroundColor = RGBA(1, 1, 1, 0);
+
+}
+
+#pragma mark - event response
+
+- (void)getData {
+    
+}
+
+#pragma mark - UITableViewDelegate && UITableViewDataSource
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat offsetY = scrollView.contentOffset.y;
+
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return ScreenScale(125);
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        ZCShopOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopOrderCell class])];
+        return cell;
+
+    }else if (indexPath.row == 1) {
+        ZCShopCouponsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopCouponsCell class])];
+        return cell;
+    }else {
+        ZCShopOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopOrderCell class])];
+        return cell;
+    }
+    
+}
+
+
+#pragma mark - getters and setters
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+//        ZCPersonalTableHeadView *header = [[ZCPersonalTableHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, WidthRatio(84)+NavBarHeight)];
+        _tableView.tableHeaderView = [[ZCShopOrderTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(260))];
+        if (@available(iOS 11.0, *)) {
+            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        [_tableView registerClass:[ZCShopOrderCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopOrderCell class])];
+        [_tableView registerClass:[ZCShopCouponsCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopCouponsCell class])];
+//        [_tableView registerClass:[ZCPersonalwelfareCell class] forCellReuseIdentifier:welfareCellid];
+//        [_tableView registerClass:[ZCPersonalDataCell class] forCellReuseIdentifier:dataCellid];
+//        [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:tableHeaderid];
+//        [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:tableFooterid];
+    }
+    return _tableView;
+}
+
+#pragma mark - private
+
+
+
+
 
 @end
