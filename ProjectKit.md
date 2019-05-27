@@ -41,3 +41,5 @@ NSLog(@"left");
 }
 }];
 
+/**系统提示*/
+#define ServiceAlertMsg

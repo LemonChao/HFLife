@@ -11,10 +11,12 @@
 #import "UITextField+RYNumberKeyboard.h"
 #import "RYNumberKeyboard.h"
 #import "SXF_HF_paySuccessVC.h"
+#import "YYB_HF_setDealPassWordVC.h"
 @interface SXF_HF_PayVC ()
 @property (weak, nonatomic) IBOutlet UITextField *moneyTF;
 @property (nonatomic, strong) SXF_HF_payStepAleryView *payView;
 @property (weak, nonatomic) IBOutlet UIImageView *payHeaderImageV;
+@property (weak, nonatomic) IBOutlet UILabel *payNameLb;
 
 
 @end
@@ -26,6 +28,8 @@
     
     self.customNavBar.title = @"付款";
     
+    self.payNameLb.text = [NSString stringWithFormat:@"付款给%@", self.payName];
+    [self.payHeaderImageV sd_setImageWithURL:URL_IMAGE(self.payHeaderUrl)];
     
     //自定义键盘
     [self customKeyBoard];
@@ -62,11 +66,25 @@
             //密码
             NSLog(@"密码框%@",pwd);
             if (pwd.length == 6) {
-                //网络请求
-                [weakSelf pay:pwd];
+                
+                if (![pwd isEqualToString:@"123456"]) {
+                    [SXF_HF_AlertView showAlertType:AlertType_Pay Complete:^(BOOL btnBype) {
+                        if (btnBype) {
+                            //重新输入
+                            self.payView.editingEable = NO;
+                        }else{
+                            //找回密码
+                            [self.navigationController pushViewController:[YYB_HF_setDealPassWordVC new] animated:YES];
+                            [self.payView cancleAlertView];
+                        }
+                    }];
+                }else{
+                    //网络请求
+                    [weakSelf pay:pwd];
+                }
             }
         }];
-        self.payView.payMoneyStr = self.moneyTF.text;
+        self.payView.payMoneyStr = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     }else{
         [WXZTipView showCenterWithText:@"请输入付款金额"];
     }
@@ -86,8 +104,8 @@
         payVC.payName = self.payName;
         payVC.payStatus = YES;
         payVC.payType = @"余额";
-        payVC.payMoney = self.moneyTF.text;
-        [self.navigationController pushViewController:[SXF_HF_paySuccessVC new] animated:YES];
+        payVC.payMoney = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        [self.navigationController pushViewController:payVC animated:YES];
         [self.payView cancleAlertView];
     });
     

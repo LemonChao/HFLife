@@ -57,6 +57,7 @@
 - (void)loadServerData{
     [self.homePageVM  getBannerData];
     [self.homePageVM getNewsListData:1];
+    [self.homePageVM upDataLocation];
 }
 - (void)setUpActions{
     WEAK(weakSelf);

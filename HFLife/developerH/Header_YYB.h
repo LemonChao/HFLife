@@ -86,9 +86,9 @@ static NSString *const kSetPayPassword = @"api/member_security/setPayPassword";
 #pragma mark - 本地生活 ---------------------------
 
 /** 首页快捷入口及banner等接口 */
-static NSString *const kNearLife = @"/index.php/api/index/index";
+static NSString *const kNearLife = @"index.php/api/index/index";
 /** 首页猜你喜欢接口（未完）*/
-static NSString *const kGetIndexRecommendList = @"/index.php/api/index/getIndexRecommendList";
+static NSString *const kGetIndexRecommendList = @"index.php/api/index/getIndexRecommendList";
 
 
 

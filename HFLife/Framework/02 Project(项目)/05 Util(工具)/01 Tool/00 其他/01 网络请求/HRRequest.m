@@ -131,6 +131,29 @@
 - (void)handleRequestError:(NSDictionary *)errorInfo failure:(Failure)failure {
     if (errorInfo) {
         NSLog(@"错误提示信息可在 [02 project] -> [05 Common] -> [Contant.h] 中修改常量 \"ERROR_MESSAGE\" 值");
+        
+        
+        //解析异常报错
+        if (errorInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]) {
+           
+            
+            dispatch_data_t dataCast = errorInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+            const void *buffer = NULL;
+            size_t size = 0;
+            dispatch_data_t new_data_file = dispatch_data_create_map(dataCast, &buffer, &size);
+            if(new_data_file){
+                
+            }
+            
+            
+            NSData *da = [[NSData alloc] initWithBytes:buffer length:size];
+             NSDictionary *valueDic = [HR_dataManagerTool dataToypteDJson:da];
+            NSString *str = [[NSString alloc] initWithData:da encoding:NSUTF8StringEncoding];
+            
+            MYLog(@"error = %@", str);
+        }
+        
+        
         if (failure) {
             failure(ERROR_MESSAGE);
         }

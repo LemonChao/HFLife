@@ -126,13 +126,19 @@
                 imageV.hidden = YES;
             }
         }
-    }
-    else{
-        if (!self.isComplate) {
-            textField.text = [text substringWithRange:NSMakeRange(0, 6)];
+        if (text.length == 6) {
             //回调
             !self.keyBoardCallback ? : self.keyBoardCallback(textField.text);
+            [self.pswTF endEditing:YES];
             self.isComplate = YES;
+        }
+    }
+    else{
+        //填满之后 主动关闭键盘 并给回调出去
+        
+        if (!self.isComplate) {
+            textField.text = [text substringWithRange:NSMakeRange(0, 6)];
+            
         }
     }
     

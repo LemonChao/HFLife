@@ -43,6 +43,8 @@
     userInfoModel *user = [userInfoModel sharedUser];
     if(user.id && user.id > 0) {
         [self.mainPageView reSetHeadData];
+    }else {
+        [self loadData];
     }
     if (isFirstLoad) {
         isFirstLoad = NO;

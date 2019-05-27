@@ -149,6 +149,7 @@
             [self.sureBtn setTitle:@"重新输入" forState:UIControlStateNormal];
             [self.cancleBtn setTitle:@"找回并完成支付" forState:UIControlStateNormal];
             [self.sureBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
+            [self.cancleBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
         }
             break;
         case AlertType_time:{
@@ -160,7 +161,9 @@
         }
             break;
             
-        case AlertType_binding:{
+        case AlertType_binding:
+        case AlertType_binding_alipay:
+        {
             self.titleLb.font = [UIFont systemFontOfSize:15];
             self.titleLb.textColor = colorAAAAAA;
             
@@ -175,12 +178,16 @@
             self.msgLb.numberOfLines = 0;
             
             NSString *phone = [userInfoModel sharedUser].member_mobile ? [userInfoModel sharedUser].member_mobile : @"1213";
-            NSString *phoneStr = [NSString stringWithFormat:@"您的汉富号%@已与微信关联，是否解除?", phone];
+            NSString *typeStr = @"微信";
+            if (self.alertType == AlertType_binding_alipay) {
+                typeStr = @"支付宝";
+            }
+            NSString *phoneStr = [NSString stringWithFormat:@"您的汉富号%@已与%@关联，是否解除?", phone,typeStr];
             NSAttributedString *atrS = [phoneStr setAtrbiuteStringWithFont:FONT(15) color:color0C0B0B range:NSRangeFromString(phone)];
             self.titleLb.attributedText = atrS;
             [self.titleLb setLabelWithLineSpace:ScreenScale(8)];
             
-            self.msgLb.text = @"解除关联后将无法使用微信进行快速登录";
+            self.msgLb.text = [NSString stringWithFormat:@"解除关联后将无法使用%@进行快速登录",typeStr];
             [self.msgLb setLabelWithLineSpace:ScreenScale(8)];
             
             self.cancleBtn.setTitle(@"取消", UIControlStateNormal);
@@ -265,7 +272,10 @@
         }
             break;
             
-        case AlertType_binding:{
+        case AlertType_binding:
+        case AlertType_binding_alipay:
+
+        {
             [self layoutBindingView];
         }
             break;
@@ -576,7 +586,8 @@
             }];
         }
             break;
-        case AlertType_binding:{
+        case AlertType_binding:
+        case AlertType_binding_alipay:{
             alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(227));
         }
             break;

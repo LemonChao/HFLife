@@ -73,6 +73,9 @@ static NSString *const USER_TOKEN           = @"userToken";
 //存储登录状态
 static NSString *const LOGIN_STATES         = @"loginStates";
 
+/**系统提示*/
+#define ServiceAlertMsg      [WXZTipView showCenterWithText:value[@"data"][@"msg"] ? value[@"data"][@"msg"] : @""]
+
 
 
 #pragma mark - notificationKey

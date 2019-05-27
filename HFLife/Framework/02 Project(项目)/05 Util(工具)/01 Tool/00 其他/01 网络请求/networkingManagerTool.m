@@ -15,7 +15,6 @@
 #import "LoginVC.h"
 #import "RSAEncryptor.h"
 
-
 @interface networkingManagerTool()
 
 @end
@@ -116,12 +115,13 @@
     
     //currentTime
     [requestManager.sessionManager.requestSerializer setValue:[NSDate currentTimeStamp10] forHTTPHeaderField:@"TIME"];
-    [requestManager.sessionManager.requestSerializer setValue:@"ffffffff-8fb3-968f-0000-00004bcc6045" forHTTPHeaderField:@"device"];
+    //    [requestManager.sessionManager.requestSerializer setValue:@"ffffffff-8fb3-968f-0000-00004bcc6045" forHTTPHeaderField:@"device"];
+    [requestManager.sessionManager.requestSerializer setValue:[SFHFKeychainUtils GetIOSUUID] forHTTPHeaderField:@"device"];
 
     //设置token
     NSString *gettoken = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
     //token 设置到请求头上
-    gettoken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaW5mbyI6eyJpZCI6MzIsIm1lbWJlcl9tb2JpbGUiOiIxODU2OTkzOTEyNCIsImFsaXBheV91bmlvbmlkIjpudWxsLCJ3ZWl4aW5fdW5pb25pZCI6bnVsbCwicmVhbG5hbWUiOiIiLCJtZW1iZXJfYXZhdGFyIjoiIiwibWVtYmVyX3NleCI6MCwibWVtYmVyX2VtYWlsIjpudWxsLCJpbnZpdGVyX2lkIjowLCJuaWNrbmFtZSI6IjE4NTY5OTM5MTI0Iiwicnpfc3RhdHVzIjowLCJ0b2tlbiI6IjE0MmQ4NjdiZDg4MTAzYzIxMDBjM2FkYzM1NWIwODdjMmM5MDVmNGYifSwidGltZSI6MTU2MTM0ODQxMCwidG9rZW4iOiIxNDJkODY3YmQ4ODEwM2MyMTAwYzNhZGMzNTViMDg3YzJjOTA1ZjRmIn0.hk0CKWYf6yo2nfsQ58zL65wnJshA7G5jZXp6fwXDzsA";
+//    gettoken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaW5mbyI6eyJpZCI6MzIsIm1lbWJlcl9tb2JpbGUiOiIxODU2OTkzOTEyNCIsImFsaXBheV91bmlvbmlkIjpudWxsLCJ3ZWl4aW5fdW5pb25pZCI6bnVsbCwicmVhbG5hbWUiOiIiLCJtZW1iZXJfYXZhdGFyIjoiIiwibWVtYmVyX3NleCI6MCwibWVtYmVyX2VtYWlsIjpudWxsLCJpbnZpdGVyX2lkIjowLCJuaWNrbmFtZSI6IjE4NTY5OTM5MTI0Iiwicnpfc3RhdHVzIjowLCJ0b2tlbiI6IjE0MmQ4NjdiZDg4MTAzYzIxMDBjM2FkYzM1NWIwODdjMmM5MDVmNGYifSwidGltZSI6MTU2MTM0ODQxMCwidG9rZW4iOiIxNDJkODY3YmQ4ODEwM2MyMTAwYzNhZGMzNTViMDg3YzJjOTA1ZjRmIn0.hk0CKWYf6yo2nfsQ58zL65wnJshA7G5jZXp6fwXDzsA";
     if (gettoken) {
         [requestManager.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@" , gettoken] forHTTPHeaderField:@"TOKEN"];
     }else {

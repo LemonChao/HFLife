@@ -421,6 +421,7 @@
                     [UIView animateWithDuration:0.2 animations:^{
                         weakAlert.stepTwoView.frame = CGRectMake(weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.origin.y, weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.size.height);
                         weakAlert.stepThreeView.frame = CGRectMake(weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.origin.y, weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.size.height);
+                        weakAlert.passwordInputView.editingEable = NO;
                     } completion:^(BOOL finished) {
                         weakAlert.step = 0;
                     }];
@@ -491,7 +492,10 @@
     return alertView;
     
 }
-
+- (void)setEditingEable:(BOOL)editingEable{
+    _editingEable = editingEable;
+    self.passwordInputView.editingEable = editingEable;
+}
 - (void) cancleAlertView{
     [self removeFromSuperview];
     [self.bgView removeFromSuperview];

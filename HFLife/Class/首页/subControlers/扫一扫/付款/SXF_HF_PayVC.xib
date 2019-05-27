@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="moneyTF" destination="L8K-ag-bp9" id="vE6-Wm-1Ui"/>
                 <outlet property="payHeaderImageV" destination="xvh-hP-EIo" id="Y9R-dw-55H"/>
+                <outlet property="payNameLb" destination="jeL-R4-AS6" id="JtU-H2-CGM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

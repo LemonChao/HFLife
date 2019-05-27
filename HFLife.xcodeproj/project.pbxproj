@@ -4580,8 +4580,8 @@
 		04A507D2227EDD390013E8EC /* NSString */ = {
 			isa = PBXGroup;
 			children = (
-				658B7A5821D749DF00801CC8 /* NSString+Helper.m */,
 				658B7A6F21D749DF00801CC8 /* NSString+Helper.h */,
+				658B7A5821D749DF00801CC8 /* NSString+Helper.m */,
 				04F9ABED228E674200A602CE /* sha256加密 */,
 				04A507D3227EDD390013E8EC /* 03 汉字转拼音 */,
 				04A507D6227EDD390013E8EC /* 01 正则表达式 */,
@@ -4594,8 +4594,8 @@
 		04A507D3227EDD390013E8EC /* 03 汉字转拼音 */ = {
 			isa = PBXGroup;
 			children = (
-				04A507D4227EDD390013E8EC /* NSString+PinYin.m */,
 				04A507D5227EDD390013E8EC /* NSString+PinYin.h */,
+				04A507D4227EDD390013E8EC /* NSString+PinYin.m */,
 			);
 			path = "03 汉字转拼音";
 			sourceTree = "<group>";

@@ -126,7 +126,7 @@ static inline NSString * composeUrl(NSString *path) {
 - (void)handleResultMessage:(NSDictionary *)result {
     if (self.showLog) {
         //打印返回结果
-        HRLog(@"Result:%@", result);
+//        HRLog(@"Result:%@", result);
     }
 }
 

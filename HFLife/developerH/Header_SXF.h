@@ -44,7 +44,8 @@ static NSString *const VersionContent                         = @"api/version/ge
 static NSString *const ServiceAgreement                       = @"api/system/getServiceAgreement";
 
 //获取版本信息
-static NSString *const upDateLocationUrl = @"";
+//上传定位
+static NSString *const upDateLocationUrl = @"index.php/api/common/setUserAddress";
 
 //首页轮播导航接口
 static NSString *const HomeNavBanner                            = @"api/index/navBanner";

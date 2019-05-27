@@ -28,7 +28,8 @@
     
     
     self.payNameLb.text = self.payName;
-    self.payMoneyLb.text = self.payMoneyLb2.text = self.payMoney;
+    self.payMoneyLb.text = self.payMoney;
+    self.payMoneyLb2.text = [NSString stringWithFormat:@"￥%@", self.payMoney];
     self.headerImageV.image = self.payImage;
     self.payStatusLb.text = self.payStatus ? @"支付成功" : @"支付失败";
     self.payTypeLb.text = self.payType;
