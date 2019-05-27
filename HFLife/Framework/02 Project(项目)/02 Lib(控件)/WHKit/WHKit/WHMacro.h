@@ -6,12 +6,24 @@
 //  Copyright © 2017年 remember17. All rights reserved.
 //  http://www.jianshu.com/p/c935314b078e
 
-//NSLog
+//NSLog （打印不全）
 #ifdef DEBUG
 #define NSLog(...) NSLog(@"%s 第%d行: %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
 #else
 #define NSLog(...)
 #endif
+
+
+//解决打印不全的问题
+#ifdef DEBUG
+#define MYLog(format, ...) printf("class: <%p %s:(%d) > method: %s \n%s\n", self, [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __PRETTY_FUNCTION__, [[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String] )
+#else
+#define KSLog(format, ...)
+#endif
+
+
+
+
 
 //是否为iPhone X
 #define kIs_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
