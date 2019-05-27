@@ -24,13 +24,14 @@
  */
 @property (nonatomic, strong) UILabel *inviteesNumberLb;
 @property (nonatomic, strong) UILabel *subTitleLb;
-
 /**
  邀请按钮
  */
 @property (nonatomic, strong) UIButton *inviteeButton;
-
 @property (nonatomic, strong) UIImageView *rightIncoderImgV;
+
+//cell类型
+@property (nonatomic, assign)itemType cellType;
 @end
 
 

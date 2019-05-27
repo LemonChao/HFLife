@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
 
+
+
+NS_ASSUME_NONNULL_BEGIN
+typedef enum : NSUInteger {
+    itemType_first,
+    itemType_two,
+    itemType_three,
+    itemType_foure,
+    itemType_five,
+} itemType;
 @interface SXF_HF_RecommentCollectionCell : UICollectionViewCell
 - (void)setDataForCell:(homeListModel *)model;
 @end
