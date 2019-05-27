@@ -107,7 +107,7 @@
 
 
 - (IBAction)authCodeBtnClick:(UIButton *)sender {
-    
+    self.verBtn = sender;
     if (!changeNum) {
         //验证手机号
         [[WBPCreate sharedInstance]showWBProgress];
@@ -145,7 +145,7 @@
             }
         }];
     }
-    [sender setTheCountdownStartWithTime:60 title:@"重新获取" countDownTitle:@"s" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
+    [sender setTheCountdownStartWithTime:60 title:@"获取验证码" countDownTitle:@"s" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
 }
 
 @end
