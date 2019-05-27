@@ -269,8 +269,8 @@
     NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *fileName = [array.firstObject stringByAppendingPathComponent:@"userInfo"];
     
-    userInfoModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
-    NSLog(@"user ==  %@", user);
+//    userInfoModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+//    NSLog(@"user ==  %@", user);
     
     NSLog(@"开始活跃");
 }

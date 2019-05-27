@@ -80,7 +80,10 @@
                     if (model) {
                         self.dataModel = model;
                         //刷新数据
+                        
+                        [CATransaction setDisableActions:YES];
                         [self.collectionView reloadData];
+                        [CATransaction commit];
                         
                         //回调刷新位置
                         if (self.reFreshData) {
@@ -90,6 +93,7 @@
                 }
             }
         }else {
+            
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
             }else {
@@ -128,7 +132,9 @@
                         NSMutableArray *arr = [GuessLikeModel mj_objectArrayWithKeyValuesArray:dataArr];
                         [self.guessLikeData addObjectsFromArray:arr];
                         if (self.guessLikeData) {
+                            [CATransaction setDisableActions:YES];
                             [self.collectionView reloadData];
+                            [CATransaction commit];
                         }
                     }
                 }
@@ -136,7 +142,9 @@
             
         }else {
             [self.guessLikeData removeAllObjects];
+            [CATransaction setDisableActions:YES];
             [self.collectionView reloadData];
+            [CATransaction commit];
 
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
@@ -161,7 +169,8 @@
 
         [_collectionView registerClass:[YYb_HF_CollReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"head"];
         [_collectionView registerClass:[YYb_HF_CollReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"foot"];
-
+        
+        
     }
     return _collectionView;
 }
@@ -220,7 +229,7 @@
             
             cell.setNameStr = guessModel.store_name;
             cell.setAdLabelStr = guessModel.product_name;
-            cell.setDistanceStr = [NSString stringWithFormat:@"%@.km",guessModel.distance];
+            cell.setDistanceStr = [NSString stringWithFormat:@"%@km",guessModel.distance];
             cell.setPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.product_price];
             cell.setOldPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.original_price];
             cell.setConcessionMoneyStr = [NSString stringWithFormat:@"让利￥%@",guessModel.fan_price];
@@ -231,7 +240,7 @@
         }else  if (guessModel.product_type.intValue == 3) {//酒店布局
             YYB_HF_guessLikeCollectionViewCellRightPic *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_guessLikeCollectionViewCellRightPic" forIndexPath:indexPath];
             cell.setNameStr = guessModel.store_name;
-            cell.setDistanceStr = [NSString stringWithFormat:@"%@.km",guessModel.distance];
+            cell.setDistanceStr = [NSString stringWithFormat:@"%@km",guessModel.distance];
             cell.setPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.product_price];
             cell.setOldPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.original_price];
             cell.setConcessionMoneyStr = [NSString stringWithFormat:@"让利￥%@",guessModel.fan_price];
@@ -272,7 +281,7 @@
         }
         return 0;
     }
-    return 1;
+    return 0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -297,8 +306,13 @@
             view.hidden = YES;
         }else{
             view.hidden = NO;
+            if (self.guessLikeData.count == 0) {
+                view.hidden = YES;
+            }
         }
     }
+    
+   
     
     return view;
 }
@@ -332,18 +346,22 @@
     }
     
     if (indexPath.section == 1) {
-        return ScreenScale(92);
+        if (self.dataModel.banner && [self.dataModel.banner isKindOfClass:[NSArray class]] && self.dataModel.banner.count > 0) {
+            return ScreenScale(92);
+        }
     }
     
     if (indexPath.section == 2) {
         GuessLikeModel *model = self.guessLikeData[indexPath.row];
-        if (model.product_type.intValue == 1) {//美食高度布局
-            return ScreenScale(173);
+        if (model && model.id.intValue > 0) {
+            if (model.product_type.intValue == 1) {//美食高度布局
+                return ScreenScale(173);
+            }
+            return ScreenScale(110);//酒店高度布局
         }
-        return ScreenScale(110);//酒店高度布局
     }
     
-    return 50;
+    return 0;
 }
 
 /// 列间距
