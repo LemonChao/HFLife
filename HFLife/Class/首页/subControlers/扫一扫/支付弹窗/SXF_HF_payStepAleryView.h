@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (SXF_HF_payStepAleryView *)showAlertComplete:(void(^__nullable)(BOOL btnBype))complate password:(void(^)(NSString *pwd))password;
 
 - (void) cancleAlertView;
+@property (nonatomic, assign)BOOL editingEable;//清空密码框
 @end
 
 NS_ASSUME_NONNULL_END

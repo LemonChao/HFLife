@@ -149,6 +149,7 @@
             [self.sureBtn setTitle:@"重新输入" forState:UIControlStateNormal];
             [self.cancleBtn setTitle:@"找回并完成支付" forState:UIControlStateNormal];
             [self.sureBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
+            [self.cancleBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
         }
             break;
         case AlertType_time:{
