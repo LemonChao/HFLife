@@ -184,10 +184,6 @@
         make.centerY.mas_equalTo(self.titleLb.mas_centerY);
     }];
     
-    if (self.cellType == itemType_first) {
-        
-    }
-    
     
     [self layoutIfNeeded];
     self.inviteeButton.layer.cornerRadius = self.inviteeButton.bounds.size.height * 0.5;

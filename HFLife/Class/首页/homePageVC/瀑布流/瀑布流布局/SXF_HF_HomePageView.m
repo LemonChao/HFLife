@@ -202,7 +202,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
 
 #pragma mark <UICollectionViewDataSource>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger mySection;
+    NSInteger mySection = 0;
     id value;
     homeListModel *model;
     //点击事件
@@ -216,7 +216,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
         value = model.url;
     }else if (indexPath.section == 3){
         //头条
-         model = self.hotNewsModelsArr[indexPath.row];
+         model = self.noHotNewsModelArr[indexPath.row];
          value = model.url;
         mySection = 5;
     }
