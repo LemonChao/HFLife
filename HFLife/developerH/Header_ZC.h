@@ -32,5 +32,11 @@ static NSString *const zcTestUrl = @"w=index&t=index";
 
 #define shopCartList        shopUrl(@"w=member_cart&t=cart_list")
 
+#define shopCartTui_Goods   shopUrl(@"w=index&t=get_tui_goods")
 
+#define shopCartHome        shopUrl(@"w=index&t=index")
+
+#define shopCartClassify    shopUrl(@"w=goods_class&t=fenlei")
+
+#define shopCartGussLike    shopUrl(@"w=member_cart&t=guess_like")
 #endif /* Header_ZC_h */
