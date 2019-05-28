@@ -21,7 +21,8 @@
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL,0), 1.0 * NSEC_PER_SEC,0);
     dispatch_source_set_event_handler(_timer, ^{
         //倒计时结束，关闭
-        if (timeOut == 0 || self.iscancel) {
+        if (timeOut == 0 || [self.accessibilityValue isEqualToString:@"stop"]) {
+            self.accessibilityValue = @"";
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.backgroundColor = mColor;
@@ -44,8 +45,8 @@
 
 //关闭计时器
 - (void) cancleTimer:(void(^)(void))complate{
-    dispatch_cancel(self.source);
-    self.iscancel = YES;
+//    dispatch_cancel(self.source);
+    self.accessibilityValue = @"stop";
 }
 
 
