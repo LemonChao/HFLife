@@ -324,7 +324,7 @@
 
 - (UIImage *) getNewImage:(UIImage *)image{
     //设定为 1M
-    return  [self compressImageQuality:image toByte:1000 * 1000];
+    return  [self compressImageQuality:image toByte:1024 * 1024 * 1];
 }
 
 

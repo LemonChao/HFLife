@@ -21,6 +21,9 @@
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL,0), 1.0 * NSEC_PER_SEC,0);
     dispatch_source_set_event_handler(_timer, ^{
         //倒计时结束，关闭
+        if (timeLine >= 59) {
+            self.accessibilityValue = @"";
+        }
         if (timeOut == 0 || [self.accessibilityValue isEqualToString:@"stop"]) {
             self.accessibilityValue = @"";
             dispatch_source_cancel(_timer);

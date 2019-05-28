@@ -100,10 +100,10 @@
                         //                        bindingVC.isAlipay = NO;
                         //                        vc = bindingVC;
                         if (![[userInfoModel sharedUser].rz_statusName isEqualToString:@"已认证"]) {
-                            [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
+                            [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
                                 if (btnBype) {
                                     //登录页
-                                    [WXZTipView showCenterWithText:@"去登陆"];
+                                    [WXZTipView showCenterWithText:@"实名"];
                                     return ;
                                 }
                             }];
@@ -120,12 +120,12 @@
                         vc = [SecurityCenterVC new];
                         break;
                     case 4:
-                    {
+                    {//我要入驻
                         if (![[userInfoModel sharedUser].rz_statusName isEqualToString:@"已认证"]) {
-                            [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
+                            [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
                                 if (btnBype) {
                                     //登录页
-                                    [WXZTipView showCenterWithText:@"去登陆"];
+                                    [WXZTipView showCenterWithText:@"实名"];
                                     return ;
                                 }
                             }];

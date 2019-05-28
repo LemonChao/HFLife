@@ -81,7 +81,7 @@
                         self.dataModel = model;
                         //刷新数据
                         
-                        [CATransaction setDisableActions:YES];
+                        [CATransaction setDisableActions:YES];//端头闪动处理
                         [self.collectionView reloadData];
                         [CATransaction commit];
                         
