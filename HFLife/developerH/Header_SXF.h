@@ -43,7 +43,7 @@ static NSString *const ServiceAgreement                       = @"ceshi-ucenter.
 
 //获取版本信息
 //上传定位
-static NSString *const upDateLocationUrl = @"ceshi-ucenter.hfgld.net/index.php/api/common/setUserAddress";
+static NSString *const upDateLocationUrl = @"ceshi-life.hfgld.net/index.php/api/common/setUserAddress";
 
 //首页轮播导航接口
 static NSString *const HomeNavBanner                            = @"ceshi-ucenter.hfgld.net/api/index/navBanner";

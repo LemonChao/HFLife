@@ -56,7 +56,7 @@ static NSString *const URL_IMG_PREFIX = @"<#xxx/#>";
 
 
 
-#define  BASE_URL  [NSString stringWithFormat:@"%@%@%@",URL_PROTOCOL,  URL_HOST,URL_PORT]
+#define  BASE_URL  [NSString stringWithFormat:@"%@%@%@",URL_PROTOCOL,  @"ceshi-ucenter.hfgld.net/",URL_PORT]
 
 
 

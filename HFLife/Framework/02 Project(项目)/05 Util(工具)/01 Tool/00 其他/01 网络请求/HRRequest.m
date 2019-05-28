@@ -138,17 +138,17 @@
            
             
             dispatch_data_t dataCast = errorInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-            const void *buffer = NULL;
-            size_t size = 0;
-            dispatch_data_t new_data_file = dispatch_data_create_map(dataCast, &buffer, &size);
-            if(new_data_file){
-                
-            }
-            
-            
-            NSData *da = [[NSData alloc] initWithBytes:buffer length:size];
-             NSDictionary *valueDic = [HR_dataManagerTool dataToypteDJson:da];
-            NSString *str = [[NSString alloc] initWithData:da encoding:NSUTF8StringEncoding];
+//            const void *buffer = NULL;
+//            size_t size = 0;
+//            dispatch_data_t new_data_file = dispatch_data_create_map(dataCast, &buffer, &size);
+//            if(new_data_file){
+//
+//            }
+//
+//
+//            NSData *da = [[NSData alloc] initWithBytes:buffer length:size];
+//             NSDictionary *valueDic = [HR_dataManagerTool dataToypteDJson:da];
+            NSString *str = [[NSString alloc] initWithData:errorInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
             
             MYLog(@"error = %@", str);
         }
