@@ -373,7 +373,7 @@
         [codeButton setTitle:@"获取验证码" forState:(UIControlStateNormal)];
         codeButton.clipsToBounds = YES;
         codeButton.layer.cornerRadius = 5;
-        codeButton.layer.borderWidth = 1.5;
+        codeButton.layer.borderWidth = 1;
         codeButton.layer.borderColor = HEX_COLOR(0xCA1400).CGColor;
         [rightView addSubview:codeButton];
         
