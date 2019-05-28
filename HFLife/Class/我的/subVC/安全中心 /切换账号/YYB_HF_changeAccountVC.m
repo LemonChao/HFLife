@@ -127,6 +127,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 32)];
+        view.backgroundColor = HEX_COLOR(0xF5F5F5);
         UILabel *label = [UILabel wh_labelWithText:@"汉富账号" textFont:11 textColor:HEX_COLOR(0xAAAAAA) frame:CGRectMake(13, 11, 150, 12)];
         [view addSubview:label];
         label.textAlignment = NSTextAlignmentLeft;

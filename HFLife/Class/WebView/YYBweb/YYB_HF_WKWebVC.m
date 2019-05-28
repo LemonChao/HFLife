@@ -620,10 +620,15 @@
 -(void)loadFailed{
     [[WBPCreate sharedInstance]hideAnimated];
     maskView.hidden = YES;
-    //    [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
-    //        NSLog(@"123456");
-    //        [self loadWKwebViewData];
-    //    }];
+   
+    __block LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:image(@"ic_empty_data") titleStr:nil detailStr:nil btnTitleStr:@"重新加载" btnClickBlock:^{
+        [self loadWKwebViewData];
+        [empView removeFromSuperview];
+        [self.customNavBar setHidden:self.isNavigationHidden];
+    }];
+    [self.customNavBar setHidden:NO];
+    [self.view addSubview:empView];
+    
 }
 #pragma mark ==加载成功
 -(void)loadSuccess{

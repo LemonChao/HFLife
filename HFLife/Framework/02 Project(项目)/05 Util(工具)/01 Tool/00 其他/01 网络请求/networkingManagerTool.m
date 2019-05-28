@@ -122,7 +122,7 @@
     NSString *gettoken = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
     //token 设置到请求头上
 //    gettoken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaW5mbyI6eyJpZCI6MzIsIm1lbWJlcl9tb2JpbGUiOiIxODU2OTkzOTEyNCIsImFsaXBheV91bmlvbmlkIjpudWxsLCJ3ZWl4aW5fdW5pb25pZCI6bnVsbCwicmVhbG5hbWUiOiIiLCJtZW1iZXJfYXZhdGFyIjoiIiwibWVtYmVyX3NleCI6MCwibWVtYmVyX2VtYWlsIjpudWxsLCJpbnZpdGVyX2lkIjowLCJuaWNrbmFtZSI6IjE4NTY5OTM5MTI0Iiwicnpfc3RhdHVzIjowLCJ0b2tlbiI6IjE0MmQ4NjdiZDg4MTAzYzIxMDBjM2FkYzM1NWIwODdjMmM5MDVmNGYifSwidGltZSI6MTU2MTM0ODQxMCwidG9rZW4iOiIxNDJkODY3YmQ4ODEwM2MyMTAwYzNhZGMzNTViMDg3YzJjOTA1ZjRmIn0.hk0CKWYf6yo2nfsQ58zL65wnJshA7G5jZXp6fwXDzsA";
-    gettoken = @"05bd0b6950c78fac59335515f5fcfdab";
+//    gettoken = @"05bd0b6950c78fac59335515f5fcfdab";
     if (gettoken) {
         [requestManager.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@" , gettoken] forHTTPHeaderField:@"TOKEN"];
     }else {

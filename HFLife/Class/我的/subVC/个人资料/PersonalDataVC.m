@@ -46,6 +46,10 @@
     userInfoModel *user = [userInfoModel sharedUser];
     self->valueArray = @[@[[NSString judgeNullReturnString:user.member_avatar],[NSString judgeNullReturnString:user.member_mobile],[NSString judgeNullReturnString:user.nickname],[NSString judgeNullReturnString:user.member_sexName],user.member_age ? user.member_age.stringValue : @""],@[[NSString judgeNullReturnString:user.rz_statusName]],@[@""]];
     [self.contentTableView reloadData];
+    
+    
+    
+    
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -109,8 +113,8 @@
             cell.subtitleString = value;
             cell.isArrowHiden = NO;
         }
-    }else if (indexPath.section==1) {
-        cell.subtitleString = @"";
+    }else if (indexPath.section == 1) {
+        cell.subtitleString = value;
         cell.isArrowHiden = NO;
     }else{
         cell.subtitleString = @"";
@@ -177,13 +181,18 @@
 //        self.manager.configuration.saveSystemAblum = YES;
 //        [self hx_presentAlbumListViewControllerWithManager:self.manager delegate:self];
     }else if ([title_value isEqualToString:@"实名认证"]){
+        if ([userInfoModel sharedUser].rz_status.intValue == 0 || [userInfoModel sharedUser].rz_status.intValue == 3) {
+            YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+            vc.urlString = @"http://192.168.0.105:8080/certification";
+            vc.isTop = YES;
+            vc.isNavigationHidden = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else {
         
-        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-        vc.urlString = @"http://192.168.0.105:8080/certification";
-        vc.isTop = YES;
-        vc.isNavigationHidden = YES;
-
-        [self.navigationController pushViewController:vc animated:YES];
+            ReviewResultsVC *resul = [[ReviewResultsVC alloc]init];
+            [self.navigationController pushViewController:resul animated:YES];
+        }
+        
 
 //        IdentityInformationVC *ident = [[IdentityInformationVC alloc]init];
 //        [self.navigationController pushViewController:ident animated:YES];

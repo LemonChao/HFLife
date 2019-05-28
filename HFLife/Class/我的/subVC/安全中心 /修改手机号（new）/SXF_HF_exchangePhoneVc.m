@@ -114,9 +114,7 @@
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":[userInfoModel sharedUser].member_mobile,@"event":@"checkmobile"} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
             if (result) {
-                if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    
-                }
+                [sender setTheCountdownStartWithTime:60 title:@"获取验证码" countDownTitle:@"s后重新获取" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
                 
             }else {
                 if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -132,9 +130,7 @@
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneTextF.text,@"event":@"changemobile"} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
             if (result) {
-                if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    
-                }
+                [sender setTheCountdownStartWithTime:60 title:@"获取验证码" countDownTitle:@"s后重新获取" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
                 
             }else {
                 if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -145,7 +141,6 @@
             }
         }];
     }
-    [sender setTheCountdownStartWithTime:60 title:@"获取验证码" countDownTitle:@"s后重新获取" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
 }
 
 @end
