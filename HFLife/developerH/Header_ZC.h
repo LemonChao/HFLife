@@ -16,7 +16,7 @@
 #import "UIView+BadgeValue.h"
 #import "UITool.h"
 #import <YYModel/YYModel.h>
-/************************yourTools************************/
+#import "ZCShopWebViewController.h"
 
 
 
@@ -24,7 +24,8 @@
 
 /************************subUrl************************/
 
-#define shopHost @"ceshi-shop.hfgld.net/"
+#define shopHost        @"ceshi-shop.hfgld.net/"
+#define shopWebHost     @"http://192.168.0.172:8080/"
 
 #define shopUrl(subUrl)    [NSString stringWithFormat:@"%@api/mobile/index.php?%@",shopHost,subUrl]
 

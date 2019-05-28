@@ -126,6 +126,16 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ZCShopCartModel *shopModel = self.viewModel.cartArray[indexPath.section];
+    ZCShopCartGoodsModel *model = shopModel.goods[indexPath.row];
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productDetail" parameters:@{@"goods_id":model.goods_id}];
+    [self.navigationController pushViewController:webVC animated:YES];
+}
+
+
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];

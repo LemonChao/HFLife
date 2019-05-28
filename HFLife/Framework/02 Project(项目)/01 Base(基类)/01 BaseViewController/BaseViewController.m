@@ -42,6 +42,8 @@ static BOOL IsUpdateRemind = YES;
     [super viewDidLoad];
     self.view.backgroundColor = BackGroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
+
     [self setupNavBar];
 }
 

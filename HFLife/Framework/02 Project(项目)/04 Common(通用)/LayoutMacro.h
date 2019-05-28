@@ -92,7 +92,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 /** TabBar高度 */
 #define TabBarHeight (iPhoneX ? 83.0 : 49.0)
 
-//没有Tabar底部距离宏
-#define HJBottomHeight (iPhoneX ? 34 : 0)
+//虚拟home键高度
+#define HomeIndicatorHeight (iPhoneX ? 34 : 0)
 
 #endif /* LayoutMacro_h */

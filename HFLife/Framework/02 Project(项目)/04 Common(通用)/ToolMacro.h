@@ -147,5 +147,28 @@ return [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]];\
 #define BoldFont(sizePt)    [UIFont boldSystemFontOfSize:sizePt]
 // system|regular字体
 #define SystemFont(sizePt)  [UIFont systemFontOfSize:sizePt]
+// 拼接字符串(用法：StringFormat(@"5s%@",@"str")
+#define StringFormat(format,...) [NSString stringWithFormat:format,##__VA_ARGS__]
+
+
+/// ------------------------ 对象空值判断 ------------------------
+// 字符串是否为空
+#define StringIsEmpty(str) ([str isKindOfClass:[NSNull class]] || str == nil || [str length] < 1 ? YES : NO )
+// 字符串为空输入空的字符
+#define StringJudgeEmpty(str)  (StringIsEmpty(str) ? @"" : str)
+
+// 数组是否为空
+#define ArrayIsEmpty(array) (array == nil || [array isKindOfClass:[NSNull class]] || array.count == 0)
+
+// 字典是否为空
+#define DictIsEmpty(dic) (dic == nil || [dic isKindOfClass:[NSNull class]] || dic.allKeys == 0)
+
+// 是否是空对象
+#define ObjectIsEmpty(_object) (_object == nil \
+|| [_object isKindOfClass:[NSNull class]] \
+|| ([_object respondsToSelector:@selector(length)] && [(NSData *)_object length] == 0) \
+|| ([_object respondsToSelector:@selector(count)] && [(NSArray *)_object count] == 0))
+
+
 
 #endif /* ToolMacro_h */

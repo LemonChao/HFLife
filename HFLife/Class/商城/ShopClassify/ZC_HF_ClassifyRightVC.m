@@ -63,6 +63,16 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    ZCShopClassifyListModel *sectionModel = self.dataArray[indexPath.section];
+    ZCShopClassifyListModel *childModel = sectionModel.child[indexPath.row];
+
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productList" parameters:@{@"gc_id":childModel.gc_id}];
+    [self.navigationController pushViewController:webVC animated:YES];
+}
+
+
+
 #pragma mark - getters and setters
 
 - (void)setDataArray:(NSArray<__kindof ZCShopClassifyListModel *> *)dataArray {

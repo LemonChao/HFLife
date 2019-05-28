@@ -15,7 +15,7 @@
 #import "ContainerTableHeader.h"
 #import "NearbyShopVC.h"
 
-#define TableHeight (SCREEN_HEIGHT-NavBarHeight-HJBottomHeight)
+#define TableHeight (SCREEN_HEIGHT-NavBarHeight-HomeIndicatorHeight)
 
 
 @interface TakeOutVC ()<UITableViewDelegate,UITableViewDataSource>

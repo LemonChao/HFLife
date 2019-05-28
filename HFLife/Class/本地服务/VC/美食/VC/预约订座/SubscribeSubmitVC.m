@@ -155,7 +155,7 @@
         make.left.mas_equalTo(self.view.mas_left).offset(WidthRatio(21));
         make.right.mas_equalTo(self.view.mas_right).offset(-WidthRatio(21));
         make.height.mas_equalTo(HeightRatio(80));
-        make.bottom.mas_equalTo(-(HJBottomHeight+HeightRatio(44)));
+        make.bottom.mas_equalTo(-(HomeIndicatorHeight+HeightRatio(44)));
     }];
     
 }

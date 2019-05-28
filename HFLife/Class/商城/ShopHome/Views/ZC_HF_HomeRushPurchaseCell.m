@@ -89,6 +89,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundImage:image(imgName) forState:UIControlStateNormal];
     [button setBackgroundImage:image(imgName) forState:UIControlStateHighlighted];
+    [button setTitle:imgName forState:UIControlStateDisabled];
     button.imageView.contentMode = UIViewContentModeScaleToFill;
     [button addTarget:self action:@selector(imageButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     return button;
@@ -97,6 +98,26 @@
 
 - (void)imageButtonAction:(UIButton *)button {
     
+    if ([[button titleForState:UIControlStateDisabled] isEqualToString:@"zhendianzhibao"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productList" parameters:@{@"gc_id":@1}];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }
+    else if ([[button titleForState:UIControlStateDisabled] isEqualToString:@"pinpaizhekou"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productList" parameters:@{@"gc_id":@2}];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }
+    else if ([[button titleForState:UIControlStateDisabled] isEqualToString:@"tiantiantemai"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productList" parameters:@{@"gc_id":@3}];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }
+    else if ([[button titleForState:UIControlStateDisabled] isEqualToString:@"shihuihaohuo"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productList" parameters:@{@"gc_id":@4}];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }
+    else if ([[button titleForState:UIControlStateDisabled] isEqualToString:@"pinleimiaosha"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productList" parameters:@{@"gc_id":@5}];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }
 }
 
 - (UILabel *)titleLable {
