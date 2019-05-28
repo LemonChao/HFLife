@@ -44,7 +44,15 @@
     
     self.customNavBar.barBackgroundColor = [RGBA(202, 20, 0, 1) colorWithAlphaComponent:0];
     self.customNavBar.backgroundColor = [UIColor clearColor];
+    [self.customNavBar wr_setBottomLineHidden:YES];
     [self.customNavBar wr_setRightButtonWithImage:image(@"shop_news")];
+    @weakify(self);
+    [self.customNavBar setOnClickRightButton:^{
+        @strongify(self);
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"message" parameters:nil];
+        [self.navigationController pushViewController:webVC animated:YES];
+    }];
+    
     
     ZC_HF_ShopHomeSearchButton *searchBtn = [[ZC_HF_ShopHomeSearchButton alloc] initWithFrame:CGRectMake(ScreenScale(12), self.navBarHeight-28-8, ScreenScale(300), 28 )];
     [self.customNavBar addSubview:searchBtn];
@@ -212,7 +220,15 @@
     }
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *array = self.viewModel.dataArray[indexPath.section];
+    if (indexPath.section == 1) {
+        ZCExclusiveRecommendModel *model = array[indexPath.row];
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productDetail" parameters:@{@"goods_id":model.goods_id}];
+        [self.navigationController pushViewController:webVC animated:YES];
+    }
 
+}
 #pragma mark - ScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

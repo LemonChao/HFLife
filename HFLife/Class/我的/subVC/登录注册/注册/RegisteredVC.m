@@ -224,10 +224,7 @@
         [codeButton addTarget:self action:@selector(getRegistCode:) forControlEvents:(UIControlEventTouchUpInside)];
         [codeButton setTitleColor:HEX_COLOR(0x666666) forState:(UIControlStateNormal)];
         [codeButton setTitle:@"获取验证码" forState:(UIControlStateNormal)];
-        codeButton.clipsToBounds = YES;
-        codeButton.layer.cornerRadius = 5;
-        codeButton.layer.borderWidth = 1;
-        codeButton.layer.borderColor = HEX_COLOR(0xCA1400).CGColor;
+        
         [rightView addSubview:codeButton];
         
         [codeButton mas_makeConstraints:^(MASConstraintMaker *make) {

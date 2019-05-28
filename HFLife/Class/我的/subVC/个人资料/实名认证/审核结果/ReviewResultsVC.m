@@ -39,7 +39,7 @@
 -(void)setupNavBar{
     WS(weakSelf);
     [super setupNavBar];
-    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"fanhuianniu"]];
+//    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"fanhuianniu"]];
     self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
     [self.customNavBar setOnClickLeftButton:^{ 
 //        [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -82,6 +82,7 @@
     
     UIImageView *reviewResultsBgImageView  = [UIImageView new];
     reviewResultsBgImageView.image = MMGetImage(@"ReviewResultsbeijing");
+    reviewResultsBgImageView.backgroundColor = [UIColor brownColor];
     [self.view addSubview:reviewResultsBgImageView];
     [reviewResultsBgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(WidthRatio(20));
@@ -91,7 +92,7 @@
     }];
     
     headImageView = [UIImageView new];
-//    [headImageView sd_setImageWithURL:[NSURL URLWithString:[UserCache getUserPic]] placeholderImage:MMGetImage(@"user__easyico")];
+    [headImageView sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MMGetImage(@"user__easyico")];
     [self.view addSubview:headImageView];
     [headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -102,6 +103,7 @@
     
     nameLabel = [UILabel new];
 //    nameLabel.text = [UserCache getUserRealName] ? [UserCache getUserRealName] : [UserCache getSaveRealNameWriteName];//@"***";
+    nameLabel.text = [userInfoModel sharedUser].realname;
     nameLabel.textAlignment = NSTextAlignmentCenter;
     nameLabel.textColor = [UIColor blackColor];
     nameLabel.font = [UIFont systemFontOfSize:WidthRatio(32)];
@@ -115,6 +117,7 @@
     
     phoneLabel = [UILabel new];
 //    phoneLabel.text = [NSString mobileNumberEncryption:[UserCache getUserPhone]];
+    phoneLabel.text = [userInfoModel sharedUser].member_mobile;
     phoneLabel.textAlignment = NSTextAlignmentCenter;
     phoneLabel.textColor = HEX_COLOR(0x9a9a9a);
     phoneLabel.font = [UIFont systemFontOfSize:WidthRatio(27)];

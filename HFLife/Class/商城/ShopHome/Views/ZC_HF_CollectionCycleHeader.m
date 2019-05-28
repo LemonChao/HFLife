@@ -72,6 +72,16 @@
     self.pageIndexLabel.text = [NSString stringWithFormat:@"%ld/%ld", index+1, self.bannerList.count];
 }
 
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    
+    ZCShopHomeBannerModel *model = self.bannerList[index];
+    
+//    ZCShopWebViewController *webVC = [ZCShopWebViewController alloc] initWithPath:<#(nonnull NSString *)#> parameters:<#(nullable NSDictionary *)#>
+    
+    
+}
+
+
 - (void)setBannerList:(NSArray<__kindof ZCShopHomeBannerModel *> *)bannerList {
     _bannerList = bannerList.copy;
     

@@ -13,7 +13,7 @@
 @property (nonatomic,strong)UITextField *confirmPassWordText;//密码
 @property (nonatomic,strong)UIImageView *saveImageView;//icon
 @property (nonatomic,strong)UILabel *saveLabel;//安全提示
-@property (nonatomic,strong)UILabel *notEqualerr;//验证码错误
+@property (nonatomic,strong)UILabel *errLabel;//错误信息
 @property (nonatomic,strong)UIButton *sureBtn;//确认按钮
 @end
 
@@ -64,10 +64,10 @@
     
     self.saveImageView = [UIImageView new];
     self.saveLabel = [UILabel new];
-    self.notEqualerr = [UILabel new];
+    self.errLabel = [UILabel new];
     [self.view addSubview:self.saveImageView];
     [self.view addSubview:self.saveLabel];
-    [self.view addSubview:self.notEqualerr];
+    [self.view addSubview:self.errLabel];
     [self.view addSubview:self.passWordText];
     [self.view addSubview:self.confirmPassWordText];
     
@@ -77,10 +77,10 @@
     self.saveLabel.textColor = HEX_COLOR(0x0C0B0B);
     self.saveLabel.numberOfLines = 2;
     
-    self.notEqualerr.textColor = HEX_COLOR(0xCA1400);
-    self.notEqualerr.font = FONT(11);
-    self.notEqualerr.text = @"提示文字";
-    self.notEqualerr.hidden = YES;
+    self.errLabel.textColor = HEX_COLOR(0xCA1400);
+    self.errLabel.font = FONT(11);
+    self.errLabel.text = @"错误";
+    self.errLabel.hidden = YES;
     
     [self.saveImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(bgView).mas_offset(52);
@@ -111,7 +111,7 @@
         make.right.mas_equalTo(self.view).mas_offset(ScreenScale(-12));
         
     }];
-    [self.notEqualerr mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.errLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.confirmPassWordText.mas_bottom).mas_offset(ScreenScale(30));
         make.left.mas_equalTo(self.view).mas_offset(ScreenScale(12 + 20));
         make.height.mas_equalTo(ScreenScale(15));
@@ -143,13 +143,16 @@
 //提交
 - (void)submitBtnClick {
     
-    if (self.passWordText.text.length != 6) {
+    if (self.passWordText.text.length != 6 || self.confirmPassWordText.text.length != 6) {
         [WXZTipView showCenterWithText:@"请输入6位交易密码"];
+        self.errLabel.text = @"请输入6位交易密码";
+        [self.errLabel setHidden:NO];
         return;
     }
     if (![self.passWordText.text isEqualToString:self.confirmPassWordText.text]) {
         [WXZTipView showCenterWithText:@"交易密码输入不一致,请重新输入"];
-        [self.notEqualerr setHidden:NO];
+        self.errLabel.text = @"密码不一致";
+        [self.errLabel setHidden:NO];
         return;
     }
     NSDictionary *parm = @{@"password":self.passWordText.text,@"captcha":self.verCode};
@@ -314,25 +317,34 @@
 #pragma mark - textFiledDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [self.notEqualerr setHidden:YES];
+    [self.errLabel setHidden:YES];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField.text.length >= 6) {
         textField.text = [textField.text substringToIndex:6];
+        if (string.length == 0) {
+            return YES;
+        }
         return NO;
     }
     return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (self.passWordText.text.length > 0 && self.confirmPassWordText.text.length > 0) {
+    if (self.passWordText.text.length == 6 && self.confirmPassWordText.text.length == 6) {
         [self.sureBtn setEnabled:YES];
         [self.sureBtn setBackgroundColor:HEX_COLOR(0xCA1400)];
-        
-    }else {
+        self.errLabel.hidden = YES;
+    }
+    else if(textField.text.length == 6 && (self.passWordText.text.length == 0 || self.confirmPassWordText.text.length == 0) ) {
+        self.errLabel.hidden = YES;
+    }
+    else {
         [self.sureBtn setEnabled:NO];
         [self.sureBtn setBackgroundColor:HEX_COLOR(0xAAAAAA)];
+        self.errLabel.text = @"请输入6位交易密码";
+        self.errLabel.hidden = NO;
     }
 }
 

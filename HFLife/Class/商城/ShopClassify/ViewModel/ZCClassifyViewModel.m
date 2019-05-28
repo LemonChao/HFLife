@@ -16,7 +16,7 @@
         _classifyCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=goods_class&t=fenlei" withParameters:@{} withResultBlock:^(BOOL result, id value) {
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:shopClassifyIndex withParameters:@{} withResultBlock:^(BOOL result, id value) {
                     @strongify(self);
                     if (result) {
                         

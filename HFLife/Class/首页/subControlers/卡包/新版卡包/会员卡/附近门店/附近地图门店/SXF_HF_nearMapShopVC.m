@@ -22,7 +22,7 @@
 }
 
 - (void)setUpUI{
-    self.locationMap = [[MAMapView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight - HJBottomHeight)];
+    self.locationMap = [[MAMapView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight - HomeIndicatorHeight)];
     
     self.locationMap.userTrackingMode = MAUserTrackingModeFollow;
     

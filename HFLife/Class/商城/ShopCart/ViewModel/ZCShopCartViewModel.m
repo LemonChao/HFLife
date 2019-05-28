@@ -45,7 +45,7 @@
     if (!_cartSignal) {
         @weakify(self);
         _cartSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-            [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=member_cart&t=cart_list" withParameters:@{} withResultBlock:^(BOOL result, id value) {
+            [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartList withParameters:@{} withResultBlock:^(BOOL result, id value) {
                 @strongify(self);
                 if (result) {
                     NSArray *tempArray = [NSArray yy_modelArrayWithClass:[ZCShopCartModel class] json:value[@"data"]];
@@ -112,7 +112,7 @@
         _gussLikeCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal *likeSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=member_cart&t=guess_like" withParameters:@{} withResultBlock:^(BOOL result, id value) {
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartGussLike withParameters:@{} withResultBlock:^(BOOL result, id value) {
                     @strongify(self);
                     if (result) {
                         self.likeArray = [NSArray yy_modelArrayWithClass:[ZCShopCartLikeModel class] json:value[@"data"]];

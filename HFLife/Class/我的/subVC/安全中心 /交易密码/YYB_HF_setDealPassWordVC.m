@@ -300,7 +300,8 @@
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
-            [self openCountdown:send];
+            [send setTheCountdownStartWithTime:60 title:@"获取验证码" countDownTitle:@"s后重新获取" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
+
         }else {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
@@ -311,43 +312,7 @@
     }];
     
 }
-// 开启倒计时效果
-- (void)openCountdown:(UIButton *)authCodeBtn{
-    __block NSInteger time = 59; //倒计时时间
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
-    
-    dispatch_source_set_event_handler(_timer, ^{
-        
-        if(time <= 0){ //倒计时结束，关闭
-            
-            dispatch_source_cancel(_timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //设置按钮的样式
-                [authCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-                [authCodeBtn setTitleColor:HEX_COLOR(0x666666) forState:UIControlStateNormal];
-                authCodeBtn.userInteractionEnabled = YES;
-                //                self.userPhoneTextField.userInteractionEnabled = YES;
-            });
-            
-        }else{
-            
-            int seconds = time % 60;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //设置按钮显示读秒效果
-                [authCodeBtn setTitle:[NSString stringWithFormat:@"%.2ds后重新获取", seconds] forState:UIControlStateNormal];
-                [authCodeBtn setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
-                authCodeBtn.userInteractionEnabled = NO;
-                //                self.userPhoneTextField.userInteractionEnabled = NO;
-            });
-            time--;
-        }
-    });
-    dispatch_resume(_timer);
-}
+
 #pragma mark - textFiledDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {

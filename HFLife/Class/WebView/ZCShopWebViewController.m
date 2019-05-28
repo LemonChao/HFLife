@@ -1,20 +1,12 @@
 //
-//  YYB_HF_WKWebVC.m
+//  ZCShopWebViewController.m
 //  HFLife
 //
-//  Created by mac on 2019/5/23.
+//  Created by zchao on 2019/5/28.
 //  Copyright © 2019 luyukeji. All rights reserved.
 //
 
-//
-//  WKWebViewController.m
-//  WKWebViewMessageHandlerDemo
-//
-//  Created by reborn on 16/9/12.
-//  Copyright © 2016年 reborn. All rights reserved.
-//
-
-#import "YYB_HF_WKWebVC.h"
+#import "ZCShopWebViewController.h"
 #import <WebKit/WebKit.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
@@ -22,7 +14,9 @@
 #import "MapViewController.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "UMSPPPayUnifyPayPlugin.h"
-@interface YYB_HF_WKWebVC()<WKUIDelegate,WKScriptMessageHandler,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,WKNavigationDelegate,UIGestureRecognizerDelegate>
+#import <AFURLResponseSerialization.h>
+
+@interface ZCShopWebViewController ()<WKUIDelegate,WKScriptMessageHandler,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,WKNavigationDelegate,UIGestureRecognizerDelegate>
 {
     UIImagePickerController *imagePickerController;
     UIView *maskView;
@@ -31,238 +25,101 @@
 @property(nonatomic, strong)WKWebView *webView;
 @end
 
-@implementation YYB_HF_WKWebVC
+@implementation ZCShopWebViewController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.topInset = statusBarHeight;
+        self.bottomInset = HomeIndicatorHeight;
+        self.isNavigationHidden = self.isHidenLeft = YES;
+    }
+    return self;
+}
+
+- (instancetype)initWithPath:(NSString *)path parameters:(nullable NSDictionary *)parameters
+{
+    self = [super init];
+    if (self) {
+        self.topInset = statusBarHeight;
+        self.bottomInset = HomeIndicatorHeight;
+        self.isNavigationHidden = self.isHidenLeft = YES;
+        self.pathForH5 = path;
+        self.parameters = parameters;//
+        if (DictIsEmpty(self.parameters)) {
+            self.urlString = StringFormat(@"%@#/%@",shopWebHost,self.pathForH5);
+        }else {
+            self.urlString = StringFormat(@"%@#/%@?%@",shopWebHost,self.pathForH5,AFQueryStringFromParameters(self.parameters));
+        }
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.title = @"";
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self wr_setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     
-    
-    //    [self removeWebCache];
-    
-    [self initWKWebView];
-    
+    [self.view addSubview:self.webView];
     maskView = [UIView new];
     [self.view addSubview:maskView];
     [maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.view);
     }];
     
-    if (self.isNavigationHidden) {
-        [self.navigationController.navigationBar setHidden:YES];
-        [self.customNavBar setHidden:YES];
-        UIView *topView = [UIView new];
-        topView.backgroundColor = [UIColor whiteColor];;//
-        [self.view addSubview:topView];
-        [topView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.mas_equalTo(self.view);
-            make.height.mas_equalTo(self.heightStatus);
-        }];
-    }else{
-        [self setupNavBar];
-        
-    }
+    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.customNavBar.mas_bottom).priority(1000);
+        make.top.equalTo(self.view).offset(self.topInset).priority(900);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).inset(HomeIndicatorHeight);
+    }];
+    
+    
     [self loadWKwebViewData];
     
 }
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
     self.navigationController.navigationBar.hidden = YES;
-    self.fd_interactivePopDisabled = YES;
-    //    //隐藏返回按钮
-    //    self.navigationItem.hidesBackButton = YES;
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    //    }
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.delegate =self;
-    //    }
+    if (self.isNavigationHidden) {
+        [self.customNavBar removeFromSuperview];
+    }
     
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
-    self.fd_interactivePopDisabled = NO;
     self.navigationController.navigationBar.hidden = NO;
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    //    }
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.delegate =nil;
-    //
-    //    }
     
 }
 -(void)setupNavBar{
     WS(weakSelf);
     [super setupNavBar];
-    if (self.isHidenLeft) {
-        [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@""]];
-    }else{
-        [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-    }
-    
-    //    [self.customNavBar wr_setRightButtonWithImage:MMGetImage(@"tianjia")];
-    self.customNavBar.barBackgroundImage = [self createImageWithColor:[UIColor whiteColor]];
+    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
+    [self.customNavBar wr_setBottomLineHidden:YES];
+    self.customNavBar.title = self.webTitle;
+//    self.customNavBar.barBackgroundImage = [self createImageWithColor:[UIColor whiteColor]];
+//    self.customNavBar.titleLabelColor = [UIColor blackColor];
+
     [self.customNavBar setOnClickLeftButton:^{
-        if (!weakSelf.isHidenLeft) {
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-        }
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
-    [self.customNavBar wr_setBackgroundAlpha:self.isNavigationHidden?0:1];
-    [self.customNavBar wr_setBottomLineHidden:YES];
-    //    self.customNavBar.title = @"优惠券详情";
-    self.customNavBar.title = [NSString isNOTNull:self.webTitle] ? @"":self.webTitle;
-    self.customNavBar.titleLabelColor = [UIColor blackColor];
-    if (    !self.isNavigationHidden) {
-        self.customNavBar.backgroundColor = [UIColor whiteColor];
-    }
-    
 }
-- (void)initWKWebView{
-    
-    //创建并配置WKWebView的相关参数
-    //1.WKWebViewConfiguration:是WKWebView初始化时的配置类，里面存放着初始化WK的一系列属性；
-    //2.WKUserContentController:为JS提供了一个发送消息的通道并且可以向页面注入JS的类，WKUserContentController对象可以添加多个scriptMessageHandler；
-    //3.addScriptMessageHandler:name:有两个参数，第一个参数是userContentController的代理对象，第二个参数是JS里发送postMessage的对象。添加一个脚本消息的处理器,同时需要在JS中添加，window.webkit.messageHandlers.<name>.postMessage(<messageBody>)才能起作用。
-    
-    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-    WKUserContentController *userContentController = [[WKUserContentController alloc] init];
-    //分享
-    [userContentController addScriptMessageHandler:self name:@"Share"];
-    [userContentController addScriptMessageHandler:self name:@"Camera"];
-    //拨打电话
-    [userContentController addScriptMessageHandler:self name:@"Call"];
-    //获取网页数据是否请求成功
-    [userContentController addScriptMessageHandler:self name:@"getStatus"];
-    //获取店铺的位置
-    [userContentController addScriptMessageHandler:self name:@"getAddress"];
-    //吃喝玩乐
-    [userContentController addScriptMessageHandler:self name:@"getNear"];
-    //链接跳转
-    [userContentController addScriptMessageHandler:self name:@"pageJump"];
-    //立即抢购
-    [userContentController addScriptMessageHandler:self name:@"goShopping"];
-    //原生跳转
-    [userContentController addScriptMessageHandler:self name:@"nativeToJump"];
-    //返回首页
-    [userContentController addScriptMessageHandler:self name:@"goToHome"];
-    //抢购
-    [userContentController addScriptMessageHandler:self name:@"rushBuy"];
-    //抢购
-    [userContentController addScriptMessageHandler:self name:@"orderHotel"];
-    //提交订单
-    [userContentController addScriptMessageHandler:self name:@"submitOrder"];
-    //调起支付
-    [userContentController addScriptMessageHandler:self name:@"goToPay"];
-    //调起银联支付
-    [userContentController addScriptMessageHandler:self name:@"goToApp"];
-    
-    configuration.userContentController = userContentController;
-    
-    
-    WKPreferences *preferences = [WKPreferences new];
-    preferences.javaScriptCanOpenWindowsAutomatically = YES;
-    //    preferences.minimumFontSize = 40.0;
-    configuration.preferences = preferences;
-    
-    NSMutableDictionary *dic = [NSMutableDictionary new];
-    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.navBarHeight);
-    dic[@"token"] = [NSString judgeNullReturnString:[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]];
-    dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
-    //    dic[@"avatar"] = [UserInfoTool avatar];
-    
-    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
-    
-    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    NSString *js = [NSString stringWithFormat:@"window.iOSInfo = %@", jsonStr];
-    
-    WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:(WKUserScriptInjectionTimeAtDocumentStart) forMainFrameOnly:YES];
-    [configuration.userContentController addUserScript:script];
-    
-    CGFloat top = self.isTop?0:-self.heightStatus;
-    CGFloat Hei = self.isTop?SCREEN_HEIGHT-self.heightStatus:SCREEN_HEIGHT;
-    if (self.isHidenLeft) {
-        top = 0;
-        if (self.heightStatus > 20) {
-            Hei = SCREEN_HEIGHT - self.heightStatus;
-        }else{
-            Hei = SCREEN_HEIGHT;
-        }
-        
-    }else{
-        if (self.heightStatus > 20) {
-            top = -self.heightStatus;
-            Hei = SCREEN_HEIGHT;
-        }else{
-            if (kiPhone6Plus == NO) {
-                top = 0;
-            }
-            Hei = SCREEN_HEIGHT + self.heightStatus;
-        }
-    }
-    
-    if (self.heightStatus <= 20 && top == 0) {
-        Hei = SCREEN_HEIGHT;
-    }else{
-        
-    }
-    
-    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,top, SCREEN_WIDTH, Hei) configuration:configuration];
-    
-    
-    
-    self.webView.UIDelegate = self;
-    self.webView.navigationDelegate = self;
-    //    self.webView.scalesPageToFit = YES;
-    self.webView.multipleTouchEnabled = YES;
-    self.webView.userInteractionEnabled = YES;
-    self.webView.scrollView.scrollEnabled = YES;
-    self.webView.scrollView.bounces = NO;
-    self.webView.contentMode = UIViewContentModeScaleAspectFit;
-    self.webView.scrollView.delegate = self;
-    [self.view addSubview:self.webView];
-    if (@available(iOS 11.0, *)) {
-        if (self.isTop) {//不是从状态栏开始布局
-        }else {
-            self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-    } else {
-        // Fallback on earlier versions
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
-    
-    
-    
-    //    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.edges.mas_equalTo(self.view);
-    //    }];
-}
+
+
 -(void)loadWKwebViewData{
     [[WBPCreate sharedInstance]showWBProgress];
     if (![NSString isNOTNull:self.urlString]) {
-        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
-        //        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//        self.urlString = @"http://192.168.0.172:8080/#/productDetail?goods_id=1111";
+//        self.urlString = @"https://www.jianshu.com";
+//        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]] ;
+//        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"!$&'()*+,-./:;=?@_~%#[]"]]];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
         [self.webView loadRequest:request];
+        NSLog(@"url:%@", self.urlString);
     }else{
         [self loadFailed];
-        //        //loadFileURL方法通常用于加载服务器的HTML页面或者JS，而loadHTMLString通常用于加载本地HTML或者JS
-        //        NSString *htmlPath = [[NSBundle mainBundle] pathForResource:self.fileName ofType:@"html" inDirectory:@"美食"];
-        //        NSURL *fileUrl;
-        //        if (![NSString isNOTNull:self.jointParameter]) {
-        //            fileUrl = [NSURL URLWithString:[self.jointParameter stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]
-        //                             relativeToURL:[NSURL fileURLWithPath:htmlPath]];
-        //        }else{
-        //            fileUrl = [NSURL fileURLWithPath:htmlPath];
-        //        }
-        //        [self.webView loadRequest:[NSURLRequest requestWithURL:fileUrl]];
     }
 }
 #pragma mark - UIScrollViewDelegate
@@ -284,18 +141,18 @@
         }
         [self.customNavBar wr_setBackgroundAlpha:ratioY];
     }
-    
+
 }
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer{
     return NO;
 }
 #pragma mark - WKWebView代理
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-    //    Decides whether to allow or cancel a navigation after its response is known.
-    NSLog(@"知道返回内容之后，是否允许加载，允许加载");
-    
-    decisionHandler(WKNavigationResponsePolicyAllow);
-}
+//- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+//    //    Decides whether to allow or cancel a navigation after its response is known.
+//    NSLog(@"知道返回内容之后，是否允许加载，允许加载");
+//
+//    decisionHandler(WKNavigationResponsePolicyAllow);
+//}
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"开始加载");
     
@@ -324,36 +181,29 @@
     //        }];
     //    });
     [self loadSuccess];
-    //去除长按后出现的文本选取框
-    //    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
-    //WKWebview 禁止长按(超链接、图片、文本...)弹出效果
-    [self.webView evaluateJavaScript:@"document.documentElement.style.webkitTouchCallout='none';" completionHandler:nil];
-    [self.webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';"completionHandler:nil];
-    //    [self loadSuccess];
-    if (self.isNavigationHidden) {
-        if([NSString isNOTNull:self.webTitle]){
-            _webTitle =  webView.title;
-        }
-    }else{
-        if ([NSString isNOTNull:self.webTitle]) {
-            self.customNavBar.title = webView.title;
-        }else{
-            self.customNavBar.title = _webTitle;
-        }
-        
-    }
-    
-    
-    [webView evaluateJavaScript:@"document.readyState" completionHandler:^(id _Nullable readyState, NSError * _Nullable error) {
-        //        NSLog(@"----document.title:%@---webView title:%@",readyState,webView.title);
-        //         BOOL complete = [readyState isEqualToString:@"complete"];
-        //        if (complete) {
-        //            [self loadSuccess];
-        //        }else{
-        //            [self loadFailed];
-        //        }
-    }];
-    
+//    //去除长按后出现的文本选取框
+//    //    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
+//    //WKWebview 禁止长按(超链接、图片、文本...)弹出效果
+//    [self.webView evaluateJavaScript:@"document.documentElement.style.webkitTouchCallout='none';" completionHandler:nil];
+//    [self.webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';"completionHandler:nil];
+//    //    [self loadSuccess];
+//    if (self.isNavigationHidden) {
+//        if([NSString isNOTNull:self.webTitle]){
+//            _webTitle =  webView.title;
+//        }
+//    }else{
+//        if ([NSString isNOTNull:self.webTitle]) {
+//            self.customNavBar.title = webView.title;
+//        }else{
+//            self.customNavBar.title = _webTitle;
+//        }
+//
+//    }
+//
+//
+//    [webView evaluateJavaScript:@"document.readyState" completionHandler:^(id _Nullable readyState, NSError * _Nullable error) {
+//    }];
+//
 }
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
     NSLog(@"加载失败,失败原因:%@",[error description]);
@@ -364,17 +214,17 @@
     [self loadFailed];
 }
 #pragma mark - WKUIDelegate
-- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
-{
-    
-    //    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提醒" message:message preferredStyle:UIAlertControllerStyleAlert];
-    //    [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-    //        completionHandler();
-    //    }]];
-    //
-    //    [self presentViewController:alert animated:YES completion:nil];
-    completionHandler();
-}
+//- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
+//{
+//
+//    //    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提醒" message:message preferredStyle:UIAlertControllerStyleAlert];
+//    //    [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//    //        completionHandler();
+//    //    }]];
+//    //
+//    //    [self presentViewController:alert animated:YES completion:nil];
+//    completionHandler();
+//}
 
 #pragma mark -- WKScriptMessageHandler
 /**
@@ -620,15 +470,10 @@
 -(void)loadFailed{
     [[WBPCreate sharedInstance]hideAnimated];
     maskView.hidden = YES;
-   
-    __block LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:image(@"ic_empty_data") titleStr:nil detailStr:nil btnTitleStr:@"重新加载" btnClickBlock:^{
-        [self loadWKwebViewData];
-        [empView removeFromSuperview];
-        [self.customNavBar setHidden:self.isNavigationHidden];
-    }];
-    [self.customNavBar setHidden:NO];
-    [self.view addSubview:empView];
-    
+    //    [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
+    //        NSLog(@"123456");
+    //        [self loadWKwebViewData];
+    //    }];
 }
 #pragma mark ==加载成功
 -(void)loadSuccess{
@@ -676,4 +521,68 @@
 -(void)setTitleColor:(UIColor *)titleColor{
     
 }
+
+#pragma mark - setter && getter
+
+- (WKWebView *)webView {
+    if (!_webView) {
+        
+        WKUserContentController * wkUController = [[WKUserContentController alloc] init];
+//        WeakWebViewScriptMessageDelegate *weakScriptMessageDelegate = [[WeakWebViewScriptMessageDelegate alloc] initWithDelegate:self];
+        //注册一个name为jsToOcNoPrams的js方法 设置处理接收JS方法的对象
+        [wkUController addScriptMessageHandler:self name:@"asdfss"];
+        [wkUController addScriptMessageHandler:self name:@"GoToHome"];
+        [wkUController addScriptMessageHandler:self name:@"logout"];
+        
+        WKPreferences *preferences = [WKPreferences new];
+        preferences.javaScriptCanOpenWindowsAutomatically = YES;
+        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+        config.userContentController = wkUController;
+        
+        //    preferences.minimumFontSize = 40.0;
+        config.preferences = preferences;
+        NSMutableDictionary *dic = [NSMutableDictionary new];
+//        UserInfoModel *info = [BaseMethod readObjectWithKey:UserInfo_UDSKEY];
+//        if (info.asstoken) {
+//            dic = info.userResp;
+//        }else {
+//            dic[@"asstoken"] = @"";
+//            dic[@"login_num"] = @"";
+//            dic[@"login_type"] = @"";
+//            dic[@"tx_pwd_status"] = @"";
+//            dic[@"user_headimg"] = @"";
+//            dic[@"user_tel"] = @"";
+//        }
+        NSLog(@"window.iOSInfo:%@", dic);
+        NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
+        NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString *js = [NSString stringWithFormat:@"window.iOSInfo = %@", jsonStr];
+        WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:(WKUserScriptInjectionTimeAtDocumentStart) forMainFrameOnly:YES];
+        [config.userContentController addUserScript:script];
+        /*
+         禁止长按(超链接、图片、文本...)弹出效果
+         document.documentElement.style.webkitTouchCallout='none';
+         去除长按后出现的文本选取框
+         document.documentElement.style.webkitUserSelect='none'; */
+        NSString *jsString = @"document.documentElement.style.webkitTouchCallout='none';document.documentElement.style.webkitUserSelect='none';";
+        WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:jsString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+        [config.userContentController addUserScript:noneSelectScript];
+        
+        _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+        if (@available(iOS 11.0, *)) {
+            _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            [self setAutomaticallyAdjustsScrollViewInsets:NO];
+        }
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeTop;
+        _webView.scrollView.showsVerticalScrollIndicator = NO;
+        _webView.UIDelegate = self;
+        _webView.navigationDelegate = self;
+        _webView.scrollView.bounces = NO;
+        _webView.allowsLinkPreview = NO;
+    }
+    return _webView;
+}
+
+
 @end

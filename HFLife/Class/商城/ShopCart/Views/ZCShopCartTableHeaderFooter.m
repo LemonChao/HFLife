@@ -174,6 +174,16 @@
     cell.model = model;
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    ZCShopCartLikeModel *model = self.viewModel.likeArray[indexPath.row];
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productDetail" parameters:@{@"goods_id":model.goods_id}];
+    
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
+}
+
+
+
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];

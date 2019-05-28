@@ -76,6 +76,13 @@
     [super updateConstraints];
 }
 
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    
+//    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productDetail" parameters:@{@"goods_id":self.model.goods_id}];
+//    [self.viewController.navigationController pushViewController:webVC animated:YES];
+}
+
 - (void)setModel:(ZCExclusiveRecommendModel *)model {
     _model = model;
     

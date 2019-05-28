@@ -40,15 +40,19 @@
 
 static NSString *const yourTestUrl = @"w=index&t=index";
 
+#pragma mark - public公用 ---------------------------
+/** 上传文件/头像 */
+static NSString *const kUploadFiles = @"ceshi-ucenter.hfgld.net/api/upload/uploadFiles";
+/** 发送验证码 */
+static NSString *const kSendsms = @"ceshi-ucenter.hfgld.net/api/sms/send";
+
+
 #pragma mark - 登录注册 ---------------------------
 //@"ceshi-ucenter.hfgld.net/";登录个人中心域名
 
 
-/** 上传头像 */
-static NSString *const kUploadFiles = @"ceshi-ucenter.hfgld.net/api/upload/uploadFiles";
 /** 手机注册 */
 static NSString *const kRegisterMobile = @"ceshi-ucenter.hfgld.net/api/member/registerMobile";
-
 /** 手机登录 */
 static NSString *const kMobileLogin = @"ceshi-ucenter.hfgld.net/api/member/mobileLogin";
 /** 微信登录 */
@@ -57,8 +61,6 @@ static NSString *const kWXLogin = @"ceshi-ucenter.hfgld.net/api/member/wxLogin";
 static NSString *const kWxBindmobile =@"ceshi-ucenter.hfgld.net/api/member/wxBindmobile";
 /** 注销登录 */
 static NSString *const kLogout = @"ceshi-ucenter.hfgld.net/api/member/logout";
-/** 发送验证码 */
-static NSString *const kSendsms = @"ceshi-ucenter.hfgld.net/api/sms/send";
 /** 检查手机号 */
 static NSString *const kCheckMobile = @"ceshi-ucenter.hfgld.net/api/member/checkMobile";
 /** 检测邀请码 */
@@ -72,7 +74,7 @@ static NSString *const kMemberInfo = @"ceshi-ucenter.hfgld.net/api/member/member
 
 /** 验证当前手机号 */
 static NSString *const kCheckMobile_security = @"ceshi-ucenter.hfgld.net/api/member_security/checkMobile";
-/** 验证当前手机号 */
+/** 修改手机号 */
 static NSString *const kChangemobile = @"ceshi-ucenter.hfgld.net/api/member_security/changemobile";
 /** 解绑微信 */
 static NSString *const kMobileRemoveWx = @"ceshi-ucenter.hfgld.net/api/member_security/mobileRemoveWx";
@@ -80,7 +82,7 @@ static NSString *const kMobileRemoveWx = @"ceshi-ucenter.hfgld.net/api/member_se
 static NSString *const kMobileBindWx = @"ceshi-ucenter.hfgld.net/api/member_security/mobileBindWx";
 /** 注销协议 */
 static NSString *const kGetCloseAgreement = @"ceshi-ucenter.hfgld.net/api/system/getCloseAgreement";
-/** 注销 */
+/** 注销/冻结账号 */
 static NSString *const kCloseAccount = @"ceshi-ucenter.hfgld.net/api/member_security/closeAccount";
 /** 设置交易密码 */
 static NSString *const kSetPayPassword = @"ceshi-ucenter.hfgld.net/api/member_security/setPayPassword";
@@ -92,6 +94,7 @@ static NSString *const kSetPayPassword = @"ceshi-ucenter.hfgld.net/api/member_se
 static NSString *const kNearLife = @"ceshi-life.hfgld.net/index.php/api/index/index";
 /** 首页猜你喜欢接口（未完）*/
 static NSString *const kGetIndexRecommendList = @"ceshi-life.hfgld.net/index.php/api/index/getIndexRecommendList";
+
 
 
 

@@ -38,6 +38,10 @@
 }
 
 - (void)searchButtonAction:(UIButton *)button {
+    
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"search" parameters:nil];
+
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
 }
 
 @end
