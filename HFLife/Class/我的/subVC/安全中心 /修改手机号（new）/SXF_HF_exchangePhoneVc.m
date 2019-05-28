@@ -145,7 +145,7 @@
             }
         }];
     }
-    [sender setTheCountdownStartWithTime:60 title:@"获取验证码" countDownTitle:@"s" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
+    [sender setTheCountdownStartWithTime:60 title:@"获取验证码" countDownTitle:@"s后重新获取" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
 }
 
 @end

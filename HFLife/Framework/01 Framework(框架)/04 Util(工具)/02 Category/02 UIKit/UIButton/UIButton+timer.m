@@ -27,6 +27,8 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.backgroundColor = mColor;
                 [self setTitle:title forState:UIControlStateNormal];
+                [self setTitleColor:HEX_COLOR(0xCA1400) forState:UIControlStateNormal];
+                self.layer.borderColor = HEX_COLOR(0xCA1400).CGColor;
                 self.userInteractionEnabled =YES;
             });
         } else {
@@ -35,6 +37,8 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.backgroundColor = color;
                 [self setTitle:[NSString stringWithFormat:@"%@%@",timeStr,subTitle]forState:UIControlStateNormal];
+                [self setTitleColor:HEX_COLOR(0x666666) forState:UIControlStateNormal];
+                self.layer.borderColor = HEX_COLOR(0x666666).CGColor;
                 self.userInteractionEnabled =NO;
             });
             timeOut--;
