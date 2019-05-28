@@ -18,7 +18,7 @@
 #import "SXF_HF_HomePageVM.h"
 
 #import "SXF_HF_payStepAleryView.h"
-
+#import "LoginVC.h"
 
 //test
 #import "ReviseMobilePhone.h"
@@ -39,7 +39,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+     //是否是第一次
+    [HRFirstEnter isFirst:^{
+       //弹出登录
+        [LoginVC login];
+        return ;
+    }];
     
     //引导页
     [self addGuideView];
@@ -52,6 +57,10 @@
     
     //用户信息
     [userInfoModel getUserInfo];
+    
+    
+   
+    
 }
 //网络数据
 - (void)loadServerData{

@@ -21,8 +21,6 @@
 
 
 //y图片拼接
-
-
 #define URL_IMAGE(url)  [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, url ? url : @""]]
 
 
@@ -35,24 +33,24 @@
 
 
 //版本信息
-static NSString *const appUpDateUrl                          = @"api/version/getVersion";
+static NSString *const appUpDateUrl                          = @"ceshi-ucenter.hfgld.net/api/version/getVersion";
 
 //获取版本说明
-static NSString *const VersionContent                         = @"api/version/getVersionContent";
+static NSString *const VersionContent                         = @"ceshi-ucenter.hfgld.net/api/version/getVersionContent";
 
 //获取服务协议
-static NSString *const ServiceAgreement                       = @"api/system/getServiceAgreement";
+static NSString *const ServiceAgreement                       = @"ceshi-ucenter.hfgld.net/api/system/getServiceAgreement";
 
 //获取版本信息
 //上传定位
-static NSString *const upDateLocationUrl = @"index.php/api/common/setUserAddress";
+static NSString *const upDateLocationUrl = @"ceshi-ucenter.hfgld.net/index.php/api/common/setUserAddress";
 
 //首页轮播导航接口
-static NSString *const HomeNavBanner                            = @"api/index/navBanner";
+static NSString *const HomeNavBanner                            = @"ceshi-ucenter.hfgld.net/api/index/navBanner";
 //首页头条列表
-static NSString *const HomeNewsList                             = @"api/index/newsList";
+static NSString *const HomeNewsList                             = @"ceshi-ucenter.hfgld.net/api/index/newsList";
 //首页头条详情
-static NSString *const HomeNewsDetaile                          = @"api/index/getDetail";
+static NSString *const HomeNewsDetaile                          = @"ceshi-ucenter.hfgld.net/api/index/getDetail";
 
 /************************subUrl************************/
 

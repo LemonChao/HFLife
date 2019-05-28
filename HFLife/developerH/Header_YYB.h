@@ -38,57 +38,60 @@
 /************************subUrl************************/
 #define GP_BASEURL  @"http://test.hfgld.net"
 
-#pragma mark - 登录注册 ---------------------------
 static NSString *const yourTestUrl = @"w=index&t=index";
+
+#pragma mark - 登录注册 ---------------------------
+//@"ceshi-ucenter.hfgld.net/";登录个人中心域名
 
 
 /** 上传头像 */
-static NSString *const kUploadFiles = @"api/upload/uploadFiles";
+static NSString *const kUploadFiles = @"ceshi-ucenter.hfgld.net/api/upload/uploadFiles";
 /** 手机注册 */
-static NSString *const kRegisterMobile = @"api/member/registerMobile";
+static NSString *const kRegisterMobile = @"ceshi-ucenter.hfgld.net/api/member/registerMobile";
 
 /** 手机登录 */
-static NSString *const kMobileLogin = @"api/member/mobileLogin";
+static NSString *const kMobileLogin = @"ceshi-ucenter.hfgld.net/api/member/mobileLogin";
 /** 微信登录 */
-static NSString *const kWXLogin = @"api/member/wxLogin";
+static NSString *const kWXLogin = @"ceshi-ucenter.hfgld.net/api/member/wxLogin";
 /** 微信绑定手机号 */
-static NSString *const kWxBindmobile =@"api/member/wxBindmobile";
+static NSString *const kWxBindmobile =@"ceshi-ucenter.hfgld.net/api/member/wxBindmobile";
 /** 注销登录 */
-static NSString *const kLogout = @"api/member/logout";
+static NSString *const kLogout = @"ceshi-ucenter.hfgld.net/api/member/logout";
 /** 发送验证码 */
-static NSString *const kSendsms = @"api/sms/send";
+static NSString *const kSendsms = @"ceshi-ucenter.hfgld.net/api/sms/send";
 /** 检查手机号 */
-static NSString *const kCheckMobile = @"api/member/checkMobile";
+static NSString *const kCheckMobile = @"ceshi-ucenter.hfgld.net/api/member/checkMobile";
 /** 检测邀请码 */
-static NSString *const kCheckInviteCode = @"api/member/checkInviteCode";
+static NSString *const kCheckInviteCode = @"ceshi-ucenter.hfgld.net/api/member/checkInviteCode";
 /** 获取个人基础资料 */
-static NSString *const kMemberBaseInfo = @"api/member/memberBaseInfo";
+static NSString *const kMemberBaseInfo = @"ceshi-ucenter.hfgld.net/api/member/memberBaseInfo";
 /** 获取个人资料 修改基础资料接口 //修改基础资料会重新生成token 前端需要替换*/
-static NSString *const kSaveMemberBase = @"api/member/saveMemberBase";
+static NSString *const kSaveMemberBase = @"ceshi-ucenter.hfgld.net/api/member/saveMemberBase";
 /** 获取个人详细资料 */
-static NSString *const kMemberInfo = @"api/member/memberInfo";
+static NSString *const kMemberInfo = @"ceshi-ucenter.hfgld.net/api/member/memberInfo";
 
 /** 验证当前手机号 */
-static NSString *const kCheckMobile_security = @"api/member_security/checkMobile";
+static NSString *const kCheckMobile_security = @"ceshi-ucenter.hfgld.net/api/member_security/checkMobile";
 /** 验证当前手机号 */
-static NSString *const kChangemobile = @"api/member_security/changemobile";
+static NSString *const kChangemobile = @"ceshi-ucenter.hfgld.net/api/member_security/changemobile";
 /** 解绑微信 */
-static NSString *const kMobileRemoveWx = @"api/member_security/mobileRemoveWx";
+static NSString *const kMobileRemoveWx = @"ceshi-ucenter.hfgld.net/api/member_security/mobileRemoveWx";
 /** 绑定微信 */
-static NSString *const kMobileBindWx = @"api/member_security/mobileBindWx";
+static NSString *const kMobileBindWx = @"ceshi-ucenter.hfgld.net/api/member_security/mobileBindWx";
 /** 注销协议 */
-static NSString *const kGetCloseAgreement = @"api/system/getCloseAgreement";
+static NSString *const kGetCloseAgreement = @"ceshi-ucenter.hfgld.net/api/system/getCloseAgreement";
 /** 注销 */
-static NSString *const kCloseAccount = @"api/member_security/closeAccount";
+static NSString *const kCloseAccount = @"ceshi-ucenter.hfgld.net/api/member_security/closeAccount";
 /** 设置交易密码 */
-static NSString *const kSetPayPassword = @"api/member_security/setPayPassword";
+static NSString *const kSetPayPassword = @"ceshi-ucenter.hfgld.net/api/member_security/setPayPassword";
 
 #pragma mark - 本地生活 ---------------------------
+//ceshi-life.hfgld.net/本地域名
 
 /** 首页快捷入口及banner等接口 */
-static NSString *const kNearLife = @"index.php/api/index/index";
+static NSString *const kNearLife = @"ceshi-life.hfgld.net/index.php/api/index/index";
 /** 首页猜你喜欢接口（未完）*/
-static NSString *const kGetIndexRecommendList = @"index.php/api/index/getIndexRecommendList";
+static NSString *const kGetIndexRecommendList = @"ceshi-life.hfgld.net/index.php/api/index/getIndexRecommendList";
 
 
 

@@ -32,6 +32,7 @@
 
 //cell类型
 @property (nonatomic, assign)itemType cellType;
+@property (nonatomic, strong)UIButton *goBuyBtn;//购买按钮
 @end
 
 
@@ -63,7 +64,7 @@
     
     
     [self.contentView addSubview:self.bgView];
-    [self.bgView addSubview:self.colorsView];
+    
     
     self.titleLb = [UILabel new];
     self.inviteesNumberLb = [UILabel new];
@@ -72,13 +73,15 @@
     self.rightIncoderImgV = [UIImageView new];
     self.rightIncoderImgV.tintColor = [UIColor whiteColor];
     self.rightIncoderImgV.image = [UIImage imageNamed:@"homePage更多"];
+    self.goBuyBtn = [UIButton new];
     
     [self.bgView addSubview:self.titleLb];
     [self.bgView addSubview:self.inviteesNumberLb];
     [self.bgView addSubview:self.subTitleLb];
     [self.bgView addSubview:self.inviteeButton];
     [self.bgView addSubview:self.rightIncoderImgV];
-    
+    [self.bgView addSubview:self.colorsView];
+    [self.bgView addSubview:self.goBuyBtn];
     
     
     self.titleLb.font = FONT(ScreenScale(13));
@@ -93,6 +96,10 @@
     self.inviteeButton.titleLabel.font = FONT(ScreenScale(14));
     [self.inviteeButton setTitleColor:HEX_COLOR(0x3E874F) forState:UIControlStateNormal];
     [self.inviteeButton addTarget:self action:@selector(inviteeButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.goBuyBtn.setTitle(@"购买", UIControlStateNormal).setTitleFontSize(14).setTitleColor([UIColor whiteColor], UIControlStateNormal);
+    
+    
     self.inviteeButton.backgroundColor = [UIColor whiteColor];
     self.titleLb.text = @"汉富新生活 | 邀请有礼";
     self.inviteesNumberLb.text = @"已邀请88位好友";
@@ -102,6 +109,27 @@
 
 - (void)setDataForCell:(homeListModel *)model{
 //    self.titleLb.text = [NSString stringWithFormat:@"%@ | 邀请有礼"];
+    
+    if (self.cellType == itemType_first) {
+        
+        [self.goBuyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.mas_equalTo(self.titleLb.mas_leading);
+            make.top.mas_equalTo(self.subTitleLb.mas_bottom).offset(ScreenScale(22));
+            make.height.mas_equalTo(ScreenScale(27));
+            make.width.mas_equalTo(ScreenScale(65));
+        }];
+        
+        
+        [self.inviteeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.goBuyBtn.mas_right);
+            make.top.mas_equalTo(self.subTitleLb.mas_bottom).offset(ScreenScale(22));
+            make.height.mas_equalTo(ScreenScale(27));
+            make.width.mas_equalTo(self.goBuyBtn.mas_width);
+        }];
+    }
+    
+    
+    
 }
 
 
@@ -155,6 +183,11 @@
         make.width.mas_equalTo(ScreenScale(7));
         make.centerY.mas_equalTo(self.titleLb.mas_centerY);
     }];
+    
+    if (self.cellType == itemType_first) {
+        
+    }
+    
     
     [self layoutIfNeeded];
     self.inviteeButton.layer.cornerRadius = self.inviteeButton.bounds.size.height * 0.5;
