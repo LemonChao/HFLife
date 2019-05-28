@@ -39,7 +39,7 @@
         @weakify(self);
         _shopLoadMoreCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(NSString *_Nullable page) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartTui_Goods withParameters:@{@"page":page,@"page_all":@"0"} withResultBlock:^(BOOL result, id value) {
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:shopHomeTui_Goods withParameters:@{@"page":page,@"page_all":@"0"} withResultBlock:^(BOOL result, id value) {
                     @strongify(self);
                     NSMutableArray *originArray = [NSMutableArray arrayWithArray:self.dataArray[1]];
                     if (result){
@@ -70,7 +70,7 @@
 - (RACSignal *)exclusizeSignal {
     RACSignal *exclusiveSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartTui_Goods withParameters:@{@"page":@"1",@"page_all":@"0"} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:shopHomeTui_Goods withParameters:@{@"page":@"1",@"page_all":@"0"} withResultBlock:^(BOOL result, id value) {
             NSArray *section1;
             if (result){
                 section1 = [NSArray yy_modelArrayWithClass:[ZCExclusiveRecommendModel class] json:value[@"data"]];
@@ -91,7 +91,7 @@
     @weakify(self);
     return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartHome withParameters:@{} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:shopHomeIndex withParameters:@{} withResultBlock:^(BOOL result, id value) {
             @strongify(self);
             if (result){
                 

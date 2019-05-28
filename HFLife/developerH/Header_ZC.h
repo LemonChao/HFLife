@@ -21,8 +21,6 @@
 
 
 
-/************************subUrl************************/
-static NSString *const zcTestUrl = @"w=index&t=index";
 
 /************************subUrl************************/
 
@@ -30,13 +28,19 @@ static NSString *const zcTestUrl = @"w=index&t=index";
 
 #define shopUrl(subUrl)    [NSString stringWithFormat:@"%@api/mobile/index.php?%@",shopHost,subUrl]
 
+// 商城-首页-专属推荐
+#define shopHomeTui_Goods   shopUrl(@"w=index&t=get_tui_goods")
+
+// 商城-首页-剩余数据(除去猜你喜欢)
+#define shopHomeIndex        shopUrl(@"w=index&t=index")
+
+// 商城-分类-分类列表
+#define shopClassifyIndex    shopUrl(@"w=goods_class&t=fenlei")
+
+// 商城-购物车-猜你喜欢
+#define shopCartGussLike    shopUrl(@"w=member_cart&t=guess_like")
+
+// 商城-购物车-购物车列表
 #define shopCartList        shopUrl(@"w=member_cart&t=cart_list")
 
-#define shopCartTui_Goods   shopUrl(@"w=index&t=get_tui_goods")
-
-#define shopCartHome        shopUrl(@"w=index&t=index")
-
-#define shopCartClassify    shopUrl(@"w=goods_class&t=fenlei")
-
-#define shopCartGussLike    shopUrl(@"w=member_cart&t=guess_like")
 #endif /* Header_ZC_h */
