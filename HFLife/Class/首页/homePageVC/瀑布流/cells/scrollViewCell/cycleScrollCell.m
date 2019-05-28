@@ -38,7 +38,7 @@
     
     NSMutableArray *arrM = [NSMutableArray array];
     for (homeListModel *model in modelArr) {
-        [arrM addObject:URL_IMAGE(model.image)];
+        [arrM addObject:model.image ? model.image : @"http://www.com"];
     }
     self.cycleScroll.imageURLStringsGroup = arrM;
     [self addPageControl];

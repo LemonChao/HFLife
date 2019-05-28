@@ -11,7 +11,7 @@
 
 @interface SXF_HF_payStepTowCel ()
 
-@property (nonatomic, strong)UIImageView *selectedImgeV;
+
 
 @end
 

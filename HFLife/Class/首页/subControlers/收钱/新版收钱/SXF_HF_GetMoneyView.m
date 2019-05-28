@@ -11,10 +11,12 @@
 #import "SXF_HF_getMoneyTabHeaderView.h"
 #import "SXF_HF_getMoneyCellTableViewCell.h"
 #import "SXF_HF_saveCodeView.h"
+#import "SXF_HF_payMoneyTabHeader.h"
 @interface SXF_HF_GetMoneyView ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong)UIView *headerView;
-@property (nonatomic, strong)SXF_HF_getMoneyTabHeaderView *tableHeader;
+@property (nonatomic, strong)SXF_HF_getMoneyTabHeaderView *getMoneyHeader;
+@property (nonatomic, strong)SXF_HF_payMoneyTabHeader *payMoneyHeader;
 
 @property (nonatomic, strong)UITableView *tableView;
 
@@ -51,7 +53,11 @@
     
     _titleArr = @[@"收款记录",@"",@"商家入驻"];
     _imageArr = @[@"记录",@"",@"入驻 (1)"];
-    self.tableHeader = [[SXF_HF_getMoneyTabHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 432)];
+    self.getMoneyHeader = [[SXF_HF_getMoneyTabHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 432)];
+    self.payMoneyHeader = [[SXF_HF_payMoneyTabHeader alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, ScreenScale(410))];
+    
+    
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.bounds];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -59,30 +65,53 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([SXF_HF_getMoneyCellTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([SXF_HF_getMoneyCellTableViewCell class])];
     self.tableView.tableFooterView = [UIView new];
     [self addSubview:self.tableView];
-    self.tableView.tableHeaderView = self.tableHeader;
+    
     self.tableView.bounces = NO;
     self.tableView.backgroundColor = HEX_COLOR(0xCA1400);
     WEAK(weakSelf);
-    self.tableHeader.clickHeaderBtn = ^(NSInteger tag) {
+    
+    self.getMoneyHeader.clickHeaderBtn = ^(NSInteger tag) {
         if (tag == 1) {
             [weakSelf loadImageFinished:weakSelf.saveCodeView];
             return ;
         }
         !weakSelf.tabBtnCallback ? : weakSelf.tabBtnCallback(tag);
     };
+    
+    self.payMoneyHeader.barCodeClick = ^(UIImage * _Nonnull image) {
+        !weakSelf.clickBarCodeImageV ? : weakSelf.clickBarCodeImageV(image);
+    };
     //需要保存的view
     self.saveCodeView = [[SXF_HF_saveCodeView alloc] initWithFrame:self.bounds];
     [self insertSubview:self.saveCodeView atIndex:0];
+    
+    
+    
 }
-
+- (void)setPayType:(BOOL)payType{
+    _payType = payType;
+    if (payType) {
+        //收款
+        self.tableView.tableHeaderView = self.getMoneyHeader;
+    }else{
+        //向商家付款
+        self.tableView.tableHeaderView = self.payMoneyHeader;
+    }
+    [self.tableView reloadData];
+}
 - (void)setDataForView:(id)code type:(BOOL)isCustom{
-    [self.tableHeader setDataForView:code];
+    [self.getMoneyHeader setDataForView:code];
+    [self.payMoneyHeader setDataForView:code];
     if (!isCustom) {
         [self.saveCodeView setDataForView:code];
     }
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
+    if (!self.payType) {
+        //付款
+        return 2;
+    }
     return 3;
 }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -90,14 +119,26 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SXF_HF_getMoneyCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SXF_HF_getMoneyCellTableViewCell class]) forIndexPath:indexPath];
-    if (indexPath.section == 1) {
-        cell.cellType = NO;
-        cell.userNameLb.text = [userInfoModel sharedUser].nickname;
-        [cell.userHeaderImageV sd_setImageWithURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar) placeholderImage:MY_IMAHE(@"user__easyico")];
-    }else{
+    if (!self.payType) {
+        //付款
         cell.cellType = YES;
-        cell.titleLb.text = _titleArr[indexPath.section];
-        cell.titltImageV.image = MY_IMAHE(_imageArr[indexPath.section]);
+        if (indexPath.section == 0) {
+            cell.titleLb.text = @"余额支付";
+            cell.titltImageV.image = MY_IMAHE(@"余额");
+        }else{
+            cell.titleLb.text = @"付款记录";
+            cell.titltImageV.image = MY_IMAHE(@"记录");
+        }
+    }else{
+        if (indexPath.section == 1) {
+            cell.cellType = NO;
+            cell.userNameLb.text = [userInfoModel sharedUser].nickname;
+            [cell.userHeaderImageV sd_setImageWithURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar) placeholderImage:MY_IMAHE(@"user__easyico")];
+        }else{
+            cell.cellType = YES;
+            cell.titleLb.text = _titleArr[indexPath.section];
+            cell.titltImageV.image = MY_IMAHE(_imageArr[indexPath.section]);
+        }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -116,8 +157,11 @@
     return [UIView new];
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section == 1){
-        return 1.0f;
+    if (self.payType) {
+        //收钱使用
+        if(section == 1){
+            return 1.0f;
+        }
     }
     return 10.0f;
 }

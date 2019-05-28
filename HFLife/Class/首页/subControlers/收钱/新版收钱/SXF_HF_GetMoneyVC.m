@@ -11,6 +11,9 @@
 #import "SXF_HF_GetMoneyView.h"
 #import "receiptRecordListVC.h"
 #import "SetAmountVC.h"
+#import "BarCodeView.h"
+#import "SXF_HF_payStepAleryView.h"
+#import "SXF_HF_payMoneyPawordVC.h"
 @interface SXF_HF_GetMoneyVC ()<SetAmountDelegate>
 @property (nonatomic, strong)SXF_HF_GetMoneyView *getMoneyView;
 @end
@@ -19,7 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.customNavBar.title = @"收钱";
+    
+    self.customNavBar.title = self.payType ? @"收钱" : @"向商家付款";
     [self setUpUI];
     
     [self loadServerData];
@@ -50,29 +54,68 @@
 - (void)setUpUI{
     self.getMoneyView  = [[SXF_HF_GetMoneyView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
     [self.view addSubview:self.getMoneyView];
+    self.getMoneyView.payType = self.payType;
     WEAK(weakSelf);
     self.getMoneyView.tabBtnCallback = ^(NSInteger index) {
         NSLog(@"%ld", index);
         
-        BaseViewController *vc = [BaseViewController new];
-        if (index == 0) {
-            //设置金额
-            SetAmountVC *setAmVC = [SetAmountVC new];
-            vc = setAmVC;
-            setAmVC.amountDelegate = self;
-        }else if (index == 2){
-            //收款记录
-            vc = [[receiptRecordListVC alloc] init];
-        }else if (index == 3){
-            //正在付款z。。。。
-        }else if (index == 4){
-            //商家入驻
-        }
+        __block BaseViewController *vc ;
         
-        [weakSelf.navigationController pushViewController:vc animated:YES];
-
+        if (!weakSelf.payType) {
+            //向商家付钱
+            if (index == 2) {
+                //余额支付
+                SXF_HF_payStepAleryView *payAlert = [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
+                    
+                } password:^(NSString * _Nonnull pwd) {
+                    
+                }];
+                payAlert.payStepCallback = ^(NSIndexPath * _Nonnull indexP) {
+                    //第几步
+                    
+                    NSLog(@"选择s的是%ld", (long)indexP.row);
+                    
+                    //test 密码也
+                    SXF_HF_payMoneyPawordVC *pswVC = [SXF_HF_payMoneyPawordVC new];
+                    [weakSelf.navigationController pushViewController:pswVC animated:YES];
+                    
+                };
+                payAlert.payStep = 1;
+            }else if (index == 3){
+                //付款记录
+                receiptRecordListVC *recordVC = [[receiptRecordListVC alloc] init];
+                recordVC.payType = NO;
+                vc = recordVC;
+            }else{
+                
+            }
+        }else{
+            if (index == 0) {
+                //设置金额
+                SetAmountVC *setAmVC = [SetAmountVC new];
+                vc = setAmVC;
+                setAmVC.amountDelegate = weakSelf;
+            }else if (index == 2){
+                //收款记录
+                receiptRecordListVC *recordVC = [[receiptRecordListVC alloc] init];
+                recordVC.payType = YES;
+                vc = recordVC;
+            }else if (index == 3){
+                //正在付款z。。。。
+            }else if (index == 4){
+                //商家入驻
+            }
+        }
+        if (vc) {
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
     };
     
+    //点击条形码 旋转
+    self.getMoneyView.clickBarCodeImageV = ^(UIImage * _Nonnull image) {
+        BarCodeView *codeview =[[BarCodeView alloc]initImage:image];
+        [weakSelf.view addSubview:codeview];
+    };
     
     
     [self.customNavBar wr_setRightButtonWithImage:MY_IMAHE(@"更多")];

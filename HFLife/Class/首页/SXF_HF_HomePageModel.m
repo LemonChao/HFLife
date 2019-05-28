@@ -14,7 +14,8 @@
 
 @implementation homeListModel
 @end
-
+@implementation homeActivityModel
+@end
 
 @implementation incomeRecord
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{

@@ -53,7 +53,7 @@
     return self;
 }
 - (void)setDataForView:(id)data{
-    self.qCodeImageV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@",data] size:self.qCodeImageV.bounds.size.width logoImage:[userInfoModel sharedUser].userHeaderImage ratio:0.3];
+    self.qCodeImageV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@",data] size:self.qCodeImageV.bounds.size.width logoImage:[userInfoModel sharedUser].userHeaderImage ratio:0.25];
 }
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     

@@ -11,8 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_GetMoneyView : UIView
+@property (nonatomic, assign)BOOL payType;//收款 、付款
 @property (nonatomic, strong)void(^tabBtnCallback)(NSInteger index);
-
+@property (nonatomic, strong)void (^clickBarCodeImageV)(UIImage *image);
 /**
  
 

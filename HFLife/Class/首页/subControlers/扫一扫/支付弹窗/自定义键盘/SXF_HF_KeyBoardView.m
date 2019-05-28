@@ -8,11 +8,9 @@
 
 #import "SXF_HF_KeyBoardView.h"
 #import "SXF_HF_Password.h"
-#import "APNumberPad.h"
-@interface SXF_HF_KeyBoardView()<APNumberPadDelegate>
+@interface SXF_HF_KeyBoardView()
 
 @property (nonatomic, strong)SXF_HF_Password *passwordInputView;
-//@property (nonatomic, strong)APNumberPad *pad;
 @end
 
 

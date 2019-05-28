@@ -127,7 +127,7 @@
     self.countView.textColor = HEX_COLOR(0xCA1400);
     self.countView.width = ScreenScale(13);
     self.countView.height = ScreenScale(13);
-    self.countView.minLength = 3;
+    self.countView.minLength = 10;
     self.countView.itemBoardColor = [UIColor redColor];
     self.countView.itemBgColor = [UIColor whiteColor];
     
@@ -200,8 +200,8 @@
     
     self.myMoneyLb.text = @"34545.7989789";
     //赋值并执行动画
-    self.countView.integerNumber = 32434;
-    self.fqNUmView.number = 32434.02432434;
+    self.countView.integerNumber = 56757434;
+    self.fqNUmView.number = 3243543434.02432434;
     [self.countView startAnimation];
     
 }

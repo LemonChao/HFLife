@@ -34,7 +34,7 @@
 @property (nonatomic, strong)UIImageView *rightImageV;
 @property (nonatomic, strong)UIButton *goStep2Btn;
 @property (nonatomic, strong)void(^clickStepOneBtnCallback)(NSInteger tag);
-
+@property (nonatomic, assign)NSInteger selectedIndex;
 
 
 @property (nonatomic, strong)UIView *stepTwoView;//子控件2
@@ -216,13 +216,21 @@
     cell.typeNameLb.text = _titleArr[indexPath.row];
     cell.subLb.text = _subTitle[indexPath.row];
     cell.headerImageV.image = MY_IMAHE(_imageArr[indexPath.row]);
-    
+    if (self.selectedIndex == indexPath.row) {
+        cell.selectedImgeV.hidden = NO;
+    }else{
+        cell.selectedImgeV.hidden = YES;
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    self.selectedIndex = indexPath.row;
+    [self.stepTowTableView reloadData];
+    
     !self.clickStepTowCellCallback ? : self.clickStepTowCellCallback(indexPath);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -432,7 +440,11 @@
                     [UIView animateWithDuration:0.2 animations:^{
                         weakAlert.stepThreeView.frame = CGRectMake(weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.origin.y, weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.size.height);
                     } completion:^(BOOL finished) {
-                        weakAlert.step = 1;
+                        if (weakAlert.payStep == 1) {
+                            weakAlert.step = 0;
+                        }else{
+                            weakAlert.step = 1;
+                        }
                     }];
                 }
                     break;
@@ -458,7 +470,7 @@
     alertView.clickStepOneBtnCallback = ^(NSInteger tag) {
         if (tag == 0) {
             //stepTow
-            NSLog(@"step2");
+//            NSLog(@"step2");
             weakAlert.step = 1;
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [UIView animateWithDuration:0.2 animations:^{
@@ -466,7 +478,7 @@
                 }];
             }];
         }else{
-            NSLog(@"立即付款");
+//            NSLog(@"立即付款");
             //跳转到支付密码页面
             weakAlert.passwordInputView.editingEable = YES;//调起支付密码框
             [UIView animateWithDuration:0.2 animations:^{
@@ -479,19 +491,39 @@
     };
     
     alertView.clickStepTowCellCallback = ^(NSIndexPath *indexPath) {
-        weakAlert.step = 2;
-        weakAlert.passwordInputView.editingEable = YES;
+        
+        if (weakAlert.payStep != 1) {
+            weakAlert.passwordInputView.editingEable = YES;
+            weakAlert.step = 2;
+        }else{
+            weakAlert.step = 0;
+        }
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [UIView animateWithDuration:0.2 animations:^{
-                NSLog(@"step3");
-                weakAlert.stepThreeView.frame = weakAlert.stepOneView.frame;
+//                NSLog(@"step3");
+                if (weakAlert.payStep == 1) {
+                    //返回按钮
+//                    [weakAlert clickCancleBtn];
+                    !weakAlert.payStepCallback ? : weakAlert.payStepCallback(indexPath);
+                }else{
+                    weakAlert.stepThreeView.frame = weakAlert.stepOneView.frame;;
+                }
             }];
         }];
     };
-    
+
     return alertView;
     
 }
+
+
+
+- (void)setPayStep:(NSInteger)payStep{
+    _payStep = payStep;
+    self.clickStepOneBtnCallback(payStep - 1);
+    self.step = 0;
+}
+
 - (void)setEditingEable:(BOOL)editingEable{
     _editingEable = editingEable;
     self.passwordInputView.editingEable = editingEable;

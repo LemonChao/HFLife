@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *payNameLb;
 @property (weak, nonatomic) IBOutlet UILabel *payMoneyLb2;
 @property (weak, nonatomic) IBOutlet UILabel *payStatusLb;
+@property (weak, nonatomic) IBOutlet UIView *payFailerView;
 
 @end
 

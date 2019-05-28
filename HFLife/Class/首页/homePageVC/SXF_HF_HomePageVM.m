@@ -82,7 +82,7 @@
                     [dataSourceDicM setValue:bannerListArr forKey:@"banner"];
                 }
                 if ([dict objectForKey:@"activity"] && [[dict objectForKey:@"activity"] isKindOfClass:[NSArray class]]) {
-                    NSArray *activityListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"activity"] withClass:[homeListModel class]];
+                    NSArray *activityListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"activity"] withClass:[homeActivityModel class]];
                     [dataSourceDicM setValue:activityListArr forKey:@"activity"];
                 }
                 self.homePageListDic = dataSourceDicM;
@@ -146,9 +146,13 @@
             }
             
         }else if (index == 1){
-            vc = [PaymentVC new];//付款
+            SXF_HF_GetMoneyVC *payVC = [SXF_HF_GetMoneyVC new];//付款
+            payVC.payType = NO;
+            vc = payVC;
         }else if (index == 2){
-            vc = [SXF_HF_GetMoneyVC new];//收款
+            SXF_HF_GetMoneyVC *getVC = [SXF_HF_GetMoneyVC new];//收款
+            getVC.payType = YES;
+            vc = getVC;
         }else if (index == 3){
             vc = [SXF_HP_cardPacketVC new];//卡包
         }else if (index == 4){

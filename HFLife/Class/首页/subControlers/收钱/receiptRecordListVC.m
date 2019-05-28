@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavBar];
-    self.customNavBar.title = @"收款记录";
+    self.customNavBar.title = self.payType ? @"收款记录" : @"付款记录";
     self.listView = [[receiptRecordListView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
     
     [self.view addSubview:self.listView];

@@ -20,7 +20,8 @@ typedef enum : NSUInteger {
     itemType_five,
 } itemType;
 @interface SXF_HF_RecommentCollectionCell : UICollectionViewCell
-- (void)setDataForCell:(homeListModel *)model;
+- (void)setDataForCell:(homeActivityModel *)model;
+@property (nonatomic, assign)itemType cellType;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -30,9 +30,12 @@
 @property (nonatomic, strong) UIButton *inviteeButton;
 @property (nonatomic, strong) UIImageView *rightIncoderImgV;
 
+
+@property (nonatomic, strong)UIImageView *bgImageV;
 //cell类型
-@property (nonatomic, assign)itemType cellType;
+
 @property (nonatomic, strong)UIButton *goBuyBtn;//购买按钮
+@property (nonatomic, strong)UIImageView *leftImageV;
 @end
 
 
@@ -74,14 +77,18 @@
     self.rightIncoderImgV.tintColor = [UIColor whiteColor];
     self.rightIncoderImgV.image = [UIImage imageNamed:@"homePage更多"];
     self.goBuyBtn = [UIButton new];
-    
+    self.bgImageV = [UIImageView new];
+    self.leftImageV = [UIImageView new];
+    [self.bgView addSubview:self.bgImageV];
+    [self.bgView addSubview:self.colorsView];
+    [self.bgView addSubview:self.leftImageV];
     [self.bgView addSubview:self.titleLb];
     [self.bgView addSubview:self.inviteesNumberLb];
     [self.bgView addSubview:self.subTitleLb];
     [self.bgView addSubview:self.inviteeButton];
     [self.bgView addSubview:self.rightIncoderImgV];
-    [self.bgView addSubview:self.colorsView];
     [self.bgView addSubview:self.goBuyBtn];
+    
     
     
     self.titleLb.font = FONT(ScreenScale(13));
@@ -100,17 +107,40 @@
     self.goBuyBtn.setTitle(@"购买", UIControlStateNormal).setTitleFontSize(14).setTitleColor([UIColor whiteColor], UIControlStateNormal);
     
     
-    self.inviteeButton.backgroundColor = [UIColor whiteColor];
+    self.inviteeButton.backgroundColor = [UIColor clearColor];
     self.titleLb.text = @"汉富新生活 | 邀请有礼";
     self.inviteesNumberLb.text = @"已邀请88位好友";
     self.subTitleLb.text = @"收益奖励可兑富权";
     
 }
 
-- (void)setDataForCell:(homeListModel *)model{
+- (void)setDataForCell:(homeActivityModel *)model{
 //    self.titleLb.text = [NSString stringWithFormat:@"%@ | 邀请有礼"];
-    
-    if (self.cellType == itemType_first) {
+    if ([model.type integerValue] == 1) {
+        self.cellType = itemType_first;
+        
+        [self.inviteeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.leading.mas_equalTo(self.titleLb.mas_leading);
+            make.top.mas_equalTo(self.subTitleLb.mas_bottom).offset(ScreenScale(22));
+            make.height.mas_equalTo(ScreenScale(27));
+            make.width.mas_equalTo(ScreenScale(115));
+        }];
+        //
+        [self.inviteeButton setTitle:model.btn_msg forState:UIControlStateNormal];
+        [self.inviteeButton sd_setBackgroundImageWithURL:MY_URL_IMG(model.btn_image) forState:UIControlStateNormal];
+        
+        
+        
+    }else{
+        self.cellType = itemType_two;
+        
+        [self.goBuyBtn sd_setBackgroundImageWithURL:MY_URL_IMG(model.left_image) forState:UIControlStateNormal];
+        [self.inviteeButton sd_setBackgroundImageWithURL:MY_URL_IMG(model.right_image) forState:UIControlStateNormal];
+        
+        [self.goBuyBtn setTitle:model.left_msg forState:UIControlStateNormal];
+        [self.inviteeButton setTitle:model.right_msg forState:UIControlStateNormal];
+        
+        
         
         [self.goBuyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.mas_equalTo(self.titleLb.mas_leading);
@@ -118,18 +148,24 @@
             make.height.mas_equalTo(ScreenScale(27));
             make.width.mas_equalTo(ScreenScale(65));
         }];
-        
-        
-        [self.inviteeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        [self.inviteeButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.goBuyBtn.mas_right);
             make.top.mas_equalTo(self.subTitleLb.mas_bottom).offset(ScreenScale(22));
             make.height.mas_equalTo(ScreenScale(27));
             make.width.mas_equalTo(self.goBuyBtn.mas_width);
         }];
+        
+        
     }
     
-    
-    
+    [self.bgImageV sd_setImageWithURL:MY_URL_IMG(model.body_image)];
+    self.titleLb.text = model.title_msg;
+    self.inviteesNumberLb.text = model.body_msg;
+    self.subTitleLb.text = model.foot_msg;
+    self.titleLb.textColor = self.inviteesNumberLb.textColor = self.subTitleLb.textColor = [UIColor colorWithHexString:model.body_color];
+    [self.inviteeButton setTitleColor:[UIColor colorWithHexString:model.btn_color] forState:UIControlStateNormal];
+   
+//    [self.colorsView changeBgView:@[HEX_COLOR(0x54B56B), HEX_COLOR(0xA7FABA)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
 }
 
 
@@ -147,10 +183,19 @@
         make.bottom.right.mas_equalTo(self.contentView).offset(ScreenScale(-4));
     }];
     
+    [self.bgImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.left.bottom.top.mas_equalTo(self.bgView);
+    }];
+    
     [self.colorsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.mas_equalTo(self.bgView);
     }];
-    
+    [self.leftImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.bgView.mas_right).offset(-ScreenScale(7));
+        make.bottom.mas_equalTo(self.bgView.mas_bottom).offset(ScreenScale(-20));
+        make.width.mas_equalTo(ScreenScale(119));
+        make.height.mas_equalTo(ScreenScale(115));
+    }];
     
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.bgView.mas_top).offset(ScreenScale(26));
@@ -170,12 +215,6 @@
         make.height.mas_equalTo(ScreenScale(11));
     }];
     
-    [self.inviteeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.mas_equalTo(self.titleLb.mas_leading);
-        make.top.mas_equalTo(self.subTitleLb.mas_bottom).offset(ScreenScale(22));
-        make.height.mas_equalTo(ScreenScale(27));
-        make.width.mas_equalTo(ScreenScale(115));
-    }];
     
     [self.rightIncoderImgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bgView.mas_right).offset(-ScreenScale(13));
@@ -185,15 +224,17 @@
     }];
     
     
+    
+    
     [self layoutIfNeeded];
-    self.inviteeButton.layer.cornerRadius = self.inviteeButton.bounds.size.height * 0.5;
-    self.inviteeButton.layer.masksToBounds = YES;
+//    self.inviteeButton.layer.cornerRadius = self.inviteeButton.bounds.size.height * 0.5;
+//    self.inviteeButton.layer.masksToBounds = YES;
     
     self.bgView.layer.cornerRadius = 8;
     self.bgView.layer.masksToBounds = YES;
     self.bgView.clipsToBounds = YES;
     
-    [self.colorsView changeBgView:@[HEX_COLOR(0x54B56B), HEX_COLOR(0xA7FABA)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
+    
     
     self.colorsView.layer.cornerRadius = 8;
     self.colorsView.layer.masksToBounds = YES;

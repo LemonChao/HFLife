@@ -42,7 +42,7 @@
 }
 
 - (void)setDataForView:(id )code{
-    self.codeImageV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@", code] size:self.codeImageV.bounds.size.width logoImage:[userInfoModel sharedUser].userHeaderImage ratio:0.3];
+    self.codeImageV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@", code] size:self.codeImageV.bounds.size.width logoImage:[userInfoModel sharedUser].userHeaderImage ratio:0.25];
 }
 
 
