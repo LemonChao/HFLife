@@ -324,7 +324,7 @@
                         [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
                         NSLog(@"%@", [USERDEFAULT valueForKey:LOGIN_STATES]);
                         [LoginVC changeIndxHome];
-                        [self dismissViewControllerAnimated:NO completion:nil];
+                        [self dismissViewControllerAnimated:YES completion:nil];
                     }else {
                         [WXZTipView showCenterWithText:@"未请求到token"];
                     }

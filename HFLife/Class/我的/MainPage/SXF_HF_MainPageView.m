@@ -53,9 +53,6 @@
     [super layoutSubviews];
 }
 
-- (void)reSetHeadData {
-    [self.headerView reSetData];
-}
 //设置数据
 - (void)setMemberInfoModel:(userInfoModel *)memberInfoModel {
     _memberInfoModel = memberInfoModel;

@@ -42,7 +42,7 @@
     [super viewWillAppear:animated];
     userInfoModel *user = [userInfoModel sharedUser];
     if(user.id && user.id > 0) {
-        [self.mainPageView reSetHeadData];
+        self.mainPageView.memberInfoModel = [userInfoModel sharedUser];
     }else {
         [self loadData];
     }
@@ -207,6 +207,7 @@
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                         [userInfoModel sharedUser].userHeaderImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar)]];
                     }];
+                    //刷新界面
                     self.mainPageView.memberInfoModel = [userInfoModel sharedUser];
                 }else {
                     [WXZTipView showCenterWithText:@"个人信息获取错误"];

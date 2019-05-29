@@ -12,7 +12,7 @@
 
 @property(nonatomic, strong) UITableView *myTable;//
 @property(nonatomic, strong) NSMutableDictionary *accountDic;//账号字典
-@property(nonatomic, strong) NSArray *accountMobileArr;//账号
+@property(nonatomic, strong) NSMutableArray *accountMobileArr;//账号
 @end
 @implementation YYB_HF_changeAccountVC
 - (void)viewDidLoad {
@@ -22,7 +22,8 @@
     
     NSMutableDictionary *accountDic = [[NSUserDefaults standardUserDefaults]valueForKey:USERINFO_ACCOUNT];
     if (accountDic && [accountDic isKindOfClass:[NSMutableDictionary class]]) {
-        self.accountMobileArr = accountDic.allKeys;
+        self.accountMobileArr = [NSMutableArray arrayWithArray:accountDic.allKeys];
+        [self.accountMobileArr exchangeObjectAtIndex:0 withObjectAtIndex:[self.accountMobileArr indexOfObject:[userInfoModel sharedUser].member_mobile]];
         self.accountDic = [accountDic mutableCopy];
     }
     [self setupNavBar];
@@ -102,10 +103,10 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         NSDictionary *accountItem = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
-        [cell.headImageView sd_setImageWithURL:[accountItem valueForKey:@""] placeholderImage:image(@"")];
-        NSString *accountStr = [accountItem valueForKey:@""];
+        [cell.headImageView sd_setImageWithURL:[accountItem valueForKey:@"member_avatar"] placeholderImage:image(@"user__easyico")];
+        NSString *accountStr = [accountItem valueForKey:@"member_mobile"];
         cell.accountLabel.text = accountStr;
-        if ([accountStr isEqualToString:[userInfoModel sharedUser].member_mobile]) {
+        if (indexPath.row == 0) {
             [cell.cheackIcon setHidden:NO];
         }else {
             [cell.cheackIcon setHidden:YES];
@@ -135,8 +136,18 @@
         [LoginVC login];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }else {
-        [WXZTipView showCenterWithText:@"切换成功"];
-        
+       
+        if (indexPath.row != 0) {
+            [WXZTipView showCenterWithText:@"切换成功"];
+            NSDictionary *accountItemDic = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
+            [self.accountMobileArr exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
+            [self.myTable reloadData];
+            [userInfoModel attempDealloc];
+            NSString *token = [accountItemDic objectForKey:@"token"];
+            [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
+            [userInfoModel getUserInfo];
+
+        }
     }
 }
 

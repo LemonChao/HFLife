@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SXF_HF_MainPageView : UIView
 @property (nonatomic, strong)void(^selectedItemCallback)(NSIndexPath *indexPath);
 @property(nonatomic, strong) userInfoModel *memberInfoModel;
-- (void)reSetHeadData;
 @end
 
 NS_ASSUME_NONNULL_END
