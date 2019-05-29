@@ -187,7 +187,7 @@
             self.titleLb.attributedText = atrS;
             [self.titleLb setLabelWithLineSpace:ScreenScale(8)];
             
-            self.msgLb.text = [NSString stringWithFormat:@"解除关联后将无法使用%@进行快速登录",typeStr];
+            self.msgLb.text = [NSString stringWithFormat:@"三十天内只能解绑一次，解除关联后将无法使用%@进行快速登录",typeStr];
             [self.msgLb setLabelWithLineSpace:ScreenScale(8)];
             
             self.cancleBtn.setTitle(@"取消", UIControlStateNormal);

@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class EntranceDetail;
+
+/**
+ 附近生活商家、banner数据
+ */
 @interface YYB_HF_nearLifeModel : BaseModel
 //"city_now": "郑州",  //当前城市
 //"is_notice": 0,  //是否有消息提醒

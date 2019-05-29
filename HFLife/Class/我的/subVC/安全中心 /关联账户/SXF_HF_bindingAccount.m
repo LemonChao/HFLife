@@ -69,6 +69,7 @@
                            if (result) {
                                self.wechatStateLabel.text = @"已绑定";
                                [userInfoModel sharedUser].weixin_unionid = user.uid;
+                               NSLog(@"%@",user.uid);
                                SXF_HF_AlertView *alert =  [SXF_HF_AlertView showAlertType:(AlertType_exchnageSuccess) Complete:nil];
                                alert.title = @"绑定成功";
                                

@@ -72,7 +72,10 @@ static NSString *const LocationCityID       = @"locationCityID";
 static NSString *const USER_TOKEN           = @"userToken";
 //存储登录状态
 static NSString *const LOGIN_STATES         = @"loginStates";
-
+//存储用户字典信息
+static NSString *const USERINFO_DIC         = @"userInfoDic";
+//存储历史用户账号字典信息组
+static NSString *const USERINFO_ACCOUNT         = @"userInfoAccount";
 /**系统提示*/
 #define ServiceAlertMsg      [WXZTipView showCenterWithText:value[@"data"][@"msg"] ? value[@"data"][@"msg"] : @""]
 

@@ -52,6 +52,7 @@
             weakSelf.headView.setLocalStr = @"正在定位...";
         }
         weakSelf.headView.is_notice = nearModel.is_notice;
+        weakSelf.headView.setHeadImage = [userInfoModel sharedUser].userHeaderImage;
     };
     
     [self.view addSubview:self.myLocaVeiw];

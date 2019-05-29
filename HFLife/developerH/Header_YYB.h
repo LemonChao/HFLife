@@ -71,7 +71,6 @@ static NSString *const kMemberBaseInfo = @"ceshi-ucenter.hfgld.net/api/member/me
 static NSString *const kSaveMemberBase = @"ceshi-ucenter.hfgld.net/api/member/saveMemberBase";
 /** 获取个人详细资料 */
 static NSString *const kMemberInfo = @"ceshi-ucenter.hfgld.net/api/member/memberInfo";
-
 /** 验证当前手机号 */
 static NSString *const kCheckMobile_security = @"ceshi-ucenter.hfgld.net/api/member_security/checkMobile";
 /** 修改手机号 */
