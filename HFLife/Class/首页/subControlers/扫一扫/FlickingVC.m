@@ -13,6 +13,7 @@
 #import "TransferVC.h"
 #import "WKWebViewController.h"
 #import "SXF_HF_PayVC.h"//付款
+#import "SXF_HF_GetMoneyVC.h"//收款
 @interface FlickingVC () {
     SGQRCodeObtain *obtain;
 }
@@ -255,29 +256,39 @@
 -(void)decodingString:(NSString *)string{
     WS(weakSelf);
     
-    SXF_HF_PayVC *payVC = [SXF_HF_PayVC new];
-    //获取到对方的用户信息
-    payVC.payName = @"sxf";
-    payVC.payHeaderUrl = @"url";
-    [self.navigationController pushViewController:payVC animated:YES];
-    return;
+//    SXF_HF_PayVC *payVC = [SXF_HF_PayVC new];
+//    //获取到对方的用户信息
+//    payVC.payName = @"sxf";
+//    payVC.payHeaderUrl = @"url";
+//    [self.navigationController pushViewController:payVC animated:YES];
+//    return;
     
     //扫描到w二维码后 获取对方的用户信息用以显示
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"sub" withParameters:@{@"code_str":string} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:GetQrcodeInfo withParameters:@{@"code_str":string} withResultBlock:^(BOOL result, id value) {
         if (result && value) {
+            //二维码类型：0本站链接 1收款码 2付款码
             if (value[@"data"][@"type"]) {
                 NSString *type = [NSString stringWithFormat:@"%@", value[@"data"][@"type"]];
-                if ([type isEqualToString:@"2"]) {
-                    [WXZTipView showCenterWithText:@"内测中，敬请期待。。。"];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                }else if ([type isEqualToString:@"0"]) {
+                if ([type isEqualToString:@"0"]) {
                     //加载页面
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString judgeNullReturnString:string]]];
                     [weakSelf.navigationController popViewControllerAnimated:YES];
-                }else if([type isEqualToString:@"1"]){
-                    //付款页面
+                    
+                }else if ([type isEqualToString:@"1"]) {
+                    //扫描的是收款码信息 跳转到付款界面
                     SXF_HF_PayVC *payVC = [SXF_HF_PayVC new];
+                    //获取到对方的用户信息
+                    NSString *userName = value[@"data"][@"member_truename"];
+                    if (userName && userName.length > 0) {
+                        payVC.payName = [userName stringByReplacingCharactersInRange:NSMakeRange(userName.length - 1, 1) withString:@"*"];
+                    }
+                    NSString *headerUrl = value[@"data"][@"member_avatar"];
+                    payVC.payHeaderUrl = headerUrl;
+                    payVC.codeStr = string;
                     [weakSelf.navigationController pushViewController:payVC animated:YES];
+                    
+                }else if([type isEqualToString:@"2"]){
+                    
                 }
                 
             }

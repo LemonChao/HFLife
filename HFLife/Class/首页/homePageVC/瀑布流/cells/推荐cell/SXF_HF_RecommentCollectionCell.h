@@ -22,6 +22,8 @@ typedef enum : NSUInteger {
 @interface SXF_HF_RecommentCollectionCell : UICollectionViewCell
 - (void)setDataForCell:(homeActivityModel *)model;
 @property (nonatomic, assign)itemType cellType;
+
+@property (nonatomic, strong)void(^clickItemBtn)(NSString *url);
 @end
 
 NS_ASSUME_NONNULL_END

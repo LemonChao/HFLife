@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_payMoneyTabHeader : UIView
-@property (nonatomic, strong)void(^barCodeClick)(UIImage *image);
+@property (nonatomic, strong)void(^barCodeClick)(UIImage *image, NSString *barCodeStr);
 - (void)setDataForView:(id)data;
 @end
 

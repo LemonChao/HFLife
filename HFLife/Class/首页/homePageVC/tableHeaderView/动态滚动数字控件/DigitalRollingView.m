@@ -121,13 +121,26 @@
     
     // 如果 number 长度小于 最小长度就补0
     // 这里需要注意一下 minLength 和 length 都是NSUInteger类型 如果相减得负数的话会有问题
-    for (NSInteger i = 0; i < (NSInteger)self.minLength - (NSInteger)numberStr.length; i++) {
+    
+    //有小数取出小数部分
+    NSArray *component = [numberStr componentsSeparatedByString:@"."];
+    NSString *newNumStr = numberStr;
+    if (component.count > 1) {
+        newNumStr = component.lastObject;
+    }
+    
+    for (NSInteger i = 0; i < (NSInteger)self.minLength - (NSInteger)newNumStr.length; i++) {
         [_numbersText addObject:@"0"];
     }
     // 取出 number 各位数
     for (NSUInteger i = 0; i < numberStr.length; i++) {
         [_numbersText addObject:[numberStr substringWithRange:NSMakeRange(i, 1)]];
     }
+#warning 移除以前数据
+    [historyArray removeAllObjects];
+    
+    
+    
     if (historyArray.count == 0) {
         [historyArray addObjectsFromArray:_numbersText];
         for (NSString *ss in historyArray) {

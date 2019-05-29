@@ -71,6 +71,10 @@
         [self.collectionView endRefreshData];
         if (result){
             if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                self.collectionView.peopleNum = value[@"data"][@"nums"];
+                self.collectionView.fqPrice = value[@"data"][@"coin"];
+                self.collectionView.myFQ = @"232355";
                 NSDictionary *dict = value[@"data"];
                 NSMutableDictionary *dataSourceDicM = [NSMutableDictionary dictionary];
                 if ([dict objectForKey:@"nav"] && [[dict objectForKey:@"nav"] isKindOfClass:[NSArray class]]) {
@@ -174,8 +178,20 @@
     }else{
         [WXZTipView showCenterWithText:@"暂无该条详情数据"];
     }
-    
 }
+
+//活动按钮点击事件
+- (void) clickActivityBtn:(NSString *)btnUrl{
+    //加载web页面
+    WKWebViewController *webV = [WKWebViewController new];
+    if (btnUrl) {
+        webV.urlString = btnUrl;
+        [self.vc.navigationController pushViewController:webV animated:YES];
+    }else{
+        [WXZTipView showCenterWithText:@"暂无该条数据"];
+    }
+}
+
 
 /**
  更新位置

@@ -36,11 +36,15 @@
 
 @property (nonatomic, strong)UIButton *goBuyBtn;//购买按钮
 @property (nonatomic, strong)UIImageView *leftImageV;
+
+@property (nonatomic, strong)homeActivityModel *model;
 @end
 
 
 @implementation SXF_HF_RecommentCollectionCell
-
+{
+    NSString *goUrlStr;//点击的url
+}
 - (instancetype)init
 {
     self = [super init];
@@ -102,19 +106,25 @@
     [self.inviteeButton setTitle:@"继续邀请" forState:UIControlStateNormal];
     self.inviteeButton.titleLabel.font = FONT(ScreenScale(14));
     [self.inviteeButton setTitleColor:HEX_COLOR(0x3E874F) forState:UIControlStateNormal];
-    [self.inviteeButton addTarget:self action:@selector(inviteeButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.inviteeButton addTarget:self action:@selector(inviteeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.goBuyBtn.setTitle(@"购买", UIControlStateNormal).setTitleFontSize(14).setTitleColor([UIColor whiteColor], UIControlStateNormal);
-    
+    [self.goBuyBtn addTarget:self action:@selector(inviteeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.inviteeButton.backgroundColor = [UIColor clearColor];
-    self.titleLb.text = @"汉富新生活 | 邀请有礼";
-    self.inviteesNumberLb.text = @"已邀请88位好友";
-    self.subTitleLb.text = @"收益奖励可兑富权";
+    
+    self.goBuyBtn.tag = 50;
+    self.inviteeButton.tag = 51;
+    
+    self.titleLb.text = @"";
+    self.inviteesNumberLb.text = @"";
+    self.subTitleLb.text = @"";
+    
     
 }
 
 - (void)setDataForCell:(homeActivityModel *)model{
+    self.model = model;
 //    self.titleLb.text = [NSString stringWithFormat:@"%@ | 邀请有礼"];
     if ([model.type integerValue] == 1) {
         self.cellType = itemType_first;
@@ -170,8 +180,21 @@
 
 
 
-- (void) inviteeButtonClick{
+- (void) inviteeButtonClick:(UIButton *)sender{
     NSLog(@"点击邀请");
+    if ([self.model.type integerValue] == 1) {
+        goUrlStr = self.model.btn_msg;
+    }else{
+        if (sender.tag == 50) {
+            //购买
+            goUrlStr = self.model.left_url;
+        }else{
+            //邀请
+            goUrlStr = self.model.right_url;
+        }
+    }
+    
+    !self.clickItemBtn ? : self.clickItemBtn(goUrlStr);
 }
 - (void)layoutSubviews{
     [super layoutSubviews];

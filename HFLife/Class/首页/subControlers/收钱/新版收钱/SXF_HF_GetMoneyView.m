@@ -78,8 +78,8 @@
         !weakSelf.tabBtnCallback ? : weakSelf.tabBtnCallback(tag);
     };
     
-    self.payMoneyHeader.barCodeClick = ^(UIImage * _Nonnull image) {
-        !weakSelf.clickBarCodeImageV ? : weakSelf.clickBarCodeImageV(image);
+    self.payMoneyHeader.barCodeClick = ^(UIImage * _Nonnull image,  NSString *barCodeStr) {
+        !weakSelf.clickBarCodeImageV ? : weakSelf.clickBarCodeImageV(image, barCodeStr);
     };
     //需要保存的view
     self.saveCodeView = [[SXF_HF_saveCodeView alloc] initWithFrame:self.bounds];

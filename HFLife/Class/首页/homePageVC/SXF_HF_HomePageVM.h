@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) getNewsListData:(NSInteger)page;
 
-
+- (void) clickActivityBtn:(NSString *)btnUrl;
 
 /**
  更新位置

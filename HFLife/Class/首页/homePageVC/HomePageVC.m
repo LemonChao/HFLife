@@ -90,6 +90,10 @@
             [weakSelf.homePageVM getBannerData];
         }
     };
+    //活动按钮点击事件
+    self.collectionView.activityBtnCallback = ^(NSString * _Nonnull urlStr) {
+        [self.homePageVM clickActivityBtn:urlStr];
+    };
 }
 
 - (void)setUpUI{

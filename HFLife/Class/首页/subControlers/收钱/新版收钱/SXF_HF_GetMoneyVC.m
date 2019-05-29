@@ -30,21 +30,39 @@
     
 }
 - (void)loadServerData{
-    NSDictionary *param = @{
-                            @"type":@"1",
-                            };
-//    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"" withParameters:param withResultBlock:^(BOOL result, id value) {
-//        if (result){
-//            
-//        }
-//    } witnVC:self];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    if (self.payType) {
+        //收钱
+        [param setValue:@"1" forKey:@"type"];
+        //需要设置金额的时候 穿这个参数
+//        [param setValue:@"100" forKey:@"set_money"];
+    }else{
+        //付款
+        [param setValue:@"2" forKey:@"type"];
+        
+    }
+
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateMoneyQrcode withParameters:param withResultBlock:^(BOOL result, id value) {
+        if (result){
+            NSLog(@"%@", value);
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    if (value[@"data"][@"show_code"]) {
+                        //临时数据
+                        [self.getMoneyView setDataForView:value[@"data"][@"show_code"] type:NO];
+                    }
+                }
+            }
+            
+        }
+    } witnVC:self];
     
     
     //模拟网络请求 获取收款码
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //临时数据
-        [self.getMoneyView setDataForView:@"https://www.hfgld.net/app_html/qrcode_pay/show_pay.html?show_code=5A005141F931A300" type:NO];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        //临时数据
+//        [self.getMoneyView setDataForView:@"https://www.hfgld.net/app_html/qrcode_pay/show_pay.html?show_code=5A005141F931A300" type:NO];
+//    });
     
     
     
@@ -112,8 +130,8 @@
     };
     
     //点击条形码 旋转
-    self.getMoneyView.clickBarCodeImageV = ^(UIImage * _Nonnull image) {
-        BarCodeView *codeview =[[BarCodeView alloc]initImage:image];
+    self.getMoneyView.clickBarCodeImageV = ^(UIImage * _Nonnull image, NSString *codeStr) {
+        BarCodeView *codeview =[[BarCodeView alloc]initImage:image withCodeStr:codeStr];
         [weakSelf.view addSubview:codeview];
     };
     
@@ -128,7 +146,7 @@
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }else{
                 //开启或关闭到账通知
-                setGetMoneyStatus(OpenMoneyNotiStatus)
+                setGetMoneyStatus(!OpenMoneyNotiStatus)
                 [WXZTipView showCenterWithText:OpenMoneyNotiStatus ? @"已开启" : @"已关闭"];
                 
             }

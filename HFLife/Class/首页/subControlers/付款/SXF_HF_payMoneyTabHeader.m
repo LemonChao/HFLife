@@ -14,6 +14,7 @@
 @property (nonatomic, strong)UIImageView *barCodeImgV;
 @property (nonatomic, strong)UIImageView *QRCodeImgV;
 @property (nonatomic, strong)UILabel *barCodeStrLb;
+@property (nonatomic, strong)NSString *barCodeStr;
 @end
 
 
@@ -55,17 +56,23 @@
 }
 - (void)setDataForView:(id)data{
     [self layoutIfNeeded];
-    self.barCodeStrLb.text = @"2828******查看数字";
-    self.barCodeImgV.image = [UIImage barcodeImageWithContent:[NSString judgeNullReturnString:@"http://www.baidu.com"] codeImageSize:CGSizeMake(self.barCodeImgV.bounds.size.width, self.barCodeImgV.bounds.size.width) red:0 green:0 blue:0];
+    self.barCodeStr = Format(data ? data : @"");
+    //b
+    NSString *barCode = Format(data ? data : @"");
     
-    self.QRCodeImgV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@", @"http://www.tecent.com"] size:self.QRCodeImgV.bounds.size.width logoImage:[userInfoModel sharedUser].userHeaderImage ratio:0.25];
+    if (barCode.length > 4) {//******查看数字
+        self.barCodeStrLb.text = [barCode stringByReplacingCharactersInRange:NSMakeRange(4, barCode.length - 4) withString:@"******查看数字"];
+    }
+    self.barCodeImgV.image = [UIImage barcodeImageWithContent:[NSString judgeNullReturnString:data] codeImageSize:CGSizeMake(self.barCodeImgV.bounds.size.width, self.barCodeImgV.bounds.size.width) red:0 green:0 blue:0];
+    
+    self.QRCodeImgV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@", data] size:self.QRCodeImgV.bounds.size.width logoImage:[userInfoModel sharedUser].userHeaderImage ratio:0.25];
     
     self.barCodeImgV.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBarImage)];
     [self.barCodeImgV addGestureRecognizer:tap];
 }
 - (void)tapBarImage{
-    !self.barCodeClick ? : self.barCodeClick(self.barCodeImgV.image);
+    !self.barCodeClick ? : self.barCodeClick(self.barCodeImgV.image, self.barCodeStr);
 }
 - (void)layoutSubviews{
     [super layoutSubviews];

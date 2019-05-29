@@ -48,7 +48,8 @@
     [self addSubview:_btn2];
     [self addSubview:self.lineV];
     self.lineV.backgroundColor = HEX_COLOR(0xF5F5F5);
-    _btn1.setTitle(@"开启到账语音提醒", UIControlStateNormal).setTitleFontSize(14).setTitleColor(HEX_COLOR(0x0C0B0B), UIControlStateNormal);
+    _btn1.setTitle(OpenMoneyNotiStatus ? @"关闭到账语音提醒" : @"开启到账语音提醒", UIControlStateNormal).setTitleFontSize(14).setTitleColor(HEX_COLOR(0x0C0B0B), UIControlStateNormal);
+    
     _btn2.setTitle(@"收款码介绍", UIControlStateNormal).setTitleFontSize(14).setTitleColor(HEX_COLOR(0x0C0B0B), UIControlStateNormal);
     _bgImgeV.image = MY_IMAHE(@"右上弹窗");
     [_btn1 addTarget:self action:@selector(clickAkertBtn:) forControlEvents:UIControlEventTouchUpInside];

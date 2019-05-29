@@ -14,9 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)void(^selectedHeaderBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong)void(^refreshDataCallBack)(NSInteger page);
+@property (nonatomic, strong)void(^activityBtnCallback)(NSString *urlStr);
 
 @property (nonatomic, strong)NSDictionary *dataSourceDict;
 @property (nonatomic, strong)NSArray *newsListModelArr;
+
+
+@property (nonatomic, strong)NSString *myFQ;
+@property (nonatomic, strong)NSNumber *fqPrice;
+@property (nonatomic, strong)NSNumber *peopleNum;
+
 - (void) endRefreshData;
 
 

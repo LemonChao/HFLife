@@ -36,6 +36,8 @@
     self.monetTitleLb = [UILabel new];
     self.alertTitleLb = [UILabel new];
     self.passwordInputView = [[SXF_HF_Password alloc] initWithFrame:CGRectMake(ScreenScale(12), ScreenScale(201) + self.navBarHeight, SCREEN_WIDTH - ScreenScale(24), ScreenScale(49))];
+    
+    
     [self.view addSubview:self.passwordInputView];
     [self.view addSubview:self.moneyLb];
     [self.view addSubview:self.monetTitleLb];
@@ -61,7 +63,7 @@
         make.height.mas_equalTo(ScreenScale(24));
     }];
     [self.monetTitleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(ScreenScale(10));
+        make.width.mas_equalTo(ScreenScale(20));
         make.bottom.mas_equalTo(self.moneyLb.mas_bottom);
         make.right.mas_equalTo(self.moneyLb.mas_left);
         make.height.mas_equalTo(ScreenScale(13));
