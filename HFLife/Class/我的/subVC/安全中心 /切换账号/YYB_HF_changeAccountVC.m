@@ -11,12 +11,20 @@
 @interface YYB_HF_changeAccountVC()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic, strong) UITableView *myTable;//
-
+@property(nonatomic, strong) NSMutableDictionary *accountDic;//账号字典
+@property(nonatomic, strong) NSArray *accountMobileArr;//账号
 @end
 @implementation YYB_HF_changeAccountVC
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    NSMutableDictionary *accountDic = [[NSUserDefaults standardUserDefaults]valueForKey:USERINFO_ACCOUNT];
+    if (accountDic && [accountDic isKindOfClass:[NSMutableDictionary class]]) {
+        self.accountMobileArr = accountDic.allKeys;
+        self.accountDic = [accountDic mutableCopy];
+    }
     [self setupNavBar];
     [self setUpUI];
 }
@@ -70,7 +78,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section == 0) {
-        return 3;
+        if (self.accountMobileArr) {
+            return self.accountMobileArr.count;
+        }
+        return 0;
     }
     return 1;
 }
@@ -89,7 +100,18 @@
         cell = [[NSBundle mainBundle]loadNibNamed:@"YYB_HF_changeAccountCell" owner:self options:nil].lastObject;
         cell.headImageView.backgroundColor = [UIColor redColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        NSDictionary *accountItem = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
+        [cell.headImageView sd_setImageWithURL:[accountItem valueForKey:@""] placeholderImage:image(@"")];
+        NSString *accountStr = [accountItem valueForKey:@""];
+        cell.accountLabel.text = accountStr;
+        if ([accountStr isEqualToString:[userInfoModel sharedUser].member_mobile]) {
+            [cell.cheackIcon setHidden:NO];
+        }else {
+            [cell.cheackIcon setHidden:YES];
+        }
     }
+        
     return cell;
     }else {
         static NSString *identifier = @"cell";
@@ -108,12 +130,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath) {
-        [WXZTipView showCenterWithText:@"切换成功"];
-    }
     
     if (indexPath.section == 1) {
         [LoginVC login];
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }else {
+        [WXZTipView showCenterWithText:@"切换成功"];
+        
     }
 }
 

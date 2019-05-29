@@ -174,8 +174,31 @@
                 NSDictionary *dataDic = value[@"data"];
                 if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                     
+                    
                     [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
                     
+                    
+                    //存储修改账号信息===
+                    NSMutableDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
+                    
+                    if ((accountDic && [accountDic isKindOfClass:[NSMutableDictionary class]])) {}else {
+                        accountDic = [[NSMutableDictionary alloc]init];
+                    }
+                    NSDictionary *accountItem = @{
+                                                  @"member_mobile":[userInfoModel sharedUser].member_mobile,
+                                                  @"member_avatar":[userInfoModel sharedUser].member_avatar,
+                                                  @"token":[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]
+                                                  };
+                    [accountDic setValue:accountItem forKey:[userInfoModel sharedUser].member_mobile];
+                    [[NSUserDefaults standardUserDefaults] setValue:accountItem forKey:USERINFO_ACCOUNT];
+                    ///====
+                    
+                    //存储用户信息
+                    NSData *encodeInfo = [NSKeyedArchiver archivedDataWithRootObject:[userInfoModel sharedUser]];
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    [defaults setObject:encodeInfo forKey:USERINFO_DIC];
+                    [defaults synchronize];
+                    //====
                     //初始化头像
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                         [userInfoModel sharedUser].userHeaderImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar)]];
@@ -186,6 +209,25 @@
                 }
             }
         }else {
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSData *savedEncodedData = [defaults objectForKey:USERINFO_DIC];
+            userInfoModel *user = [[userInfoModel alloc]init];
+            if(savedEncodedData){
+                user = (userInfoModel *)[NSKeyedUnarchiver unarchiveObjectWithData:savedEncodedData];
+                UIImage *img;
+                if (user.userHeaderImage) {
+                    //image值单独赋值
+                    img = user.userHeaderImage;
+                }
+                user.userHeaderImage = nil;
+                NSMutableDictionary *dataDic = [user mj_keyValues];
+                [dataDic setValue:img forKey:@"userHeaderImage"];
+                if (dataDic) {
+                    [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
+                }
+            }
+            
             self->isFirstLoad = YES;
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 [WXZTipView showCenterWithText:value[@"msg"]];

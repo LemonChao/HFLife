@@ -52,15 +52,17 @@
     
 //    self.headImageV.backgroundColor = [UIColor redColor];
     self.headImageV.image = MMGetImage(@"icon_touxiang");
+    self.headImageV.clipsToBounds = YES;
+    self.headImageV.layer.cornerRadius = ScreenScale(16);
     [self.selectBtn setImage:MMGetImage(@"icon_jiantou") forState:UIControlStateNormal];
     
     [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self).mas_offset(HeightStatus + ScreenScale(7));
         make.left.mas_equalTo(self).mas_offset(ScreenScale(20));
-        make.width.height.mas_equalTo(ScreenScale(33));
+        make.width.height.mas_equalTo(ScreenScale(32));
     }];
     
-    self.localLabel.text = @"定位中...";
+    self.localLabel.text = @"定位中";
     self.localLabel.font = FONT(15);
     [self.localLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.headImageV);
@@ -294,6 +296,12 @@
 
 - (void)setSetHeadImageStr:(NSString *)setHeadImageStr {
     [self.headImageV sd_setImageWithURL:[NSURL URLWithString:setHeadImageStr] placeholderImage:image(@"icon_touxiang")];
+}
+
+- (void)setSetHeadImage:(UIImage *)setHeadImage {
+    if (setHeadImage && [setHeadImage isKindOfClass:[UIImage class]]) {
+        [self.headImageV setImage:setHeadImage];
+    }
 }
 
 - (void)setIs_notice:(NSNumber *)is_notice {

@@ -71,7 +71,9 @@
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 
                 [YYB_HF_nearLifeModel mj_setupObjectClassInArray:^NSDictionary *{
-                    return @{@"entrance":[EntranceDetail className]};
+                    return @{
+                             @"entrance":[EntranceDetail className]
+                             };
                 }];
                 
                 NSDictionary *dataDic = value[@"data"];
@@ -106,7 +108,7 @@
 //猜你喜欢数据
 - (void)loadGuessLikeData {
     
-    if (allPage > 0 && self.collectionView.page > allPage) {
+    if (allPage > 0 && self.collectionView.page > allPage && self.guessLikeData.count > 0) {
         [WXZTipView showCenterWithText:@"已加载全部数据"];
         [self.collectionView endRefreshData];
         return;
@@ -229,7 +231,7 @@
             
             cell.setNameStr = guessModel.store_name;
             cell.setAdLabelStr = guessModel.product_name;
-            cell.setDistanceStr = [NSString stringWithFormat:@"%@km",guessModel.distance];
+            cell.setDistanceStr = [NSString stringWithFormat:@"%.2fkm",[guessModel.distance floatValue]];
             cell.setPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.product_price];
             cell.setOldPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.original_price];
             cell.setConcessionMoneyStr = [NSString stringWithFormat:@"让利￥%@",guessModel.fan_price];
@@ -240,7 +242,7 @@
         }else  if (guessModel.product_type.intValue == 3) {//酒店布局
             YYB_HF_guessLikeCollectionViewCellRightPic *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_guessLikeCollectionViewCellRightPic" forIndexPath:indexPath];
             cell.setNameStr = guessModel.store_name;
-            cell.setDistanceStr = [NSString stringWithFormat:@"%@km",guessModel.distance];
+            cell.setDistanceStr = [NSString stringWithFormat:@"%.2fkm",[guessModel.distance floatValue]];
             cell.setPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.product_price];
             cell.setOldPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.original_price];
             cell.setConcessionMoneyStr = [NSString stringWithFormat:@"让利￥%@",guessModel.fan_price];
