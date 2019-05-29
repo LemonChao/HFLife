@@ -179,18 +179,22 @@
                     
                     
                     //存储修改账号信息===
-                    NSMutableDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
-                    
-                    if ((accountDic && [accountDic isKindOfClass:[NSMutableDictionary class]])) {}else {
-                        accountDic = [[NSMutableDictionary alloc]init];
+                    NSDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
+                    NSMutableDictionary *accountDicCopy;
+                    if ((accountDic && [accountDic isKindOfClass:[NSDictionary class]])) {
+                        accountDicCopy = [[NSMutableDictionary alloc]initWithDictionary:accountDic];
+                    }else {
+                        accountDicCopy = [[NSMutableDictionary alloc]init];
                     }
                     NSDictionary *accountItem = @{
                                                   @"member_mobile":[userInfoModel sharedUser].member_mobile,
                                                   @"member_avatar":[userInfoModel sharedUser].member_avatar,
                                                   @"token":[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]
                                                   };
-                    [accountDic setValue:accountItem forKey:[userInfoModel sharedUser].member_mobile];
-                    [[NSUserDefaults standardUserDefaults] setValue:accountItem forKey:USERINFO_ACCOUNT];
+                    
+                    NSString *acckey = [userInfoModel sharedUser].member_mobile;
+                    [accountDicCopy setValue:accountItem forKey:acckey];
+                    [[NSUserDefaults standardUserDefaults] setValue:accountDicCopy forKey:USERINFO_ACCOUNT];
                     ///====
                     
                     //存储用户信息
