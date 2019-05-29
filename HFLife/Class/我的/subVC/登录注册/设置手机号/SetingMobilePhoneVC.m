@@ -265,11 +265,7 @@
         [codeButton setTitleColor:HEX_COLOR(0x666666) forState:(UIControlStateNormal)];
         [codeButton setTitle:@"获取验证码" forState:(UIControlStateNormal)];
         [rightView addSubview:codeButton];
-        codeButton.clipsToBounds = YES;
-        codeButton.layer.cornerRadius = 5;
-        codeButton.layer.borderWidth = 1.5;
-        codeButton.layer.borderColor = HEX_COLOR(0xCA1400).CGColor;
-        [rightView addSubview:codeButton];
+        
         
         [codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(rightView.mas_right);
@@ -419,7 +415,7 @@
     dispatch_resume(_timer);
 }
 - (void)sureBtnClick{
-    if ([NSString isNOTNull:self.phoneText.text]) {
+    if ([NSString isNOTNull:_phoneText.text]) {
         [WXZTipView showCenterWithText:@"请输入手机号"];
         return;
     }
@@ -448,9 +444,8 @@
                 if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
                     [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
                     [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
-                    [self dismissViewControllerAnimated:NO completion:^{
-                        [LoginVC changeIndxHome];
-                    }];
+                    [LoginVC changeIndxHome];
+                    [self dismissViewControllerAnimated:NO completion:nil];
                 }else {
                     [WXZTipView showCenterWithText:@"未请求到token"];
                 }

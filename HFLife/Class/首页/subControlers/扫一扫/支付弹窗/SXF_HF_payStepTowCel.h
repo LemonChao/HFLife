@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)UIImageView *headerImageV;
 @property (nonatomic, strong)UILabel *typeNameLb;
 @property (nonatomic, strong)UILabel *subLb;
+@property (nonatomic, strong)UIImageView *selectedImgeV;
 @end
 
 NS_ASSUME_NONNULL_END

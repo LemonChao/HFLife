@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_MainPageCycleScrollCell : UITableViewCell
 @property (nonatomic ,strong) void(^selectItemBlock)(NSInteger index);
-
+@property (nonatomic ,strong) void(^autoScrollItemBlock)(NSInteger index);
 @property (nonatomic ,strong) NSArray *modelArr;
 @end
 

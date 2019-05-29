@@ -84,6 +84,7 @@
 {
     NSArray *_titleArr;
     NSArray *_imageArr;
+    UIColor *selectedColor;
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -93,16 +94,38 @@
 }
 - (void) addChildrenViews{
     
-    _titleArr =  @[@"收货地址", @"银行卡", @"分享好友", @"安全中心", @"我要入驻", @"我的收藏",@"我的好友", @"关于我们"];
-    _imageArr = @[@"收货地址", @"银行卡", @"分享好友", @"安全中心", @"我要入驻", @"我的收藏",@"我的好友", @"关于我们"];
+    _titleArr =  @[@"收货地址", @"银行卡", @"分享好友", @"安全中心", @"我要入驻", @"我要升级" ,@"我的收藏",@"我的好友", @"关于我们"];
+    _imageArr = @[@"收货地址", @"银行卡", @"分享好友", @"安全中心", @"我要入驻",@"我要升级" ,@"我的收藏",@"我的好友", @"关于我们"];
     
-    
+    selectedColor = HEX_COLOR(0xA4CDFB);
     self.bgView = [UIView new];
     [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.menuCollectionView];
     self.menuCollectionView.backgroundColor = [UIColor clearColor];
+    
+    [NOTIFICATION addObserver:self selector:@selector(changeBgColor:) name:@"changeBgColor" object:nil];
+    
+    
+    
 }
-
+- (void)changeBgColor:(NSNotification *)noti{
+    NSLog(@"%@", noti.object);
+   
+    switch ([noti.object integerValue]) {
+        case 0:
+            selectedColor = HEX_COLOR(0xA4CDFB);
+            break;
+        case 1:
+            selectedColor = HEX_COLOR(0xFF6B5C);
+            break;
+        case 2:
+            selectedColor = HEX_COLOR(0xFFDB4B);
+            break;
+        default:
+            break;
+    }
+    [self.bgView changeBgView:@[HEX_COLOR(0xF5F5F5), selectedColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 1)];
+}
 - (void)layoutSubviews{
     [super layoutSubviews];
     
@@ -122,7 +145,7 @@
     
     [self layoutIfNeeded];
     
-    [self.bgView changeBgView:@[HEX_COLOR(0xF5F5F5), HEX_COLOR(0xA4CDFB)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 1)];
+    [self.bgView changeBgView:@[HEX_COLOR(0xF5F5F5), selectedColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 1)];
 }
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{

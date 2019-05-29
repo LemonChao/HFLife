@@ -12,13 +12,16 @@
 {
     UIView *bgView ;
     UIImageView *barCodeImage;
+    UILabel *_barCodeLb;
     UIImage *codeImage;
+    NSString *_barCodeStr;
 }
--(instancetype)initImage:(UIImage *)image{
+-(instancetype)initImage:(UIImage *)image withCodeStr:(NSString *)code{
     self = [super init];
     self.frame = CGRectMake(0, 0, SCREEN_WIDTH,  SCREEN_HEIGHT);
     if (self) {
         codeImage = image;
+        _barCodeStr = code;
         self.backgroundColor = [UIColor whiteColor];
         [UIApplication sharedApplication].statusBarStyle =  UIStatusBarStyleLightContent;
         [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -53,15 +56,35 @@
     barCodeImage.image = codeImage;;
     [self addSubview:barCodeImage];
     [barCodeImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(self);
-        make.width.mas_equalTo(WidthRatio(1021));
-        make.height.mas_equalTo(HeightRatio(320));
+//        make.center.mas_equalTo(self);
+        make.centerX.mas_equalTo(self.mas_centerX);
+        make.centerY.mas_equalTo(self.mas_centerY).offset(ScreenScale(-22.5));
+//        make.width.mas_equalTo(WidthRatio(1021));
+        make.height.mas_equalTo(ScreenScale(114));
+        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(110));
+        make.right.mas_equalTo(self.mas_right).offset(ScreenScale(-110));
 //        make.width.mas_equalTo(WidthRatio(<#x#>));
 //        make.top.mas_equalTo(self.mas_top).offset(HeightRatio(167));
     }];
     
 //    UILabel 
-    
+    _barCodeLb = [UILabel new];
+   
+    //字符串 拼接空格
+    if (_barCodeStr.length > 12) {
+        NSMutableString *strM = [[NSMutableString alloc] initWithString:_barCodeStr];
+        for (int i = 4; i < 21; i+= 7) {
+            [strM insertString:@"   " atIndex:i];
+        }
+        _barCodeLb.setText(strM).setTextColor(color0C0B0B).setFontSize(26);
+    }
+    _barCodeLb.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_barCodeLb];
+    [_barCodeLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(self->barCodeImage);
+        make.height.mas_equalTo(20);
+        make.top.mas_equalTo(self->barCodeImage.mas_bottom).offset(ScreenScale(25));
+    }];
     
     
     bgView = [[UIView alloc]init];

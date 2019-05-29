@@ -46,11 +46,31 @@ static NSString *const ServiceAgreement                       = @"ceshi-ucenter.
 static NSString *const upDateLocationUrl = @"ceshi-life.hfgld.net/index.php/api/common/setUserAddress";
 
 //首页轮播导航接口
-static NSString *const HomeNavBanner                            = @"ceshi-ucenter.hfgld.net/api/index/navBanner";
+static NSString *const HomeNavBanner                            = @"ceshi-ucenter.hfgld.net/api/index/homePage";
 //首页头条列表
 static NSString *const HomeNewsList                             = @"ceshi-ucenter.hfgld.net/api/index/newsList";
 //首页头条详情
 static NSString *const HomeNewsDetaile                          = @"ceshi-ucenter.hfgld.net/api/index/getDetail";
+
+/**
+ 获取收款码或付款码（1）
+ */
+static NSString *const CreateMoneyQrcode                        = @"ceshi-ucenter.hfgld.net/api/finance/createMoneyQrcode";
+
+/**
+ 扫描收款码或付款码解析信息（2）
+ */
+static NSString *const GetQrcodeInfo                            = @"ceshi-ucenter.hfgld.net/api/finance/getQrcodeInfo";
+
+/**
+ 扫码付款生成订单（3）
+ */
+static NSString *const CreateOrder                              = @"ceshi-ucenter.hfgld.net/api/finance/createOrder";
+
+/**
+ 订单支付（4）
+ */
+static NSString *const GoToPay                              = @"ceshi-ucenter.hfgld.net/api/finance/goToPay";
 
 /************************subUrl************************/
 

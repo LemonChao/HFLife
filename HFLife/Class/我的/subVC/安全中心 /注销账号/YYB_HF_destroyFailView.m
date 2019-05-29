@@ -52,7 +52,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 90;
+    NSStringDrawingOptions options =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
+    
+    CGRect rect = [self.tipMsg boundingRectWithSize:CGSizeMake(ScreenScale(300),MAXFLOAT) options:options attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:ScreenScale(14)]} context:nil];
+    
+    CGFloat realHeight = ceilf(rect.size.height);
+
+    return realHeight + 30;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -126,22 +132,26 @@
 //cellVeiw
 
 - (UIView *)failView {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH - 24, 90)];
-    view.backgroundColor = [UIColor whiteColor];
-    
-    UIImageView *imageVeiw = [[UIImageView alloc]initWithFrame:CGRectMake(12, 20, 14, 14)];
-    [imageVeiw setImage:image(@"icon_fail")];
-    [view addSubview:imageVeiw];
-    
-    
-    UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(36, 20, 300, 0)];
+    UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(36, 15, 300, 0)];
     textLabel.font = FONT(14);
     textLabel.numberOfLines = 0;
     textLabel.text = self.tipMsg;
+    NSStringDrawingOptions options =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
+    
+    CGRect rect = [self.tipMsg boundingRectWithSize:CGSizeMake(ScreenScale(300),MAXFLOAT) options:options attributes:@{NSFontAttributeName:textLabel.font} context:nil];
+    
+    CGFloat realHeight = ceilf(rect.size.height);
+
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH - 24, realHeight + 30)];
+    view.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView *imageVeiw = [[UIImageView alloc]initWithFrame:CGRectMake(12, 15, 14, 14)];
+    [imageVeiw setImage:image(@"icon_fail")];
+    [view addSubview:imageVeiw];
     [view addSubview:textLabel];
     
     [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(view).mas_offset(20);
+        make.top.mas_equalTo(view).mas_offset(15);
         make.left.mas_equalTo(view).mas_offset(36);
         make.width.mas_equalTo(ScreenScale(300));
         make.height.mas_greaterThanOrEqualTo(1);

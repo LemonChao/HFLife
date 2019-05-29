@@ -323,10 +323,8 @@
                         [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
                         [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
                         NSLog(@"%@", [USERDEFAULT valueForKey:LOGIN_STATES]);
-                        [self dismissViewControllerAnimated:NO completion:^{
-                            [LoginVC changeIndxHome];
-                            
-                        }];
+                        [LoginVC changeIndxHome];
+                        [self dismissViewControllerAnimated:NO completion:nil];
                     }else {
                         [WXZTipView showCenterWithText:@"未请求到token"];
                     }

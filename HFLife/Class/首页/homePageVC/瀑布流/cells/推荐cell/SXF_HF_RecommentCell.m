@@ -33,6 +33,11 @@
         !weakSelf.selectedItem ? : weakSelf.selectedItem(indexPath, value);
     };
     
+    //上面按钮点击事件
+    self.collectionV.activityBtnCallback = ^(NSString * _Nonnull urlStr) {
+        !weakSelf.activityBtnCallback ? : weakSelf.activityBtnCallback(urlStr);
+    };
+    
 }
 
 - (void)setDataSourceArr:(NSArray *)dataSourceArr{

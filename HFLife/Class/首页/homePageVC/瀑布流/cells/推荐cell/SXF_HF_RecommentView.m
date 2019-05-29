@@ -69,8 +69,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     id value;
-    homeListModel *model = self.dataSource[indexPath.row];
-    value = model.url;
+    homeActivityModel *model = self.dataSource[indexPath.row];
+    value = model.top_url;
     !self.selectedItem ? : self.selectedItem(indexPath.row, value);
 }
 
@@ -80,8 +80,12 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     SXF_HF_RecommentCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_RecommentCollectionCell class]) forIndexPath:indexPath];
-    
     [cell setDataForCell:self.dataSource[indexPath.row]];
+    
+    cell.clickItemBtn = ^(NSString * _Nonnull url) {
+        !self.activityBtnCallback ? : self.activityBtnCallback(url);
+    };
+    
     return cell;
 }
 

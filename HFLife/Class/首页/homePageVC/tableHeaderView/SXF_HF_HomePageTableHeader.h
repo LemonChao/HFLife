@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)void(^selectedHeaderBtn)(NSInteger index);
 @property (nonatomic, assign)CGFloat scrollY;//头部滑动的位置
 @property (nonatomic, strong)void(^appearCallback)(CGFloat alpha, BOOL isAppear);
+@property (nonatomic, strong)NSString *myFQ;
+@property (nonatomic, strong)NSNumber *fqPrice;
+@property (nonatomic, strong)NSNumber *peopleNum;
 @end
 
 NS_ASSUME_NONNULL_END

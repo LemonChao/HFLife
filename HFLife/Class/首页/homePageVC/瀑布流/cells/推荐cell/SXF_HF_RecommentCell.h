@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SXF_HF_RecommentCell : UICollectionViewCell
 @property (nonatomic, strong) void(^selectedItem)(NSInteger index, id value);
 @property (nonatomic, strong)NSArray *dataSourceArr;
+@property (nonatomic, strong)void(^activityBtnCallback)(NSString *urlStr);
 @end
 
 NS_ASSUME_NONNULL_END

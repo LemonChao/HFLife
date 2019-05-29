@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface receiptRecordListVC : BaseViewController
-
+@property (nonatomic, assign)BOOL payType;
 @end
 
 NS_ASSUME_NONNULL_END

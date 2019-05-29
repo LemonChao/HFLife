@@ -196,7 +196,7 @@
 }
 #pragma mark 点击手势
 -(void)doTap:(UITapGestureRecognizer *)sender{
-    BarCodeView *codeview =[[BarCodeView alloc]initImage:barCodeImage];
+    BarCodeView *codeview =[[BarCodeView alloc]initImage:barCodeImage withCodeStr:@"ceshi数据"];
     [self.view addSubview:codeview];
 }
 -(void)one_btnClick{

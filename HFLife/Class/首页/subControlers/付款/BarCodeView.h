@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BarCodeView : UIView
--(instancetype)initImage:(UIImage *)image;
+-(instancetype)initImage:(UIImage *)image withCodeStr:(NSString *)code;
 @end
 
 NS_ASSUME_NONNULL_END

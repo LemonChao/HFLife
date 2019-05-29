@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_GetMoneyVC : BaseViewController
-
+@property (nonatomic, assign)BOOL payType;//收款还是付款
 @end
 
 NS_ASSUME_NONNULL_END

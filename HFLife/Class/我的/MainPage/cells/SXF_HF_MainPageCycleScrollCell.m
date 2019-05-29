@@ -110,10 +110,12 @@
     
     
     [self.animImageV playGifImagePath:iamgePath repeatCount:1];
+    !self.autoScrollItemBlock ? : self.autoScrollItemBlock(index);
 }
 //点击item
 - (void)clickItemFromIndex:(NSInteger)index{
     !self.selectItemBlock ? : self.selectItemBlock(index);
+    !self.autoScrollItemBlock ? : self.autoScrollItemBlock(index);
 }
 
 

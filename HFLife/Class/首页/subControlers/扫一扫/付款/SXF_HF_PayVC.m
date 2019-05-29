@@ -17,8 +17,7 @@
 @property (nonatomic, strong) SXF_HF_payStepAleryView *payView;
 @property (weak, nonatomic) IBOutlet UIImageView *payHeaderImageV;
 @property (weak, nonatomic) IBOutlet UILabel *payNameLb;
-
-
+@property (nonatomic, strong)NSString *order_Id;//生成的订单编号
 @end
 
 @implementation SXF_HF_PayVC
@@ -29,7 +28,7 @@
     self.customNavBar.title = @"付款";
     
     self.payNameLb.text = [NSString stringWithFormat:@"付款给%@", self.payName];
-    [self.payHeaderImageV sd_setImageWithURL:URL_IMAGE(self.payHeaderUrl)];
+    [self.payHeaderImageV sd_setImageWithURL:MY_URL_IMG(self.payHeaderUrl)];
     
     //自定义键盘
     [self customKeyBoard];
@@ -80,7 +79,7 @@
                     }];
                 }else{
                     //网络请求
-                    [weakSelf pay:pwd];
+                    [weakSelf getOrder:pwd];
                 }
             }
         }];
@@ -90,26 +89,63 @@
     }
     
 }
-- (void) pay:(NSString *)password{
-//    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"url" withParameters:@{} withResultBlock:^(BOOL result, id value) {
-//
-//    }];
-    [MBProgressHUD showHUDAddedTo:self.payView animated:YES];
+//去下单
+- (void) getOrder:(NSString *)password{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSDictionary *param = @{
+                            @"app_type" : @"1",
+                            @"bn_num" : self.moneyTF.text,
+                            @"code_str" : self.codeStr,
+                            };
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateOrder withParameters:param withResultBlock:^(BOOL result, id value) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (result && value) {
+            NSString *orderIdStr = value[@"data"][@"order_id"];
+            self.order_Id = orderIdStr;
+            [WXZTipView showCenterWithText:value[@"msg"]];
+            //去支付
+            [self pay:self.order_Id pwd:password];
+        }else{
+            [WXZTipView showCenterWithText:value[@"下单失败"]];
+        }
+    }];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [MBProgressHUD hideHUDForView:self.payView animated:YES];
-        //支付成功
-        SXF_HF_paySuccessVC *payVC = [SXF_HF_paySuccessVC new];
-        payVC.payImage = self.payHeaderImageV.image;
-        payVC.payName = self.payName;
-        payVC.payStatus = YES;
-        payVC.payType = @"余额";
-        payVC.payMoney = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-        [self.navigationController pushViewController:payVC animated:YES];
-        [self.payView cancleAlertView];
+        
+        
     });
     
 }
+
+- (void) pay:(NSString *)orderId pwd:(NSString *)password{
+    NSDictionary *param = @{
+                            @"order_id" :orderId ? orderId : @"",
+                            @"paypassword" : password,
+                            };
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:GoToPay withParameters:param withResultBlock:^(BOOL result, id value) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (result && value) {
+            
+            [WXZTipView showCenterWithText:value[@"msg"]];
+            
+            //支付成功
+            SXF_HF_paySuccessVC *payVC = [SXF_HF_paySuccessVC new];
+            payVC.payImage = self.payHeaderImageV.image;
+            payVC.payName = self.payName;
+            payVC.payStatus = YES;
+            payVC.payType = @"余额";
+            payVC.payMoney = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+            [self.navigationController pushViewController:payVC animated:YES];
+            [self.payView cancleAlertView];
+        }
+    }];
+}
+
+
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //TODO: 页面appear 禁用

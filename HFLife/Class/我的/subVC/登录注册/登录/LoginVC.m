@@ -289,9 +289,8 @@
                            if (ucenter_token && [ucenter_token isKindOfClass:[NSString class]] && ucenter_token.length > 0) {
                                [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
                                [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
-                               [self dismissViewControllerAnimated:YES completion:^{
-                                   [LoginVC changeIndxHome];
-                               }];
+                               [LoginVC changeIndxHome];
+                               [self dismissViewControllerAnimated:NO completion:nil];
                            }else {
                                SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
                                vc.openIdStr = user.uid;

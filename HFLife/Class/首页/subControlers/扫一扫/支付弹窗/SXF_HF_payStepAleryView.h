@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) cancleAlertView;
 @property (nonatomic, assign)BOOL editingEable;//清空密码框
+@property (nonatomic, assign)NSInteger payStep;//支付到第几步
+//获取到选择的支付方式
+@property (nonatomic, strong)void(^payStepCallback)(NSIndexPath *indexP);
 @end
 
 NS_ASSUME_NONNULL_END

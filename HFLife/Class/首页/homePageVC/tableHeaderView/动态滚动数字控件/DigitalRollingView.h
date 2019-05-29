@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSTimeInterval durationOffset;    // 相邻两个数字动画持续时间间隔
 @property (nonatomic, assign) BOOL isAscending;                 // 方向，默认为NO，向下
 
+
+@property (nonatomic, strong)NSString *integerNumberStr;//传入字符串
+
+
 - (void)reloadView;
 - (void)startAnimation;
 - (void)stopAnimation;

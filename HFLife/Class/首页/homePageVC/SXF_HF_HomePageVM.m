@@ -71,6 +71,10 @@
         [self.collectionView endRefreshData];
         if (result){
             if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                self.collectionView.peopleNum = value[@"data"][@"nums"];
+                self.collectionView.fqPrice = value[@"data"][@"coin"];
+                self.collectionView.myFQ = @"232355";
                 NSDictionary *dict = value[@"data"];
                 NSMutableDictionary *dataSourceDicM = [NSMutableDictionary dictionary];
                 if ([dict objectForKey:@"nav"] && [[dict objectForKey:@"nav"] isKindOfClass:[NSArray class]]) {
@@ -82,7 +86,7 @@
                     [dataSourceDicM setValue:bannerListArr forKey:@"banner"];
                 }
                 if ([dict objectForKey:@"activity"] && [[dict objectForKey:@"activity"] isKindOfClass:[NSArray class]]) {
-                    NSArray *activityListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"activity"] withClass:[homeListModel class]];
+                    NSArray *activityListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"activity"] withClass:[homeActivityModel class]];
                     [dataSourceDicM setValue:activityListArr forKey:@"activity"];
                 }
                 self.homePageListDic = dataSourceDicM;
@@ -146,9 +150,13 @@
             }
             
         }else if (index == 1){
-            vc = [PaymentVC new];//付款
+            SXF_HF_GetMoneyVC *payVC = [SXF_HF_GetMoneyVC new];//付款
+            payVC.payType = NO;
+            vc = payVC;
         }else if (index == 2){
-            vc = [SXF_HF_GetMoneyVC new];//收款
+            SXF_HF_GetMoneyVC *getVC = [SXF_HF_GetMoneyVC new];//收款
+            getVC.payType = YES;
+            vc = getVC;
         }else if (index == 3){
             vc = [SXF_HP_cardPacketVC new];//卡包
         }else if (index == 4){
@@ -170,8 +178,20 @@
     }else{
         [WXZTipView showCenterWithText:@"暂无该条详情数据"];
     }
-    
 }
+
+//活动按钮点击事件
+- (void) clickActivityBtn:(NSString *)btnUrl{
+    //加载web页面
+    WKWebViewController *webV = [WKWebViewController new];
+    if (btnUrl) {
+        webV.urlString = btnUrl;
+        [self.vc.navigationController pushViewController:webV animated:YES];
+    }else{
+        [WXZTipView showCenterWithText:@"暂无该条数据"];
+    }
+}
+
 
 /**
  更新位置

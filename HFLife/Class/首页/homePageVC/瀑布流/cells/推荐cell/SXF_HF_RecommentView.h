@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) void(^selectedItem)(NSInteger indexPath, id value);
 
 @property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic, strong)void(^activityBtnCallback)(NSString *urlStr);
 @end
 
 NS_ASSUME_NONNULL_END

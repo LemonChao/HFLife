@@ -127,7 +127,7 @@
     self.countView.textColor = HEX_COLOR(0xCA1400);
     self.countView.width = ScreenScale(13);
     self.countView.height = ScreenScale(13);
-    self.countView.minLength = 3;
+    self.countView.minLength = 10;
     self.countView.itemBoardColor = [UIColor redColor];
     self.countView.itemBgColor = [UIColor whiteColor];
     
@@ -137,7 +137,7 @@
     self.fqNUmView.textColor = HEX_COLOR(0xCA1400);
     self.fqNUmView.width = ScreenScale(13);
     self.fqNUmView.height = ScreenScale(13);
-    self.fqNUmView.minLength = 3;
+    self.fqNUmView.minLength = 10;
     self.fqNUmView.itemBoardColor = [UIColor redColor];
     self.fqNUmView.itemBgColor = [UIColor whiteColor];
     
@@ -198,14 +198,25 @@
         !weakSelf.selectedHeaderBtn ? : weakSelf.selectedHeaderBtn(index);
     };
     
-    self.myMoneyLb.text = @"34545.7989789";
+    self.myMoneyLb.text = @"0.0";
     //赋值并执行动画
-    self.countView.integerNumber = 32434;
-    self.fqNUmView.number = 32434.02432434;
+    self.countView.integerNumber = 0;
+    self.fqNUmView.number = 0.0;
     [self.countView startAnimation];
     
 }
-
+- (void)setPeopleNum:(NSNumber *)peopleNum{
+    _peopleNum = peopleNum;
+    self.countView.integerNumber = [_peopleNum intValue];
+}
+- (void)setFqPrice:(NSNumber *)fqPrice{
+    _fqPrice = fqPrice;
+    self.fqNUmView.number = [_fqPrice doubleValue];
+}
+- (void)setMyFQ:(NSString *)myFQ{
+    _myFQ = myFQ;
+    self.myMoneyLb.text = _myFQ;
+}
 /**
  点击小眼睛
  */

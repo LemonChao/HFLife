@@ -36,7 +36,31 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSString *url;//轮播链接、活动链接，item链接
 @end
 
+//首页活动列表
+@interface homeActivityModel : BaseModel
+@property (nonatomic, strong)NSNumber *ID;
+@property (nonatomic, strong)NSString *body_image;
+@property (nonatomic, strong)NSNumber *type;
+@property (nonatomic, strong)NSString *btn_url;
+@property (nonatomic, strong)NSString *left_url;
+@property (nonatomic, strong)NSString *right_url;
+@property (nonatomic, strong)NSString *body_msg;
+@property (nonatomic, strong)NSString *foot_msg;
+@property (nonatomic, strong)NSString *body_color;
+@property (nonatomic, strong)NSString *btn_color;
+@property (nonatomic, strong)NSString *top_url;
+@property (nonatomic, strong)NSString *title_msg;
+@property (nonatomic, strong)NSString *left_msg;
+@property (nonatomic, strong)NSString *right_msg;
+@property (nonatomic, strong)NSString *btn_msg;
+@property (nonatomic, strong)NSString *btn_image;
+@property (nonatomic, strong)NSString *left_image;
+@property (nonatomic, strong)NSString *right_image;
 
+
+
+
+@end
 
 
 

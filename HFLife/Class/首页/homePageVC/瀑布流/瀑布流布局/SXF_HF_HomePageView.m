@@ -198,6 +198,20 @@ static NSString * const footerReuseIdentifier = @"Footer";
     
 }
 
+- (void)setPeopleNum:(NSNumber *)peopleNum{
+    _peopleNum = peopleNum;
+    self.tableHeader.peopleNum = peopleNum;
+}
+- (void)setFqPrice:(NSNumber *)fqPrice{
+    _fqPrice = fqPrice;
+    self.tableHeader.fqPrice = fqPrice;
+}
+- (void)setMyFQ:(NSString *)myFQ{
+    _myFQ = myFQ;
+    self.tableHeader.myFQ = myFQ;
+}
+
+
 
 
 #pragma mark <UICollectionViewDataSource>
@@ -266,6 +280,9 @@ static NSString * const footerReuseIdentifier = @"Footer";
         SXF_HF_RecommentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_RecommentCell class]) forIndexPath:indexPath];
         cell.selectedItem = ^(NSInteger index, id value) {
             [weakSelf collectionViewSelection:3 itemIndex:index value:value];
+        };
+        cell.activityBtnCallback = ^(NSString * _Nonnull urlStr) {
+            !weakSelf.activityBtnCallback ? : weakSelf.activityBtnCallback(urlStr);
         };
         cell.dataSourceArr = self.activityModelsArr;
         return cell;
