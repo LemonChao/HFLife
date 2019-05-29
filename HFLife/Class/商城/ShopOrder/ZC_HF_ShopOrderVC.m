@@ -38,7 +38,6 @@
     [super setupNavBar];
     [self.customNavBar wr_setBackgroundAlpha:0];
     self.customNavBar.backgroundColor = RGBA(1, 1, 1, 0);
-
 }
 
 #pragma mark - event response
@@ -54,24 +53,31 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return ScreenScale(125);
+    if (indexPath.row == 0) {
+        return ScreenScale(135);
+    }else {
+        return ScreenScale(105);
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         ZCShopOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopOrderCell class])];
+        cell.model = [NSObject new];
         return cell;
 
     }else if (indexPath.row == 1) {
         ZCShopCouponsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopCouponsCell class])];
+        cell.model = [NSObject new];
         return cell;
     }else {
-        ZCShopOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopOrderCell class])];
+        ZCShopCouponsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopCouponsCell class])];
+        cell.model = [NSObject new];
         return cell;
     }
     
@@ -90,8 +96,7 @@
         _tableView.estimatedRowHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.estimatedSectionHeaderHeight = 0;
-//        ZCPersonalTableHeadView *header = [[ZCPersonalTableHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, WidthRatio(84)+NavBarHeight)];
-        _tableView.tableHeaderView = [[ZCShopOrderTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(260))];
+        _tableView.tableHeaderView = [[ZCShopOrderTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(280))];
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
@@ -99,10 +104,6 @@
         }
         [_tableView registerClass:[ZCShopOrderCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopOrderCell class])];
         [_tableView registerClass:[ZCShopCouponsCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopCouponsCell class])];
-//        [_tableView registerClass:[ZCPersonalwelfareCell class] forCellReuseIdentifier:welfareCellid];
-//        [_tableView registerClass:[ZCPersonalDataCell class] forCellReuseIdentifier:dataCellid];
-//        [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:tableHeaderid];
-//        [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:tableFooterid];
     }
     return _tableView;
 }

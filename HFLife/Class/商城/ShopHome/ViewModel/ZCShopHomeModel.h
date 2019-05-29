@@ -71,6 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 //"gc_id_1": "1"
 
 @property(nonatomic, copy) NSString *xianshi_goods_id;
+@property(nonatomic, copy) NSString *goods_id;
 @property(nonatomic, copy) NSString *goods_image;
 @property(nonatomic, copy) NSString *goods_name;
 @property(nonatomic, copy) NSString *mobile_banner_id;

@@ -870,6 +870,7 @@
 		6CCC1CE4228EA49900020A45 /* ZCShopCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE3228EA49900020A45 /* ZCShopCartTableViewCell.m */; };
 		6CCC1CE7228EBCF500020A45 /* ZCShopCartSctionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */; };
 		6CCC1CEA228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC1CE9228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m */; };
+		6CCCB3AE229E6F6200BCA6EB /* UILabelEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCB3AD229E6F6200BCA6EB /* UILabelEdgeInsets.m */; };
 		6CE808BB2293A0B4000CD2F9 /* ZCShopCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE808BA2293A0B4000CD2F9 /* ZCShopCartModel.m */; };
 		6CFB99AE228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */; };
 		C001CFEA1B0E8AD33641E112 /* libPods-HFLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7358FE6F8201198FC2AE374D /* libPods-HFLife.a */; };
@@ -2492,6 +2493,8 @@
 		6CCC1CE6228EBCF500020A45 /* ZCShopCartSctionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartSctionHeader.m; sourceTree = "<group>"; };
 		6CCC1CE8228ECD5500020A45 /* ZCShopCartTableHeaderFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartTableHeaderFooter.h; sourceTree = "<group>"; };
 		6CCC1CE9228ECD5500020A45 /* ZCShopCartTableHeaderFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartTableHeaderFooter.m; sourceTree = "<group>"; };
+		6CCCB3AC229E6F6200BCA6EB /* UILabelEdgeInsets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILabelEdgeInsets.h; sourceTree = "<group>"; };
+		6CCCB3AD229E6F6200BCA6EB /* UILabelEdgeInsets.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UILabelEdgeInsets.m; sourceTree = "<group>"; };
 		6CE808B92293A0B4000CD2F9 /* ZCShopCartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartModel.h; sourceTree = "<group>"; };
 		6CE808BA2293A0B4000CD2F9 /* ZCShopCartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartModel.m; sourceTree = "<group>"; };
 		6CFB99AC228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_HomeRushPurchaseCell.h; sourceTree = "<group>"; };
@@ -4513,6 +4516,8 @@
 			children = (
 				04A507C5227EDD390013E8EC /* UILabel+FitSize.m */,
 				04A507C6227EDD390013E8EC /* UILabel+FitSize.h */,
+				6CCCB3AC229E6F6200BCA6EB /* UILabelEdgeInsets.h */,
+				6CCCB3AD229E6F6200BCA6EB /* UILabelEdgeInsets.m */,
 			);
 			path = "01 计算合适的宽高";
 			sourceTree = "<group>";
@@ -8275,6 +8280,7 @@
 				658B7C5221D749E100801CC8 /* AxcAE_TabBarItem.m in Sources */,
 				658B7C5921D749E100801CC8 /* ToolMothod.m in Sources */,
 				658C3AE421F31A5000880B6A /* MKShowImportView.m in Sources */,
+				6CCCB3AE229E6F6200BCA6EB /* UILabelEdgeInsets.m in Sources */,
 				658C39D121E9FA5B00880B6A /* JXCategoryIndicatorImageView.m in Sources */,
 				04153BF6228AA2F100AA5DAF /* NearFoodVC.m in Sources */,
 				048DABF922856FE9006E6BA2 /* receiptRecordListCell.m in Sources */,

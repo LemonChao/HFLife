@@ -1,8 +1,8 @@
 //
-//  ZCShopCouponsCell.h
+//  UILabelEdgeInsets.h
 //  HFLife
 //
-//  Created by zchao on 2019/5/27.
+//  Created by zchao on 2019/5/29.
 //  Copyright © 2019 luyukeji. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZCShopCouponsCell : UITableViewCell
+@interface UILabelEdgeInsets : UILabel
 
-@property(nonatomic, strong) NSObject *model;
+@property(nonatomic, assign) UIEdgeInsets edgeInsets;
 
 @end
 

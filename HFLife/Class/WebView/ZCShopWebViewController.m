@@ -59,7 +59,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.webView];
     maskView = [UIView new];
     [self.view addSubview:maskView];
@@ -97,8 +97,6 @@
     [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
     [self.customNavBar wr_setBottomLineHidden:YES];
     self.customNavBar.title = self.webTitle;
-//    self.customNavBar.barBackgroundImage = [self createImageWithColor:[UIColor whiteColor]];
-//    self.customNavBar.titleLabelColor = [UIColor blackColor];
 
     [self.customNavBar setOnClickLeftButton:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -110,10 +108,6 @@
 -(void)loadWKwebViewData{
     [[WBPCreate sharedInstance]showWBProgress];
     if (![NSString isNOTNull:self.urlString]) {
-//        self.urlString = @"http://192.168.0.172:8080/#/productDetail?goods_id=1111";
-//        self.urlString = @"https://www.jianshu.com";
-//        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]] ;
-//        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"!$&'()*+,-./:;=?@_~%#[]"]]];
         
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
         [self.webView loadRequest:request];
@@ -147,12 +141,12 @@
     return NO;
 }
 #pragma mark - WKWebView代理
-//- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-//    //    Decides whether to allow or cancel a navigation after its response is known.
-//    NSLog(@"知道返回内容之后，是否允许加载，允许加载");
-//
-//    decisionHandler(WKNavigationResponsePolicyAllow);
-//}
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+    //    Decides whether to allow or cancel a navigation after its response is known.
+    NSLog(@"知道返回内容之后，是否允许加载，允许加载");
+
+    decisionHandler(WKNavigationResponsePolicyAllow);
+}
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"开始加载");
     
@@ -214,17 +208,17 @@
     [self loadFailed];
 }
 #pragma mark - WKUIDelegate
-//- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
-//{
-//
-//    //    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提醒" message:message preferredStyle:UIAlertControllerStyleAlert];
-//    //    [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//    //        completionHandler();
-//    //    }]];
-//    //
-//    //    [self presentViewController:alert animated:YES completion:nil];
-//    completionHandler();
-//}
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
+{
+
+    //    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提醒" message:message preferredStyle:UIAlertControllerStyleAlert];
+    //    [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    //        completionHandler();
+    //    }]];
+    //
+    //    [self presentViewController:alert animated:YES completion:nil];
+    completionHandler();
+}
 
 #pragma mark -- WKScriptMessageHandler
 /**
@@ -256,8 +250,8 @@
         [self goShoppingParameter:message.body];
     }else if ([message.name isEqualToString:@"nativeToJump"]){
         [self nativeToJumpParameter:message.body];
-    }else if ([message.name isEqualToString:@"goToHome"]){
-        [self goToHome];
+    }else if ([message.name isEqualToString:@"goBack"]){
+        [self goBack];
     }else if ([message.name isEqualToString:@"rushBuy"]){
         [self rushBuyParameter:message.body];
     }else if ([message.name isEqualToString:@"orderHotel"]){
@@ -267,7 +261,7 @@
     }else if ([message.name isEqualToString:@"goToPay"]){
         [self goToPayParameter:message.body];
     }else if ([message.name isEqualToString:@"goToApp"]){
-        [self goToHome];
+        [self goBack];
     }
     else if ([message.name isEqualToString:@"Share"]){
         
@@ -358,8 +352,14 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - 返回首页--
--(void)goToHome{
-    [self.navigationController popViewControllerAnimated:YES];
+-(void)goBack{
+    if ([self.webView canGoBack]) {
+        [self.webView goBack];
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+
+
 }
 #pragma mark -抢购--
 -(void)rushBuyParameter:(NSDictionary *)dict{
@@ -530,7 +530,7 @@
         WKUserContentController * wkUController = [[WKUserContentController alloc] init];
 //        WeakWebViewScriptMessageDelegate *weakScriptMessageDelegate = [[WeakWebViewScriptMessageDelegate alloc] initWithDelegate:self];
         //注册一个name为jsToOcNoPrams的js方法 设置处理接收JS方法的对象
-        [wkUController addScriptMessageHandler:self name:@"asdfss"];
+        [wkUController addScriptMessageHandler:self name:@"goBack"];
         [wkUController addScriptMessageHandler:self name:@"GoToHome"];
         [wkUController addScriptMessageHandler:self name:@"logout"];
         

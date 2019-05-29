@@ -61,7 +61,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ZCShopHomeLimitModel *model = self.model.cellDatas[indexPath.row];
-    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productDetail" parameters:@{@"goods_id":model.xianshi_goods_id}];
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"productDetail" parameters:@{@"goods_id":model.goods_id}];
     [self.viewController.navigationController pushViewController:webVC animated:YES];
 }
 
