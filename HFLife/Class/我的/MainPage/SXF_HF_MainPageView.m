@@ -81,6 +81,10 @@
         cell.selectItemBlock = ^(NSInteger index) {
             !weakSelf.selectedItemCallback? : weakSelf.selectedItemCallback([NSIndexPath indexPathForRow:index inSection:indexPath.section]);
         };
+        cell.autoScrollItemBlock = ^(NSInteger index) {
+            //发通知 i修改 menu的背景色
+            [NOTIFICATION postNotificationName:@"changeBgColor" object:@(index)];
+        };
         anyCell = cell;
     }else
         if (indexPath.section == 1){
@@ -102,7 +106,7 @@
     if (indexPath.section == 0) {
         return (710.0 / 389.0) * 0.5 * SCREEN_WIDTH ;
     }else if (indexPath.section == 1){
-        return ScreenScale(180);
+        return ScreenScale(280);
     }else{
         return 50;
     }
