@@ -52,7 +52,6 @@
             weakSelf.headView.setLocalStr = @"正在定位...";
         }
         weakSelf.headView.is_notice = nearModel.is_notice;
-        weakSelf.headView.setHeadImage = [userInfoModel sharedUser].userHeaderImage;
     };
     
     [self.view addSubview:self.myLocaVeiw];
@@ -71,7 +70,7 @@
     [self.customNavBar setHidden:YES];
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.translucent = YES;
-    
+    self.headView.setHeadImage = [userInfoModel sharedUser].userHeaderImage;
     
     if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
         //app 已开启定位

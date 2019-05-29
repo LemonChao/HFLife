@@ -166,16 +166,9 @@
     
 }
 
-#pragma mark - 设置头像昵称
-- (void)reSetData {
-    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"user__easyico")];
-    NSString *nameStr = [userInfoModel sharedUser].nickname;
-    self.userNameLb.text = nameStr ? nameStr : @"";
-}
-
 #pragma mark - 设置信息
 - (void)setMemberInfoModel:(userInfoModel *)memberInfoModel {
-    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:memberInfoModel.member_avatar] placeholderImage:MY_IMAHE(@"head_icon")];
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:memberInfoModel.member_avatar] placeholderImage:MY_IMAHE(@"user__easyico")];
     NSString *nameStr = memberInfoModel.nickname;
     self.userNameLb.text = [NSString judgeNullReturnString:nameStr];
     self.userLeveLb.text = memberInfoModel.level_name ? memberInfoModel.level_name : @"无等级信息";

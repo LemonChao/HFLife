@@ -290,7 +290,7 @@
                                [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
                                [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
                                [LoginVC changeIndxHome];
-                               [self dismissViewControllerAnimated:NO completion:nil];
+                               [self dismissViewControllerAnimated:YES completion:nil];
                            }else {
                                SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
                                vc.openIdStr = user.uid;
@@ -365,7 +365,7 @@
 
 + (void)changeIndxHome{
     [JMConfig config].selectedIndex = 0;
-
+    [userInfoModel getUserInfo];
 }
 
 @end
