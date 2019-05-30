@@ -170,5 +170,26 @@ static dispatch_once_t onceToken;
     }];
 }
 
+- (BOOL) chect_rz_status{
+    if (self.rz_status.intValue == 0) {
+        [WXZTipView showCenterWithText:@"未认证"];
+        return NO;
+    }
+    if (self.rz_status.intValue == 1) {
+        
+        return YES;
+    }
+    if (self.rz_status.intValue == 2) {
+        [WXZTipView showCenterWithText:@"认证审核中"];
+        return NO;;
+    }
+    if (self.rz_status.intValue == 3) {
+        [WXZTipView showCenterWithText:@"认证未通过"];
+        return NO;;
+    }
+    [WXZTipView showCenterWithText:@"未认证"];
+    return NO;
+}
+
 @end
 

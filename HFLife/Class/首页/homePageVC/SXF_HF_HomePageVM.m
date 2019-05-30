@@ -139,31 +139,38 @@
             }
         }];
     }else{
-        UIViewController *vc = [BaseViewController new];
-        if (index == 0) {
-            //检测相机权限
-            if ([NSObject isCameraAvailable]) {
-                vc = [FlickingVC new];//扫一扫
-            }else{
-                [WXZTipView showCenterWithText:@"相机不可用"];
-                return;
+        if ([userInfoModel checkPhotoStatus]) {
+            UIViewController *vc;
+            if (index == 0) {
+                //检测相机权限
+                if ([NSObject isCameraAvailable]) {
+                    vc = [FlickingVC new];//扫一扫
+                }else{
+                    [WXZTipView showCenterWithText:@"相机不可用"];
+                    return;
+                }
+                
+            }else if (index == 1){
+                SXF_HF_GetMoneyVC *payVC = [SXF_HF_GetMoneyVC new];//付款
+                payVC.payType = NO;
+                vc = payVC;
+            }else if (index == 2){
+                SXF_HF_GetMoneyVC *getVC = [SXF_HF_GetMoneyVC new];//收款
+                getVC.payType = YES;
+                vc = getVC;
+            }else if (index == 3){
+                vc = [SXF_HP_cardPacketVC new];//卡包
+            }else if (index == 4){
+                //搜索
+                
+            }
+            if (vc) {
+                [self.vc.navigationController pushViewController:vc animated:YES];
             }
             
-        }else if (index == 1){
-            SXF_HF_GetMoneyVC *payVC = [SXF_HF_GetMoneyVC new];//付款
-            payVC.payType = NO;
-            vc = payVC;
-        }else if (index == 2){
-            SXF_HF_GetMoneyVC *getVC = [SXF_HF_GetMoneyVC new];//收款
-            getVC.payType = YES;
-            vc = getVC;
-        }else if (index == 3){
-            vc = [SXF_HP_cardPacketVC new];//卡包
-        }else if (index == 4){
-            //搜索
-            
         }
-        [self.vc.navigationController pushViewController:vc animated:YES];
+        
+       
     }
 }
 

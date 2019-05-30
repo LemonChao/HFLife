@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Ea1-XH-QPZ" customClass="SXF_HF_saveCodeView2">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="717"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="save背景图" translatesAutoresizingMaskIntoConstraints="NO" id="WGF-47-uLe">
+                    <rect key="frame" x="0.0" y="29" width="390" height="644"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CC7-W4-T8S">
+                    <rect key="frame" x="33" y="283" width="156" height="156"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7mh-8B-C47">
+                            <rect key="frame" x="10" y="10" width="136" height="136"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="7mh-8B-C47" firstAttribute="leading" secondItem="CC7-W4-T8S" secondAttribute="leading" constant="10" id="BVJ-vA-SBn"/>
+                        <constraint firstAttribute="trailing" secondItem="7mh-8B-C47" secondAttribute="trailing" constant="10" id="HRv-TH-UoO"/>
+                        <constraint firstAttribute="bottom" secondItem="7mh-8B-C47" secondAttribute="bottom" constant="10" id="dZB-G7-bWI"/>
+                        <constraint firstAttribute="width" secondItem="CC7-W4-T8S" secondAttribute="height" multiplier="1:1" id="fMd-ee-uNy"/>
+                        <constraint firstItem="7mh-8B-C47" firstAttribute="top" secondItem="CC7-W4-T8S" secondAttribute="top" constant="10" id="gI7-kG-hz5"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0n-mc-ZMj">
+                    <rect key="frame" x="201" y="283" width="156" height="156"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lDJ-3h-2Ms">
+                            <rect key="frame" x="10" y="10" width="136" height="136"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="lDJ-3h-2Ms" secondAttribute="trailing" constant="10" id="KsO-iW-61E"/>
+                        <constraint firstItem="lDJ-3h-2Ms" firstAttribute="top" secondItem="O0n-mc-ZMj" secondAttribute="top" constant="10" id="R0l-IC-gHV"/>
+                        <constraint firstAttribute="bottom" secondItem="lDJ-3h-2Ms" secondAttribute="bottom" constant="10" id="V95-lN-hR7"/>
+                        <constraint firstItem="lDJ-3h-2Ms" firstAttribute="leading" secondItem="O0n-mc-ZMj" secondAttribute="leading" constant="10" id="t0b-C8-s7C"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="WGF-47-uLe" firstAttribute="leading" secondItem="Ea1-XH-QPZ" secondAttribute="leading" id="3Cm-Dz-RSq"/>
+                <constraint firstItem="CC7-W4-T8S" firstAttribute="centerY" secondItem="WGF-47-uLe" secondAttribute="centerY" constant="10" id="5GY-2e-7gw"/>
+                <constraint firstAttribute="trailing" secondItem="WGF-47-uLe" secondAttribute="trailing" id="GPb-If-66W"/>
+                <constraint firstItem="WGF-47-uLe" firstAttribute="top" secondItem="Ea1-XH-QPZ" secondAttribute="top" constant="29" id="Ndj-YQ-Hyr"/>
+                <constraint firstItem="CC7-W4-T8S" firstAttribute="trailing" secondItem="WGF-47-uLe" secondAttribute="centerX" constant="-6" id="Zxq-CN-eRX"/>
+                <constraint firstItem="O0n-mc-ZMj" firstAttribute="leading" secondItem="WGF-47-uLe" secondAttribute="centerX" constant="6" id="cV4-NX-FWw"/>
+                <constraint firstItem="O0n-mc-ZMj" firstAttribute="centerY" secondItem="CC7-W4-T8S" secondAttribute="centerY" id="iSI-bT-ThY"/>
+                <constraint firstItem="CC7-W4-T8S" firstAttribute="width" secondItem="WGF-47-uLe" secondAttribute="width" multiplier="150 / 375" id="p8M-vk-b9U"/>
+                <constraint firstItem="O0n-mc-ZMj" firstAttribute="width" secondItem="CC7-W4-T8S" secondAttribute="width" id="qJK-0O-J2n"/>
+                <constraint firstItem="O0n-mc-ZMj" firstAttribute="height" secondItem="CC7-W4-T8S" secondAttribute="height" id="tJd-Cc-UvZ"/>
+                <constraint firstAttribute="bottom" secondItem="WGF-47-uLe" secondAttribute="bottom" constant="44" id="vKi-7f-1uk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="downCodeImgV" destination="7mh-8B-C47" id="mFu-q2-TfM"/>
+                <outlet property="getMoneyCodeImgV" destination="lDJ-3h-2Ms" id="BpQ-0C-Nn7"/>
+            </connections>
+            <point key="canvasLocation" x="345.60000000000002" y="-405.24737631184411"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="save背景图" width="351" height="594"/>
+    </resources>
+</document>

@@ -59,3 +59,8 @@
 @implementation introListModel
 
 @end
+
+@implementation mainScrollModel
+
+
+@end

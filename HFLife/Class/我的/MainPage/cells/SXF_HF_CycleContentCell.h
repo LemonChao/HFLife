@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXF_HF_CycleContentCell : UICollectionViewCell
-
+@property (nonatomic, strong)UIImageView *bgImageV;
+@property (nonatomic, strong)UILabel *titleLb;
+@property (nonatomic, strong)UILabel *subTitleLb;
+@property (nonatomic, strong)UILabel *moneyLb;
 @end
 
 NS_ASSUME_NONNULL_END

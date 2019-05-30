@@ -118,6 +118,8 @@
     return self.dataSourceArr.count;
 }
 
+
+
 #pragma mark - Delegate
 - (UICollectionViewCell *)viewForCarousel:(CWCarousel *)carousel indexPath:(NSIndexPath *)indexPath index:(NSInteger)index{
     if ([self.cellClass isEqualToString:NSStringFromClass([bannerCollectionViewCell class])]) {
@@ -130,6 +132,20 @@
         return cell;
     }else if ([self.cellClass isEqualToString:NSStringFromClass([SXF_HF_CycleContentCell class])]){
         SXF_HF_CycleContentCell *cell = [carousel.carouselView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_CycleContentCell class]) forIndexPath:indexPath];
+        
+        //给cell复制
+//        NSLog(@"%ld   ---   %lf", indexPath.row, indexPath.section);
+        mainScrollModel *model = self.dataSourceArr[index];
+        cell.titleLb.text = model.title;
+        cell.subTitleLb.text = model.subTitle;
+        cell.moneyLb.text = model.money;
+        if (index == 0) {
+            cell.bgImageV.image = MY_IMAHE(@"bg余额");
+        }else if (index == 1){
+            cell.bgImageV.image = MY_IMAHE(@"bg可兑换富权");
+        }else if(index == 2){
+            cell.bgImageV.image = MY_IMAHE(@"bg富权");
+        }
         
         return cell;
     }
