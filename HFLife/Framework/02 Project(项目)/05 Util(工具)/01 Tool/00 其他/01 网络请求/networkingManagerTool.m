@@ -257,7 +257,7 @@
     
     //成功  返回就是json  不需要解析
     NSDictionary *valueDic = [HR_dataManagerTool dataToypteDJson:responseObject];
-    NSLog(@"result = %@" , valueDic);
+    MYLog(@"result = %@" , valueDic);
     //解析正确
     if (valueDic != nil) {
         if ([valueDic[@"status"] integerValue] == 1){
@@ -372,7 +372,7 @@
         NSLog(@"进度---%@" , uploadProgress);
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([[NSString stringWithFormat:@"%@" , responseObject[@"code"]] isEqualToString:@"1" ]) {
-            NSLog(@"%@",responseObject[@"msg"]);
+//            NSLog(@"%@",responseObject[@"msg"]);
             dic(responseObject);
         }
         else if ([[NSString stringWithFormat:@"%@" , responseObject[@"code"]] isEqualToString:@"0" ])

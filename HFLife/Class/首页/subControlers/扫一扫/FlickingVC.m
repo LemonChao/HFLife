@@ -288,6 +288,8 @@
                     [weakSelf.navigationController pushViewController:payVC animated:YES];
                     
                 }else if([type isEqualToString:@"2"]){
+                    //跳转到 输入金额 收款界面
+                    
                     
                 }
                 
