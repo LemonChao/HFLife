@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic ,strong) NSNumber *verified_status;
 
 
-@property (nonatomic ,strong) NSNumber *id;//用户id
+@property (nonatomic ,strong) NSNumber *ID;//用户id
 @property (nonatomic ,copy) NSString *member_mobile;///用户名
 @property (nonatomic ,strong) NSNumber *member_sex;//性别 0保密 1男 2女
 @property (nonatomic ,copy) NSString *member_sexName;//性别 0保密 1男 2女(!!获取member_sex名称
@@ -68,6 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic ,copy,nullable)  NSString  *weixin_unionid;//微信id
 @property (nonatomic ,copy,nullable) NSString *alipay_unionid;//支付宝id
+@property (nonatomic ,strong) NSNumber *set_pass;//支付密码（0未设置，1已设置）
 
 
 @property (nonatomic, strong)UIImage *userHeaderImage;//用户头像

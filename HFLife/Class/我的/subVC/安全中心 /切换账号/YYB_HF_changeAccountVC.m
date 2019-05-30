@@ -23,8 +23,11 @@
     NSMutableDictionary *accountDic = [[NSUserDefaults standardUserDefaults]valueForKey:USERINFO_ACCOUNT];
     if (accountDic && [accountDic isKindOfClass:[NSMutableDictionary class]]) {
         self.accountMobileArr = [NSMutableArray arrayWithArray:accountDic.allKeys];
-        [self.accountMobileArr exchangeObjectAtIndex:0 withObjectAtIndex:[self.accountMobileArr indexOfObject:[userInfoModel sharedUser].member_mobile]];
+        if ([self.accountMobileArr containsObject:[userInfoModel sharedUser].member_mobile]) {
+            [self.accountMobileArr exchangeObjectAtIndex:0 withObjectAtIndex:[self.accountMobileArr indexOfObject:[userInfoModel sharedUser].member_mobile]];
+        }
         self.accountDic = [accountDic mutableCopy];
+        
     }
     [self setupNavBar];
     [self setUpUI];
@@ -106,7 +109,7 @@
         [cell.headImageView sd_setImageWithURL:[accountItem valueForKey:@"member_avatar"] placeholderImage:image(@"user__easyico")];
         NSString *accountStr = [accountItem valueForKey:@"member_mobile"];
         cell.accountLabel.text = accountStr;
-        if (indexPath.row == 0) {
+        if (indexPath.row == 0 && [userInfoModel sharedUser].member_mobile) {
             [cell.cheackIcon setHidden:NO];
         }else {
             [cell.cheackIcon setHidden:YES];
@@ -137,7 +140,7 @@
         [self.navigationController popToRootViewControllerAnimated:NO];
     }else {
        
-        if (indexPath.row != 0) {
+        if (indexPath.row != 0 || [userInfoModel sharedUser].member_mobile == nil) {
             
             NSString *tempToken = [[NSUserDefaults standardUserDefaults]valueForKey:USER_TOKEN];
             NSDictionary *accountItemDic = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
@@ -151,7 +154,7 @@
                     [self.accountMobileArr exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
                     [self.myTable reloadData];
                     [userInfoModel attempDealloc];
-                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERINFO_DATA];
+                    
                     if (value && [value isKindOfClass:[NSDictionary class]]) {
                         
                         NSDictionary *dataDic = value[@"data"];

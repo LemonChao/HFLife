@@ -34,8 +34,13 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor  = [UIColor whiteColor];
     self.view.backgroundColor = HEX_COLOR(0xf4f7f7);
-    dataArray = @[@[@"头像",@"用户名称",@"昵称",@"性别",@"年龄"],@[@"实名认证"],@[@"退出登录"]];
 //    valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
+    
+    if (([userInfoModel sharedUser].id && [userInfoModel sharedUser].id > 0)) {
+        dataArray = @[@[@"头像",@"用户名称",@"昵称",@"性别",@"年龄"],@[@"实名认证"],@[@"退出登录"]];
+    }else {
+        dataArray = @[@[],@[],@[@"退出登录"]];
+    }
     [self initWithUI];
     [self setupNavBar];
 }
