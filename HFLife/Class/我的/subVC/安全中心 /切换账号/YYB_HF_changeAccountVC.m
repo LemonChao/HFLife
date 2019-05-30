@@ -108,8 +108,8 @@
         NSDictionary *accountItem = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
         [cell.headImageView sd_setImageWithURL:[accountItem valueForKey:@"member_avatar"] placeholderImage:image(@"user__easyico")];
         NSString *accountStr = [accountItem valueForKey:@"member_mobile"];
-        cell.accountLabel.text = accountStr;
-        if (indexPath.row == 0 && [userInfoModel sharedUser].member_mobile) {
+        cell.accountLabel.text = [accountStr EncodeTel] ;
+        if (indexPath.row == 0 && [[userInfoModel sharedUser].member_mobile isEqualToString:accountStr]) {
             [cell.cheackIcon setHidden:NO];
         }else {
             [cell.cheackIcon setHidden:YES];
@@ -136,14 +136,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 1) {
+        
         [LoginVC login];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }else {
-       
-        if (indexPath.row != 0 || [userInfoModel sharedUser].member_mobile == nil) {
+        NSDictionary *accountItemDic = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
+
+        if (![[userInfoModel sharedUser].member_mobile isEqualToString:[accountItemDic valueForKey:@"member_mobile"]] ) {
             
             NSString *tempToken = [[NSUserDefaults standardUserDefaults]valueForKey:USER_TOKEN];
-            NSDictionary *accountItemDic = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
             NSString *token = [accountItemDic objectForKey:@"token"];
             [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
             [[WBPCreate sharedInstance] showWBProgress];
@@ -168,22 +169,24 @@
                             [defaults synchronize];
                             
                             //存储修改账号信息===
-                            NSDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
-                            NSMutableDictionary *accountDicCopy;
-                            if ((accountDic && [accountDic isKindOfClass:[NSDictionary class]])) {
-                                accountDicCopy = [[NSMutableDictionary alloc]initWithDictionary:accountDic];
-                            }else {
-                                accountDicCopy = [[NSMutableDictionary alloc]init];
-                            }
-                            NSDictionary *accountItem = @{
-                                                          @"member_mobile":[userInfoModel sharedUser].member_mobile,
-                                                          @"member_avatar":[userInfoModel sharedUser].member_avatar,
-                                                          @"token":[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]
-                                                          };
                             
                             NSString *acckey = [userInfoModel sharedUser].member_mobile;
-                            [accountDicCopy setValue:accountItem forKey:acckey];
-                            [[NSUserDefaults standardUserDefaults] setValue:accountDicCopy forKey:USERINFO_ACCOUNT];
+                            if (acckey) {
+                                NSDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
+                                NSMutableDictionary *accountDicCopy;
+                                if ((accountDic && [accountDic isKindOfClass:[NSDictionary class]])) {
+                                    accountDicCopy = [[NSMutableDictionary alloc]initWithDictionary:accountDic];
+                                }else {
+                                    accountDicCopy = [[NSMutableDictionary alloc]init];
+                                }
+                                NSDictionary *accountItem = @{
+                                                              @"member_mobile":[NSString judgeNullReturnString:[userInfoModel sharedUser].member_mobile],
+                                                              @"member_avatar":[NSString judgeNullReturnString:[userInfoModel sharedUser].member_avatar],
+                                                              @"token":[NSString judgeNullReturnString:[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]]
+                                                              };
+                                [accountDicCopy setValue:accountItem forKey:acckey];
+                                [[NSUserDefaults standardUserDefaults] setValue:accountDicCopy forKey:USERINFO_ACCOUNT];
+                            }
                             ///====
                             
                             //初始化头像
@@ -227,6 +230,43 @@
     }
     
     return [UIView new];
+}
+
+//编辑
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //存储修改账号信息===
+        NSDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
+        NSMutableDictionary *accountDicCopy;
+        if ((accountDic && [accountDic isKindOfClass:[NSDictionary class]])) {
+            accountDicCopy = [[NSMutableDictionary alloc]initWithDictionary:accountDic];
+        }else {
+            accountDicCopy = [[NSMutableDictionary alloc]init];
+        }
+        
+        NSString *acckey = self.accountMobileArr[indexPath.row];
+        if ([accountDicCopy.allKeys containsObject:acckey]) {
+            [accountDicCopy removeObjectForKey:acckey];
+        }
+        [self.accountMobileArr removeObjectAtIndex:indexPath.row];
+        [[NSUserDefaults standardUserDefaults] setValue:accountDicCopy forKey:USERINFO_ACCOUNT];
+        ///====
+        
+        [self.myTable reloadData];
+    }
+}
+
+// 修改编辑按钮文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
 }
 
 

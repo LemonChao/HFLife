@@ -107,13 +107,14 @@
         make.right.mas_equalTo(self.view).mas_offset(ScreenScale(-12));
     }];
     UIView *top = self.oldPassWordText;
-    if ([userInfoModel sharedUser].set_pass.intValue == 1) {
-        //已设置支付密码
-        
-    }else {
-        [self.oldPassWordText setHidden:YES];
-        top = self.saveImageView;
-    }
+    [self.oldPassWordText setHidden:YES];
+    top = self.saveImageView;
+//    if ([userInfoModel sharedUser].set_pass.intValue == 1) {
+//        //已设置支付密码
+//
+//    }else {
+//
+//    }
 
     [self.passWordText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(top.mas_bottom).mas_offset(ScreenScale(60));
@@ -159,7 +160,7 @@
     self.sureBtn = sureBtn;
     
 }
-//提交
+#pragma mark - //提交
 - (void)submitBtnClick {
     
     if (self.oldPassWordText.hidden == NO && self.oldPassWordText.text.length <= 0) {
@@ -175,7 +176,7 @@
     }
     if (![self.passWordText.text isEqualToString:self.confirmPassWordText.text]) {
         [WXZTipView showCenterWithText:@"交易密码输入不一致,请重新输入"];
-        self.errLabel.text = @"密码不一致";
+        self.errLabel.text = @"校验密码不一致";
         [self.errLabel setHidden:NO];
         return;
     }
@@ -222,17 +223,7 @@
         
         UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(12), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
-        
-        //        UIImageView *iconImageView = [UIImageView new];
-        //        iconImageView.image = MMGetImage(@"icon_user");
-        //        [lv addSubview:iconImageView];
-        //        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        //            make.left.mas_equalTo(lv.mas_left);
-        //            make.centerY.mas_equalTo(lv.mas_centerY);
-        //            make.width.mas_equalTo(ScreenScale(24));
-        //            make.height.mas_equalTo(ScreenScale(24));
-        //        }];
-        
+
         tf.leftViewMode = UITextFieldViewModeAlways;
         tf.leftView = lv;
         [tf sizeToFit];
@@ -247,7 +238,6 @@
             make.left.mas_equalTo(tf).mas_offset(12);
             make.height.mas_equalTo(ScreenScale(15));
         }];
-        
         
         UILabel *lin = [UILabel new];
         lin.backgroundColor = HEX_COLOR(0xF5F5F5);
@@ -291,17 +281,7 @@
         
         UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(12), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
-        
-        //        UIImageView *iconImageView = [UIImageView new];
-        //        iconImageView.image = MMGetImage(@"icon_user");
-        //        [lv addSubview:iconImageView];
-        //        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        //            make.left.mas_equalTo(lv.mas_left);
-        //            make.centerY.mas_equalTo(lv.mas_centerY);
-        //            make.width.mas_equalTo(ScreenScale(24));
-        //            make.height.mas_equalTo(ScreenScale(24));
-        //        }];
-        
+
         tf.leftViewMode = UITextFieldViewModeAlways;
         tf.leftView = lv;
         [tf sizeToFit];
@@ -316,7 +296,6 @@
             make.left.mas_equalTo(tf).mas_offset(12);
             make.height.mas_equalTo(ScreenScale(15));
         }];
-        
         
         UILabel *lin = [UILabel new];
         lin.backgroundColor = HEX_COLOR(0xF5F5F5);
@@ -361,16 +340,6 @@
         UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(12), ScreenScale(24))];
         lv.backgroundColor = [UIColor clearColor];
         
-        //        UIImageView *iconImageView = [UIImageView new];
-        //        iconImageView.image = MMGetImage(@"icon_mima");
-        //        [lv addSubview:iconImageView];
-        //        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        //            make.left.mas_equalTo(lv.mas_left);
-        //            make.centerY.mas_equalTo(lv.mas_centerY);
-        //            make.width.mas_equalTo(ScreenScale(21));
-        //            make.height.mas_equalTo(ScreenScale(24));
-        //        }];
-        
         tf.leftViewMode = UITextFieldViewModeAlways;
         tf.leftView = lv;
         [tf sizeToFit];
@@ -386,7 +355,6 @@
             make.left.mas_equalTo(tf).mas_offset(12);
             make.height.mas_equalTo(ScreenScale(15));
         }];
-
         
         UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WidthRatio(120), HeightRatio(69))];
         rightView.backgroundColor = [UIColor clearColor];
@@ -439,14 +407,5 @@
     }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
