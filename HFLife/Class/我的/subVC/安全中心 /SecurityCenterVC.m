@@ -105,38 +105,42 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([value isEqualToString:@"注销账号"]){
         
-        [[WBPCreate sharedInstance]showWBProgress];
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kGetCloseAgreement withParameters:nil withResultBlock:^(BOOL result, id value) {
-            [[WBPCreate sharedInstance]hideAnimated];
-            if (result) {
-                
-                NSString *msg = @"";
-                if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    NSDictionary *dataDic = value[@"data"];
-                    
-                    NSString *app_close_agreementStr = [dataDic safeObjectForKey:@"app_close_agreement"];
-                    if (app_close_agreementStr && [app_close_agreementStr isKindOfClass:[NSString class]] && app_close_agreementStr.length > 0) {
-                        msg = app_close_agreementStr;
-                    }
-                }
+//        [[WBPCreate sharedInstance]showWBProgress];
+//        [networkingManagerTool requestToServerWithType:POST withSubUrl:kGetCloseAgreement withParameters:nil withResultBlock:^(BOOL result, id value) {
+//            [[WBPCreate sharedInstance]hideAnimated];
+//            if (result) {
+        
+                NSString *msg = @"1.您将不再享有汉富新生活的专属会员权益（包括但不限于付费会员权益、生态会员权益等）；\n2.您将再也无法对此账号进行登录、忘记密码操作；\n3.您账户的个人资料及历史信息将无法找回；\n4.您账户中如果存在与会员相关的其他权益未使用，注销后将不能再使用；\n5.您的汉富智新生活能终端产品在使用时，需重新注册汉富账号并重新设置，原账号内的数据信息不会进行移转或继承；\n6.除法律法规要求必须保存的信息以外，您的用户信息我们将予以删除。您账户下所有行为信息记录，您将无法找回；\n7.注销本账户并不代表本账户注销前的账户行为和相关责任得到豁免或减轻。";
+//                if (value && [value isKindOfClass:[NSDictionary class]]) {
+//                    NSDictionary *dataDic = value[@"data"];
+//
+//                    NSString *app_close_agreementStr = [dataDic safeObjectForKey:@"app_close_agreement"];
+//                    if (app_close_agreementStr && [app_close_agreementStr isKindOfClass:[NSString class]] && app_close_agreementStr.length > 0) {
+//                        msg = app_close_agreementStr;
+//                    }
+//                }
                 SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_cancellation Complete:^(BOOL btnBype) {
                     if (btnBype) {
-                        YYB_HF_destroyAccountVC *vc = [[YYB_HF_destroyAccountVC alloc]init];
-                        [self.navigationController pushViewController:vc animated:YES];
+                        if ([userInfoModel sharedUser].ID && [userInfoModel sharedUser].ID > 0) {
+                            YYB_HF_destroyAccountVC *vc = [[YYB_HF_destroyAccountVC alloc]init];
+                            [self.navigationController pushViewController:vc animated:YES];
+                        }else {
+                            [WXZTipView showCenterWithText:@"用户信息未获取成功"];
+                        }
                     }
                 }];
                 alert.msg = msg;
-            }else {
-                if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    [WXZTipView showCenterWithText:value[@"msg"]];
-                }else {
-                    [WXZTipView showCenterWithText:@"网络错误"];
-                }
-            }
-        }];
+//            }else {
+//                if (value && [value isKindOfClass:[NSDictionary class]]) {
+//                    [WXZTipView showCenterWithText:value[@"msg"]];
+//                }else {
+//                    [WXZTipView showCenterWithText:@"网络错误"];
+//                }
+//            }
+//        }];
 
         
-    }else if ([value isEqualToString:@"关联账号"]){ID
+    }else if ([value isEqualToString:@"关联账号"]){
         if ([userInfoModel sharedUser].ID && [userInfoModel sharedUser].ID > 0) {
             [self.navigationController pushViewController:[NSClassFromString(@"SXF_HF_bindingAccount") new] animated:YES];
         }else {
