@@ -877,6 +877,7 @@
 		6CCCB3AE229E6F6200BCA6EB /* UILabelEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCB3AD229E6F6200BCA6EB /* UILabelEdgeInsets.m */; };
 		6CE808BB2293A0B4000CD2F9 /* ZCShopCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE808BA2293A0B4000CD2F9 /* ZCShopCartModel.m */; };
 		6CFB99AE228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */; };
+		6CFD485B229FCE7200425DFC /* ZCShopRuzhuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFD485A229FCE7200425DFC /* ZCShopRuzhuCell.m */; };
 		C001CFEA1B0E8AD33641E112 /* libPods-HFLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7358FE6F8201198FC2AE374D /* libPods-HFLife.a */; };
 /* End PBXBuildFile section */
 
@@ -2510,6 +2511,8 @@
 		6CE808BA2293A0B4000CD2F9 /* ZCShopCartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartModel.m; sourceTree = "<group>"; };
 		6CFB99AC228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_HomeRushPurchaseCell.h; sourceTree = "<group>"; };
 		6CFB99AD228416F5001987E8 /* ZC_HF_HomeRushPurchaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZC_HF_HomeRushPurchaseCell.m; sourceTree = "<group>"; };
+		6CFD4859229FCE7200425DFC /* ZCShopRuzhuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopRuzhuCell.h; sourceTree = "<group>"; };
+		6CFD485A229FCE7200425DFC /* ZCShopRuzhuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopRuzhuCell.m; sourceTree = "<group>"; };
 		7358FE6F8201198FC2AE374D /* libPods-HFLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HFLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0FD763EB23372586598644F /* Pods-HFLife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HFLife.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HFLife/Pods-HFLife.debug.xcconfig"; sourceTree = "<group>"; };
 		AF4ED42DB4DA8F9C5A04E8A7 /* Pods-HFLife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HFLife.release.xcconfig"; path = "Pods/Target Support Files/Pods-HFLife/Pods-HFLife.release.xcconfig"; sourceTree = "<group>"; };
@@ -7238,6 +7241,8 @@
 				6C988788229BD2EE00AA7037 /* ZCShopOrderCell.m */,
 				6C98878A229BEFC000AA7037 /* ZCShopCouponsCell.h */,
 				6C98878B229BEFC000AA7037 /* ZCShopCouponsCell.m */,
+				6CFD4859229FCE7200425DFC /* ZCShopRuzhuCell.h */,
+				6CFD485A229FCE7200425DFC /* ZCShopRuzhuCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -8167,6 +8172,7 @@
 				658C39E721E9FA5B00880B6A /* JXCategoryListContainerView.m in Sources */,
 				6579784621E6D6B600E606BE /* JFSearchView.m in Sources */,
 				658B7C7E21D749E100801CC8 /* WXZTipView.m in Sources */,
+				6CFD485B229FCE7200425DFC /* ZCShopRuzhuCell.m in Sources */,
 				04A508A4227EDD3A0013E8EC /* UIViewController+WHVC.m in Sources */,
 				658B7C4C21D749E100801CC8 /* UIImage+Developer.m in Sources */,
 				658B7CB321D749E100801CC8 /* TAAnimatedDotView.m in Sources */,

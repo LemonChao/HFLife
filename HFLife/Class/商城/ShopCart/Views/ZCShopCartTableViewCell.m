@@ -7,6 +7,7 @@
 //
 
 #import "ZCShopCartTableViewCell.h"
+#import "UILabelEdgeInsets.h"
 
 @interface ZCShopCartTableViewCell ()
 
@@ -15,6 +16,9 @@
 @property(nonatomic, strong) UIImageView *godsImgView;
 
 @property(nonatomic, strong) UILabel *nameLab;
+
+/** 商品特殊信息，颜色，尺码等 */
+@property(nonatomic, strong) UILabelEdgeInsets *specialLab;
 
 /** 促销价 */
 @property(nonatomic, strong) UILabel *priceLab;
@@ -44,6 +48,7 @@
         [self.contentView addSubview:self.selectButton];
         [self.contentView addSubview:self.godsImgView];
         [self.contentView addSubview:self.nameLab];
+        [self.contentView addSubview:self.specialLab];
         [self.contentView addSubview:self.priceLab];
         [self.contentView addSubview:self.subtractionButton];
         [self.contentView addSubview:self.countLabel];
@@ -72,11 +77,22 @@
         make.top.equalTo(self.contentView).inset(ScreenScale(20));
         make.left.equalTo(self.godsImgView.mas_right).offset(ScreenScale(10));
         make.right.equalTo(self.contentView).inset(ScreenScale(22));
-        make.height.mas_lessThanOrEqualTo(ScreenScale(30));
+//        make.height.mas_lessThanOrEqualTo(ScreenScale(30));
+    }];
+    
+    [self.specialLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.nameLab.mas_bottom).offset(ScreenScale(10));
+        make.left.equalTo(self.nameLab);
+        make.right.lessThanOrEqualTo(self.nameLab);
     }];
     
     [self.priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.nameLab.mas_bottom).offset(ScreenScale(16));
+//        make.top.lessThanOrEqualTo(self.nameLab.mas_bottom).offset(ScreenScale(16));
+//        make.top.equalTo(self.specialLab.mas_bottom).offset(ScreenScale(16)).priorityLow();
+        make.top.lessThanOrEqualTo(self.specialLab.mas_bottom).offset(ScreenScale(16));
+        make.top.equalTo(self.nameLab.mas_bottom).offset(ScreenScale(16)).priorityLow();
+
+//        make.top.equalTo(self.nameLab.mas_bottom).offset(ScreenScale(16));
         make.left.equalTo(self.nameLab);
         make.bottom.equalTo(self.contentView).inset(ScreenScale(24));
     }];
@@ -106,6 +122,10 @@
     self.priceLab.text = model.goods_price;
     self.selectButton.selected = model.selected;
     self.countLabel.text = model.goods_num;
+    self.specialLab.text = model.goods_spec;
+    if (StringIsEmpty(model.goods_spec)) {
+        self.specialLab.edgeInsets = UIEdgeInsetsZero;
+    }
 }
 
 - (void)selectButtonAction:(UIButton *)button {
@@ -232,4 +252,19 @@
         }
     }];
 }
+
+- (UILabelEdgeInsets *)specialLab {
+    if (!_specialLab) {
+        _specialLab = [[UILabelEdgeInsets alloc] init];
+        _specialLab.text = @"月桂(3米收藏送 团扇披帛);XS (建议身高155-160)";
+        _specialLab.textColor = AssistColor;
+        _specialLab.textAlignment = NSTextAlignmentLeft;
+        _specialLab.numberOfLines = 0;
+        _specialLab.backgroundColor = BackGroundColor;
+        _specialLab.edgeInsets = UIEdgeInsetsMake(2, 4, 2, 4);
+    }
+    return _specialLab;
+}
+
+
 @end

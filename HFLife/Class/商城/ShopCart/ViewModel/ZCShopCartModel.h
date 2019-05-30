@@ -35,7 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *goods_total;
 /** 商品是否被选中 */
 @property(nonatomic, assign, getter=isSelected) BOOL selected;
-//@property(nonatomic, copy) NSString *cart_id;
+/** 商品附加信息，颜色 尺码等 */
+@property(nonatomic, copy) NSString *goods_spec;
 //@property(nonatomic, copy) NSString *cart_id;
 //@property(nonatomic, copy) NSString *cart_id;
 //@property(nonatomic, copy) NSString *cart_id;

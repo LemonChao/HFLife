@@ -48,7 +48,7 @@
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat offsetY = scrollView.contentOffset.y;
+//    CGFloat offsetY = scrollView.contentOffset.y;
 
 }
 

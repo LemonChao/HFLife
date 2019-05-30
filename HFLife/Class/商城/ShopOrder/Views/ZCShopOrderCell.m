@@ -72,12 +72,23 @@
 
         [self layoutIfNeeded];
     }
-    
     return self;
 }
 
 - (void)orderButtonAction:(UIButton *)button {
-    
+    if ([button.currentTitle isEqualToString:@"待付款"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"orderList" parameters:@{@"id":@"state_new"}];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }else if ([button.currentTitle isEqualToString:@"待收货"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"orderList" parameters:@{@"id":@"state_send"}];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }else if ([button.currentTitle isEqualToString:@"待评价"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"orderList" parameters:@{@"id":@"state_noeval"}];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }else if ([button.currentTitle isEqualToString:@"退款/退货"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"refundList" parameters:nil];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }
 }
 
 - (void)setModel:(NSObject *)model {
@@ -86,7 +97,6 @@
     }
     [self.allButton setImagePosition:ImagePositionTypeRight spacing:ScreenScale(10)];
 }
-
 
 
 - (NSArray<UIButton *> *)subButtons {
@@ -101,7 +111,6 @@
         }
         _subButtons = array.copy;
     }
-    
     return _subButtons;
 }
 

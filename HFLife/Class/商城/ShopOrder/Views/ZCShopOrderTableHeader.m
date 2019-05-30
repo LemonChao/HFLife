@@ -86,14 +86,6 @@
             make.size.mas_equalTo(CGSizeMake(36, 20));//(26,14)
        }];
         
-        
-        
-        
-        
-        
-        
-        
-        
         [self.goodsWishlist mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.bottomContentView);
             make.bottom.equalTo(self.bottomContentView).inset(ScreenScale(10));
@@ -135,11 +127,24 @@
     return self;
 }
 
+- (void)goodsWishlistAction:(ZCWordsButton *)button {
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"collect" parameters:@{@"collectType":@"1"}];
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
+}
+
+- (void)shopWishlistAction:(ZCWordsButton *)button {
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"collect" parameters:@{@"collectType":@"2"}];
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
+}
+
+- (void)historyWishlistAction:(ZCWordsButton *)button {
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"footprint" parameters:nil];
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
+}
 
 - (UIImageView *)topBgView {
     if (!_topBgView) {
         _topBgView = [UITool imageViewImage:image(@"shopOrder_headerBG") contentMode:UIViewContentModeScaleAspectFill];
-        
     }
     return _topBgView;
 }
@@ -157,6 +162,7 @@
         _goodsWishlist = [[ZCWordsButton alloc] init];
         _goodsWishlist.bottomString = @"商品收藏";
         _goodsWishlist.topString = @"50";
+        [_goodsWishlist addTarget:self action:@selector(goodsWishlistAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _goodsWishlist;
 }
@@ -166,6 +172,7 @@
         _shopWishlist = [[ZCWordsButton alloc] init];
         _shopWishlist.bottomString = @"店铺收藏";
         _shopWishlist.topString = @"34";
+        [_shopWishlist addTarget:self action:@selector(shopWishlistAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _shopWishlist;
 }
@@ -175,6 +182,7 @@
         _historyWishlist = [[ZCWordsButton alloc] init];
         _historyWishlist.bottomString = @"我的足迹";
         _historyWishlist.topString = @"09";
+        [_historyWishlist addTarget:self action:@selector(historyWishlistAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _historyWishlist;
 }
@@ -184,7 +192,6 @@
     if (!_portraitButton) {
         _portraitButton = [UITool imageButton:image(@"image2") cornerRadius:ScreenScale(42) borderWidth:ScreenScale(2) borderColor:GeneralRedColor];
         _portraitButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
-//        _portraitButton = [UITool imageButton:image(@"image2")];
     }
     return _portraitButton;
 }

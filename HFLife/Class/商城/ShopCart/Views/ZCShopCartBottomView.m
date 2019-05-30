@@ -96,7 +96,6 @@
     //购物车为空直接返回
     if (!self.viewModel.cartArray.count) return;
     
-    
     BOOL selected = ![self.viewModel.selectAll boolValue];
     self.viewModel.selectAll = [NSNumber numberWithBool:selected];
     [self.viewModel.cartArray enumerateObjectsUsingBlock:^(__kindof ZCShopCartModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -107,12 +106,9 @@
     }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:cartValueChangedNotification object:@"selectAction"];
-
 }
 
 - (void)jieSuanButtonAction:(UIButton *)button {
-    
-    NSLog(@"jieSuanString:%@", self.viewModel.jieSuanString);
     
     ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"shopcarOrder" parameters:@{@"car_goods":self.viewModel.jieSuanString}];
     
