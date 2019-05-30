@@ -61,6 +61,7 @@
 @end
 
 @implementation mainScrollModel
+@end
 
-
+@implementation noticeModel
 @end

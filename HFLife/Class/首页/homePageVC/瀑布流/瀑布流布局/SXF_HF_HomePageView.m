@@ -27,7 +27,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong)NSArray *navModelsArr;
 @property (nonatomic, strong)NSArray *bannerModelsArr;
 @property (nonatomic, strong)NSArray *activityModelsArr;
-
+@property (nonatomic, strong)NSArray *noticeModelArr;
 
 @property (nonatomic, strong)NSArray *hotNewsModelsArr;
 @property (nonatomic, strong)NSArray *noHotNewsModelArr;
@@ -137,7 +137,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
     self.navModelsArr = dataSourceDict[@"nav"];
     self.bannerModelsArr = dataSourceDict[@"banner"];
     self.activityModelsArr = dataSourceDict[@"activity"];
-    
+    self.noticeModelArr = dataSourceDict[@"notice"];
     //解析得到的数据
 //    NSMutableArray *arrTest = [NSMutableArray array];
 //    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
@@ -274,6 +274,12 @@ static NSString * const footerReuseIdentifier = @"Footer";
             return cell;
         }else if (indexPath.row == 1) {
             SXF_HF_CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SXF_HF_CollectionViewCell class]) forIndexPath:indexPath];
+            if (self.noticeModelArr.count == 0) {
+                cell.contentView.hidden = YES;
+            }else{
+                cell.contentView.hidden = NO;
+            }
+            
             return cell;
         }else if (indexPath.row == 2) {
             cycleScrollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([cycleScrollCell class]) forIndexPath:indexPath];
@@ -347,6 +353,9 @@ static NSString * const footerReuseIdentifier = @"Footer";
         if (indexPath.row == 0) {
             return ScreenScale(85 *[self getItemCount] + (([self getItemCount] == 1) ? ScreenScale(15) : 0));
         }else if(indexPath.row == 1){
+            if (self.noticeModelArr.count == 0) {
+                return 0.0;
+            }
             return ScreenScale(80);
         }
         return ScreenScale(120);

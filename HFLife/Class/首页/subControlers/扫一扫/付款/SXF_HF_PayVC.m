@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.customNavBar.title = @"付款";
+    self.customNavBar.title = self.payType ? @"付款" : @"收款";
     
     self.payNameLb.text = [NSString stringWithFormat:@"付款给%@", self.payName];
     [self.payHeaderImageV sd_setImageWithURL:MY_URL_IMG(self.payHeaderUrl)];

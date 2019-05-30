@@ -121,7 +121,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSString *money;
 @end
 
-
+@interface noticeModel : BaseModel
+@property (nonatomic, strong)NSNumber *addtime;
+@property (nonatomic, strong)NSString *body;
+@property (nonatomic, strong)NSString *foot;
+@property (nonatomic, strong)NSNumber *ID;
+@property (nonatomic, strong)NSString *title;
+@property (nonatomic, strong)NSNumber *type;
+@end
 
 
 NS_ASSUME_NONNULL_END

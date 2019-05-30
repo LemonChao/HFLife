@@ -66,7 +66,7 @@
     !self.selectRow ? : self.selectRow(indexPath);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 168;
+    return ScreenScale(175);
 }
 - (baseTableView *)tableView{
     if (!_tableView) {
@@ -74,7 +74,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.separatorColor = HEX_COLOR(0xAAAAAA);
+        _tableView.separatorColor = HEX_COLOR(0xF5F5F5);
         //header
        
         //cells
