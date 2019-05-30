@@ -136,8 +136,8 @@
         }];
 
         
-    }else if ([value isEqualToString:@"关联账号"]){
-        if ([userInfoModel sharedUser].id && [userInfoModel sharedUser].id > 0) {
+    }else if ([value isEqualToString:@"关联账号"]){ID
+        if ([userInfoModel sharedUser].ID && [userInfoModel sharedUser].ID > 0) {
             [self.navigationController pushViewController:[NSClassFromString(@"SXF_HF_bindingAccount") new] animated:YES];
         }else {
             [WXZTipView showCenterWithText:@"用户信息未获取成功"];
