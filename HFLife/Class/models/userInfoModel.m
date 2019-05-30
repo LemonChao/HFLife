@@ -113,7 +113,7 @@ static dispatch_once_t onceToken;
                     
                     NSData *encodeInfo = [NSKeyedArchiver archivedDataWithRootObject:[userInfoModel sharedUser]];
                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                    [defaults setObject:encodeInfo forKey:USERINFO_DIC];
+                    [defaults setObject:encodeInfo forKey:USERINFO_DATA];
                     [defaults synchronize];
                     
                     //存储修改账号信息===
@@ -145,7 +145,7 @@ static dispatch_once_t onceToken;
             }
         }else {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSData *savedEncodedData = [defaults objectForKey:USERINFO_DIC];
+            NSData *savedEncodedData = [defaults objectForKey:USERINFO_DATA];
             userInfoModel *user = [[userInfoModel alloc]init];
             if(savedEncodedData){
                 user = (userInfoModel *)[NSKeyedUnarchiver unarchiveObjectWithData:savedEncodedData];
