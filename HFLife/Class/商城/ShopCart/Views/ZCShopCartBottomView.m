@@ -33,6 +33,7 @@
         [RACObserve(self, viewModel.selectCount) subscribeNext:^(NSNumber *_Nullable value) {
             @strongify(self);
             [self.jieSuanButton setTitle:[NSString stringWithFormat:@"结算(%@)",value] forState:UIControlStateNormal];
+            self.jieSuanButton.enabled = [value boolValue];
         }];
         
         RAC(self.priceLabel,text) = [RACObserve(self, viewModel.totalPrice) map:^id _Nullable(NSNumber *_Nullable value) {
@@ -110,6 +111,12 @@
 }
 
 - (void)jieSuanButtonAction:(UIButton *)button {
+    
+    NSLog(@"jieSuanString:%@", self.viewModel.jieSuanString);
+    
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"shopcarOrder" parameters:@{@"car_goods":self.viewModel.jieSuanString}];
+    
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
 }
 
 #pragma mark - setter && getter

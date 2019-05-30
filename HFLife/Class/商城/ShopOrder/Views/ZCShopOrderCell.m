@@ -55,7 +55,7 @@
         
         [self.allButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.titleLabel);
-            make.right.equalTo(cornerBGView).inset(ScreenScale(10));
+            make.right.equalTo(cornerBGView).inset(ScreenScale(15));
         }];
         
         [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -84,6 +84,7 @@
     for (UIButton *button in self.subButtons) {
         [button setImagePosition:ImagePositionTypeTop spacing:ScreenScale(10)];
     }
+    [self.allButton setImagePosition:ImagePositionTypeRight spacing:ScreenScale(10)];
 }
 
 

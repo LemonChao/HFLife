@@ -117,6 +117,7 @@
 - (UIButton *)cartButton {
     if (!_cartButton) {
         _cartButton = [UITool imageButton:image(@"shop_cartButton")];
+        _cartButton.userInteractionEnabled = NO;
     }
     return _cartButton;
 }

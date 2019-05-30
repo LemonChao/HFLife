@@ -32,7 +32,7 @@
             
             if ([notif.object isEqualToString:@"selectAction"]) { //商品选中事件
                 //重新复制一份，改变指针地址，触发VC里的KVO
-                [self indexsForSelectGoods];
+                [self resetViewModel:self.cartArray];
                 self.cartArray = self.cartArray.copy;
             }
         }];
@@ -47,18 +47,15 @@
         _cartSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
             [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartList withParameters:@{} withResultBlock:^(BOOL result, id value) {
                 @strongify(self);
+                NSArray *tempArray = @[];
                 if (result) {
-                    NSArray *tempArray = [NSArray yy_modelArrayWithClass:[ZCShopCartModel class] json:value[@"data"]];
-                    NSInteger countNum = 0;
-                    for (ZCShopCartModel *item in tempArray) {
-                        countNum += item.goods.count;
-                    }
-                    self.totalCount = [NSNumber numberWithInteger:countNum];
-                    self.selectAll = [NSNumber numberWithBool:NO];
+                    tempArray = [NSArray yy_modelArrayWithClass:[ZCShopCartModel class] json:value[@"data"]];
+                    [self resetViewModel:tempArray];
                     self.cartArray = tempArray;
                     [subscriber sendCompleted];
                 }else {
-                    self.cartArray = @[];
+                    [self resetViewModel:tempArray];
+                    self.cartArray = tempArray;
                     [subscriber sendCompleted];
                 }
             }];
@@ -120,7 +117,7 @@
                         [subscriber sendNext:@(1)];
                         [subscriber sendCompleted];
                     }else {
-                        
+                        [subscriber sendCompleted];
                         [subscriber sendError:nil];
                     }
                 }];
@@ -136,17 +133,17 @@
 
 /**
  获取被选中的 indexPath,更新全选，分区选中状态
- 
- @return return indexPath
  */
-- (nullable NSArray<NSIndexPath *>*)indexsForSelectGoods {
+- (void)resetViewModel:(NSArray<ZCShopCartModel*>*)dataArray {
+    
     NSMutableArray *selectedArray = [NSMutableArray array];
     NSMutableArray *cartIds = [NSMutableArray array];
     NSMutableArray *goodIds = [NSMutableArray array];
+    NSMutableArray *jieSuanArray = [NSMutableArray array];  //结算数据数组
     __block BOOL selectAll = YES;
     __block NSInteger selectNum = 0;
     __block CGFloat totalPrice = 0.f;
-    [self.cartArray enumerateObjectsUsingBlock:^(__kindof ZCShopCartModel * _Nonnull model, NSUInteger section, BOOL * _Nonnull stop) {
+    [dataArray enumerateObjectsUsingBlock:^(__kindof ZCShopCartModel * _Nonnull model, NSUInteger section, BOOL * _Nonnull stop) {
         
         __block BOOL sectionSelect = YES;
         NSMutableArray <ZCShopCartGoodsModel *> *shopList = model.goods.mutableCopy;
@@ -160,6 +157,9 @@
                 [selectedArray addObject:index];
                 [goodIds addObject:goodsModel.goods_id];
                 [cartIds addObject:goodsModel.cart_id];
+                
+                NSDictionary *dic = @{@"id":goodsModel.cart_id,@"num":goodsModel.goods_num};
+                [jieSuanArray addObject:dic];
             }else {
                 sectionSelect = NO;
             }
@@ -171,14 +171,16 @@
             //更新全部选择状态
             selectAll = NO;
         }
-
+        
     }];
     
     self.selectedCartIds = [cartIds componentsJoinedByString:@","];
     self.selectAll = [NSNumber numberWithBool:selectAll];
     self.totalPrice = [NSNumber numberWithFloat:totalPrice];
     self.selectCount = [NSNumber numberWithInteger:selectNum];
-    return selectedArray;
+    //结算数据数组转json
+    NSData *data = [NSJSONSerialization dataWithJSONObject:jieSuanArray options:NSJSONWritingPrettyPrinted error:nil];
+    self.jieSuanString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 

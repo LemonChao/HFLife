@@ -132,8 +132,9 @@
 - (UIButton *)cartButton {
     if (!_cartButton) {
         _cartButton = [UITool imageButton:image(@"shop_cartButton")];
-        _cartButton.rac_command = [self addCartCmd];
-    }
+//        _cartButton.rac_command = [self addCartCmd];
+        _cartButton.userInteractionEnabled = NO;
+   }
     return _cartButton;
 }
 
