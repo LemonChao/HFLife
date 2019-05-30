@@ -41,16 +41,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     userInfoModel *user = [userInfoModel sharedUser];
-    if(user.id && user.id > 0) {
-        self.mainPageView.memberInfoModel = [userInfoModel sharedUser];
-    }else {
-        [self loadData];
-    }
-    if (isFirstLoad) {
-        isFirstLoad = NO;
-        //我的信息
-        [self loadData];
-    }
+    self.mainPageView.memberInfoModel = [userInfoModel sharedUser];
+    [self loadData];
 }
 - (void)setUpUI{
     self.mainPageView = [[SXF_HF_MainPageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight - self.tabBarHeight)];
