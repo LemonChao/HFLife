@@ -210,6 +210,7 @@
 //                [[NSNotificationCenter defaultCenter] postNotificationName:EXIT_LOGIN object:nil userInfo:nil];
                 [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
                 [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERINFO_DATA];
                 [userInfoModel attempDealloc];
                 [LoginVC login];
                 
