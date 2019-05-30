@@ -14,11 +14,13 @@
 @interface SXF_HF_MainPageView ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong)baseTableView *tableView;
 @property (nonatomic, strong)SXF_HF_MainTableHeaderView *headerView;
+@property (nonatomic, strong)NSMutableArray *modelArrM;
 @end
 
 @implementation SXF_HF_MainPageView
 {
     NSArray *_titleArr;
+    CGFloat tableHeaderH;
 }
 - (instancetype)init
 {
@@ -45,8 +47,26 @@
     self.tableView.refreshHeaderBlock = ^{
         
     };
+    tableHeaderH = ScreenScale(40);
     self.tableView.mj_footer = nil;
     self.tableView.mj_header = nil;
+    
+    NSArray *titleArr = @[@"余额", @"可兑换富权", @"富权"];
+    NSArray *subTitleArr = @[@"可支付可提现", @"实时手动兑换", @"可变现"];
+    
+#warning 假数据
+    
+    
+    NSArray *moneyArr = @[@"100", @"130", @"123.9384423"];
+    self.modelArrM = [NSMutableArray array];
+    for (int i = 0; i < 3; i++) {
+        mainScrollModel *model = [[mainScrollModel alloc] init];
+        model.title = titleArr[i];
+        model.subTitle = subTitleArr[i];
+        model.money = moneyArr[i];
+        [self.modelArrM addObject:model];
+    }
+    
 }
 
 - (void)layoutSubviews{
@@ -77,7 +97,8 @@
     WEAK(weakSelf);
     if (indexPath.section == 0) {
         SXF_HF_MainPageCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SXF_HF_MainPageCycleScrollCell class]) forIndexPath:indexPath];
-        cell.modelArr = @[@"", @"", @""];
+        cell.modelArr = self.modelArrM;
+//        cell.modelArr = @[@"", @"", @""];
         cell.selectItemBlock = ^(NSInteger index) {
             !weakSelf.selectedItemCallback? : weakSelf.selectedItemCallback([NSIndexPath indexPathForRow:index inSection:indexPath.section]);
         };
@@ -112,11 +133,12 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return ScreenScale(40);
+    return tableHeaderH;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.001;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     SXF_HF_MianPageSectionView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SXF_HF_MianPageSectionView class])];
     sectionView.titleLb.text = _titleArr[section];
@@ -127,7 +149,7 @@
 }
 - (baseTableView *)tableView{
     if (!_tableView) {
-        _tableView = [[baseTableView alloc] initWithFrame:self.bounds style:UITableViewStyleGrouped];
+        _tableView = [[baseTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -136,6 +158,7 @@
         //cells
         [_tableView registerClass:[SXF_HF_MainPageCycleScrollCell class] forCellReuseIdentifier:NSStringFromClass([SXF_HF_MainPageCycleScrollCell class])];
         [_tableView registerClass:[SXF_HF_MainPageMenuCell class] forCellReuseIdentifier:NSStringFromClass([SXF_HF_MainPageMenuCell class])];
+        _tableView.tableFooterView = [UIView new];
         
     }
     return _tableView;
@@ -146,5 +169,17 @@
         _headerView = [[SXF_HF_MainTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(210))];
     }
     return _headerView;
+}
+//去掉UItableview headerview黏性(sticky)
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView == self.tableView)
+    {
+        CGFloat sectionHeaderHeight = tableHeaderH;  //sectionHeaderHeight
+        if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+        } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+        }
+    }
 }
 @end

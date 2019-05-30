@@ -203,8 +203,15 @@ static NSString * const footerReuseIdentifier = @"Footer";
     self.tableHeader.peopleNum = peopleNum;
 }
 - (void)setFqPrice:(NSNumber *)fqPrice{
-    _fqPrice = fqPrice;
-    self.tableHeader.fqPrice = fqPrice;
+    if (fqPrice) {
+        if ([fqPrice isKindOfClass:[NSArray class]] || [fqPrice isKindOfClass:[NSDictionary class]]) {
+            return;
+        }else{
+            _fqPrice = fqPrice;
+            self.tableHeader.fqPrice = fqPrice;
+        }
+    }
+    
 }
 - (void)setMyFQ:(NSString *)myFQ{
     _myFQ = myFQ;

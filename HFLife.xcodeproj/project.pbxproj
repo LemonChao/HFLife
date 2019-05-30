@@ -505,6 +505,8 @@
 		04F5F266228440860043BBB7 /* SXF_HF_CycleContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */; };
 		04F67AB22285199A008124A3 /* UIView+cornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB12285199A008124A3 /* UIView+cornerRadius.m */; };
 		04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */; };
+		04F6C9E7229E81E800890A2A /* SXF_HF_saveCodeView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F6C9E5229E81E800890A2A /* SXF_HF_saveCodeView2.m */; };
+		04F6C9E8229E81E800890A2A /* SXF_HF_saveCodeView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F6C9E6229E81E800890A2A /* SXF_HF_saveCodeView2.xib */; };
 		04F89318229254370075918A /* SXF_HP_cardPacketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F89317229254370075918A /* SXF_HP_cardPacketVC.m */; };
 		04F8931C229255030075918A /* SXF_HF_addCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8931B229255030075918A /* SXF_HF_addCardVC.m */; };
 		04F89320229255710075918A /* SXF_HF_cardCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8931E229255710075918A /* SXF_HF_cardCellTableViewCell.m */; };
@@ -1808,6 +1810,9 @@
 		04F67AB12285199A008124A3 /* UIView+cornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+cornerRadius.m"; sourceTree = "<group>"; };
 		04F67AB4228522BA008124A3 /* NSArray+layoutViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+layoutViews.h"; sourceTree = "<group>"; };
 		04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+layoutViews.m"; sourceTree = "<group>"; };
+		04F6C9E4229E81E800890A2A /* SXF_HF_saveCodeView2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_saveCodeView2.h; sourceTree = "<group>"; };
+		04F6C9E5229E81E800890A2A /* SXF_HF_saveCodeView2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_saveCodeView2.m; sourceTree = "<group>"; };
+		04F6C9E6229E81E800890A2A /* SXF_HF_saveCodeView2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_saveCodeView2.xib; sourceTree = "<group>"; };
 		04F89316229254370075918A /* SXF_HP_cardPacketVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HP_cardPacketVC.h; sourceTree = "<group>"; };
 		04F89317229254370075918A /* SXF_HP_cardPacketVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HP_cardPacketVC.m; sourceTree = "<group>"; };
 		04F8931A229255030075918A /* SXF_HF_addCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_addCardVC.h; sourceTree = "<group>"; };
@@ -5992,6 +5997,9 @@
 				04FCEA1D228FF7FE00F95486 /* SXF_HF_saveCodeView.h */,
 				04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */,
 				04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */,
+				04F6C9E4229E81E800890A2A /* SXF_HF_saveCodeView2.h */,
+				04F6C9E5229E81E800890A2A /* SXF_HF_saveCodeView2.m */,
+				04F6C9E6229E81E800890A2A /* SXF_HF_saveCodeView2.xib */,
 				04F9ABF8228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.h */,
 				04F9ABF9228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.m */,
 				04F9ABFA228EBE4600A602CE /* SXF_HF_getMoneyTabHeaderView.xib */,
@@ -7496,6 +7504,7 @@
 				0453D1E12284033000880C2A /* sxf_无网络.png in Resources */,
 				658B7CBF21D749E100801CC8 /* message.png in Resources */,
 				04153C09228AA2F100AA5DAF /* TableHeaderView.xib in Resources */,
+				04F6C9E8229E81E800890A2A /* SXF_HF_saveCodeView2.xib in Resources */,
 				04F52141228A76BA00ED4995 /* chosennumber@2x.png in Resources */,
 				040915EC2297926E007BEB12 /* YYB_HF_changeAccountCell.xib in Resources */,
 				04F52176228A789600ED4995 /* style.css in Resources */,
@@ -7917,6 +7926,7 @@
 				658C3AE121F31A5000880B6A /* MKShowMultipleButtonView.m in Sources */,
 				04A50853227EDD3A0013E8EC /* ZFPlayerView.m in Sources */,
 				04A5086C227EDD3A0013E8EC /* sxf_NetworkAnomalies.m in Sources */,
+				04F6C9E7229E81E800890A2A /* SXF_HF_saveCodeView2.m in Sources */,
 				0453D1932282764E00880C2A /* myCenterCollectionView.m in Sources */,
 				04F893572292B2230075918A /* SXF_HF_moreVipCardView.m in Sources */,
 				658B7CC121D749E100801CC8 /* TXScrollLabelView.m in Sources */,

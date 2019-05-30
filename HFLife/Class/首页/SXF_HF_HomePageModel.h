@@ -113,4 +113,15 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+
+//我的滚动轮播
+@interface mainScrollModel : BaseModel
+@property (nonatomic, strong)NSString *title;
+@property (nonatomic, strong)NSString *subTitle;
+@property (nonatomic, strong)NSString *money;
+@end
+
+
+
+
 NS_ASSUME_NONNULL_END

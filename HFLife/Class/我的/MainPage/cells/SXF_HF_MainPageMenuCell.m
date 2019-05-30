@@ -42,11 +42,13 @@
     self.bgView.backgroundColor = [UIColor whiteColor];
     self.bgView.layer.cornerRadius = 5;
     self.bgView.clipsToBounds = YES;
+    
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
     
+   
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.mas_equalTo(ScreenScale(0));
         make.right.bottom.mas_equalTo(ScreenScale(0));
@@ -64,6 +66,8 @@
         make.left.right.mas_equalTo(self.bgView);
         make.height.mas_equalTo(ScreenScale(12));
     }];
+     
+    
 }
 
 @end

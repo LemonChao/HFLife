@@ -10,7 +10,8 @@
 #import "SXF_HF_GetMoneyView.h"
 #import "SXF_HF_getMoneyTabHeaderView.h"
 #import "SXF_HF_getMoneyCellTableViewCell.h"
-#import "SXF_HF_saveCodeView.h"
+//#import "SXF_HF_saveCodeView.h"
+#import "SXF_HF_saveCodeView2.h"
 #import "SXF_HF_payMoneyTabHeader.h"
 @interface SXF_HF_GetMoneyView ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -21,7 +22,8 @@
 @property (nonatomic, strong)UITableView *tableView;
 
 //需要保存的view
-@property (nonatomic, strong)SXF_HF_saveCodeView *saveCodeView;
+//@property (nonatomic, strong)SXF_HF_saveCodeView *saveCodeView;
+@property (nonatomic, strong)SXF_HF_saveCodeView2 *saveCodeView2;
 @end
 
 
@@ -72,7 +74,8 @@
     
     self.getMoneyHeader.clickHeaderBtn = ^(NSInteger tag) {
         if (tag == 1) {
-            [weakSelf loadImageFinished:weakSelf.saveCodeView];
+//            [weakSelf loadImageFinished:weakSelf.saveCodeView];
+            [weakSelf loadImageFinished:weakSelf.saveCodeView2];
             return ;
         }
         !weakSelf.tabBtnCallback ? : weakSelf.tabBtnCallback(tag);
@@ -82,8 +85,12 @@
         !weakSelf.clickBarCodeImageV ? : weakSelf.clickBarCodeImageV(image, barCodeStr);
     };
     //需要保存的view
-    self.saveCodeView = [[SXF_HF_saveCodeView alloc] initWithFrame:self.bounds];
-    [self insertSubview:self.saveCodeView atIndex:0];
+//    self.saveCodeView = [[SXF_HF_saveCodeView alloc] initWithFrame:self.bounds];
+//    [self insertSubview:self.saveCodeView atIndex:0];
+    
+    self.saveCodeView2 = [[SXF_HF_saveCodeView2 alloc] initWithFrame:self.bounds];
+    [self insertSubview:self.saveCodeView2 atIndex:0];
+    
     
     
     
@@ -103,7 +110,8 @@
     [self.getMoneyHeader setDataForView:code];
     [self.payMoneyHeader setDataForView:code];
     if (!isCustom) {
-        [self.saveCodeView setDataForView:code];
+//        [self.saveCodeView setDataForView:code];
+        [self.saveCodeView2 setDataForView:code];
     }
 }
 

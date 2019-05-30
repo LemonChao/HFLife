@@ -23,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 //获取用户信息
 + (void) getUserInfo;
 
+
+//实名认证状态
+- (BOOL) chect_rz_status;
+
 //@property (nonatomic ,strong) NSNumber *ID;//小哥id
 //@property (nonatomic ,copy) NSString *courier_name;//用户名
 ///*
