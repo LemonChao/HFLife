@@ -151,6 +151,7 @@
                     [self.accountMobileArr exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
                     [self.myTable reloadData];
                     [userInfoModel attempDealloc];
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERINFO_DATA];
                     if (value && [value isKindOfClass:[NSDictionary class]]) {
                         
                         NSDictionary *dataDic = value[@"data"];
@@ -160,7 +161,7 @@
                             
                             NSData *encodeInfo = [NSKeyedArchiver archivedDataWithRootObject:[userInfoModel sharedUser]];
                             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                            [defaults setObject:encodeInfo forKey:USERINFO_DIC];
+                            [defaults setObject:encodeInfo forKey:USERINFO_DATA];
                             [defaults synchronize];
                             
                             //存储修改账号信息===

@@ -200,7 +200,7 @@
                     //存储用户信息
                     NSData *encodeInfo = [NSKeyedArchiver archivedDataWithRootObject:[userInfoModel sharedUser]];
                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                    [defaults setObject:encodeInfo forKey:USERINFO_DIC];
+                    [defaults setObject:encodeInfo forKey:USERINFO_DATA];
                     [defaults synchronize];
                     //====
                     //初始化头像
@@ -216,7 +216,7 @@
         }else {
             
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSData *savedEncodedData = [defaults objectForKey:USERINFO_DIC];
+            NSData *savedEncodedData = [defaults objectForKey:USERINFO_DATA];
             userInfoModel *user = [[userInfoModel alloc]init];
             if(savedEncodedData){
                 user = (userInfoModel *)[NSKeyedUnarchiver unarchiveObjectWithData:savedEncodedData];
