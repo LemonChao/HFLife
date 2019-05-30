@@ -158,7 +158,7 @@
 
 #pragma mark 代理
 -(void)SetAmountNumber:(NSString *)amount{
-    [self.getMoneyView setDataForView:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[userInfoModel sharedUser].id) publicKey:AMOUNTRSAPRIVATEKEY] type:YES];
+    [self.getMoneyView setDataForView:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[userInfoModel sharedUser].ID) publicKey:AMOUNTRSAPRIVATEKEY] type:YES];
 }
 
 
