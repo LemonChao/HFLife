@@ -19,12 +19,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="348" height="74.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5zF-55-eQy">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user__easyico" translatesAutoresizingMaskIntoConstraints="NO" id="5zF-55-eQy">
                         <rect key="frame" x="28" y="21.5" width="32" height="32"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="bi1-FM-gHm"/>
                             <constraint firstAttribute="width" constant="32" id="oa0-MH-F2E"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_check" translatesAutoresizingMaskIntoConstraints="NO" id="cRs-fP-aYq">
                         <rect key="frame" x="318" y="32" width="15" height="11"/>
@@ -63,5 +69,6 @@
     </objects>
     <resources>
         <image name="icon_check" width="15" height="10.5"/>
+        <image name="user__easyico" width="48" height="48"/>
     </resources>
 </document>

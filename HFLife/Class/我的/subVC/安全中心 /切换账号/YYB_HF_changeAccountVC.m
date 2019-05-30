@@ -99,7 +99,7 @@
     YYB_HF_changeAccountCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[NSBundle mainBundle]loadNibNamed:@"YYB_HF_changeAccountCell" owner:self options:nil].lastObject;
-        cell.headImageView.backgroundColor = [UIColor redColor];
+//        cell.headImageView.backgroundColor = [UIColor redColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         NSDictionary *accountItem = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
@@ -138,14 +138,68 @@
     }else {
        
         if (indexPath.row != 0) {
-            [WXZTipView showCenterWithText:@"切换成功"];
+            
+            NSString *tempToken = [[NSUserDefaults standardUserDefaults]valueForKey:USER_TOKEN];
             NSDictionary *accountItemDic = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
-            [self.accountMobileArr exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
-            [self.myTable reloadData];
-            [userInfoModel attempDealloc];
             NSString *token = [accountItemDic objectForKey:@"token"];
             [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
-            [userInfoModel getUserInfo];
+            [[WBPCreate sharedInstance] showWBProgress];
+            [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+                [[WBPCreate sharedInstance]hideAnimated];
+                if (result) {
+                    [WXZTipView showCenterWithText:@"切换成功"];
+                    [self.accountMobileArr exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
+                    [self.myTable reloadData];
+                    [userInfoModel attempDealloc];
+                    if (value && [value isKindOfClass:[NSDictionary class]]) {
+                        
+                        NSDictionary *dataDic = value[@"data"];
+                        if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+                            
+                            [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
+                            
+                            NSData *encodeInfo = [NSKeyedArchiver archivedDataWithRootObject:[userInfoModel sharedUser]];
+                            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                            [defaults setObject:encodeInfo forKey:USERINFO_DIC];
+                            [defaults synchronize];
+                            
+                            //存储修改账号信息===
+                            NSDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
+                            NSMutableDictionary *accountDicCopy;
+                            if ((accountDic && [accountDic isKindOfClass:[NSDictionary class]])) {
+                                accountDicCopy = [[NSMutableDictionary alloc]initWithDictionary:accountDic];
+                            }else {
+                                accountDicCopy = [[NSMutableDictionary alloc]init];
+                            }
+                            NSDictionary *accountItem = @{
+                                                          @"member_mobile":[userInfoModel sharedUser].member_mobile,
+                                                          @"member_avatar":[userInfoModel sharedUser].member_avatar,
+                                                          @"token":[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]
+                                                          };
+                            
+                            NSString *acckey = [userInfoModel sharedUser].member_mobile;
+                            [accountDicCopy setValue:accountItem forKey:acckey];
+                            [[NSUserDefaults standardUserDefaults] setValue:accountDicCopy forKey:USERINFO_ACCOUNT];
+                            ///====
+                            
+                            //初始化头像
+                            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                                [userInfoModel sharedUser].userHeaderImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar)]];
+                            }];
+                        }else {
+                            [WXZTipView showCenterWithText:@"个人信息获取错误"];
+                        }
+                    }
+                }else {
+                    //切换失败token不修改
+                    [[NSUserDefaults standardUserDefaults] setValue:tempToken forKey:USER_TOKEN];
+                    if (value && [value isKindOfClass:[NSDictionary class]]) {
+                        [WXZTipView showCenterWithText:value[@"msg"]];
+                    }else {
+                        [WXZTipView showCenterWithText:@"网络错误"];
+                    }
+                }
+            }];
 
         }
     }

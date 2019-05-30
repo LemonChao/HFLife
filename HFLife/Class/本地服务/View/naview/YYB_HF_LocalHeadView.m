@@ -301,6 +301,8 @@
 - (void)setSetHeadImage:(UIImage *)setHeadImage {
     if (setHeadImage && [setHeadImage isKindOfClass:[UIImage class]]) {
         [self.headImageV setImage:setHeadImage];
+    }else {
+        [self.headImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:image(@"icon_touxiang")];
     }
 }
 
