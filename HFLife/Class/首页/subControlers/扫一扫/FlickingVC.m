@@ -274,8 +274,8 @@
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString judgeNullReturnString:string]]];
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                     
-                }else if ([type isEqualToString:@"1"]) {
-                    //扫描的是收款码信息 跳转到付款界面
+                }else{
+                    
                     SXF_HF_PayVC *payVC = [SXF_HF_PayVC new];
                     //获取到对方的用户信息
                     NSString *userName = value[@"data"][@"member_truename"];
@@ -285,11 +285,16 @@
                     NSString *headerUrl = value[@"data"][@"member_avatar"];
                     payVC.payHeaderUrl = headerUrl;
                     payVC.codeStr = string;
+                    
+                    if ([type integerValue] == 1) {
+                        //去付款
+                        payVC.payType = YES;
+                    }else if([type integerValue] == 2){
+                        //我要收款  跳转到 输入金额 收款界面
+                        payVC.payType = NO;
+                    }
+                    //扫描的是收款码信息 跳转到付款界面
                     [weakSelf.navigationController pushViewController:payVC animated:YES];
-                    
-                }else if([type isEqualToString:@"2"]){
-                    //跳转到 输入金额 收款界面
-                    
                     
                 }
                 

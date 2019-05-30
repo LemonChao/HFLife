@@ -110,6 +110,12 @@
     self.verBtn = sender;
     if (!changeNum) {
         //验证手机号
+        
+        if (![[userInfoModel sharedUser].member_mobile isValidateMobile]) {
+            [WXZTipView showCenterWithText:@"请确认手机号码"];
+            return;
+        }
+        
         [[WBPCreate sharedInstance]showWBProgress];
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":[userInfoModel sharedUser].member_mobile,@"event":@"checkmobile"} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];

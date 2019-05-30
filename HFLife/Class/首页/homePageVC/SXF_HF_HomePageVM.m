@@ -73,7 +73,10 @@
             if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
                 self.collectionView.peopleNum = value[@"data"][@"nums"];
-                self.collectionView.fqPrice = value[@"data"][@"coin"];
+                self.collectionView.fqPrice = value[@"data"][@"bn_acc_ratio"];
+                
+                //
+                
                 self.collectionView.myFQ = @"232355";
                 NSDictionary *dict = value[@"data"];
                 NSMutableDictionary *dataSourceDicM = [NSMutableDictionary dictionary];
@@ -88,6 +91,10 @@
                 if ([dict objectForKey:@"activity"] && [[dict objectForKey:@"activity"] isKindOfClass:[NSArray class]]) {
                     NSArray *activityListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"activity"] withClass:[homeActivityModel class]];
                     [dataSourceDicM setValue:activityListArr forKey:@"activity"];
+                }
+                if ([dict objectForKey:@"notice"] && [[dict objectForKey:@"notice"] isKindOfClass:[NSArray class]]) {
+                    NSArray *activityListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"notice"] withClass:[noticeModel class]];
+                    [dataSourceDicM setValue:activityListArr forKey:@"notice"];
                 }
                 self.homePageListDic = dataSourceDicM;
                 self.collectionView.dataSourceDict = self.homePageListDic;

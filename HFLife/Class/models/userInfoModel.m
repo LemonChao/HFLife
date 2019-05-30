@@ -38,7 +38,7 @@ static dispatch_once_t onceToken;
     }
     if ([key isEqualToString:@"id"]) {
         key = @"ID";//小写id转大写ID
-        [self setValue:value forKeyPath:@"ID"];
+        [self setValue:value forKey:@"ID"];
     } else {
         NSLog(@"您尝试设置的key：%@不存在",key);
         NSLog(@"您尝试设置的value：%@",value);

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSString *payName;
 @property (nonatomic, strong)NSString *payHeaderUrl;
 @property (nonatomic, strong)NSString *codeStr;//收款码信息
+@property (nonatomic, assign)BOOL payType;
 @end
 
 NS_ASSUME_NONNULL_END

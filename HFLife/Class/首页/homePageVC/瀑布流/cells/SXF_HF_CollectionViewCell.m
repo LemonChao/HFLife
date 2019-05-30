@@ -79,6 +79,18 @@
     self.time2.text = @"25分钟前";
     
 }
+- (void)setModelArr:(NSArray<noticeModel *> *)modelArr{
+    _modelArr = modelArr;
+    //赋值
+    if (modelArr.count == 1) {
+        [self.titleLb mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.imageV.mas_centerY); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
+            make.height.mas_equalTo(12);
+        }];
+    }
+    
+}
+
 
 - (void) clickCell{
     NSLog(@"点击cell");

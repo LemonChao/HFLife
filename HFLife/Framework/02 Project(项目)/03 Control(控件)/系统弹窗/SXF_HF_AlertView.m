@@ -227,7 +227,7 @@
             self.titleLb.font = FONT(14);
             self.titleLb.textColor = color0C0B0B;
             self.titleLb.textAlignment = NSTextAlignmentCenter;
-            self.titleLb.text = [NSString stringWithFormat:@"您如果注销账户%@后会：", [userInfoModel sharedUser].member_mobile];
+            self.titleLb.text = [NSString stringWithFormat:@"注销协议"];
             self.msgLb.font = FONT(11);
             self.msgLb.textColor = HEX_COLOR(0x333333);
             self.msgLb.numberOfLines = 0;

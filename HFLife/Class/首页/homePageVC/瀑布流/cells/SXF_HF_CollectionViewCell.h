@@ -10,5 +10,6 @@
 
 @interface SXF_HF_CollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, strong)NSArray <noticeModel *> *modelArr;
 
 @end
