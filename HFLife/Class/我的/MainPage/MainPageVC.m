@@ -47,11 +47,10 @@
     WEAK(weakSelf);
     self.mainPageView.selectedItemCallback = ^(NSIndexPath * _Nonnull indexPath) {
         NSLog(@"分区 %ld   行%ld", (long)indexPath.section, (long)indexPath.row);
-        BaseViewController *vc = [BaseViewController new];
-        SXF_HF_WKWebViewVC *webVC;
+        BaseViewController *vc;
+        SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
         //token不存在 跳转 登录
         if (!LogIn_Success) {
-
             [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
                 if (btnBype) {
                     //登录页
@@ -62,78 +61,45 @@
         }else {
             if (indexPath.section == 0) {
                 if (indexPath.row == 0) {
-                    //富权
-                    webVC.urlString = richRightBalance;
+                    //余额
+                    webVC.urlString = SXF_WEB_URLl_Str(balanceMain);
                     vc = webVC;
                 }else if (indexPath.row == 1){
-                    //余额
-                    webVC.urlString = balanceMain;
+                    //可兑换
+                    webVC.urlString = SXF_WEB_URLl_Str(convertible);
+                    vc = webVC;
+                }else{
+                    //富权
+                    webVC.urlString = SXF_WEB_URLl_Str(richRightBalance);
                     vc = webVC;
                 }
             }else
-            if (indexPath.section == 1) {
-                NSArray *urlArr = @[addressList,
-                                    bankCardList,
-                                    @"",@"",
-                                    @"",//我要入驻
-                                    
-                                    ];
-                switch (indexPath.row) {
-                    case 0:
-                    {// 收货地址
-                        webVC.urlString = addressList;
-                        vc = webVC;
-                    }
-                        break;
-                    case 1:
-                    {//银行卡
-
-                        webVC.urlString = bankCardList;
-                        vc = webVC;
-                    }
-                        break;
-                    case 2:
-                        //分享好友
-                        vc = [InviteVC new];
-                        break;
-                    case 3:
+                if (indexPath.section == 1) {
+                    NSArray *urlArr = @[addressList,
+                                        bankCardList,
+                                        share,
+                                        @"",
+                                        @"",//我要入驻
+                                        upgradeMain,
+                                        myCollection,
+                                        myFriendsMain,
+                                        @"",
+                                        ];
+                    
+                    if (indexPath.row == 3) {
                         //安全中心
                         vc = [SecurityCenterVC new];
-                        break;
-                    case 4:
-                    {//我要入驻
-                        webVC.urlString = @"";
-                        vc = [EnterVC new];
-                    }
-                        break;
-                    case 5:
-                    {
-                        webVC.urlString = upgradeMain;
-                        vc = webVC;
-                    }
-                        break;
-                    case 6:
-                    {
-                        webVC.urlString = myCollection;
-                        vc = webVC;
-                    }
-                        break;
-                    case 7:
-                        webVC.urlString = myFriendsMain;
-                        vc = webVC;
-                        break;
-                    case 8:
-                        webVC.urlString = myFriendsMain;
-                        vc = webVC;
-                        break;
-                    case 9:
+                    }else if (indexPath.row == 8){
                         vc = [AboutVC new];
-                        break;
-                    default:
-                        break;
+                    }else{
+                        webVC.urlString = SXF_WEB_URLl_Str(urlArr[indexPath.row]);
+                        vc = webVC;
+                    }
+                    
                 }
+            if (vc) {
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
-            [weakSelf.navigationController pushViewController:vc animated:YES];
         }
         
         
