@@ -33,18 +33,20 @@
     //自定义键盘
     [self customKeyBoard];
     
-    
-    
+    if (self.payType) {
+        [SXF_HF_AlertView showAlertType:AlertType_save Complete:^(BOOL btnBype) {
+            [self.moneyTF becomeFirstResponder];
+        }];
+    }
 }
 - (void)customKeyBoard{
-    [self.moneyTF becomeFirstResponder];
+    
     self.moneyTF.ry_inputType = RYFloatInputType;
     self.moneyTF.clearButtonMode = UITextFieldViewModeAlways;
     self.moneyTF.textColor = [UIColor blackColor];
     self.moneyTF.textAlignment = NSTextAlignmentLeft;
     self.moneyTF.ry_interval = 3;
-    
-    
+
     WEAK(weakSelf);
     [self.customNavBar setOnClickLeftButton:^{
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
@@ -57,37 +59,29 @@
 
 - (IBAction)confirmBtnClick:(UIButton *)sender {
     WEAK(weakSelf);
-    if (self.moneyTF.text.length > 0) {
-        [self.moneyTF endEditing:YES];
-        self.payView = [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
-            
-        } password:^(NSString * _Nonnull pwd) {
-            //密码
-            NSLog(@"密码框%@",pwd);
-            if (pwd.length == 6) {
+    if (self.payType) {
+        if (self.moneyTF.text.length > 0) {
+            [self.moneyTF endEditing:YES];
+            self.payView = [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
                 
-                if (![pwd isEqualToString:@"123456"]) {
-                    [SXF_HF_AlertView showAlertType:AlertType_Pay Complete:^(BOOL btnBype) {
-                        if (btnBype) {
-                            //重新输入
-                            self.payView.editingEable = NO;
-                        }else{
-                            //找回密码
-                            [self.navigationController pushViewController:[YYB_HF_setDealPassWordVC new] animated:YES];
-                            [self.payView cancleAlertView];
-                        }
-                    }];
-                }else{
+            } password:^(NSString * _Nonnull pwd) {
+                //密码
+                NSLog(@"密码框%@",pwd);
+                if (pwd.length == 6) {
                     //网络请求
                     [weakSelf getOrder:pwd];
                 }
-            }
-        }];
-        self.payView.payMoneyStr = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+            }];
+            self.payView.payMoneyStr = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        }else{
+            [WXZTipView showCenterWithText:@"请输入付款金额"];
+        }
     }else{
-        [WXZTipView showCenterWithText:@"请输入付款金额"];
+        //调起收款接口
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:@"" withParameters:@{} withResultBlock:^(BOOL result, id value) {
+            
+        }];
     }
-    
 }
 //去下单
 - (void) getOrder:(NSString *)password{
@@ -139,6 +133,17 @@
             payVC.payMoney = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
             [self.navigationController pushViewController:payVC animated:YES];
             [self.payView cancleAlertView];
+        }else{
+            [SXF_HF_AlertView showAlertType:AlertType_Pay Complete:^(BOOL btnBype) {
+                if (btnBype) {
+                    //重新输入
+                    self.payView.editingEable = NO;
+                }else{
+                    //找回密码
+                    [self.navigationController pushViewController:[YYB_HF_setDealPassWordVC new] animated:YES];
+                    [self.payView cancleAlertView];
+                }
+            }];
         }
     }];
 }

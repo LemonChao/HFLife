@@ -70,7 +70,7 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     reciveModel *model = self.reciveModelArr[section];
     if ([model.log_count integerValue] > 0) {
-        return self.reciveModelArr[section].logModelArr.count + 1;
+        return self.reciveModelArr[section].logModelArr.count;
     }
     return 0;
 }
@@ -79,13 +79,14 @@
     
     UITableViewCell *anyCell;
     reciveModel *model = self.reciveModelArr[indexPath.section];
-    if (indexPath.row == 0) {
-        receiptRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([receiptRecordCell class]) forIndexPath:indexPath];
-        [cell setDataForCell:model];
-        anyCell = cell;
-    }else{
+//    if (indexPath.row == 0) {
+//        receiptRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([receiptRecordCell class]) forIndexPath:indexPath];
+//        [cell setDataForCell:model];
+//        anyCell = cell;
+//    }else
+    {
         receiptRecordListCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([receiptRecordListCell class]) forIndexPath:indexPath];
-        subReciveModel *sunModel = model.logModelArr[indexPath.row - 1];
+        subReciveModel *sunModel = model.logModelArr[indexPath.row];
         [cell setDataForCell:sunModel];
         anyCell = cell;
     }
@@ -135,9 +136,9 @@
 
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        return 88;
-    }
+//    if (indexPath.row == 0) {
+//        return 88;
+//    }
     return 85;
 }
 
@@ -162,7 +163,7 @@
 
 - (UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.estimatedRowHeight = 100;

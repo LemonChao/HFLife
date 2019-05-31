@@ -86,6 +86,8 @@
     self.vercodeerr.text = @"验证码错误";
     [self.vercodeerr setHidden:YES];
     
+    self.phoneText.text = [userInfoModel sharedUser].member_mobile;
+    
     [self.saveImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(bgView).mas_offset(52);
         make.left.mas_equalTo(bgView).mas_offset(ScreenScale(112));
@@ -144,7 +146,7 @@
     self.sureBtn = sureBtn;
     
 }
-
+#pragma mark - 下一步
 - (void)sureBtnClick{
     if ([NSString isNOTNull:self.phoneText.text]) {
         [WXZTipView showCenterWithText:@"请输入手机号"];
@@ -283,7 +285,7 @@
     return _vercodeText;
 }
 
-//验证码
+#pragma mark - //验证码
 - (void)getSetingCode:(UIButton *)send{
     if (![self.phoneText.text isValidateMobile]) {
         [WXZTipView showCenterWithText:@"请输入正确的手机号"];

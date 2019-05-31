@@ -17,6 +17,7 @@
 #import "SXF_HF_MainPageModel.h"
 #import "voiceHeaper.h"
 #import "touchID_helper.h"
+#import "SXF_HF_WKWebViewVC.h"
 /************************yourTools************************/
 
 
@@ -76,10 +77,35 @@ static NSString *const GoToPay                              = @"ceshi-ucenter.hf
 
 
 
-
-
-
-
-
+#define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://192.168.0.104:8080/%@", subUrl ? subUrl : @""]
+/****************************webSubUrl*******************************/
+//余额
+static NSString *const balanceMain           = @"balanceMain";
+//富权
+static NSString *const richRightBalance      = @"richRightBalance";
+//可兑换富权
+static NSString *const convertible           = @"convertible";
+//收货地址
+static NSString *const addressList           = @"addressList";
+//银行卡
+static NSString *const bankCardList          = @"bankCardList";
+//分享好友
+static NSString *const share                 = @"share";
+//我要升级
+static NSString *const upgradeMain           = @"upgradeMain";
+//我的收藏
+static NSString *const myCollection          = @"myCollection";
+//我的好友
+static NSString *const myFriendsMain         = @"myFriendsMain";
+//首页的消息通知
+static NSString *const noticeList            = @"noticeList";
+//服务协议
+static NSString *const serviceAgreement      = @"serviceAgreement";
+//版本说明
+static NSString *const versionSpecification  = @"versionSpecification";
+//会员卡信息
+static NSString *const membershipInformation = @"membershipInformation";
+//收款码介绍
+static NSString *const reCodeIntroduction    = @"reCodeIntroduction";
 
 #endif /* Header_SXF_h */

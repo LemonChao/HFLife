@@ -144,6 +144,9 @@ static NSString * const footerReuseIdentifier = @"Footer";
 //    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
 //    [arrTest addObjectsFromArray:dataSourceDict[@"nav"]];
 //    self.navModelsArr = arrTest;
+//    self.navModelsArr = @[];
+//    self.bannerModelsArr = @[];
+//    self.activityModelsArr = @[];
     
     
     
@@ -153,6 +156,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
 
 - (void)setNewsListModelArr:(NSArray *)newsListModelArr{
     _newsListModelArr = newsListModelArr;
+
     //刷新3 4 分区
     [self chectHotNews];
     
@@ -195,6 +199,9 @@ static NSString * const footerReuseIdentifier = @"Footer";
     
     self.hotNewsModelsArr = hotArrM;
     self.noHotNewsModelArr = newsArrM;
+    
+//    self.hotNewsModelsArr = @[];
+//    self.noHotNewsModelArr = @[];
     
 }
 
@@ -270,6 +277,11 @@ static NSString * const footerReuseIdentifier = @"Footer";
             cell.selectItemBlock = ^(NSInteger index, id value) {
                 [weakSelf collectionViewSelection:0 itemIndex:index value:value];
             };
+            if (self.navModelsArr.count == 0) {
+                cell.contentView.hidden = YES;
+            }else{
+                cell.contentView.hidden = NO;
+            }
             cell.itemDataSourceArr = self.navModelsArr;
             return cell;
         }else if (indexPath.row == 1) {
@@ -279,7 +291,7 @@ static NSString * const footerReuseIdentifier = @"Footer";
             }else{
                 cell.contentView.hidden = NO;
             }
-            
+            cell.modelArr = self.noticeModelArr;
             return cell;
         }else if (indexPath.row == 2) {
             cycleScrollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([cycleScrollCell class]) forIndexPath:indexPath];
@@ -287,6 +299,11 @@ static NSString * const footerReuseIdentifier = @"Footer";
             cell.selectItemBlock = ^(NSInteger index, id value) {
                 [weakSelf collectionViewSelection:2 itemIndex:index value:value];
             };
+            if (self.bannerModelsArr.count == 0) {
+                cell.contentView.hidden = YES;
+            }else{
+                cell.contentView.hidden = NO;
+            }
             return cell;
         }
     }else if (indexPath.section == 1){
@@ -297,6 +314,11 @@ static NSString * const footerReuseIdentifier = @"Footer";
         cell.activityBtnCallback = ^(NSString * _Nonnull urlStr) {
             !weakSelf.activityBtnCallback ? : weakSelf.activityBtnCallback(urlStr);
         };
+        if (self.activityModelsArr.count == 0) {
+            cell.contentView.hidden = YES;
+        }else{
+            cell.contentView.hidden = NO;
+        }
         cell.dataSourceArr = self.activityModelsArr;
         return cell;
     }else if (indexPath.section == 2){
@@ -351,16 +373,30 @@ static NSString * const footerReuseIdentifier = @"Footer";
     //item的高
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return ScreenScale(85 *[self getItemCount] + (([self getItemCount] == 1) ? ScreenScale(15) : 0));
+            if (self.navModelsArr.count == 0) {
+                return 0.0;
+            }else{
+                return ScreenScale(85 *[self getItemCount] + (([self getItemCount] == 1) ? ScreenScale(15) : 0));;
+            }
         }else if(indexPath.row == 1){
             if (self.noticeModelArr.count == 0) {
                 return 0.0;
             }
             return ScreenScale(80);
+        }else if (indexPath.row == 2){
+            if (self.bannerModelsArr.count == 0) {
+                return 0.0;
+            }
+            return ScreenScale(120);
         }
         return ScreenScale(120);
     }else if (indexPath.section ==1){
-        return ScreenScale(180);
+        if (self.activityModelsArr.count == 0) {
+            return 0.0;
+        }else{
+            return ScreenScale(180);
+        }
+        
     }else if (indexPath.section == 2) {
         if (indexPath.row > 4) {
             return 100;
@@ -411,11 +447,25 @@ static NSString * const footerReuseIdentifier = @"Footer";
     if (section == 0 || section == 3) {
         return 0.01;
     }
+    if (section == 1) {
+        if (self.activityModelsArr.count == 0) {
+            return 0.01;
+        }else{
+            return 40.0;
+        }
+    }
+    if (section == 2) {
+        if (self.newsListModelArr.count == 0) {
+            return 0.01;
+        }else{
+            return 40.0;
+        }
+    }
     return 40.0;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout *)layout referenceHeightForFooterInSection:(NSInteger)section {
-    return 0.01;;
+    return 0.01;
 }
 
 

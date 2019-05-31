@@ -149,7 +149,8 @@
     
     
     self.peploImageV.image = [UIImage imageNamed:@"人数图标"];
-    self.bgImageV.backgroundColor = [UIColor purpleColor];
+    self.bgImageV.backgroundColor = [UIColor whiteColor];
+    self.bgImageV.image = MY_IMAHE(@"homeHeaderBg");
     self.myFQNumLb.textColor = [UIColor whiteColor];
     self.myFQNumLb.font = MyFont(15);
     self.eyeImageV.image = [UIImage imageNamed:@"眼睛"];
@@ -217,6 +218,15 @@
     _myFQ = myFQ;
     self.myMoneyLb.text = _myFQ;
 }
+
+
+
+
+
+
+
+
+
 /**
  点击小眼睛
  */

@@ -105,8 +105,13 @@ static NSString *const kGet_general_shop_list = @"w=general_shop&t=get_general_s
 
 /************************subUrl************************/
 
-
-
-
+#pragma mark - h5Url ---------------------------
+#pragma mark - h5个人中心 ---------------------------
+/** 收货地址 */
+static NSString *const kH5addressList = @"http://192.168.0.105:8080/addressList";
+/** 添加银行卡 */
+static NSString *const kH5bankCardList = @"http://192.168.0.105:8080/bankCardList";
+/** 我的收藏 */
+static NSString *const kH5myCollection = @"http://192.168.0.105:8080/myCollection";
 
 #endif /* Header_YYB_h */

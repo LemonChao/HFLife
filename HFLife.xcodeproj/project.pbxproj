@@ -563,6 +563,7 @@
 		04FB7F3A2286C8E600150CA7 /* NSObject+checkSystems.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F392286C8E600150CA7 /* NSObject+checkSystems.m */; };
 		04FC53FA229CE276009387E7 /* SXF_HF_payMoneyTabHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FC53F9229CE276009387E7 /* SXF_HF_payMoneyTabHeader.m */; };
 		04FC53FF229D2AED009387E7 /* SXF_HF_payMoneyPawordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FC53FE229D2AED009387E7 /* SXF_HF_payMoneyPawordVC.m */; };
+		04FCA9BA22A0BB600043F64F /* SXF_HF_WKWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCA9B922A0BB600043F64F /* SXF_HF_WKWebViewVC.m */; };
 		04FCEA1C228FF0ED00F95486 /* SXF_HF_leftRightAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA1B228FF0ED00F95486 /* SXF_HF_leftRightAlert.m */; };
 		04FCEA20228FF7FE00F95486 /* SXF_HF_saveCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */; };
 		04FCEA23228FF94B00F95486 /* SXF_HF_saveCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */; };
@@ -1919,6 +1920,8 @@
 		04FC53F9229CE276009387E7 /* SXF_HF_payMoneyTabHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_payMoneyTabHeader.m; sourceTree = "<group>"; };
 		04FC53FD229D2AED009387E7 /* SXF_HF_payMoneyPawordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payMoneyPawordVC.h; sourceTree = "<group>"; };
 		04FC53FE229D2AED009387E7 /* SXF_HF_payMoneyPawordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_payMoneyPawordVC.m; sourceTree = "<group>"; };
+		04FCA9B822A0BB600043F64F /* SXF_HF_WKWebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_WKWebViewVC.h; sourceTree = "<group>"; };
+		04FCA9B922A0BB600043F64F /* SXF_HF_WKWebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_WKWebViewVC.m; sourceTree = "<group>"; };
 		04FCEA1A228FF0ED00F95486 /* SXF_HF_leftRightAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_leftRightAlert.h; sourceTree = "<group>"; };
 		04FCEA1B228FF0ED00F95486 /* SXF_HF_leftRightAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_leftRightAlert.m; sourceTree = "<group>"; };
 		04FCEA1D228FF7FE00F95486 /* SXF_HF_saveCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_saveCodeView.h; sourceTree = "<group>"; };
@@ -3098,6 +3101,10 @@
 				04B9D4F422803CF00084FA23 /* HomePageVC.m */,
 				04F5F24F228418880043BBB7 /* SXF_HF_HomePageVM.h */,
 				04F5F250228418880043BBB7 /* SXF_HF_HomePageVM.m */,
+				048DABFE22857057006E6BA2 /* SXF_HF_HomePageModel.h */,
+				048DABFF22857057006E6BA2 /* SXF_HF_HomePageModel.m */,
+				04FCA9B822A0BB600043F64F /* SXF_HF_WKWebViewVC.h */,
+				04FCA9B922A0BB600043F64F /* SXF_HF_WKWebViewVC.m */,
 				0453D1B52283B6E200880C2A /* 搜索栏 */,
 				0453D1B22283B62900880C2A /* tableHeaderView */,
 				0453D155228266A800880C2A /* 瀑布流 */,
@@ -3390,11 +3397,11 @@
 		048DAC0822857516006E6BA2 /* 兑换富权 */ = {
 			isa = PBXGroup;
 			children = (
-				048DAC0922857516006E6BA2 /* getOutFQ_VC.m */,
-				048DAC0A22857516006E6BA2 /* exchangeFQ_VC.m */,
 				048DAC0B22857516006E6BA2 /* getOutFQ_VC.h */,
+				048DAC0922857516006E6BA2 /* getOutFQ_VC.m */,
 				048DAC0C22857516006E6BA2 /* getOutFQ_VC.xib */,
 				048DAC0D22857516006E6BA2 /* exchangeFQ_VC.h */,
+				048DAC0A22857516006E6BA2 /* exchangeFQ_VC.m */,
 				048DAC0E22857516006E6BA2 /* exchangeFQ_VC.xib */,
 			);
 			path = "兑换富权";
@@ -5159,8 +5166,6 @@
 		04B9D4F122803CF00084FA23 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
-				048DABFE22857057006E6BA2 /* SXF_HF_HomePageModel.h */,
-				048DABFF22857057006E6BA2 /* SXF_HF_HomePageModel.m */,
 				0453D1B12283B60100880C2A /* homePageVC */,
 				048DABB622855DCF006E6BA2 /* subControlers */,
 			);
@@ -8161,6 +8166,7 @@
 				659EA04622015F94004471CD /* WBProgressHUD.m in Sources */,
 				048DAC6022857516006E6BA2 /* HeadUserView.m in Sources */,
 				04F8934222929BA90075918A /* SXF_HF_vipCardVC.m in Sources */,
+				04FCA9BA22A0BB600043F64F /* SXF_HF_WKWebViewVC.m in Sources */,
 				658B7C4A21D749E100801CC8 /* NSObject+Extension.m in Sources */,
 				04F5DFFD2297FADA00F298B6 /* JpushManager.m in Sources */,
 				658B7C4521D749E100801CC8 /* UITableView+Refresh.m in Sources */,

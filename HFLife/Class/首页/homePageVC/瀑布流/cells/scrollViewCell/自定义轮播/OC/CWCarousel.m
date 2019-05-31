@@ -355,7 +355,7 @@
     if(self.isPause) {
         return;
     }
-    [self performSelector:@selector(nextCell) withObject:nil afterDelay:self.autoTimInterval];
+    [self performSelector:@selector(nextCell) withObject:nil afterDelay:self.autoTimInterval inModes:@[NSRunLoopCommonModes]];
 }
 
 - (void)nextCell {

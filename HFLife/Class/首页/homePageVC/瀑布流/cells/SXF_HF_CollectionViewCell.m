@@ -73,10 +73,10 @@
 //    [self.bgView addGestureRecognizer:tap];
     
     
-    self.titleLb.text = @"生活缴费：电费缴费成功";
-    self.subTitle.text = @"转账：你的好友梧桐给你转账了";
-    self.time1.text = @"36分钟前";
-    self.time2.text = @"25分钟前";
+//    self.titleLb.text = @"生活缴费：电费缴费成功";
+//    self.subTitle.text = @"转账：你的好友梧桐给你转账了";
+//    self.time1.text = @"36分钟前";
+//    self.time2.text = @"25分钟前";
     
 }
 - (void)setModelArr:(NSArray<noticeModel *> *)modelArr{
@@ -84,13 +84,44 @@
     //赋值
     if (modelArr.count == 1) {
         [self.titleLb mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(self.imageV.mas_centerY); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
+            make.centerY.mas_equalTo(self.contentView.mas_centerY); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
             make.height.mas_equalTo(12);
         }];
+        noticeModel *model = modelArr.firstObject;
+        NSLog(@"时间%@", [NSDate timestampSwitchTime:[model.addtime integerValue] dateFormat:DateFormatStr]);
+        self.titleLb.text = [NSString stringWithFormat:@"%@:%@", [self getTitle:model] , model.body];
+        self.time1.text = [NSDate intervalSinceNow:[NSString stringWithFormat:@"%@", model.addtime ? model.addtime : @""]];
+    }else if (modelArr.count > 1){
+        
+       
+        [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.imageV.mas_top); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
+            make.height.mas_equalTo(12);
+        }];
+        
+        
+        noticeModel *model = modelArr.firstObject;
+        self.titleLb.text = [NSString stringWithFormat:@"%@:%@", [self getTitle:model] , model.body];
+        self.time1.text = [NSDate intervalSinceNow:[NSString stringWithFormat:@"%@", model.addtime ? model.addtime : @""]];
+        
+        noticeModel *model2 = modelArr[1];
+        self.subTitle.text = [NSString stringWithFormat:@"%@:%@", [self getTitle:model2] , model2.body];
+        self.time2.text = [NSDate intervalSinceNow:[NSString stringWithFormat:@"%@", model2.addtime ? model2.addtime : @""]];
     }
     
 }
 
+- (NSString *)getTitle:(noticeModel *)model{
+    if ([model.type integerValue] == 0) {
+        return @"汉富助手";
+    }else if ([model.type integerValue] == 1){
+        return @"我的快递";
+    }else if ([model.type integerValue] == 2){
+        return @"生活缴费";
+    }else{
+        return @"";
+    }
+}
 
 - (void) clickCell{
     NSLog(@"点击cell");

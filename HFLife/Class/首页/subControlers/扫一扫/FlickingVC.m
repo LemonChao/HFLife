@@ -292,6 +292,11 @@
                     }else if([type integerValue] == 2){
                         //我要收款  跳转到 输入金额 收款界面
                         payVC.payType = NO;
+                        
+                        [WXZTipView showCenterWithText:@"功能暂未开通"];
+                        [self.navigationController popViewControllerAnimated:YES];
+                        return ;
+                        
                     }
                     //扫描的是收款码信息 跳转到付款界面
                     [weakSelf.navigationController pushViewController:payVC animated:YES];
