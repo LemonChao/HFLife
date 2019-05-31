@@ -92,7 +92,20 @@ static NSString *const bankCardList          = @"bankCardList";
 //分享好友
 static NSString *const share                 = @"share";
 //我要升级
-static NSString *const upgradeMain           = @"upgradeMain ";
-
+static NSString *const upgradeMain           = @"upgradeMain";
+//我的收藏
+static NSString *const myCollection          = @"myCollection";
+//我的好友
+static NSString *const myFriendsMain         = @"myFriendsMain";
+//首页的消息通知
+static NSString *const noticeList            = @"noticeList";
+//服务协议
+static NSString *const serviceAgreement      = @"serviceAgreement";
+//版本说明
+static NSString *const versionSpecification  = @"versionSpecification";
+//会员卡信息
+static NSString *const membershipInformation = @"membershipInformation";
+//收款码介绍
+static NSString *const reCodeIntroduction    = @"reCodeIntroduction";
 
 #endif /* Header_SXF_h */

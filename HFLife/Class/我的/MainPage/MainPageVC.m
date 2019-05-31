@@ -52,6 +52,7 @@
     self.mainPageView.selectedItemCallback = ^(NSIndexPath * _Nonnull indexPath) {
         NSLog(@"分区 %ld   行%ld", (long)indexPath.section, (long)indexPath.row);
         BaseViewController *vc = [BaseViewController new];
+        SXF_HF_WKWebViewVC *webVC;
         //token不存在 跳转 登录
         if (!LogIn_Success) {
 
@@ -66,79 +67,70 @@
             if (indexPath.section == 0) {
                 if (indexPath.row == 0) {
                     //富权
-                    vc = [FQ_homeVC new];
+                    webVC.urlString = richRightBalance;
+                    vc = webVC;
                 }else if (indexPath.row == 1){
                     //余额
-                    vc = [BalanceHomeVC new];
+                    webVC.urlString = balanceMain;
+                    vc = webVC;
                 }
             }else
             if (indexPath.section == 1) {
-                // h5界面
-                YYB_HF_WKWebVC *h5webVC = [[YYB_HF_WKWebVC alloc]init];
-                h5webVC.isTop = YES;
-                h5webVC.isNavigationHidden = YES;
-                
+                NSArray *urlArr = @[addressList,
+                                    bankCardList,
+                                    @"",@"",
+                                    @"",//我要入驻
+                                    
+                                    ];
                 switch (indexPath.row) {
                     case 0:
                     {// 收货地址
-                        //                        vc = [ShippingAddressVC new];
-                        h5webVC.urlString = kH5addressList;
-                        vc = h5webVC;
+                        webVC.urlString = addressList;
+                        vc = webVC;
                     }
                         break;
                     case 1:
                     {//银行卡
-                        //                        BindingPayWayVC *bindingVC = [BindingPayWayVC new];
-                        //                        bindingVC.isAlipay = NO;
-                        //                        vc = bindingVC;
-//                        if (![[userInfoModel sharedUser].rz_statusName isEqualToString:@"已认证"]) {
-//                            [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
-//                                if (btnBype) {
-//                                    //登录页
-//                                    [WXZTipView showCenterWithText:@"实名"];
-//                                    return ;
-//                                }
-//                            }];
-//                            return ;
-//                        }
-                        h5webVC.urlString = kH5bankCardList;
-                        vc = h5webVC;
+
+                        webVC.urlString = bankCardList;
+                        vc = webVC;
                     }
                         break;
                     case 2:
+                        //分享好友
                         vc = [InviteVC new];
                         break;
                     case 3:
+                        //安全中心
                         vc = [SecurityCenterVC new];
                         break;
                     case 4:
                     {//我要入驻
-//                        if (![[userInfoModel sharedUser].rz_statusName isEqualToString:@"已认证"]) {
-//                            [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
-//                                if (btnBype) {
-//                                    //登录页
-//                                    [WXZTipView showCenterWithText:@"实名"];
-//                                    return ;
-//                                }
-//                            }];
-//                            return ;
-//                        }
+                        webVC.urlString = @"";
                         vc = [EnterVC new];
-                        
                     }
                         break;
                     case 5:
                     {
-                        //                            vc = [MyCollectionVC new];
-                        
-                        h5webVC.urlString = kH5myCollection;
-                        vc = h5webVC;
+                        webVC.urlString = upgradeMain;
+                        vc = webVC;
+                    }
+                        break;
+                    case 6:
+                    {
+                        webVC.urlString = myCollection;
+                        vc = webVC;
                     }
                         break;
                     case 7:
-                        vc = [myFriendListVC new];
+                        webVC.urlString = myFriendsMain;
+                        vc = webVC;
                         break;
                     case 8:
+                        webVC.urlString = myFriendsMain;
+                        vc = webVC;
+                        break;
+                    case 9:
                         vc = [AboutVC new];
                         break;
                     default:
