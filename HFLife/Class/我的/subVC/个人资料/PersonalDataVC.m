@@ -226,7 +226,6 @@
                 [ShareSDK cancelAuthorize:(SSDKPlatformTypeWechat) result:^(NSError *error) {
                     
                 }];
-                [[WBPCreate sharedInstance]showWBProgress];
                 [networkingManagerTool requestToServerWithType:POST withSubUrl:kLogout withParameters:nil withResultBlock:^(BOOL result, id value) {
                     [[WBPCreate sharedInstance]hideAnimated];
                     if (result) {

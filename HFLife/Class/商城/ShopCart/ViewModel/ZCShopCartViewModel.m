@@ -84,7 +84,7 @@
         @weakify(self);
         _deleteCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=member_cart&t=cart_delall" withParameters:@{@"cart_ids":self.selectedCartIds} withResultBlock:^(BOOL result, id value) {
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartDelete withParameters:@{@"cart_ids":self.selectedCartIds} withResultBlock:^(BOOL result, id value) {
                     @strongify(self);
                     if (result) {
                         
@@ -142,6 +142,7 @@
     NSMutableArray *jieSuanArray = [NSMutableArray array];  //结算数据数组
     __block BOOL selectAll = YES;
     __block NSInteger selectNum = 0;
+    __block NSInteger totalCount = 0;
     __block CGFloat totalPrice = 0.f;
     [dataArray enumerateObjectsUsingBlock:^(__kindof ZCShopCartModel * _Nonnull model, NSUInteger section, BOOL * _Nonnull stop) {
         
@@ -150,6 +151,7 @@
         /// 遍历分区内cell
         [shopList enumerateObjectsUsingBlock:^(ZCShopCartGoodsModel * _Nonnull goodsModel, NSUInteger row, BOOL * _Nonnull stop) {
             
+            totalCount++;
             if (goodsModel.isSelected) {
                 selectNum++;
                 totalPrice += goodsModel.goods_price.floatValue * goodsModel.goods_num.integerValue;
@@ -178,6 +180,7 @@
     self.selectAll = [NSNumber numberWithBool:selectAll];
     self.totalPrice = [NSNumber numberWithFloat:totalPrice];
     self.selectCount = [NSNumber numberWithInteger:selectNum];
+    self.totalCount = [NSNumber numberWithInteger:totalCount];
     //结算数据数组转json
     NSData *data = [NSJSONSerialization dataWithJSONObject:jieSuanArray options:NSJSONWritingPrettyPrinted error:nil];
     self.jieSuanString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];

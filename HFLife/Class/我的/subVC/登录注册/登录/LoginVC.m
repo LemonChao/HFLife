@@ -120,6 +120,7 @@
         ServiceAgreementVC *serv = [[ServiceAgreementVC alloc]init];
         serv.htmlPath = htmlPath;
         serv.title = @"注册协议";
+        serv.row = 1;
         [self.navigationController pushViewController:serv animated:YES];
     }];
     
@@ -354,6 +355,10 @@
     if (loginVC) {
         UIViewController *currentVC = [NSObject getCurrentViewController];
         if ([currentVC.navigationController.rootViewController class] != loginClass) {
+            [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
+            [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERINFO_DATA];
+            [userInfoModel attempDealloc];
             BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
             [currentVC presentViewController:navi animated:NO completion:nil];
         }

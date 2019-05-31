@@ -165,39 +165,8 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"网页导航加载完毕");
-    //    //OC反馈给JS导航栏高度
-    //    NSString *JSResult = [NSString stringWithFormat:@"getTabbarHeight('%@')",MMNSStringFormat(@"%f",self.navBarHeight)];
-    //    //OC调用JS
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //            // OC 调用JS方法 method 的js代码可往下看
-    //        [self.webView evaluateJavaScript:JSResult completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-    //             NSLog(@"result:%@,error:%@",result,error);
-    //        }];
-    //    });
     [self loadSuccess];
-//    //去除长按后出现的文本选取框
-//    //    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
-//    //WKWebview 禁止长按(超链接、图片、文本...)弹出效果
-//    [self.webView evaluateJavaScript:@"document.documentElement.style.webkitTouchCallout='none';" completionHandler:nil];
-//    [self.webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';"completionHandler:nil];
-//    //    [self loadSuccess];
-//    if (self.isNavigationHidden) {
-//        if([NSString isNOTNull:self.webTitle]){
-//            _webTitle =  webView.title;
-//        }
-//    }else{
-//        if ([NSString isNOTNull:self.webTitle]) {
-//            self.customNavBar.title = webView.title;
-//        }else{
-//            self.customNavBar.title = _webTitle;
-//        }
-//
-//    }
-//
-//
-//    [webView evaluateJavaScript:@"document.readyState" completionHandler:^(id _Nullable readyState, NSError * _Nullable error) {
-//    }];
-//
+
 }
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
     NSLog(@"加载失败,失败原因:%@",[error description]);
@@ -210,14 +179,13 @@
 #pragma mark - WKUIDelegate
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
 {
-
-    //    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提醒" message:message preferredStyle:UIAlertControllerStyleAlert];
-    //    [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-    //        completionHandler();
-    //    }]];
-    //
-    //    [self presentViewController:alert animated:YES completion:nil];
-    completionHandler();
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提醒" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler();
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark -- WKScriptMessageHandler
@@ -236,7 +204,7 @@
     if ([message.name isEqualToString:@"Call"]) {
         //        [self ShareWithInformation:message.body];
         [self CallParameter:message.body];
-    } else if ([message.name isEqualToString:@"Camera"]) {
+    }else if ([message.name isEqualToString:@"Camera"]) {
         [self camera];
     }else if ([message.name isEqualToString:@"getStatus"]){
         [self getStatusParameter:message.body];
@@ -250,8 +218,6 @@
         [self goShoppingParameter:message.body];
     }else if ([message.name isEqualToString:@"nativeToJump"]){
         [self nativeToJumpParameter:message.body];
-    }else if ([message.name isEqualToString:@"goBack"]){
-        [self goBack];
     }else if ([message.name isEqualToString:@"rushBuy"]){
         [self rushBuyParameter:message.body];
     }else if ([message.name isEqualToString:@"orderHotel"]){
@@ -260,13 +226,13 @@
         [self submitOrderParameter:message.body];
     }else if ([message.name isEqualToString:@"goToPay"]){
         [self goToPayParameter:message.body];
-    }else if ([message.name isEqualToString:@"goToApp"]){
+    }else if ([message.name isEqualToString:@"goBackToShopHome"]){
+        [self goBackToShopHome];
+    }else if ([message.name isEqualToString:@"goBack"]){
         [self goBack];
-    }
-    else if ([message.name isEqualToString:@"Share"]){
+    }else if ([message.name isEqualToString:@"Share"]){
         
     }
-    //goToHome
 }
 
 #pragma mark - JS调用OC方法
@@ -351,16 +317,29 @@
     vc.dataParameter = dict[@"data"];
     [self.navigationController pushViewController:vc animated:YES];
 }
-#pragma mark - 返回首页--
--(void)goBack{
+#pragma mark - 返回--
+- (void)goBack{
     if ([self.webView canGoBack]) {
         [self.webView goBack];
     }else {
         [self.navigationController popViewControllerAnimated:YES];
     }
-
-
 }
+
+- (void)goBackToShopHome {
+    
+//    [self.navigationController popViewControllerAnimated:YES];
+//    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC));
+//    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+//
+//        NSLog(@"tab:%@", self.tabBarController);
+//        [self.tabBarController setSelectedIndex:0];
+//    });
+    
+    [self.tabBarController setSelectedIndex:0];
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
 #pragma mark -抢购--
 -(void)rushBuyParameter:(NSDictionary *)dict{
     NSLog(@"dict = %@",dict);
@@ -531,9 +510,10 @@
 //        WeakWebViewScriptMessageDelegate *weakScriptMessageDelegate = [[WeakWebViewScriptMessageDelegate alloc] initWithDelegate:self];
         //注册一个name为jsToOcNoPrams的js方法 设置处理接收JS方法的对象
         [wkUController addScriptMessageHandler:self name:@"goBack"];
+        [wkUController addScriptMessageHandler:self name:@"goBackToShopHome"];// 返回到商城首页
         [wkUController addScriptMessageHandler:self name:@"GoToHome"];
         [wkUController addScriptMessageHandler:self name:@"logout"];
-        
+
         WKPreferences *preferences = [WKPreferences new];
         preferences.javaScriptCanOpenWindowsAutomatically = YES;
         WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];

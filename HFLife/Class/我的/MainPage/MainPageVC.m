@@ -47,7 +47,7 @@
 - (void)setUpUI{
     self.mainPageView = [[SXF_HF_MainPageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight - self.tabBarHeight)];
     [self.view addSubview:self.mainPageView];
-    
+     
     WEAK(weakSelf);
     self.mainPageView.selectedItemCallback = ^(NSIndexPath * _Nonnull indexPath) {
         NSLog(@"分区 %ld   行%ld", (long)indexPath.section, (long)indexPath.row);
@@ -82,7 +82,7 @@
                     case 0:
                     {// 收货地址
                         //                        vc = [ShippingAddressVC new];
-                        h5webVC.urlString = @"http://192.168.0.105:8080/addressList";
+                        h5webVC.urlString = kH5addressList;
                         vc = h5webVC;
                     }
                         break;
@@ -91,17 +91,17 @@
                         //                        BindingPayWayVC *bindingVC = [BindingPayWayVC new];
                         //                        bindingVC.isAlipay = NO;
                         //                        vc = bindingVC;
-                        if (![[userInfoModel sharedUser].rz_statusName isEqualToString:@"已认证"]) {
-                            [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
-                                if (btnBype) {
-                                    //登录页
-                                    [WXZTipView showCenterWithText:@"实名"];
-                                    return ;
-                                }
-                            }];
-                            return ;
-                        }
-                        h5webVC.urlString = @"http://192.168.0.105:8080/bankCardList";
+//                        if (![[userInfoModel sharedUser].rz_statusName isEqualToString:@"已认证"]) {
+//                            [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
+//                                if (btnBype) {
+//                                    //登录页
+//                                    [WXZTipView showCenterWithText:@"实名"];
+//                                    return ;
+//                                }
+//                            }];
+//                            return ;
+//                        }
+                        h5webVC.urlString = kH5bankCardList;
                         vc = h5webVC;
                     }
                         break;
@@ -113,16 +113,16 @@
                         break;
                     case 4:
                     {//我要入驻
-                        if (![[userInfoModel sharedUser].rz_statusName isEqualToString:@"已认证"]) {
-                            [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
-                                if (btnBype) {
-                                    //登录页
-                                    [WXZTipView showCenterWithText:@"实名"];
-                                    return ;
-                                }
-                            }];
-                            return ;
-                        }
+//                        if (![[userInfoModel sharedUser].rz_statusName isEqualToString:@"已认证"]) {
+//                            [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
+//                                if (btnBype) {
+//                                    //登录页
+//                                    [WXZTipView showCenterWithText:@"实名"];
+//                                    return ;
+//                                }
+//                            }];
+//                            return ;
+//                        }
                         vc = [EnterVC new];
                         
                     }
@@ -131,14 +131,14 @@
                     {
                         //                            vc = [MyCollectionVC new];
                         
-                        h5webVC.urlString = @"http://192.168.0.105:8080/myCollection";
+                        h5webVC.urlString = kH5myCollection;
                         vc = h5webVC;
                     }
                         break;
-                    case 6:
+                    case 7:
                         vc = [myFriendListVC new];
                         break;
-                    case 7:
+                    case 8:
                         vc = [AboutVC new];
                         break;
                     default:
@@ -161,6 +161,7 @@
     
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
         if (result) {
+            [userInfoModel attempDealloc];
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 
                 NSDictionary *dataDic = value[@"data"];
@@ -171,22 +172,25 @@
                     
                     
                     //存储修改账号信息===
-                    NSDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
-                    NSMutableDictionary *accountDicCopy;
-                    if ((accountDic && [accountDic isKindOfClass:[NSDictionary class]])) {
-                        accountDicCopy = [[NSMutableDictionary alloc]initWithDictionary:accountDic];
-                    }else {
-                        accountDicCopy = [[NSMutableDictionary alloc]init];
-                    }
-                    NSDictionary *accountItem = @{
-                                                  @"member_mobile":[userInfoModel sharedUser].member_mobile,
-                                                  @"member_avatar":[userInfoModel sharedUser].member_avatar,
-                                                  @"token":[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]
-                                                  };
-                    
+
                     NSString *acckey = [userInfoModel sharedUser].member_mobile;
-                    [accountDicCopy setValue:accountItem forKey:acckey];
-                    [[NSUserDefaults standardUserDefaults] setValue:accountDicCopy forKey:USERINFO_ACCOUNT];
+                    if (acckey) {
+                        NSDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
+                        NSMutableDictionary *accountDicCopy;
+                        if ((accountDic && [accountDic isKindOfClass:[NSDictionary class]])) {
+                            accountDicCopy = [[NSMutableDictionary alloc]initWithDictionary:accountDic];
+                        }else {
+                            accountDicCopy = [[NSMutableDictionary alloc]init];
+                        }
+                        NSDictionary *accountItem = @{
+                                                      @"member_mobile":[NSString judgeNullReturnString:[userInfoModel sharedUser].member_mobile],
+                                                      @"member_avatar":[NSString judgeNullReturnString:[userInfoModel sharedUser].member_avatar],
+                                                      @"token":[NSString judgeNullReturnString:[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]]
+                                                      };
+                        [accountDicCopy setValue:accountItem forKey:acckey];
+                        [[NSUserDefaults standardUserDefaults] setValue:accountDicCopy forKey:USERINFO_ACCOUNT];
+                    }
+                    
                     ///====
                     
                     //存储用户信息
