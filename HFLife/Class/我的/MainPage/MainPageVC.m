@@ -40,7 +40,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    userInfoModel *user = [userInfoModel sharedUser];
     self.mainPageView.memberInfoModel = [userInfoModel sharedUser];
     [self loadData];
 }
@@ -169,36 +168,7 @@
                     
                     
                     [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
-                    
-                    
-                    //存储修改账号信息===
-
-                    NSString *acckey = [userInfoModel sharedUser].member_mobile;
-                    if (acckey) {
-                        NSDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
-                        NSMutableDictionary *accountDicCopy;
-                        if ((accountDic && [accountDic isKindOfClass:[NSDictionary class]])) {
-                            accountDicCopy = [[NSMutableDictionary alloc]initWithDictionary:accountDic];
-                        }else {
-                            accountDicCopy = [[NSMutableDictionary alloc]init];
-                        }
-                        NSDictionary *accountItem = @{
-                                                      @"member_mobile":[NSString judgeNullReturnString:[userInfoModel sharedUser].member_mobile],
-                                                      @"member_avatar":[NSString judgeNullReturnString:[userInfoModel sharedUser].member_avatar],
-                                                      @"token":[NSString judgeNullReturnString:[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]]
-                                                      };
-                        [accountDicCopy setValue:accountItem forKey:acckey];
-                        [[NSUserDefaults standardUserDefaults] setValue:accountDicCopy forKey:USERINFO_ACCOUNT];
-                    }
-                    
-                    ///====
-                    
-                    //存储用户信息
-                    NSData *encodeInfo = [NSKeyedArchiver archivedDataWithRootObject:[userInfoModel sharedUser]];
-                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                    [defaults setObject:encodeInfo forKey:USERINFO_DATA];
-                    [defaults synchronize];
-                    //====
+                    [userInfoModel saveUserDataAndAccount];
                     //初始化头像
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                         [userInfoModel sharedUser].userHeaderImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar)]];
@@ -211,23 +181,7 @@
             }
         }else {
             
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSData *savedEncodedData = [defaults objectForKey:USERINFO_DATA];
-            userInfoModel *user = [[userInfoModel alloc]init];
-            if(savedEncodedData){
-                user = (userInfoModel *)[NSKeyedUnarchiver unarchiveObjectWithData:savedEncodedData];
-                UIImage *img;
-                if (user.userHeaderImage) {
-                    //image值单独赋值
-                    img = user.userHeaderImage;
-                }
-                user.userHeaderImage = nil;
-                NSMutableDictionary *dataDic = [user mj_keyValues];
-                [dataDic setValue:img forKey:@"userHeaderImage"];
-                if (dataDic) {
-                    [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
-                }
-            }
+            [userInfoModel getSavedUserDataAndAccount];
             
             self->isFirstLoad = YES;
             if (value && [value isKindOfClass:[NSDictionary class]]) {

@@ -109,7 +109,7 @@
         [cell.headImageView sd_setImageWithURL:[accountItem valueForKey:@"member_avatar"] placeholderImage:image(@"user__easyico")];
         NSString *accountStr = [accountItem valueForKey:@"member_mobile"];
         cell.accountLabel.text = [accountStr EncodeTel] ;
-        if (indexPath.row == 0 && [[userInfoModel sharedUser].member_mobile isEqualToString:accountStr]) {
+        if ([[userInfoModel sharedUser].member_mobile isEqualToString:accountStr]) {
             [cell.cheackIcon setHidden:NO];
         }else {
             [cell.cheackIcon setHidden:YES];
@@ -151,7 +151,9 @@
             [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
                 [[WBPCreate sharedInstance]hideAnimated];
                 if (result) {
-                    [WXZTipView showCenterWithText:@"切换成功"];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [WXZTipView showCenterWithText:@"切换成功"];
+                    });
                     [self.accountMobileArr exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
                     [self.myTable reloadData];
                     [userInfoModel attempDealloc];
@@ -162,32 +164,7 @@
                         if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                             
                             [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
-                            
-                            NSData *encodeInfo = [NSKeyedArchiver archivedDataWithRootObject:[userInfoModel sharedUser]];
-                            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                            [defaults setObject:encodeInfo forKey:USERINFO_DATA];
-                            [defaults synchronize];
-                            
-                            //存储修改账号信息===
-                            
-                            NSString *acckey = [userInfoModel sharedUser].member_mobile;
-                            if (acckey) {
-                                NSDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
-                                NSMutableDictionary *accountDicCopy;
-                                if ((accountDic && [accountDic isKindOfClass:[NSDictionary class]])) {
-                                    accountDicCopy = [[NSMutableDictionary alloc]initWithDictionary:accountDic];
-                                }else {
-                                    accountDicCopy = [[NSMutableDictionary alloc]init];
-                                }
-                                NSDictionary *accountItem = @{
-                                                              @"member_mobile":[NSString judgeNullReturnString:[userInfoModel sharedUser].member_mobile],
-                                                              @"member_avatar":[NSString judgeNullReturnString:[userInfoModel sharedUser].member_avatar],
-                                                              @"token":[NSString judgeNullReturnString:[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]]
-                                                              };
-                                [accountDicCopy setValue:accountItem forKey:acckey];
-                                [[NSUserDefaults standardUserDefaults] setValue:accountDicCopy forKey:USERINFO_ACCOUNT];
-                            }
-                            ///====
+                            [userInfoModel saveUserDataAndAccount];
                             
                             //初始化头像
                             [[NSOperationQueue mainQueue] addOperationWithBlock:^{

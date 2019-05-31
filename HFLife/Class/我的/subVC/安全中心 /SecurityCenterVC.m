@@ -43,6 +43,38 @@
         make.bottom.left.right.mas_equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).offset(self.navBarHeight);
     }];
+    
+    
+    UILabel *lable1 = [UILabel new];
+    UILabel *lable2 = [UILabel new];
+    UILabel *lable3 = [UILabel new];
+    
+    lable1.textColor = [UIColor redColor];
+    lable2.textColor = [UIColor redColor];
+    lable3.textColor = [UIColor redColor];
+    
+    [self.view addSubview:lable1];
+    [self.view addSubview:lable2];
+    [self.view addSubview:lable3];
+    
+    lable1.text = @"11111";
+//    lable2.text = @"22222";
+    lable3.text = @"33333";
+    lable2.hidden = YES;
+    [lable1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(self.view);
+        
+    }];
+    [lable2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(lable1);
+        make.top.mas_equalTo(lable1.mas_bottom).mas_offset(100);
+    }];
+    [lable3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(lable1);
+        make.top.mas_equalTo(lable2.mas_bottom).priorityHigh();
+        make.top.mas_equalTo(lable1.mas_bottom).priorityMedium();
+    }];
+    
 }
 #pragma mark 列表代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
