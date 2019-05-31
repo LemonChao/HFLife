@@ -17,6 +17,7 @@
 @implementation JMTabBarController
 
 - (instancetype)initWithTabBarControllers:(NSArray *)controllers NorImageArr:(NSArray *)norImageArr SelImageArr:(NSArray *)selImageArr TitleArr:(NSArray *)titleArr Config:(JMConfig *)config{
+    self = [super init];
     self.viewControllers = controllers;
     self.JM_TabBar = [[JMTabBar alloc] initWithFrame:self.tabBar.frame norImageArr:norImageArr SelImageArr:selImageArr TitleArr:titleArr Config:config];
     self.JM_TabBar.myDelegate = self;
@@ -64,7 +65,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+}
+
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.selectedViewController;
+}
+
+- (UIViewController *)childViewControllerForStatusBarHidden {
+    return self.selectedViewController;
 }
 
 

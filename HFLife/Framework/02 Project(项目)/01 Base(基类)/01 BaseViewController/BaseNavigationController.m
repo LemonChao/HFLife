@@ -27,4 +27,18 @@
     }
     [super pushViewController:viewController animated:animated];
 }
+
+// statusBar 样式转交给子类自己控制
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.topViewController;
+}
+
+// statusBar hidden转交给子类自己控制
+- (UIViewController *)childViewControllerForStatusBarHidden {
+    return self.topViewController;
+}
+
+
+
+
 @end

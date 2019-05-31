@@ -33,12 +33,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self monitoringNetwork];
     [self initWithKeyboard];
     [self changeRootViewController];
     self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
     [self initWithKeyboard];
     [self configNotification:launchOptions];
     //设置APIKEY

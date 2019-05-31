@@ -74,55 +74,6 @@ static BOOL IsUpdateRemind = YES;
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }
-/**
- *  懒加载赋值屏幕高
- *
- *  @return 屏幕高
- */
-- (CGFloat )screenHight{
-    if (_screenHight == 0) {
-        _screenHight = [UIScreen mainScreen].bounds.size.height;
-    }
-    return _screenHight;
-}
-/**
- *  懒加载赋值屏幕宽
- *
- *  @return 屏幕宽
- */
-- (CGFloat )screenWidth{
-    if (_screenWidth == 0) {
-        _screenWidth = [UIScreen mainScreen].bounds.size.width;
-    }
-    return _screenWidth;
-}
-- (CGFloat )heightStatus{
-    if (_heightStatus == 0) {
-        _heightStatus = HeightStatus;
-    }
-    return _heightStatus;
-}
-- (CGFloat )navBarHeight{
-    if (_navBarHeight == 0) {
-        _navBarHeight = NavBarHeight;
-    }
-    return _navBarHeight;
-}
-- (CGFloat)tabBarHeight{
-    if (_tabBarHeight == 0) {
-        _tabBarHeight = TabBarHeight;
-    }
-    return _tabBarHeight;
-}
-- (WRCustomNavigationBar *)customNavBar
-{
-    if (_customNavBar == nil) {
-        _customNavBar = [WRCustomNavigationBar CustomNavigationBar];
-    }
-    return _customNavBar;
-}
-
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -139,6 +90,21 @@ static BOOL IsUpdateRemind = YES;
     //百度单页面统计
 //    [[BaiduMobStat defaultStat] pageviewEndWithName:self.title];
  }
+
+//控制StatusBar是否隐藏 default NO
+- (BOOL)prefersStatusBarHidden
+{
+    return NO;
+}
+//控制StatusBar显示模式 default
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleDefault;
+}
+//控制StatusBar动画方式 default Fade
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    return UIStatusBarAnimationFade;
+}
 
 
 //显示自定义加载框
@@ -289,7 +255,53 @@ static BOOL IsUpdateRemind = YES;
     [WXZTipView showCenterWithText:str duration:2];
 }
 
-
+/**
+ *  懒加载赋值屏幕高
+ *
+ *  @return 屏幕高
+ */
+- (CGFloat )screenHight{
+    if (_screenHight == 0) {
+        _screenHight = [UIScreen mainScreen].bounds.size.height;
+    }
+    return _screenHight;
+}
+/**
+ *  懒加载赋值屏幕宽
+ *
+ *  @return 屏幕宽
+ */
+- (CGFloat )screenWidth{
+    if (_screenWidth == 0) {
+        _screenWidth = [UIScreen mainScreen].bounds.size.width;
+    }
+    return _screenWidth;
+}
+- (CGFloat )heightStatus{
+    if (_heightStatus == 0) {
+        _heightStatus = HeightStatus;
+    }
+    return _heightStatus;
+}
+- (CGFloat )navBarHeight{
+    if (_navBarHeight == 0) {
+        _navBarHeight = NavBarHeight;
+    }
+    return _navBarHeight;
+}
+- (CGFloat)tabBarHeight{
+    if (_tabBarHeight == 0) {
+        _tabBarHeight = TabBarHeight;
+    }
+    return _tabBarHeight;
+}
+- (WRCustomNavigationBar *)customNavBar
+{
+    if (_customNavBar == nil) {
+        _customNavBar = [WRCustomNavigationBar CustomNavigationBar];
+    }
+    return _customNavBar;
+}
 //版本更新
 
 #pragma mark APP更新

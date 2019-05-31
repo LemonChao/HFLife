@@ -37,8 +37,6 @@
     [self refreshData];
 }
 
-
-
 - (void)setupNavBar {
     [super setupNavBar];
     
