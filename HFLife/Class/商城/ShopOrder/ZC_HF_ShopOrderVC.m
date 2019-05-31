@@ -25,11 +25,6 @@
     [self.view addSubview:self.tableView];
     [self getData];
     
-    @weakify(self);
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.edges.equalTo(self.view);
-    }];
 }
 
 - (void)setupNavBar {
@@ -60,14 +55,14 @@
 //}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 4;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         return ScreenScale(135);
     }else {
-        return ScreenScale(105);
+        return ScreenScale(112);
     }
 }
 
@@ -94,7 +89,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TabBarHeight) style:UITableViewStylePlain];
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.dataSource = self;
@@ -112,11 +107,11 @@
         [_tableView registerClass:[ZCShopCouponsCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopCouponsCell class])];
         [_tableView registerClass:[ZCShopRuzhuCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopRuzhuCell class])];
         
-        @weakify(self);
-        _tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-            @strongify(self);
-            [self getData];
-        }];
+//        @weakify(self);
+//        _tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+//            @strongify(self);
+//            [self getData];
+//        }];
     }
     return _tableView;
 }

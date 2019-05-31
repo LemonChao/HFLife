@@ -219,6 +219,7 @@
 - (UIButton *)portraitButton {
     if (!_portraitButton) {
         _portraitButton = [UITool imageButton:nil cornerRadius:ScreenScale(42) borderWidth:ScreenScale(2) borderColor:GeneralRedColor];
+        _portraitButton.backgroundColor = GeneralRedColor;
         _portraitButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _portraitButton;
@@ -231,7 +232,7 @@
         _levelLabel.font = SystemFont(12);
         _levelLabel.textAlignment = NSTextAlignmentCenter;
         _levelLabel.backgroundColor = GeneralRedColor;
-        _levelLabel.layer.cornerRadius = 10.f;
+        _levelLabel.layer.cornerRadius = ScreenScale(10);
         _levelLabel.clipsToBounds = YES;
     }
     return _levelLabel;
