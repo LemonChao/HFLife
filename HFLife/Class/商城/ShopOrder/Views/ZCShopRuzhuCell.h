@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZCShopRuzhuCell : UITableViewCell
 
+@property(nonatomic, strong) NSObject *model;
+
 @end
 
 NS_ASSUME_NONNULL_END

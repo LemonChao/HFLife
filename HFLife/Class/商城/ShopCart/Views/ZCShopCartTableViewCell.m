@@ -89,10 +89,9 @@
     [self.priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.top.lessThanOrEqualTo(self.nameLab.mas_bottom).offset(ScreenScale(16));
 //        make.top.equalTo(self.specialLab.mas_bottom).offset(ScreenScale(16)).priorityLow();
-        make.top.lessThanOrEqualTo(self.specialLab.mas_bottom).offset(ScreenScale(16));
-        make.top.equalTo(self.nameLab.mas_bottom).offset(ScreenScale(16)).priorityLow();
+//        make.top.lessThanOrEqualTo(self.specialLab.mas_bottom).offset(ScreenScale(16));
+        make.top.equalTo(self.nameLab.mas_bottom).offset(ScreenScale(16));
 
-//        make.top.equalTo(self.nameLab.mas_bottom).offset(ScreenScale(16));
         make.left.equalTo(self.nameLab);
         make.bottom.equalTo(self.contentView).inset(ScreenScale(24));
     }];
@@ -114,6 +113,23 @@
     }];
 }
 
+-(void)updateConstraints {
+    [self.priceLab mas_remakeConstraints:^(MASConstraintMaker *make) {
+        if (StringIsEmpty(self.model.goods_spec)) {
+            make.top.equalTo(self.nameLab.mas_bottom).offset(ScreenScale(16));
+        }else {
+            make.top.equalTo(self.specialLab.mas_bottom).offset(ScreenScale(16));
+        }
+        make.left.equalTo(self.nameLab);
+        make.bottom.equalTo(self.contentView).inset(ScreenScale(24));
+    }];
+    
+    [super updateConstraints];
+}
+
+
+
+
 - (void)setModel:(ZCShopCartGoodsModel *)model {
     _model = model;
     
@@ -126,6 +142,7 @@
     if (StringIsEmpty(model.goods_spec)) {
         self.specialLab.edgeInsets = UIEdgeInsetsZero;
     }
+    [self setNeedsUpdateConstraints];
 }
 
 - (void)selectButtonAction:(UIButton *)button {
@@ -134,7 +151,6 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:cartValueChangedNotification object:@"selectAction"];
 }
-
 
 
 
@@ -256,11 +272,13 @@
 - (UILabelEdgeInsets *)specialLab {
     if (!_specialLab) {
         _specialLab = [[UILabelEdgeInsets alloc] init];
-        _specialLab.text = @"月桂(3米收藏送 团扇披帛);XS (建议身高155-160)";
         _specialLab.textColor = AssistColor;
         _specialLab.textAlignment = NSTextAlignmentLeft;
         _specialLab.numberOfLines = 0;
         _specialLab.backgroundColor = BackGroundColor;
+        _specialLab.layer.cornerRadius = ScreenScale(5);
+        _specialLab.clipsToBounds = YES;
+        _specialLab.font = SystemFont(14);
         _specialLab.edgeInsets = UIEdgeInsetsMake(2, 4, 2, 4);
     }
     return _specialLab;

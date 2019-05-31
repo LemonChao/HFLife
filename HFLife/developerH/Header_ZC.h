@@ -47,4 +47,9 @@
 // 商城-购物车-删除购物车商品
 #define shopCartDelete      shopUrl(@"w=member_cart&t=cart_delall")
 
+// 商城-订单中心-首页
+#define shopOrderCenterHome shopUrl(@"w=member_index")
+
+
+
 #endif /* Header_ZC_h */

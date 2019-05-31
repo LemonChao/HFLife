@@ -846,6 +846,7 @@
 		6C2F5165222A663D0022EE03 /* HXDatePhotoToolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F513D222A663D0022EE03 /* HXDatePhotoToolManager.m */; };
 		6C2F5166222A663D0022EE03 /* HXDatePhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F513E222A663D0022EE03 /* HXDatePhotoEditViewController.m */; };
 		6C2F5170222A76DD0022EE03 /* UITool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F516F222A76DD0022EE03 /* UITool.m */; };
+		6C3BE92F22A0DA9200A4DA91 /* ZCShopOrderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BE92E22A0DA9200A4DA91 /* ZCShopOrderViewModel.m */; };
 		6C3D4ACA222680570007AF9A /* CALayer+XibBorderColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */; };
 		6C611914229CD340005597AD /* ZCShopWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C611913229CD340005597AD /* ZCShopWebViewController.m */; };
 		6C68105F228670F500300A14 /* ZCExclusiveRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68105E228670F500300A14 /* ZCExclusiveRecommendCell.m */; };
@@ -2448,6 +2449,8 @@
 		6C2F5140222A663D0022EE03 /* HXDatePhotoViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXDatePhotoViewFlowLayout.h; sourceTree = "<group>"; };
 		6C2F516E222A76DD0022EE03 /* UITool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITool.h; sourceTree = "<group>"; };
 		6C2F516F222A76DD0022EE03 /* UITool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITool.m; sourceTree = "<group>"; };
+		6C3BE92D22A0DA9200A4DA91 /* ZCShopOrderViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopOrderViewModel.h; sourceTree = "<group>"; };
+		6C3BE92E22A0DA9200A4DA91 /* ZCShopOrderViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopOrderViewModel.m; sourceTree = "<group>"; };
 		6C3D4ABA22255A0E0007AF9A /* AppColorHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppColorHeader.h; sourceTree = "<group>"; };
 		6C3D4AC8222680570007AF9A /* CALayer+XibBorderColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibBorderColor.h"; sourceTree = "<group>"; };
 		6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibBorderColor.m"; sourceTree = "<group>"; };
@@ -7250,6 +7253,8 @@
 		6C988783229BD01000AA7037 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6C3BE92D22A0DA9200A4DA91 /* ZCShopOrderViewModel.h */,
+				6C3BE92E22A0DA9200A4DA91 /* ZCShopOrderViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -8121,6 +8126,7 @@
 				04FC53FF229D2AED009387E7 /* SXF_HF_payMoneyPawordVC.m in Sources */,
 				04153BFB228AA2F100AA5DAF /* FoodPreferentialCollCell.m in Sources */,
 				6C2F5160222A663D0022EE03 /* UIButton+HXExtension.m in Sources */,
+				6C3BE92F22A0DA9200A4DA91 /* ZCShopOrderViewModel.m in Sources */,
 				658B7C9E21D749E100801CC8 /* AnimationFadeEnd.m in Sources */,
 				04A5083C227EDD390013E8EC /* ZXSegmentHeaderModel.m in Sources */,
 				048DAC4E22857516006E6BA2 /* RichRightListVC.m in Sources */,
