@@ -242,6 +242,22 @@
             [self.msgLb setLabelWithLineSpace:ScreenScale(8)];
         }
             break;
+        case AlertType_logout:{
+            self.titleLb.text = @"温馨提示";
+            self.msgLb.text = @"您确定u要退出登录吗？";
+            self.titleLb.font = MyFont(18);
+            self.msgLb.font = MyFont(14);
+            self.titleLb.textColor = color0C0B0B;
+            self.msgLb.textColor = colorAAAAAA;
+            self.sureBtn.setTitle(@"确定", UIControlStateNormal).setTitleFontSize(18).setTitleColor([UIColor whiteColor], UIControlStateNormal);
+            self.sureBtn.backgroundColor = colorF5F5F5;
+            
+            
+            self.sureBtn.setTitle(@"确定", UIControlStateNormal).setTitleFontSize(18).setTitleColor([UIColor whiteColor], UIControlStateNormal);
+            self.sureBtn.backgroundColor = colorF5F5F5;
+            
+        }
+            break;
         default:
             break;
     }
@@ -295,9 +311,44 @@
             [self layoutCancleView];
         }
             break;
+        case AlertType_logout:{
+            [self layoutLogout];
+        }
+            break;
         default:
             break;
     }
+}
+
+
+- (void)layoutLogout{
+    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_top).offset(ScreenScale(20));
+        make.centerX.mas_equalTo(self.mas_centerX);
+        make.height.mas_equalTo(ScreenScale(18));
+    }];
+    
+    [self.msgLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.titleLb.mas_bottom).offset(ScreenScale(30));
+        make.centerX.mas_equalTo(self.mas_centerX);
+        make.height.mas_equalTo(ScreenScale(14));
+    }];
+    
+    [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.msgLb.mas_bottom).offset(30);
+        make.left.mas_equalTo(self.mas_left).offset(30);
+        make.height.mas_equalTo(ScreenScale(25));
+        make.width.mas_equalTo(ScreenScale(60));
+        make.bottom.mas_equalTo(self.mas_bottom).offset(ScreenScale(-15));
+    }];
+    
+    [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.cancleBtn.mas_centerY);
+        make.right.mas_equalTo(self.mas_left).offset(-30);
+        make.height.mas_equalTo(ScreenScale(25));
+        make.width.mas_equalTo(ScreenScale(60));
+    }];
+    
 }
 
 //注销
@@ -623,6 +674,16 @@
                 make.centerY.mas_equalTo(kwin.mas_centerY);
                 make.centerX.mas_equalTo(kwin.mas_centerX);
             }];
+        }
+            break;
+        case AlertType_logout:{
+            [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(kwin.mas_left).offset(ScreenScale(45));
+                make.right.mas_equalTo(kwin.mas_right).offset(ScreenScale(-45));
+                make.centerY.mas_equalTo(kwin.mas_centerY);
+                make.centerX.mas_equalTo(kwin.mas_centerX);
+            }];
+            
         }
             break;
         default:

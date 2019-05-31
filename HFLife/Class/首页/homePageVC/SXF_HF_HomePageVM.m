@@ -77,7 +77,9 @@
                 
                 //
                 
-                self.collectionView.myFQ = @"232355";
+                //需要计算得来
+                NSString *moneyStr = [NSString stringWithFormat:@"%@", [self getMoney:Format(self.collectionView.fqPrice ? self.collectionView.fqPrice : @(0)) :value[@"data"][@"static_coin"]]];
+                self.collectionView.myFQ = moneyStr;
                 NSDictionary *dict = value[@"data"];
                 NSMutableDictionary *dataSourceDicM = [NSMutableDictionary dictionary];
                 if ([dict objectForKey:@"nav"] && [[dict objectForKey:@"nav"] isKindOfClass:[NSArray class]]) {
@@ -340,6 +342,43 @@
         _locationManager = [[JFLocation alloc] init];
     }
     return _locationManager;
+}
+//用于货币高精度计算
+- (NSDecimalNumber *) getMoney:(NSString *)bn_acc_ratio :(NSString *)static_coin{
+    //富权值
+    NSDecimalNumber *static_coinNum = [NSDecimalNumber decimalNumberWithString:static_coin];
+    //富权价格
+    NSDecimalNumber *bn_acc_ratioNum = [NSDecimalNumber decimalNumberWithString:bn_acc_ratio];
+    
+//    NSDecimalNumber *bn_acc_blNum = [NSDecimalNumber decimalNumberWithString:bn_acc_bl];
+    
+//    NSDecimalNumber *oneNum = [NSDecimalNumber decimalNumberWithString:@"1"];
+    
+    
+    /*
+     scale 结果保留几位小数
+     
+              raiseOnExactness 发生精确错误时是否抛出异常，一般为NO
+     
+              raiseOnOverflow 发生溢出错误时是否抛出异常，一般为NO
+     
+              raiseOnUnderflow 发生不足错误时是否抛出异常，一般为NO
+     
+              raiseOnDivideByZero 被0除时是否抛出异常，一般为YES
+     */
+    NSDecimalNumberHandler * rounUp = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:10 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:YES];
+    
+    
+    //富权价格：(富权值*富权价格)*(1-手续费比例)=可兑换余额
+    
+    //(1-手续费比例)
+//    NSDecimalNumber *subNum = [oneNum decimalNumberBySubtracting:bn_acc_blNum withBehavior:rounUp];
+//
+//
+    NSDecimalNumber *valueNum = [static_coinNum decimalNumberByMultiplyingBy:bn_acc_ratioNum withBehavior:rounUp];
+    NSLog(@"%@", valueNum);
+    return valueNum;
+    
 }
 
 @end

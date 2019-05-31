@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, HF_AlertType) {
     AlertType_exchnage,//一月更新一次
     AlertType_realyCheck,//实名认证
     AlertType_cancellation,//注销
+    AlertType_logout,//退出登录
 };
 
 
