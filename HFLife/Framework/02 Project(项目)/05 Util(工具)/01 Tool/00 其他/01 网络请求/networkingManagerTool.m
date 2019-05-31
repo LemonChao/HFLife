@@ -123,12 +123,8 @@
     //token 设置到请求头上
     if (gettoken) {
         [requestManager.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@" , gettoken] forHTTPHeaderField:@"TOKEN"];
-    }else {
-//        [LoginVC login];
-
-//        return;
     }
-    NSLog(@"httpHeaders : %@", requestManager.sessionManager.requestSerializer.HTTPRequestHeaders);
+    MYLog(@"httpHeaders : %@", requestManager.sessionManager.requestSerializer.HTTPRequestHeaders);
     /********************************************************/
     
     

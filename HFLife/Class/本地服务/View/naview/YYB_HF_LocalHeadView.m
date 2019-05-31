@@ -19,6 +19,9 @@
 @property(nonatomic, strong) UILabel *searchlabel;
 /** 订单列表icon */
 @property(nonatomic, strong) UIImageView *orderAlertImageView;
+@property(nonatomic, strong) UIView *searchBgView;
+@property(nonatomic, strong) UIImageView *searchIcon;
+
 @end
 @implementation YYB_HF_LocalHeadView
 
@@ -56,67 +59,31 @@
     self.headImageV.layer.cornerRadius = ScreenScale(16);
     [self.selectBtn setImage:MMGetImage(@"icon_jiantou") forState:UIControlStateNormal];
     
-    [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self).mas_offset(HeightStatus + ScreenScale(7));
-        make.left.mas_equalTo(self).mas_offset(ScreenScale(20));
-        make.width.height.mas_equalTo(ScreenScale(32));
-    }];
-    
     self.localLabel.text = @"定位中";
-    self.localLabel.font = FONT(15);
-    [self.localLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.headImageV);
-        make.left.mas_equalTo(self.headImageV.mas_right).mas_offset(ScreenScale(10));
-        make.height.mas_equalTo(ScreenScale(33));
-    }];
+    self.localLabel.font = FONT(14);
     
 //    self.selectBtn.backgroundColor = [UIColor redColor];
-    [self.selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.headImageV);
-        make.left.mas_equalTo(self.localLabel.mas_right).mas_offset(3);
-        make.height.mas_equalTo(ScreenScale(14));
-        make.width.mas_equalTo(ScreenScale(10));
-    }];
     
     UIView *searchBgView = [UIView new];
     searchBgView.backgroundColor = HEX_COLOR(0xF5F5F5);
     searchBgView.clipsToBounds = YES;
     searchBgView.layer.cornerRadius = ScreenScale(4);
+    self.searchBgView = searchBgView;
     [self addSubview:searchBgView];
-    [searchBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.headImageV);
-        make.left.mas_equalTo(self.selectBtn.mas_right).mas_offset(ScreenScale(20));
-        make.right.mas_equalTo(self).mas_offset(-ScreenScale(67));
-        make.height.mas_equalTo(ScreenScale(33));
-    }];
     
     UIImageView *searchIcon = [UIImageView new];
 //    searchIcon.backgroundColor = [UIColor redColor];
     searchIcon.image = MMGetImage(@"搜索");
     [searchBgView addSubview:searchIcon];
-    [searchIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.headImageV);
-        make.left.mas_equalTo(searchBgView).mas_offset(ScreenScale(22));
-        make.width.height.mas_equalTo(ScreenScale(14));
-    }];
+    self.searchIcon = searchIcon;
+    
     [searchBgView addSubview:self.searchlabel];
     self.searchlabel.text = @"海底捞";
     self.searchlabel.textColor = HEX_COLOR(0xAAAAAA);
     self.searchlabel.font = FONT(13);
-    [self.searchlabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.headImageV);
-        make.left.mas_equalTo(searchIcon.mas_right).mas_offset(ScreenScale(10));
-        make.height.mas_equalTo(ScreenScale(13));
-        make.right.mas_equalTo(searchBgView);
-    }];
     
     [self.orderAlertImageView setImage:image(@"icon_orderAlert1")];
-    [self.orderAlertImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self).mas_offset(ScreenScale(-25));
-        make.centerY.mas_equalTo(searchBgView);
-        make.height.mas_equalTo(25);
-        make.width.mas_equalTo(21);
-    }];
+    
     self.orderAlertImageView.userInteractionEnabled = YES;
     [self.orderAlertImageView wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
         //订单列表
@@ -140,8 +107,54 @@
         [self shareInfo];
     }];
     
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self).mas_offset(HeightStatus + ScreenScale(7));
+        make.left.mas_equalTo(self).mas_offset(ScreenScale(20));
+        make.width.height.mas_equalTo(ScreenScale(32));
+    }];
     
+    [self.localLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.headImageV);
+        make.left.mas_equalTo(self.headImageV.mas_right).mas_offset(ScreenScale(10));
+        make.height.mas_equalTo(ScreenScale(33));
+    }];
     
+    [self.selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.headImageV);
+        make.left.mas_equalTo(self.localLabel.mas_right).mas_offset(3);
+        make.height.mas_equalTo(ScreenScale(14));
+        make.width.mas_equalTo(ScreenScale(10));
+    }];
+    
+    [self.searchBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.headImageV);
+        make.left.mas_equalTo(self.selectBtn.mas_right).mas_offset(ScreenScale(20));
+        make.right.mas_equalTo(self).mas_offset(-ScreenScale(67));
+        make.height.mas_equalTo(ScreenScale(33));
+    }];
+    
+    [self.searchIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.headImageV);
+        make.left.mas_equalTo(self.searchBgView).mas_offset(ScreenScale(22));
+        make.width.height.mas_equalTo(ScreenScale(14));
+    }];
+    [self.searchlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.headImageV);
+        make.left.mas_equalTo(self.searchIcon.mas_right).mas_offset(ScreenScale(10));
+        make.height.mas_equalTo(ScreenScale(13));
+        make.right.mas_equalTo(self.searchBgView);
+    }];
+    
+    [self.orderAlertImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self).mas_offset(ScreenScale(-25));
+        make.centerY.mas_equalTo(self.searchBgView);
+        make.height.mas_equalTo(25);
+        make.width.mas_equalTo(21);
+    }];
 }
 
 #pragma mark - method
@@ -288,6 +301,12 @@
 #pragma mark - setValue
 - (void)setSetLocalStr:(NSString *)setLocalStr {
     self.localLabel.text = setLocalStr;
+    [self.localLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.headImageV);
+        make.left.mas_equalTo(self.headImageV.mas_right).mas_offset(ScreenScale(10));
+        make.height.mas_equalTo(ScreenScale(33));
+        make.width.mas_equalTo(ScreenScale(16) * (self.localLabel.text.length > 6 ? 6 : self.localLabel.text.length));
+    }];
 }
 
 - (void)setSetSearchStr:(NSString *)setSearchStr {

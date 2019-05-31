@@ -13,10 +13,14 @@
 #import "YYB_HF_cycleScrollCollectionViewCell.h"
 #import "YYB_HF_guessLikeCollectionViewCell.h"
 #import "YYb_HF_CollReusableView.h"
+#import "SynthesizeMerchantListVC.h"
+
 //#import "WKWebViewController.h"
 //#import "SynthesizeMerchantListVC.h"
 @interface YYB_HF_LifeLocaView()<XPCollectionViewWaterfallFlowLayoutDataSource,UICollectionViewDelegate,UICollectionViewDataSource> {
     int allPage;//猜你喜欢数据页数
+    NSArray *VcArr;//跳转webvcurlid或class
+
 }
 @property(nonatomic, strong) baseCollectionView *collectionView;
 @property(nonatomic, strong) XPCollectionViewWaterfallFlowLayout *layout;
@@ -34,6 +38,17 @@
         [self setUpUI];
         self.isFirstLoad = YES;
         self.guessLikeData = [NSMutableArray array];
+        VcArr = @[@"NearFoodVC",
+                  @(1),
+                  @(2),
+                  @(3),
+                  @(4),
+                  @(5),
+                  @"经济连锁",
+                  @"GuesthouseVC",
+                  @"商务酒店",
+                  @"NearHotelVC"
+                  ];
     }
     return self;
 }
@@ -204,6 +219,9 @@
             [cell reFreshData:dataArr];
             [cell setHidden:NO];
         }
+        cell.selectColumnIndex = ^(NSIndexPath * _Nonnull index) {
+            [self selectColumnIndexPath:index];
+        };
         
 //        cell.imgView.image = MMGetImage(imageNameArray[indexPath.row]);
 //        cell.title.text = titleArray[indexPath.row];
@@ -259,6 +277,45 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor brownColor];
     return cell;
+}
+
+#pragma mark - section0分类商家点击
+- (void)selectColumnIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"idnex %ld - %ld",indexPath.section,indexPath.row);
+    return;
+    if (indexPath.section == 0) {
+        UIViewController *vc;
+        
+        if (indexPath.row == 6 || indexPath.row == 8) {
+            WKWebViewController *web = [[WKWebViewController alloc]init];
+            web.webTitle = VcArr[indexPath.row];
+            web.isNavigationHidden = YES;
+            if (indexPath.row == 5) {
+                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=1",GP_BASEURL);
+            }else if (indexPath.row == 6){
+                web.isNavigationHidden = NO;
+                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/ecoChainHotel.html?cate_id=2",GP_BASEURL);
+                
+            }else if (indexPath.row == 8){
+                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=4",GP_BASEURL);
+            }
+            vc = web;
+        }else{
+            if (VcArr.count > indexPath.row) {
+                if ([VcArr[indexPath.row] isKindOfClass:[NSString class]]) {
+                    Class vcClass = NSClassFromString(VcArr[indexPath.row]);
+                    vc = [[vcClass alloc] init];
+                }else{
+                    SynthesizeMerchantListVC *syn = [[SynthesizeMerchantListVC alloc]init];
+                    syn.type = MMNSStringFormat(@"%@",VcArr[indexPath.row]);
+                    vc = syn;
+                }
+            }
+        }
+        if (vc) {
+            [self.viewController.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

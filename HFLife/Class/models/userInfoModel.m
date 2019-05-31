@@ -123,7 +123,7 @@ static dispatch_once_t onceToken;
                 }
             }
         }else {
-            [userInfoModel getSavedUserDataAndAccount];
+            [userInfoModel getSavedUserData];
             
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
@@ -163,7 +163,7 @@ static dispatch_once_t onceToken;
     ///====
 }
 
-+ (void)getSavedUserDataAndAccount{
++ (void)getSavedUserData{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *savedEncodedData = [defaults objectForKey:USERINFO_DATA];
     userInfoModel *user = [[userInfoModel alloc]init];
