@@ -7,6 +7,7 @@
 //
 
 #import "ZCShopOrderTableHeader.h"
+#import "UILabelEdgeInsets.h"
 
 @interface ZCWordsButton : UIControl
 
@@ -22,10 +23,10 @@
 @property(nonatomic, strong) UIView *bottomContentView;
 @property(nonatomic, strong) ZCWordsButton *goodsWishlist;
 @property(nonatomic, strong) ZCWordsButton *shopWishlist;
-@property(nonatomic, strong) ZCWordsButton *historyWishlist;
+@property(nonatomic, strong) UIButton *historyWishlist;
 @property(nonatomic, strong) UIButton *portraitButton;
 @property(nonatomic, strong) UILabel *nameLabel;
-@property(nonatomic, strong) UILabel *levelLabel;
+@property(nonatomic, strong) UILabelEdgeInsets *levelLabel;
 
 @end
 
@@ -55,8 +56,6 @@
         [self.bottomContentView addSubview:self.nameLabel];
         [self.bottomContentView addSubview:self.levelLabel];
         
-        
-        
         [self.topBgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self);
             make.height.mas_equalTo(ScreenScale(190));
@@ -65,7 +64,7 @@
         [self.bottomContentView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(ScreenScale(130));
             make.left.right.equalTo(self).inset(ScreenScale(12));
-            make.bottom.equalTo(self).inset(ScreenScale(5));
+            make.bottom.equalTo(self).inset(ScreenScale(10));
         }];
         
         
@@ -77,13 +76,13 @@
         
         [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.portraitButton.mas_bottom).offset(ScreenScale(12));
-            make.left.equalTo(self.portraitButton);
+            make.left.equalTo(self.bottomContentView).offset(0);
         }];
         
         [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.nameLabel.mas_right);
+            make.left.equalTo(self.nameLabel.mas_right).offset(ScreenScale(6));
             make.centerY.equalTo(self.nameLabel);
-            make.size.mas_equalTo(CGSizeMake(36, 20));//(26,14)
+            make.height.mas_equalTo(ScreenScale(20));
        }];
         
         [self.goodsWishlist mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,6 +126,27 @@
     return self;
 }
 
+- (void)setModel:(ZCShopOrderModel *)model {
+    _model = model;
+    self.levelLabel.edgeInsets = UIEdgeInsetsMake(0, ScreenScale(5), 0, ScreenScale(5));
+
+    [self.portraitButton sd_setImageWithURL:[NSURL URLWithString:model.avatar] forState:UIControlStateNormal];
+    self.nameLabel.text = model.user_name;
+    self.levelLabel.text = [NSString stringWithFormat:@"VIP%@", model.level_name];
+    self.goodsWishlist.topString = model.favorites_goods;
+    self.shopWishlist.topString = model.favorites_store;
+    
+    CGFloat offset = (SCREEN_WIDTH - ScreenScale(30)-self.nameLabel.intrinsicContentSize.width-self.levelLabel.intrinsicContentSize.width)/2;
+    NSLog(@"offset:%f -name:%f -level:%f",offset,self.nameLabel.intrinsicContentSize.width,self.levelLabel.intrinsicContentSize.width);
+    [self.nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.bottomContentView).inset(offset);
+    }];
+    [self.historyWishlist setImagePosition:ImagePositionTypeTop spacing:ScreenScale(4)];
+
+}
+
+
+
 - (void)goodsWishlistAction:(ZCWordsButton *)button {
     ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"collect" parameters:@{@"collectType":@"1"}];
     [self.viewController.navigationController pushViewController:webVC animated:YES];
@@ -161,7 +181,7 @@
     if (!_goodsWishlist) {
         _goodsWishlist = [[ZCWordsButton alloc] init];
         _goodsWishlist.bottomString = @"商品收藏";
-        _goodsWishlist.topString = @"50";
+        _goodsWishlist.topString = @"0";
         [_goodsWishlist addTarget:self action:@selector(goodsWishlistAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _goodsWishlist;
@@ -171,18 +191,26 @@
     if (!_shopWishlist) {
         _shopWishlist = [[ZCWordsButton alloc] init];
         _shopWishlist.bottomString = @"店铺收藏";
-        _shopWishlist.topString = @"34";
+        _shopWishlist.topString = @"0";
         [_shopWishlist addTarget:self action:@selector(shopWishlistAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _shopWishlist;
 }
 
-- (ZCWordsButton *)historyWishlist {
+//- (ZCWordsButton *)historyWishlist {
+//    if (!_historyWishlist) {
+//        _historyWishlist = [[ZCWordsButton alloc] init];
+//        _historyWishlist.bottomString = @"我的足迹";
+//        _historyWishlist.topString = @"09";
+//        [_historyWishlist addTarget:self action:@selector(historyWishlistAction:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _historyWishlist;
+//}
+- (UIButton *)historyWishlist {
     if (!_historyWishlist) {
-        _historyWishlist = [[ZCWordsButton alloc] init];
-        _historyWishlist.bottomString = @"我的足迹";
-        _historyWishlist.topString = @"09";
+        _historyWishlist = [UITool richButton:UIButtonTypeCustom title:@"我的足迹" titleColor:ImportantColor font:SystemFont(14) bgColor:[UIColor whiteColor] image:image(@"orderCenter_zuji")];
         [_historyWishlist addTarget:self action:@selector(historyWishlistAction:) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return _historyWishlist;
 }
@@ -190,16 +218,21 @@
 
 - (UIButton *)portraitButton {
     if (!_portraitButton) {
-        _portraitButton = [UITool imageButton:image(@"image2") cornerRadius:ScreenScale(42) borderWidth:ScreenScale(2) borderColor:GeneralRedColor];
+        _portraitButton = [UITool imageButton:nil cornerRadius:ScreenScale(42) borderWidth:ScreenScale(2) borderColor:GeneralRedColor];
+        _portraitButton.backgroundColor = GeneralRedColor;
         _portraitButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _portraitButton;
 }
 
-- (UILabel *)levelLabel {
+- (UILabelEdgeInsets *)levelLabel {
     if (!_levelLabel) {
-        _levelLabel = [UITool labelWithText:@"VIP3" textColor:[UIColor whiteColor] font:SystemFont(12) alignment:NSTextAlignmentCenter numberofLines:1 backgroundColor:GeneralRedColor];
-        _levelLabel.layer.cornerRadius = 10.f;
+        _levelLabel = [[UILabelEdgeInsets alloc] init];
+        _levelLabel.textColor = [UIColor whiteColor];
+        _levelLabel.font = SystemFont(12);
+        _levelLabel.textAlignment = NSTextAlignmentCenter;
+        _levelLabel.backgroundColor = GeneralRedColor;
+        _levelLabel.layer.cornerRadius = ScreenScale(10);
         _levelLabel.clipsToBounds = YES;
     }
     return _levelLabel;
@@ -208,7 +241,6 @@
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [UITool labelWithTextColor:ImportantColor font:SystemFont(14)];
-        _nameLabel.text = @"垂綏饮清露";
     }
     return _nameLabel;
 }

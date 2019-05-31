@@ -26,6 +26,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         UIView *cornerBGView = [UITool viewWithColor:[UIColor whiteColor]];
         [cornerBGView addShadowForViewColor:GeneralRedColor offSet:CGSizeMake(0, 2) shadowRadius:3 cornerRadius:ScreenScale(5) opacity:0.1];
         UIView *lineView = [UITool viewWithColor:LineColor];
@@ -74,6 +75,12 @@
     }
     return self;
 }
+
+- (void)allButtonAction:(UIButton *)button {
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"orderList" parameters:nil];
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
+}
+
 
 - (void)orderButtonAction:(UIButton *)button {
     if ([button.currentTitle isEqualToString:@"待付款"]) {
@@ -127,6 +134,8 @@
 - (UIButton *)allButton {
     if (!_allButton) {
         _allButton = [UITool richButton:UIButtonTypeCustom title:@"查看全部订单" titleColor:AssistColor font:SystemFont(14) bgColor:[UIColor clearColor] image:image(@"orderCenter_arrow_right")];
+        [_allButton addTarget:self action:@selector(allButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return _allButton;
 }

@@ -26,6 +26,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         UIView *lineView = [UITool viewWithColor:LineColor];
         UIView *cornerBGView = [UITool viewWithColor:[UIColor whiteColor]];
         [cornerBGView addShadowForViewColor:GeneralRedColor offSet:CGSizeMake(0, 2) shadowRadius:3 cornerRadius:ScreenScale(5) opacity:0.1];
@@ -33,7 +34,7 @@
         stack.axis = UILayoutConstraintAxisHorizontal;
         stack.distribution = UIStackViewDistributionFillEqually;
         stack.alignment = UIStackViewAlignmentFill;
-        stack.spacing = 0;//ScreenScale(10);
+        stack.spacing = ScreenScale(10);//ScreenScale(10);
 
         [self.contentView addSubview:cornerBGView];
         [cornerBGView addSubview:self.titleLabel];
@@ -78,7 +79,23 @@
     return self;
 }
 
+- (void)allButtonAction:(UIButton *)button {
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"vouchers" parameters:nil];
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
+}
+
 - (void)orderButtonAction:(UIButton *)button {
+    if ([button.currentTitle isEqualToString:@"代金券"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"storeVouchers" parameters:nil];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }else if ([button.currentTitle isEqualToString:@"优惠券"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"pingtaiVouchers" parameters:nil];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }else if ([button.currentTitle isEqualToString:@"领好券"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"orderList" parameters:nil];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }
+    
     
 }
 
@@ -121,6 +138,7 @@
 - (UIButton *)allButton {
     if (!_allButton) {
         _allButton = [UITool richButton:UIButtonTypeCustom title:@"查看优惠券" titleColor:AssistColor font:SystemFont(14) bgColor:[UIColor clearColor] image:image(@"orderCenter_arrow_right")];
+        [_allButton addTarget:self action:@selector(allButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _allButton;
 }

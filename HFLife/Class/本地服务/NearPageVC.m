@@ -37,6 +37,7 @@
     self.headView = headView;
     
     self.myLocaVeiw = [[YYB_HF_LifeLocaView alloc]initWithFrame:CGRectZero];
+    self.myLocaVeiw.supVC = self;
     WEAK(weakSelf);
     self.myLocaVeiw.reFreshData = ^(YYB_HF_nearLifeModel * _Nonnull nearModel) {
         //数据更新

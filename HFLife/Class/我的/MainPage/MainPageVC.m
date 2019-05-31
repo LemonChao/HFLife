@@ -24,9 +24,7 @@
 #import "FQ_homeVC.h"
 //余额
 #import "BalanceHomeVC.h"
-@interface MainPageVC () {
-    BOOL isFirstLoad;
-}
+@interface MainPageVC ()
 @property (nonatomic, strong)SXF_HF_MainPageView *mainPageView;
 @end
 
@@ -34,7 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    isFirstLoad = YES;
     self.customNavBar.title = @"";
     [self setUpUI];
 }
@@ -172,14 +169,11 @@
                 }
             }
         }else {
-            
-            [userInfoModel getSavedUserDataAndAccount];
-            
-            self->isFirstLoad = YES;
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
             }else {
                 [WXZTipView showCenterWithText:@"网络错误"];
+                [userInfoModel getSavedUserData];
             }
         }
     }];

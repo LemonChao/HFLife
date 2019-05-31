@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface YYB_HF_LocaColumnCollectionCell : UICollectionViewCell
+
+@property(nonatomic, copy) void (^selectColumnIndex)(NSIndexPath *index);
 - (void)reFreshData:(NSArray *)dataArr;//数据源
 @end
 @interface YYB_HF_LocaColumnCollectionCellItem : UICollectionViewCell

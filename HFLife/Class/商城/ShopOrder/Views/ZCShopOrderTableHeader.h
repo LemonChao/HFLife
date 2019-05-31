@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZCShopOrderViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZCShopOrderTableHeader : UIView
+
+@property(nonatomic, strong) ZCShopOrderModel *model;
 
 @end
 

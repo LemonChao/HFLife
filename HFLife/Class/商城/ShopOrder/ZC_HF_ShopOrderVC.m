@@ -10,10 +10,12 @@
 #import "ZCShopOrderTableHeader.h"
 #import "ZCShopOrderCell.h"
 #import "ZCShopCouponsCell.h"
+#import "ZCShopRuzhuCell.h"
+#import "ZCShopOrderViewModel.h"
 
 @interface ZC_HF_ShopOrderVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong) UITableView *tableView;
-
+@property(nonatomic, strong) ZCShopOrderViewModel *viewModel;
 @end
 
 @implementation ZC_HF_ShopOrderVC
@@ -21,17 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
+    [self getData];
     
-    @weakify(self);
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.edges.equalTo(self.view);
-    }];
-    
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        @strongify(self);
-        [self getData];
-    }];
 }
 
 - (void)setupNavBar {
@@ -40,17 +33,32 @@
     self.customNavBar.backgroundColor = RGBA(1, 1, 1, 0);
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+
 #pragma mark - event response
 
 - (void)getData {
+    @weakify(self);
+    [[self.viewModel.orderCenterCmd execute:nil] subscribeError:^(NSError * _Nullable error) {
+        @strongify(self);
+        [self.tableView.mj_header endRefreshing];
+    } completed:^{
+        @strongify(self);
+        [self.tableView.mj_header endRefreshing];
+        [(ZCShopOrderTableHeader*)self.tableView.tableHeaderView setModel:self.viewModel.model];
+    }];
     
 }
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 //    CGFloat offsetY = scrollView.contentOffset.y;
 
-}
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 3;
@@ -60,7 +68,7 @@
     if (indexPath.row == 0) {
         return ScreenScale(135);
     }else {
-        return ScreenScale(105);
+        return ScreenScale(112);
     }
 }
 
@@ -76,11 +84,10 @@
         cell.model = [NSObject new];
         return cell;
     }else {
-        ZCShopCouponsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopCouponsCell class])];
+        ZCShopRuzhuCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZCShopRuzhuCell class])];
         cell.model = [NSObject new];
         return cell;
     }
-    
 }
 
 
@@ -88,7 +95,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TabBarHeight) style:UITableViewStylePlain];
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.dataSource = self;
@@ -104,9 +111,24 @@
         }
         [_tableView registerClass:[ZCShopOrderCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopOrderCell class])];
         [_tableView registerClass:[ZCShopCouponsCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopCouponsCell class])];
+        [_tableView registerClass:[ZCShopRuzhuCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopRuzhuCell class])];
+        
+//        @weakify(self);
+//        _tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+//            @strongify(self);
+//            [self getData];
+//        }];
     }
     return _tableView;
 }
+
+- (ZCShopOrderViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[ZCShopOrderViewModel alloc] init];
+    }
+    return _viewModel;
+}
+
 
 #pragma mark - private
 
