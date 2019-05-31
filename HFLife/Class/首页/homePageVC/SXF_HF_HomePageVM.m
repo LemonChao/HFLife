@@ -148,6 +148,9 @@
             }
         }];
     }else{
+        if (![userInfoModel sharedUser].chect_rz_status) {
+            return;
+        }
         if ([userInfoModel checkPhotoStatus]) {
             UIViewController *vc;
             if (index == 0) {
@@ -186,11 +189,34 @@
 //点击cell
 - (void)clickCellItem:(NSIndexPath *)indexPath value:(id)value{
     NSLog(@"%ld分区   %ld个    %@", (long)indexPath.section, (long)indexPath.row, value);
-    //加载web页面
-    WKWebViewController *webV = [WKWebViewController new];
+    SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+    NSString *urlStr = value;
+    if (urlStr) {
+        if (indexPath.section == 1) {
+            //通知消息
+            webVC.urlString = SXF_WEB_URLl_Str(noticeList);
+        }
+    }else{
+        
+    }
+    
+    
+    if (indexPath.section == 0) {
+        
+    }else if (indexPath.section == 1) {
+        //通知消息
+        webVC.urlString = SXF_WEB_URLl_Str(noticeList);
+    }else if (indexPath.section == 2){
+        
+    }else if (indexPath.section == 3){
+        
+    }else{
+        
+    }
+    
     if (value) {
-        webV.urlString = value;
-        [self.vc.navigationController pushViewController:webV animated:YES];
+        webVC.urlString = value;
+        [self.vc.navigationController pushViewController:webVC animated:YES];
     }else{
         [WXZTipView showCenterWithText:@"暂无该条详情数据"];
     }

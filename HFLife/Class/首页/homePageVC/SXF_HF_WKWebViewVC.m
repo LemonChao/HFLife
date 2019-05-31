@@ -17,6 +17,13 @@
 #import "MapViewController.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "UMSPPPayUnifyPayPlugin.h"
+
+
+
+
+#import "YYB_HF_submitDealPassWordVC.h"
+
+
 @interface SXF_HF_WKWebViewVC ()<WKUIDelegate,WKScriptMessageHandler,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,WKNavigationDelegate,UIGestureRecognizerDelegate>
 {
     UIImagePickerController *imagePickerController;
@@ -34,7 +41,7 @@
     self.title = @"";
     self.view.backgroundColor = [UIColor whiteColor];
     [self wr_setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    
+    self.customNavBar.hidden = YES;
     
     //    [self removeWebCache];
     
@@ -53,9 +60,9 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
-    self.navigationController.navigationBar.hidden = YES;
-    self.fd_interactivePopDisabled = YES;
+//    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
+//    self.navigationController.navigationBar.hidden = YES;
+//    self.fd_interactivePopDisabled = YES;
     //    //隐藏返回按钮
     //    self.navigationItem.hidesBackButton = YES;
     //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
@@ -68,9 +75,9 @@
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
-    self.fd_interactivePopDisabled = NO;
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
+//    self.fd_interactivePopDisabled = NO;
+//    self.navigationController.navigationBar.hidden = NO;
     //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
     //        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     //    }
@@ -81,10 +88,7 @@
     
 }
 -(void)setupNavBar{
-    WS(weakSelf);
     [super setupNavBar];
-    
-    
 }
 - (void)initWKWebView{
     
@@ -125,6 +129,12 @@
     //调起银联支付
     [userContentController addScriptMessageHandler:self name:@"goToApp"];
     
+    
+    
+    [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
+    
+    
+    
     configuration.userContentController = userContentController;
     
     
@@ -134,8 +144,8 @@
     configuration.preferences = preferences;
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.navBarHeight);
-    dic[@"token"] = [HeaderToken getAccessToken];
+    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus * 2);
+    dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
     dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
     //    dic[@"avatar"] = [UserInfoTool avatar];
     
@@ -149,7 +159,7 @@
     [configuration.userContentController addUserScript:script];
     
     
-    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:configuration];
+    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - HomeIndicatorHeight) configuration:configuration];
     
     
     
@@ -162,10 +172,8 @@
     self.webView.scrollView.bounces = NO;
     self.webView.contentMode = UIViewContentModeScaleAspectFit;
     self.webView.scrollView.delegate = self;
+    self.webView.allowsBackForwardNavigationGestures = YES;//允许侧滑返回
     [self.view addSubview:self.webView];
-    
-    
-    
     
     if (@available(iOS 11.0, *)) {
        self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -282,7 +290,9 @@
     //    [self presentViewController:alert animated:YES completion:nil];
     completionHandler();
 }
-
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler{
+    completionHandler(YES);
+}
 #pragma mark -- WKScriptMessageHandler
 /**
  *  JS 调用 OC 时 webview 会调用此方法
@@ -328,6 +338,10 @@
     }
     else if ([message.name isEqualToString:@"Share"]){
         
+    }else if ([message.name isEqualToString:@"goSetPayPassword"]){
+        //去设置支付密码
+        YYB_HF_submitDealPassWordVC *vc = [YYB_HF_submitDealPassWordVC new];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     //goToHome
 }
@@ -488,7 +502,6 @@
     if (![dic isKindOfClass:[NSDictionary class]]) {
         return;
     }
-    
     NSString *title = [dic objectForKey:@"title"];
     NSString *content = [dic objectForKey:@"content"];
     NSString *url = [dic objectForKey:@"url"];

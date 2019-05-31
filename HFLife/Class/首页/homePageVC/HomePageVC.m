@@ -50,23 +50,20 @@
     [self addGuideView];
     [self setUpUI];
     [self setUpActions];
+    [self versionUpdateRequest];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     //加载数据
     [self loadServerData];
-    [self versionUpdateRequest];
-    
-    
-    //用户信息
-    [userInfoModel getUserInfo];
-    
-    
-   
-    
 }
 //网络数据
 - (void)loadServerData{
     [self.homePageVM  getBannerData];
     [self.homePageVM getNewsListData:1];
     [self.homePageVM upDataLocation];
+    //用户信息
+    [userInfoModel getUserInfo];
 }
 - (void)setUpActions{
     WEAK(weakSelf);
@@ -176,9 +173,7 @@
     guidePage.slideInto = YES;
     [[UIApplication sharedApplication].keyWindow addSubview:guidePage];
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

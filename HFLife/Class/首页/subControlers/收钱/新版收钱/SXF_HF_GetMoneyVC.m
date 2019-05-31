@@ -52,21 +52,11 @@
                         [self.getMoneyView setDataForView:value[@"data"][@"show_code"] type:NO];
                     }
                 }
+                [WXZTipView showCenterWithText:value[@"msg"]];
             }
             
         }
     } witnVC:self];
-//    //临时数据
-//    [self.getMoneyView setDataForView:@"https://itunes.apple.com/cn/app/%E6%B1%89%E5%AF%8C%E6%96%B0%E7%94%9F%E6%B4%BB/id1458588987?l=zh&ls=1&mt=8" type:NO];
-    
-    //模拟网络请求 获取收款码
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        //临时数据
-//        [self.getMoneyView setDataForView:@"https://www.hfgld.net/app_html/qrcode_pay/show_pay.html?show_code=5A005141F931A300" type:NO];
-//    });
-    
-    
-    
 }
 
 
@@ -142,9 +132,12 @@
         [SXF_HF_AlertView showAlertType:AlertType_topRight Complete:^(BOOL btnBype) {
             if (btnBype) {
                 //收款码介绍
-                BaseViewController *vc = [BaseViewController new];
-                vc.customNavBar.title = @"收款码介绍";
-                [weakSelf.navigationController pushViewController:vc animated:YES];
+//                BaseViewController *vc = [BaseViewController new];
+//                vc.customNavBar.title = @"收款码介绍";
+//                [weakSelf.navigationController pushViewController:vc animated:YES];
+                SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+                webVC.urlString = SXF_WEB_URLl_Str(reCodeIntroduction);
+                [weakSelf.navigationController pushViewController:webVC animated:YES];
             }else{
                 //开启或关闭到账通知
                 setGetMoneyStatus(!OpenMoneyNotiStatus)

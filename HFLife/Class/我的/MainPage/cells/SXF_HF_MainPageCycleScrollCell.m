@@ -99,7 +99,7 @@
     //滚动到
     self.pageControl.currentPage = index;
     //在当前cell播放动画
-    NSString *iamgePath = [[NSBundle mainBundle] pathForResource:@"余额" ofType:@"gif"];
+    NSString *iamgePath = [[NSBundle mainBundle] pathForResource:@"main余额" ofType:@"gif"];
     
     
 

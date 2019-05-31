@@ -162,8 +162,8 @@
     configuration.preferences = preferences;
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.navBarHeight);
-    dic[@"token"] = [HeaderToken getAccessToken];
+    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus * 2);
+    dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"Token"];
     dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
 //    dic[@"avatar"] = [UserInfoTool avatar];
     

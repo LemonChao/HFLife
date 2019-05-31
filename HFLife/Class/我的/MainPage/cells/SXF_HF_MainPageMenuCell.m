@@ -172,7 +172,7 @@
         layout.minimumInteritemSpacing = ScreenScale(5);
         layout.minimumLineSpacing = ScreenScale(5);
         CGFloat itemSize = (SCREEN_WIDTH - (24 + 15)) / 4;
-        layout.itemSize = CGSizeMake(ScreenScale(84), ScreenScale(84));
+        layout.itemSize = CGSizeMake(ScreenScale(83), ScreenScale(83));
         _menuCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _menuCollectionView.delegate = self;
         _menuCollectionView.dataSource = self;

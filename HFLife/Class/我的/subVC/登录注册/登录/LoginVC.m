@@ -360,7 +360,7 @@
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERINFO_DATA];
             [userInfoModel attempDealloc];
             BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
-            [currentVC presentViewController:navi animated:NO completion:nil];
+            [currentVC presentViewController:navi animated:YES completion:nil];
         }
     }else{
         

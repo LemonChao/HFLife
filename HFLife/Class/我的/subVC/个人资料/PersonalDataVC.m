@@ -188,7 +188,7 @@
     }else if ([title_value isEqualToString:@"实名认证"]){
         if ([userInfoModel sharedUser].rz_status.intValue == 0 || [userInfoModel sharedUser].rz_status.intValue == 3) {
             YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-            vc.urlString = @"http://192.168.0.105:8080/certification";
+            vc.urlString = SXF_WEB_URLl_Str(certification);
             vc.isTop = YES;
             vc.isNavigationHidden = YES;
             [self.navigationController pushViewController:vc animated:YES];
@@ -210,6 +210,39 @@
 //        }
        
     }else if ([title_value isEqualToString:@"退出登录"]){
+        
+        
+        [SXF_HF_AlertView showAlertType:AlertType_logout Complete:^(BOOL btnBype) {
+            if (btnBype) {
+                [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
+                [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERINFO_DATA];
+                [userInfoModel attempDealloc];
+                [LoginVC login];
+                
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                [ShareSDK cancelAuthorize:(SSDKPlatformTypeQQ) result:^(NSError *error) {
+                    
+                }];
+                [ShareSDK cancelAuthorize:(SSDKPlatformTypeWechat) result:^(NSError *error) {
+                    
+                }];
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:kLogout withParameters:nil withResultBlock:^(BOOL result, id value) {
+                    [[WBPCreate sharedInstance]hideAnimated];
+                    if (result) {
+                        
+                    }else {
+                        if (value && [value isKindOfClass:[NSDictionary class]]) {
+                        }else {
+                        }
+                    }
+                }];
+            }
+        }];
+        
+        
+        /*
+        
         LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:@"您确定要退出登录吗？" cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
             if(clickIndex == 1){
 //                [[NSNotificationCenter defaultCenter] postNotificationName:EXIT_LOGIN object:nil userInfo:nil];
@@ -241,6 +274,8 @@
         }];
         alert.animationStyle=LXASAnimationTopShake;
         [alert showLXAlertView];
+         
+         */
     }
 }
 - (void)albumListViewController:(HXAlbumListViewController *)albumListViewController didDoneAllList:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photoList videos:(NSArray<HXPhotoModel *> *)videoList original:(BOOL)original {
