@@ -135,10 +135,11 @@
                                 if (token && token.length > 0) {
                                     [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
                                 }else {
-                                    [WXZTipView showCenterWithText:@"资料修改成功,token获取x失败"];
+                                    [WXZTipView showCenterWithText:@"资料修改成功,token获取失败"];
                                 }
                             }
                             [userInfoModel sharedUser].userHeaderImage = image;
+                            [userInfoModel getUserInfo];
                             [self.navigationController popViewControllerAnimated:YES];
                             
                         }else {
