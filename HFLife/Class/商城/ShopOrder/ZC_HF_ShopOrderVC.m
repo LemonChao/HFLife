@@ -113,11 +113,11 @@
         [_tableView registerClass:[ZCShopCouponsCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopCouponsCell class])];
         [_tableView registerClass:[ZCShopRuzhuCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopRuzhuCell class])];
         
-//        @weakify(self);
-//        _tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-//            @strongify(self);
-//            [self getData];
-//        }];
+        @weakify(self);
+        _tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+            @strongify(self);
+            [self getData];
+        }];
     }
     return _tableView;
 }
