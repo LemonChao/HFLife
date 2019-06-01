@@ -528,6 +528,8 @@
 		04F893572292B2230075918A /* SXF_HF_moreVipCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F893562292B2230075918A /* SXF_HF_moreVipCardView.m */; };
 		04F8935A2292B2390075918A /* SXF_HF_moreVipCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F893592292B2390075918A /* SXF_HF_moreVipCardCell.m */; };
 		04F8935E2292BDC50075918A /* SXF_HF_cardDetaileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8935D2292BDC50075918A /* SXF_HF_cardDetaileVC.m */; };
+		04F8D25A22A2113A00C0A310 /* MallCashierDeskVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F8D25722A2113A00C0A310 /* MallCashierDeskVC.xib */; };
+		04F8D25B22A2113A00C0A310 /* MallCashierDeskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8D25922A2113A00C0A310 /* MallCashierDeskVC.m */; };
 		04F946D3228B9E9600085F78 /* SXF_HF_payStepAleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */; };
 		04F946D6228BBC6300085F78 /* SXF_HF_payStepTowCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946D5228BBC6300085F78 /* SXF_HF_payStepTowCel.m */; };
 		04F946E3228C0C7400085F78 /* SXF_HF_Password.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946E0228C0C7300085F78 /* SXF_HF_Password.m */; };
@@ -1861,6 +1863,9 @@
 		04F893592292B2390075918A /* SXF_HF_moreVipCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_moreVipCardCell.m; sourceTree = "<group>"; };
 		04F8935C2292BDC50075918A /* SXF_HF_cardDetaileVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_cardDetaileVC.h; sourceTree = "<group>"; };
 		04F8935D2292BDC50075918A /* SXF_HF_cardDetaileVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_cardDetaileVC.m; sourceTree = "<group>"; };
+		04F8D25722A2113A00C0A310 /* MallCashierDeskVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MallCashierDeskVC.xib; sourceTree = "<group>"; };
+		04F8D25822A2113A00C0A310 /* MallCashierDeskVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallCashierDeskVC.h; sourceTree = "<group>"; };
+		04F8D25922A2113A00C0A310 /* MallCashierDeskVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallCashierDeskVC.m; sourceTree = "<group>"; };
 		04F946D1228B9E9600085F78 /* SXF_HF_payStepAleryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payStepAleryView.h; sourceTree = "<group>"; };
 		04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_payStepAleryView.m; sourceTree = "<group>"; };
 		04F946D4228BBC6300085F78 /* SXF_HF_payStepTowCel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payStepTowCel.h; sourceTree = "<group>"; };
@@ -5964,6 +5969,16 @@
 			path = "会员卡详情";
 			sourceTree = "<group>";
 		};
+		04F8D25622A2112500C0A310 /* 收银台 */ = {
+			isa = PBXGroup;
+			children = (
+				04F8D25822A2113A00C0A310 /* MallCashierDeskVC.h */,
+				04F8D25922A2113A00C0A310 /* MallCashierDeskVC.m */,
+				04F8D25722A2113A00C0A310 /* MallCashierDeskVC.xib */,
+			);
+			path = "收银台";
+			sourceTree = "<group>";
+		};
 		04F946DF228C0C5700085F78 /* 密码输入框 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6663,6 +6678,7 @@
 		658B7D0421D7541900801CC8 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				04F8D25622A2112500C0A310 /* 收银台 */,
 				049783492285957E00E143D7 /* 本地服务 */,
 				04F54B3122811D38009AAEF3 /* models */,
 				04B9D4F522803CF00084FA23 /* 地图 */,
@@ -7607,6 +7623,7 @@
 				65DC6893221A6C9700F1085E /* luxian.png in Resources */,
 				65DC68302211253200F1085E /* shareView_friend@2x.png in Resources */,
 				04A508A5227EDD3A0013E8EC /* README.md in Resources */,
+				04F8D25A22A2113A00C0A310 /* MallCashierDeskVC.xib in Resources */,
 				04153BF7228AA2F100AA5DAF /* foodBG2.png in Resources */,
 				0453D1EE2284033000880C2A /* sxf_无列表@2x.png in Resources */,
 				04F52178228A789600ED4995 /* version.jpg in Resources */,
@@ -7821,6 +7838,7 @@
 				04B9D4EB22803C6B0084FA23 /* UIView+JM.m in Sources */,
 				658B7C4621D749E100801CC8 /* CustomRefreshGifHeader.m in Sources */,
 				04A50898227EDD3A0013E8EC /* UIBarButtonItem+WHBarButtonItem.m in Sources */,
+				04F8D25B22A2113A00C0A310 /* MallCashierDeskVC.m in Sources */,
 				04A5089A227EDD3A0013E8EC /* NSDate+WHDate.m in Sources */,
 				048DAC5E22857516006E6BA2 /* balanceOrderDetaileVC.m in Sources */,
 				04153C19228AA2F100AA5DAF /* TakeOut_H5.m in Sources */,

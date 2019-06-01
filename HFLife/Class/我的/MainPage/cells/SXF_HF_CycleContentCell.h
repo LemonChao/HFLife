@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)UILabel *titleLb;
 @property (nonatomic, strong)UILabel *subTitleLb;
 @property (nonatomic, strong)UILabel *moneyLb;
+@property (nonatomic, strong)UIImageView *gifImageV;
 @end
 
 NS_ASSUME_NONNULL_END
