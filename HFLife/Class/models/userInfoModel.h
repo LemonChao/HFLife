@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 获取userInfo时 存储账号和用户info */
 + (void)saveUserDataAndAccount;
 /** 网络请求失败 获取存储的用户info */
-+ (void)getSavedUserDataAndAccount;
++ (void)getSavedUserData;
 
 //实名认证状态
 - (BOOL) chect_rz_status;

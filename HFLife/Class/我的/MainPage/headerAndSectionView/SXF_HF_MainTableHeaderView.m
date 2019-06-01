@@ -249,6 +249,9 @@
         make.top.mas_equalTo(self.headerImageV.mas_top).offset(ScreenScale(14));
         make.left.mas_equalTo(self.headerImageV.mas_right).offset(ScreenScale(12));
         make.height.mas_equalTo(ScreenScale(17));
+        if (self.vipBgView.hidden == NO) {
+            make.right.lessThanOrEqualTo(self.vipBgView.mas_left);
+        }
     }];
     
     [self.userLeveLb mas_makeConstraints:^(MASConstraintMaker *make) {

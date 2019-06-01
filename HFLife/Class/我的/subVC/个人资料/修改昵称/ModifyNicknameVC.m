@@ -174,8 +174,9 @@
                 if (token && token.length > 0) {
                     [WXZTipView showCenterWithText:value[@"msg"]];
                     [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
+                    [userInfoModel getUserInfo];
                 }else {
-                    [WXZTipView showCenterWithText:@"资料修改成功,token获取x失败"];
+                    [WXZTipView showCenterWithText:@"资料修改成功,token获取失败"];
                 }
             }
             

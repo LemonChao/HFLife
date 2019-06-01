@@ -214,7 +214,7 @@
         return ;
     }
     
-    [self changLoginRootViewController];
+//    [self changLoginRootViewController];
     //    LoginVC *login = [[LoginVC alloc]init];
     //    login.isPresent = YES;
     //    BaseNavigationController *nav =[[BaseNavigationController alloc]initWithRootViewController:login];

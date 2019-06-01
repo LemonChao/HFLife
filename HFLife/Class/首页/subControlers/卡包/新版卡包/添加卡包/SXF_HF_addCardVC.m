@@ -52,9 +52,10 @@
     //cellAction
     self.tableV.selectRow = ^(NSIndexPath * _Nonnull indexP) {
         NSLog(@"分区%ld---行%ld", indexP.section, indexP.row);
-        BaseViewController *vc;
-        vc = [SXF_HF_cardDetaileVC new];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+#warning 需要穿第参数
+        webVC.urlString = SXF_WEB_URLl_Str(membershipInformation);
+        [weakSelf.navigationController pushViewController:webVC animated:YES];
     };
 }
 @end

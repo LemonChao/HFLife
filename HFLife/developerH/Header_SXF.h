@@ -107,5 +107,7 @@ static NSString *const versionSpecification  = @"versionSpecification";
 static NSString *const membershipInformation = @"membershipInformation";
 //收款码介绍
 static NSString *const reCodeIntroduction    = @"reCodeIntroduction";
+//实名认证
+static NSString *const certification         = @"certification";
 
 #endif /* Header_SXF_h */

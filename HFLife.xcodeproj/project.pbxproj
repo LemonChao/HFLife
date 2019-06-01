@@ -555,8 +555,6 @@
 		04FA26612296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA265F2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m */; };
 		04FA26622296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */; };
 		04FAC56322977DE500C5B716 /* UIButton+timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAC56222977DE500C5B716 /* UIButton+timer.m */; };
-		04FB7F1522865A4900150CA7 /* 余额.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1322865A4900150CA7 /* 余额.gif */; };
-		04FB7F1622865A4900150CA7 /* 余额底图_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FB7F1422865A4900150CA7 /* 余额底图_00000.png */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
 		04FB7F1D2286A40700150CA7 /* UILabel+atributeText.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1C2286A40700150CA7 /* UILabel+atributeText.m */; };
 		04FB7F332286C02600150CA7 /* NSObject+currentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F322286C02500150CA7 /* NSObject+currentController.m */; };
@@ -564,6 +562,11 @@
 		04FC53FA229CE276009387E7 /* SXF_HF_payMoneyTabHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FC53F9229CE276009387E7 /* SXF_HF_payMoneyTabHeader.m */; };
 		04FC53FF229D2AED009387E7 /* SXF_HF_payMoneyPawordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FC53FE229D2AED009387E7 /* SXF_HF_payMoneyPawordVC.m */; };
 		04FCA9BA22A0BB600043F64F /* SXF_HF_WKWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCA9B922A0BB600043F64F /* SXF_HF_WKWebViewVC.m */; };
+		04FCA9BF22A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCA9BD22A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.m */; };
+		04FCA9C022A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FCA9BE22A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.xib */; };
+		04FCA9C222A13DAE0043F64F /* mian余额.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FCA9C122A13DAE0043F64F /* mian余额.gif */; };
+		04FCA9C422A13DBD0043F64F /* mian富权.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FCA9C322A13DBD0043F64F /* mian富权.gif */; };
+		04FCA9C622A13DC70043F64F /* mian可兑换.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04FCA9C522A13DC70043F64F /* mian可兑换.gif */; };
 		04FCEA1C228FF0ED00F95486 /* SXF_HF_leftRightAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA1B228FF0ED00F95486 /* SXF_HF_leftRightAlert.m */; };
 		04FCEA20228FF7FE00F95486 /* SXF_HF_saveCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */; };
 		04FCEA23228FF94B00F95486 /* SXF_HF_saveCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */; };
@@ -1905,8 +1908,6 @@
 		04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_exchangePhoneVc.xib; sourceTree = "<group>"; };
 		04FAC56122977DE500C5B716 /* UIButton+timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+timer.h"; sourceTree = "<group>"; };
 		04FAC56222977DE500C5B716 /* UIButton+timer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+timer.m"; sourceTree = "<group>"; };
-		04FB7F1322865A4900150CA7 /* 余额.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "余额.gif"; sourceTree = "<group>"; };
-		04FB7F1422865A4900150CA7 /* 余额底图_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额底图_00000.png"; sourceTree = "<group>"; };
 		04FB7F1722866BE300150CA7 /* UIImageView+LoadGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadGif.h"; sourceTree = "<group>"; };
 		04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LoadGif.m"; sourceTree = "<group>"; };
 		04FB7F1B2286A40700150CA7 /* UILabel+atributeText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+atributeText.h"; sourceTree = "<group>"; };
@@ -1922,6 +1923,12 @@
 		04FC53FE229D2AED009387E7 /* SXF_HF_payMoneyPawordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_payMoneyPawordVC.m; sourceTree = "<group>"; };
 		04FCA9B822A0BB600043F64F /* SXF_HF_WKWebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_WKWebViewVC.h; sourceTree = "<group>"; };
 		04FCA9B922A0BB600043F64F /* SXF_HF_WKWebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_WKWebViewVC.m; sourceTree = "<group>"; };
+		04FCA9BC22A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_ServiceAuthorizationVC.h; sourceTree = "<group>"; };
+		04FCA9BD22A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_ServiceAuthorizationVC.m; sourceTree = "<group>"; };
+		04FCA9BE22A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_ServiceAuthorizationVC.xib; sourceTree = "<group>"; };
+		04FCA9C122A13DAE0043F64F /* mian余额.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "mian余额.gif"; sourceTree = "<group>"; };
+		04FCA9C322A13DBD0043F64F /* mian富权.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "mian富权.gif"; sourceTree = "<group>"; };
+		04FCA9C522A13DC70043F64F /* mian可兑换.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "mian可兑换.gif"; sourceTree = "<group>"; };
 		04FCEA1A228FF0ED00F95486 /* SXF_HF_leftRightAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_leftRightAlert.h; sourceTree = "<group>"; };
 		04FCEA1B228FF0ED00F95486 /* SXF_HF_leftRightAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_leftRightAlert.m; sourceTree = "<group>"; };
 		04FCEA1D228FF7FE00F95486 /* SXF_HF_saveCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_saveCodeView.h; sourceTree = "<group>"; };
@@ -5870,6 +5877,7 @@
 				04F8931D229255710075918A /* SXF_HF_cardCellTableViewCell.h */,
 				04F8931E229255710075918A /* SXF_HF_cardCellTableViewCell.m */,
 				04F8931F229255710075918A /* SXF_HF_cardCellTableViewCell.xib */,
+				04FCA9BB22A11CB90043F64F /* 服务授权 */,
 				04F8935B2292BDA50075918A /* 会员卡详情 */,
 				04F89336229292380075918A /* 会员卡 */,
 				04F89319229254E50075918A /* 添加卡包 */,
@@ -6067,8 +6075,9 @@
 		04FB7F1222865A3200150CA7 /* 动画资源图 */ = {
 			isa = PBXGroup;
 			children = (
-				04FB7F1322865A4900150CA7 /* 余额.gif */,
-				04FB7F1422865A4900150CA7 /* 余额底图_00000.png */,
+				04FCA9C522A13DC70043F64F /* mian可兑换.gif */,
+				04FCA9C322A13DBD0043F64F /* mian富权.gif */,
+				04FCA9C122A13DAE0043F64F /* mian余额.gif */,
 			);
 			path = "动画资源图";
 			sourceTree = "<group>";
@@ -6089,6 +6098,16 @@
 				04FB7F392286C8E600150CA7 /* NSObject+checkSystems.m */,
 			);
 			path = "系统检测";
+			sourceTree = "<group>";
+		};
+		04FCA9BB22A11CB90043F64F /* 服务授权 */ = {
+			isa = PBXGroup;
+			children = (
+				04FCA9BC22A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.h */,
+				04FCA9BD22A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.m */,
+				04FCA9BE22A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.xib */,
+			);
+			path = "服务授权";
 			sourceTree = "<group>";
 		};
 		568527D544756CE228B06AEA /* Pods */ = {
@@ -7491,6 +7510,7 @@
 				04153BF9228AA2F100AA5DAF /* foodBG.png in Resources */,
 				6522949F225AE063001DF691 /* VersionUpdate_Cancel@2x.png in Resources */,
 				04A508AD227EDD3A0013E8EC /* wexinImage.png in Resources */,
+				04FCA9C222A13DAE0043F64F /* mian余额.gif in Resources */,
 				65DC68282211253200F1085E /* shareView_friend@3x.png in Resources */,
 				04F52153228A76BA00ED4995 /* IcbclogoForkey@2x.png in Resources */,
 				04F5214E228A76BA00ED4995 /* zx@3x.png in Resources */,
@@ -7515,7 +7535,6 @@
 				04F5213C228A76BA00ED4995 /* zx.png in Resources */,
 				0453D1E22284033000880C2A /* sxf_无搜索结果@2x.png in Resources */,
 				04A50858227EDD3A0013E8EC /* ZFCollectionViewCell.xib in Resources */,
-				04FB7F1622865A4900150CA7 /* 余额底图_00000.png in Resources */,
 				04A50844227EDD390013E8EC /* line@2x.png in Resources */,
 				0453D1E92284033000880C2A /* sxf_空.png in Resources */,
 				04A508AE227EDD3A0013E8EC /* weiboImage.png in Resources */,
@@ -7526,6 +7545,7 @@
 				04153C09228AA2F100AA5DAF /* TableHeaderView.xib in Resources */,
 				04F6C9E8229E81E800890A2A /* SXF_HF_saveCodeView2.xib in Resources */,
 				04F52141228A76BA00ED4995 /* chosennumber@2x.png in Resources */,
+				04FCA9C622A13DC70043F64F /* mian可兑换.gif in Resources */,
 				040915EC2297926E007BEB12 /* YYB_HF_changeAccountCell.xib in Resources */,
 				04F52176228A789600ED4995 /* style.css in Resources */,
 				04A5087F227EDD3A0013E8EC /* 关闭1.png in Resources */,
@@ -7551,6 +7571,7 @@
 				04B9D3C9227FE5A90084FA23 /* PosPay_Resource.bundle in Resources */,
 				65DC682E2211253200F1085E /* shareView_wx@3x.png in Resources */,
 				04F52148228A76BA00ED4995 /* newdelete@2x.png in Resources */,
+				04FCA9C022A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.xib in Resources */,
 				658B7CB921D749E100801CC8 /* net.png in Resources */,
 				65DC682D2211253200F1085E /* shareView_friend.png in Resources */,
 				04F52144228A76BA00ED4995 /* newcapsLock.png in Resources */,
@@ -7593,7 +7614,6 @@
 				04F5214C228A76BA00ED4995 /* checkbox_selected_true.png in Resources */,
 				0453D1DF2284033000880C2A /* sxf_地址.png in Resources */,
 				658C3B1021F57FBC00880B6A /* location.txt in Resources */,
-				04FB7F1522865A4900150CA7 /* 余额.gif in Resources */,
 				6C2F5164222A663D0022EE03 /* HXPhotoPicker.bundle in Resources */,
 				04F5214F228A76BA00ED4995 /* charactor@2x.png in Resources */,
 				04F9AC01228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib in Resources */,
@@ -7611,6 +7631,7 @@
 				65DC68252211253200F1085E /* share_copyLink@3x.png in Resources */,
 				0453D1E72284033000880C2A /* sxf_地址@2x.png in Resources */,
 				0453D1DE2284033000880C2A /* sxf_无搜索结果@3x.png in Resources */,
+				04FCA9C422A13DBD0043F64F /* mian富权.gif in Resources */,
 				0453D1EC2284033000880C2A /* sxf_无列表@3x.png in Resources */,
 				65DC68262211253200F1085E /* shareView_qzone@2x.png in Resources */,
 				0453D1E62284033000880C2A /* sxf_暂无收藏@3x.png in Resources */,
@@ -8043,6 +8064,7 @@
 				0453D1F22284033000880C2A /* alertView.m in Sources */,
 				049783832285957E00E143D7 /* NearPageVC.m in Sources */,
 				6C2F514F222A663D0022EE03 /* HXPhotoCustomNavigationBar.m in Sources */,
+				04FCA9BF22A11CD60043F64F /* SXF_HF_ServiceAuthorizationVC.m in Sources */,
 				6C2F5142222A663D0022EE03 /* UIViewController+HXExtension.m in Sources */,
 				048DAC4822857516006E6BA2 /* CardPackageVC.m in Sources */,
 				04A5085C227EDD3A0013E8EC /* ZFVideoModel.m in Sources */,

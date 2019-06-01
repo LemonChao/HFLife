@@ -36,7 +36,6 @@
     self.bgImageV = [UIImageView new];
     self.bgImageV.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:self.bgImageV];
-    self.bgImageV.image = MY_IMAHE(@"余额底图_00000");
     self.contentView.backgroundColor = [UIColor clearColor];
     
     

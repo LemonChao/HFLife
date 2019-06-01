@@ -36,6 +36,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    [self.myTable reloadData];
 }
 
 -(void)setupNavBar{
@@ -179,6 +180,26 @@
                     [[NSUserDefaults standardUserDefaults] setValue:tempToken forKey:USER_TOKEN];
                     if (value && [value isKindOfClass:[NSDictionary class]]) {
                         [WXZTipView showCenterWithText:value[@"msg"]];
+                        if ([value[@"status"] intValue] == -1) {
+                            //存储修改账号信息===
+                            NSDictionary *accountDic = [[NSUserDefaults standardUserDefaults] objectForKey:USERINFO_ACCOUNT];
+                            NSMutableDictionary *accountDicCopy;
+                            if ((accountDic && [accountDic isKindOfClass:[NSDictionary class]])) {
+                                accountDicCopy = [[NSMutableDictionary alloc]initWithDictionary:accountDic];
+                            }else {
+                                accountDicCopy = [[NSMutableDictionary alloc]init];
+                            }
+                            
+                            NSString *acckey = self.accountMobileArr[indexPath.row];
+                            if ([accountDicCopy.allKeys containsObject:acckey]) {
+                                [accountDicCopy removeObjectForKey:acckey];
+                            }
+                            [self.accountMobileArr removeObjectAtIndex:indexPath.row];
+                            [[NSUserDefaults standardUserDefaults] setValue:accountDicCopy forKey:USERINFO_ACCOUNT];
+                            [self.myTable reloadData];
+                            [self.navigationController popToRootViewControllerAnimated:NO];
+                            ///====
+                        }
                     }else {
                         [WXZTipView showCenterWithText:@"网络错误"];
                     }

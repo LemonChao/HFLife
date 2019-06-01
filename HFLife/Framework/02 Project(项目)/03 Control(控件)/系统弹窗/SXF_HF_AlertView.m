@@ -244,17 +244,20 @@
             break;
         case AlertType_logout:{
             self.titleLb.text = @"温馨提示";
-            self.msgLb.text = @"您确定u要退出登录吗？";
+            self.msgLb.text = @"您确定要退出登录吗？";
             self.titleLb.font = MyFont(18);
             self.msgLb.font = MyFont(14);
             self.titleLb.textColor = color0C0B0B;
             self.msgLb.textColor = colorAAAAAA;
             self.sureBtn.setTitle(@"确定", UIControlStateNormal).setTitleFontSize(18).setTitleColor([UIColor whiteColor], UIControlStateNormal);
-            self.sureBtn.backgroundColor = colorF5F5F5;
+            self.sureBtn.backgroundColor = colorCA1400;
             
+            self.cancleBtn.setTitle(@"取消", UIControlStateNormal).setTitleFontSize(18).setTitleColor([UIColor whiteColor], UIControlStateNormal);
+            self.cancleBtn.backgroundColor = colorAAAAAA;
             
-            self.sureBtn.setTitle(@"确定", UIControlStateNormal).setTitleFontSize(18).setTitleColor([UIColor whiteColor], UIControlStateNormal);
-            self.sureBtn.backgroundColor = colorF5F5F5;
+            self.cancleBtn.layer.cornerRadius = 5;
+            self.sureBtn.layer.cornerRadius = 5;
+            self.cancleBtn.layer.masksToBounds = self.sureBtn.layer.masksToBounds = YES;
             
         }
             break;
@@ -338,15 +341,15 @@
         make.top.mas_equalTo(self.msgLb.mas_bottom).offset(30);
         make.left.mas_equalTo(self.mas_left).offset(30);
         make.height.mas_equalTo(ScreenScale(25));
-        make.width.mas_equalTo(ScreenScale(60));
+        make.width.mas_equalTo(ScreenScale(80));
         make.bottom.mas_equalTo(self.mas_bottom).offset(ScreenScale(-15));
     }];
     
     [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.cancleBtn.mas_centerY);
-        make.right.mas_equalTo(self.mas_left).offset(-30);
-        make.height.mas_equalTo(ScreenScale(25));
-        make.width.mas_equalTo(ScreenScale(60));
+        make.right.mas_equalTo(self.mas_right).offset(-30);
+        make.height.mas_equalTo(self.cancleBtn);
+        make.width.mas_equalTo(self.cancleBtn);
     }];
     
 }

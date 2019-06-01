@@ -124,6 +124,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+    
+    
+    /*
     NSString *htmlPath;
     NSString *title = @"";
     if (indexPath.row ==1) {
@@ -137,7 +142,17 @@
     serv.htmlPath = htmlPath;
     serv.title = title;
     serv.row = indexPath.row;
-    [self.navigationController pushViewController:serv animated:YES];
+     
+     */
+    
+    SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+    if (indexPath.row == 1) {
+        webVC.urlString = SXF_WEB_URLl_Str(serviceAgreement);
+    }else{
+        webVC.urlString = SXF_WEB_URLl_Str(versionSpecification);
+    }
+    
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 #pragma mark 懒加载
 -(UITableView *)contentTableView{

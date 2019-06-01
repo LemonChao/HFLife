@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_LifeLocaView : UIView
+@property(nonatomic, strong) UIViewController *supVC;
 - (void)loadData;
 @property(nonatomic, copy) void (^reFreshData)(YYB_HF_nearLifeModel *nearModel);
 @end

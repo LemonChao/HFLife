@@ -30,7 +30,6 @@
     return self;
 }
 
-
 - (void)setModelArr:(NSArray *)modelArr{
     _modelArr = modelArr;
     if (self.pageControl) {
@@ -99,15 +98,14 @@
     //滚动到
     self.pageControl.currentPage = index;
     //在当前cell播放动画
-    NSString *iamgePath = [[NSBundle mainBundle] pathForResource:@"余额" ofType:@"gif"];
-    
-    
-
+    NSString *iamgePath;
+    NSArray *imageName = @[@"mian余额", @"mian可兑换", @"mian富权"];
+    iamgePath = [[NSBundle mainBundle] pathForResource:imageName[index] ofType:@"gif"];
 //    NSData  *imageData = [NSData dataWithContentsOfFile:iamgePath];
 //    self.animImageV.image = [UIImage sd_animatedGIFWithData:imageData];
     
-    
-    
+    NSString *name = [NSString stringWithFormat:@"%@.gif", imageName[index]];
+    self.animImageV.image = MY_IMAHE(name);
     [self.animImageV playGifImagePath:iamgePath repeatCount:1];
     !self.autoScrollItemBlock ? : self.autoScrollItemBlock(index);
 }

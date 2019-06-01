@@ -159,8 +159,9 @@
                 NSString *token = [dataDic safeObjectForKey:@"ucenter_token"];
                 if (token && token.length > 0) {
                     [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
+                    [userInfoModel getUserInfo];
                 }else {
-                    [WXZTipView showCenterWithText:@"资料修改成功,token获取x失败"];
+                    [WXZTipView showCenterWithText:@"资料修改成功,token获取失败"];
                 }
             }
             

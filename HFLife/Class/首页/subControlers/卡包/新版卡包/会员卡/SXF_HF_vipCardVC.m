@@ -10,6 +10,7 @@
 #import "SXF_HF_vipCardVC.h"
 #import "SXF_HF_vipCardView.h"
 #import "SXF_HF_vipShopVC.h"
+#import "SXF_HF_ServiceAuthorizationVC.h"
 @interface SXF_HF_vipCardVC ()
 @property (nonatomic, strong)SXF_HF_vipCardView *tableV;
 @end
@@ -35,6 +36,14 @@
         if (indexP.row == 0) {
             //附近门店
             vc = [SXF_HF_vipShopVC new];
+        }else if (indexP.row == 1){
+            //会员卡详情
+            SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+            webVC.urlString = SXF_WEB_URLl_Str(membershipInformation);
+            vc = webVC;
+        }else{
+            //公众号
+            vc = [SXF_HF_ServiceAuthorizationVC new];
         }
         
         

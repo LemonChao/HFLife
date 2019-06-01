@@ -77,6 +77,7 @@
                     if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
                         [[NSUserDefaults standardUserDefaults]setValue:token forKey:USER_TOKEN];
                         [userInfoModel sharedUser].member_mobile = self.phoneTextF.text;
+                        [userInfoModel getUserInfo];
                         [self.navigationController popViewControllerAnimated:YES];
                     }else {
                         [WXZTipView showCenterWithText:@"未获取到token"];

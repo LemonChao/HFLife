@@ -75,7 +75,7 @@
     }
     self.carousel = [[CWCarousel alloc] initWithFrame:self.bounds delegate:self datasource:self flowLayout:flowLayout];
     self.carousel.isAuto = YES;
-    self.carousel.autoTimInterval = 2;
+    self.carousel.autoTimInterval = 5;
     self.carousel.endless = YES;
     self.carousel.backgroundColor = [UIColor clearColor];
     
