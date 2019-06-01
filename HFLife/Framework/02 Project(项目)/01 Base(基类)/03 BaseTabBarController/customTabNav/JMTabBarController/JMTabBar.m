@@ -100,14 +100,13 @@
         
         //背景颜色处理
         self.backgroundColor = [[JMConfig config] tabBarBackground];
-        
         //顶部线条处理
         if (config.isClearTabBarTopLine) {
             [self topLineIsClearColor:YES];
         } else {
             [self topLineIsClearColor:NO];
         }
-        
+        self.selectedIndex = 0;
         JMLog(@"%f",self.height);
         
     }
@@ -261,18 +260,12 @@
     //在导航控制器根控制器页面，那么我们就需要判断手指点击的位置是否在发布按钮身上
     //是的话让发布按钮自己处理点击事件，不是的话让系统去处理点击事件就可以了
     
-    CGFloat btnWidth = SCREEN_WIDTH / 5;
-    CGFloat topMargin = 25;
-    CGRect frame = CGRectMake(btnWidth * 2, -topMargin, btnWidth, 44 + topMargin);
-    if (self.centerBtn) {
-        if (CGRectContainsPoint(frame, point)) {
-            [super hitTest:point withEvent:event];
-            return self.centerBtn;
-        }
+    if (!self.isHidden && CGRectContainsPoint(self.centerBtn.frame, point)) {
+        [super hitTest:point withEvent:event];
+        return self.centerBtn;
     }
     
     return [super hitTest:point withEvent:event];
-    
 }
 
 
