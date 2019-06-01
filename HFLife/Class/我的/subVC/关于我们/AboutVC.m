@@ -147,9 +147,9 @@
     
     SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
     if (indexPath.row == 1) {
-        webVC.urlString = SXF_WEB_URLl_Str(versionSpecification);
-    }else{
         webVC.urlString = SXF_WEB_URLl_Str(serviceAgreement);
+    }else{
+        webVC.urlString = SXF_WEB_URLl_Str(versionSpecification);
     }
     
     [self.navigationController pushViewController:webVC animated:YES];
