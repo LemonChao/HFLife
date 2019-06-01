@@ -325,6 +325,16 @@
         return [UMSPPPayUnifyPayPlugin cloudPayHandleOpenURL:url];
     }
     
+    //银联上午微信支付回调
+    if ([url.absoluteString containsString:WX_APP_ID]) {
+        BOOL isSuccess = [UMSPPPayUnifyPayPlugin handleOpenURL:url];
+        
+        NSArray *component = [url.absoluteString componentsSeparatedByString:@"="];
+        NSLog(@"%@", component.lastObject);
+        //获取最后一个模块 1 成功 -2 取消支付
+        //通知微信支付成功
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"wxPay" object:@(isSuccess) userInfo:@{@"type" : component.lastObject}];
+    }
     return [UMSPPPayUnifyPayPlugin handleOpenURL:url];
 };
 #pragma mark 获取当前显示的VC

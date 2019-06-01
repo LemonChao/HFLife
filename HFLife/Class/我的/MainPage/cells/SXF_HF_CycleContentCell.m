@@ -40,13 +40,15 @@
     
     
     
-    self.titleLb = [UILabel new];
-    self.subTitleLb = [UILabel new];
-    self.moneyLb = [UILabel new];
+    self.titleLb           = [UILabel new];
+    self.subTitleLb        = [UILabel new];
+    self.moneyLb           = [UILabel new];
+    self.gifImageV         = [UIImageView new];
     
     [self.contentView addSubview:self.titleLb];
     [self.contentView addSubview:self.subTitleLb];
     [self.contentView addSubview:self.moneyLb];
+    [self.contentView addSubview:self.gifImageV];
     
     self.titleLb.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:19];
     self.subTitleLb.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:16];
