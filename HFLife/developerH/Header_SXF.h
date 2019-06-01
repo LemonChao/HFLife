@@ -110,4 +110,7 @@ static NSString *const reCodeIntroduction    = @"reCodeIntroduction";
 //实名认证
 static NSString *const certification         = @"certification";
 
+//更多新闻
+static NSString *const headlinesList         = @"headlinesList";
+
 #endif /* Header_SXF_h */

@@ -58,6 +58,8 @@
     
     
     
+    
+    
     return YES;
 }
 -(void)registerShare{

@@ -30,7 +30,7 @@
     
     //KVO
     [self addObserver:self forKeyPath:@"selectedIndex" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
-    
+    self.JM_TabBar.selectedIndex = 0;
     return self;
 }
 

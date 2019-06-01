@@ -193,7 +193,8 @@
             vc.isNavigationHidden = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }else {
-        
+            [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
+            return;
             ReviewResultsVC *resul = [[ReviewResultsVC alloc]init];
             [self.navigationController pushViewController:resul animated:YES];
         }

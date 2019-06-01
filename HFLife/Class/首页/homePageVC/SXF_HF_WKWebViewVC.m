@@ -20,7 +20,7 @@
 
 
 
-
+#import "ShareProductInfoView.h"
 #import "YYB_HF_submitDealPassWordVC.h"
 
 
@@ -100,7 +100,7 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
     //分享
-    [userContentController addScriptMessageHandler:self name:@"Share"];
+    [userContentController addScriptMessageHandler:self name:@"goToShare"];
     [userContentController addScriptMessageHandler:self name:@"Camera"];
     //拨打电话
     [userContentController addScriptMessageHandler:self name:@"Call"];
@@ -165,10 +165,10 @@
     
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
-    //    self.webView.scalesPageToFit = YES;
+//    self.webView.scalesPageToFit = YES;
     self.webView.multipleTouchEnabled = YES;
     self.webView.userInteractionEnabled = YES;
-    self.webView.scrollView.scrollEnabled = YES;
+    self.webView.scrollView.scrollEnabled = NO;
     self.webView.scrollView.bounces = NO;
     self.webView.contentMode = UIViewContentModeScaleAspectFit;
     self.webView.scrollView.delegate = self;
@@ -336,7 +336,9 @@
     }else if ([message.name isEqualToString:@"goToApp"]){
         [self goToHome];
     }
-    else if ([message.name isEqualToString:@"Share"]){
+    else if ([message.name isEqualToString:@"goToShare"]){
+        //分享
+        [self goToShare:message.body];
         
     }else if ([message.name isEqualToString:@"goSetPayPassword"]){
         //去设置支付密码
@@ -347,6 +349,44 @@
 }
 
 #pragma mark - JS调用OC方法
+
+
+#pragma mark - 分享
+- (void) goToShare:(id)message{
+    NSLog(@"%@", message);
+    
+    SSDKPlatformType type;
+    NSInteger index = [message integerValue];
+    switch (index) {
+        case 1:
+            //微信
+            type = SSDKPlatformSubTypeWechatSession;
+            break;
+        case 2:
+            //微信朋友圈
+            type = SSDKPlatformSubTypeWechatTimeline;
+            break;
+        case 3:
+            //qq好友
+            type = SSDKPlatformSubTypeQQFriend;
+            break;
+        case 4:
+            //QQ空间
+            type = SSDKPlatformSubTypeQZone;
+            break;
+        default:
+            break;
+    }
+    
+    
+    
+    
+    [ShareProductInfoView shareBtnClick:type ShareImage:@"" title:@"" url:@"" context:@"" shareBtnClickBlock:^(BOOL isSucceed, NSString *msg) {
+        
+    }];
+}
+
+
 #pragma mark - 拨打电话
 -(void)CallParameter:(NSDictionary *)dict{
     NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];

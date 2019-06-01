@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CollectionReusableView : UICollectionReusableView
-
+@property (nonatomic, strong)UIButton *moreBtn;
 @property(nonatomic, strong) UILabel *textLabel;
-
+@property (nonatomic, copy)void(^clickHeaderBtnCallback)(void);
 @end
