@@ -279,9 +279,31 @@
     return cell;
 }
 
-#pragma mark - section0分类商家点击
+// !!!: #pragma mark - section0分类商家点击
 - (void)selectColumnIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"idnex %ld - %ld",indexPath.section,indexPath.row);
+    
+    NSString *url;
+    if (indexPath.row == 0) {
+        //商家入驻
+        url = kEnter;
+    }else if (indexPath.row == 1) {
+        //美食
+        url = kMeiFood;
+    }else if (indexPath.row == 2) {
+        //酒店住宿
+        url = kHotelAccommodation;
+    }
+    
+    if (url) {
+        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+        vc.isTop = YES;
+        vc.urlString = url;
+        vc.isNavigationHidden = YES;
+        [self.supVC.navigationController pushViewController:vc animated:YES];
+    }
+
+    
     return;
     if (indexPath.section == 0) {
         UIViewController *vc;

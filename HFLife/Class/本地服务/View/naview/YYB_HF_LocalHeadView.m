@@ -57,6 +57,14 @@
     self.headImageV.image = MMGetImage(@"icon_touxiang");
     self.headImageV.clipsToBounds = YES;
     self.headImageV.layer.cornerRadius = ScreenScale(16);
+    
+    self.headImageV.userInteractionEnabled = YES;
+    [self.headImageV wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
+        if (self.userHeadClick) {
+            self.userHeadClick();
+        }
+    }];
+    
     [self.selectBtn setImage:MMGetImage(@"icon_jiantou") forState:UIControlStateNormal];
     
     self.localLabel.text = @"定位中";
@@ -289,6 +297,10 @@
 
 - (void)gotoCityVC {
     NSLog(@"choseCity");
+    
+    if (self.addressSelect) {
+        self.addressSelect();
+    }
     
 //    CityChooseVC *cityChoose = [[CityChooseVC alloc]init];
 //    cityChoose.delegate = self;

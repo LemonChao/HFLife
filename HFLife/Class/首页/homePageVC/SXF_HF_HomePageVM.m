@@ -279,7 +279,8 @@
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         [dict setObject:city forKey:@"city_name"];
         
-        if ([JFLocationSingleton sharedInstance].locationArray.count>0) {
+        JFLocationSingleton * _Nonnull extractedExpr = [JFLocationSingleton sharedInstance];
+        if (extractedExpr.locationArray.count>0) {
             CLLocation *newLocation = [[JFLocationSingleton sharedInstance].locationArray lastObject];
             CLLocationCoordinate2D gaocoor;
             gaocoor.latitude = newLocation.coordinate.latitude ? newLocation.coordinate.latitude : 0.0;

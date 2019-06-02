@@ -68,7 +68,7 @@
     [self loadWKwebViewData];
     
 }
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
     self.navigationController.navigationBar.hidden = YES;
@@ -83,7 +83,7 @@
     //    }
     
 }
--(void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
     self.fd_interactivePopDisabled = NO;
@@ -97,7 +97,7 @@
     //    }
     
 }
--(void)setupNavBar{
+- (void)setupNavBar{
     WS(weakSelf);
     [super setupNavBar];
     if (self.isHidenLeft) {
@@ -162,6 +162,8 @@
     [userContentController addScriptMessageHandler:self name:@"goToPay"];
     //调起银联支付
     [userContentController addScriptMessageHandler:self name:@"goToApp"];
+    //选择城市
+    [userContentController addScriptMessageHandler:self name:@"choiceCity"];
     
     configuration.userContentController = userContentController;
     
@@ -244,12 +246,21 @@
     //        make.edges.mas_equalTo(self.view);
     //    }];
 }
--(void)loadWKwebViewData{
+- (void)loadWKwebViewData{
     [[WBPCreate sharedInstance]showWBProgress];
+    
+//    NSString *str = @"http://xxxxxx.com/uploads/image/20180813/20180813150735_\U5de5\U7a0b\U5e08\U5934\U50cf.png";
+//    //使用stringByAddingPercentEncodingWithAllowedCharacters处理
+//    NSString *headImgURL = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
+//    NSLog(@"%@",headImgURL);
     if (![NSString isNOTNull:self.urlString]) {
-        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
-        //        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//        NSURL *url = [NSURL URLWithString:[[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
+//                NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+        
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]];
+        
+//        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
         [self.webView loadRequest:request];
     }else{
         [self loadFailed];
@@ -418,9 +429,13 @@
         [self goToPayParameter:message.body];
     }else if ([message.name isEqualToString:@"goToApp"]){
         [self goToHome];
-    }
-    else if ([message.name isEqualToString:@"Share"]){
+    }else if ([message.name isEqualToString:@"Share"]){
         
+    }else if ([message.name isEqualToString:@"choiceCity"]){
+        if (self.choiceCity) {
+            self.choiceCity(message.body);
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
     //goToHome
 }
@@ -636,7 +651,7 @@
     maskView.hidden = YES;
     //    [self deleteEmptyDataView];
 }
-- (NSArray *)stringToJSON:(NSString *)jsonStr {
+-(NSArray *)stringToJSON:(NSString *)jsonStr {
     if (jsonStr) {
         id tmp = [NSJSONSerialization JSONObjectWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments | NSJSONReadingMutableLeaves | NSJSONReadingMutableContainers error:nil];
         if (tmp) {
@@ -655,7 +670,7 @@
         return nil;
     }
 }
--  (id)toArrayOrNSDictionary:(NSData *)jsonData{
+-(id)toArrayOrNSDictionary:(NSData *)jsonData{
     
     NSError *error = nil;
     id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData

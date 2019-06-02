@@ -10,7 +10,9 @@
 #import "YYB_HF_LocalHeadView.h"
 #import "YYB_HF_LifeLocaView.h"
 #import "YBPopupMenu.h"
-
+//定位
+//城市选择相关
+#import "JFLocation.h"
 @interface NearPageVC (){
     int arc;
     BOOL isFirstLoad;
@@ -31,10 +33,27 @@
     [super viewDidLoad];
     self.cellHeightDic = [NSMutableDictionary dictionary];
     isFirstLoad = YES;
-
+    
     YYB_HF_LocalHeadView *headView = [[YYB_HF_LocalHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,NavBarHeight)];
     [self.view addSubview:headView];
     self.headView = headView;
+    headView.addressSelect = ^{
+        //地址选择
+        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+        vc.urlString = kChoiceCity;
+        vc.isTop = YES;
+        vc.isNavigationHidden = YES;
+        vc.choiceCity = ^(NSString * _Nonnull city) {
+            self.headView.setLocalStr = city;
+            [MMNSUserDefaults setValue:city forKey:SelectedCity];
+            [self uploadBackLocation:city];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    };
+    headView.userHeadClick = ^{
+        //点击头像
+        [self.navigationController pushViewController:[NSClassFromString(@"PersonalDataVC") new] animated:YES];
+    };
     
     self.myLocaVeiw = [[YYB_HF_LifeLocaView alloc]initWithFrame:CGRectZero];
     self.myLocaVeiw.supVC = self;
@@ -56,7 +75,7 @@
     };
     
     [self.view addSubview:self.myLocaVeiw];
-//    [self.myLocaVeiw setFrame:CGRectMake(0, NavBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NavBarHeight - TabBarHeight)];
+    //    [self.myLocaVeiw setFrame:CGRectMake(0, NavBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NavBarHeight - TabBarHeight)];
     [self.myLocaVeiw mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(headView.mas_bottom).mas_offset(0);
         make.left.mas_equalTo(self.view).mas_offset(0);
@@ -64,6 +83,32 @@
         make.height.mas_equalTo(SCREEN_HEIGHT - NavBarHeight - TabBarHeight);
     }];
     
+}
+
+#pragma mark - 上传定位
+-(void)uploadBackLocation:(NSString *)city{
+    NSLog(@"city = %@",city);
+    if (![NSString isNOTNull:city]) {
+        NSLog(@"上传定位");
+        
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:city forKey:@"city_name"];
+        
+        if ([JFLocationSingleton sharedInstance].locationArray.count>0) {
+            CLLocation *newLocation = [[JFLocationSingleton sharedInstance].locationArray lastObject];
+            CLLocationCoordinate2D gaocoor;
+            gaocoor.latitude = newLocation.coordinate.latitude ? newLocation.coordinate.latitude : 0.0;
+            gaocoor.longitude = newLocation.coordinate.longitude ? newLocation.coordinate.longitude : 0.0;
+            CLLocationCoordinate2D coor = [JZLocationConverter gcj02ToBd09:gaocoor];
+            [dict setObject:MMNSStringFormat(@"%f",coor.latitude) forKey:@"lat"];
+            [dict setObject:MMNSStringFormat(@"%f",coor.longitude) forKey:@"lng"];
+        }
+        
+        
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:upDateLocationUrl withParameters:dict withResultBlock:^(BOOL result, id value) {
+            
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,7 +155,7 @@
     labelOpen.clipsToBounds = YES;
     labelOpen.layer.borderWidth = 1.5;
     labelOpen.layer.borderColor = [UIColor grayColor].CGColor;
-
+    
     [view addSubview:label];
     [view addSubview:labelOpen];
     
@@ -127,7 +172,7 @@
     }];
     [labelOpen setUserInteractionEnabled:YES];
     [labelOpen wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
-       
+        
         NSURL *url = [[NSURL alloc] initWithString:UIApplicationOpenSettingsURLString];
         
         
