@@ -181,10 +181,7 @@
         return;
     }
     
-    NSDictionary *parm = @{@"password":self.passWordText.text,@"captcha":self.verCode,@"oldpassword":self.oldPassWordText.text};
-    if (self.oldPassWordText.hidden) {
-        parm = @{@"password":self.passWordText.text,@"captcha":self.verCode};
-    }
+    NSDictionary *parm = @{@"password":self.passWordText.text,@"captcha":self.verCode};
     
     [[WBPCreate sharedInstance]showWBProgress];
     
@@ -289,7 +286,8 @@
         UILabel *tipLabe = [UILabel new];
         tipLabe.font = FONT(15);
         tipLabe.textColor = HEX_COLOR(0xAAAAAA);
-        tipLabe.text = @"请输入新密码";
+        tipLabe.text = @"请输入交易密码";
+
         [tf addSubview:tipLabe];
         [tipLabe mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(tf.mas_top).mas_offset(ScreenScale(-10));

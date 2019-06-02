@@ -361,8 +361,15 @@
     //    }
     
     //    [self openCountdown:send];
+    
+    NSDictionary *parm;
+    if(self.loginType == LoginTypeWeiXin) {
+        parm = @{@"mobile":self.phoneText.text,@"event":@"wx_bind_mobile"};
+    }else if (self.loginType == LoginTypeAliPay) {
+        parm = @{@"mobile":self.phoneText.text,@"event":@"alipay_bind_mobile"};
+    }
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"wx_bind_mobile"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:parm withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
@@ -430,6 +437,8 @@
     NSString *subUrl;
     if (self.loginType == LoginTypeWeiXin) {
         subUrl = kWxBindmobile;
+    }else if (self.loginType == LoginTypeAliPay) {
+        subUrl = kAlipayBindmobile;
     }
     
     [[WBPCreate sharedInstance] showWBProgress];
@@ -484,7 +493,14 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField == _phoneText) {
         
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile withParameters:@{@"member_mobile":textField.text} withResultBlock:^(BOOL result, id value) {
+        NSDictionary *parm;
+        if (self.loginType == LoginTypeWeiXin) {
+            parm = @{@"member_mobile":textField.text,@"type":@"2"};
+        }else if (self.loginType == LoginTypeAliPay) {
+            parm = @{@"member_mobile":textField.text,@"type":@"3"};
+        }
+        
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile withParameters:parm withResultBlock:^(BOOL result, id value) {
             if (result) {
 
             }else {

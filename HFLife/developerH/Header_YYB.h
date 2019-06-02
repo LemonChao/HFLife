@@ -57,8 +57,14 @@ static NSString *const kRegisterMobile = @"ceshi-ucenter.hfgld.net/api/member/re
 static NSString *const kMobileLogin = @"ceshi-ucenter.hfgld.net/api/member/mobileLogin";
 /** 微信登录 */
 static NSString *const kWXLogin = @"ceshi-ucenter.hfgld.net/api/member/wxLogin";
+/** 获取支付宝authString */
+static NSString *const kAlipayOauth = @"ceshi-ucenter.hfgld.net/api/member/alipayOauth";
+/** 支付宝登录 */
+static NSString *const kAlipayLogin = @"ceshi-ucenter.hfgld.net/api/member/alipayLogin";
 /** 微信绑定手机号 */
 static NSString *const kWxBindmobile =@"ceshi-ucenter.hfgld.net/api/member/wxBindmobile";
+/** 支付宝绑定手机号 */
+static NSString *const kAlipayBindmobile =@"ceshi-ucenter.hfgld.net/api/member/alipayBindmobile";
 /** 注销登录 */
 static NSString *const kLogout = @"ceshi-ucenter.hfgld.net/api/member/logout";
 /** 检查手机号 */

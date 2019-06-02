@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)login;
 /** 切换到首页 */
 + (void)changeIndxHome;
+/** 获取支付宝 authCode*/
++ (void)aliPayInfo:(void (^)(NSString *authCode))authInfo;
 @end
 
 NS_ASSUME_NONNULL_END

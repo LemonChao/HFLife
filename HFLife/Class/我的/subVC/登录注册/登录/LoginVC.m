@@ -20,6 +20,8 @@
 
 #import "JMTabBarController.h"
 #import "JMConfig.h"
+
+//#import "UPWAuthPlugin.h"//银联登录
 @interface LoginVC ()
 
 @end
@@ -317,28 +319,99 @@
 
 -(void)loginWithAliPay {
     
-    
-    NSString *appScheme = @"hanFuLife";//@"你的appScheme";
-    //authStr参数后台获取！和开发中心配置的app有关系，包含appid\name等等信息。
-    NSString *authStr = @"apiname=com.alipay.account.auth&app_id=xxxxx&app_name=mc&auth_type=AUTHACCOUNT&biz_type=openservice&method=alipay.open.auth.sdk.code.get&pid=xxxxx&product_id=APP_FAST_LOGIN&scope=kuaijie&sign_type=RSA2&target_id=20141225xxxx&sign=fMcp4GtiM6rxSIeFnJCVePJKV43eXrUP86CQgiLhDHH2u%2FdN75eEvmywc2ulkm7qKRetkU9fbVZtJIqFdMJcJ9Yp%2BJI%2FF%2FpESafFR6rB2fRjiQQLGXvxmDGVMjPSxHxVtIqpZy5FDoKUSjQ2%2FILDKpu3%2F%2BtAtm2jRw1rUoMhgt0%3D";//@"后台获取的authStr";
-    //没有安装支付宝客户端的跳到网页授权时会在这个方法里回调
-    [[AFAuthSDK defaultService] authv2WithInfo:authStr fromScheme:appScheme callback:^(NSDictionary *result) {
-        // 解析 auth code
-        NSString *resultString = result[@"result"];
-        NSString *authCode = nil;
-        if (resultString.length>0) {
-            NSArray *resultArr = [resultString componentsSeparatedByString:@"&"];
-            for (NSString *subResult in resultArr) {
-                if (subResult.length > 10 && [subResult hasPrefix:@"auth_code="]) {
-                    authCode = [subResult substringFromIndex:10];
-                    break;
+    [LoginVC aliPayInfo:^(NSString *authCode) {
+        
+        [[WBPCreate sharedInstance]showWBProgress];
+        // !!!: 调取后台接口获取支付宝用户信息
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kAlipayLogin withParameters:@{@"auth_code":authCode} withResultBlock:^(BOOL result, id value) {
+            [[WBPCreate sharedInstance]hideAnimated];
+            if (result) {
+                if (value && [value isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *dict = value;
+                    NSDictionary *dataDic = [dict safeObjectForKey:@"data"];
+                    
+                    NSString *ucenter_token = [dataDic safeObjectForKey:@"ucenter_token"];
+                    NSString *alipayOpenId = [dataDic safeObjectForKey:@"openid"];
+                    
+                    if (ucenter_token && [ucenter_token isKindOfClass:[NSString class]] && ucenter_token.length > 0) {
+                        [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
+                        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
+                        [LoginVC changeIndxHome];
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    }else {
+                        SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
+                        vc.openIdStr = alipayOpenId;
+                        vc.loginType = LoginTypeAliPay;
+                        if ([self.navigationController.viewControllers.lastObject isKindOfClass:[LoginVC class]]) {
+                            [self.navigationController pushViewController:vc animated:YES];
+                        }
+                    }
+                }
+                
+            }else {
+                if (value && [value isKindOfClass:[NSDictionary class]]) {
+                    [WXZTipView showCenterWithText:value[@"msg"]];
+                }else {
+                    [WXZTipView showCenterWithText:@"网络错误"];
                 }
             }
-        }
-        NSLog(@"resultString = %@",resultString);
-        NSLog(@"authv2WithInfo授权结果 authCode = %@", authCode?:@"");
+        }];
     }];
 }
+
+#pragma mark -  获取支付宝authCode
++ (void)aliPayInfo:(void (^)(NSString *authCode))authInfo {
+    NSString *appScheme = @"hanFuLife";//@"你的appScheme";
+    //authStr参数后台获取！和开发中心配置的app有关系，包含appid\name等等信息。
+    __block NSString *authStr = @"";// @"apiname=com.alipay.account.auth&app_id=xxxxx&app_name=mc&auth_type=AUTHACCOUNT&biz_type=openservice&method=alipay.open.auth.sdk.code.get&pid=xxxxx&product_id=APP_FAST_LOGIN&scope=kuaijie&target_id=20141225xxxx&sign_type=RSA2&sign=fMcp4GtiM6rxSIeFnJCVePJKV43eXrUP86CQgiLhDHH2u%2FdN75eEvmywc2ulkm7qKRetkU9fbVZtJIqFdMJcJ9Yp%2BJI%2FF%2FpESafFR6rB2fRjiQQLGXvxmDGVMjPSxHxVtIqpZy5FDoKUSjQ2%2FILDKpu3%2F%2BtAtm2jRw1rUoMhgt0%3D";//@"后台获取的authStr";
+    
+    [[WBPCreate sharedInstance]showWBProgress];
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kAlipayOauth withParameters:nil withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance]hideAnimated];
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                authStr = value[@"data"];
+                if (authStr && [authStr isKindOfClass:[NSString class]] && authStr.length > 0) {
+                    //没有安装支付宝客户端的跳到网页授权时会在这个方法里回调
+                    [[AFAuthSDK defaultService] authv2WithInfo:authStr fromScheme:appScheme callback:^(NSDictionary *result) {
+                        
+                        NSString *status = result[@"resultStatus"];
+                        if (status && [status intValue] == 9000) {
+                            // 解析 auth code
+                            NSString *resultString = result[@"result"];
+                            NSString *authCode = nil;
+                            if (resultString.length>0) {
+                                if ([resultString containsString:@"success=true"] && [resultString containsString:@"result_code=200"]) {
+                                    NSArray *resultArr = [resultString componentsSeparatedByString:@"&"];
+                                    for (NSString *subResult in resultArr) {
+                                        
+                                        if (subResult.length > 10 && [subResult hasPrefix:@"auth_code="]) {
+                                            authCode = [subResult substringFromIndex:10];
+                                            authInfo(authCode);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            NSLog(@"resultString = %@",resultString);
+                            NSLog(@"authv2WithInfo授权结果 authCode = %@", authCode?:@"");
+                        }else {
+                            [WXZTipView showCenterWithText:@"授权失败"];
+                        }
+                    }];
+                }
+            }
+            
+        }else {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
+        }
+    }];
+}
+
 //注册
 -(void)registeredClick{
     [self.navigationController pushViewController:[[RegisteredVC alloc]init] animated:YES];
@@ -346,6 +419,8 @@
 -(void)forgotPasswordBtnClick{
     [self.navigationController pushViewController:[[ForgotPasswordVC alloc]init] animated:YES];
 }
+
+
 /** 跳转登录 */
 + (void)login{
     //跳转登录
