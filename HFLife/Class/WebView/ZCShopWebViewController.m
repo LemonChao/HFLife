@@ -224,7 +224,7 @@
         [self orderHotelParameter:message.body];
     }else if ([message.name isEqualToString:@"submitOrder"]){
         [self submitOrderParameter:message.body];
-    }else if ([message.name isEqualToString:@"goToPay"]){
+    }else if ([message.name isEqualToString:@"goPay"]){
         [self goToPayParameter:message.body];
     }else if ([message.name isEqualToString:@"goBackToShopHome"]){
         [self goBackToShopHome];
@@ -383,6 +383,7 @@
     }
 }
 #pragma mark --银联商务调起支付宝支付---
+#pragma mark --银联商务调起支付宝支付---
 -(void)goToPayParameter:(NSDictionary *)dict{
     //    NSString *orderId = dict[@"pay_sn"];
     NSString *type = [NSString stringWithFormat:@"%@", dict[@"type"] ? dict[@"type"] : @""];
@@ -391,7 +392,8 @@
         [UMSPPPayUnifyPayPlugin cloudPayWithURLSchemes:@"unifyPayHanPay" payData:payDataJsonStr viewController:self callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
             NSLog(@"=====%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
         }];
-    }else{
+    }else if ([type isEqualToString:@"2"]){
+        //支付宝
         NSString *payDataJsonStr = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict[@"query"] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
         
         //开启轮询订单
@@ -402,8 +404,37 @@
                 NSLog(@"%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
             }
         }];
+    }else if ([type isEqualToString:@"1"]){
+        //微信
+        NSString *payDataJsonStr = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict[@"query"] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+        
+        //开启轮询订单
+        //        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:orderId isHotel:YES idType:NO isNowPay:YES];
+        [UMSPPPayUnifyPayPlugin registerApp:dict[@"query"][@"appid"]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wxPayCallback:) name:@"wxPay" object:nil];
+        [UMSPPPayUnifyPayPlugin payWithPayChannel:CHANNEL_WEIXIN payData:payDataJsonStr callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
+            if ([resultCode isEqualToString:@"1003"]) {
+                NSLog(@"%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
+            }
+        }];
     }
+}
+
+//微信支付回调
+- (void)wxPayCallback:(NSNotification *)noti{
+    NSLog(@"%@", noti.userInfo);
     
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if ([noti.userInfo[@"type"] isEqualToString:@"-2"]) {
+            [WXZTipView showBottomWithText:@"您已取消微信支付" duration:2];
+        }else if([noti.userInfo[@"type"] isEqualToString:@"0"]){
+            [WXZTipView showBottomWithText:@"支付成功！" duration:1.5];
+        }else{
+            [WXZTipView showBottomWithText:@"支付失败！" duration:1.5];
+        }
+    }];
+    //释放通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wxPay" object:nil];
 }
 - (void)ShareWithInformation:(NSDictionary *)dic
 {
@@ -511,7 +542,7 @@
         //注册一个name为jsToOcNoPrams的js方法 设置处理接收JS方法的对象
         [wkUController addScriptMessageHandler:self name:@"goBack"];
         [wkUController addScriptMessageHandler:self name:@"goBackToShopHome"];// 返回到商城首页
-        [wkUController addScriptMessageHandler:self name:@"GoToHome"];
+        [wkUController addScriptMessageHandler:self name:@"goPay"];// 商城确认支付按钮
         [wkUController addScriptMessageHandler:self name:@"logout"];
 
         WKPreferences *preferences = [WKPreferences new];

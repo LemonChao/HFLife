@@ -12,6 +12,8 @@
 
 @property(nonatomic, strong) RACSignal *cartSignal;
 
+@property(nonatomic, strong) RACSignal *gussLikeSignal;
+
 @end
 
 @implementation ZCShopCartViewModel
@@ -66,13 +68,37 @@
     return _cartSignal;
 }
 
+- (RACSignal *)gussLikeSignal {
+    if (!_gussLikeSignal) {
+        @weakify(self);
+        _gussLikeSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            
+            [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartGussLike withParameters:@{} withResultBlock:^(BOOL result, id value) {
+                @strongify(self);
+                if (result) {
+                    self.likeArray = [NSArray yy_modelArrayWithClass:[ZCShopCartLikeModel class] json:value[@"data"]];
+                    
+                    [subscriber sendNext:@(1)];
+                    [subscriber sendCompleted];
+                }else {
+                    [subscriber sendCompleted];
+                    [subscriber sendError:nil];
+                }
+            }];
+            
+            return nil;
+        }];
+    }
+    return _gussLikeSignal;
+}
+
 
 - (RACCommand *)cartCmd {
     if (!_cartCmd) {
         @weakify(self);
         _cartCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             @strongify(self);
-            return self.cartSignal;
+            return [self.cartSignal concat:self.gussLikeSignal];
         }];
     }
     return _cartCmd;
@@ -102,34 +128,30 @@
     return _deleteCmd;
 }
 
-/** 猜你喜欢接口 */
-- (RACCommand *)gussLikeCmd {
-    if (!_gussLikeCmd) {
+///** 猜你喜欢接口--购物车界面 */
+//- (RACCommand *)gussLikeCmd {
+//    if (!_gussLikeCmd) {
+//        @weakify(self);
+//        _gussLikeCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+//            @strongify(self);
+//            return [self.cartSignal concat:self.gussLikeSignal];
+//        }];
+//    }
+//    return _gussLikeCmd;
+//}
+
+/** 猜你喜欢数据 ——支付结果界面*/
+- (RACCommand *)gussLikeResultCmd {
+    if (!_gussLikeResultCmd) {
         @weakify(self);
-        _gussLikeCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
-            RACSignal *likeSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartGussLike withParameters:@{} withResultBlock:^(BOOL result, id value) {
-                    @strongify(self);
-                    if (result) {
-                        self.likeArray = [NSArray yy_modelArrayWithClass:[ZCShopCartLikeModel class] json:value[@"data"]];
-                        
-                        [subscriber sendNext:@(1)];
-                        [subscriber sendCompleted];
-                    }else {
-                        [subscriber sendCompleted];
-                        [subscriber sendError:nil];
-                    }
-                }];
-                
-                return nil;
-            }];
-            
-            return [self.cartSignal concat:likeSignal];
+        _gussLikeResultCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            @strongify(self);
+            return self.gussLikeSignal;
         }];
     }
-    return _gussLikeCmd;
+    return _gussLikeResultCmd;
 }
+
 
 /**
  获取被选中的 indexPath,更新全选，分区选中状态

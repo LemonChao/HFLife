@@ -19,9 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 购物车删除 单个，批量 */
 @property(nonatomic, strong) RACCommand *deleteCmd;
 
-/** 猜你喜欢数据 */
-@property(nonatomic, strong) RACCommand *gussLikeCmd;
-
 /** 购物车数据 */
 @property(nonatomic, copy) NSArray <__kindof ZCShopCartModel*>*cartArray;
 
@@ -46,6 +43,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 是否全部选中购物车商品 */
 @property(nonatomic, strong, getter=isSelectAll) NSNumber *selectAll;
+
+
+
+
+/** 猜你喜欢数据 ——购物车界面*/
+@property(nonatomic, strong) RACCommand *gussLikeCmd;
+
+
+/** 猜你喜欢数据 ——支付结果界面*/
+@property(nonatomic, strong) RACCommand *gussLikeResultCmd;
 
 
 @end

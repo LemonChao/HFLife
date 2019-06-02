@@ -855,6 +855,7 @@
 		6C3BE92F22A0DA9200A4DA91 /* ZCShopOrderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BE92E22A0DA9200A4DA91 /* ZCShopOrderViewModel.m */; };
 		6C3D4ACA222680570007AF9A /* CALayer+XibBorderColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */; };
 		6C611914229CD340005597AD /* ZCShopWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C611913229CD340005597AD /* ZCShopWebViewController.m */; };
+		6C63824F22A3792C00E43FE3 /* ZCShopCartPayResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C63824E22A3792C00E43FE3 /* ZCShopCartPayResultVC.m */; };
 		6C68105F228670F500300A14 /* ZCExclusiveRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68105E228670F500300A14 /* ZCExclusiveRecommendCell.m */; };
 		6C6BCD6B228975D500BE069A /* CountdDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6BCD6A228975D500BE069A /* CountdDownView.m */; };
 		6C7D84F92285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7D84F82285089100A8E9F7 /* ZC_HF_CollectionCycleHeader.m */; };
@@ -2471,6 +2472,8 @@
 		6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibBorderColor.m"; sourceTree = "<group>"; };
 		6C611912229CD340005597AD /* ZCShopWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopWebViewController.h; sourceTree = "<group>"; };
 		6C611913229CD340005597AD /* ZCShopWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopWebViewController.m; sourceTree = "<group>"; };
+		6C63824D22A3792C00E43FE3 /* ZCShopCartPayResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartPayResultVC.h; sourceTree = "<group>"; };
+		6C63824E22A3792C00E43FE3 /* ZCShopCartPayResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopCartPayResultVC.m; sourceTree = "<group>"; };
 		6C68105D228670F500300A14 /* ZCExclusiveRecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCExclusiveRecommendCell.h; sourceTree = "<group>"; };
 		6C68105E228670F500300A14 /* ZCExclusiveRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCExclusiveRecommendCell.m; sourceTree = "<group>"; };
 		6C6BCD69228975D500BE069A /* CountdDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountdDownView.h; sourceTree = "<group>"; };
@@ -7328,6 +7331,8 @@
 			children = (
 				6CCAD70022827FCD001824A0 /* ZC_HF_ShopCartVC.h */,
 				6CCAD70122827FCD001824A0 /* ZC_HF_ShopCartVC.m */,
+				6C63824D22A3792C00E43FE3 /* ZCShopCartPayResultVC.h */,
+				6C63824E22A3792C00E43FE3 /* ZCShopCartPayResultVC.m */,
 				6CCC1CE1228EA46600020A45 /* ViewModel */,
 				6CCC1CE0228EA45A00020A45 /* Views */,
 			);
@@ -7920,6 +7925,7 @@
 				658B7C4321D749E100801CC8 /* UIViewController+Extension.m in Sources */,
 				658C39E121E9FA5B00880B6A /* JXCategoryImageView.m in Sources */,
 				0453D1502281935E00880C2A /* customItemView.m in Sources */,
+				6C63824F22A3792C00E43FE3 /* ZCShopCartPayResultVC.m in Sources */,
 				658902F4223B775F009C1B03 /* UIView+PYSearchExtension.m in Sources */,
 				658B7CA221D749E100801CC8 /* VCInteractionDelegate.m in Sources */,
 				659EA07D2203D5A1004471CD /* DHGuidePageHUD.m in Sources */,

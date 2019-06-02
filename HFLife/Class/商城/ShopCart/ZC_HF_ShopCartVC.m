@@ -46,8 +46,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.viewModel.cartCmd execute:nil];
-    
+    [self.viewModel.cartCmd execute:nil];    
 }
 
 - (void)setupNavBar {

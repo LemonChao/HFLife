@@ -8,6 +8,7 @@
 
 #import "ZCShopCartTableHeaderFooter.h"
 #import "ZCShopCartGuessLikeCell.h"
+#import "ZCShopCartPayResultVC.h"
 
 
 @interface ZCShopCartTableHeaderView ()
@@ -78,11 +79,16 @@
     return self;
 }
 
-
+- (void)emptyButtonAction:(UIButton *)button {
+    ZCShopCartPayResultVC *result = [[ZCShopCartPayResultVC alloc] init];
+    
+    [self.viewController.navigationController pushViewController:result animated:YES];
+}
 
 - (UIButton *)emptyButton {
     if (!_emptyButton) {
         _emptyButton = [UITool richButton:UIButtonTypeCustom title:@"购物车还是空的" titleColor:ImportantColor font:SystemFont(18) bgColor:[UIColor clearColor] image:image(@"shop_cart_empty")];
+        [_emptyButton addTarget:self action:@selector(emptyButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _emptyButton;
 }
@@ -148,17 +154,17 @@
 
 - (void)bindViewModel {
     @weakify(self);
-    [[self.viewModel.gussLikeCmd execute:nil] subscribeNext:^(id  _Nullable x) {
+    
+    [[RACObserve(self, viewModel.likeArray) skip:1] subscribeNext:^(NSArray <__kindof ZCShopCartLikeModel *> * _Nullable likeArray) {
         @strongify(self);
-        [self.collectionView reloadData];
-        
-        CGFloat margin = [self.likeButton intrinsicContentSize].height +ScreenScale(20);
-        self.height = self.collectionView.collectionViewLayout.collectionViewContentSize.height + margin;
-        
-        [(UITableView*)self.superview reloadData];
-        
-    } error:^(NSError * _Nullable error) {
-        
+        if (likeArray.count) {
+            [self.collectionView reloadData];
+            
+            CGFloat margin = [self.likeButton intrinsicContentSize].height +ScreenScale(20);
+            self.height = self.collectionView.collectionViewLayout.collectionViewContentSize.height + margin;
+            
+            [(UITableView*)self.superview reloadData];
+        }
     }];
 }
 
@@ -213,4 +219,105 @@
 @end
 
 
+
+
+@interface ZCShopCartPayResultHeaderView ()
+
+@property(nonatomic, strong) UIView *contentView;
+@property(nonatomic, strong) UIButton *stateButton;
+@property(nonatomic, strong) UILabel *descriptLabel;
+@property(nonatomic, strong) UIButton *leftButton;
+@property(nonatomic, strong) UIButton *rightButton;
+
+@end
+
+@implementation ZCShopCartPayResultHeaderView
+
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self addSubview:self.contentView];
+        [self.contentView addSubview:self.stateButton];
+        [self.contentView addSubview:self.descriptLabel];
+        [self.contentView addSubview:self.leftButton];
+        [self.contentView addSubview:self.rightButton];
+        
+        [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(UIEdgeInsetsMake(ScreenScale(10), ScreenScale(12), ScreenScale(10), ScreenScale(12)));
+        }];
+        
+        [self.stateButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.contentView);
+            make.top.equalTo(self.contentView).inset(ScreenScale(15));
+            make.size.mas_equalTo(CGSizeMake(ScreenScale(100), ScreenScale(30)));
+        }];
+        
+        [self.descriptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.contentView);
+            make.top.equalTo(self.stateButton.mas_bottom).offset(ScreenScale(10));
+        }];
+        
+        [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.contentView).inset(ScreenScale(16));
+            make.right.equalTo(self.contentView.mas_centerX).inset(ScreenScale(10));
+            make.size.mas_equalTo(CGSizeMake(ScreenScale(65), ScreenScale(24)));
+        }];
+        
+        [self.rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.leftButton);
+            make.left.equalTo(self.contentView.mas_centerX).offset(ScreenScale(10));
+            make.size.equalTo(self.leftButton);
+        }];
+        
+        [self layoutIfNeeded];
+        [self.stateButton setImagePosition:ImagePositionTypeLeft spacing:ScreenScale(10)];
+    }
+    return self;
+}
+
+
+
+- (UIView *)contentView {
+    if (!_contentView) {
+        _contentView = [UITool viewWithColor:GeneralRedColor];
+        _contentView.layer.cornerRadius = ScreenScale(5);
+        _contentView.clipsToBounds = YES;
+    }
+    return _contentView;
+}
+
+- (UIButton *)stateButton {
+    if (!_stateButton) {
+        _stateButton = [UITool richButton:UIButtonTypeCustom title:@"支付成功" titleColor:[UIColor whiteColor] font:MediumFont(14) bgColor:[UIColor clearColor] image:image(@"shopCart_paySuccess")];
+    }
+    return _stateButton;
+}
+
+- (UILabel *)descriptLabel {
+    if (!_descriptLabel) {
+        _descriptLabel = [UITool labelWithText:@"付款￥68.90" textColor:[UIColor whiteColor] font:SystemFont(12)];
+        _descriptLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _descriptLabel;
+}
+
+- (UIButton *)leftButton {
+    if (!_leftButton) {
+        _leftButton = [UITool wordButton:@"重新支付" titleColor:[UIColor whiteColor] font:SystemFont(12) bgColor:[UIColor clearColor]];
+        MMViewBorderRadius(_leftButton, ScreenScale(12), 0.8, [UIColor whiteColor]);
+    }
+    return _leftButton;
+}
+
+- (UIButton *)rightButton {
+    if (!_rightButton) {
+        _rightButton = [UITool wordButton:@"查看订单" titleColor:[UIColor whiteColor] font:SystemFont(12) bgColor:[UIColor clearColor]];
+        MMViewBorderRadius(_rightButton, ScreenScale(12), 0.8, [UIColor whiteColor]);
+    }
+    return _rightButton;
+}
+
+@end
 
