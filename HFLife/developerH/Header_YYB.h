@@ -120,4 +120,16 @@ static NSString *const kH5bankCardList = @"http://192.168.0.105:8080/bankCardLis
 /** 我的收藏 */
 static NSString *const kH5myCollection = @"http://192.168.0.105:8080/myCollection";
 
+#pragma mark - h5本地 ---------------------------
+/** 获取位置 */
+static NSString *const kChoiceCity = @"http://192.168.0.101:10004/";
+/** 商家入驻 */
+static NSString *const kEnter = @"http://192.168.0.101:10004/#/enter-index/";
+/** 美食 */
+static NSString *const kMeiFood = @"http://192.168.0.101:10004/#/food-index/";
+/** 酒店住宿 */
+static NSString *const kHotelAccommodation = @"http://192.168.0.101:8080/#/";
+
+
+
 #endif /* Header_YYB_h */

@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_LocalHeadView : UIView
+/** 选择地址事件 */
+@property(nonatomic, copy) void (^addressSelect)(void);
+/** 点击头像事件 */
+@property(nonatomic, copy) void (^userHeadClick)(void);
 
 @property(nonatomic, strong) UIImage *setHeadImage;
 @property(nonatomic, copy) NSString *setLocalStr;

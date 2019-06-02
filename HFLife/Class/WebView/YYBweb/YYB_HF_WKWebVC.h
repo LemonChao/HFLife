@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YYB_HF_WKWebVC : BaseViewController
 
 /**
+ 选择城市
+ */
+@property(nonatomic, copy) void (^choiceCity)(NSString *city);
+/**
  是否隐藏返回按钮
  */
 @property (nonatomic,assign)BOOL isHidenLeft;
