@@ -350,8 +350,16 @@ static NSString * const footerReuseIdentifier = @"Footer";
         }else{
             view.hidden = NO;
         }
+        if (indexPath.section == 2) {
+            view.moreBtn.hidden = NO;
+            
+        }else{
+            view.moreBtn.hidden = YES;
+        }
     }
-    
+    view.clickHeaderBtnCallback = ^{
+        !self.clickSectionHeaderBtn ? : self.clickSectionHeaderBtn(indexPath.section);
+    };
     return view;
 }
 
@@ -396,7 +404,6 @@ static NSString * const footerReuseIdentifier = @"Footer";
         }else{
             return ScreenScale(180);
         }
-        
     }else if (indexPath.section == 2) {
         if (indexPath.row > 4) {
             return 100;

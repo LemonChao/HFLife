@@ -60,6 +60,14 @@
             }];
         }else {
             if (indexPath.section == 0) {
+                
+                if (![[userInfoModel sharedUser] chect_rz_status]) {
+                    [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
+                    return ;
+                }
+                
+                
+                
                 if (indexPath.row == 0) {
                     //余额
                     webVC.urlString = SXF_WEB_URLl_Str(balanceMain);
@@ -86,6 +94,14 @@
                                         @"",
                                         ];
                     
+                    if (indexPath.row == 1) {
+                        //银行卡实名认证
+                        if (![[userInfoModel sharedUser] chect_rz_status]) {
+                            [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
+                            return ;
+                        }
+                    }
+                    
                     if (indexPath.row == 3) {
                         //安全中心
                         vc = [SecurityCenterVC new];
@@ -104,7 +120,6 @@
         
         
     };
-    
     
     [self.customNavBar wr_setLeftButtonWithTitle:@"我的" titleColor:HEX_COLOR(0x000000)];
     

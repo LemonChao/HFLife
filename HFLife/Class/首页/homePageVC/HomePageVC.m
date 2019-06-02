@@ -130,29 +130,15 @@
 //
 //        }];
 //        return ;
-        
-        
-        
-        
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-           SXF_HF_AlertView *alertVC = [SXF_HF_AlertView showAlertType:AlertType_cancellation Complete:^(BOOL btnBype) {
-                if (btnBype) {
-                    //收款码介绍
-                    BaseViewController *vc = [ReviseMobilePhone new];
-                    vc.customNavBar.title = @"更换手机号";
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-
-            }];
-            alertVC.title = @"hahah";
-            alertVC.msg = @"1.我去偶尔抛弃我弄清楚闻鸡起舞\2.我去额偶进去我而近期我普及饿哦权威检测前往为群殴碰巧我测就抛弃我就去问拼接哦我脾气哦吉普车\n3.请问抛弃我饿颇为汽车及其偶家二七王请我饿口气我陪可从抛弃我测科帕奇我饿局我怕v！";
-            
-//            [SXF_HF_AlertView showTimeSlecterAlertComplete:^(NSString * _Nonnull year, NSString * _Nonnull month) {
-//
-//            }];
-        });
     }];
+    WEAK(weakSelf);
+    self.collectionView.clickSectionHeaderBtn = ^(NSInteger section) {
+        if (section == 2) {
+            SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+            webVC.urlString = SXF_WEB_URLl_Str(@"ewe");
+            [weakSelf.navigationController pushViewController:webVC animated:YES];
+        }
+    };
     
     
 }

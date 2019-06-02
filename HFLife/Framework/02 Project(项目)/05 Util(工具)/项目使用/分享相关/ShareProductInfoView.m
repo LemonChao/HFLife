@@ -30,8 +30,6 @@
             }
             return;
         }
-       
-       
     }else if (shareType == SSDKPlatformSubTypeQZone)
     {
         if (![QQApiInterface isQQInstalled]) {
@@ -58,28 +56,19 @@
             }
             return;
         }
-        //进行分享
-        shareType = SSDKPlatformSubTypeWechatSession;
     }
     __block  BOOL isSucceed = false;
     __block  NSString *msg = @"";
-    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-//    if (shareImage) {
-//        [shareParams SSDKSetupShareParamsByText:@"一款你会爱上的医学考研软件"
-//                                         images:shareImage
-//                                            url:[NSURL URLWithString:@"Www.dalianlryk.com"]
-//                                          title:@"汉支付"
-//                                           type:SSDKContentTypeAuto];
-//    }else{
-//    NSData *data = UIImageJPEGRepresentation(shareImage, 0.6);
-//    UIImage *resultImage = [UIImage imageWithData:data];
-        [shareParams SSDKSetupShareParamsByText:context //self.Introduced
-                                         images:shareImage// self.productImageUrl
-                                            url:[NSURL URLWithString:url]
-                                          title:title //self.title
-                                           type:SSDKContentTypeAuto];
-//    }
     
+    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+
+        [shareParams SSDKSetupShareParamsByText:context
+                                         images:shareImage
+                                            url:[NSURL URLWithString:url]
+                                          title:title
+                                           type:SSDKContentTypeAuto
+         ];
+
     [ShareSDK share:shareType //传入分享的平台类型
          parameters:shareParams
      onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) { // 回调处理....}];
@@ -91,7 +80,7 @@
          }else if (state == SSDKResponseStateFail){
              isSucceed = NO;
              msg = @"分享失败";
-             //                 [weakSelf ShowAlertWithMessage:@"分享失败"];
+//                              [weakSelf ShowAlertWithMessage:@"分享失败"];
          }else if (state == SSDKResponseStateCancel){
              isSucceed = NO;
              msg = @"分享已取消";

@@ -75,9 +75,9 @@ static NSString *const GoToPay                              = @"ceshi-ucenter.hf
 
 /************************subUrl************************/
 
+static NSString *const shareUrl             = @"https://www.hfgld.net/app_html/registered/registered.html?invite_code=%@";
 
-
-#define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://192.168.0.104:8080/%@", subUrl ? subUrl : @""]
+#define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://192.168.0.100:8080/%@", subUrl ? subUrl : @""]
 /****************************webSubUrl*******************************/
 //余额
 static NSString *const balanceMain           = @"balanceMain";
@@ -109,5 +109,8 @@ static NSString *const membershipInformation = @"membershipInformation";
 static NSString *const reCodeIntroduction    = @"reCodeIntroduction";
 //实名认证
 static NSString *const certification         = @"certification";
+
+//更多新闻
+static NSString *const headlinesList         = @"headlinesList";
 
 #endif /* Header_SXF_h */
