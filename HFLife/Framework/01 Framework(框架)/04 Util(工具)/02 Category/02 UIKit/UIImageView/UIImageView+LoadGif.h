@@ -13,7 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImageView (LoadGif)
 
 
-
+/**
+ 解析gif图片
+ */
+- (NSArray *)getImagesFormGif:(NSString *)gifName;
 
 
 /**

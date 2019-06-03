@@ -101,12 +101,11 @@
     NSString *iamgePath;
     NSArray *imageName = @[@"mian余额", @"mian可兑换", @"mian富权"];
     iamgePath = [[NSBundle mainBundle] pathForResource:imageName[index] ofType:@"gif"];
-//    NSData  *imageData = [NSData dataWithContentsOfFile:iamgePath];
-//    self.animImageV.image = [UIImage sd_animatedGIFWithData:imageData];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self.animImageV playGifImagePath:iamgePath repeatCount:1];
+    });
     
-    NSString *name = [NSString stringWithFormat:@"%@.gif", imageName[index]];
-    self.animImageV.image = MY_IMAHE(name);
-    [self.animImageV playGifImagePath:iamgePath repeatCount:1];
     !self.autoScrollItemBlock ? : self.autoScrollItemBlock(index);
 }
 //点击item
@@ -127,10 +126,11 @@
     }];
     
     [self.animImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.contentView.mas_centerX);
-        make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(100));
-        make.bottom.mas_equalTo(self.contentView.mas_bottom);
-        make.width.mas_equalTo(ScreenScale(183));
+//        make.centerX.mas_equalTo(self.contentView.mas_centerX);
+//        make.centerY.mas_equalTo(self.contentView.mas_centerY);
+//        make.bottom.mas_equalTo(self.contentView.mas_bottom);
+//        make.width.mas_equalTo(ScreenScale(183));
+        make.edges.mas_equalTo(self.contentView);
     }];
     
 }

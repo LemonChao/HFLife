@@ -103,7 +103,8 @@
 //解析gif图片
 - (NSArray *)getImagesFormGif:(NSString *)gifName{
     //得到GIF图片的url
-    NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:gifName withExtension:@"gif"];
+    NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:gifName withExtension:@""];
+    
     //将GIF图片转换成对应的图片源
     CGImageSourceRef gifSource = CGImageSourceCreateWithURL((CFURLRef) fileUrl, NULL);
     //获取其中图片源个数，即由多少帧图片组成
@@ -119,16 +120,6 @@
         [frames addObject:imageName];
         CGImageRelease(imageRef);
     }
-//    UIImageView *gifImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH*0.5-15, 15, 30, 30)];
-    //将图片数组加入UIImageView动画数组中
-    self.animationImages = frames;
-    //每次动画时长
-    
-    //获取资源总时长
-    self.animationDuration = 1.3;
-    //开启动画，此处没有调用播放次数接口，UIImageView默认播放次数为无限次，故这里不做处理
-    self.animationRepeatCount = 1;
-    [self startAnimating];
     return frames;
 }
 
@@ -168,7 +159,7 @@
     }
     
     [self startAnimating];
-    [self performSelector:@selector(stopPlayGifImage) withObject:nil afterDelay:[self durationForGifData:imageData] * repeatCount];
+    [self performSelector:@selector(stopPlayGifImage) withObject:nil afterDelay:[self durationForGifData:imageData] * repeatCount inModes:@[NSRunLoopCommonModes, UITrackingRunLoopMode]];
     
     //不释放 会内存暴涨 导致creash
     CFRelease(gifSource);

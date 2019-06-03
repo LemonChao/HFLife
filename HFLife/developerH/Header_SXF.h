@@ -71,7 +71,14 @@ static NSString *const CreateOrder                              = @"ceshi-ucente
 /**
  订单支付（4）
  */
-static NSString *const GoToPay                              = @"ceshi-ucenter.hfgld.net/api/finance/goToPay";
+static NSString *const GoToPay                                  = @"ceshi-ucenter.hfgld.net/api/finance/goToPay";
+
+/**
+ 交易详情
+ */
+static NSString *const TradingDetail                           = @"ceshi-ucenter.hfgld.net/api/member_coin/tradingDetail";
+
+
 
 /************************subUrl************************/
 

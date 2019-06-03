@@ -108,6 +108,7 @@
         self.subTitle.text = [NSString stringWithFormat:@"%@:%@", [self getTitle:model2] , model2.body];
         self.time2.text = [NSDate intervalSinceNow:[NSString stringWithFormat:@"%@", model2.addtime ? model2.addtime : @""]];
     }
+    [self layoutIfNeeded];
     
 }
 
