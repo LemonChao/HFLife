@@ -229,6 +229,8 @@
     self.webView.scrollView.bounces = NO;
     self.webView.contentMode = UIViewContentModeScaleAspectFit;
     self.webView.scrollView.delegate = self;
+    self.webView.allowsBackForwardNavigationGestures = YES;//允许侧滑返回
+
     [self.view addSubview:self.webView];
     if (@available(iOS 11.0, *)) {
         if (self.isTop) {//不是从状态栏开始布局
