@@ -103,7 +103,7 @@
         make.bottom.mas_equalTo(self.view).mas_offset(-27);
     }];
     
-    self.userName.text = @"15621402093";
+//    self.userName.text = @"15621402093";
     
     UIButton *loginBtn = [UIButton new];
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(31)];
