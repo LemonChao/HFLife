@@ -85,36 +85,36 @@
     [self.view showAlertViewToViewImageTYpe:IMAGETYPE_NOLIST msg:@"无数据" forView:TYPE_VIEW imageCenter:0 errorBlock:^{
         
     }];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kGet_general_shop_list withParameters:parm withResultBlock:^(BOOL result, id value) {
-        
-        if (result) {
-            if (value && [value isKindOfClass:[NSDictionary class]]) {
-                NSDictionary *dict = value;
-                if ([dict isKindOfClass:[NSDictionary class]]) {
-                    self.bannerArray = dict[@"banner"];
-                    NSArray *array = dict[@"list"];
-                    [weakSelf.dataSource addObjectsFromArray:array];
-                    [weakSelf.contentTableView reloadData];
-                    if (array.count < 10) {
-                        //                        [weakSelf.contentTableView  setLoadMoreViewHidden:YES];
-                    }
-                }
-               
-            }else{
-                [WXZTipView showCenterWithText:@"暂无数据"];
-//                [weakSelf.contentTableView  setLoadMoreViewHidden:YES];
-                
-            }
-            if (weakSelf.dataSource.count == 0 && (![self.bannerArray isKindOfClass:[NSArray class]]||self.bannerArray.count == 0)) {
-                
-            }else {
-                [self.view removeAlertView];
-            }
-            
-        }else {
-            [WXZTipView showCenterWithText:@"请求错误"];
-        }
-    }];
+//    [networkingManagerTool requestToServerWithType:POST withSubUrl:kGet_general_shop_list withParameters:parm withResultBlock:^(BOOL result, id value) {
+//        
+//        if (result) {
+//            if (value && [value isKindOfClass:[NSDictionary class]]) {
+//                NSDictionary *dict = value;
+//                if ([dict isKindOfClass:[NSDictionary class]]) {
+//                    self.bannerArray = dict[@"banner"];
+//                    NSArray *array = dict[@"list"];
+//                    [weakSelf.dataSource addObjectsFromArray:array];
+//                    [weakSelf.contentTableView reloadData];
+//                    if (array.count < 10) {
+//                        //                        [weakSelf.contentTableView  setLoadMoreViewHidden:YES];
+//                    }
+//                }
+//               
+//            }else{
+//                [WXZTipView showCenterWithText:@"暂无数据"];
+////                [weakSelf.contentTableView  setLoadMoreViewHidden:YES];
+//                
+//            }
+//            if (weakSelf.dataSource.count == 0 && (![self.bannerArray isKindOfClass:[NSArray class]]||self.bannerArray.count == 0)) {
+//                
+//            }else {
+//                [self.view removeAlertView];
+//            }
+//            
+//        }else {
+//            [WXZTipView showCenterWithText:@"请求错误"];
+//        }
+//    }];
     
 }
 #pragma mark UITableView代理

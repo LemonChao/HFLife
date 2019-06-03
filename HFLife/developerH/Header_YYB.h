@@ -105,9 +105,9 @@ static NSString *const kGetIndexRecommendList = @"ceshi-life.hfgld.net/index.php
 
 
 /** 分享数据 */
-static NSString *const kGet_invite_info = @"w=user&t=get_invite_info";
+//static NSString *const kGet_invite_info = @"w=user&t=get_invite_info";
 /** 综合商家店铺列表 */
-static NSString *const kGet_general_shop_list = @"w=general_shop&t=get_general_shop_list";
+//static NSString *const kGet_general_shop_list = @"w=general_shop&t=get_general_shop_list";
 
 /************************subUrl************************/
 
@@ -122,7 +122,7 @@ static NSString *const kH5myCollection = @"http://192.168.0.105:8080/myCollectio
 
 #pragma mark - h5本地 ---------------------------
 /** 获取位置 */
-static NSString *const kChoiceCity = @"http://192.168.0.101:10004/";
+static NSString *const kChoiceCity = @"http://192.168.0.101:10004/#/";
 /** 商家入驻 */
 static NSString *const kEnter = @"http://192.168.0.101:10004/#/enter-index/";
 /** 美食 */

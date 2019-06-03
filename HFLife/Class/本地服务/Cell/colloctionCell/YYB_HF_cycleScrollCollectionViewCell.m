@@ -28,7 +28,7 @@
         make.left.mas_equalTo(self.contentView).mas_offset(0);
         make.right.mas_equalTo(self.contentView).mas_offset(0);
         make.top.mas_equalTo(self.contentView).mas_offset(0);
-        make.height.mas_equalTo(HeightRatio(164));
+        make.height.mas_equalTo(ScreenScale(92));
     }];
 }
 
@@ -49,6 +49,9 @@
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
         NSLog(@"图片----- %ld", index);
+    if (self.picItemAtIndex) {
+        self.picItemAtIndex(index);
+    }
     //    bannerModel *model = self.bannerListModel[index];
     //    if (self.delegate && [self.delegate respondsToSelector:@selector(selectedBannerImageIndex:Url:)]) {
     //        [self.delegate selectedBannerImageIndex:index Url:model.advert_url];

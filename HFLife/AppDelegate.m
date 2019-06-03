@@ -191,7 +191,7 @@
     [self.window makeKeyAndVisible];
 }
 -(void)changLoginRootViewController{
-    [[self topViewController].navigationController pushViewController:[[LoginVC alloc]init] animated:YES];
+//    [[self topViewController].navigationController pushViewController:[[LoginVC alloc]init] animated:YES];
 }
 
 //退出登录

@@ -253,6 +253,8 @@
 //    //使用stringByAddingPercentEncodingWithAllowedCharacters处理
 //    NSString *headImgURL = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
 //    NSLog(@"%@",headImgURL);
+    
+    
     if (![NSString isNOTNull:self.urlString]) {
 //        NSURL *url = [NSURL URLWithString:[[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
 //                NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
@@ -308,6 +310,7 @@
     decisionHandler(WKNavigationResponsePolicyAllow);
 }
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
+    NSLog(@"url:====== %@",webView.URL);
     NSLog(@"开始加载");
     
 }
