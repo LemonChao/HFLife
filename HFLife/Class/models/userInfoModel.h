@@ -30,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 //实名认证状态
 - (BOOL) chect_rz_status;
 
+/**
+ 获取个人信息  回调
+ */
++ (void) getUserInfo:(void(^__nullable)(id result))complate;
+
 //@property (nonatomic ,strong) NSNumber *ID;//小哥id
 //@property (nonatomic ,copy) NSString *courier_name;//用户名
 ///*

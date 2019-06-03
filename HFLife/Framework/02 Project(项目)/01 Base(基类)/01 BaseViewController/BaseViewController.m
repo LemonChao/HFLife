@@ -357,7 +357,7 @@ static BOOL IsUpdateRemind = YES;
 
 //版本设置
 -(void)setUpVersion:(NSDictionary *)dataDict{
-    if (dataDict != nil) {
+    if (dataDict != nil && [dataDict isKindOfClass:[NSDictionary class]]) {
         NSString *description = dataDict[@"remark"];
         if (![NSString isNOTNull:description]) {
             [CommonTools setUpdateDescription:description];

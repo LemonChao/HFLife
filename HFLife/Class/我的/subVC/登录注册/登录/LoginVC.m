@@ -292,8 +292,10 @@
                            if (ucenter_token && [ucenter_token isKindOfClass:[NSString class]] && ucenter_token.length > 0) {
                                [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
                                [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
-                               [LoginVC changeIndxHome];
-                               [self dismissViewControllerAnimated:YES completion:nil];
+                               [userInfoModel getUserInfo:^(id  _Nonnull result) {
+                                   [LoginVC changeIndxHome];
+                                   [self dismissViewControllerAnimated:YES completion:nil];
+                               }];
                            }else {
                                SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
                                vc.openIdStr = user.uid;
@@ -336,8 +338,10 @@
                     if (ucenter_token && [ucenter_token isKindOfClass:[NSString class]] && ucenter_token.length > 0) {
                         [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
                         [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
-                        [LoginVC changeIndxHome];
-                        [self dismissViewControllerAnimated:YES completion:nil];
+                        [userInfoModel getUserInfo:^(id  _Nonnull result) {
+                            [LoginVC changeIndxHome];
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                        }];
                     }else {
                         SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
                         vc.openIdStr = alipayOpenId;
@@ -445,7 +449,7 @@
 
 + (void)changeIndxHome{
     [JMConfig config].selectedIndex = 0;
-    [userInfoModel getUserInfo];
+    
 }
 
 @end

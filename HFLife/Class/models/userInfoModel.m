@@ -102,6 +102,11 @@ static dispatch_once_t onceToken;
 }
 
 + (void) getUserInfo{
+    [userInfoModel getUserInfo:nil];
+}
+
+
++ (void) getUserInfo:(void(^__nullable)(id result))complate{
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
         if (result) {
             [userInfoModel attempDealloc];
@@ -109,7 +114,9 @@ static dispatch_once_t onceToken;
                 
                 NSDictionary *dataDic = value[@"data"];
                 if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
-                    
+                    if (complate) {
+                        complate(value);
+                    }
                     [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
                     
                     [userInfoModel saveUserDataAndAccount];
@@ -130,9 +137,13 @@ static dispatch_once_t onceToken;
             }else {
                 [WXZTipView showCenterWithText:@"网络错误"];
             }
+            
         }
     }];
 }
+
+
+
 
 + (void)saveUserDataAndAccount {
     //用户info
