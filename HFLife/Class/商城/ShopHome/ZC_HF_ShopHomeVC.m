@@ -43,7 +43,7 @@
     self.customNavBar.barBackgroundColor = [RGBA(202, 20, 0, 1) colorWithAlphaComponent:0];
     self.customNavBar.backgroundColor = [UIColor clearColor];
     [self.customNavBar wr_setBottomLineHidden:YES];
-    [self.customNavBar wr_setRightButtonWithImage:image(@"shop_news")];
+    [self.customNavBar wr_setRightButtonWithImage:image(@"shop_news_normal")];
     @weakify(self);
     [self.customNavBar setOnClickRightButton:^{
         @strongify(self);
