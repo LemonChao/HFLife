@@ -59,6 +59,50 @@
     self.moneyLb.textAlignment = NSTextAlignmentCenter;
 }
 
+- (void)setIndex:(NSInteger)index{
+    //播放不同的动画
+    
+    
+    NSString *iamgePath;
+    NSArray *imageName = @[@"mian余额", @"mian可兑换", @"mian富权"];
+    
+    self.gifImageV.image = MY_IMAHE(([NSString stringWithFormat:@"%@.gif", imageName[index]]));
+    
+    iamgePath = [[NSBundle mainBundle] pathForResource:imageName[index] ofType:@"gif"];
+    
+    
+    if (index == 1) {
+        //可兑换
+        [self.gifImageV mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-10));
+            make.right.left.mas_equalTo(self.contentView);
+            make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(10));
+        }];
+    }else{
+        [self.gifImageV mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-10));
+            make.right.left.mas_equalTo(self.contentView);
+            make.top.mas_equalTo(self.moneyLb.mas_bottom);
+        }];
+    }
+    
+    
+    
+    
+    
+    //    NSData  *imageData = [NSData dataWithContentsOfFile:iamgePath];
+    //    self.animImageV.image = [UIImage sd_animatedGIFWithData:imageData];
+    
+//    NSString *name = [NSString stringWithFormat:@"%@.gif", imageName[index]];
+//    //获取最后一帧 并赋值
+//    UIImage *image = [self.gifImageV getImagesFormGif:name].lastObject;
+//    self.gifImageV.image = image;
+    
+//    [self.gifImageV playGifImagePath:iamgePath repeatCount:1];
+}
+
+
+
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.bgImageV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -83,6 +127,12 @@
         make.height.mas_equalTo(ScreenScale(16));
         make.centerX.mas_equalTo(self.moneyLb.mas_centerX);
     }];
+    
+//    [self.gifImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-10));
+//        make.right.left.mas_equalTo(self.contentView);
+//        make.top.mas_equalTo(self.moneyLb.mas_bottom).offset(ScreenScale(10));
+//    }];
 }
 
 @end

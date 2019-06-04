@@ -453,8 +453,11 @@
                 if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
                     [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
                     [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
-                    [LoginVC changeIndxHome];
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    
+                    [userInfoModel getUserInfo:^(id  _Nonnull result) {
+                        [LoginVC changeIndxHome];
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    }];
                 }else {
                     [WXZTipView showCenterWithText:@"未请求到token"];
                 }

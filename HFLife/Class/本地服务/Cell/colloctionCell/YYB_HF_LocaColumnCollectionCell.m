@@ -47,7 +47,7 @@
     [self.contentView addSubview:self.collectionView];
     self.collectionView.scrollEnabled = NO;
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(ScreenScale(65) * (self.itemDataArr.count / 5 + (self.itemDataArr.count % 5 > 0 ? 1 : 0)));
+        make.height.mas_equalTo(ScreenScale(70) * (self.itemDataArr.count / 5 + (self.itemDataArr.count % 5 > 0 ? 1 : 0)));
         make.top.right.left.mas_equalTo(self.contentView);
     }];
 }
@@ -55,7 +55,7 @@
 - (void)reFreshData:(NSArray *)dataArr {
     self.itemDataArr = dataArr;
     [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(ScreenScale(65) * (self.itemDataArr.count / 5 + (self.itemDataArr.count % 5 > 0 ? 1 : 0)));
+        make.height.mas_equalTo(ScreenScale(70) * (self.itemDataArr.count / 5 + (self.itemDataArr.count % 5 > 0 ? 1 : 0)));
         make.top.right.left.mas_equalTo(self.contentView);
     }];
     
@@ -79,11 +79,13 @@
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(1, 1, 1, 1);
 }
+
+
 //设置每个item的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     double width = (self.contentView.width - ScreenScale(10)*6) / 5.0;
-    return CGSizeMake(width, ScreenScale(60));
+    return CGSizeMake(width, ScreenScale(70));
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YYB_HF_LocaColumnCollectionCellItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_LocaColumnCollectionCellItem" forIndexPath:indexPath];
@@ -165,7 +167,7 @@
         make.top.mas_equalTo(self.imgView.mas_bottom).offset(ScreenScale(5));
         make.left.mas_equalTo(self.imgView);
         make.right.mas_equalTo(self.imgView);
-        make.height.mas_equalTo(ScreenScale(12));
+        make.height.mas_equalTo(ScreenScale(15));
     }];
 }
 @end

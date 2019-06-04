@@ -42,22 +42,24 @@
         
     }
 
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateMoneyQrcode withParameters:param withResultBlock:^(BOOL result, id value) {
-        if (result){
-            NSLog(@"%@", value);
-            if ([value isKindOfClass:[NSDictionary class]]) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateMoneyQrcode withParameters:param withResultBlock:^(BOOL result, id value) {\
+        if ([value isKindOfClass:[NSDictionary class]]) {
+            if (result){
+                NSLog(@"%@", value);
                 if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if (value[@"data"][@"show_code"]) {
                         //临时数据
                         [self.getMoneyView setDataForView:value[@"data"][@"show_code"] type:NO];
                     }
                 }
+            }else{
                 [WXZTipView showCenterWithText:value[@"msg"]];
             }
-            
         }
+        
     } witnVC:self];
 }
+
 
 
 - (void)setUpUI{

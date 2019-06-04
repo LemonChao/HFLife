@@ -191,22 +191,9 @@
     [self.window makeKeyAndVisible];
 }
 -(void)changLoginRootViewController{
-    [[self topViewController].navigationController pushViewController:[[LoginVC alloc]init] animated:YES];
+//    [[self topViewController].navigationController pushViewController:[[LoginVC alloc]init] animated:YES];
 }
 
-//退出登录
--(void)LogOut:(NSNotification *)noti{
-    //    [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
-    //                NSLog(@"设置结果:%i 用户别名",iResCode);
-    //    }];
-    [JPUSHService setTags:nil completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
-        
-    } seq:0];
-    //清除用户相关信息
-//    [UserCache valueEmpty];
-//    [UserCache UserPassEmpty];
-    [HeaderToken valueEmpty];
-}
 -(void)RefreshTokeNotification:(NSNotification *)noti{
     //清除用户相关信息
 //    [UserCache valueEmpty];

@@ -328,7 +328,11 @@
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
             [self openCountdown:send];
         }else {
-            [WXZTipView showCenterWithText:value[@"msg"]];
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
         }
     }];
     
@@ -399,8 +403,10 @@
                     if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
                         [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
                         [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
-                        [LoginVC changeIndxHome];
-                        [self dismissViewControllerAnimated:YES completion:nil];
+                        [userInfoModel getUserInfo:^(id  _Nonnull result) {
+                            [LoginVC changeIndxHome];
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                        }];
                     }else {
                         [WXZTipView showCenterWithText:@"未请求到token"];
                     }

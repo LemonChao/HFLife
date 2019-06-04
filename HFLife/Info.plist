@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
-	<string>汉富新生活</string>
+	<string>汉富新生活test</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -75,6 +75,16 @@
 				<string>hanFuLife</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.ly.hanlife</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>hanlife</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -104,6 +114,7 @@
 		<string>weixin</string>
 		<string>wechat</string>
 		<string>alipay</string>
+		<string>hanlife</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

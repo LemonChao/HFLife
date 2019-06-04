@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_cycleScrollCollectionViewCell : UICollectionViewCell
-
+@property(nonatomic, copy) void (^picItemAtIndex)(NSInteger index);
 - (void)setCycleImageArr:(NSArray *)imageUrlArr;
 @end
 

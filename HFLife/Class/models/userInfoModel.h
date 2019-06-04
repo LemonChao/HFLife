@@ -19,9 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 +(instancetype)sharedUser;
 //单例的销毁
 +(void)attempDealloc;
-
+/*
+ 配置别名
+ **/
+// 拼接id 不够补0
+- (NSString *)appendStr:(NSString *)user_id;
 //获取用户信息
 + (void) getUserInfo;
++ (void) getUserInfo:(void(^__nullable)(id result))complate;
 /** 获取userInfo时 存储账号和用户info */
 + (void)saveUserDataAndAccount;
 /** 网络请求失败 获取存储的用户info */
@@ -29,6 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 //实名认证状态
 - (BOOL) chect_rz_status;
+
+/**
+ 获取个人信息  回调
+ */
++ (void) getUserInfo:(void(^__nullable)(id result))complate;
 
 //@property (nonatomic ,strong) NSNumber *ID;//小哥id
 //@property (nonatomic ,copy) NSString *courier_name;//用户名

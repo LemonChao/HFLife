@@ -103,7 +103,7 @@
         make.bottom.mas_equalTo(self.view).mas_offset(-27);
     }];
     
-    self.userName.text = @"15621402093";
+//    self.userName.text = @"15621402093";
     
     UIButton *loginBtn = [UIButton new];
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(31)];
@@ -254,7 +254,11 @@
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
             [self openCountdown:send];
         }else {
-            [WXZTipView showCenterWithText:value[@"msg"]];
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
         }
     }];
     
@@ -323,8 +327,10 @@
                         [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
                         [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
                         NSLog(@"%@", [USERDEFAULT valueForKey:LOGIN_STATES]);
-                        [LoginVC changeIndxHome];
-                        [self dismissViewControllerAnimated:YES completion:nil];
+                        [userInfoModel getUserInfo:^(id  _Nonnull result) {
+                            [LoginVC changeIndxHome];
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                        }];
                     }else {
                         [WXZTipView showCenterWithText:@"未请求到token"];
                     }

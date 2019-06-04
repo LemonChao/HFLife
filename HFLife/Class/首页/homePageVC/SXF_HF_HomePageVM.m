@@ -191,21 +191,12 @@
     NSLog(@"%ld分区   %ld个    %@", (long)indexPath.section, (long)indexPath.row, value);
     SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
     NSString *urlStr = value;
-    if (urlStr) {
-        if (indexPath.section == 1) {
-            //通知消息
-            webVC.urlString = SXF_WEB_URLl_Str(noticeList);
-        }
-    }else{
-        
-    }
-    
     
     if (indexPath.section == 0) {
         
     }else if (indexPath.section == 1) {
         //通知消息
-        webVC.urlString = SXF_WEB_URLl_Str(noticeList);
+        urlStr = SXF_WEB_URLl_Str(noticeList);
     }else if (indexPath.section == 2){
         
     }else if (indexPath.section == 3){
@@ -214,8 +205,8 @@
         
     }
     
-    if (value) {
-        webVC.urlString = value;
+    if (urlStr) {
+        webVC.urlString = urlStr;
         [self.vc.navigationController pushViewController:webVC animated:YES];
     }else{
         [WXZTipView showCenterWithText:@"暂无该条详情数据"];

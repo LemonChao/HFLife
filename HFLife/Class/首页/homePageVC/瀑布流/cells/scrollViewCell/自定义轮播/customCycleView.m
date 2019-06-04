@@ -139,22 +139,19 @@
         cell.titleLb.text = model.title;
         cell.subTitleLb.text = model.subTitle;
         cell.moneyLb.text = model.money;
+        cell.gifName = model.imageName;
+        cell.index = index;
         if (index == 0) {
-            cell.bgImageV.image = MY_IMAHE(@"bg余额");
+            cell.bgImageV.image = MY_IMAHE(@"bg余额1");
         }else if (index == 1){
-            cell.bgImageV.image = MY_IMAHE(@"bg可兑换富权");
+            cell.bgImageV.image = MY_IMAHE(@"bg可兑换富权1");
         }else if(index == 2){
-            cell.bgImageV.image = MY_IMAHE(@"bg富权");
+            cell.bgImageV.image = MY_IMAHE(@"bg富权1");
         }
         
         return cell;
     }
-    
-
-    
     return nil;
-    
-    
 }
 
 
@@ -194,6 +191,13 @@
 
 
 - (void)CWCarousel:(CWCarousel *)carousel didEndScrollAtIndex:(NSInteger)index indexPathRow:(NSInteger)indexPathRow {
+    
+    
+    //播放gif
+    SXF_HF_CycleContentCell *cell = (SXF_HF_CycleContentCell *)[self.carousel.carouselView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:indexPathRow inSection:0]];
+    NSString *iamgePath = [[NSBundle mainBundle] pathForResource:cell.gifName ofType:@""];
+    [cell.gifImageV playGifImagePath:iamgePath repeatCount:1];
+    
 //    NSLog(@"结束滑动: %ld", index);
     if (self.delegate && [self.delegate respondsToSelector:@selector(selectIndex:)]) {
         [self.delegate selectIndex:index];

@@ -58,12 +58,14 @@
     
     
     NSArray *moneyArr = @[@"100", @"130", @"123.9384423"];
+    NSArray *gifNameArr = @[@"mian余额.gif", @"mian可兑换.gif", @"mian富权.gif"];
     self.modelArrM = [NSMutableArray array];
     for (int i = 0; i < 3; i++) {
         mainScrollModel *model = [[mainScrollModel alloc] init];
         model.title = titleArr[i];
         model.subTitle = subTitleArr[i];
         model.money = moneyArr[i];
+        model.imageName = gifNameArr[i];
         [self.modelArrM addObject:model];
     }
     

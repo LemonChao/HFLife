@@ -110,7 +110,8 @@
                 }
             }
         }else {
-            
+            self.dataModel = nil;
+            [self.collectionView reloadData];
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
             }else {
@@ -222,10 +223,6 @@
         cell.selectColumnIndex = ^(NSIndexPath * _Nonnull index) {
             [self selectColumnIndexPath:index];
         };
-        
-//        cell.imgView.image = MMGetImage(imageNameArray[indexPath.row]);
-//        cell.title.text = titleArray[indexPath.row];
-        //    cell.backgroundColor = [UIColor redColor];
         return cell;
     }
     if (indexPath.section == 1) {
@@ -282,7 +279,7 @@
 // !!!: #pragma mark - section0分类商家点击
 - (void)selectColumnIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"idnex %ld - %ld",indexPath.section,indexPath.row);
-    
+
     NSString *url;
     if (indexPath.row == 0) {
         //商家入驻
@@ -301,43 +298,44 @@
         vc.urlString = url;
         vc.isNavigationHidden = YES;
         [self.supVC.navigationController pushViewController:vc animated:YES];
+    }else {
+        [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld",indexPath.row]];
     }
-
     
     return;
-    if (indexPath.section == 0) {
-        UIViewController *vc;
-        
-        if (indexPath.row == 6 || indexPath.row == 8) {
-            WKWebViewController *web = [[WKWebViewController alloc]init];
-            web.webTitle = VcArr[indexPath.row];
-            web.isNavigationHidden = YES;
-            if (indexPath.row == 5) {
-                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=1",GP_BASEURL);
-            }else if (indexPath.row == 6){
-                web.isNavigationHidden = NO;
-                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/ecoChainHotel.html?cate_id=2",GP_BASEURL);
-                
-            }else if (indexPath.row == 8){
-                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=4",GP_BASEURL);
-            }
-            vc = web;
-        }else{
-            if (VcArr.count > indexPath.row) {
-                if ([VcArr[indexPath.row] isKindOfClass:[NSString class]]) {
-                    Class vcClass = NSClassFromString(VcArr[indexPath.row]);
-                    vc = [[vcClass alloc] init];
-                }else{
-                    SynthesizeMerchantListVC *syn = [[SynthesizeMerchantListVC alloc]init];
-                    syn.type = MMNSStringFormat(@"%@",VcArr[indexPath.row]);
-                    vc = syn;
-                }
-            }
-        }
-        if (vc) {
-            [self.viewController.navigationController pushViewController:vc animated:YES];
-        }
-    }
+//    if (indexPath.section == 0) {
+//        UIViewController *vc;
+//
+//        if (indexPath.row == 6 || indexPath.row == 8) {
+//            WKWebViewController *web = [[WKWebViewController alloc]init];
+//            web.webTitle = VcArr[indexPath.row];
+//            web.isNavigationHidden = YES;
+//            if (indexPath.row == 5) {
+//                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=1",GP_BASEURL);
+//            }else if (indexPath.row == 6){
+//                web.isNavigationHidden = NO;
+//                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/ecoChainHotel.html?cate_id=2",GP_BASEURL);
+//
+//            }else if (indexPath.row == 8){
+//                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=4",GP_BASEURL);
+//            }
+//            vc = web;
+//        }else{
+//            if (VcArr.count > indexPath.row) {
+//                if ([VcArr[indexPath.row] isKindOfClass:[NSString class]]) {
+//                    Class vcClass = NSClassFromString(VcArr[indexPath.row]);
+//                    vc = [[vcClass alloc] init];
+//                }else{
+//                    SynthesizeMerchantListVC *syn = [[SynthesizeMerchantListVC alloc]init];
+//                    syn.type = MMNSStringFormat(@"%@",VcArr[indexPath.row]);
+//                    vc = syn;
+//                }
+//            }
+//        }
+//        if (vc) {
+//            [self.viewController.navigationController pushViewController:vc animated:YES];
+//        }
+//    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -368,7 +366,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"section %ld item %ld",indexPath.section,indexPath.row);
-    
+    [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
     if (indexPath.section == 0) {
         
     }
@@ -398,7 +396,6 @@
     return view;
 }
 
-
 #pragma mark - XPCollectionViewWaterfallFlowLayout
 
 /// 列数
@@ -417,13 +414,13 @@
 
     return 2;
 }
-/// item高度
+#pragma mark -  item高度
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout itemWidth:(CGFloat)width
  heightForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         NSArray *itemArr = self.dataModel.entrance;
         //计算行高
-        return ScreenScale(65) * ((itemArr.count / 5) + (itemArr.count % 5 > 0 ? 1 : 0));
+        return ScreenScale(70) * ((itemArr.count / 5) + (itemArr.count % 5 > 0 ? 1 : 0));
     }
     
     if (indexPath.section == 1) {

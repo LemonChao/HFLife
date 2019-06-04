@@ -19,6 +19,8 @@
 @property(nonatomic, strong) UILabel *searchlabel;
 /** 订单列表icon */
 @property(nonatomic, strong) UIImageView *orderAlertImageView;
+@property(nonatomic, strong) UIView *orderAlertImageViewBgview;//订单背景
+
 @property(nonatomic, strong) UIView *searchBgView;
 @property(nonatomic, strong) UIImageView *searchIcon;
 
@@ -46,12 +48,14 @@
     self.selectBtn = [UIButton new];
     self.searchlabel = [UILabel new];
     self.orderAlertImageView = [UIImageView new];
+    self.orderAlertImageViewBgview = [UIView new];
     
     
     [self addSubview:self.headImageV];
     [self addSubview:self.localLabel];
     [self addSubview:self.selectBtn];
     [self addSubview:self.orderAlertImageView];
+    [self addSubview:self.orderAlertImageViewBgview];
     
 //    self.headImageV.backgroundColor = [UIColor redColor];
     self.headImageV.image = MMGetImage(@"icon_touxiang");
@@ -92,10 +96,17 @@
     
     [self.orderAlertImageView setImage:image(@"icon_orderAlert1")];
     
-    self.orderAlertImageView.userInteractionEnabled = YES;
-    [self.orderAlertImageView wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
+    self.orderAlertImageViewBgview.userInteractionEnabled = YES;
+    self.orderAlertImageViewBgview.backgroundColor = [UIColor clearColor];
+    
+    [self.orderAlertImageViewBgview wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
         //订单列表
         NSLog(@"orderAlertImageView");
+        if (self.orderIconClick) {
+            self.orderIconClick();
+        }else {
+            [WXZTipView showCenterWithText:@"click -line orderAlert"];
+        }
     }];
     
     self.localLabel.userInteractionEnabled = YES;
@@ -110,9 +121,12 @@
     
     searchBgView.userInteractionEnabled = YES;
     [searchBgView wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
-        NSLog(@"搜索");
+       
+        if (self.searchIconClick) {
+            self.searchIconClick();
+        }else{ [WXZTipView showCenterWithText:@"click -line 搜索"]; }
 //        [self.viewController.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
-        [self shareInfo];
+//        [self shareInfo];
     }];
     
 }
@@ -162,6 +176,13 @@
         make.centerY.mas_equalTo(self.searchBgView);
         make.height.mas_equalTo(25);
         make.width.mas_equalTo(21);
+    }];
+    
+    [self.orderAlertImageViewBgview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self).mas_offset(ScreenScale(-5));
+        make.centerY.mas_equalTo(self.searchBgView);
+        make.height.mas_equalTo(25+5);
+        make.width.mas_equalTo(21 + 30);
     }];
 }
 

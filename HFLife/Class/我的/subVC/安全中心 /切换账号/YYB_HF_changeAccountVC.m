@@ -137,7 +137,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 1) {
-        
         [LoginVC login];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }else {
@@ -149,6 +148,10 @@
             NSString *token = [accountItemDic objectForKey:@"token"];
             [[NSUserDefaults standardUserDefaults] setValue:token forKey:USER_TOKEN];
             [[WBPCreate sharedInstance] showWBProgress];
+            [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                NSLog(@"移除的别名   %@", iAlias);
+            } seq:001];
+
             [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
                 [[WBPCreate sharedInstance]hideAnimated];
                 if (result) {
@@ -157,6 +160,7 @@
                     });
                     [self.accountMobileArr exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
                     [self.myTable reloadData];
+                    
                     [userInfoModel attempDealloc];
                     
                     if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -166,7 +170,11 @@
                             
                             [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
                             [userInfoModel saveUserDataAndAccount];
+                            //设置别名
                             
+                            [JPUSHService setAlias:[[userInfoModel sharedUser] appendStr:Format([userInfoModel sharedUser].ID)] completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                                NSLog(@"别名      %@", iAlias);
+                            } seq:001];
                             //初始化头像
                             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                 [userInfoModel sharedUser].userHeaderImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar)]];

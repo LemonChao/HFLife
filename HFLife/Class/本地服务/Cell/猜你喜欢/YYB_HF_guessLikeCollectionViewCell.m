@@ -102,21 +102,21 @@
     self.adLabel.text = @"仅售3580元，价值6086元的优惠套餐，欢迎体验仅售3580元，价值6086元的优惠套餐，欢迎体验";
     self.adLabel.font = FONT(12);
     self.adLabel.textColor = HEX_COLOR(0x333333);
-    self.distanceLabel.text = @"4.5km";
+    self.distanceLabel.text = @"x.xkm";
     self.distanceLabel.font = FONT(9);
     self.distanceLabel.textAlignment = NSTextAlignmentRight;
 
     self.distanceLabel.textColor = HEX_COLOR(0x333333);
-    self.priceLabel.text = @"￥35800";
+    self.priceLabel.text = @"￥xxxxx";
     self.priceLabel.font = FONT(17);
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
     
-    self.oldPriceLabel.text = @"￥35800";
+    self.oldPriceLabel.text = @"￥xxxxx";
     self.oldPriceLabel.textColor = HEX_COLOR(0xAAAAAA);
     self.oldPriceLabel.font = FONT(11);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
-    self.concessionMoney.text = @"让利$100";
+    self.concessionMoney.text = @"让利￥xxx";
     self.concessionMoney.font = FONT(10);
     self.concessionMoney.textAlignment = NSTextAlignmentCenter;
 
@@ -145,6 +145,7 @@
         make.right.mas_equalTo(self.bgView).mas_offset(-10);
         make.height.mas_equalTo(12);
         make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(5);
+        make.width.mas_greaterThanOrEqualTo(40);
     }];
     [self.adLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
@@ -304,19 +305,19 @@
     self.nameLabel.text = @"郑州辰星医疗美容医院【冰点脱 毛】（腋毛/唇毛二选一）...郑州辰星医疗美容医院【冰点脱 毛】（腋毛/唇毛二选一）...";
     self.nameLabel.font = FONT(14);
     self.nameLabel.numberOfLines = 2;
-    self.distanceLabel.text = @"4.5km";
+    self.distanceLabel.text = @"x.xkm";
     self.distanceLabel.font = FONT(9);
     self.distanceLabel.textAlignment = NSTextAlignmentRight;
-    self.priceLabel.text = @"￥35800";
+    self.priceLabel.text = @"￥xxxxx";
     self.priceLabel.font = FONT(17);
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
     
-    self.oldPriceLabel.text = @"￥35800";
+    self.oldPriceLabel.text = @"￥xxxxx";
     self.oldPriceLabel.textColor = HEX_COLOR(0xAAAAAA);
     self.oldPriceLabel.font = FONT(11);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
-    self.concessionMoney.text = @"让利$100";
+    self.concessionMoney.text = @"让利￥xxx";
     self.concessionMoney.font = FONT(10);
     self.concessionMoney.textAlignment = NSTextAlignmentCenter;
     
@@ -376,7 +377,7 @@
         make.right.mas_equalTo(self.showImage.mas_left).mas_offset(-5);
         make.left.mas_equalTo(self.concessionIamgeView.mas_right).mas_offset(5);
         make.bottom.mas_equalTo(self.priceLabel);
-        make.height.mas_equalTo(9);
+        make.height.mas_equalTo(12);
     }];
 }
 

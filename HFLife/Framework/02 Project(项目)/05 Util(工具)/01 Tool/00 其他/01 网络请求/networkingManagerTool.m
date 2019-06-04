@@ -262,11 +262,11 @@
             valueBlock(NO , valueDic);
         }else if([valueDic[@"status"] integerValue]  == -1){
             //登陆过期
-            valueBlock(NO , valueDic);
+//            valueBlock(NO , valueDic);
             [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
             [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
             [userInfoModel attempDealloc];
-
+            [WXZTipView showCenterWithText:@"登录已过期请重新登录"];
             [LoginVC login];
         }else{
             

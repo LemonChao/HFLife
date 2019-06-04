@@ -573,6 +573,9 @@
 		04FCEA20228FF7FE00F95486 /* SXF_HF_saveCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA1E228FF7FE00F95486 /* SXF_HF_saveCodeView.m */; };
 		04FCEA23228FF94B00F95486 /* SXF_HF_saveCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FCEA22228FF94B00F95486 /* SXF_HF_saveCodeView.xib */; };
 		04FCEA272290220500F95486 /* userInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FCEA262290220500F95486 /* userInfoModel.m */; };
+		04FF0E5B22A4CFA600CBE45D /* bg余额1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FF0E5822A4CFA500CBE45D /* bg余额1.png */; };
+		04FF0E5C22A4CFA600CBE45D /* bg可兑换富权1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FF0E5922A4CFA500CBE45D /* bg可兑换富权1.png */; };
+		04FF0E5D22A4CFA600CBE45D /* bg富权1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FF0E5A22A4CFA600CBE45D /* bg富权1.png */; };
 		6522949A225AE063001DF691 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 65229493225AE063001DF691 /* SELUpdateAlert.m */; };
 		6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */; };
 		6522949C225AE063001DF691 /* VersionUpdate_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65229495225AE063001DF691 /* VersionUpdate_Icon@2x.png */; };
@@ -1943,6 +1946,9 @@
 		04FCEA2422901BDD00F95486 /* AppConfiger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfiger.h; sourceTree = "<group>"; };
 		04FCEA252290220500F95486 /* userInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInfoModel.h; sourceTree = "<group>"; };
 		04FCEA262290220500F95486 /* userInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userInfoModel.m; sourceTree = "<group>"; };
+		04FF0E5822A4CFA500CBE45D /* bg余额1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg余额1.png"; sourceTree = "<group>"; };
+		04FF0E5922A4CFA500CBE45D /* bg可兑换富权1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg可兑换富权1.png"; sourceTree = "<group>"; };
+		04FF0E5A22A4CFA600CBE45D /* bg富权1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg富权1.png"; sourceTree = "<group>"; };
 		65229492225AE063001DF691 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		65229493225AE063001DF691 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		65229494225AE063001DF691 /* VersionUpdate_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VersionUpdate_Icon@3x.png"; sourceTree = "<group>"; };
@@ -6093,6 +6099,9 @@
 		04FB7F1222865A3200150CA7 /* 动画资源图 */ = {
 			isa = PBXGroup;
 			children = (
+				04FF0E5A22A4CFA600CBE45D /* bg富权1.png */,
+				04FF0E5922A4CFA500CBE45D /* bg可兑换富权1.png */,
+				04FF0E5822A4CFA500CBE45D /* bg余额1.png */,
 				04FCA9C522A13DC70043F64F /* mian可兑换.gif */,
 				04FCA9C322A13DBD0043F64F /* mian富权.gif */,
 				04FCA9C122A13DAE0043F64F /* mian余额.gif */,
@@ -7547,6 +7556,7 @@
 				04616014228AC9650042830B /* SXF_HF_PayVC.xib in Resources */,
 				04FCEA23228FF94B00F95486 /* SXF_HF_saveCodeView.xib in Resources */,
 				04F52152228A76BA00ED4995 /* newcapsLock@3x.png in Resources */,
+				04FF0E5C22A4CFA600CBE45D /* bg可兑换富权1.png in Resources */,
 				040A42D9228FB9360003DDF4 /* AFAuthSDK.bundle in Resources */,
 				04F54B3022811B9C009AAEF3 /* ProjectKit.md in Resources */,
 				04F5214D228A76BA00ED4995 /* newdelete@3x.png in Resources */,
@@ -7612,6 +7622,7 @@
 				0453D1E42284033000880C2A /* sxf_无列表.png in Resources */,
 				04A50863227EDD3A0013E8EC /* myTableViewCell.xib in Resources */,
 				65DC682B2211253200F1085E /* shareView_qzone.png in Resources */,
+				04FF0E5D22A4CFA600CBE45D /* bg富权1.png in Resources */,
 				04F52177228A789600ED4995 /* service.html in Resources */,
 				04A50846227EDD3A0013E8EC /* minion_02.mp4 in Resources */,
 				04B9D3CA227FE5A90084FA23 /* UMSSecKeyboardLibResource.bundle in Resources */,
@@ -7639,6 +7650,7 @@
 				6C2F5164222A663D0022EE03 /* HXPhotoPicker.bundle in Resources */,
 				04F5214F228A76BA00ED4995 /* charactor@2x.png in Resources */,
 				04F9AC01228EC61700A602CE /* SXF_HF_getMoneyCellTableViewCell.xib in Resources */,
+				04FF0E5B22A4CFA600CBE45D /* bg余额1.png in Resources */,
 				04F52149228A76BA00ED4995 /* checkbox_selected_false.png in Resources */,
 				04153C16228AA2F100AA5DAF /* WaimaiYouxuanCell.xib in Resources */,
 				658902F2223B775F009C1B03 /* PYSearch.bundle in Resources */,

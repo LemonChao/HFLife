@@ -41,8 +41,6 @@
         self.navigationController.navigationBar.hidden = YES;
         self.customNavBar.hidden = YES;
     });
-    
-    [[NSUserDefaults standardUserDefaults] setValue:nil  forKey:USER_TOKEN];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -137,21 +135,6 @@
     fastLogin.text = @"快捷登录";
     fastLogin.font = FONT(12);
 
-//    UIButton *QQBtn = [UIButton new];
-//    QQBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(25)];
-//    [QQBtn setImage:MMGetImage(@"QQ") forState:(UIControlStateNormal)];
-//    [QQBtn setTitle:@"QQ登录" forState:(UIControlStateNormal)];
-//    [QQBtn setTitleColor:HEX_COLOR(0x828282) forState:(UIControlStateNormal)];
-//    [QQBtn setImagePosition:ImagePositionTypeLeft spacing:ScreenScale(15)];
-//
-//    [QQBtn addTarget:self action:@selector(loginWithQQ) forControlEvents:(UIControlEventTouchUpInside)];
-//    [self.view addSubview:QQBtn];
-//    [QQBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.view.mas_left).offset(WidthRatio(162));
-//        make.top.mas_equalTo(self.view.mas_bottom).offset(HeightRatio(54));
-//        make.width.mas_equalTo(WidthRatio(153));
-//        make.height.mas_equalTo(HeightRatio(57));
-//    }];
     
     UIButton *WeChatBtn = [UIButton new];
     UIButton *phoneBtn = [UIButton new];
@@ -216,62 +199,13 @@
                    //             NSDictionary *dataDict = @{@"type":@"qq",@"openId":user.uid,@"nickname":user.nickname,@"img":user.icon};
                    
                    NSDictionary *parm = @{@"openid":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
-//                   [[WBPCreate sharedInstance] showWBProgress];
-                   
-                   /*
-                    
-                    
-                    HP_ThirdPartyLoginNetApi *thirdParty = [[HP_ThirdPartyLoginNetApi alloc]initWithParameter:dataDict];
-                    [thirdParty startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-                    HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
-                    if ([thirdPartyRequest getCodeStatus] == 1) {
-                    NSDictionary *dict = [thirdPartyRequest getContent];
-                    
-                    NSString *user_mobile = dict[@"user_mobile"];
-                    if (user_mobile && [user_mobile isKindOfClass:[NSString class]] && user_mobile.length > 0) {
-                    [HeaderToken setToken:dict[@"token"]];
-                    [CommonTools setToken:dict[@"token"]];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    }else {
-                    ReviseMobilePhone *vc = [[ReviseMobilePhone alloc]init];
-                    vc.tokenStr = dict[@"token"];
-                    vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-                    [HeaderToken setToken:dict[@"token"]];
-                    [CommonTools setToken:dict[@"token"]];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    };
-                    [self.navigationController pushViewController:vc animated:YES];
-                    }
-                    
-                    }else{
-                    [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
-                    }
-                    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-                    HP_ThirdPartyLoginNetApi *thirdPartyRequest = (HP_ThirdPartyLoginNetApi *)request;
-                    [WXZTipView showCenterWithText:[thirdPartyRequest getMsg]];
-                    }];
-                    
-                    
-                    */
-                   
                }else{
                    NSLog(@"%@",error);
                }
            }];
 }
 -(void)loginWithWeChat{
-    
-//    SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
-//    //    vc.tokenStr = dict[@"token"];
-//    vc.setPhoneNumOk = ^(NSString * _Nonnull phoneNum) {
-//        //        [HeaderToken setToken:dict[@"data"]];
-//        //        [CommonTools setToken:dict[@"data"]];
-//        [self dismissViewControllerAnimated:YES completion:^{
-//
-//        }];
-//    };
-//    [self.navigationController pushViewController:vc animated:YES];
-//    return;
+
     [[WBPCreate sharedInstance] showWBProgress];
     [ShareSDK getUserInfo:SSDKPlatformTypeWechat
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error){
@@ -292,8 +226,10 @@
                            if (ucenter_token && [ucenter_token isKindOfClass:[NSString class]] && ucenter_token.length > 0) {
                                [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
                                [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
-                               [LoginVC changeIndxHome];
-                               [self dismissViewControllerAnimated:YES completion:nil];
+                               [userInfoModel getUserInfo:^(id  _Nonnull result) {
+                                   [LoginVC changeIndxHome];
+                                   [self dismissViewControllerAnimated:YES completion:nil];
+                               }];
                            }else {
                                SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
                                vc.openIdStr = user.uid;
@@ -336,8 +272,10 @@
                     if (ucenter_token && [ucenter_token isKindOfClass:[NSString class]] && ucenter_token.length > 0) {
                         [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
                         [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
-                        [LoginVC changeIndxHome];
-                        [self dismissViewControllerAnimated:YES completion:nil];
+                        [userInfoModel getUserInfo:^(id  _Nonnull result) {
+                            [LoginVC changeIndxHome];
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                        }];
                     }else {
                         SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
                         vc.openIdStr = alipayOpenId;
@@ -396,7 +334,11 @@
                             NSLog(@"resultString = %@",resultString);
                             NSLog(@"authv2WithInfo授权结果 authCode = %@", authCode?:@"");
                         }else {
-                            [WXZTipView showCenterWithText:@"授权失败"];
+                            NSString *str = @"授权失败";
+                            if (result && [result isKindOfClass:[NSDictionary class]]) {
+                                str = result[@"memo"];
+                            }
+                            [WXZTipView showCenterWithText:str];
                         }
                     }];
                 }
@@ -445,7 +387,7 @@
 
 + (void)changeIndxHome{
     [JMConfig config].selectedIndex = 0;
-    [userInfoModel getUserInfo];
+    
 }
 
 @end

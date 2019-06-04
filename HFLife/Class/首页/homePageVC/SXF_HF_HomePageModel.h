@@ -119,6 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSString *title;
 @property (nonatomic, strong)NSString *subTitle;
 @property (nonatomic, strong)NSString *money;
+@property (nonatomic, strong)NSString *imageName;
 @end
 
 @interface noticeModel : BaseModel
