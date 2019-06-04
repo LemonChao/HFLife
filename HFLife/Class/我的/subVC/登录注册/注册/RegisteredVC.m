@@ -328,7 +328,11 @@
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
             [self openCountdown:send];
         }else {
-            [WXZTipView showCenterWithText:value[@"msg"]];
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else {
+                [WXZTipView showCenterWithText:@"网络错误"];
+            }
         }
     }];
     

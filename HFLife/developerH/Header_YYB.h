@@ -85,6 +85,10 @@ static NSString *const kChangemobile = @"ceshi-ucenter.hfgld.net/api/member_secu
 static NSString *const kMobileRemoveWx = @"ceshi-ucenter.hfgld.net/api/member_security/mobileRemoveWx";
 /** 绑定微信 */
 static NSString *const kMobileBindWx = @"ceshi-ucenter.hfgld.net/api/member_security/mobileBindWx";
+/** 解绑支付宝 */
+static NSString *const kMobileRemoveAlipay = @"ceshi-ucenter.hfgld.net/api/member_security/mobileRemoveAlipay";
+/** 绑定支付宝 */
+static NSString *const kMobileBindAlipay = @"ceshi-ucenter.hfgld.net/api/member_security/mobileBindAlipay";
 /** 注销协议 */
 static NSString *const kGetCloseAgreement = @"ceshi-ucenter.hfgld.net/api/system/getCloseAgreement";
 /** 注销/冻结账号 */
@@ -122,13 +126,13 @@ static NSString *const kH5myCollection = @"http://192.168.0.105:8080/myCollectio
 
 #pragma mark - h5本地 ---------------------------
 /** 获取位置 */
-static NSString *const kChoiceCity = @"http://192.168.0.101:10004/#/";
+static NSString *const kChoiceCity = @"http://192.168.0.111:10004/#/";
 /** 商家入驻 */
-static NSString *const kEnter = @"http://192.168.0.101:10004/#/enter-index/";
+static NSString *const kEnter = @"http://192.168.0.111:10004/#/enter-index/";
 /** 美食 */
-static NSString *const kMeiFood = @"http://192.168.0.101:10004/#/food-index/";
+static NSString *const kMeiFood = @"http://192.168.0.111:10004/#/food-index/";
 /** 酒店住宿 */
-static NSString *const kHotelAccommodation = @"http://192.168.0.101:8080/#/";
+static NSString *const kHotelAccommodation = @"http://192.168.0.111:8080/#/";
 
 
 
