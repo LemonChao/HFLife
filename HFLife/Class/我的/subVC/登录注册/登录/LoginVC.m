@@ -21,6 +21,8 @@
 #import "JMTabBarController.h"
 #import "JMConfig.h"
 
+#import "LoginForVercode.h"
+
 //#import "UPWAuthPlugin.h"//银联登录
 @interface LoginVC ()
 
@@ -39,7 +41,21 @@
     [super viewWillAppear:animated];
     dispatch_async(dispatch_get_main_queue(), ^{
         self.navigationController.navigationBar.hidden = YES;
-        self.customNavBar.hidden = YES;
+        if (self.isChangeNewAccount) {
+            WS(weakSelf);
+            [super setupNavBar];
+            [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
+            self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
+            [self.customNavBar setOnClickLeftButton:^{
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [self.customNavBar wr_setBottomLineHidden:YES];
+            self.customNavBar.title = @"";
+            self.customNavBar.titleLabelColor = [UIColor clearColor];
+            self.customNavBar.backgroundColor = [UIColor clearColor];
+        }else {
+            self.customNavBar.hidden = YES;
+        }
     });
 }
 -(void)viewWillDisappear:(BOOL)animated{
@@ -185,7 +201,9 @@
 //手机验证码登录
 -(void)loginBtnClick{
     
-    [self.navigationController pushViewController:[NSClassFromString(@"LoginForVercode") new] animated:YES];
+    LoginForVercode *vc = [LoginForVercode new];
+    vc.isChangeNewAccount = self.isChangeNewAccount;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 -(void)loginWithQQ {
@@ -227,13 +245,18 @@
                                [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
                                [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
                                [userInfoModel getUserInfo:^(id  _Nonnull result) {
-                                   [LoginVC changeIndxHome];
+                                   if (self.isChangeNewAccount) {
+                                       
+                                   }else {
+                                       [LoginVC changeIndxHome];
+                                   }
                                    [self dismissViewControllerAnimated:YES completion:nil];
                                }];
                            }else {
                                SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
                                vc.openIdStr = user.uid;
                                vc.loginType = LoginTypeWeiXin;
+                               vc.isChangeNewAccount = self.isChangeNewAccount;
                                if ([self.navigationController.viewControllers.lastObject isKindOfClass:[LoginVC class]]) {
                                    [self.navigationController pushViewController:vc animated:YES];
                                }
@@ -273,13 +296,18 @@
                         [[NSUserDefaults standardUserDefaults] setValue:[dataDic safeObjectForKey:@"ucenter_token"]  forKey:USER_TOKEN];
                         [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
                         [userInfoModel getUserInfo:^(id  _Nonnull result) {
-                            [LoginVC changeIndxHome];
+                            if (self.isChangeNewAccount) {
+                                
+                            }else {
+                                [LoginVC changeIndxHome];
+                            }
                             [self dismissViewControllerAnimated:YES completion:nil];
                         }];
                     }else {
                         SetingMobilePhoneVC *vc = [[SetingMobilePhoneVC alloc]init];
                         vc.openIdStr = alipayOpenId;
                         vc.loginType = LoginTypeAliPay;
+                        vc.isChangeNewAccount = self.isChangeNewAccount;
                         if ([self.navigationController.viewControllers.lastObject isKindOfClass:[LoginVC class]]) {
                             [self.navigationController pushViewController:vc animated:YES];
                         }
@@ -356,7 +384,9 @@
 
 //注册
 -(void)registeredClick{
-    [self.navigationController pushViewController:[[RegisteredVC alloc]init] animated:YES];
+    RegisteredVC *vc = [[RegisteredVC alloc]init];
+    vc.isChangeNewAccount = self.isChangeNewAccount;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)forgotPasswordBtnClick{
     [self.navigationController pushViewController:[[ForgotPasswordVC alloc]init] animated:YES];

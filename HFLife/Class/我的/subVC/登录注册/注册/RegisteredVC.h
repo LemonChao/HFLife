@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RegisteredVC : BaseViewController
-
+/**
+ 换个新账号，带返回
+ */
+@property (nonatomic,assign)BOOL isChangeNewAccount;
 @end
 
 NS_ASSUME_NONNULL_END

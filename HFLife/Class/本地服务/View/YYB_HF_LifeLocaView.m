@@ -279,6 +279,8 @@
 // !!!: #pragma mark - section0分类商家点击
 - (void)selectColumnIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"idnex %ld - %ld",indexPath.section,indexPath.row);
+    
+    EntranceDetail *entrModel = self.dataModel.entrance[indexPath.row];
 
     NSString *url;
     if (indexPath.row == 0) {
@@ -290,9 +292,12 @@
     }else if (indexPath.row == 2) {
         //酒店住宿
         url = kHotelAccommodation;
+    }else {
+        //默认地址
+        url = entrModel.url;
     }
     
-    if (url) {
+    if (url && url.length > 0) {
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
         vc.isTop = YES;
         vc.urlString = url;

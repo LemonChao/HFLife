@@ -126,7 +126,7 @@ static NSString *const kH5myCollection = @"http://192.168.0.105:8080/myCollectio
 
 #pragma mark - h5本地 ---------------------------
 /** 获取位置 */
-static NSString *const kChoiceCity = @"http://192.168.0.111:10004/#/";
+static NSString *const kChoiceCity = @"http://192.168.0.111:8080/#/city";
 /** 商家入驻 */
 static NSString *const kEnter = @"http://192.168.0.111:10004/#/enter-index/";
 /** 美食 */

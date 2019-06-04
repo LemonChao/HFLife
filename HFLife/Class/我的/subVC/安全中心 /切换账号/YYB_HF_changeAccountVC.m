@@ -137,8 +137,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 1) {
-        [LoginVC login];
-        [self.navigationController popToRootViewControllerAnimated:NO];
+//        [LoginVC login];
+//        [self.navigationController popToRootViewControllerAnimated:NO];
+        
+        LoginVC *loginVC = [[LoginVC alloc]init];
+        loginVC.isChangeNewAccount = YES;
+        BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
+        [self presentViewController:navi animated:YES completion:nil];
     }else {
         NSDictionary *accountItemDic = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
 

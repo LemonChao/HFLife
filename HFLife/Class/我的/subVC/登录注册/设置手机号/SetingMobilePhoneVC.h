@@ -19,6 +19,10 @@ typedef NS_ENUM(NSInteger, LoginType) {
 @property(nonatomic, copy) void (^setPhoneNumOk)(NSString *phoneNum);//s第三方登录设置手机号成功回调
 @property (nonatomic,copy) NSString *openIdStr;//
 @property(nonatomic, assign) LoginType loginType;//
+/**
+ 换个新账号，带返回
+ */
+@property (nonatomic,assign)BOOL isChangeNewAccount;
 @end
 
 NS_ASSUME_NONNULL_END
