@@ -11,8 +11,8 @@
 
 
 //极光推送
-#define Jpush_appKey  @"dd02ac06ccca0975d7ec3bb4"
-#define Jpush_appSecret @"3c6fca7cf0b7d67b2445e939"//没用
+#define Jpush_appKey  @"097ab589f03a66f38e92ad0f"
+#define Jpush_appSecret @"ca85825c929628963956fb3e"//没用
 
 
 @interface JpushManager ()<JPUSHRegisterDelegate, UIApplicationDelegate>
@@ -248,7 +248,7 @@ static JpushManager *manager = nil;
             [JPUSHService handleRemoteNotification:userInfo];
         }
     } else {
-        // Fallback on earlier versions
+        
     }
     
     if (@available(iOS 10.0, *)) {
