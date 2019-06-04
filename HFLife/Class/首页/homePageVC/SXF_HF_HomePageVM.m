@@ -151,38 +151,43 @@
         if (![userInfoModel sharedUser].chect_rz_status) {
             return;
         }
-        if ([userInfoModel checkPhotoStatus]) {
-            UIViewController *vc;
-            if (index == 0) {
-                //检测相机权限
-                if ([NSObject isCameraAvailable]) {
-                    vc = [FlickingVC new];//扫一扫
-                }else{
-                    [WXZTipView showCenterWithText:@"相机不可用"];
+        UIViewController *vc;
+        if (index == 0) {
+            //检测相机权限
+            if ([NSObject isCameraAvailable]) {
+                if (![userInfoModel isCanUseCamare]) {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您未开通相机权限" message:@"请在设置-隐私-相册中允许访问相册" preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                    }]];
+                    [self.vc.navigationController presentViewController:alert animated:YES completion:nil];
                     return;
+                }else{
+                    vc = [FlickingVC new];//扫一扫
                 }
-                
-            }else if (index == 1){
-                SXF_HF_GetMoneyVC *payVC = [SXF_HF_GetMoneyVC new];//付款
-                payVC.payType = NO;
-                vc = payVC;
-            }else if (index == 2){
-                SXF_HF_GetMoneyVC *getVC = [SXF_HF_GetMoneyVC new];//收款
-                getVC.payType = YES;
-                vc = getVC;
-            }else if (index == 3){
-                vc = [SXF_HP_cardPacketVC new];//卡包
-            }else if (index == 4){
-                //搜索
-                
-            }
-            if (vc) {
-                [self.vc.navigationController pushViewController:vc animated:YES];
+            }else{
+                [WXZTipView showCenterWithText:@"相机不可用"];
+                return;
             }
             
+        }else if (index == 1){
+            SXF_HF_GetMoneyVC *payVC = [SXF_HF_GetMoneyVC new];//付款
+            payVC.payType = NO;
+            vc = payVC;
+        }else if (index == 2){
+            SXF_HF_GetMoneyVC *getVC = [SXF_HF_GetMoneyVC new];//收款
+            getVC.payType = YES;
+            vc = getVC;
+        }else if (index == 3){
+            vc = [SXF_HP_cardPacketVC new];//卡包
+        }else if (index == 4){
+            //搜索
+            
         }
-        
-       
+        if (vc) {
+            [self.vc.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 

@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *payMoneyLb2;
 @property (weak, nonatomic) IBOutlet UILabel *payStatusLb;
 @property (weak, nonatomic) IBOutlet UIView *payFailerView;
+@property (weak, nonatomic) IBOutlet UIImageView *tuiImageV;
 
 @end
 
@@ -27,17 +28,26 @@
     
     [self setupNavBar];
     
-    
+//    self.payStatus = NO;
     self.payNameLb.text = self.payName;
     self.payMoneyLb.text = self.payMoney;
     self.payMoneyLb2.text = [NSString stringWithFormat:@"￥%@", self.payMoney];
-    self.headerImageV.image = self.payImage;
+    self.headerImageV.image = self.payStatus ? self.payImage : MY_IMAHE(@"失败");
     self.payStatusLb.text = self.payStatus ? @"支付成功" : @"支付失败";
+    self.payFailerView.hidden = self.payStatus ? YES : NO;
     self.payTypeLb.text = self.payType;
     
+    [self.tuiImageV sd_setImageWithURL:MY_URL_IMG(self.imageUrlStr)];
     
 }
 
+- (IBAction)tapTuiImageView:(UITapGestureRecognizer *)sender {
+    if (self.webUrlStr) {
+        SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+        webVC.urlString = self.webUrlStr;
+        [self.navigationController pushViewController:webVC animated:YES];
+    }
+}
 
 
 
