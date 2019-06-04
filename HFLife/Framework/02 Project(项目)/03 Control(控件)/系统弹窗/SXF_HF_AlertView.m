@@ -177,15 +177,23 @@
             self.titleLb.numberOfLines = 0;
             self.msgLb.numberOfLines = 0;
             
-            NSString *phone = [userInfoModel sharedUser].member_mobile ? [userInfoModel sharedUser].member_mobile : @"1213";
+            NSString *phone = [userInfoModel sharedUser].member_mobile ? [userInfoModel sharedUser].member_mobile : @"";
+            
+            //加密手机号
+            NSString *secritPhone = [phone EncodeTel];
+            
+            
             NSString *typeStr = @"微信";
             if (self.alertType == AlertType_binding_alipay) {
                 typeStr = @"支付宝";
             }
-            NSString *phoneStr = [NSString stringWithFormat:@"您的汉富号%@已与%@关联，是否解除?", phone,typeStr];
-            NSAttributedString *atrS = [phoneStr setAtrbiuteStringWithFont:FONT(15) color:color0C0B0B range:NSRangeFromString(phone)];
-            self.titleLb.attributedText = atrS;
+            NSString *phoneStr = [NSString stringWithFormat:@"您的汉富号%@已与%@关联，是否解除?", secritPhone,typeStr];
+            self.titleLb.text = phoneStr;
             [self.titleLb setLabelWithLineSpace:ScreenScale(8)];
+            
+            NSAttributedString *atrS = [phoneStr setAtrbiuteStringWithFont:FONT(18) color:color0C0B0B range:NSMakeRange(5, secritPhone.length)];
+            self.titleLb.attributedText = atrS;
+            
             
             self.msgLb.text = [NSString stringWithFormat:@"三十天内只能解绑一次，解除关联后将无法使用%@进行快速登录",typeStr];
             [self.msgLb setLabelWithLineSpace:ScreenScale(8)];
@@ -220,7 +228,7 @@
             self.cancleBtn.setTitleColor(colorAAAAAA, UIControlStateNormal).setTitleFontSize(14).setTitle(@"取消", UIControlStateNormal);
             self.sureBtn.setTitleColor(colorCA1400, UIControlStateNormal).setTitleFontSize(14).setTitle(@"去认证", UIControlStateNormal);
             self.titleLb.textAlignment = NSTextAlignmentCenter;
-            self.titleLb.text = @"使用银行卡前请先进行实名认证";
+            self.titleLb.text = self.title ? self.title : @"使用银行卡前请先进行实名认证";
         }
             break;
         case AlertType_cancellation:{
@@ -642,7 +650,12 @@
             break;
         case AlertType_binding:
         case AlertType_binding_alipay:{
-            alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(227));
+//            alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(227));
+            [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.mas_equalTo(kwin.mas_centerX);
+                make.centerY.mas_equalTo(kwin.mas_centerY);
+                make.width.mas_equalTo(ScreenScale(280));
+            }];
         }
             break;
         case AlertType_exchnageSuccess:{

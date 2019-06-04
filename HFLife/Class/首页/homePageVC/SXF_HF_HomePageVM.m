@@ -149,6 +149,17 @@
         }];
     }else{
         if (![userInfoModel sharedUser].chect_rz_status) {
+            if ([[[userInfoModel sharedUser] rz_status] integerValue] == 0) {
+                SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
+                    if (btnBype) {
+                        //去认证
+                        SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+                        webVC.urlString = SXF_WEB_URLl_Str(certification);
+                        [self.vc.navigationController pushViewController:webVC animated:YES];
+                    }
+                }];
+                alert.title = @"您未进行实名认证";
+            }
             return;
         }
         UIViewController *vc;

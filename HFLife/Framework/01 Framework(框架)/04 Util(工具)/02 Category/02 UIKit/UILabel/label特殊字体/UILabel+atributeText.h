@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param lineSpace <#lineSpace description#>
  */
 -(void)setLabelWithLineSpace:(CGFloat)lineSpace;
+-(void)setLabelAtrbuteLineSpace:(CGFloat)lineSpace atribute:(NSDictionary *)atri;
 @end
 
 NS_ASSUME_NONNULL_END

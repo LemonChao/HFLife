@@ -191,7 +191,6 @@ static dispatch_once_t onceToken;
 
 - (BOOL) chect_rz_status{
     if (self.rz_status.intValue == 0) {
-        [WXZTipView showCenterWithText:@"未认证"];
         return NO;
     }
     if (self.rz_status.intValue == 1) {
