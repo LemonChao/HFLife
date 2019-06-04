@@ -25,10 +25,33 @@
         paraStyle.headIndent = 0;
         paraStyle.tailIndent = 0;
         //设置字间距 NSKernAttributeName:@1.5f
-        NSDictionary *dic = @{NSFontAttributeName:self.font, NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@1.5f
+        NSDictionary *dic = @{NSFontAttributeName:self.font, NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@1.5f,
+                              
                               };
         
         NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:self.text attributes:dic];
+        self.attributedText = attributeStr;
+    }
+}
+
+-(void)setLabelAtrbuteLineSpace:(CGFloat)lineSpace atribute:(NSDictionary *)atri{
+    if (self.text) {
+        NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+        paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+        paraStyle.alignment = NSTextAlignmentLeft;
+        paraStyle.lineSpacing = lineSpace; //设置行间距
+        //    paraStyle.paragraphSpacing = 2.0;//字间距
+        paraStyle.hyphenationFactor = 1.0;
+        paraStyle.firstLineHeadIndent = 0.0;
+        paraStyle.paragraphSpacingBefore = 0.0;
+        paraStyle.headIndent = 0;
+        paraStyle.tailIndent = 0;
+        //设置字间距 NSKernAttributeName:@1.5f
+        NSMutableDictionary *dicM = @{NSFontAttributeName:self.font, NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@1.5f,
+                              };
+        [dicM addEntriesFromDictionary:atri];
+        
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:self.text attributes:dicM];
         self.attributedText = attributeStr;
     }
 }
