@@ -219,6 +219,13 @@
                 [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERINFO_DATA];
                 [userInfoModel attempDealloc];
+                
+                
+                //移除别名
+                [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                    NSLog(@"移除的别名   %@", iAlias);
+                } seq:001];
+                //销毁单例
                 [LoginVC login];
                 
                 [self.navigationController popToRootViewControllerAnimated:YES];
@@ -240,43 +247,6 @@
                 }];
             }
         }];
-        
-        
-        /*
-        
-        LXAlertView *alert=[[LXAlertView alloc] initWithTitle:@"温馨提示" message:@"您确定要退出登录吗？" cancelBtnTitle:@"取消" otherBtnTitle:@"确定" clickIndexBlock:^(NSInteger clickIndex) {
-            if(clickIndex == 1){
-//                [[NSNotificationCenter defaultCenter] postNotificationName:EXIT_LOGIN object:nil userInfo:nil];
-                [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
-                [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
-                [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERINFO_DATA];
-                [userInfoModel attempDealloc];
-                [LoginVC login];
-                
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                [ShareSDK cancelAuthorize:(SSDKPlatformTypeQQ) result:^(NSError *error) {
-                    
-                }];
-                [ShareSDK cancelAuthorize:(SSDKPlatformTypeWechat) result:^(NSError *error) {
-                    
-                }];
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:kLogout withParameters:nil withResultBlock:^(BOOL result, id value) {
-                    [[WBPCreate sharedInstance]hideAnimated];
-                    if (result) {
-                        
-                    }else {
-                        if (value && [value isKindOfClass:[NSDictionary class]]) {
-                        }else {
-                        }
-                    }
-                }];
-               
-            }
-        }];
-        alert.animationStyle=LXASAnimationTopShake;
-        [alert showLXAlertView];
-         
-         */
     }
 }
 - (void)albumListViewController:(HXAlbumListViewController *)albumListViewController didDoneAllList:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photoList videos:(NSArray<HXPhotoModel *> *)videoList original:(BOOL)original {

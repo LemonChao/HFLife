@@ -88,19 +88,6 @@ static dispatch_once_t onceToken;
     return @"";
 }
 
-
-//拼接推送的别名
-// 拼接id 不够补0
-- (NSString *)appendStr:(NSString *)user_id{
-    NSString *firstStr = JPUSH_TYPERIES;
-    NSString *sourceStr = @"000000000000";
-    
-    NSString *appendStr = [sourceStr substringWithRange:NSMakeRange(0, 7 - user_id.length)];
-    NSString *backStr = [NSString stringWithFormat:@"%@%@%@",firstStr,appendStr, user_id];
-    NSLog(@"拼接后的字符串");
-    return backStr;
-}
-
 + (void) getUserInfo{
     [userInfoModel getUserInfo:nil];
 }
@@ -120,6 +107,14 @@ static dispatch_once_t onceToken;
                     [[userInfoModel sharedUser] setValuesForKeysWithDictionary:dataDic];
                     
                     [userInfoModel saveUserDataAndAccount];
+                    
+                    
+                    
+                    //设置别名
+                    
+                    [JPUSHService setAlias:[[userInfoModel sharedUser] appendStr:Format([userInfoModel sharedUser].ID)] completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                        NSLog(@"别名      %@", iAlias);
+                    } seq:001];
                     
                     //初始化头像
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -214,6 +209,17 @@ static dispatch_once_t onceToken;
     [WXZTipView showCenterWithText:@"未认证"];
     return NO;
 }
-
+/*
+ 配置别名
+ **/
+// 拼接id 不够补0
+- (NSString *)appendStr:(NSString *)user_id{
+    NSString *firstStr = @"HF_UCENTER_";
+    NSString *sourceStr = @"00000000000000000";
+    NSString *appendStr = [sourceStr substringWithRange:NSMakeRange(0, 10 - user_id.length)];
+    NSString *backStr = [NSString stringWithFormat:@"%@%@%@",firstStr,appendStr, user_id];
+    NSLog(@"拼接后的字符串");
+    return backStr;
+}
 @end
 

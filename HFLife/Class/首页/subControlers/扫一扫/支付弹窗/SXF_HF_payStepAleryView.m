@@ -469,6 +469,10 @@
     
     alertView.clickStepOneBtnCallback = ^(NSInteger tag) {
         if (tag == 0) {
+            
+#warning 只能余额支付
+            return ;
+            
             //stepTow
 //            NSLog(@"step2");
             weakAlert.step = 1;

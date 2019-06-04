@@ -40,8 +40,7 @@
     // Do any additional setup after loading the view.
     self.title = @"";
     self.view.backgroundColor = [UIColor whiteColor];
-    [self wr_setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    self.customNavBar.hidden = YES;
+    [self.customNavBar wr_setBottomLineHidden:YES];
     
     //    [self removeWebCache];
     
@@ -60,36 +59,11 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
-//    self.navigationController.navigationBar.hidden = YES;
-//    self.fd_interactivePopDisabled = YES;
-    //    //隐藏返回按钮
-    //    self.navigationItem.hidesBackButton = YES;
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    //    }
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.delegate =self;
-    //    }
-    
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
-//    self.fd_interactivePopDisabled = NO;
-//    self.navigationController.navigationBar.hidden = NO;
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    //    }
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.delegate =nil;
-    //
-    //    }
-    
 }
--(void)setupNavBar{
-    [super setupNavBar];
-}
+
 - (void)initWKWebView{
     
     //创建并配置WKWebView的相关参数
@@ -238,6 +212,7 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"网页导航加载完毕");
+    self.customNavBar.hidden = YES;//加载成功隐藏 使用web导航
     //    //OC反馈给JS导航栏高度
     //    NSString *JSResult = [NSString stringWithFormat:@"getTabbarHeight('%@')",MMNSStringFormat(@"%f",self.navBarHeight)];
     //    //OC调用JS

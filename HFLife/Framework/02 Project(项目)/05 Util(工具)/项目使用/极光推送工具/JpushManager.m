@@ -76,11 +76,7 @@ static JpushManager *manager = nil;
         }
         //存储
         [[NSUserDefaults standardUserDefaults] setObject:registrationID forKey:Jpush_Registration_Id];
-        
-        
-        
-        
-        
+  
     }];
     
 
@@ -363,6 +359,10 @@ static JpushManager *manager = nil;
                                      errorDescription:NULL];
     return str;
 }
+
+
+
+
 
 
 @end
