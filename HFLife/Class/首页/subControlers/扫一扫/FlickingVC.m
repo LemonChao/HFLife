@@ -255,16 +255,8 @@
 
 -(void)decodingString:(NSString *)string{
     WS(weakSelf);
-    
-//    SXF_HF_PayVC *payVC = [SXF_HF_PayVC new];
-//    //获取到对方的用户信息
-//    payVC.payName = @"sxf";
-//    payVC.payHeaderUrl = @"url";
-//    [self.navigationController pushViewController:payVC animated:YES];
-//    return;
-    
     //扫描到w二维码后 获取对方的用户信息用以显示
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:GetQrcodeInfo withParameters:@{@"code_str":string} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:GetQrcodeInfo withParameters:@{@"code_str":string, @"app_type" : @"1"} withResultBlock:^(BOOL result, id value) {
         if (result && value) {
             //二维码类型：0本站链接 1收款码 2付款码
             if (value[@"data"][@"type"]) {
@@ -300,65 +292,11 @@
                     }
                     //扫描的是收款码信息 跳转到付款界面
                     [weakSelf.navigationController pushViewController:payVC animated:YES];
-                    
                 }
                 
             }
         }
     }];
-    
-    
-    
-    
-    
-
-    
-    /*
-    
-    HP_ScanningDecodingNetApi *scann = [[HP_ScanningDecodingNetApi alloc]initWithParameter:@{@"code_str":string}];
-    [scann startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        HP_ScanningDecodingNetApi *decodingRequest = (HP_ScanningDecodingNetApi *)request;
-        if ([decodingRequest getCodeStatus]==1) {
-            NSDictionary *datda = [decodingRequest getContent];
-            if ([datda isKindOfClass:[NSDictionary class]]) {
-                NSString *type = datda[@"type"];
-                if ([type isEqualToString:@"2"]) {
-                     [WXZTipView showCenterWithText:@"内测中，敬请期待。。。"];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-//                    TransferVC *tran = [[TransferVC alloc]init];
-//                    tran.amount = [NSString judgeNullReturnString:MMNSStringFormat(@"%@",datda[@"set_money"])];
-//                    tran.userName = [NSString judgeNullReturnString:datda[@"member_truename"]];
-//                    tran.uesrImage = [NSString judgeNullReturnString:datda[@"member_avatar"]];
-//                    tran.code_str = string;
-//                    tran.ispayment = YES;
-//                    [weakSelf.navigationController pushViewController:tran animated:YES];
-                }else if ([type isEqualToString:@"0"]) {
-                    //加载页面
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString judgeNullReturnString:string]]];
-                     [self.navigationController popViewControllerAnimated:YES];
-                }else if([type isEqualToString:@"1"]){
-                   
-                    TransferVC *tran = [[TransferVC alloc]init];
-                    tran.userName = [NSString judgeNullReturnString:datda[@"member_truename"]];
-                    tran.uesrImage = [NSString judgeNullReturnString:datda[@"member_avatar"]];
-                    tran.code_str = string;
-                    tran.ispayment = YES;
-                    [weakSelf.navigationController pushViewController:tran animated:YES];
-                }
-            }else{
-                [WXZTipView showCenterWithText:[decodingRequest getMsg]];
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }else{
-            [WXZTipView showCenterWithText:[decodingRequest getMsg]];
-             [self.navigationController popViewControllerAnimated:YES];
-        }
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-        [WXZTipView showCenterWithText:@"网络错误"];
-         [self.navigationController popViewControllerAnimated:YES];
-    }];
-     
-     */
 }
 
 @end

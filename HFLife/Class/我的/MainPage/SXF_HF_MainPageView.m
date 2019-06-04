@@ -50,14 +50,12 @@
     tableHeaderH = ScreenScale(40);
     self.tableView.mj_footer = nil;
     self.tableView.mj_header = nil;
-    
+}
+- (void)refreshUser{
+    userInfoModel *user = [userInfoModel sharedUser];
     NSArray *titleArr = @[@"余额", @"可兑换富权", @"富权"];
     NSArray *subTitleArr = @[@"可支付可提现", @"实时手动兑换", @"可变现"];
-    
-#warning 假数据
-    
-    
-    NSArray *moneyArr = @[@"100", @"130", @"123.9384423"];
+    NSArray *moneyArr = @[user.dynamic_shop, user.dynamic_dh, user.static_coin];
     NSArray *gifNameArr = @[@"mian余额.gif", @"mian可兑换.gif", @"mian富权.gif"];
     self.modelArrM = [NSMutableArray array];
     for (int i = 0; i < 3; i++) {
@@ -68,9 +66,8 @@
         model.imageName = gifNameArr[i];
         [self.modelArrM addObject:model];
     }
-    
+    [self.tableView reloadData];
 }
-
 - (void)layoutSubviews{
     [super layoutSubviews];
 }

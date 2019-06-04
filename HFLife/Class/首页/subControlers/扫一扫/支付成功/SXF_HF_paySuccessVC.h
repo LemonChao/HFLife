@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSString *payMoney;//支付金额
 @property (nonatomic, assign)BOOL payStatus;//成功、失败
 @property (nonatomic, strong)NSString *payType;
+@property (nonatomic, strong)NSString *webUrlStr;//跳转链接
+@property (nonatomic, strong)NSString *imageUrlStr;//推广图片地址
 @end
 
 NS_ASSUME_NONNULL_END

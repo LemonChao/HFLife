@@ -130,6 +130,7 @@
             payVC.payName = self.payName;
             payVC.payStatus = YES;
             payVC.payType = @"余额";
+            
             payVC.payMoney = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
             [self.navigationController pushViewController:payVC animated:YES];
             [self.payView cancleAlertView];

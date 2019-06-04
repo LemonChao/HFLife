@@ -218,7 +218,7 @@ static dispatch_once_t onceToken;
     NSString *sourceStr = @"00000000000000000";
     NSString *appendStr = [sourceStr substringWithRange:NSMakeRange(0, 10 - user_id.length)];
     NSString *backStr = [NSString stringWithFormat:@"%@%@%@",firstStr,appendStr, user_id];
-    NSLog(@"拼接后的字符串");
+    NSLog(@"推送别名 %@", backStr);
     return backStr;
 }
 @end

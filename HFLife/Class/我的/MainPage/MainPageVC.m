@@ -145,6 +145,11 @@
                     }];
                     //刷新界面
                     self.mainPageView.memberInfoModel = [userInfoModel sharedUser];
+                    
+                    //设置用户信息
+                    [self.mainPageView refreshUser];
+                    
+                    
                 }else {
                     [WXZTipView showCenterWithText:@"个人信息获取错误"];
                 }
