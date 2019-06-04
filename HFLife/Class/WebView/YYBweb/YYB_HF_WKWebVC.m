@@ -313,6 +313,7 @@
 }
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"url:====== %@",webView.URL);
+    [self.customNavBar setHidden:NO];
     NSLog(@"开始加载");
     
 }
@@ -330,6 +331,7 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"网页导航加载完毕");
+    [self.customNavBar setHidden:self.isNavigationHidden];
     //    //OC反馈给JS导航栏高度
     //    NSString *JSResult = [NSString stringWithFormat:@"getTabbarHeight('%@')",MMNSStringFormat(@"%f",self.navBarHeight)];
     //    //OC调用JS

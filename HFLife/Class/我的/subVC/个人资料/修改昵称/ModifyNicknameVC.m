@@ -8,7 +8,7 @@
 
 #import "ModifyNicknameVC.h"
 //#import "HP_ChangeNicknameNetApi.h"
-@interface ModifyNicknameVC ()
+@interface ModifyNicknameVC ()<UITextFieldDelegate>
 {
     UITextField *userNameTextField;
 }
@@ -90,6 +90,7 @@
     userNameTextField.leftViewMode = UITextFieldViewModeAlways;
     userNameTextField.placeholder = placeStr;
     userNameTextField.text = nameStr;
+    userNameTextField.delegate = self;
     
     UIView *line1 = [UIView new];
     line1.setBackgroundColor(HEX_COLOR(0xf4f7f7)).setCornerRadius(0).setBoardWidth(0);
@@ -189,28 +190,29 @@
         }
     }];
     
-    /*
-     
-     HP_ChangeNicknameNetApi *change = [[HP_ChangeNicknameNetApi alloc]initWithParameter:@{@"nickname":userNameTextField.text}];
-     [change startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-     HP_ChangeNicknameNetApi *changeApi = (HP_ChangeNicknameNetApi *)request;
-     [WXZTipView showCenterWithText:[changeApi getMsg]];
-     if ([changeApi getCodeStatus]==1) {
-     if (self.modifiedSuccessfulBlock) {
-     self.modifiedSuccessfulBlock(self->userNameTextField.text);
-     }
-     [self.navigationController popViewControllerAnimated:YES];
-     }else{
-     
-     }
-     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-     HP_ChangeNicknameNetApi *changeApi = (HP_ChangeNicknameNetApi *)request;
-     [WXZTipView showCenterWithText:[changeApi getMsg]];
-     }];
-     
-     */
-    
 }
+
+#pragma mark - uitextField
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if ([self.type isEqualToString:@"年龄"]) {
+        if ((textField.text.length + string.length) > 3 && string.length > 0) {
+            [WXZTipView showCenterWithText:@"年龄不能大于三位数"];
+            return NO;
+        }
+    }else {
+        if ((textField.text.length + string.length) > 5 && string.length > 0) {
+            [WXZTipView showCenterWithText:@"昵称不能大于5位数"];
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+
+
 /*
  #pragma mark - Navigation
  

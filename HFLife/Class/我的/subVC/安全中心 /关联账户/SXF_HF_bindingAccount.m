@@ -94,14 +94,10 @@
     
     if ([userInfoModel sharedUser].alipay_unionid) {
         //解绑
-      SXF_HF_AlertView *aleart =  [SXF_HF_AlertView showAlertType:AlertType_binding_alipay Complete:^(BOOL btnBype) {
+      [SXF_HF_AlertView showAlertType:AlertType_binding_alipay Complete:^(BOOL btnBype) {
             if (btnBype) {
-                
-                [WXZTipView showCenterWithText:@"解绑支付宝"];
-                return ;
-                
                 [[WBPCreate sharedInstance]showWBProgress];
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:@"解绑支付宝" withParameters:nil withResultBlock:^(BOOL result, id value) {
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileRemoveAlipay withParameters:nil withResultBlock:^(BOOL result, id value) {
                     [[WBPCreate sharedInstance]hideAnimated];
                     if (result) {
                         [userInfoModel sharedUser].alipay_unionid = nil;
@@ -126,28 +122,25 @@
         
         [LoginVC aliPayInfo:^(NSString * _Nonnull authCode) {
             
-            //                NSDictionary *dataDict = @{@"openid":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
-            //                [[WBPCreate sharedInstance] showWBProgress];
-            //                [[WBPCreate sharedInstance]showWBProgress];
-            //                [networkingManagerTool requestToServerWithType:POST withSubUrl:@"解绑支付宝" withParameters:dataDict withResultBlock:^(BOOL result, id value) {
-            //                    [[WBPCreate sharedInstance]hideAnimated];
-            //                    if (result) {
-            //                        self.wechatStateLabel.text = @"已绑定";
-            //                        [userInfoModel sharedUser].weixin_unionid = user.uid;
-            //                        SXF_HF_AlertView *alert =  [SXF_HF_AlertView showAlertType:(AlertType_exchnageSuccess) Complete:nil];
-            //                        alert.title = @"绑定成功";
-            //
-            //                    }else {
-            //                        if (value && [value isKindOfClass:[NSDictionary class]]) {
-            //                            [WXZTipView showCenterWithText:value[@"msg"]];
-            //                        }else {
-            //                            [WXZTipView showCenterWithText:@"网络错误"];
-            //                        }
-            //                    }
-            //                }];
-            //            }else{
-            //                NSLog(@"error = %@",error);
-            //            }
+            NSDictionary *dataDict = @{@"auth_code":authCode};
+            [[WBPCreate sharedInstance] showWBProgress];
+            [[WBPCreate sharedInstance]showWBProgress];
+            [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileBindAlipay withParameters:dataDict withResultBlock:^(BOOL result, id value) {
+                [[WBPCreate sharedInstance]hideAnimated];
+                if (result) {
+                    self.wechatStateLabel.text = @"已绑定";
+                    [userInfoModel getUserInfo];
+                    SXF_HF_AlertView *alert =  [SXF_HF_AlertView showAlertType:(AlertType_exchnageSuccess) Complete:nil];
+                    alert.title = @"绑定成功";
+                    
+                }else {
+                    if (value && [value isKindOfClass:[NSDictionary class]]) {
+                        [WXZTipView showCenterWithText:value[@"msg"]];
+                    }else {
+                        [WXZTipView showCenterWithText:@"网络错误"];
+                    }
+                }
+            }];
         }];
     }
     

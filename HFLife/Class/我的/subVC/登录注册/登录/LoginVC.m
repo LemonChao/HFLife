@@ -400,7 +400,11 @@
                             NSLog(@"resultString = %@",resultString);
                             NSLog(@"authv2WithInfo授权结果 authCode = %@", authCode?:@"");
                         }else {
-                            [WXZTipView showCenterWithText:@"授权失败"];
+                            NSString *str = @"授权失败";
+                            if (result && [result isKindOfClass:[NSDictionary class]]) {
+                                str = result[@"memo"];
+                            }
+                            [WXZTipView showCenterWithText:str];
                         }
                     }];
                 }
