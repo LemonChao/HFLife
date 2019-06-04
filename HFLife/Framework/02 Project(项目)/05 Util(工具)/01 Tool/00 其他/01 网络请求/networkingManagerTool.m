@@ -120,10 +120,11 @@
 
     //设置token
     NSString *gettoken = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
-    //token 设置到请求头上
+    gettoken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaW5mbyI6eyJpZCI6MTcsIm1lbWJlcl9tb2JpbGUiOiIxNTUzNzE3MTUwMSIsImFsaXBheV91bmlvbmlkIjpudWxsLCJ3ZWl4aW5fdW5pb25pZCI6bnVsbCwicmVhbG5hbWUiOiJnZmRnIiwibWVtYmVyX2F2YXRhciI6Imh0dHBzOlwvXC93eC5xbG9nby5jblwvbW1vcGVuXC92aV8zMlwvTGdHMm1tV1JWVXhKb25yZXhRbHc1VVVZTWFpY2ZTRDNCaWJkTDM0UlR1clhDVzBCWTkzY0dOVUNkd3A0N2pseno4aWFLZW93dWFianRlSmIxbmJlUzU2MWdcLzEzMiIsIm1lbWJlcl9zZXgiOjAsIm1lbWJlcl9lbWFpbCI6bnVsbCwiaW52aXRlcl9pZCI6MCwibmlja25hbWUiOiIxNTUzNzE3MTUwMSIsInJ6X3N0YXR1cyI6MSwidG9rZW4iOiJlMGJhZmVhNjIwYzQxNWJjMWNmYjE3YWYwOTE3MjFiMzJlNGJmMzI2In0sInRpbWUiOjE1NjE2MDgwMzQsInRva2VuIjoiZTBiYWZlYTYyMGM0MTViYzFjZmIxN2FmMDkxNzIxYjMyZTRiZjMyNiJ9.189Mq4ymBvfc_QURyWam01KCIRfJA1Z-YwhWrFamUvQ";    //token 设置到请求头上
     if (gettoken) {
         [requestManager.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@" , gettoken] forHTTPHeaderField:@"TOKEN"];
     }
+
     MYLog(@"httpHeaders : %@", requestManager.sessionManager.requestSerializer.HTTPRequestHeaders);
     /********************************************************/
     

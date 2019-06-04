@@ -26,13 +26,13 @@
 
 #define shopHost        @"ceshi-shop.hfgld.net/"
 #define shopWebHost     @"http://192.168.0.172:8080/"
-
+//#define shopWebHost     @"http://192.168.0.136:10004/"
 #define shopUrl(subUrl)    [NSString stringWithFormat:@"%@api/mobile/index.php?%@",shopHost,subUrl]
 
 // 商城-首页-专属推荐
 #define shopHomeTui_Goods   shopUrl(@"w=index&t=get_tui_goods")
 
-// 商城-首页-剩余数据(除去猜你喜欢)
+// 商城-首页-剩余数据(除去专属推荐)
 #define shopHomeIndex        shopUrl(@"w=index&t=index")
 
 // 商城-分类-分类列表

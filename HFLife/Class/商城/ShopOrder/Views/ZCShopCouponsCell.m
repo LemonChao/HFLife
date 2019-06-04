@@ -72,7 +72,6 @@
             make.bottom.equalTo(cornerBGView).inset(ScreenScale(15));
         }];
 
-        
         [self layoutIfNeeded];
     }
     
@@ -92,7 +91,7 @@
         ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"pingtaiVouchers" parameters:nil];
         [self.viewController.navigationController pushViewController:webVC animated:YES];
     }else if ([button.currentTitle isEqualToString:@"领好券"]) {
-        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"orderList" parameters:nil];
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"vouchersList" parameters:nil];
         [self.viewController.navigationController pushViewController:webVC animated:YES];
     }
     

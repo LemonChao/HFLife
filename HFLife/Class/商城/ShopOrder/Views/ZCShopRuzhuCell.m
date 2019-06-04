@@ -79,7 +79,20 @@
     return self;
 }
 
+- (void)allButtonAction:(UIButton *)button {
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"apply-record" parameters:@{@"type":@"0"}];
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
+}
+
 - (void)orderButtonAction:(UIButton *)button {
+    if ([button.currentTitle isEqualToString:@"个人入住"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"enter-select-gr" parameters:nil];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }else if ([button.currentTitle isEqualToString:@"商家入驻"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"enter-select-qy" parameters:nil];
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }
+    
     
 }
 
@@ -122,6 +135,7 @@
 - (UIButton *)allButton {
     if (!_allButton) {
         _allButton = [UITool richButton:UIButtonTypeCustom title:@"查看" titleColor:AssistColor font:SystemFont(14) bgColor:[UIColor clearColor] image:image(@"orderCenter_arrow_right")];
+        [_allButton addTarget:self action:@selector(allButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _allButton;
 }
