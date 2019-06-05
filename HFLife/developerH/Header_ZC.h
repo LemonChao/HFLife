@@ -26,7 +26,7 @@
 
 #define shopHost        @"ceshi-shop.hfgld.net/"
 #define shopWebHost     @"http://192.168.0.172:8080/"
-//#define shopWebHost     @"http://192.168.0.136:10004/"
+//#define shopWebHost     @"http://192.168.0.143:8080/"
 #define shopUrl(subUrl)    [NSString stringWithFormat:@"%@api/mobile/index.php?%@",shopHost,subUrl]
 
 // 商城-首页-专属推荐
@@ -50,6 +50,7 @@
 // 商城-订单中心-首页
 #define shopOrderCenterHome shopUrl(@"w=member_index")
 
-
+//余额支付
+#define balancePay          shopUrl(@"w=member_payment&t=balance_pay")
 
 #endif /* Header_ZC_h */

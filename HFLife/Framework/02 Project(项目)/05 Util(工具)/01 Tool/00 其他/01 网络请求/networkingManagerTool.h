@@ -44,7 +44,12 @@ typedef void(^progressBlock)(NSProgress *progress);
 
 
 /**
- +++++++++++++不带VC
+ 请求数据
+
+ @param RequestType RequestType eg.POST
+ @param subUrl subUrl
+ @param parameters parameters dictionary object
+ @param valueBlock valueBlock success (status == 1, data),.. fail (NO, nil)
  */
 + (void) requestToServerWithType:(NSString *)RequestType withSubUrl:(NSString *)subUrl withParameters:(NSDictionary *)parameters withResultBlock:(ValueBlock)valueBlock;
 

@@ -77,7 +77,7 @@
 }
 
 - (void)allButtonAction:(UIButton *)button {
-    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"orderList" parameters:nil];
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"orderList" parameters:@{@"id":@"state_all"}];
     [self.viewController.navigationController pushViewController:webVC animated:YES];
 }
 

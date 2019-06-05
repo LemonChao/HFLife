@@ -84,7 +84,7 @@ static NSString *const USERINFO_ACCOUNT         = @"userInfoAccount";
 #pragma mark - notificationKey
 // 购物车改变通知
 #define cartValueChangedNotification     @"CartValueChangedNotification"
-
+#define backFromeAlipayNotification      @"BackFromeAlipayWithOpenURL"
 
 #pragma mark - NSUserDefaultsKey
 #define LogIn_Success                     ([[[NSUserDefaults standardUserDefaults] objectForKey:LOGIN_STATES] integerValue] == 1)

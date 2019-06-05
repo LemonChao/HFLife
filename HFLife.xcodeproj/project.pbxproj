@@ -857,6 +857,7 @@
 		6C2F5170222A76DD0022EE03 /* UITool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F516F222A76DD0022EE03 /* UITool.m */; };
 		6C3BE92F22A0DA9200A4DA91 /* ZCShopOrderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BE92E22A0DA9200A4DA91 /* ZCShopOrderViewModel.m */; };
 		6C3D4ACA222680570007AF9A /* CALayer+XibBorderColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */; };
+		6C44EF5022A7A30000E13657 /* PaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C44EF4F22A7A30000E13657 /* PaymentManager.m */; };
 		6C611914229CD340005597AD /* ZCShopWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C611913229CD340005597AD /* ZCShopWebViewController.m */; };
 		6C63824F22A3792C00E43FE3 /* ZCShopCartPayResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C63824E22A3792C00E43FE3 /* ZCShopCartPayResultVC.m */; };
 		6C68105F228670F500300A14 /* ZCExclusiveRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68105E228670F500300A14 /* ZCExclusiveRecommendCell.m */; };
@@ -2476,6 +2477,8 @@
 		6C3D4ABA22255A0E0007AF9A /* AppColorHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppColorHeader.h; sourceTree = "<group>"; };
 		6C3D4AC8222680570007AF9A /* CALayer+XibBorderColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibBorderColor.h"; sourceTree = "<group>"; };
 		6C3D4AC9222680570007AF9A /* CALayer+XibBorderColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibBorderColor.m"; sourceTree = "<group>"; };
+		6C44EF4E22A7A30000E13657 /* PaymentManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentManager.h; sourceTree = "<group>"; };
+		6C44EF4F22A7A30000E13657 /* PaymentManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManager.m; sourceTree = "<group>"; };
 		6C611912229CD340005597AD /* ZCShopWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopWebViewController.h; sourceTree = "<group>"; };
 		6C611913229CD340005597AD /* ZCShopWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopWebViewController.m; sourceTree = "<group>"; };
 		6C63824D22A3792C00E43FE3 /* ZCShopCartPayResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopCartPayResultVC.h; sourceTree = "<group>"; };
@@ -5984,6 +5987,8 @@
 				04F8D25822A2113A00C0A310 /* MallCashierDeskVC.h */,
 				04F8D25922A2113A00C0A310 /* MallCashierDeskVC.m */,
 				04F8D25722A2113A00C0A310 /* MallCashierDeskVC.xib */,
+				6C44EF4E22A7A30000E13657 /* PaymentManager.h */,
+				6C44EF4F22A7A30000E13657 /* PaymentManager.m */,
 			);
 			path = "收银台";
 			sourceTree = "<group>";
@@ -7890,6 +7895,7 @@
 				04153B8A228A9C9600AA5DAF /* ZKCycleScrollView.m in Sources */,
 				659EA0B4220537EC004471CD /* SpeechSynthesizer.m in Sources */,
 				04153C14228AA2F100AA5DAF /* NearbyShopCell.m in Sources */,
+				6C44EF5022A7A30000E13657 /* PaymentManager.m in Sources */,
 				048DABB522855C9C006E6BA2 /* UIImageView+ChainTypeImageView.m in Sources */,
 				04F54B5722816268009AAEF3 /* SXF_HF_HomePageTableHeader.m in Sources */,
 				04F946E8228C0FD200085F78 /* SXF_HF_KeyBoardView.m in Sources */,

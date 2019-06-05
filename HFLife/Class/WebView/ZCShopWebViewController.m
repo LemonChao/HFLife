@@ -321,7 +321,7 @@
 - (void)goBack:(NSString *)body{
     if (body.integerValue == 0) {
         [self.navigationController popViewControllerAnimated:YES];
-    }else if (!body.integerValue || body.integerValue == 1) {
+    }else if (!body.integerValue || [body isEqualToString:@"返回"] || body.integerValue == 1) {
         
         if ([self.webView canGoBack]) {
             [self.webView goBack];
@@ -390,67 +390,102 @@
 #pragma mark --银联商务调起支付宝支付---
 -(void)goToPayParameter:(NSDictionary *)dict{
     NSString *type = [NSString stringWithFormat:@"%@", dict[@"payType"] ? dict[@"payType"] : @""];
-    NSString *payDataJsonStr = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict[@"pullPayInfo"] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
- 
-    if ([type isEqualToString:@"0"]) {
-        // 余额支付
+    NSDictionary *payInfo = dict[@"pullPayInfo"];
+    if (DictIsEmpty(payInfo)) {
+        [WXZTipView showBottomWithText:@"支付参数错误"];
+        return;
     }
-    else if ([type isEqualToString:@"1"]) {
-        //支付宝
+    
+    NSString *payDataJsonStr = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:payInfo options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+ 
+    if ([type isEqualToString:@"0"]) { // 余额支付
+    }
+    else if ([type isEqualToString:@"1"]) { //支付宝
         //开启轮询订单
-//        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:orderId isHotel:YES idType:NO isNowPay:YES];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pollingOrderResult:) name:UIApplicationWillEnterForegroundNotification object:@""];
         
+//        __weak typeof(self) weak_self = self;
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification
+                                                          object:nil
+                                                           queue:[NSOperationQueue mainQueue]
+                                                      usingBlock:^(NSNotification *note) {
+                                                          [self pollingOrderResult:dict[@"orderId"]];
+                                                      }];
         [UMSPPPayUnifyPayPlugin payWithPayChannel:CHANNEL_ALIPAY payData:payDataJsonStr callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
             if ([resultCode isEqualToString:@"1003"]) {
                 NSLog(@"%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
             }
         }];
-
     }
-    else if ([type isEqualToString:@"2"]){
+    else if ([type isEqualToString:@"2"]) { //微信
         
-        //微信
-        //开启轮询订单
-        [UMSPPPayUnifyPayPlugin registerApp:dict[@"query"][@"appid"]];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wxPayCallback:) name:@"wxPay" object:nil];
+        [UMSPPPayUnifyPayPlugin registerApp:payInfo[@"appid"]];
         [UMSPPPayUnifyPayPlugin payWithPayChannel:CHANNEL_WEIXIN payData:payDataJsonStr callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
-            if ([resultCode isEqualToString:@"1003"]) {
-                NSLog(@"%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
-            }
+            [self handlePayResultL:resultCode info:resultInfo];
         }];
 
     }
     else if ([type isEqualToString:@"3"]){
         
-        [UMSPPPayUnifyPayPlugin cloudPayWithURLSchemes:@"unifyPayHanPay" payData:payDataJsonStr viewController:self callbackBlock:^(NSString *resultCode, NSString *resultInfo) {//1000 取消
-            if ([resultCode isEqualToString:@"1000"]) {
-                [WXZTipView showBottomWithText:resultInfo duration:1.5];
-            }else {
-                [WXZTipView showBottomWithText:resultInfo duration:1.5];
-            }
-            NSLog(@"=====%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
-            
+        [UMSPPPayUnifyPayPlugin cloudPayWithURLSchemes:@"unifyPayHanPay" payData:payDataJsonStr viewController:self callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
+            [self handlePayResultL:resultCode info:resultInfo];
         }];
 
     }
 }
 
-//微信支付回调
-- (void)wxPayCallback:(NSNotification *)noti{
-    NSLog(@"%@", noti.userInfo);
+-(void)handlePayResultL:(NSString *)resultCode info:(NSString *)resultInfo { //1000 取消 0000支付成功
     
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if ([noti.userInfo[@"type"] isEqualToString:@"-2"]) {
-            [WXZTipView showBottomWithText:@"您已取消微信支付" duration:2];
-        }else if([noti.userInfo[@"type"] isEqualToString:@"0"]){
-            [WXZTipView showBottomWithText:@"支付成功！" duration:1.5];
-        }else{
-            [WXZTipView showBottomWithText:@"支付失败！" duration:1.5];
-        }
-    }];
-    //释放通知
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wxPay" object:nil];
+//    NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:[resultInfo dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+    if ([resultCode isEqualToString:@"0000"]) {
+        [self.webView evaluateJavaScript:@"payState('success')" completionHandler:nil];
+    }else {
+        [self.webView evaluateJavaScript:@"payState('fail')" completionHandler:nil];
+    }
+    
+    if ([resultCode isEqualToString:@"1003"]) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [WXZTipView showBottomWithText:@"客户端未安装" duration:1.5];
+        }];
+    }
 }
+
+
+
+////微信支付回调
+//- (void)wxPayCallback:(NSNotification *)noti{
+//    NSLog(@"%@", noti.userInfo);
+//
+//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//        if ([noti.userInfo[@"type"] isEqualToString:@"-2"]) {
+//            [WXZTipView showBottomWithText:@"您已取消微信支付" duration:2];
+//        }else if([noti.userInfo[@"type"] isEqualToString:@"0"]){
+//            [WXZTipView showBottomWithText:@"支付成功！" duration:1.5];
+//        }else{
+//            [WXZTipView showBottomWithText:@"支付失败！" duration:1.5];
+//        }
+//    }];
+//    //释放通知
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wxPay" object:nil];
+//}
+
+- (void)pollingOrderResult:(NSString *)orderId {
+    static NSInteger pollingCount = 0;
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:balancePay withParameters:@{@"pay_sn":orderId} withResultBlock:^(BOOL result, id value) {
+        if (result || pollingCount >= 4) {
+//            [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
+        }else {
+            pollingCount++;
+            [self performSelector:@selector(pollingOrderResult:) withObject:orderId afterDelay:2.f];
+        }
+        
+    }];
+    
+    
+}
+
+
+
 - (void)ShareWithInformation:(NSDictionary *)dic
 {
     if (![dic isKindOfClass:[NSDictionary class]]) {
@@ -568,7 +603,7 @@
         //    preferences.minimumFontSize = 40.0;
         config.preferences = preferences;
         NSMutableDictionary *dic = [NSMutableDictionary new];
-        dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus * 2);
+        dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
         dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"Token"];
         dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
 

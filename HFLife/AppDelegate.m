@@ -266,39 +266,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    
-    
-    NSString *string =[url absoluteString];
-    if ([string hasPrefix:@"unifyPayHanPay://"])
-    {
-        return [UMSPPPayUnifyPayPlugin cloudPayHandleOpenURL:url];
-    }
-    return  [UMSPPPayUnifyPayPlugin handleOpenURL:url];
-}
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    
-    NSString *string =[url absoluteString];
-    if ([string hasPrefix:@"unifyPayHanPay://"])
-    {
-        return [UMSPPPayUnifyPayPlugin cloudPayHandleOpenURL:url];
-    }
-    
-    return [UMSPPPayUnifyPayPlugin handleOpenURL:url];
-}
 
 - (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
             options:(NSDictionary<NSString *,id> *)options{
-    
-    
    
     NSString *string =[url absoluteString];
-    
+    NSLog(@"URL:%@, url.absoluteString:%@", url, string);
     if ([string hasPrefix:@"hanFuLife"]) {
         //授权返回码
         [[AFAuthSDK defaultService]processAuthv2Result:url standbyCallback:^(NSDictionary *result) {
@@ -309,22 +283,29 @@
         return YES;
     }
     
-    if ([string hasPrefix:@"unifyPayHanPay://"])
+//    if ([url.host isEqualToString:@"safepay"]) { //frome 支付宝 back to this app
+//        [[NSNotificationCenter defaultCenter] postNotificationName:backFromeAlipayNotification object:@"pollingPayResult"];
+//    }
+    
+    
+    
+    if ([string hasPrefix:@"unifyPayHanPay://"]) //frome 云闪付 back to this app
     {
         return [UMSPPPayUnifyPayPlugin cloudPayHandleOpenURL:url];
     }
     
-    //银联上午微信支付回调
-    if ([url.absoluteString containsString:WX_APP_ID]) {
-        BOOL isSuccess = [UMSPPPayUnifyPayPlugin handleOpenURL:url];
-        
-        NSArray *component = [url.absoluteString componentsSeparatedByString:@"="];
-        NSLog(@"%@", component.lastObject);
-        //获取最后一个模块 1 成功 -2 取消支付
-        //通知微信支付成功
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"wxPay" object:@(isSuccess) userInfo:@{@"type" : component.lastObject}];
+    //银联商务微信支付回调
+    if ([url.absoluteString containsString:WX_APP_ID]) { // frome 微信 back to this app
+//        BOOL isSuccess = [UMSPPPayUnifyPayPlugin handleOpenURL:url];
+//
+//        NSArray *component = [url.absoluteString componentsSeparatedByString:@"="];
+//        NSLog(@"%@", component.lastObject);
+//        //获取最后一个模块 1 成功 -2 取消支付
+//        //通知微信支付成功
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"wxPay" object:@(isSuccess) userInfo:@{@"type" : component.lastObject}];
+        return [UMSPPPayUnifyPayPlugin handleOpenURL:url];
     }
-    return [UMSPPPayUnifyPayPlugin handleOpenURL:url];
+    return YES;
 };
 #pragma mark 获取当前显示的VC
 - (UIViewController *)topViewController {

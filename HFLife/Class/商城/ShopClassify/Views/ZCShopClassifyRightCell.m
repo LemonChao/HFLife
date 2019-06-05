@@ -45,10 +45,13 @@
     NSInteger column = model.indexPath.row % 3;
     if (column == 0) {
         self.titleLable.textAlignment = NSTextAlignmentLeft;
+        self.titleLable.lineBreakMode = NSLineBreakByTruncatingTail;
     }else if (column == 1) {
         self.titleLable.textAlignment = NSTextAlignmentCenter;
+        _titleLable.lineBreakMode = NSLineBreakByClipping;
     }else {
         self.titleLable.textAlignment = NSTextAlignmentRight;
+        self.titleLable.lineBreakMode = NSLineBreakByTruncatingHead;
     }
 }
 
