@@ -94,7 +94,7 @@
     self.searchlabel.textColor = HEX_COLOR(0xAAAAAA);
     self.searchlabel.font = FONT(13);
     
-    [self.orderAlertImageView setImage:image(@"icon_orderAlert1")];
+    [self.orderAlertImageView setImage:image(@"icon_order")];
     
     self.orderAlertImageViewBgview.userInteractionEnabled = YES;
     self.orderAlertImageViewBgview.backgroundColor = [UIColor clearColor];
@@ -358,13 +358,6 @@
     }
 }
 
-- (void)setIs_notice:(NSNumber *)is_notice {
-    if (is_notice.intValue == 1) {
-        [self.orderAlertImageView setImage:image(@"icon_orderAlert1")];
-    }else {
-        [self.orderAlertImageView setImage:image(@"icon_orderAlert0")];
-    }
-}
 
 
 #pragma mark - cityDeleage
