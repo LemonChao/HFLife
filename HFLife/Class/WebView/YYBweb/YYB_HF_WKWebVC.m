@@ -29,6 +29,7 @@
     
 }
 @property(nonatomic, strong)WKWebView *webView;
+
 @end
 
 @implementation YYB_HF_WKWebVC
@@ -67,6 +68,12 @@
     }
     [self loadWKwebViewData];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkOrderStatus:) name:@"payStatus" object:nil];
+    
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"payStatus" object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -81,7 +88,7 @@
     //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
     //        self.navigationController.interactivePopGestureRecognizer.delegate =self;
     //    }
-   
+
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -612,11 +619,11 @@
     else if ([type isEqualToString:@"1"]) {
         //支付宝
         //开启轮询订单
-        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:[dict[@"orderId"] stringValue]   isHotel:dict[@"orderType"] idType:dict[@"payType"] isNowPay:YES];
+        [circleCheckOrderManger sharedInstence].orderSearchInfoDic = [dict copy];
         [circleCheckOrderManger sharedInstence].searchOrderBlock = ^(NSDictionary * _Nonnull orderInfo) {
             //查询支付结果
             if (orderInfo) {
-                NSString *JSResult = [NSString stringWithFormat:@"gotoPaySucessPage('%@')",@"1"];
+                NSString *JSResult = [NSString stringWithFormat:@"gotoPaySucessPage('%@')",@"*"];
                 [self evaluateJavaScript:JSResult resultBlock:^(id  _Nullable result) {
                     
                 }];
@@ -657,6 +664,12 @@
     }
 }
 
+//查询订单
+- (void)checkOrderStatus:(NSNotification *)not {
+    [[circleCheckOrderManger sharedInstence] checkOrderStatus];
+}
+
+
 //微信支付回调
 - (void)wxPayCallback:(NSNotification *)noti{
     NSLog(@"%@", noti.userInfo);
@@ -666,7 +679,7 @@
             [WXZTipView showBottomWithText:@"您已取消微信支付" duration:2];
         }else if([noti.userInfo[@"type"] isEqualToString:@"0"]){
             [WXZTipView showBottomWithText:@"支付成功！" duration:1.5];
-            NSString *JSResult = [NSString stringWithFormat:@"gotoPaySucessPage('%@')",@"1"];
+            NSString *JSResult = [NSString stringWithFormat:@"gotoPaySucessPage('%@')",@""];
             [self evaluateJavaScript:JSResult resultBlock:^(id  _Nullable result) {
                 
             }];

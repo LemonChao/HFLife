@@ -71,7 +71,6 @@
         }else {
             weakSelf.headView.setLocalStr = @"正在定位...";
         }
-        weakSelf.headView.is_notice = nearModel.is_notice;
     };
     
     [self.view addSubview:self.myLocaVeiw];

@@ -40,6 +40,18 @@
     return instence;
 }
 
+- (void)checkOrderStatus{
+#pragma mark - s查询订单
+    self.searchNum = 1;
+    self.searchMaxTime = 5;
+    if (self.orderSearchInfoDic && [self.orderSearchInfoDic isKindOfClass:[NSDictionary class]]) {
+        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:[self.orderSearchInfoDic[@"orderId"] stringValue]   isHotel:self.orderSearchInfoDic[@"orderType"] idType:self.orderSearchInfoDic[@"payType"] isNowPay:YES];
+        self.orderSearchInfoDic = nil;
+        
+    }
+
+}
+
 
 
 - (NSTimer *)timer{
@@ -71,6 +83,7 @@
     self.isHotel = isHotel;
     self.id_type = idType;
     self.isNowPay = nowPay;
+    self.orderID = orderID;
     [self cancleTimer];
    
      NSDictionary *param = @{
@@ -82,6 +95,9 @@
         NSLog(@"查询订单====");
         NSDictionary *dict = value;
         if (dict && [dict[@"status"] integerValue] == 1) {
+            if (self.searchOrderBlock) {
+                self.searchOrderBlock(dict);
+            }
             if ([dict isKindOfClass:[NSDictionary class]] && dict[@"pay_success"] != nil && dict[@"pay_success"] != [NSNull class]) {
                 //结束轮询
                 [self cancleTimer];

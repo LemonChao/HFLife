@@ -22,7 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIImage *setHeadImage;
 @property(nonatomic, copy) NSString *setLocalStr;
 @property(nonatomic, copy) NSString *setSearchStr;
-@property(nonatomic, strong) NSNumber *is_notice;//提醒
 @end
 
 NS_ASSUME_NONNULL_END
