@@ -20,6 +20,13 @@
     // Do any additional setup after loading the view.
     
     
+    [self setupNavBar];
+    [self setUpUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
     NSMutableDictionary *accountDic = [[NSUserDefaults standardUserDefaults]valueForKey:USERINFO_ACCOUNT];
     if (accountDic && [accountDic isKindOfClass:[NSMutableDictionary class]]) {
         self.accountMobileArr = [NSMutableArray arrayWithArray:accountDic.allKeys];
@@ -29,14 +36,12 @@
         self.accountDic = [accountDic mutableCopy];
         
     }
-    [self setupNavBar];
-    [self setUpUI];
+    [self.myTable reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    [self.myTable reloadData];
 }
 
 -(void)setupNavBar{
