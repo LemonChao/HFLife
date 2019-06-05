@@ -28,6 +28,15 @@
     
     [self loadServerData];
     
+    if (self.payType) {
+        //收钱需要接收通知
+        [NOTIFICATION addObserver:self selector:@selector(getMoneyNoti:) name:JPUSH_SQCODE object:nil];
+    }
+}
+- (void) getMoneyNoti:(NSNotification *)noti{
+    NSLog(@"收钱通知 %@", noti);
+    self.getMoneyView.payUserDic = noti.userInfo;
+    self.getMoneyView.openCell = YES;
 }
 - (void)loadServerData{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
@@ -42,13 +51,12 @@
         
     }
 
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateMoneyQrcode withParameters:param withResultBlock:^(BOOL result, id value) {\
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateMoneyQrcode withParameters:param withResultBlock:^(BOOL result, id value) {
         if ([value isKindOfClass:[NSDictionary class]]) {
             if (result){
                 NSLog(@"%@", value);
                 if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if (value[@"data"][@"show_code"]) {
-                        //临时数据
                         [self.getMoneyView setDataForView:value[@"data"][@"show_code"] type:NO];
                     }
                 }
@@ -60,18 +68,15 @@
     } witnVC:self];
 }
 
-
-
 - (void)setUpUI{
     self.getMoneyView  = [[SXF_HF_GetMoneyView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
     [self.view addSubview:self.getMoneyView];
     self.getMoneyView.payType = self.payType;
+    self.getMoneyView.openCell = NO;
     WEAK(weakSelf);
     self.getMoneyView.tabBtnCallback = ^(NSInteger index) {
         NSLog(@"%ld", index);
-        
         __block BaseViewController *vc ;
-        
         if (!weakSelf.payType) {
             //向商家付钱
             if (index == 2) {
@@ -104,8 +109,8 @@
             if (index == 0) {
                 //设置金额
                 SetAmountVC *setAmVC = [SetAmountVC new];
-                vc = setAmVC;
                 setAmVC.amountDelegate = weakSelf;
+                vc = setAmVC;
             }else if (index == 2){
                 //收款记录
                 receiptRecordListVC *recordVC = [[receiptRecordListVC alloc] init];
@@ -154,6 +159,14 @@
 #pragma mark 代理
 -(void)SetAmountNumber:(NSString *)amount{
     [self.getMoneyView setDataForView:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[userInfoModel sharedUser].ID) publicKey:AMOUNTRSAPRIVATEKEY] type:YES];
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateMoneyQrcode withParameters:@{@"type" : @"1", @"set_money" : amount} withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            if (value) {
+                [self.getMoneyView setDataForView:value[@"data"][@"show_code"] type:YES];
+            }
+        }
+        
+    }];
 }
 
 

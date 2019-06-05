@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)UIViewController *vc;
 @property (nonatomic, strong)SXF_HF_HomePageView *collectionView;
 
+//推送的消息
+@property (nonatomic, strong)NSDictionary *fqValue;
+
 - (void) getBannerData;
 
 - (void) getNewsListData:(NSInteger)page;
