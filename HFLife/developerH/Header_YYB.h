@@ -27,7 +27,8 @@
 
 /** 数据model */
 #import "YYB_HF_nearLifeModel.h"
-
+/** 订单轮循 */
+#import "circleCheckOrderManger.h"
 /************************yourTools************************/
 
 /************************yourTools************************/
@@ -104,7 +105,8 @@ static NSString *const kNearLife = @"ceshi-life.hfgld.net/index.php/api/index/in
 /** 首页猜你喜欢接口（未完）*/
 static NSString *const kGetIndexRecommendList = @"ceshi-life.hfgld.net/index.php/api/index/getIndexRecommendList";
 
-
+/** 查询订单是否支付成功 */
+static NSString *const kGetOrderPayResult = @"ceshi-life.hfgld.net/index.php/api/foodorder/getOrderPayResult";
 
 
 
