@@ -19,6 +19,7 @@
                 <outlet property="payNameLb" destination="X8d-z4-YVI" id="rfH-mI-Snn"/>
                 <outlet property="payStatusLb" destination="JgB-tj-vfQ" id="QMB-Vc-RFD"/>
                 <outlet property="payTypeLb" destination="14w-wJ-fEZ" id="abl-Gl-GWw"/>
+                <outlet property="tuiImageV" destination="lda-vv-BfH" id="jLJ-pO-SLS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -122,6 +123,7 @@
                         </view>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="lda-vv-BfH">
                             <rect key="frame" x="12" y="320" width="390" height="105"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="105" id="ybh-Q5-ff5"/>
                             </constraints>
@@ -130,6 +132,9 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="NO"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="ZN3-XF-15X" appends="YES" id="yMr-hH-65l"/>
+                            </connections>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="￥888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzN-4y-Iv0">
                             <rect key="frame" x="285" y="242" width="41" height="14"/>
@@ -206,6 +211,11 @@
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="-39.130434782608695" y="29.464285714285712"/>
         </view>
+        <tapGestureRecognizer id="ZN3-XF-15X">
+            <connections>
+                <action selector="tapTuiImageView:" destination="-1" id="1UJ-9J-7QV"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="banner" width="383" height="242"/>

@@ -453,9 +453,13 @@
                 if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
                     [[NSUserDefaults standardUserDefaults] setValue:dataDic[@"ucenter_token"] forKey:USER_TOKEN];
                     [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:LOGIN_STATES];
-                    
+                    [[WBPCreate sharedInstance] showWBProgress];
                     [userInfoModel getUserInfo:^(id  _Nonnull result) {
-                        [LoginVC changeIndxHome];
+                        if (self.isChangeNewAccount) {
+                            
+                        }else {
+                            [LoginVC changeIndxHome];
+                        }
                         [self dismissViewControllerAnimated:YES completion:nil];
                     }];
                 }else {

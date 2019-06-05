@@ -27,7 +27,8 @@
 
 /** 数据model */
 #import "YYB_HF_nearLifeModel.h"
-
+/** 订单轮循 */
+#import "circleCheckOrderManger.h"
 /************************yourTools************************/
 
 /************************yourTools************************/
@@ -104,7 +105,8 @@ static NSString *const kNearLife = @"ceshi-life.hfgld.net/index.php/api/index/in
 /** 首页猜你喜欢接口（未完）*/
 static NSString *const kGetIndexRecommendList = @"ceshi-life.hfgld.net/index.php/api/index/getIndexRecommendList";
 
-
+/** 查询订单是否支付成功 */
+static NSString *const kGetOrderPayResult = @"ceshi-life.hfgld.net/index.php/api/foodorder/getOrderPayResult";
 
 
 
@@ -126,13 +128,13 @@ static NSString *const kH5myCollection = @"http://192.168.0.105:8080/myCollectio
 
 #pragma mark - h5本地 ---------------------------
 /** 获取位置 */
-static NSString *const kChoiceCity = @"http://192.168.0.111:10004/#/";
+static NSString *const kChoiceCity = @"http://192.168.0.119:8080/#/city";
 /** 商家入驻 */
-static NSString *const kEnter = @"http://192.168.0.111:10004/#/enter-index/";
+static NSString *const kEnter = @"http://192.168.0.119:10004/#/enter-index/";
 /** 美食 */
-static NSString *const kMeiFood = @"http://192.168.0.111:10004/#/food-index/";
+static NSString *const kMeiFood = @"http://192.168.0.119:10004/#/food-index/";
 /** 酒店住宿 */
-static NSString *const kHotelAccommodation = @"http://192.168.0.111:8080/#/";
+static NSString *const kHotelAccommodation = @"http://192.168.0.119:8080/#/";
 
 
 

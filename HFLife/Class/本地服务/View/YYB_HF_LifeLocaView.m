@@ -279,9 +279,12 @@
 // !!!: #pragma mark - section0分类商家点击
 - (void)selectColumnIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"idnex %ld - %ld",indexPath.section,indexPath.row);
+    
+    EntranceDetail *entrModel = self.dataModel.entrance[indexPath.row];
 
     NSString *url;
     if (indexPath.row == 0) {
+        [self checkCamareAlbum];
         //商家入驻
         url = kEnter;
     }else if (indexPath.row == 1) {
@@ -290,9 +293,12 @@
     }else if (indexPath.row == 2) {
         //酒店住宿
         url = kHotelAccommodation;
+    }else {
+        //默认地址
+        url = entrModel.url;
     }
     
-    if (url) {
+    if (url && url.length > 0) {
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
         vc.isTop = YES;
         vc.urlString = url;
@@ -480,6 +486,33 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout referenceHeightForFooterInSection:(NSInteger)section {
     return 1;
 }
-
+#pragma mark - 检测相机相册
+- (void) checkCamareAlbum{
+   
+    //检测相机权限
+    if ([NSObject isCameraAvailable]) {
+        if (![userInfoModel isCanUseCamare]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您未开通相机权限" message:@"请在设置-隐私-相册中允许访问相册" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            }]];
+            [self.supVC.navigationController presentViewController:alert animated:YES completion:nil];
+            return;
+        }
+        if (([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized)){
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您未开通相册权限" message:@"请在设置-隐私-相册中允许访问相册" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            }]];
+            [self.supVC.navigationController presentViewController:alert animated:YES completion:nil];
+            return;
+        }
+    }else{
+        [WXZTipView showCenterWithText:@"相机不可用"];
+        return;
+    }
+}
 
 @end

@@ -95,6 +95,7 @@ static dispatch_once_t onceToken;
 
 + (void) getUserInfo:(void(^__nullable)(id result))complate{
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [userInfoModel attempDealloc];
             if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -191,7 +192,6 @@ static dispatch_once_t onceToken;
 
 - (BOOL) chect_rz_status{
     if (self.rz_status.intValue == 0) {
-        [WXZTipView showCenterWithText:@"未认证"];
         return NO;
     }
     if (self.rz_status.intValue == 1) {
@@ -218,7 +218,7 @@ static dispatch_once_t onceToken;
     NSString *sourceStr = @"00000000000000000";
     NSString *appendStr = [sourceStr substringWithRange:NSMakeRange(0, 10 - user_id.length)];
     NSString *backStr = [NSString stringWithFormat:@"%@%@%@",firstStr,appendStr, user_id];
-    NSLog(@"拼接后的字符串");
+    NSLog(@"推送别名 %@", backStr);
     return backStr;
 }
 @end

@@ -20,6 +20,13 @@
     // Do any additional setup after loading the view.
     
     
+    [self setupNavBar];
+    [self setUpUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
     NSMutableDictionary *accountDic = [[NSUserDefaults standardUserDefaults]valueForKey:USERINFO_ACCOUNT];
     if (accountDic && [accountDic isKindOfClass:[NSMutableDictionary class]]) {
         self.accountMobileArr = [NSMutableArray arrayWithArray:accountDic.allKeys];
@@ -29,14 +36,12 @@
         self.accountDic = [accountDic mutableCopy];
         
     }
-    [self setupNavBar];
-    [self setUpUI];
+    [self.myTable reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    [self.myTable reloadData];
 }
 
 -(void)setupNavBar{
@@ -137,8 +142,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 1) {
-        [LoginVC login];
-        [self.navigationController popToRootViewControllerAnimated:NO];
+//        [LoginVC login];
+//        [self.navigationController popToRootViewControllerAnimated:NO];
+        
+        LoginVC *loginVC = [[LoginVC alloc]init];
+        loginVC.isChangeNewAccount = YES;
+        BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
+        [self presentViewController:navi animated:YES completion:nil];
     }else {
         NSDictionary *accountItemDic = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
 

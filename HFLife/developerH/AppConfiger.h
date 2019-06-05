@@ -48,6 +48,21 @@ static NSString *const OpenGetMoneyNoti     = @"openGetMoneyNoti";
  推送 别名
  */
 static NSString *const JPUSH_TYPERIES       = @"HFWM_COURIER_";
+/**
+ 推送数据
+ */
+static NSString *const JPUSH_FQ             = @"jpush_fq";
+/**
+ 推送 扫码付
+ */
+static NSString *const JPUSH_SQCODE         = @"jpush_sqcode";
+/**
+ 推送登录提示
+ */
+static NSString *const JPUSH_LOGIN          = @"jpusj_login";
+
+
+
 
 
 //上次登录的appversion

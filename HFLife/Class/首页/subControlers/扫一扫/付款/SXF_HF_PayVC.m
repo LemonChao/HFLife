@@ -46,6 +46,9 @@
     self.moneyTF.textColor = [UIColor blackColor];
     self.moneyTF.textAlignment = NSTextAlignmentLeft;
     self.moneyTF.ry_interval = 3;
+    if (!([self.payMoney floatValue] == 0)) {
+        self.moneyTF.text = self.payMoney;
+    }
 
     WEAK(weakSelf);
     [self.customNavBar setOnClickLeftButton:^{
@@ -96,11 +99,15 @@
         if (result && value) {
             NSString *orderIdStr = value[@"data"][@"order_id"];
             self.order_Id = orderIdStr;
-            [WXZTipView showCenterWithText:value[@"msg"]];
+            
             //去支付
             [self pay:self.order_Id pwd:password];
         }else{
-            [WXZTipView showCenterWithText:value[@"下单失败"]];
+            if (value) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else{
+                [WXZTipView showCenterWithText:value[@"下单失败"]];
+            }
         }
     }];
     
@@ -121,15 +128,13 @@
     [networkingManagerTool requestToServerWithType:POST withSubUrl:GoToPay withParameters:param withResultBlock:^(BOOL result, id value) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (result && value) {
-            
-            [WXZTipView showCenterWithText:value[@"msg"]];
-            
             //支付成功
             SXF_HF_paySuccessVC *payVC = [SXF_HF_paySuccessVC new];
             payVC.payImage = self.payHeaderImageV.image;
             payVC.payName = self.payName;
             payVC.payStatus = YES;
             payVC.payType = @"余额";
+            
             payVC.payMoney = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
             [self.navigationController pushViewController:payVC animated:YES];
             [self.payView cancleAlertView];

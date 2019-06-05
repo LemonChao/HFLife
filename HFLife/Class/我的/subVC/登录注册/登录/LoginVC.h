@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LoginVC : BaseViewController
-
+/**
+ 换个新账号，带返回
+ */
+@property (nonatomic,assign)BOOL isChangeNewAccount;
 /**
  是否是Present进来的
  */

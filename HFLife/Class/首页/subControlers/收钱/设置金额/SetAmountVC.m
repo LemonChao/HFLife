@@ -110,7 +110,7 @@
     NSLog(@"数字 = %@",[self balanceFormatFromStr:self.amountTextField.text]);
     if ([self.amountDelegate respondsToSelector:@selector(SetAmountNumber:)]) {
         [self.amountDelegate SetAmountNumber:[self balanceFormatFromStr:self.amountTextField.text]];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 - (NSString *)balanceFormatFromStr:(NSString*)string
@@ -128,14 +128,5 @@
     return balanceStr;
     
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
