@@ -81,7 +81,7 @@
     //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
     //        self.navigationController.interactivePopGestureRecognizer.delegate =self;
     //    }
-    
+   
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -333,6 +333,8 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"网页导航加载完毕");
+    
+    
     [self.customNavBar setHidden:self.isNavigationHidden];
     //    //OC反馈给JS导航栏高度
     //    NSString *JSResult = [NSString stringWithFormat:@"getTabbarHeight('%@')",MMNSStringFormat(@"%f",self.navBarHeight)];
@@ -449,6 +451,18 @@
         [self goToPayParameter:message.body];
     }
     //goToHome
+}
+
+#pragma mark - OC调用JS方法
+- (void) evaluateJavaScript:(NSString *) JSMethod resultBlock:(void (^)(id _Nullable result))sucess{
+    //OC反馈给JS分享结果
+//    NSString *JSResult = [NSString stringWithFormat:@"shareResult('%@','%@','%@')",title,content,url];
+    
+    //OC调用JS
+    [self.webView evaluateJavaScript:JSMethod completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSLog(@"%@", error);
+        sucess(result);
+    }];
 }
 
 #pragma mark - JS调用OC方法
@@ -581,6 +595,14 @@
 }
 #pragma mark --银联商务调起支付宝支付---
 -(void)goToPayParameter:(NSDictionary *)dict{
+    
+    if ([dict isKindOfClass:[NSDictionary class]]) {
+        
+    }else {
+        [WXZTipView showCenterWithText:@"数据错误"];
+        return;
+    }
+    
     NSString *type = [NSString stringWithFormat:@"%@", dict[@"payType"] ? dict[@"payType"] : @""];
     NSString *payDataJsonStr = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict[@"pullPayInfo"] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
     
@@ -590,8 +612,16 @@
     else if ([type isEqualToString:@"1"]) {
         //支付宝
         //开启轮询订单
-//        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:orderId isHotel:YES idType:NO isNowPay:YES];
-        
+        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:[dict[@"orderId"] stringValue]   isHotel:dict[@"orderType"] idType:dict[@"payType"] isNowPay:YES];
+        [circleCheckOrderManger sharedInstence].searchOrderBlock = ^(NSDictionary * _Nonnull orderInfo) {
+            //查询支付结果
+            if (orderInfo) {
+                NSString *JSResult = [NSString stringWithFormat:@"gotoPaySucessPage('%@')",@"1"];
+                [self evaluateJavaScript:JSResult resultBlock:^(id  _Nullable result) {
+                    
+                }];
+            }
+        };
         [UMSPPPayUnifyPayPlugin payWithPayChannel:CHANNEL_ALIPAY payData:payDataJsonStr callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
             if ([resultCode isEqualToString:@"1003"]) {
                 NSLog(@"%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
@@ -636,6 +666,11 @@
             [WXZTipView showBottomWithText:@"您已取消微信支付" duration:2];
         }else if([noti.userInfo[@"type"] isEqualToString:@"0"]){
             [WXZTipView showBottomWithText:@"支付成功！" duration:1.5];
+            NSString *JSResult = [NSString stringWithFormat:@"gotoPaySucessPage('%@')",@"1"];
+            [self evaluateJavaScript:JSResult resultBlock:^(id  _Nullable result) {
+                
+            }];
+
         }else{
             [WXZTipView showBottomWithText:@"支付失败！" duration:1.5];
         }
