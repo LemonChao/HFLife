@@ -148,7 +148,7 @@
 /// 开始拖拽
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     // 防止拖动加速度太大,一次跳过多张图片,这里设置一下
-    scrollView.pagingEnabled = YES;
+    scrollView.pagingEnabled = NO;
     if (self.isAuto) {
         [self stop];
     }
@@ -186,12 +186,18 @@
         self.currentIndexPath = [NSIndexPath indexPathForRow:self.currentIndexPath.row - 1 inSection:self.currentIndexPath.section];
     }else if (velocity.x == 0) {
         //还有一种情况,当滑动后手指按住不放,然后松开,此时的加速度其实是为0的
-        [self adjustErrorCell:NO];
+//        [self adjustErrorCell:NO];
+        [self scrollToCenter];
     }
 }
 
 /// 开始减速
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    
+}
+
+/// 减速完成
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if(self.currentIndexPath != nil &&
        self.currentIndexPath.row < [self infactNumbers] &&
        self.currentIndexPath.row >= 0) {
@@ -207,19 +213,47 @@
                 self.currentIndexPath = [NSIndexPath indexPathForRow:[self infactNumbers] - 2 inSection:self.currentIndexPath.section];
             }
         }
-        [self.carouselView scrollToItemAtIndexPath:self.currentIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        
+        
+        
+        
+        //结束后 判断 位置 选择适当的时机显示 获取显示的cell
+        [self scrollToCenter];
+        
+        
+        
+//        [self.carouselView scrollToItemAtIndexPath:self.currentIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
     }
-}
-
-/// 减速完成
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     // 打开交互
     scrollView.pagingEnabled = NO;
     if(self.isAuto) {
         [self play];
     }
 }
+- (void) scrollToCenter{
+    NSArray <NSIndexPath *> *indexPaths = [self.carouselView indexPathsForVisibleItems];
+    NSLog(@"\n%@ \n%@",[self originIndexPath], indexPaths);
+    [self.carouselView scrollToItemAtIndexPath:indexPaths[1] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 
+    NSInteger index = indexPaths[1].row % 3 + 150;
+    NSIndexPath *scrollIndexP = [NSIndexPath indexPathForRow:index inSection:0];
+    self.currentIndexPath = scrollIndexP;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.carouselView scrollToItemAtIndexPath:scrollIndexP atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+        NSArray *dddd = [self.carouselView indexPathsForVisibleItems];
+        NSLog(@"indxPath = %@", dddd);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //回调滚动结束
+            if (self.delegate && [self.delegate respondsToSelector:@selector(CWCarousel:didEndScrollAtIndex:indexPathRow:)]) {
+                
+                [self.delegate CWCarousel:self didEndScrollAtIndex:[self caculateIndex:scrollIndexP.row] indexPathRow:scrollIndexP.row];
+            }
+        });
+        
+    });
+    
+//    [self adjustErrorCell:YES];
+}
 /// 滚动动画完成
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     // 滚动完成,打开交互,关掉pagingEnabled
@@ -232,20 +266,12 @@
     if (self.endless)
         [self checkOutofBounds];
     
-//    if(!self.endless)
-//    {
-//        CGFloat space = self.flowLayout.itemSpace_H + self.flowLayout.itemWidth * (1 - self.flowLayout.minScale) * 0.5;
-//        if(self.currentIndexPath.row == 0)
-//            self.carouselView.contentInset = UIEdgeInsetsMake(0, space, 0, 0);
-//        else if(self.currentIndexPath.row == [self numbers] - 1)
-//            self.carouselView.contentInset = UIEdgeInsetsMake(0, 0, 0, space);
-//        else
-//            self.carouselView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-//    }
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(CWCarousel:didEndScrollAtIndex:indexPathRow:)]) {
-        [self.delegate CWCarousel:self didEndScrollAtIndex:[self caculateIndex:self.currentIndexPath.row] indexPathRow:self.currentIndexPath.row];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(CWCarousel:didEndScrollAtIndex:indexPathRow:)]) {
+            [self.delegate CWCarousel:self didEndScrollAtIndex:[self caculateIndex:self.currentIndexPath.row] indexPathRow:self.currentIndexPath.row];
+        }
+    });
+    //回调
 }
 
 // 滚动中
@@ -379,6 +405,7 @@
         [self.carouselView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
         self.currentIndexPath = indexPath;
     }
+    
     [self performSelector:@selector(nextCell) withObject:nil afterDelay:self.autoTimInterval];
 }
 
@@ -478,6 +505,7 @@
         _carouselView.dataSource = self;
         _carouselView.translatesAutoresizingMaskIntoConstraints = NO;
         [_carouselView registerClass:[CWTempleteCell class] forCellWithReuseIdentifier:@"tempCell"];
+        _carouselView.pagingEnabled = NO;
         [self addSubview:_carouselView];
         
         NSDictionary *views = @{@"view" : self.carouselView};

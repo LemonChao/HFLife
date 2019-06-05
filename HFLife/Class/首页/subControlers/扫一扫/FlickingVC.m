@@ -281,6 +281,7 @@
                     if ([type integerValue] == 1) {
                         //去付款
                         payVC.payType = YES;
+                        payVC.payMoney = value[@"data"][@"set_money"];
                     }else if([type integerValue] == 2){
                         //我要收款  跳转到 输入金额 收款界面
                         payVC.payType = NO;

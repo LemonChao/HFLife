@@ -51,6 +51,12 @@
     [self setUpUI];
     [self setUpActions];
     [self versionUpdateRequest];
+    
+    //接收推送通知
+    [NOTIFICATION addObserver:self selector:@selector(getFQValue:) name:JPUSH_FQ object:nil];
+}
+- (void)getFQValue:(NSNotification *)notifi{
+    NSLog(@"%@", notifi.userInfo);
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

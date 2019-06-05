@@ -63,6 +63,12 @@
 }
 
 
+- (void)setFqValue:(NSDictionary *)fqValue{
+    _fqValue = fqValue;
+    self.collectionView.fqPrice = fqValue[@"bn_acc_ratio"];
+
+    self.collectionView.myFQ = Format([self getMoney:fqValue[@"bn_acc_ratio"] :fqValue[@"static_coin"]]);
+}
 
 
 - (void) getBannerData{

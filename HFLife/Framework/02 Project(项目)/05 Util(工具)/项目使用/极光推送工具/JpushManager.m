@@ -115,7 +115,32 @@ static JpushManager *manager = nil;
 //实现回调方法 networkDidReceiveMessage 自定义消息回调
 - (void)networkDidReceiveMessage:(NSNotification *)notification {
     NSDictionary * userInfo = [notification userInfo];
-    
+    NSLog(@"推送内容 ：%@", userInfo);
+    if ([userInfo isKindOfClass:[NSDictionary class]]) {
+        if ([userInfo valueForKey:@"type"]) {
+            NSInteger index = [userInfo[@"type"] integerValue];
+            if ([userInfo valueForKey:@"content"] && [[userInfo valueForKey:@"content"] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *content = [userInfo valueForKey:@"content"];
+                switch (index) {
+                    case 1:
+                        //1首页富权值
+                        [NOTIFICATION postNotificationName:JPUSH_FQ object:content];
+                        break;
+                    case 2:
+                        //2扫码提示
+                        [NOTIFICATION postNotificationName:JPUSH_SQCODE object:content];
+                        break;
+                    case 3:
+                        //3登录提示
+                        [NOTIFICATION postNotificationName:JPUSH_LOGIN object:content];
+                        break;
+                    default:
+                        break;
+                }
+            }
+           
+        }
+    }
     
     
     

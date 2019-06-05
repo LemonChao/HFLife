@@ -90,11 +90,13 @@
     
     self.saveCodeView2 = [[SXF_HF_saveCodeView2 alloc] initWithFrame:self.bounds];
     [self insertSubview:self.saveCodeView2 atIndex:0];
-    
-    
-    
-    
 }
+
+- (void)setOpenCell:(BOOL)openCell{
+    _openCell = openCell;
+    [self.tableView reloadData];
+}
+
 - (void)setPayType:(BOOL)payType{
     _payType = payType;
     if (payType) {
@@ -140,8 +142,13 @@
     }else{
         if (indexPath.section == 1) {
             cell.cellType = NO;
-            cell.userNameLb.text = [userInfoModel sharedUser].nickname;
-            [cell.userHeaderImageV sd_setImageWithURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar) placeholderImage:MY_IMAHE(@"user__easyico")];
+            cell.userNameLb.text = self.payUserDic[@"nickname"];
+            [cell.userHeaderImageV sd_setImageWithURL:MY_URL_IMG(self.payUserDic[@"photo"]) placeholderImage:MY_IMAHE(@"user__easyico")];
+            if (self.openCell) {
+                cell.contentView.hidden = YES;
+            }else{
+                cell.contentView.hidden = NO;
+            }
         }else{
             cell.cellType = YES;
             cell.titleLb.text = _titleArr[indexPath.section];
@@ -155,6 +162,13 @@
     !self.tabBtnCallback ? : self.tabBtnCallback(indexPath.section + 2);
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+        if (self.openCell) {
+            return 44;
+        }else{
+            return 0.01;
+        }
+    }
     return 44;
 }
 
