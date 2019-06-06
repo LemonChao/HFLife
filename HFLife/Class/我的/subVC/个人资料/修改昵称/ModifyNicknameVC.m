@@ -155,6 +155,17 @@
         [WXZTipView showCenterWithText:userNameTextField.placeholder];
         return;
     }
+    if ([self.type isEqualToString:@"年龄"]) {
+        if ((userNameTextField.text.length) > 3) {
+            [WXZTipView showCenterWithText:@"年龄不能大于三位数"];
+            return ;
+        }
+    }else {
+        if ((userNameTextField.text.length) > 5) {
+            [WXZTipView showCenterWithText:@"昵称不能大于5位数"];
+            return ;
+        }
+    }
     
     NSDictionary *parm = @{@"field":@"nickname",@"value":userNameTextField.text};
     
@@ -190,25 +201,6 @@
         }
     }];
     
-}
-
-#pragma mark - uitextField
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
-    if ([self.type isEqualToString:@"年龄"]) {
-        if ((textField.text.length + string.length) > 3 && string.length > 0) {
-            [WXZTipView showCenterWithText:@"年龄不能大于三位数"];
-            return NO;
-        }
-    }else {
-        if ((textField.text.length + string.length) > 5 && string.length > 0) {
-            [WXZTipView showCenterWithText:@"昵称不能大于5位数"];
-            return NO;
-        }
-    }
-    
-    return YES;
 }
 
 
