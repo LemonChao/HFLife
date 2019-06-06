@@ -57,6 +57,7 @@
             JMConfig *config = [JMConfig config];
             config.norTitleColor = HEX_COLOR(0xAAAAAA);
             config.selTitleColor = GeneralRedColor;
+            config.tabBarController = (JMTabBarController*)[UIApplication sharedApplication].keyWindow.rootViewController;//解决 ShopTabbarViewController 延迟释放
         }];
     }];
 
@@ -69,18 +70,9 @@
     // Do any additional setup after loading the view.
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES animated:animated];
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//    [self.navigationController setNavigationBarHidden:NO animated:animated];
-//}
-
 - (void)tabBar:(JMTabBar *)tabBar didSelectIndex:(NSInteger)selectIndex {
     self.selectedIndex = selectIndex;
 }
+
 
 @end

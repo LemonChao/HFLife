@@ -55,10 +55,6 @@
 }
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat offsetY = scrollView.contentOffset.y;
-
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 3;
@@ -114,7 +110,7 @@
         [_tableView registerClass:[ZCShopRuzhuCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopRuzhuCell class])];
         
         @weakify(self);
-        _tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        _tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             @strongify(self);
             [self getData];
         }];

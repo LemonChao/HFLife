@@ -48,7 +48,7 @@
 }
 
 
-- (void) addLodingView{
+- (void)addLodingView{
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
     self.mj_header = header;
     self.header = header;

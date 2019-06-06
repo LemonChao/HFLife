@@ -568,5 +568,8 @@ static BOOL IsUpdateRemind = YES;
     return image;
 }
 
+- (void)dealloc {
+    NSLog(@"%@ dealloc-----------", NSStringFromClass([self class]));
+}
 
 @end

@@ -8,7 +8,6 @@
 
 #import "ZCShopCartTableHeaderFooter.h"
 #import "ZCShopCartGuessLikeCell.h"
-#import "ZCShopCartPayResultVC.h"
 
 
 @interface ZCShopCartTableHeaderView ()
@@ -79,16 +78,11 @@
     return self;
 }
 
-- (void)emptyButtonAction:(UIButton *)button {
-    ZCShopCartPayResultVC *result = [[ZCShopCartPayResultVC alloc] init];
-    
-    [self.viewController.navigationController pushViewController:result animated:YES];
-}
 
 - (UIButton *)emptyButton {
     if (!_emptyButton) {
         _emptyButton = [UITool richButton:UIButtonTypeCustom title:@"购物车还是空的" titleColor:ImportantColor font:SystemFont(18) bgColor:[UIColor clearColor] image:image(@"shop_cart_empty")];
-        [_emptyButton addTarget:self action:@selector(emptyButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        _emptyButton.userInteractionEnabled = NO;
     }
     return _emptyButton;
 }
