@@ -65,3 +65,7 @@
 
 @implementation noticeModel
 @end
+
+@implementation payRecordModel
+@end
+

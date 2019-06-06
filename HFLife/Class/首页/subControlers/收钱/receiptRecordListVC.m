@@ -16,7 +16,9 @@
 @end
 
 @implementation receiptRecordListVC
-
+{
+    NSString *_currentDate;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavBar];
@@ -26,83 +28,46 @@
     [self.view addSubview:self.listView];
     
     WS(weakSelf);
-    self.listView.reloadData = ^(BOOL isUp) {
-        if (isUp) {
-            //上拉
-//            [weakSelf getListDataType:ListPullOnLoadingType];
-        }else{
-            //下拉
-//            [weakSelf getListDataType:ListDropdownRefreshType];
-        }
+   
+    self.listView.refreshData = ^(NSInteger page, NSString * _Nonnull dateStr) {
+        [weakSelf loadServerData:page date:dateStr];
     };
-    
-//    [self.listView.tableView beginRefreshing];
-    
-    
-    //假数据
-    NSMutableArray *arr = [NSMutableArray array];
-    for (int i = 0; i<10; i++) {
-        reciveModel *model = [[reciveModel alloc] init];
-        model.log_date = @"2019-05";
-        model.log_count = @(10);
-        model.log_date_amount = @(10);
-        subReciveModel *subModel = [[subReciveModel alloc] init];
-        subModel.real_num = @(100);
-        subModel.pay_username = @"sxf";
-        subModel.createdate = @"2019-06";
-        subModel.createtime = @"2019-09";
-        model.logModelArr = @[subModel, subModel,subModel, subModel,subModel, subModel,subModel, subModel,subModel, subModel];
-        [arr addObject:model];
-    }
-    self.listView.reciveModelArr = arr;
-    
 }
 
 
-/*
-- (void) getListDataType:(ListRequestDataType)requestType{
-    receiRecordNetApi *receiApi = [[receiRecordNetApi alloc] initWithParameter:@{}];
-    receiApi.requestDataType = requestType;
-    [receiApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        [self.listView.tableView endLoadMore];
-        [self.listView.tableView endUpdates];
-        [self deleteEmptyDataView];
-        receiRecordNetApi *receiRequest = (receiRecordNetApi *)request;
-        if ([receiRequest getCodeStatus]) {
-             [self.listView.tableView endRefreshing];
-            NSArray *array = [receiRequest getContent];
-            self.listModelArr = array.mutableCopy;
-            self.listView.reciveModelArr = self.listModelArr;
-            if (self.listModelArr.count == 0 &&
-                [receiApi.requestArgument[@"page"] integerValue] == 1) {
-                self.listView.hidden = YES;
-                [WXZTipView showCenterWithText:@"暂无数据"];
-                [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
-                    //数显数据
-                    [self getListDataType:ListDropdownRefreshType];
-                }];
-            }else{
-                self.listView.hidden = NO;
+- (void)loadServerData:(NSInteger)page date:(NSString *)date{
+    //收款数据
+    NSDictionary *param = @{
+                            @"month":date,
+                            @"page" : @(page),
+                            };
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:QrcodeGetMoneyCore withParameters:param withResultBlock:^(BOOL result, id value) {
+        [self.listView.tableView endRefreshData];
+        if (result){
+            if (value) {
+                if (value[@"data"][@"list"]) {
+                    NSArray *modelsArr = [HR_dataManagerTool getModelArrWithArr:value[@"data"][@"list"] withClass:[payRecordModel class]];
+                    if (page == 1) {
+                        [self.listModelArr removeAllObjects];
+                        self.listModelArr = [modelsArr mutableCopy];
+                        self.listView.dataSourceArr = self.listModelArr;
+                    }else{
+                        [self.listModelArr addObjectsFromArray:modelsArr];
+                        self.listView.dataSourceArr = self.listModelArr;
+                        if (modelsArr.count < 10) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                //必须先结束刷新 在改变此状态
+                                self.listView.tableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            });
+                            
+                        }
+                    }
+                }
             }
-        }else{
-            [WXZTipView showCenterWithText:@"暂无数据"];
-            self.listView.hidden = YES;
-            [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
-                //数显数据
-                [self getListDataType:ListDropdownRefreshType];
-            }];
         }
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-        [WXZTipView showCenterWithText:@"获取列表失败！"];
-        self.listView.hidden = YES;
-        [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
-            //数显数据
-            [self getListDataType:ListDropdownRefreshType];
-        }];
-    }];
-    
+    } witnVC:self];
 }
- */
+
 
 
 

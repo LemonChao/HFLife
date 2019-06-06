@@ -132,4 +132,16 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+
+//收款记录dmodel
+@interface payRecordModel : BaseModel
+@property (nonatomic, strong)NSNumber *real_num;
+@property (nonatomic, strong)NSString *tag;
+@property (nonatomic, strong)NSString *tag_remark;
+@property (nonatomic, strong)NSString *createdate;
+@property (nonatomic, strong)NSString *nickname;
+@property (nonatomic, strong)NSString *member_avatar;
+@end
+
+
 NS_ASSUME_NONNULL_END

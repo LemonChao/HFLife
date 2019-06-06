@@ -94,7 +94,13 @@
 
 - (void)setOpenCell:(BOOL)openCell{
     _openCell = openCell;
-    [self.tableView reloadData];
+    [self.tableView reloadSection:1 withRowAnimation:UITableViewRowAnimationFade];
+}
+
+
+- (void)setPayUserDic:(NSMutableDictionary *)payUserDic{
+    _payUserDic = payUserDic;
+    [self.tableView reloadSection:1 withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)setPayType:(BOOL)payType{
@@ -144,11 +150,10 @@
             cell.cellType = NO;
             cell.userNameLb.text = self.payUserDic[@"nickname"];
             [cell.userHeaderImageV sd_setImageWithURL:MY_URL_IMG(self.payUserDic[@"photo"]) placeholderImage:MY_IMAHE(@"user__easyico")];
-            if (self.openCell) {
-                cell.contentView.hidden = YES;
-            }else{
-                cell.contentView.hidden = NO;
+            if ([self.payUserDic valueForKey:@"pay_money"]) {
+                cell.payStatusLb.text = [NSString stringWithFormat:@"￥%@", self.payUserDic[@"pay_money"]];
             }
+            cell.hidden = !self.openCell;
         }else{
             cell.cellType = YES;
             cell.titleLb.text = _titleArr[indexPath.section];
@@ -162,11 +167,13 @@
     !self.tabBtnCallback ? : self.tabBtnCallback(indexPath.section + 2);
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
-        if (self.openCell) {
-            return 44;
-        }else{
-            return 0.01;
+    if (self.payType) {
+        if (indexPath.section == 1) {
+            if (self.openCell) {
+                return 44;
+            }else{
+                return 0.01;
+            }
         }
     }
     return 44;

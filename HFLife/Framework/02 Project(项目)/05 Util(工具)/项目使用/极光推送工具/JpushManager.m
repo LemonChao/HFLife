@@ -116,29 +116,32 @@ static JpushManager *manager = nil;
 - (void)networkDidReceiveMessage:(NSNotification *)notification {
     NSDictionary * userInfo = [notification userInfo];
     NSLog(@"推送内容 ：%@", userInfo);
-    if ([userInfo isKindOfClass:[NSDictionary class]]) {
-        if ([userInfo valueForKey:@"type"]) {
-            NSInteger index = [userInfo[@"type"] integerValue];
-            if ([userInfo valueForKey:@"content"] && [[userInfo valueForKey:@"content"] isKindOfClass:[NSDictionary class]]) {
-                NSDictionary *content = [userInfo valueForKey:@"content"];
-                switch (index) {
-                    case 1:
-                        //1首页富权值
-                        [NOTIFICATION postNotificationName:JPUSH_FQ object:content];
-                        break;
-                    case 2:
-                        //2扫码提示
-                        [NOTIFICATION postNotificationName:JPUSH_SQCODE object:content];
-                        break;
-                    case 3:
-                        //3登录提示
-                        [NOTIFICATION postNotificationName:JPUSH_LOGIN object:content];
-                        break;
-                    default:
-                        break;
-                }
-            }
-           
+    if ([userInfo valueForKey:@"content"]) {
+        NSString *str = [userInfo valueForKey:@"content"];
+        NSDictionary *contentDict;
+        if (str) {
+            contentDict  = [HR_dataManagerTool dataToJson:str];
+        }
+        NSInteger index = [contentDict[@"type"] integerValue];
+        switch (index) {
+            case 1:
+                //1首页富权值
+                [NOTIFICATION postNotificationName:JPUSH_FQ object:contentDict];
+                break;
+            case 2:
+                //2扫码提示
+                [NOTIFICATION postNotificationName:JPUSH_SQCODE object:contentDict];
+                break;
+            case 3:
+                //3登录提示
+                [NOTIFICATION postNotificationName:JPUSH_LOGIN object:contentDict];
+                break;
+            case 4:
+                //4扫码支付成功
+                [NOTIFICATION postNotificationName:JPUSH_SQCODE object:contentDict];
+                break;
+            default:
+                break;
         }
     }
     
@@ -155,7 +158,7 @@ static JpushManager *manager = nil;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)sourceUrl, &soundID);
     AudioServicesPlayAlertSound(soundID);
     
-    [CustomPromptBox showTextHud:[NSString stringWithFormat:@"我是自定义消息  %@", content]];
+//    [CustomPromptBox showTextHud:[NSString stringWithFormat:@"我是自定义消息  %@", content]];
 }
 //如果delegate 设置为当前类 那么 可在这里注册
 

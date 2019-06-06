@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SXF_HF_getMoneyCellTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
 @property (weak, nonatomic) IBOutlet UIImageView *titltImageV;
+@property (weak, nonatomic) IBOutlet UILabel *payStatusLb;
 
 @property (weak, nonatomic) IBOutlet UIImageView *userHeaderImageV;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLb;

@@ -78,8 +78,10 @@ static NSString *const GoToPay                                  = @"ceshi-ucente
  */
 static NSString *const TradingDetail                           = @"ceshi-ucenter.hfgld.net/api/member_coin/tradingDetail";
 
-
-
+/**
+ 
+ */
+static NSString *const QrcodeGetMoneyCore                      = @"ceshi-ucenter.hfgld.net/api/Finance/qrcodeGetMoneyCore";
 /************************subUrl************************/
 
 static NSString *const shareUrl             = @"https://www.hfgld.net/app_html/registered/registered.html?invite_code=%@";

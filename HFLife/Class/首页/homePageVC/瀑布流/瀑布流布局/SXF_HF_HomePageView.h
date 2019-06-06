@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSString *myFQ;
 @property (nonatomic, strong)NSNumber *fqPrice;
 @property (nonatomic, strong)NSNumber *peopleNum;
-
+@property (nonatomic, assign)MJRefreshState state;
 - (void) endRefreshData;
 
 

@@ -12,9 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface receiptRecordListView : UIView
 
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) baseTableView *tableView;
+
+//改版后会使用
 @property (nonatomic , strong) NSArray <reciveModel *>*reciveModelArr;
-@property (nonatomic ,strong) void (^reloadData)(BOOL isUp);
+@property (nonatomic, strong)void(^refreshData)(NSInteger page, NSString *dateStr);
+
+@property (nonatomic, strong)NSArray <payRecordModel *>*dataSourceArr;
 @end
 
 NS_ASSUME_NONNULL_END
