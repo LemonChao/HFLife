@@ -471,7 +471,7 @@
 
 #pragma mark - JS调用OC方法
 #pragma mark - 拨打电话
--(void)CallParameter:(NSString *)dict{
+-(void)CallParameter:(NSDictionary *)dict{
     NSString *str = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
