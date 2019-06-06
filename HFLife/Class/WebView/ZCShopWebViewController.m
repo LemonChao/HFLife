@@ -425,7 +425,6 @@
         if (result || pollingCount >= 4) {
             [self handlePayResultL:result ? @"0000" : @"2001" info:@"订单处理中"];
             
-//            [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
         }else {
             pollingCount++;
             [self performSelector:@selector(pollingOrderResult:) withObject:orderId afterDelay:2.f];
