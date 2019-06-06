@@ -808,6 +808,7 @@
 		65DC6892221A6C9700F1085E /* luxian2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DC688F221A6C9700F1085E /* luxian2x.png */; };
 		65DC6893221A6C9700F1085E /* luxian.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DC6890221A6C9700F1085E /* luxian.png */; };
 		65DC6894221A6C9700F1085E /* luxian@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DC6891221A6C9700F1085E /* luxian@3x.png */; };
+		6C01623822A8BBF400DCB03F /* WeakWebViewScriptMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C01623722A8BBF300DCB03F /* WeakWebViewScriptMessageDelegate.m */; };
 		6C0A93172289212D0090623B /* ZCShopClassifyLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A93162289212D0090623B /* ZCShopClassifyLeftCell.m */; };
 		6C0A931B228929A10090623B /* ZC_HF_ClassifyRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A931A228929A10090623B /* ZC_HF_ClassifyRightVC.m */; };
 		6C0A931E228948E40090623B /* ZCShopClassifyRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A931D228948E40090623B /* ZCShopClassifyRightCell.m */; };
@@ -2378,6 +2379,8 @@
 		65DC688F221A6C9700F1085E /* luxian2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luxian2x.png; sourceTree = "<group>"; };
 		65DC6890221A6C9700F1085E /* luxian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luxian.png; sourceTree = "<group>"; };
 		65DC6891221A6C9700F1085E /* luxian@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "luxian@3x.png"; sourceTree = "<group>"; };
+		6C01623622A8BBF300DCB03F /* WeakWebViewScriptMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakWebViewScriptMessageDelegate.h; sourceTree = "<group>"; };
+		6C01623722A8BBF300DCB03F /* WeakWebViewScriptMessageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeakWebViewScriptMessageDelegate.m; sourceTree = "<group>"; };
 		6C0A93152289212D0090623B /* ZCShopClassifyLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCShopClassifyLeftCell.h; sourceTree = "<group>"; };
 		6C0A93162289212D0090623B /* ZCShopClassifyLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCShopClassifyLeftCell.m; sourceTree = "<group>"; };
 		6C0A9319228929A10090623B /* ZC_HF_ClassifyRightVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZC_HF_ClassifyRightVC.h; sourceTree = "<group>"; };
@@ -5247,6 +5250,8 @@
 				04B9D4FF22803CF10084FA23 /* WKWebViewController.m */,
 				6C611912229CD340005597AD /* ZCShopWebViewController.h */,
 				6C611913229CD340005597AD /* ZCShopWebViewController.m */,
+				6C01623622A8BBF300DCB03F /* WeakWebViewScriptMessageDelegate.h */,
+				6C01623722A8BBF300DCB03F /* WeakWebViewScriptMessageDelegate.m */,
 				04B9D50B22803CF10084FA23 /* WebViewController.h */,
 				04B9D50022803CF10084FA23 /* WebViewController.m */,
 				04B9D50122803CF10084FA23 /* STMURLCache */,
@@ -8173,6 +8178,7 @@
 				048DABE122856C52006E6BA2 /* PaymentListVC.m in Sources */,
 				04B9D54022803CF20084FA23 /* WKWebViewController.m in Sources */,
 				6CCAD70B2282E4E8001824A0 /* UIView+BadgeValue.m in Sources */,
+				6C01623822A8BBF400DCB03F /* WeakWebViewScriptMessageDelegate.m in Sources */,
 				04A50870227EDD3A0013E8EC /* ChameleonConstants.m in Sources */,
 				658B7C4021D749E100801CC8 /* NSString+Helper.m in Sources */,
 				658C39E321E9FA5B00880B6A /* JXCategoryImageCellModel.m in Sources */,

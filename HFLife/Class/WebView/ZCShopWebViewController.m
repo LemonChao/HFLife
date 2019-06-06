@@ -15,11 +15,11 @@
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "UMSPPPayUnifyPayPlugin.h"
 #import <AFURLResponseSerialization.h>
+#import "WeakWebViewScriptMessageDelegate.h"
 
 @interface ZCShopWebViewController ()<WKUIDelegate,WKScriptMessageHandler,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,WKNavigationDelegate,UIGestureRecognizerDelegate>
 {
     UIImagePickerController *imagePickerController;
-    UIView *maskView;
     
 }
 @property(nonatomic, strong)WKWebView *webView;
@@ -61,11 +61,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.webView];
-    maskView = [UIView new];
-    [self.view addSubview:maskView];
-    [maskView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.view);
-    }];
     
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.customNavBar.mas_bottom).priority(1000);
@@ -115,30 +110,6 @@
     }else{
         [self loadFailed];
     }
-}
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (self.isNavigationHidden&&self.isHidenLeft==NO) {
-        if(scrollView.contentOffset.y <= 0){
-            self.customNavBar.title = @"";
-            [self.customNavBar wr_setBackgroundAlpha:0];
-            [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-            return;
-        }
-        //移动的百分比
-        CGFloat ratioY = scrollView.contentOffset.y / (self.navBarHeight ); // y轴上移动的百分比
-        if(ratioY > 1) {
-            self.customNavBar.title = _webTitle;
-            [self.customNavBar wr_setBackgroundAlpha:1];
-            [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-            return;
-        }
-        [self.customNavBar wr_setBackgroundAlpha:ratioY];
-    }
-
-}
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer{
-    return NO;
 }
 #pragma mark - WKWebView代理
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
@@ -202,10 +173,7 @@
     //message.boby就是JS里传过来的参数
     NSLog(@"body:%@",message.body);
     if ([message.name isEqualToString:@"Call"]) {
-        //        [self ShareWithInformation:message.body];
         [self CallParameter:message.body];
-    }else if ([message.name isEqualToString:@"Camera"]) {
-        [self camera];
     }else if ([message.name isEqualToString:@"getStatus"]){
         [self getStatusParameter:message.body];
     }else if ([message.name isEqualToString:@"getAddress"]){
@@ -230,20 +198,18 @@
         [self goBackToShopHome];
     }else if ([message.name isEqualToString:@"goToHome"]){
         [self goBack:message.body];
-    }else if ([message.name isEqualToString:@"Share"]){
-        
     }
 }
 
 #pragma mark - JS调用OC方法
-#pragma mark - 拨打电话
+#pragma mark -拨打电话
 -(void)CallParameter:(NSDictionary *)dict{
     NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
     UIWebView * callWebview = [[UIWebView alloc] init];
     [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
     [self.view addSubview:callWebview];
 }
-#pragma mark - 网络数据是否请求成功
+#pragma mark -网络数据是否请求成功
 -(void)getStatusParameter:(NSDictionary *)dict{
     NSString *isSuccess = MMNSStringFormat(@"%@",dict[@"status"]);
     if ([isSuccess isEqualToString:@"1"]) {
@@ -256,15 +222,15 @@
 }
 #pragma mark -获取地理位置
 -(void)getAddressParameter:(NSDictionary *)dict{
-    MapViewController *map = [[MapViewController alloc]init];
-    CLLocationCoordinate2D gaocoor;
-    gaocoor.latitude = [MMNSStringFormat(@"%@",dict[@"latitude"]) floatValue];
-    gaocoor.longitude = [MMNSStringFormat(@"%@",dict[@"longitude"]) floatValue];
-    CLLocationCoordinate2D coor = [JZLocationConverter bd09ToGcj02:gaocoor];
-    map.latitude = coor.latitude;
-    map.longitude = coor.longitude;
-    map.isMark = YES;
-    [self.navigationController pushViewController:map animated:YES];
+//    MapViewController *map = [[MapViewController alloc]init];
+//    CLLocationCoordinate2D gaocoor;
+//    gaocoor.latitude = [MMNSStringFormat(@"%@",dict[@"latitude"]) floatValue];
+//    gaocoor.longitude = [MMNSStringFormat(@"%@",dict[@"longitude"]) floatValue];
+//    CLLocationCoordinate2D coor = [JZLocationConverter bd09ToGcj02:gaocoor];
+//    map.latitude = coor.latitude;
+//    map.longitude = coor.longitude;
+//    map.isMark = YES;
+//    [self.navigationController pushViewController:map animated:YES];
 }
 #pragma mark -参数跳转
 -(void)getNearParameter:(NSDictionary *)dict{
@@ -317,7 +283,7 @@
     vc.dataParameter = dict[@"data"];
     [self.navigationController pushViewController:vc animated:YES];
 }
-#pragma mark - 返回--
+#pragma mark -返回--
 - (void)goBack:(NSString *)body{
     if (body.integerValue == 0) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -349,8 +315,6 @@
 -(void)rushBuyParameter:(NSDictionary *)dict{
     NSLog(@"dict = %@",dict);
     if ([NSString isNOTNull:[HeaderToken getAccessToken]]) {
-        //        [[NSNotificationCenter defaultCenter] postNotificationName:LOG_BACK_IN object:nil userInfo:nil];
-        //        return;
     }
 }
 #pragma mark -酒店预定(抢购)--
@@ -364,8 +328,6 @@
 #pragma mark --提交订单---
 -(void)submitOrderParameter:(NSDictionary *)dict{
     if ([NSString isNOTNull:[HeaderToken getAccessToken]]) {
-        //        [[NSNotificationCenter defaultCenter] postNotificationName:LOG_BACK_IN object:nil userInfo:nil];
-        //        return;
     }
     NSLog(@"dict = %@",dict);
     NSString *mobile = dict[@"mobile"];
@@ -404,17 +366,12 @@
         //开启轮询订单
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pollingOrderResult:) name:UIApplicationWillEnterForegroundNotification object:@""];
         
-//        __weak typeof(self) weak_self = self;
-        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification
-                                                          object:nil
-                                                           queue:[NSOperationQueue mainQueue]
-                                                      usingBlock:^(NSNotification *note) {
-                                                          [self pollingOrderResult:dict[@"orderId"]];
-                                                      }];
+        __weak typeof(self) weak_self = self;
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+            [weak_self pollingOrderResult:dict[@"orderId"]];
+        }];
         [UMSPPPayUnifyPayPlugin payWithPayChannel:CHANNEL_ALIPAY payData:payDataJsonStr callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
-            if ([resultCode isEqualToString:@"1003"]) {
-                NSLog(@"%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
-            }
+            // will not invoked
         }];
     }
     else if ([type isEqualToString:@"2"]) { //微信
@@ -434,9 +391,20 @@
     }
 }
 
+/**
+ 处理支付结果
+ 0000 支付成功
+ 1000 用户取消支付
+ 1001 参数错误
+ 1002 网络连接错误
+ 1003 支付客户端未安装
+ 2001 订单处理中，支付结果未知(有可能已经支付成功)，请通过后台接口查询订单状态
+ 2002 订单号重复
+ 2003 订单支付失败
+ 9999 其他支付错误
+ */
 -(void)handlePayResultL:(NSString *)resultCode info:(NSString *)resultInfo { //1000 取消 0000支付成功
     
-//    NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:[resultInfo dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
     if ([resultCode isEqualToString:@"0000"]) {
         [self.webView evaluateJavaScript:@"payState('success')" completionHandler:nil];
     }else {
@@ -451,95 +419,34 @@
 }
 
 
-
-////微信支付回调
-//- (void)wxPayCallback:(NSNotification *)noti{
-//    NSLog(@"%@", noti.userInfo);
-//
-//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//        if ([noti.userInfo[@"type"] isEqualToString:@"-2"]) {
-//            [WXZTipView showBottomWithText:@"您已取消微信支付" duration:2];
-//        }else if([noti.userInfo[@"type"] isEqualToString:@"0"]){
-//            [WXZTipView showBottomWithText:@"支付成功！" duration:1.5];
-//        }else{
-//            [WXZTipView showBottomWithText:@"支付失败！" duration:1.5];
-//        }
-//    }];
-//    //释放通知
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wxPay" object:nil];
-//}
-
 - (void)pollingOrderResult:(NSString *)orderId {
     static NSInteger pollingCount = 0;
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:balancePay withParameters:@{@"pay_sn":orderId} withResultBlock:^(BOOL result, id value) {
+    @weakify(self);
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:pollingOrderState withParameters:@{@"pay_sn":orderId} withResultBlock:^(BOOL result, id value) {
+        @strongify(self);
         if (result || pollingCount >= 4) {
+            [self handlePayResultL:result ? @"0000" : @"2001" info:@"订单处理中"];
+            
 //            [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
         }else {
             pollingCount++;
             [self performSelector:@selector(pollingOrderResult:) withObject:orderId afterDelay:2.f];
         }
-        
     }];
-    
-    
-}
-
-
-
-- (void)ShareWithInformation:(NSDictionary *)dic
-{
-    if (![dic isKindOfClass:[NSDictionary class]]) {
-        return;
-    }
-    
-    NSString *title = [dic objectForKey:@"title"];
-    NSString *content = [dic objectForKey:@"content"];
-    NSString *url = [dic objectForKey:@"url"];
-    
-    //在这里写分享操作的代码
-    NSLog(@"要分享了哦😯");
-    
-    //OC反馈给JS分享结果
-    NSString *JSResult = [NSString stringWithFormat:@"shareResult('%@','%@','%@')",title,content,url];
-    
-    //OC调用JS
-    [self.webView evaluateJavaScript:JSResult completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        NSLog(@"%@", error);
-    }];
-}
-
-- (void)camera{
-    NSLog(@"调用");
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-- (UIImage*)createImageWithColor: (UIColor*) color{
-    CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return theImage;
-    
-}
+
 #pragma mark ==加载失败
 -(void)loadFailed{
-    [[WBPCreate sharedInstance]hideAnimated];
-    maskView.hidden = YES;
-    //    [self initEmptyDataViewbelowSubview:self.customNavBar touchBlock:^{
-    //        NSLog(@"123456");
-    //        [self loadWKwebViewData];
-    //    }];
+    [[WBPCreate sharedInstance] hideAnimated];
 }
 #pragma mark ==加载成功
 -(void)loadSuccess{
-    [[WBPCreate sharedInstance]hideAnimated];
-    maskView.hidden = YES;
-    //    [self deleteEmptyDataView];
+    [[WBPCreate sharedInstance] hideAnimated];
 }
 - (NSArray *)stringToJSON:(NSString *)jsonStr {
     if (jsonStr) {
@@ -573,13 +480,9 @@
         // 解析错误
         return nil;
     }
-    
 }
 -(void)refreshWebView{
     [self loadWKwebViewData];
-}
--(void)setTitleColor:(UIColor *)titleColor{
-    
 }
 
 #pragma mark - setter && getter
@@ -588,12 +491,12 @@
     if (!_webView) {
         
         WKUserContentController * wkUController = [[WKUserContentController alloc] init];
-//        WeakWebViewScriptMessageDelegate *weakScriptMessageDelegate = [[WeakWebViewScriptMessageDelegate alloc] initWithDelegate:self];
+        WeakWebViewScriptMessageDelegate *weakScriptMessageDelegate = [[WeakWebViewScriptMessageDelegate alloc] initWithDelegate:self];
         //注册一个name为jsToOcNoPrams的js方法 设置处理接收JS方法的对象
-        [wkUController addScriptMessageHandler:self name:@"goToHome"];
-        [wkUController addScriptMessageHandler:self name:@"goBackToShopHome"];// 返回到商城首页
-        [wkUController addScriptMessageHandler:self name:@"goPay"];// 商城确认支付按钮
-        [wkUController addScriptMessageHandler:self name:@"logout"];
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goToHome"];//H5返回按钮事件
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goBackToShopHome"];// 返回到商城首页
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goPay"];// 商城确认支付按钮
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"logout"];
 
         WKPreferences *preferences = [WKPreferences new];
         preferences.javaScriptCanOpenWindowsAutomatically = YES;
@@ -636,6 +539,10 @@
         _webView.allowsLinkPreview = NO;
     }
     return _webView;
+}
+
+- (void)dealloc {
+    NSLog(@"%@ dealloc-----------", NSStringFromClass([self class]));
 }
 
 

@@ -11,14 +11,27 @@
 /**
  *  支付渠道
  *
- *  @param CHANNEL_WEIXIN   微信支付
- *  @param CHANNEL_ALIPAY  支付宝支付
- *  @param CHANNEL_UMSPAY 全民付移动支付
+ *  CHANNEL_WEIXIN   微信支付
+ *  CHANNEL_ALIPAY  支付宝支付
+ *  CHANNEL_UMSPAY 全民付移动支付
  */
 FOUNDATION_EXTERN NSString *const CHANNEL_WEIXIN;
 FOUNDATION_EXTERN NSString *const CHANNEL_ALIPAY;
 FOUNDATION_EXTERN NSString *const CHANNEL_UMSPAY;
 
+/**
+ 支付结果回调
+ resultCode:
+ 0000 支付成功
+ 1000 用户取消支付
+ 1001 参数错误
+ 1002 网络连接错误
+ 1003 支付客户端未安装
+ 2001 订单处理中，支付结果未知(有可能已经支付成功)，请通过后台接口查询订单状态
+ 2002 订单号重复
+ 2003 订单支付失败
+ 9999 其他支付错误
+ */
 typedef void(^TransactionResultBlock)(NSString *resultCode,  NSString *resultInfo);
 
 @interface UMSPPPayUnifyPayPlugin : NSObject

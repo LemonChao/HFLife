@@ -50,7 +50,7 @@
 // 商城-订单中心-首页
 #define shopOrderCenterHome shopUrl(@"w=member_index")
 
-//余额支付
-#define balancePay          shopUrl(@"w=member_payment&t=balance_pay")
+//支付宝轮询订单状态
+#define pollingOrderState   shopUrl(@"w=pay_state&t=index")
 
 #endif /* Header_ZC_h */
