@@ -24,14 +24,14 @@
 
 @implementation SXF_HF_TimeSelectedView
 {NSMutableArray *_yearArrM;NSMutableArray *_monthArrM;}
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [self addChildrenViews];
-    }
-    return self;
-}
+//- (instancetype)init
+//{
+//    self = [super init];
+//    if (self) {
+//        [self addChildrenViews];
+//    }
+//    return self;
+//}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -47,7 +47,7 @@
     for (int i = 0; i<60; i++) {
         [_yearArrM addObject:[NSString stringWithFormat:@"%d", 1989 + i]];
         if (i < 12) {
-            [_monthArrM addObject:[NSString stringWithFormat:@"%d", 1 + i]];
+            [_monthArrM addObject:[NSString stringWithFormat:@"%02d", 1 + i]];
         }
     }
 //    NSLog(@"%@--%@", _yearArrM, _monthArrM);
@@ -86,6 +86,28 @@
     self.monthTitle.text = @"月";
     self.topTitleLb.text = @"选择您要查询的时间";
     self.meddilLineView.backgroundColor = HEX_COLOR(0xCA1400);
+    
+    
+    //滚动到当前年月日
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM"];
+        NSString *destDateString = [dateFormatter stringFromDate:[NSDate date]];
+        NSArray *arrM = [destDateString componentsSeparatedByString:@"-"];
+        
+        
+        
+        NSInteger yearIndex = [self->_yearArrM indexOfObject:arrM[0]];
+        NSInteger monthIndex = [self->_monthArrM indexOfObject:arrM[1]];
+        
+        [self.timePickerView selectRow:yearIndex inComponent:0 animated:NO];
+        [self.timePickerView selectRow:monthIndex inComponent:1 animated:NO];
+        
+        [self pickerView:self.timePickerView didSelectRow:yearIndex inComponent:0];
+        [self pickerView:self.timePickerView didSelectRow:monthIndex inComponent:1];
+    });
+    
+    
     
 }
 - (void) clickBtn{
@@ -221,8 +243,12 @@
 }
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated{
     
+    
+    
 }
 // 传入行和列下标，选择控制器会滚动到相应视图， 并使其展示在中间。
+
+/*
 - (NSInteger)selectedRowInComponent:(NSInteger)component{
     if (component == 0) {
         NSDate *  senddate=[NSDate date];
@@ -234,9 +260,9 @@
         return 0;
     }
 }
+ 
+ */
 //显示的标题字体、颜色等属性
-
-
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
     
     NSString *str = @"";

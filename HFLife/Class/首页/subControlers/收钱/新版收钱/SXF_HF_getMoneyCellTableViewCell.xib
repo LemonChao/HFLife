@@ -114,6 +114,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="firstCellView" destination="EE3-g6-cVc" id="Vyb-gT-zSA"/>
+                <outlet property="payStatusLb" destination="W8m-nx-lY2" id="ddo-jd-GpW"/>
                 <outlet property="secondCellView" destination="2sL-tW-bzC" id="xPY-4O-Nh5"/>
                 <outlet property="titleLb" destination="Mfe-nr-kUz" id="7MV-5d-kqi"/>
                 <outlet property="titltImageV" destination="fZo-R8-0Uv" id="FF2-wU-7aL"/>

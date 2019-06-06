@@ -225,7 +225,10 @@ static NSString * const footerReuseIdentifier = @"Footer";
     self.tableHeader.myFQ = myFQ;
 }
 
-
+- (void)setState:(MJRefreshState)state{
+    _state = state;
+    self.collectionView.mj_footer.state = state;
+}
 
 
 #pragma mark <UICollectionViewDataSource>

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface receiptRecordListCell : UITableViewCell
-- (void) setDataForCell:(subReciveModel *) model;
+- (void) setDataForCell:(payRecordModel *) model;
 @end
 
 NS_ASSUME_NONNULL_END

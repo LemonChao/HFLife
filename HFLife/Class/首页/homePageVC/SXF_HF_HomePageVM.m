@@ -128,8 +128,19 @@
                     self.newsListArrM = [newsModels mutableCopy];
                 }else{
                     [self.newsListArrM addObjectsFromArray:newsModels];
+                    if (newsModels.count == 0) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            //必须先结束刷新 在改变此状态
+                            self.collectionView.state = MJRefreshStateNoMoreData;
+                        });
+                    }
                 }
                 self.collectionView.newsListModelArr = [self.newsListArrM copy];
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //必须先结束刷新 在改变此状态
+                    self.collectionView.state = MJRefreshStateNoMoreData;
+                });
             }
         }
     }];

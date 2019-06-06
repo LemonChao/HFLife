@@ -35,8 +35,19 @@
 }
 - (void) getMoneyNoti:(NSNotification *)noti{
     NSLog(@"收钱通知 %@", noti);
-    self.getMoneyView.payUserDic = noti.userInfo;
-    self.getMoneyView.openCell = YES;
+    
+    if ([noti.object[@"type"] integerValue] == 4) {
+        //说明是支付成功通知
+        self.getMoneyView.openCell = YES;
+        [self.getMoneyView.payUserDic setValue:noti.object[@"content"][@"pay_money"] forKey:@"pay_money"];
+        self.getMoneyView.payUserDic = self.getMoneyView.payUserDic;
+        [WXZTipView showBottomWithText:@"支付成功"];
+    }else{
+        NSDictionary *content = noti.object[@"content"];
+        self.getMoneyView.payUserDic = content;
+        self.getMoneyView.openCell = YES;
+    }
+    
 }
 - (void)loadServerData{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
@@ -155,7 +166,10 @@
         }];
     }];
 }
-
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [NOTIFICATION removeObserver:self name:JPUSH_SQCODE object:nil];
+}
 #pragma mark 代理
 -(void)SetAmountNumber:(NSString *)amount{
     [self.getMoneyView setDataForView:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[userInfoModel sharedUser].ID) publicKey:AMOUNTRSAPRIVATEKEY] type:YES];

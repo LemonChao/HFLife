@@ -29,7 +29,12 @@
     if ([data isKindOfClass:[NSDictionary class]]) {
         return data;
     }
-    NSString *str=[[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *str;
+    if ([data isKindOfClass:[NSString class]]) {
+        str = data;
+    }else if ([data isKindOfClass:[NSData class]]){
+        str = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    }
     NSData *JSONData = [str dataUsingEncoding:NSUTF8StringEncoding];
 
     NSDictionary *dictionary = [HR_dataManagerTool checkJsonWithJsonData:JSONData withEcodingStr:str];

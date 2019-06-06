@@ -54,18 +54,12 @@
     self.headerImageV.backgroundColor = colorAAAAAA;
 }
 
-- (void) setDataForCell:(subReciveModel *) model{
-    self.nameLb.text = @"";
-    if (model.pay_username.length > 0) {
-        self.nameLb.text = model.pay_username;//[model.pay_username stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"*"];
-    }
-    
-    self.timeLb.text = model.createtime;
+- (void) setDataForCell:(payRecordModel *) model{
+    self.nameLb.text = model.nickname;
+    self.timeLb.text = model.createdate;
     self.moneyLb.text = [NSString stringWithFormat:@"%@", model.real_num ? model.real_num : @(0)];
-    
-    self.typeLb.text = @"银联";
-    self.nameLb.text = @"小可爱";
-    self.subTitleLb.text = @"其他";
+    self.typeLb.text = model.tag;
+    self.subTitleLb.text = model.tag_remark;
 }
 
 - (void)layoutSubviews{

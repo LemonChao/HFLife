@@ -57,6 +57,7 @@
 }
 - (void)getFQValue:(NSNotification *)notifi{
     NSLog(@"%@", notifi.userInfo);
+    self.homePageVM.fqValue = notifi.object[@"content"];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

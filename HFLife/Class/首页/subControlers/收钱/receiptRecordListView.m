@@ -13,6 +13,7 @@
 #import "UITableView+Refresh.h"
 @interface receiptRecordListView()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong)NSString *currentDate;
 
 @end
 
@@ -38,56 +39,78 @@
 }
 - (void) addChilrenViews{
     [self addSubview:self.tableView];
-    [self.tableView beginRefreshing];
+    
     WS(weakSelf);
-    [self.tableView refreshingData:^{
-        !weakSelf.reloadData ? : weakSelf.reloadData(NO);//下拉
-    }];
     
     
-    [self.tableView loadMoreDada:^{
-        !weakSelf.reloadData ? : weakSelf.reloadData(YES);//上拉
-    }];
+    
+    
+    //获取当前日期
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM"];
+    NSString *destDateString = [dateFormatter stringFromDate:[NSDate date]];
+    self.currentDate = destDateString;
+    
+    
+    
+    
+    self.tableView.refreshHeaderBlock = ^{
+        //上拉
+        !weakSelf.refreshData ? : weakSelf.refreshData(weakSelf.tableView.page, weakSelf.currentDate );
+    };
+    
+    self.tableView.refreshFooterBlock = ^{
+       //下拉
+       !weakSelf.refreshData ? : weakSelf.refreshData(weakSelf.tableView.page, weakSelf.currentDate);
+    };
+    [self.tableView beginRefreshing];
 }
 
 
 
+- (void)chooseTime:(UIButton *)sender{
+    [SXF_HF_AlertView showTimeSlecterAlertComplete:^(NSString * _Nonnull year, NSString * _Nonnull month) {
+        //拼接
+        NSString *dateStr = [NSString stringWithFormat:@"%@-%@", year, month];
+        self.currentDate = dateStr;
+        [self.tableView beginRefreshing];
+    }];
+}
 
-
+- (void)setDataSourceArr:(NSArray<payRecordModel *> *)dataSourceArr{
+    _dataSourceArr = dataSourceArr;
+    [self.tableView reloadData];
+}
 
 - (void)setReciveModelArr:(NSArray<reciveModel *> *)reciveModelArr{
     _reciveModelArr = reciveModelArr;
     
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.reciveModelArr.count;
+    return 1;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    reciveModel *model = self.reciveModelArr[section];
-    if ([model.log_count integerValue] > 0) {
-        return self.reciveModelArr[section].logModelArr.count;
-    }
-    return 0;
+//    reciveModel *model = self.reciveModelArr[section];
+//    if ([model.log_count integerValue] > 0) {
+//        return self.data[section].logModelArr.count;
+//    }
+    return self.dataSourceArr.count;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell *anyCell;
-    reciveModel *model = self.reciveModelArr[indexPath.section];
-//    if (indexPath.row == 0) {
-//        receiptRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([receiptRecordCell class]) forIndexPath:indexPath];
-//        [cell setDataForCell:model];
-//        anyCell = cell;
-//    }else
     {
         receiptRecordListCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([receiptRecordListCell class]) forIndexPath:indexPath];
-        subReciveModel *sunModel = model.logModelArr[indexPath.row];
-        [cell setDataForCell:sunModel];
+        payRecordModel *model = self.dataSourceArr[indexPath.row];
+        [cell setDataForCell:model];
         anyCell = cell;
     }
     anyCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -123,7 +146,7 @@
     btn.frame = CGRectMake(ScreenScale(12), (header.size.height - ScreenScale(24)) * 0.5, btnW, ScreenScale(24));
     [btn setImage:MY_IMAHE(@"三角下拉") forState:UIControlStateNormal];
     [btn setImagePosition:ImagePositionTypeRight WithMargin:10];
-    
+    [btn addTarget:self action:@selector(chooseTime:) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitleColor:color0C0B0B forState:UIControlStateNormal];
     [header addSubview:btn];
     
@@ -161,9 +184,9 @@
 
 
 
-- (UITableView *)tableView{
+- (baseTableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
+        _tableView = [[baseTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.estimatedRowHeight = 100;
