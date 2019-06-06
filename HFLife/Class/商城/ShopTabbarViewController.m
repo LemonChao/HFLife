@@ -35,7 +35,7 @@
     JMConfig *config = [JMConfig config];
     config.norTitleColor = HEX_COLOR(0x131313);
     config.selTitleColor = GeneralRedColor;
-    config.titleFont = 11.0f;
+    config.titleFont = 10.0f;
     config.titleOffset = -2;
     config.animType = JMConfigTabBarAnimTypeNormal;
     config.tabBarAnimType = JMConfigTabBarAnimTypeNormal;

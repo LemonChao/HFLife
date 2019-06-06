@@ -78,6 +78,7 @@
             JMTabBarButton *tbBtn = [[JMTabBarButton alloc] init];
             tbBtn.imageView.image = [UIImage imageNamed:norImageArr[i]];
             tbBtn.title.text = titleArr[i];
+            tbBtn.title.font = [UIFont systemFontOfSize:config.titleFont];
             tbBtn.title.textColor = [[JMConfig config] norTitleColor];
             tbBtn.typeLayout = config.typeLayout;
             tbBtn.tag = i;
