@@ -76,10 +76,6 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    if (self.isNavigationHidden) {
-        [self.customNavBar removeFromSuperview];
-    }
-    
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -136,6 +132,10 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"网页导航加载完毕");
+    if (self.isNavigationHidden) {
+        [self.customNavBar removeFromSuperview];
+    }
+
     [self loadSuccess];
 
 }

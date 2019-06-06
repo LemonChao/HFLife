@@ -26,7 +26,7 @@
 
 #define shopHost        @"ceshi-shop.hfgld.net/"
 #define shopWebHost     @"http://192.168.0.172:8080/"
-//#define shopWebHost     @"http://192.168.0.143:8080/"
+//#define shopWebHost     @"http://192.168.0.107:10004"
 #define shopUrl(subUrl)    [NSString stringWithFormat:@"%@api/mobile/index.php?%@",shopHost,subUrl]
 
 // 商城-首页-专属推荐

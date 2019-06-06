@@ -78,7 +78,8 @@ static BOOL IsUpdateRemind = YES;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.view addSubview:self.customNavBar];
+//    [self.view addSubview:self.customNavBar];
+    [self.view bringSubviewToFront:self.customNavBar];
     self.navigationController.navigationBar.hidden = YES;
     //百度单页面统计
     
