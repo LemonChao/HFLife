@@ -173,7 +173,7 @@
     self.userNameLb.text = nameStr ? nameStr : @"昵称名称";
     self.userLeveLb.text = memberInfoModel.level_name ? memberInfoModel.level_name : @"无等级信息";
     self.myJoinTitleLb.text = memberInfoModel.invite_code ? [NSString stringWithFormat:@"我的邀请码:%@",memberInfoModel.invite_code] : @"";
-    if (memberInfoModel.i_agent_level.intValue >= 0) {
+    if (memberInfoModel.i_agent_level.intValue > 0) {
         self.moneyLb1.text = memberInfoModel.yesterday_turnover.stringValue ? memberInfoModel.yesterday_turnover.stringValue : @"0";
         self.moneyLb2.text = memberInfoModel.yesterday_benefit.stringValue ? memberInfoModel.yesterday_benefit.stringValue : @"0";
         self.moneyTitle1.text = @"昨日营业额(元)";

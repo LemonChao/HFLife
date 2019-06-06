@@ -24,7 +24,10 @@
 
 
 @implementation customCycleView
-
+{
+    SXF_HF_CycleContentCell *currentCell;
+    NSString *selectedImagePath;
+}
 - (instancetype)init{
     if (self = [super init]) {
         
@@ -196,7 +199,20 @@
     //播放gif
     SXF_HF_CycleContentCell *cell = (SXF_HF_CycleContentCell *)[self.carousel.carouselView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:indexPathRow inSection:0]];
     NSString *iamgePath = [[NSBundle mainBundle] pathForResource:cell.gifName ofType:@""];
-    [cell.gifImageV playGifImagePath:iamgePath repeatCount:1];
+    
+    
+    currentCell = cell;
+    selectedImagePath = iamgePath;
+    
+    
+    //先释放上次操作
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(payGif) object:nil];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    //添加新的操作
+    [self performSelector:@selector(payGif) withObject:nil afterDelay:0.1 inModes:@[NSRunLoopCommonModes]];
+    
+    
     
 //    NSLog(@"结束滑动: %ld", index);
     if (self.delegate && [self.delegate respondsToSelector:@selector(selectIndex:)]) {
@@ -204,7 +220,9 @@
     }
 }
 
-
+- (void)payGif{
+    [currentCell.gifImageV playGifImagePath:selectedImagePath repeatCount:1];
+}
 
 
 

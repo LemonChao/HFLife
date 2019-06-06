@@ -125,8 +125,10 @@
 - (void)loadGuessLikeData {
     
     if (allPage > 0 && self.collectionView.page > allPage && self.guessLikeData.count > 0) {
-        [WXZTipView showCenterWithText:@"已加载全部数据"];
         [self.collectionView endRefreshData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.collectionView.mj_footer.state = MJRefreshStateNoMoreData;
+        });
         return;
     }
     
@@ -300,7 +302,7 @@
     
     if (url && url.length > 0) {
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-        vc.isTop = YES;
+        vc.isTop = NO;
         vc.urlString = url;
         vc.isNavigationHidden = YES;
         [self.supVC.navigationController pushViewController:vc animated:YES];
