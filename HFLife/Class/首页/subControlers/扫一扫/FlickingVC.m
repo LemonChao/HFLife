@@ -100,7 +100,20 @@
                 }else{
                     code = result;
                 }
-                [weakSelf decodingString:code];
+                
+                if([result containsString:@"itunes.apple.com"]) {
+                    
+                    NSLog(@"str1包含str2");
+                    //跳转到appleStore
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
+                } else {
+                    
+                    NSLog(@"str1不包含str2");
+                    [weakSelf decodingString:code];
+                }
+                
+                
+                
             });
         }
     }];

@@ -35,7 +35,9 @@
     
     if (self.payType) {
         [SXF_HF_AlertView showAlertType:AlertType_save Complete:^(BOOL btnBype) {
-            [self.moneyTF becomeFirstResponder];
+            if ([self.payMoney floatValue] == 0) {
+                [self.moneyTF becomeFirstResponder];
+            }
         }];
     }
 }
@@ -48,6 +50,7 @@
     self.moneyTF.ry_interval = 3;
     if (!([self.payMoney floatValue] == 0)) {
         self.moneyTF.text = self.payMoney;
+        [self.moneyTF endEditing:YES];
     }
 
     WEAK(weakSelf);
