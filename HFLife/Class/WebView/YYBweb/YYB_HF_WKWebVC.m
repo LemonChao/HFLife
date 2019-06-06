@@ -29,6 +29,7 @@
     
 }
 @property(nonatomic, strong)WKWebView *webView;
+
 @end
 
 @implementation YYB_HF_WKWebVC
@@ -68,6 +69,7 @@
     [self loadWKwebViewData];
     
 }
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
@@ -81,7 +83,7 @@
     //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
     //        self.navigationController.interactivePopGestureRecognizer.delegate =self;
     //    }
-   
+
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -612,15 +614,19 @@
     else if ([type isEqualToString:@"1"]) {
         //支付宝
         //开启轮询订单
-        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:[dict[@"orderId"] stringValue]   isHotel:dict[@"orderType"] idType:dict[@"payType"] isNowPay:YES];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkOrderStatus:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        [circleCheckOrderManger sharedInstence].orderSearchInfoDic = [dict copy];
         [circleCheckOrderManger sharedInstence].searchOrderBlock = ^(NSDictionary * _Nonnull orderInfo) {
             //查询支付结果
-            if (orderInfo) {
-                NSString *JSResult = [NSString stringWithFormat:@"gotoPaySucessPage('%@')",@"1"];
-                [self evaluateJavaScript:JSResult resultBlock:^(id  _Nullable result) {
-                    
-                }];
+            NSString *JSResult;
+            if (orderInfo && ([orderInfo[@"status"] intValue] == 1)) {
+                JSResult = [NSString stringWithFormat:@"payState('%@')",@"1"];
+            }else {
+                JSResult = [NSString stringWithFormat:@"payState('%@')",@"0"];
             }
+            [self evaluateJavaScript:JSResult resultBlock:^(id  _Nullable result) {
+                
+            }];
         };
         [UMSPPPayUnifyPayPlugin payWithPayChannel:CHANNEL_ALIPAY payData:payDataJsonStr callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
             if ([resultCode isEqualToString:@"1003"]) {
@@ -634,49 +640,52 @@
         //微信
         //开启轮询订单
         [UMSPPPayUnifyPayPlugin registerApp:dict[@"query"][@"appid"]];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wxPayCallback:) name:@"wxPay" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wxPayCallback:) name:@"wxPay" object:nil];
         [UMSPPPayUnifyPayPlugin payWithPayChannel:CHANNEL_WEIXIN payData:payDataJsonStr callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
+            NSLog(@"%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
+
+            NSString *JSResult;
             if ([resultCode isEqualToString:@"1003"]) {
-                NSLog(@"%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
+                JSResult = [NSString stringWithFormat:@"payState('%@')",@"0"];
+            }else if ([resultCode isEqualToString:@"1000"]){
+                [WXZTipView showCenterWithText:@"付款已取消"];
+                JSResult = [NSString stringWithFormat:@"payState('%@')",@"0"];
+            }else if ([resultCode isEqualToString:@"0000"]){
+                [WXZTipView showCenterWithText:@"支付成功"];
+                JSResult = [NSString stringWithFormat:@"payState('%@')",@"1"];
             }
+            [self evaluateJavaScript:JSResult resultBlock:^(id  _Nullable result) {
+                
+            }];
         }];
         
     }
     else if ([type isEqualToString:@"3"]){
         
         [UMSPPPayUnifyPayPlugin cloudPayWithURLSchemes:@"unifyPayHanPay" payData:payDataJsonStr viewController:self callbackBlock:^(NSString *resultCode, NSString *resultInfo) {//1000 取消
-            if ([resultCode isEqualToString:@"1000"]) {
-                [WXZTipView showBottomWithText:resultInfo duration:1.5];
-            }else {
-                [WXZTipView showBottomWithText:resultInfo duration:1.5];
+            NSString *JSResult;
+            if ([resultCode isEqualToString:@"1003"]) {
+                JSResult = [NSString stringWithFormat:@"payState('%@')",@"0"];
+            }else if ([resultCode isEqualToString:@"1000"]){
+                [WXZTipView showCenterWithText:@"付款已取消"];
+                JSResult = [NSString stringWithFormat:@"payState('%@')",@"0"];
+            }else if ([resultCode isEqualToString:@"0000"]){
+                [WXZTipView showCenterWithText:@"支付成功"];
+                JSResult = [NSString stringWithFormat:@"payState('%@')",@"1"];
             }
-            NSLog(@"=====%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
-            
-        }];
-        
-    }
-}
-
-//微信支付回调
-- (void)wxPayCallback:(NSNotification *)noti{
-    NSLog(@"%@", noti.userInfo);
-    
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if ([noti.userInfo[@"type"] isEqualToString:@"-2"]) {
-            [WXZTipView showBottomWithText:@"您已取消微信支付" duration:2];
-        }else if([noti.userInfo[@"type"] isEqualToString:@"0"]){
-            [WXZTipView showBottomWithText:@"支付成功！" duration:1.5];
-            NSString *JSResult = [NSString stringWithFormat:@"gotoPaySucessPage('%@')",@"1"];
             [self evaluateJavaScript:JSResult resultBlock:^(id  _Nullable result) {
                 
             }];
+            NSLog(@"=====%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
+            
+        }];
+    }
+}
 
-        }else{
-            [WXZTipView showBottomWithText:@"支付失败！" duration:1.5];
-        }
-    }];
-    //释放通知
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wxPay" object:nil];
+//查询订单
+- (void)checkOrderStatus:(NSNotification *)not {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[circleCheckOrderManger sharedInstence] checkOrderStatus];
 }
 
 - (void)ShareWithInformation:(NSDictionary *)dic

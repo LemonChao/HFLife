@@ -40,6 +40,18 @@
     return instence;
 }
 
+- (void)checkOrderStatus{
+#pragma mark - s查询订单
+    self.searchNum = 1;
+    self.searchMaxTime = 5;
+    if (self.orderSearchInfoDic && [self.orderSearchInfoDic isKindOfClass:[NSDictionary class]]) {
+        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:[self.orderSearchInfoDic[@"orderId"] stringValue]   isHotel:self.orderSearchInfoDic[@"orderType"] idType:self.orderSearchInfoDic[@"payType"] isNowPay:YES];
+        self.orderSearchInfoDic = nil;
+        
+    }
+
+}
+
 
 
 - (NSTimer *)timer{
@@ -71,33 +83,28 @@
     self.isHotel = isHotel;
     self.id_type = idType;
     self.isNowPay = nowPay;
+    self.orderID = orderID;
     [self cancleTimer];
    
      NSDictionary *param = @{
                          @"orderId" : orderID,
-                         @"order_type" : isHotel,
-                         @"id_type" : @(self.isNowPay),
+                         @"orderType" : isHotel,
                          };
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kGetOrderPayResult withParameters:param withResultBlock:^(BOOL result, id value) {
         NSLog(@"查询订单====");
         NSDictionary *dict = value;
         if (dict && [dict[@"status"] integerValue] == 1) {
-            if ([dict isKindOfClass:[NSDictionary class]] && dict[@"pay_success"] != nil && dict[@"pay_success"] != [NSNull class]) {
-                //结束轮询
-                [self cancleTimer];
-                if ([dict[@"pay_success"] integerValue] == 1) {
-                    [WXZTipView showCenterWithText:@"支付成功"];
-                    //                        [self showAlert];
-                }else{
-                    [WXZTipView showCenterWithText:@"请查看订单"];
-                    //                        [self showAlert];
-                }
-            }else{
-                [WXZTipView showCenterWithText:@"订单查询失败"];
-                //继续轮询
-                [self.timer fire];
+            [self cancleTimer];
+            if (self.searchOrderBlock) {
+                self.searchOrderBlock(dict);
             }
         }else{
+            
+            if (self.searchNum == 5) {
+                if (self.searchOrderBlock) {
+                    self.searchOrderBlock(dict);
+                }
+            }
             if (nowPay) {
                 
             }else {
