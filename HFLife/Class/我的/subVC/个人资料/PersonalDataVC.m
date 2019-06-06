@@ -189,7 +189,7 @@
         if ([userInfoModel sharedUser].rz_status.intValue == 0 || [userInfoModel sharedUser].rz_status.intValue == 3) {
             YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
             vc.urlString = SXF_WEB_URLl_Str(certification);
-            vc.isTop = YES;
+            vc.isTop = NO;
             vc.isNavigationHidden = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }else {

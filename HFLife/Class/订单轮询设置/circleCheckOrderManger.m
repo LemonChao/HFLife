@@ -1,6 +1,6 @@
 //
 //  circleCheckOrderManger.m
-//  HanPay
+//  HFLife
 //
 //  Created by mac on 2019/4/15.
 //  Copyright © 2019 张海彬. All rights reserved.
@@ -100,7 +100,7 @@
             }
         }else{
             
-            if (self.searchNum == 5) {
+            if (self.searchNum == 5 && value) {
                 if (self.searchOrderBlock) {
                     self.searchOrderBlock(dict);
                 }
@@ -108,6 +108,9 @@
             if (nowPay) {
                 
             }else {
+                [WXZTipView showCenterWithText:@"订单查询失败"];
+            }
+            if (!value) {//网络错误
                 [WXZTipView showCenterWithText:@"订单查询失败"];
             }
             //继续轮询

@@ -1,6 +1,6 @@
 //
 //  circleCheckOrderManger.h
-//  HanPay
+//  HFLife
 //
 //  Created by mac on 2019/4/15.
 //  Copyright © 2019 张海彬. All rights reserved.
