@@ -392,7 +392,8 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (self.passWordText.text.length == 6 && self.confirmPassWordText.text.length == 6 && ((self.oldPassWordText.hidden == NO && self.oldPassWordText.text.length == 6) || self.oldPassWordText.hidden == YES)) {
+    if (self.passWordText.text.length == 6 && self.confirmPassWordText.text.length == 6) {
+        //&& ((self.oldPassWordText.hidden == NO && self.oldPassWordText.text.length == 6) || self.oldPassWordText.hidden == YES)
         [self.sureBtn setEnabled:YES];
         [self.sureBtn setBackgroundColor:HEX_COLOR(0xCA1400)];
         self.errLabel.hidden = YES;
