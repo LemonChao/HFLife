@@ -204,10 +204,8 @@
 #pragma mark - JS调用OC方法
 #pragma mark -拨打电话
 -(void)CallParameter:(NSDictionary *)dict{
-    NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
-    UIWebView * callWebview = [[UIWebView alloc] init];
-    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
-    [self.view addSubview:callWebview];
+    NSString *str = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 #pragma mark -网络数据是否请求成功
 -(void)getStatusParameter:(NSDictionary *)dict{
