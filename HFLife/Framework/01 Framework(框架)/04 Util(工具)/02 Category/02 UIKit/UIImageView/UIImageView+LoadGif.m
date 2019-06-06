@@ -158,8 +158,9 @@
         self.animationRepeatCount = repeatCount;
     }
     
-    [self startAnimating];
-    [self performSelector:@selector(stopPlayGifImage) withObject:nil afterDelay:[self durationForGifData:imageData] * repeatCount inModes:@[NSRunLoopCommonModes, UITrackingRunLoopMode]];
+    [self performSelector:@selector(startPlayGifImage) withObject:nil afterDelay:0.01 inModes:@[NSRunLoopCommonModes]];
+    
+    [self performSelector:@selector(stopPlayGifImage) withObject:nil afterDelay:[self durationForGifData:imageData] * repeatCount inModes:@[NSRunLoopCommonModes]];
     
     //不释放 会内存暴涨 导致creash
     CFRelease(gifSource);
@@ -169,5 +170,10 @@
     [self stopAnimating];
     self.animationImages = nil;
 }
+
+- (void) startPlayGifImage{
+    [self startAnimating];
+}
+
 
 @end
