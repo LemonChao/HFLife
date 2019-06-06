@@ -139,7 +139,7 @@
     [userContentController addScriptMessageHandler:self name:@"Share"];
     [userContentController addScriptMessageHandler:self name:@"Camera"];
     //拨打电话
-    [userContentController addScriptMessageHandler:self name:@"Call"];
+    [userContentController addScriptMessageHandler:self name:@"call"];
     //获取网页数据是否请求成功
     [userContentController addScriptMessageHandler:self name:@"getStatus"];
     //获取店铺的位置
@@ -413,7 +413,7 @@
     //JS调用OC方法
     //message.boby就是JS里传过来的参数
     NSLog(@"body:%@",message.body);
-    if ([message.name isEqualToString:@"Call"]) {
+    if ([message.name isEqualToString:@"call"]) {
         //        [self ShareWithInformation:message.body];
         [self CallParameter:message.body];
     } else if ([message.name isEqualToString:@"Camera"]) {
@@ -443,6 +443,8 @@
     }else if ([message.name isEqualToString:@"goToApp"]){
         [self goToHome];
     }else if ([message.name isEqualToString:@"Share"]){
+        InviteVC *vc = [[InviteVC alloc]init];
+        [vc addShareViewForH5];
         
     }else if ([message.name isEqualToString:@"choiceCity"]){
         if (self.choiceCity) {
@@ -469,8 +471,8 @@
 
 #pragma mark - JS调用OC方法
 #pragma mark - 拨打电话
--(void)CallParameter:(NSDictionary *)dict{
-    NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
+-(void)CallParameter:(NSString *)dict{
+    NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict]];
     UIWebView * callWebview = [[UIWebView alloc] init];
     [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
     [self.view addSubview:callWebview];
