@@ -44,7 +44,7 @@
     self.amountTextField.delegate = self;
     [self.amountTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view);
-        make.right.mas_equalTo(self.view.mas_right).offset(ScreenScale(10)); make.top.mas_equalTo(self.view.mas_top).offset(self.navBarHeight+HeightRatio(10));
+        make.right.mas_equalTo(self.view.mas_right).offset(ScreenScale(-10)); make.top.mas_equalTo(self.view.mas_top).offset(self.navBarHeight+HeightRatio(10));
         make.height.mas_equalTo(HeightRatio(90));
     }];
     

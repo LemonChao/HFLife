@@ -208,6 +208,8 @@
             getVC.payType = YES;
             vc = getVC;
         }else if (index == 3){
+            [WXZTipView showCenterWithText:@"该功能暂未开通"];
+            return;
             vc = [SXF_HP_cardPacketVC new];//卡包
         }else if (index == 4){
             //搜索
