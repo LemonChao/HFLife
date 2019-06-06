@@ -41,7 +41,7 @@
         //地址选择
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
         vc.urlString = kChoiceCity;
-        vc.isTop = YES;
+        vc.isTop = NO;
         vc.isNavigationHidden = YES;
         vc.choiceCity = ^(NSString * _Nonnull city) {
             self.headView.setLocalStr = city;
@@ -53,6 +53,15 @@
     headView.userHeadClick = ^{
         //点击头像
         [self.navigationController pushViewController:[NSClassFromString(@"PersonalDataVC") new] animated:YES];
+    };
+    
+    headView.orderIconClick = ^{
+        //点击订单
+        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+        vc.urlString = kOrderList;
+        vc.isTop = NO;
+        vc.isNavigationHidden = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     };
     
     self.myLocaVeiw = [[YYB_HF_LifeLocaView alloc]initWithFrame:CGRectZero];

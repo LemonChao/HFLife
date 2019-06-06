@@ -18,7 +18,7 @@
 
 #import <AFAuthSDK/AFAuthSDK.h>// 支付宝登录
 #import "LoginVC.h"
-
+#import "InviteVC.h"//分享
 /** 用户信息 */
 #import "userInfoModel.h"
 
@@ -50,7 +50,7 @@ static NSString *const kSendsms = @"ceshi-ucenter.hfgld.net/api/sms/send";
 
 #pragma mark - 登录注册 ---------------------------
 //@"ceshi-ucenter.hfgld.net/";登录个人中心域名
-
+#define centerBaceUrl  @"ceshi-ucenter.hfgld.net"
 
 /** 手机注册 */
 static NSString *const kRegisterMobile = @"ceshi-ucenter.hfgld.net/api/member/registerMobile";
@@ -62,6 +62,7 @@ static NSString *const kWXLogin = @"ceshi-ucenter.hfgld.net/api/member/wxLogin";
 static NSString *const kAlipayOauth = @"ceshi-ucenter.hfgld.net/api/member/alipayOauth";
 /** 支付宝登录 */
 static NSString *const kAlipayLogin = @"ceshi-ucenter.hfgld.net/api/member/alipayLogin";
+
 /** 微信绑定手机号 */
 static NSString *const kWxBindmobile =@"ceshi-ucenter.hfgld.net/api/member/wxBindmobile";
 /** 支付宝绑定手机号 */
@@ -72,6 +73,8 @@ static NSString *const kLogout = @"ceshi-ucenter.hfgld.net/api/member/logout";
 static NSString *const kCheckMobile = @"ceshi-ucenter.hfgld.net/api/member/checkMobile";
 /** 检测邀请码 */
 static NSString *const kCheckInviteCode = @"ceshi-ucenter.hfgld.net/api/member/checkInviteCode";
+
+
 /** 获取个人基础资料 */
 static NSString *const kMemberBaseInfo = @"ceshi-ucenter.hfgld.net/api/member/memberBaseInfo";
 /** 获取个人资料 修改基础资料接口 //修改基础资料会重新生成token 前端需要替换*/
@@ -135,7 +138,7 @@ static NSString *const kEnter = @"http://192.168.0.107:10004/#/enter-index/";
 static NSString *const kMeiFood = @"http://192.168.0.107:10004/#/food-index/";
 /** 酒店住宿 */
 static NSString *const kHotelAccommodation = @"http://192.168.0.107:8080/#/";
-
-
+/** 订单列表 */
+static NSString *const kOrderList = @"http://192.168.0.107:10004/#/order";
 
 #endif /* Header_YYB_h */
