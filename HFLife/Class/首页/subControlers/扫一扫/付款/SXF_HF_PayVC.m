@@ -47,7 +47,7 @@
     self.moneyTF.clearButtonMode = UITextFieldViewModeAlways;
     self.moneyTF.textColor = [UIColor blackColor];
     self.moneyTF.textAlignment = NSTextAlignmentLeft;
-    self.moneyTF.ry_interval = 3;
+    self.moneyTF.ry_interval = 20;//不做空格处理
     if (!([self.payMoney floatValue] == 0)) {
         self.moneyTF.text = self.payMoney;
         [self.moneyTF endEditing:YES];
@@ -137,10 +137,14 @@
             payVC.payName = self.payName;
             payVC.payStatus = YES;
             payVC.payType = @"余额";
-            
             payVC.payMoney = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
             [self.navigationController pushViewController:payVC animated:YES];
             [self.payView cancleAlertView];
+            
+            
+            //语音播报
+            
+            
         }else{
             [SXF_HF_AlertView showAlertType:AlertType_Pay Complete:^(BOOL btnBype) {
                 if (btnBype) {

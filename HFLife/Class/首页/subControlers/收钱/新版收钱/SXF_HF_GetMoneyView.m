@@ -154,6 +154,9 @@
                 cell.payStatusLb.text = [NSString stringWithFormat:@"￥%@", self.payUserDic[@"pay_money"]];
             }
             cell.hidden = !self.openCell;
+            if (cell.hidden) {
+                cell.payStatusLb.text = @"支付中";
+            }
         }else{
             cell.cellType = YES;
             cell.titleLb.text = _titleArr[indexPath.section];

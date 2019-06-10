@@ -111,9 +111,6 @@
                     NSLog(@"str1不包含str2");
                     [weakSelf decodingString:code];
                 }
-                
-                
-                
             });
         }
     }];

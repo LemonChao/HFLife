@@ -41,13 +41,27 @@
         self.getMoneyView.openCell = YES;
         [self.getMoneyView.payUserDic setValue:noti.object[@"content"][@"pay_money"] forKey:@"pay_money"];
         self.getMoneyView.payUserDic = self.getMoneyView.payUserDic;
+        
+        
+        if (OpenMoneyNotiStatus) {
+            [voiceHeaper say:[NSString stringWithFormat:@"收款,%@ 元", noti.object[@"content"][@"pay_money"]]];
+        }
+        
+        
         [WXZTipView showBottomWithText:@"支付成功"];
+        
+        //3m秒之后隐藏支付栏
+        [self performSelector:@selector(hiddenCell) withObject:nil afterDelay:3];
+        
     }else{
         NSDictionary *content = noti.object[@"content"];
-        self.getMoneyView.payUserDic = content;
+        self.getMoneyView.payUserDic = [content mutableCopy];
         self.getMoneyView.openCell = YES;
     }
     
+}
+- (void) hiddenCell{
+    self.getMoneyView.openCell = NO;
 }
 - (void)loadServerData{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
