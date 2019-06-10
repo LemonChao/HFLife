@@ -190,6 +190,13 @@
 
 - (void)CWCarousel:(CWCarousel *)carousel didStartScrollAtIndex:(NSInteger)index indexPathRow:(NSInteger)indexPathRow {
 //    NSLog(@"开始滑动: %ld", index);
+    
+    SXF_HF_CycleContentCell *cell = (SXF_HF_CycleContentCell *)[self.carousel.carouselView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:indexPathRow inSection:0]];
+    
+    [cell.gifImageV stopAnimating];
+    //释放上次操作 防止l卡顿
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(payGif) object:nil];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 
@@ -222,6 +229,11 @@
 
 - (void)payGif{
     [currentCell.gifImageV playGifImagePath:selectedImagePath repeatCount:1];
+    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"gifTest" ofType:@"gif"];
+//    NSData *data = [NSData dataWithContentsOfFile:path];
+//    UIImage *image = [UIImage sd_animatedGIFWithData:data];
+//    currentCell.gifImageV.image = image;
 }
 
 

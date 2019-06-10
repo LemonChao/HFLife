@@ -114,12 +114,12 @@
     }
     [self.tableView reloadData];
 }
-- (void)setDataForView:(id)code type:(BOOL)isCustom{
+- (void)setDataForView:(id)code type:(BOOL)isCustom downLoadUrl:(NSString *)downLoadStr{
     [self.getMoneyHeader setDataForView:code];
     [self.payMoneyHeader setDataForView:code];
     if (!isCustom) {
 //        [self.saveCodeView setDataForView:code];
-        [self.saveCodeView2 setDataForView:code];
+        [self.saveCodeView2 setDataForView:code downLoadUrl:downLoadStr];
     }
 }
 

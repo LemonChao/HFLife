@@ -179,7 +179,14 @@
     
 }
 
-
++ (BOOL)checkTouchID{
+    //首先判断版本
+    if (NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0) {
+        NSLog(@"系统版本不支持TouchID");
+        return NO;
+    }
+    return YES;
+}
 
 
 

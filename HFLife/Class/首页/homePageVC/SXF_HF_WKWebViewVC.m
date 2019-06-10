@@ -118,7 +118,7 @@
     configuration.preferences = preferences;
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus * 2);
+    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
     dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
     dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
     //    dic[@"avatar"] = [UserInfoTool avatar];
@@ -161,7 +161,9 @@
 -(void)loadWKwebViewData{
     [[WBPCreate sharedInstance]showWBProgress];
     if (![NSString isNOTNull:self.urlString]) {
-        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
+//        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
+        
+       NSURL *url = [NSURL URLWithString:self.urlString];
         //        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [self.webView loadRequest:request];

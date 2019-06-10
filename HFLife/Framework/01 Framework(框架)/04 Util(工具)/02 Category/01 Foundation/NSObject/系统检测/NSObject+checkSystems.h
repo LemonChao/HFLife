@@ -83,6 +83,13 @@ NS_ASSUME_NONNULL_BEGIN
  检测闪光灯是否可用(后置)
  */
 + (BOOL)isRearBackCameraAvailable;
+
+
+/**
+ 检测touchID
+ */
++ (BOOL)checkTouchID;
+
 @end
 
 NS_ASSUME_NONNULL_END

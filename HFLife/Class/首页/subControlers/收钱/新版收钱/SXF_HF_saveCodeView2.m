@@ -30,10 +30,10 @@
     return self;
 }
 
-- (void)setDataForView:(id )code{
+- (void)setDataForView:(id )code downLoadUrl:(NSString *)downLoadStr{
     self.getMoneyCodeImgV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@", code] size:self.getMoneyCodeImgV.bounds.size.width];
     
-    self.downCodeImgV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@", @"https://itunes.apple.com/cn/app/%E6%B1%89%E5%AF%8C%E6%96%B0%E7%94%9F%E6%B4%BB/id1458588987?l=zh&ls=1&mt=8"] size:self.downCodeImgV.bounds.size.width];
+    self.downCodeImgV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@", downLoadStr] size:self.downCodeImgV.bounds.size.width];
 }
 
 

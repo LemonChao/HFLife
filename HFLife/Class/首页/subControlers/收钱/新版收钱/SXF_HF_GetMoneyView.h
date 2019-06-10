@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param code <#code description#>
  @param isCustom 是否是自己设置的付款金额
  */
-- (void)setDataForView:(id)code type:(BOOL)isCustom;
+- (void)setDataForView:(id)code type:(BOOL)isCustom downLoadUrl:(NSString *)downLoadStr;
 @end
 
 NS_ASSUME_NONNULL_END

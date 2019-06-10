@@ -82,7 +82,8 @@
                 NSLog(@"%@", value);
                 if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
                     if (value[@"data"][@"show_code"]) {
-                        [self.getMoneyView setDataForView:value[@"data"][@"show_code"] type:NO];
+                        [self.getMoneyView setDataForView:value[@"data"][@"show_code"] type:NO downLoadUrl:value[@"data"][@"download_url"]];
+                        
                     }
                 }
             }else{
@@ -186,14 +187,14 @@
 }
 #pragma mark 代理
 -(void)SetAmountNumber:(NSString *)amount{
-    [self.getMoneyView setDataForView:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[userInfoModel sharedUser].ID) publicKey:AMOUNTRSAPRIVATEKEY] type:YES];
+//    [self.getMoneyView setDataForView:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[userInfoModel sharedUser].ID) publicKey:AMOUNTRSAPRIVATEKEY] type:YES ];
     
     [[WBPCreate sharedInstance]showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateMoneyQrcode withParameters:@{@"type" : @"1", @"set_money" : amount} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             if (value) {
-                [self.getMoneyView setDataForView:value[@"data"][@"show_code"] type:YES];
+                [self.getMoneyView setDataForView:value[@"data"][@"show_code"] type:YES downLoadUrl:value[@"data"][@"download_url"]];
             }
         }
         

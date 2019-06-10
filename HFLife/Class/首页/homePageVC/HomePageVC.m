@@ -118,9 +118,9 @@
 //    [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{
         
-        [JMConfig config].selectedIndex = 1;
-        
-        return ;
+//        [JMConfig config].selectedIndex = 1;
+//
+//        return ;
         
         
         
@@ -133,9 +133,10 @@
         
         //语音朗读
 //        [voiceHeaper say:@"我靠!下班吃饭了!"];
-//        [touchID_helper showTouchIDshowType:@"" complate:^(BOOL success, NSError * _Nullable error) {
-//
-//        }];
+        [touchID_helper showTouchIDshowType:@"" complate:^(BOOL success, NSError * _Nullable error) {
+            
+
+        }];
 //        return ;
     }];
     WEAK(weakSelf);

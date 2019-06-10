@@ -92,17 +92,23 @@
                 NSLog(@"result = %@",result);
                 [MBProgressHUD SG_hideHUDForView:weakSelf.view];
                 NSString *code = @"";
-                if ([result containsString:@"http"]) {
+                if ([result containsString:@"http"] || [result containsString:@"https"]) {
                     NSArray *array = [result componentsSeparatedByString:@"show_code="];
                     if (array.count > 1) {
                         code = array[1];
                     }
+                    if (code.length == 0) {
+                        SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+                        webVC.urlString = result;
+                        [weakSelf.navigationController pushViewController:webVC animated:YES];
+                        return ;
+                    }
+                    
                 }else{
                     code = result;
                 }
                 
                 if([result containsString:@"itunes.apple.com"]) {
-                    
                     NSLog(@"str1包含str2");
                     //跳转到appleStore
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
