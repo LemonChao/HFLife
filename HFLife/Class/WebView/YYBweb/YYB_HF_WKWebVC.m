@@ -177,7 +177,7 @@
     configuration.preferences = preferences;
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.navBarHeight);
+    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
     dic[@"token"] = [NSString judgeNullReturnString:[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]];
     dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
 
@@ -472,8 +472,18 @@
 #pragma mark - JS调用OC方法
 #pragma mark - 拨打电话
 -(void)CallParameter:(NSDictionary *)dict{
-    NSString *str = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    NSString *telStr;
+    if ([dict isKindOfClass:[NSDictionary class]]) {
+        telStr = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
+    }else if([dict isKindOfClass:[NSString class]]){
+        telStr = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict]];
+    }
+    
+    if (![[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr]]) {
+        UIWebView * callWebview = [[UIWebView alloc] init];
+        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:telStr]]];
+        [self.view addSubview:callWebview];
+    }
 }
 #pragma mark - 网络数据是否请求成功
 -(void)getStatusParameter:(NSDictionary *)dict{

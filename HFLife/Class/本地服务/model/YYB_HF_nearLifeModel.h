@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property(nonatomic, copy) NSString *city_now;
-@property(nonatomic, strong) NSNumber *is_notice;
+//@property(nonatomic, strong) NSNumber *is_notice;
 @property(nonatomic, strong) NSArray<EntranceDetail*> *entrance;
 ////banner图
 //"banner": [
@@ -85,6 +85,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSNumber *store_id;
 /** 店铺名称 */
 @property(nonatomic, copy) NSString *store_name;
+/** 跳转地址 */
+@property(nonatomic, copy) NSString *url;
 
 @end
 
