@@ -72,7 +72,10 @@
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
-                
+//                NSMutableArray *arr = [[NSMutableArray alloc]init];
+//                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
+//                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
+//                [value[@"data"] setValue:[NSArray arrayWithArray:arr] forKey:@"entrance"];
                 [YYB_HF_nearLifeModel mj_setupObjectClassInArray:^NSDictionary *{
                     return @{
                              @"entrance":[EntranceDetail className]
@@ -376,7 +379,7 @@
     if (indexPath.section == 0) {
         NSArray *itemArr = self.dataModel.entrance;
         //计算行高
-        return ScreenScale(70) * ((itemArr.count / 5) + (itemArr.count % 5 > 0 ? 1 : 0));
+        return ScreenScale(75) * ((itemArr.count / 5) + (itemArr.count % 5 > 0 ? 1 : 0));
     }
     
     if (indexPath.section == 1) {

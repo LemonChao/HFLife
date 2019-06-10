@@ -338,15 +338,7 @@
     
     
     [self.customNavBar setHidden:self.isNavigationHidden];
-    //    //OC反馈给JS导航栏高度
-    //    NSString *JSResult = [NSString stringWithFormat:@"getTabbarHeight('%@')",MMNSStringFormat(@"%f",self.navBarHeight)];
-    //    //OC调用JS
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //            // OC 调用JS方法 method 的js代码可往下看
-    //        [self.webView evaluateJavaScript:JSResult completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-    //             NSLog(@"result:%@,error:%@",result,error);
-    //        }];
-    //    });
+    
     [self loadSuccess];
     //去除长按后出现的文本选取框
     //    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];

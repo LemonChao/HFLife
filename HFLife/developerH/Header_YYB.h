@@ -21,10 +21,8 @@
 #import "InviteVC.h"//分享
 /** 用户信息 */
 #import "userInfoModel.h"
-
 /** web加载 */
 #import "YYB_HF_WKWebVC.h"
-
 /** 数据model */
 #import "YYB_HF_nearLifeModel.h"
 /** 订单轮循 */
@@ -39,18 +37,16 @@
 /************************subUrl************************/
 #define GP_BASEURL  @"http://test.hfgld.net"
 
-static NSString *const yourTestUrl = @"w=index&t=index";
-
 #pragma mark - public公用 ---------------------------
 /** 上传文件/头像 */
-static NSString *const kUploadFiles = @"ceshi-ucenter.hfgld.net/api/upload/uploadFiles";
+static NSString *const kUploadFiles =       @"ceshi-ucenter.hfgld.net/api/upload/uploadFiles";
 /** 发送验证码 */
-static NSString *const kSendsms = @"ceshi-ucenter.hfgld.net/api/sms/send";
+static NSString *const kSendsms =           @"ceshi-ucenter.hfgld.net/api/sms/send";
 
 
 #pragma mark - 登录注册 ---------------------------
 //@"ceshi-ucenter.hfgld.net/";登录个人中心域名
-#define centerBaceUrl  @"ceshi-ucenter.hfgld.net"
+#define centerBaceUrl                       @"ceshi-ucenter.hfgld.net"
 
 /** 手机注册 */
 static NSString *const kRegisterMobile =    @"ceshi-ucenter.hfgld.net/api/member/registerMobile";
