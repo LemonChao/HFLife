@@ -16,6 +16,11 @@
 		0406ED2922755438000784D0 /* AipOcrSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2122755421000784D0 /* AipOcrSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED2B22755438000784D0 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
+		04079C7022AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04079C6F22AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.m */; };
+		04079C7322AF5394000E6349 /* YYB_HF_SearchHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04079C7222AF5394000E6349 /* YYB_HF_SearchHeadView.m */; };
+		04079CC422AF8FB2000E6349 /* YYB_HF_SearchResultC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04079CC322AF8FB2000E6349 /* YYB_HF_SearchResultC.m */; };
+		04079CC822AF9325000E6349 /* YYB_HF_SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04079CC722AF9325000E6349 /* YYB_HF_SearchResultCell.m */; };
+		04079CCB22AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04079CCA22AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.m */; };
 		040915DD229782C9007BEB12 /* YYB_HF_destroyFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040915DC229782C9007BEB12 /* YYB_HF_destroyFailView.m */; };
 		040915E722978F4B007BEB12 /* YYB_HF_changeAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 040915E622978F4B007BEB12 /* YYB_HF_changeAccountVC.m */; };
 		040915EB2297926E007BEB12 /* YYB_HF_changeAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040915E92297926E007BEB12 /* YYB_HF_changeAccountCell.m */; };
@@ -921,6 +926,16 @@
 		0406ED2222755421000784D0 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		0406ED2E227554E3000784D0 /* LYBmOcrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBmOcrManager.h; sourceTree = "<group>"; };
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
+		04079C6E22AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_HotSearchCollectionCell.h; sourceTree = "<group>"; };
+		04079C6F22AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_HotSearchCollectionCell.m; sourceTree = "<group>"; };
+		04079C7122AF5394000E6349 /* YYB_HF_SearchHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SearchHeadView.h; sourceTree = "<group>"; };
+		04079C7222AF5394000E6349 /* YYB_HF_SearchHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_SearchHeadView.m; sourceTree = "<group>"; };
+		04079CC222AF8FB2000E6349 /* YYB_HF_SearchResultC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SearchResultC.h; sourceTree = "<group>"; };
+		04079CC322AF8FB2000E6349 /* YYB_HF_SearchResultC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_SearchResultC.m; sourceTree = "<group>"; };
+		04079CC622AF9325000E6349 /* YYB_HF_SearchResultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SearchResultCell.h; sourceTree = "<group>"; };
+		04079CC722AF9325000E6349 /* YYB_HF_SearchResultCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_SearchResultCell.m; sourceTree = "<group>"; };
+		04079CC922AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SearchResultHotelCell.h; sourceTree = "<group>"; };
+		04079CCA22AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_SearchResultHotelCell.m; sourceTree = "<group>"; };
 		040915DB229782C9007BEB12 /* YYB_HF_destroyFailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_destroyFailView.h; sourceTree = "<group>"; };
 		040915DC229782C9007BEB12 /* YYB_HF_destroyFailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_destroyFailView.m; sourceTree = "<group>"; };
 		040915E522978F4B007BEB12 /* YYB_HF_changeAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_changeAccountVC.h; sourceTree = "<group>"; };
@@ -2617,6 +2632,17 @@
 			path = "百度OCR";
 			sourceTree = "<group>";
 		};
+		04079CC522AF92BF000E6349 /* 搜索cell */ = {
+			isa = PBXGroup;
+			children = (
+				04079CC622AF9325000E6349 /* YYB_HF_SearchResultCell.h */,
+				04079CC722AF9325000E6349 /* YYB_HF_SearchResultCell.m */,
+				04079CC922AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.h */,
+				04079CCA22AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.m */,
+			);
+			path = "搜索cell";
+			sourceTree = "<group>";
+		};
 		040915DE22978DFA007BEB12 /* 切换账号 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3652,6 +3678,8 @@
 				049783512285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.h */,
 				049783522285957E00E143D7 /* YYb_HF_CollReusableView.m */,
 				049783532285957E00E143D7 /* YYB_HF_cycleScrollCollectionViewCell.m */,
+				04079C6E22AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.h */,
+				04079C6F22AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.m */,
 			);
 			path = colloctionCell;
 			sourceTree = "<group>";
@@ -3780,10 +3808,15 @@
 		0497837B2285957E00E143D7 /* naview */ = {
 			isa = PBXGroup;
 			children = (
+				04079CC522AF92BF000E6349 /* 搜索cell */,
 				0497837C2285957E00E143D7 /* YYB_HF_LocalHeadView.m */,
 				0497837D2285957E00E143D7 /* YYB_HF_NearSearchVC.h */,
 				0497837E2285957E00E143D7 /* YYB_HF_LocalHeadView.h */,
 				0497837F2285957E00E143D7 /* YYB_HF_NearSearchVC.m */,
+				04079C7122AF5394000E6349 /* YYB_HF_SearchHeadView.h */,
+				04079C7222AF5394000E6349 /* YYB_HF_SearchHeadView.m */,
+				04079CC222AF8FB2000E6349 /* YYB_HF_SearchResultC.h */,
+				04079CC322AF8FB2000E6349 /* YYB_HF_SearchResultC.m */,
 			);
 			path = naview;
 			sourceTree = "<group>";
@@ -7779,6 +7812,7 @@
 				658B7C5021D749E100801CC8 /* AxcAE_TabBarBadge.m in Sources */,
 				6C7D850822857C1800A8E9F7 /* ZCDisCountCollectionCell.m in Sources */,
 				040AAC7B229395C3002AB524 /* YYB_HF_SexChoiceView.m in Sources */,
+				04079CC422AF8FB2000E6349 /* YYB_HF_SearchResultC.m in Sources */,
 				0453D1A42282B2DE00880C2A /* SXF_HF_HeadlineCell2.m in Sources */,
 				048DAC5522857516006E6BA2 /* WithdrawVC.m in Sources */,
 				04A508CD227EDD3A0013E8EC /* UILabel+FitSize.m in Sources */,
@@ -7863,6 +7897,7 @@
 				04F5217E228A793400ED4995 /* EnterVC.m in Sources */,
 				04A508C7227EDD3A0013E8EC /* UIView+Responder.m in Sources */,
 				04153C1F228AA2F100AA5DAF /* ConfigOrderInfoVC.m in Sources */,
+				04079CC822AF9325000E6349 /* YYB_HF_SearchResultCell.m in Sources */,
 				04153C04228AA2F100AA5DAF /* NearFoodListVC.m in Sources */,
 				658C39DE21E9FA5B00880B6A /* JXCategoryTitleCellModel.m in Sources */,
 				04FA26612296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m in Sources */,
@@ -7956,6 +7991,7 @@
 				658B7C4721D749E100801CC8 /* UIButton+EdgeInsets.m in Sources */,
 				04F89332229264920075918A /* SXF_HF_addCardViewCell.m in Sources */,
 				6C2F5148222A663D0022EE03 /* HXCollectionView.m in Sources */,
+				04079C7322AF5394000E6349 /* YYB_HF_SearchHeadView.m in Sources */,
 				658C39E921E9FA5B00880B6A /* JXCategoryFactory.m in Sources */,
 				04F520FF228A764400ED4995 /* CertificatePhoto.m in Sources */,
 				658B7C4321D749E100801CC8 /* UIViewController+Extension.m in Sources */,
@@ -8087,6 +8123,7 @@
 				658902F0223B775F009C1B03 /* PYSearchSuggestionViewController.m in Sources */,
 				658C39D421E9FA5B00880B6A /* JXCategoryIndicatorBackgroundView.m in Sources */,
 				6C988786229BD0B100AA7037 /* ZCShopOrderTableHeader.m in Sources */,
+				04079CCB22AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.m in Sources */,
 				0453D19C2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m in Sources */,
 				04A50895227EDD3A0013E8EC /* WHMethods.m in Sources */,
 				04A508AB227EDD3A0013E8EC /* LYDataCache.m in Sources */,
@@ -8442,6 +8479,7 @@
 				04A50856227EDD3A0013E8EC /* ZFCollectionViewController.m in Sources */,
 				6C2F5143222A663D0022EE03 /* HXPhotoConfiguration.m in Sources */,
 				0453D1982282774C00880C2A /* SXF_HF_ItemsViewCell.m in Sources */,
+				04079C7022AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.m in Sources */,
 				0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */,
 				04A50852227EDD3A0013E8EC /* ZFPlayerControlView.m in Sources */,
 				0453D1B82283BE8D00880C2A /* baseCollectionView.m in Sources */,
