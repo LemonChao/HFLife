@@ -14,7 +14,7 @@
 @interface receiptRecordListView()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong)NSString *currentDate;
-
+@property (nonatomic, strong)NSString *selectedDate;
 @end
 
 @implementation receiptRecordListView
@@ -51,18 +51,18 @@
     [dateFormatter setDateFormat:@"yyyy-MM"];
     NSString *destDateString = [dateFormatter stringFromDate:[NSDate date]];
     self.currentDate = destDateString;
-    
+    self.selectedDate = destDateString;
     
     
     
     self.tableView.refreshHeaderBlock = ^{
         //上拉
-        !weakSelf.refreshData ? : weakSelf.refreshData(weakSelf.tableView.page, weakSelf.currentDate );
+        !weakSelf.refreshData ? : weakSelf.refreshData(weakSelf.tableView.page, weakSelf.selectedDate);
     };
     
     self.tableView.refreshFooterBlock = ^{
        //下拉
-       !weakSelf.refreshData ? : weakSelf.refreshData(weakSelf.tableView.page, weakSelf.currentDate);
+       !weakSelf.refreshData ? : weakSelf.refreshData(weakSelf.tableView.page, weakSelf.selectedDate);
     };
     [self.tableView beginRefreshing];
 }
@@ -73,7 +73,7 @@
     [SXF_HF_AlertView showTimeSlecterAlertComplete:^(NSString * _Nonnull year, NSString * _Nonnull month) {
         //拼接
         NSString *dateStr = [NSString stringWithFormat:@"%@-%@", year, month];
-        self.currentDate = dateStr;
+        self.selectedDate = dateStr;
         [self.tableView beginRefreshing];
     }];
 }
@@ -120,20 +120,16 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *header = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,ScreenScale(54))];
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, 200, header.frame.size.height)];
-    title.text = @"2019年3月21";
-    reciveModel *model = self.reciveModelArr[section];
-    if ([model.log_count integerValue] == 0) {
-        header.hidden = YES;
-    }else{
-        header.hidden = NO;
-        title.text = model.log_date;
-    }
-//    [header addSubview:title];
-    
-    if (section == 0) {
+
+    [header addSubview:title];
+    if ([self.currentDate isEqualToString:self.selectedDate]) {
         title.text = @"本月";
     }else{
-        title.text = @"2018年8月";
+        title.text = self.selectedDate;
+        NSArray *arr = [self.selectedDate componentsSeparatedByString:@"-"];
+        if (arr.count>=2) {
+            title.text = [NSString stringWithFormat:@"%@年%@月", arr[0], arr[1]];
+        }
     }
     
     
@@ -142,17 +138,14 @@
     btn.layer.cornerRadius = ScreenScale(12);
     [btn setTitle:title.text forState:UIControlStateNormal];
     btn.titleLabel.font = FONT(14);
-    CGFloat btnW = [title.text isEqualToString:@"本月"] ? ScreenScale(60) : ScreenScale(100);
+
+    CGFloat btnW = [title.text isEqualToString:@"本月"] ? ScreenScale(60) : ScreenScale(110);
     btn.frame = CGRectMake(ScreenScale(12), (header.size.height - ScreenScale(24)) * 0.5, btnW, ScreenScale(24));
     [btn setImage:MY_IMAHE(@"三角下拉") forState:UIControlStateNormal];
     [btn setImagePosition:ImagePositionTypeRight WithMargin:10];
     [btn addTarget:self action:@selector(chooseTime:) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitleColor:color0C0B0B forState:UIControlStateNormal];
     [header addSubview:btn];
-    
-    
-    
-    
     header.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0];
     return header;
 }
@@ -171,10 +164,10 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    reciveModel *model = self.reciveModelArr[section];
-    if ([model.log_count integerValue] == 0) {
-        return 0.01;
-    }
+//    reciveModel *model = self.reciveModelArr[section];
+//    if ([model.log_count integerValue] == 0) {
+//        return 0.01;
+//    }
     return ScreenScale(54);
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

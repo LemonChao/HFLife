@@ -142,8 +142,9 @@
     WEAK(weakSelf);
     self.collectionView.clickSectionHeaderBtn = ^(NSInteger section) {
         if (section == 2) {
+            //更过新闻
             SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
-            webVC.urlString = SXF_WEB_URLl_Str(@"ewe");
+            webVC.urlString = SXF_WEB_URLl_Str(headlinesList);
             [weakSelf.navigationController pushViewController:webVC animated:YES];
         }
     };

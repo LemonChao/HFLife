@@ -18,7 +18,7 @@
                          imageCenter:(CGFloat)centerY//图片中心点高度 0为默认高度
                           errorBlock:(void(^)(void))errorBlock;//点击回调
 //添加到view/windown
-- (void)showAlertViewToViewImageTYpe:(alert_type)alertType msg:(NSString *)msg forView:(view_type)isView control:(UIViewController *)vc errorBlock:(void(^)(void))errorBlock;
+//- (void)showAlertViewToViewImageTYpe:(alert_type)alertType msg:(NSString *)msg forView:(view_type)isView control:(UIViewController *)vc errorBlock:(void(^)(void))errorBlock;
 
 //移除
 - (void) removeAlertView;

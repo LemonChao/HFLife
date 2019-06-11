@@ -178,7 +178,9 @@
         }
     }];
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    
+}
 
 
 

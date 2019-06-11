@@ -189,6 +189,57 @@
 }
 
 
++ (BOOL)openMessageNotificationService
+{
+    BOOL isOpen = NO;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    if (setting.types != UIUserNotificationTypeNone) {
+        isOpen = YES;
+    }else{
+        isOpen = NO;
+    }
+#else
+    UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+    if (type != UIRemoteNotificationTypeNone) {
+        isOpen = YES;
+    }else{
+        isOpen = NO;
+    }
+#endif
+   
+    return isOpen;
+}
+
+
+
++ (void)openEventServiceWithBolck:(void(^ __nullable)(BOOL result))returnBolck
+{
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
+    CTCellularData *cellularData = [[CTCellularData alloc] init];
+    cellularData.cellularDataRestrictionDidUpdateNotifier = ^(CTCellularDataRestrictedState state){
+        if (state == kCTCellularDataRestrictedStateUnknown || state == kCTCellularDataNotRestricted) {
+            if (returnBolck) {
+                returnBolck(NO);
+            }
+        } else {
+            if (returnBolck) {
+                returnBolck(YES);
+            }
+        }
+    };
+    CTCellularDataRestrictedState state = cellularData.restrictedState;
+    if (state == kCTCellularDataRestrictedStateUnknown || state == kCTCellularDataNotRestricted) {
+        if (returnBolck) {
+            returnBolck(NO);
+        }
+    } else {
+        if (returnBolck) {
+            returnBolck(YES);
+        }
+    }
+#endif
+} 
 
 
 

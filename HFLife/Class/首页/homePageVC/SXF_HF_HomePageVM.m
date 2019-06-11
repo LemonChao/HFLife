@@ -72,7 +72,6 @@
 
 
 - (void) getBannerData{
-    WEAK(weakSelf);
     [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         if (result){
@@ -80,9 +79,6 @@
                 
                 self.collectionView.peopleNum = value[@"data"][@"nums"];
                 self.collectionView.fqPrice = value[@"data"][@"bn_acc_ratio"];
-                
-                //
-                
                 //需要计算得来
                 NSString *moneyStr = [NSString stringWithFormat:@"%@", [self getMoney:Format(self.collectionView.fqPrice ? self.collectionView.fqPrice : @(0)) :value[@"data"][@"static_coin"]]];
                 self.collectionView.myFQ = moneyStr;
@@ -120,7 +116,6 @@
     [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNewsList withParameters:@{@"page" :@(page)} withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         if (result){
-            [self.collectionView endRefreshData];
             if ([value[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *newsModels = [HR_dataManagerTool   getModelArrWithArr:value[@"data"] withClass:[homeListModel class]];
                 if (page == 1) {
@@ -142,6 +137,7 @@
                     self.collectionView.state = MJRefreshStateNoMoreData;
                 });
             }
+            
         }
     }];
 }
