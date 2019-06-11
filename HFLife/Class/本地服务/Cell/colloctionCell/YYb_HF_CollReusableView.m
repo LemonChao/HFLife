@@ -32,3 +32,34 @@
     }];
 }
 @end
+
+@implementation YYb_HF_HotCollReusableView
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
+        
+        _imageV = [[UIImageView alloc] init];
+        [self addSubview:_imageV];
+        
+        _imageV.frame = CGRectMake(ScreenScale(12), ScreenScale(12), 15, 17);
+        _imageV.backgroundColor = [UIColor redColor];
+        _textLabel = [[UILabel alloc] init];
+        [self addSubview:_textLabel];
+        
+        _textLabel.frame = CGRectMake(ScreenScale(12), ScreenScale(30), 200, self.frame.size.height);
+        _textLabel.font = FONT(12);
+        _textLabel.textColor = HEX_COLOR(0xAAAAAA);
+        
+    }
+    return self;
+}
+
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(30));
+        make.top.bottom.mas_equalTo(self);
+    }];
+}
+@end
