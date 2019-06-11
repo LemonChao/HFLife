@@ -12,6 +12,10 @@
 #import "RYNumberKeyboard.h"
 #import "SXF_HF_paySuccessVC.h"
 #import "YYB_HF_setDealPassWordVC.h"
+
+
+
+#import "HF_PayHelp.h"
 @interface SXF_HF_PayVC ()
 @property (weak, nonatomic) IBOutlet UITextField *moneyTF;
 @property (nonatomic, strong) SXF_HF_payStepAleryView *payView;
@@ -130,6 +134,12 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:GoToPay withParameters:param withResultBlock:^(BOOL result, id value) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        
+        [HF_PayHelp goWXPay:value[@"data"][@"qrcode_link"]];
+        return;
+        
+        
         if (result && value) {
             //支付成功
             SXF_HF_paySuccessVC *payVC = [SXF_HF_paySuccessVC new];
