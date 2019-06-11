@@ -122,7 +122,16 @@
         [self.saveCodeView2 setDataForView:code downLoadUrl:downLoadStr];
     }
 }
-
+- (void)setMoney:(NSString *)money{
+    _money = money;
+    if ([_money floatValue] > 0) {
+        self.getMoneyHeader.frame = CGRectMake(0, 0, SCREEN_WIDTH, 472);
+    }else{
+        self.getMoneyHeader.frame = CGRectMake(0, 0, SCREEN_WIDTH, 432);
+    }
+    self.getMoneyHeader.money = _money;
+    self.tableView.tableHeaderView = self.getMoneyHeader;
+}
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     if (!self.payType) {
         //付款

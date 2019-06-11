@@ -106,6 +106,8 @@
         if (!weakSelf.payType) {
             //向商家付钱
             if (index == 2) {
+                
+                [WXZTipView showCenterWithText:@"暂未开通"];
                 //余额支付
                 SXF_HF_payStepAleryView *payAlert = [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
                     
@@ -146,6 +148,9 @@
                 //正在付款z。。。。
             }else if (index == 4){
                 //商家入驻
+                SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+                webVC.urlString = enterIndex;
+                [weakSelf.navigationController pushViewController:webVC animated:YES];
             }
         }
         if (vc) {
@@ -195,6 +200,7 @@
         if (result) {
             if (value) {
                 [self.getMoneyView setDataForView:value[@"data"][@"show_code"] type:YES downLoadUrl:value[@"data"][@"download_url"]];
+                self.getMoneyView.money = amount;
             }
         }
         

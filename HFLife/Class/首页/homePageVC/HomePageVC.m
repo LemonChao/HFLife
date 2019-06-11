@@ -20,6 +20,9 @@
 #import "SXF_HF_payStepAleryView.h"
 #import "LoginVC.h"
 
+
+
+
 //test
 #import "ReviseMobilePhone.h"
 
@@ -117,17 +120,22 @@
     
 //    [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{
+//        [SXF_HF_AlertView showAlertType:AlertType_setPassword  Complete:^(BOOL btnBype) {
+//            if (btnBype) {
+//
+//
+//            }
+//        }];
+        
+        
+        
+        
         
 //        [JMConfig config].selectedIndex = 1;
 //
 //        return ;
         
-        
-        
-//        [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
-//
-//        }];
-        
+
 //        [self loadServerData:1];
         
         

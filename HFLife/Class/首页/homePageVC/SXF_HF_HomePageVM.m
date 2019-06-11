@@ -23,6 +23,7 @@
 //新版
 #import "SXF_HF_GetMoneyVC.h"
 #import "SXF_HP_cardPacketVC.h"
+#import "YYB_HF_setDealPassWordVC.h"
 
 @interface SXF_HF_HomePageVM ()<JFLocationDelegate>
 
@@ -187,8 +188,15 @@
                     }]];
                     [self.vc.navigationController presentViewController:alert animated:YES completion:nil];
                     return;
+                }else if([[userInfoModel sharedUser].set_pass integerValue] == 0){
+                    [SXF_HF_AlertView showAlertType:AlertType_setPassword Complete:^(BOOL btnBype) {
+                        if (btnBype) {
+                            //设置密码
+                            [self.vc.navigationController pushViewController:[YYB_HF_setDealPassWordVC new] animated:YES];
+                        }
+                    }];
                 }else{
-                    vc = [FlickingVC new];//扫一扫
+                   vc = [FlickingVC new];//扫一扫
                 }
             }else{
                 [WXZTipView showCenterWithText:@"相机不可用"];

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)void(^tabBtnCallback)(NSInteger index);
 @property (nonatomic, strong)void (^clickBarCodeImageV)(UIImage *image, NSString *codeStr);
 @property (nonatomic, strong)NSMutableDictionary *payUserDic;
+@property (nonatomic, strong)NSString *money;//设置的金额
 /**
  
 
