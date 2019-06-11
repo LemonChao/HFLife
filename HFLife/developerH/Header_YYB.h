@@ -107,8 +107,12 @@ static NSString *const kGetIndexRecommendList = @"ceshi-life.hfgld.net/index.php
 /** 查询订单是否支付成功 */
 static NSString *const kGetOrderPayResult = @"ceshi-life.hfgld.net/index.php/api/foodorder/getOrderPayResult";
 
-
-
+/** 美食搜索 */
+static NSString *const kGetSearchFoodList = @"ceshi-life.hfgld.net/index.php/api/food/getSearchFoodList";
+/** 酒店搜索 */
+static NSString *const kGetSearchHotelList = @"ceshi-life.hfgld.net/index.php/api/hotel/getHotelSearchList";
+/** 获取热搜关键词 */
+static NSString *const kGetHotSearchList = @"ceshi-life.hfgld.net/index.php/api/common/getHotSearchList";
 /** 分享数据 */
 //static NSString *const kGet_invite_info = @"w=user&t=get_invite_info";
 /** 综合商家店铺列表 */
@@ -137,5 +141,6 @@ static NSString *const kChoiceCity =        @"http://192.168.0.122:8080/#/city";
 //static NSString *const kHotelAccommodation = @"http://192.168.0.122:8080/#/";
 /** 订单列表 */
 static NSString *const kOrderList =         @"http://192.168.0.122:10004/#/order";
+
 
 #endif /* Header_YYB_h */
