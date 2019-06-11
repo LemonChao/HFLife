@@ -142,7 +142,7 @@
 //    self.webView.scalesPageToFit = YES;
     self.webView.multipleTouchEnabled = YES;
     self.webView.userInteractionEnabled = YES;
-    self.webView.scrollView.scrollEnabled = NO;
+    self.webView.scrollView.scrollEnabled = YES;
     self.webView.scrollView.bounces = NO;
     self.webView.contentMode = UIViewContentModeScaleAspectFit;
     self.webView.scrollView.delegate = self;

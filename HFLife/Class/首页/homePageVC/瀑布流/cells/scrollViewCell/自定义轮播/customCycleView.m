@@ -217,8 +217,10 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     
     //添加新的操作
-    [self performSelector:@selector(payGif) withObject:nil afterDelay:0.1 inModes:@[NSRunLoopCommonModes]];
+//    [self performSelector:@selector(payGif) withObject:nil afterDelay:0.1 inModes:@[NSRunLoopCommonModes]];
     
+    
+    [self performSelectorOnMainThread:@selector(payGif) withObject:nil waitUntilDone:0.1];
     
     
 //    NSLog(@"结束滑动: %ld", index);
@@ -229,6 +231,8 @@
 
 - (void)payGif{
     [currentCell.gifImageV playGifImagePath:selectedImagePath repeatCount:1];
+    
+    
     
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"gifTest" ofType:@"gif"];
 //    NSData *data = [NSData dataWithContentsOfFile:path];

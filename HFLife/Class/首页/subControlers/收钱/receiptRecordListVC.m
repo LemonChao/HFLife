@@ -36,6 +36,7 @@
 
 
 - (void)loadServerData:(NSInteger)page date:(NSString *)date{
+    self.listView.tableView.mj_footer.hidden = NO;
     //收款数据
     NSDictionary *param = @{
                             @"month":date,
@@ -62,6 +63,17 @@
                             
                         }
                     }
+                    
+                    if (self.listModelArr.count == 0) {
+                        self.listView.tableView.mj_footer.hidden = YES;
+                        [self.listView.tableView showAlertViewToViewImageTYpe:IMAGETYPE_NOLIST msg:@"暂无数据" forView:TYPE_VIEW imageCenter:0 errorBlock:^{
+                            [self.listView.tableView.mj_header beginRefreshing];
+                        }];
+                    }else{
+                        [self.listView.tableView removeAlertView];
+                    }
+                    
+                    
                 }
             }
         }

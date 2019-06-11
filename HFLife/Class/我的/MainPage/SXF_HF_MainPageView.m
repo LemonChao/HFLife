@@ -121,7 +121,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return (710.0 / 389.0) * 0.5 * SCREEN_WIDTH ;
+        return ScreenScale(340);
     }else if (indexPath.section == 1){
         return ScreenScale(280);
     }else{
@@ -148,6 +148,7 @@
         _tableView = [[baseTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.estimatedRowHeight = 0;
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         //header
         [_tableView registerClass:[SXF_HF_MianPageSectionView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([SXF_HF_MianPageSectionView class])];

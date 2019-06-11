@@ -4092,9 +4092,9 @@
 			isa = PBXGroup;
 			children = (
 				04A506CF227EDD350013E8EC /* CustomPromptBox.h */,
-				04A506D0227EDD350013E8EC /* CustomAlertView.m */,
 				04A506D1227EDD350013E8EC /* CustomPromptBox.m */,
 				04A506D2227EDD350013E8EC /* CustomAlertView.h */,
+				04A506D0227EDD350013E8EC /* CustomAlertView.m */,
 			);
 			path = "弹窗和提示";
 			sourceTree = "<group>";
