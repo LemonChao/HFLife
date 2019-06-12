@@ -38,6 +38,9 @@
 
 @property (nonatomic, strong) NSString *static_coin;
 
+
+@property (nonatomic, assign)NSInteger people;
+
 @end
 
 
@@ -68,17 +71,24 @@
 - (void)setFqValue:(NSDictionary *)fqValue{
     _fqValue = fqValue;
     self.collectionView.fqPrice = fqValue[@"rate"];
-
     self.collectionView.myFQ = Format([self getMoney:fqValue[@"rate"] :self.static_coin]);
 }
 
 
 - (void) getBannerData{
+//    self.people = 106;
+//    //test
+//    if (@available(iOS 10.0, *)) {
+//        [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//            self.collectionView.peopleNum  = @((self.people ++));
+//        }];
+//    } else {
+//        // Fallback on earlier versions
+//    }
     [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         if (result){
             if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
-                
                 self.collectionView.peopleNum = value[@"data"][@"nums"];
                 self.collectionView.fqPrice = value[@"data"][@"bn_acc_ratio"];
                 //需要计算得来
@@ -344,11 +354,11 @@
     NSString *city = [locationDictionary valueForKey:@"City"];
     NSString *city_nsu = [MMNSUserDefaults objectForKey:SelectedCity];
     
+    [MMNSUserDefaults setObject:city forKey:LocationCity];
     if (![city_nsu isEqualToString:city]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"您定位到%@，确定切换城市吗？",city] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [MMNSUserDefaults setObject:city forKey:LocationCity];
             
             //把已选择的城市更改成定位城市
              [MMNSUserDefaults setObject:city forKey:SelectedCity];

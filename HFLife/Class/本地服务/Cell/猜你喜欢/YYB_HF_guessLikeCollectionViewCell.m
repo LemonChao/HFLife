@@ -98,17 +98,18 @@
     
     
     self.nameLabel.text = @"索菲特国际饭店海鲜自助餐";
-    self.nameLabel.font = FONT(14);
+    self.nameLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size: ScreenScale(14)];
+    self.nameLabel.textColor = HEX_COLOR(0x131313);
     self.adLabel.text = @"仅售3580元，价值6086元的优惠套餐，欢迎体验仅售3580元，价值6086元的优惠套餐，欢迎体验";
-    self.adLabel.font = FONT(12);
+    self.adLabel.font = FONT(11);
     self.adLabel.textColor = HEX_COLOR(0x333333);
     self.distanceLabel.text = @"x.xkm";
-    self.distanceLabel.font = FONT(9);
+    self.distanceLabel.font = FONT(11);
     self.distanceLabel.textAlignment = NSTextAlignmentRight;
 
     self.distanceLabel.textColor = HEX_COLOR(0x333333);
     self.priceLabel.text = @"￥xxxxx";
-    self.priceLabel.font = FONT(17);
+    self.priceLabel.font = FONT(18);
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
     
     self.oldPriceLabel.text = @"￥xxxxx";
@@ -144,12 +145,12 @@
     [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bgView).mas_offset(-10);
         make.height.mas_equalTo(12);
-        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(5);
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(7);
         make.width.mas_greaterThanOrEqualTo(40);
     }];
     [self.adLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
-        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(5);
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(7);
         make.right.mas_equalTo(self.distanceLabel.mas_left).mas_offset(-18);
         make.height.mas_equalTo(12);
     }];
@@ -157,7 +158,7 @@
     
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
-        make.top.mas_equalTo(self.adLabel.mas_bottom).mas_offset(5);
+        make.top.mas_equalTo(self.adLabel.mas_bottom).mas_offset(7);
         make.height.mas_equalTo(17);
     }];
     
@@ -303,13 +304,14 @@
     self.bgView.layer.shadowRadius = 3;
     
     self.nameLabel.text = @"郑州辰星医疗美容医院【冰点脱 毛】（腋毛/唇毛二选一）...郑州辰星医疗美容医院【冰点脱 毛】（腋毛/唇毛二选一）...";
+    self.nameLabel.textColor = HEX_COLOR(0x131313);
     self.nameLabel.font = FONT(14);
     self.nameLabel.numberOfLines = 2;
     self.distanceLabel.text = @"x.xkm";
-    self.distanceLabel.font = FONT(9);
+    self.distanceLabel.font = FONT(11);
     self.distanceLabel.textAlignment = NSTextAlignmentRight;
     self.priceLabel.text = @"￥xxxxx";
-    self.priceLabel.font = FONT(17);
+    self.priceLabel.font = FONT(18);
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
     
     self.oldPriceLabel.text = @"￥xxxxx";

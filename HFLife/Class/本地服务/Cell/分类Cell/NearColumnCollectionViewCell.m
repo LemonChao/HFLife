@@ -24,7 +24,7 @@
     
     self.title = [[UILabel alloc] init];
     self.title.numberOfLines = 0;
-    self.title.font = [UIFont systemFontOfSize:WidthRatio(21)];
+    self.title.font = [UIFont systemFontOfSize:ScreenScale(12)];
     self.title.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.title];
     

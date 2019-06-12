@@ -16,7 +16,7 @@
         [self addSubview:_textLabel];
         
         _textLabel.frame = CGRectMake(ScreenScale(12), 0, 200, self.frame.size.height);
-        _textLabel.font = FONT(17);
+        _textLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size: 18];
         _textLabel.textColor = HEX_COLOR(0x131313);
         
     }

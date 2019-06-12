@@ -174,7 +174,7 @@
     }
 }
 - (void)setStaticGuidePage {
-    NSArray *imageNameArray = @[@"guide_1",@"guide_2",@"guide_3"];
+    NSArray *imageNameArray = @[@"intro1.gif",@"intro2.gif",@"intro3.gif"];
     DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:self.view.frame imageNameArray:imageNameArray buttonIsHidden:NO];
     guidePage.slideInto = YES;
     [[UIApplication sharedApplication].keyWindow addSubview:guidePage];

@@ -125,7 +125,7 @@
         [requestManager.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@" , gettoken] forHTTPHeaderField:@"TOKEN"];
     }
 
-    MYLog(@"httpHeaders : %@", requestManager.sessionManager.requestSerializer.HTTPRequestHeaders);
+    NSLog(@"httpHeaders : %@", requestManager.sessionManager.requestSerializer.HTTPRequestHeaders);
     /********************************************************/
     
     
@@ -251,7 +251,7 @@
     
     //成功  返回就是json  不需要解析
     NSDictionary *valueDic = [HR_dataManagerTool dataToypteDJson:responseObject];
-    MYLog(@"result = %@" , valueDic);
+    NSLog(@"result = %@" , valueDic);
     //解析正确
     if (valueDic != nil) {
         if ([valueDic[@"status"] integerValue] == 1){
