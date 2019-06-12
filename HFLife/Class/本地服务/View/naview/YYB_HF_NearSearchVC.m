@@ -59,8 +59,7 @@
     self.headView.searchClick = ^{
         YYB_HF_SearchResultC *vc = [[YYB_HF_SearchResultC alloc]init];
         vc.searchType = weakSelf.searchType;
-        vc.searchStr = weakSelf.headView.searchT.text;
-        
+        vc.searchStr = [weakSelf.searchType isEqualToString:@"1"] ? @"美食" : @"酒店";
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     

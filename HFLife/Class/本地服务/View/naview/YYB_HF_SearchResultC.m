@@ -50,8 +50,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    self.myTable.page = 1;
-    [self getData];
+    if (self.searResultArr.count == 0) {
+        self.myTable.page = 1;
+        [self getData];
+    }
 }
 
 //数据搜索

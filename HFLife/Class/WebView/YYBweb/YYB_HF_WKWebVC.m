@@ -154,6 +154,7 @@
     [userContentController addScriptMessageHandler:self name:@"nativeToJump"];
     //返回首页
     [userContentController addScriptMessageHandler:self name:@"goToHome"];
+    [userContentController addScriptMessageHandler:self name:@"goBack"];
     //抢购
     [userContentController addScriptMessageHandler:self name:@"rushBuy"];
     //抢购
@@ -168,6 +169,9 @@
     [userContentController addScriptMessageHandler:self name:@"choiceCity"];
     //调起支付
     [userContentController addScriptMessageHandler:self name:@"goPay"];
+    //调起支付
+    [userContentController addScriptMessageHandler:self name:@"goToSearch"];
+    
     configuration.userContentController = userContentController;
     
     
@@ -444,6 +448,10 @@
         }
     }else if ([message.name isEqualToString:@"goPay"]){
         [self goToPayParameter:message.body];
+    }else if ([message.name isEqualToString:@"goBack"]){
+        [self goToHome];
+    }else if ([message.name isEqualToString:@"goToSearch"]){
+        [self jumSearchVC];
     }
     //goToHome
 }
@@ -550,6 +558,11 @@
     vc.dataParameter = dict[@"data"];
     [self.navigationController pushViewController:vc animated:YES];
 }
+#pragma mark - h5跳转 搜索界面 goToSearch
+-(void)jumSearchVC {
+    [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
+}
+
 #pragma mark - 返回首页--
 -(void)goToHome{
     [self.navigationController popViewControllerAnimated:YES];
