@@ -143,4 +143,8 @@ static NSString *const kChoiceCity =        @"http://192.168.0.122:8080/#/city";
 static NSString *const kOrderList =         @"http://192.168.0.122:10004/#/order";
 
 
+#pragma mark - h5  服务协议 ---------------------------
+
+/** 服务协议 */
+static NSString *const kAppAgreement =        @"http://192.168.0.143:8080/#/appAgreement";
 #endif /* Header_YYB_h */

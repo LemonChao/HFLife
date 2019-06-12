@@ -35,4 +35,6 @@
  *  @return DHGuidePageHUD对象
  */
 - (instancetype)dh_initWithFrame:(CGRect)frame videoURL:(NSURL *)videoURL;
+
+@property (nonatomic, assign)CGFloat videoDuration;
 @end

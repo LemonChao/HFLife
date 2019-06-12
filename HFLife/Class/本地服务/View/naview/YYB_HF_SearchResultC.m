@@ -10,7 +10,7 @@
 #import "YYB_HF_SearchResultCell.h"
 #import "YYB_HF_SearchResultHotelCell.h"
 @interface YYB_HF_SearchResultC ()<UITableViewDelegate,UITableViewDataSource> {
-    BOOL _isAllPage;//页数
+    BOOL _isAllPage;//是否加载完页数
 }
 @property(nonatomic, strong) baseTableView *myTable;
 @property(nonatomic, strong) NSMutableArray *searResultArr;//
@@ -52,6 +52,7 @@
     [self getData];
 }
 
+//数据搜索
 - (void)getData {
     
     if (_isAllPage) {
@@ -80,36 +81,37 @@
                     if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                         NSArray *dataArr = dataDic[@"data"];
                         if (dataArr && dataArr.count > 0) {
-                            [self.searResultArr addObjectsFromArray:dataArr];
+                            [self.searResultArr addObjectsFromArray:[SearchFoodList mj_objectArrayWithKeyValuesArray:dataArr]];
                             [self.myTable reloadData];
                         }else {
                             self->_isAllPage = YES;
                         }
                         
                         if (self.searResultArr.count == 0) {
-                            [self.searResultArr addObjectsFromArray:@[
-                                                                      @{
-                                                                          @"id": @(1),
-                                                                          @"food_name": @"个人美食店铺 test",
-                                                                          @"score_star": @(3),
-                                                                          @"consume_avg": @(60),
-                                                                          @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/eec4236b95f3abace045babf97ae0ef9.jpg",
-                                                                          @"distance": @(1.71),
-                                                                          @"coupon": @"100元代金券",
-                                                                          @"detail_list": @"披萨（8寸）,披萨（10寸）,雪碧"
-                                                                          },
-                                                                      @{
-                                                                          @"id": @(2),
-                                                                          @"food_name": @"企业美食店铺",
-                                                                          @"score_star": @(5),
-                                                                          @"consume_avg":@(70),
-                                                                          @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/f57ebce8a72b823912904fe76eda0909.png",
-                                                                          @"distance": @(0.03),
-                                                                          @"coupon": @"200元代金券",
-                                                                          @"detail_list": @"小龙虾,大闸蟹,水果沙拉"
-                                                                          }
-                                                                      ]
-                             ];
+                            NSArray *arr = @[
+                                             @{
+                                                 @"id": @(1),
+                                                 @"food_name": @"个人美食店铺 test",
+                                                 @"score_star": @(3),
+                                                 @"consume_avg": @(60),
+                                                 @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/eec4236b95f3abace045babf97ae0ef9.jpg",
+                                                 @"distance": @(1.71),
+                                                 @"coupon": @"100元代金券",
+                                                 @"detail_list": @"披萨（8寸）,披萨（10寸）,雪碧"
+                                                 },
+                                             @{
+                                                 @"id": @(2),
+                                                 @"food_name": @"企业美食店铺",
+                                                 @"score_star": @(5),
+                                                 @"consume_avg":@(70),
+                                                 @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/f57ebce8a72b823912904fe76eda0909.png",
+                                                 @"distance": @(0.03),
+                                                 @"coupon": @"200元代金券",
+                                                 @"detail_list": @"小龙虾,大闸蟹,水果沙拉"
+                                                 }
+                                             ];
+                            [self.searResultArr addObjectsFromArray:[SearchFoodList mj_objectArrayWithKeyValuesArray:arr]];
+                            
                             [self.myTable reloadData];
                         }
                     }
@@ -118,36 +120,37 @@
                 }else {
                     NSArray *dataArr = value[@"data"];
                     if (dataArr && dataArr.count > 0) {
-                        [self.searResultArr addObjectsFromArray:dataArr];
+                        [self.searResultArr addObjectsFromArray:[SearchHotelList mj_objectArrayWithKeyValuesArray:dataArr]];
                         [self.myTable reloadData];
                     }else {
                         self->_isAllPage = YES;
                     }
                     
                     if (self.searResultArr.count == 0) {
-                        [self.searResultArr addObjectsFromArray: @[
-                                                                   @{
-                                                                       @"id": @(3),   //酒店id
-                                                                       @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/food/611269fafaaa2921027b980c4526c4b8.jpg",    //logo图
-                                                                       @"hotel_name": @"如家酒店（郑州CBD会展中心店）",    //酒店名称
-                                                                       @"hotel_address": @"商务内环路与通泰路交叉口往东20米新浦大厦",   //酒店地址
-                                                                       @"evaluate_num": @(0),    //评价人数
-                                                                       @"evaluate_star": @(3),   //评分
-                                                                       @"consume_min": @(100),   //最低消费
-                                                                       @"distance": @(4.74)    //距离（km）
-                                                                       },
-                                                                   @{
-                                                                       @"id": @(2),
-                                                                       @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/f179911bf47eae2f07fdd261274a4537.jpg",
-                                                                       @"hotel_name": @"私人酒店test",
-                                                                       @"hotel_address": @"裕鸿国际A座",
-                                                                       @"evaluate_num": @(0),
-                                                                       @"evaluate_star": @(3),
-                                                                       @"consume_min": @(260),
-                                                                       @"distance": @(0.04)
-                                                                       }
-                                                                   ]
-                         ];
+                        
+                        NSArray *arr = @[
+                                         @{
+                                             @"id": @(3),   //酒店id
+                                             @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/food/611269fafaaa2921027b980c4526c4b8.jpg",    //logo图
+                                             @"hotel_name": @"如家酒店（郑州CBD会展中心店）",    //酒店名称
+                                             @"hotel_address": @"商务内环路与通泰路交叉口往东20米新浦大厦",   //酒店地址
+                                             @"evaluate_num": @(0),    //评价人数
+                                             @"evaluate_star": @(3),   //评分
+                                             @"consume_min": @(100),   //最低消费
+                                             @"distance": @(4.74)    //距离（km）
+                                             },
+                                         @{
+                                             @"id": @(2),
+                                             @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/f179911bf47eae2f07fdd261274a4537.jpg",
+                                             @"hotel_name": @"私人酒店test",
+                                             @"hotel_address": @"裕鸿国际A座",
+                                             @"evaluate_num": @(0),
+                                             @"evaluate_star": @(3),
+                                             @"consume_min": @(260),
+                                             @"distance": @(0.04)
+                                             }
+                                         ];
+                        [self.searResultArr addObjectsFromArray:[SearchHotelList mj_objectArrayWithKeyValuesArray:arr]];
                         [self.myTable reloadData];
                     }
                     
@@ -180,7 +183,7 @@
         
     }];
     //    [self.customNavBar wr_setBackgroundAlpha:0];
-    [self.customNavBar wr_setBottomLineHidden:YES];
+    [self.customNavBar wr_setBottomLineHidden:NO];
     self.customNavBar.title = self.searchStr;
     self.customNavBar.backgroundColor = [UIColor whiteColor];
     self.customNavBar.titleLabelColor = [UIColor blackColor];
@@ -213,39 +216,56 @@
     static NSString *identifier1 = @"YYB_HF_SearchResultCell";
     static NSString *identifier2 = @"YYB_HF_SearchResultHotelCell";
     
-    NSDictionary *dataDic = self.searResultArr[indexPath.row];
     if ([self.searchType isEqualToString:@"1"]) {//美食
+        SearchFoodList *food = self.searResultArr[indexPath.row];
         YYB_HF_SearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier1];
         if (!cell) {
             cell = [[YYB_HF_SearchResultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString judgeNullReturnString:dataDic[@"logo_image"]]] placeholderImage:image(@"image1")];
-        cell.titleL.text = dataDic[@"food_name"];
-        cell.priceL.text = dataDic[@"consume_avg"];
-        cell.addressL.text = dataDic[@"hotel_address"];
-        cell.cashL.text = dataDic[@"coupon"];
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString judgeNullReturnString:food.logo_image]] placeholderImage:image(@"image1")];
+        cell.titleL.text = food.food_name;
+        cell.priceL.text = [NSString stringWithFormat:@"￥%@/人",[food.consume_avg stringValue]];
+        cell.addressL.text = food.detail_list;
+        cell.cashL.text = food.coupon;
+        cell.starNum = [food.score_star intValue];
+        cell.distanceL.text = [NSString stringWithFormat:@"%.2fkm",[food.distance floatValue]];
         return cell;
     }else {
+        SearchHotelList *hotel = self.searResultArr[indexPath.row];
         YYB_HF_SearchResultHotelCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier2];
         if (!cell) {
             cell = [[YYB_HF_SearchResultHotelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier2];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString judgeNullReturnString:dataDic[@"logo_image"]]] placeholderImage:image(@"image1")];
-        cell.titleL.text = dataDic[@"hotel_name"];
-        cell.scoreL.text = dataDic[@"evaluate_star"];
-        cell.addressL.text = dataDic[@"hotel_address"];
-        cell.cashL.text = dataDic[@"evaluate_num"];
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString judgeNullReturnString:hotel.logo_image]] placeholderImage:image(@"image1")];
+        cell.titleL.text = hotel.hotel_name;
+        cell.scoreL.text = [NSString stringWithFormat:@"%.1f分",[hotel.evaluate_star floatValue]];
+        cell.addressL.text = [NSString stringWithFormat:@"%.2fkm|%@",[hotel.distance floatValue],hotel.hotel_address];
+        cell.pingjiaL.text = [NSString stringWithFormat:@"%@人评价",[hotel.evaluate_num stringValue]];
+        cell.consume_minL.text = [NSString stringWithFormat:@"￥%@",[hotel.consume_min stringValue]];
+        cell.starNum = [hotel.evaluate_star intValue];
         return cell;
     }
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath) {
-        
+    
+    NSString *url;;
+    
+    SearchFoodList *foodModel = self.searResultArr[indexPath.row];
+    url = foodModel.url;
+    
+    if (url && url.length > 0) {
+        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+        vc.isTop = NO;
+        vc.urlString = url;
+        vc.isNavigationHidden = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        [WXZTipView showCenterWithText:@"click -line"];
     }
 }
 

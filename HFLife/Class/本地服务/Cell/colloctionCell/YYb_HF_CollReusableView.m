@@ -41,8 +41,8 @@
         _imageV = [[UIImageView alloc] init];
         [self addSubview:_imageV];
         
-        _imageV.frame = CGRectMake(ScreenScale(12), ScreenScale(12), 15, 17);
-        _imageV.backgroundColor = [UIColor redColor];
+        _imageV.frame = CGRectMake(ScreenScale(12), ScreenScale(12), 12, 14);
+        _imageV.image = image(@"icon_hot");
         _textLabel = [[UILabel alloc] init];
         [self addSubview:_textLabel];
         

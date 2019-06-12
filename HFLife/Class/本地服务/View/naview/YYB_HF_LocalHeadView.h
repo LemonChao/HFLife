@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 点击订单事件 */
 @property(nonatomic, copy) void (^orderIconClick)(void);
 /** 点击搜索事件 */
-@property(nonatomic, copy) void (^searchIconClick)(void);
+@property(nonatomic, copy) void (^searchIconClick)(NSString *search);
 @property(nonatomic, strong) UIImage *setHeadImage;
 @property(nonatomic, copy) NSString *setLocalStr;
 @property(nonatomic, copy) NSString *setSearchStr;

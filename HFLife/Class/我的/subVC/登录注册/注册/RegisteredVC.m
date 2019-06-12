@@ -385,13 +385,17 @@
         [WXZTipView showCenterWithText:@"请输入验证码"];
         return;
     }
-//    if ([NSString isNOTNull:self.inviteCodeTextField.text]) {
-//        [WXZTipView showCenterWithText:@"邀请码不能为空"];
-//        return;
-//    }
+    if ([NSString isNOTNull:self.inviteCodeTextField.text]) {
+        [WXZTipView showCenterWithText:@"邀请码不能为空"];
+        return;
+    }
+    if (self.inviteCodeTextField.text.length != 6) {
+        [WXZTipView showCenterWithText:@"请输入6位邀请码"];
+        return;
+    }
     
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:@{@"member_mobile":_userName.text,@"captcha":self.vercodeText.text,@"invite_code":_inviteCodeTextField.text ? _inviteCodeTextField.text : @""} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:@{@"member_mobile":_userName.text,@"captcha":self.vercodeText.text,@"invite_code":_inviteCodeTextField.text} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -465,13 +469,13 @@
         }];
     }
     if (textField == _inviteCodeTextField && _inviteCodeTextField.text.length > 0) {
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckInviteCode withParameters:@{@"invite_code":textField.text} withResultBlock:^(BOOL result, id value) {
-            if (result) {
-                
-            }else {
-                [self setRightView:textField string:@"邀请码错误"];
-            }
-        }];
+//        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckInviteCode withParameters:@{@"invite_code":textField.text} withResultBlock:^(BOOL result, id value) {
+//            if (result) {
+//
+//            }else {
+//                [self setRightView:textField string:@"邀请码错误"];
+//            }
+//        }];
     }
 
 }

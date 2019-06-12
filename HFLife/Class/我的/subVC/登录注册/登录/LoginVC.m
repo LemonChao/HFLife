@@ -132,12 +132,17 @@
     lin2.userInteractionEnabled = YES;
     [lin2 wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
         NSLog(@"协议");
-        NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"APP_agreement" ofType:@"doc"];
-        ServiceAgreementVC *serv = [[ServiceAgreementVC alloc]init];
-        serv.htmlPath = htmlPath;
-        serv.title = @"注册协议";
-        serv.row = 1;
-        [self.navigationController pushViewController:serv animated:YES];
+//        NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"APP_agreement" ofType:@"doc"];
+//        ServiceAgreementVC *serv = [[ServiceAgreementVC alloc]init];
+//        serv.htmlPath = htmlPath;
+//        serv.title = @"注册协议";
+//        serv.row = 1;
+        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+        vc.urlString = kAppAgreement;
+        vc.isTop = NO;
+        vc.isNavigationHidden = YES;
+
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     
     UILabel *fastLogin = [UILabel new];
@@ -225,6 +230,14 @@
 -(void)loginWithWeChat{
 
     [[WBPCreate sharedInstance] showWBProgress];
+    
+    
+    //判断平台是否授权
+    if ([ShareSDK hasAuthorized:SSDKPlatformTypeWechat]) {
+
+    }else{
+        
+    }
     [ShareSDK getUserInfo:SSDKPlatformTypeWechat
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error){
                [[WBPCreate sharedInstance] hideAnimated];

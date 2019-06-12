@@ -122,4 +122,6 @@ static NSString *const certification         = @"certification";
 static NSString *const headlinesList         = @"headlinesList";
 //我要入驻（个人中心用）
 static NSString *const enterIndex            = @"http://192.168.0.143:1111/#/signingIndex?type=2";
+//客服中心
+static NSString *servceCenter                = @"serviceCenterMain";
 #endif /* Header_SXF_h */
