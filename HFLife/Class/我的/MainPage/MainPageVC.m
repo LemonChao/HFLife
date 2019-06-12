@@ -39,6 +39,11 @@
     [super viewWillAppear:animated];
     self.mainPageView.memberInfoModel = [userInfoModel sharedUser];
     [self loadData];
+    [NOTIFICATION postNotificationName:@"stopScroll" object:@(0)];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [NOTIFICATION postNotificationName:@"stopScroll" object:@(1)];
 }
 - (void)setUpUI{
     self.mainPageView = [[SXF_HF_MainPageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight - self.tabBarHeight)];
@@ -177,9 +182,6 @@
             }
         }
     }];
-}
-- (void)viewWillDisappear:(BOOL)animated{
-    
 }
 
 

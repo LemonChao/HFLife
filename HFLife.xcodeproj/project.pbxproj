@@ -205,6 +205,7 @@
 		048DAC7822857DF9006E6BA2 /* Per_MethodsToDealWithManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAC7622857DF9006E6BA2 /* Per_MethodsToDealWithManage.m */; };
 		048E8803228D4D2000410405 /* VersionUpdate_Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 048E8802228D4D2000410405 /* VersionUpdate_Cancel.png */; };
 		048E8805228D4D2900410405 /* VersionUpdate_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 048E8804228D4D2800410405 /* VersionUpdate_Icon.png */; };
+		0495D3D022B0EE01006134F4 /* final render_1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0495D3CF22B0EE01006134F4 /* final render_1.mp4 */; };
 		049783832285957E00E143D7 /* NearPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497834B2285957E00E143D7 /* NearPageVC.m */; };
 		049783842285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0497834E2285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m */; };
 		049783852285957E00E143D7 /* YYb_HF_CollReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049783522285957E00E143D7 /* YYb_HF_CollReusableView.m */; };
@@ -511,6 +512,8 @@
 		04F5F266228440860043BBB7 /* SXF_HF_CycleContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F265228440860043BBB7 /* SXF_HF_CycleContentCell.m */; };
 		04F67AB22285199A008124A3 /* UIView+cornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB12285199A008124A3 /* UIView+cornerRadius.m */; };
 		04F67AB6228522BA008124A3 /* NSArray+layoutViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */; };
+		04F6A83322B0D78200D4C196 /* WGButtnAniView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F6A83022B0D78100D4C196 /* WGButtnAniView.m */; };
+		04F6A83422B0D78200D4C196 /* WGCircleAniView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F6A83122B0D78100D4C196 /* WGCircleAniView.m */; };
 		04F6C9E7229E81E800890A2A /* SXF_HF_saveCodeView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F6C9E5229E81E800890A2A /* SXF_HF_saveCodeView2.m */; };
 		04F6C9E8229E81E800890A2A /* SXF_HF_saveCodeView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F6C9E6229E81E800890A2A /* SXF_HF_saveCodeView2.xib */; };
 		04F89318229254370075918A /* SXF_HP_cardPacketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F89317229254370075918A /* SXF_HP_cardPacketVC.m */; };
@@ -1253,6 +1256,7 @@
 		048DAC7722857DF9006E6BA2 /* Per_MethodsToDealWithManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Per_MethodsToDealWithManage.h; sourceTree = "<group>"; };
 		048E8802228D4D2000410405 /* VersionUpdate_Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VersionUpdate_Cancel.png; sourceTree = "<group>"; };
 		048E8804228D4D2800410405 /* VersionUpdate_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VersionUpdate_Icon.png; sourceTree = "<group>"; };
+		0495D3CF22B0EE01006134F4 /* final render_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "final render_1.mp4"; sourceTree = "<group>"; };
 		0497834A2285957E00E143D7 /* NearHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearHomeVC.h; sourceTree = "<group>"; };
 		0497834B2285957E00E143D7 /* NearPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearPageVC.m; sourceTree = "<group>"; };
 		0497834E2285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_LocaColumnCollectionCell.m; sourceTree = "<group>"; };
@@ -1844,6 +1848,11 @@
 		04F67AB12285199A008124A3 /* UIView+cornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+cornerRadius.m"; sourceTree = "<group>"; };
 		04F67AB4228522BA008124A3 /* NSArray+layoutViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+layoutViews.h"; sourceTree = "<group>"; };
 		04F67AB5228522BA008124A3 /* NSArray+layoutViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+layoutViews.m"; sourceTree = "<group>"; };
+		04F6A82F22B0D78100D4C196 /* WGCircleAniView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WGCircleAniView.h; sourceTree = "<group>"; };
+		04F6A83022B0D78100D4C196 /* WGButtnAniView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WGButtnAniView.m; sourceTree = "<group>"; };
+		04F6A83122B0D78100D4C196 /* WGCircleAniView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WGCircleAniView.m; sourceTree = "<group>"; };
+		04F6A83222B0D78200D4C196 /* WGButtnAniView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WGButtnAniView.h; sourceTree = "<group>"; };
+		04F6A83622B0D7BA00D4C196 /* DHGifImageOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHGifImageOperation.h; sourceTree = "<group>"; };
 		04F6C9E4229E81E800890A2A /* SXF_HF_saveCodeView2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_saveCodeView2.h; sourceTree = "<group>"; };
 		04F6C9E5229E81E800890A2A /* SXF_HF_saveCodeView2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_saveCodeView2.m; sourceTree = "<group>"; };
 		04F6C9E6229E81E800890A2A /* SXF_HF_saveCodeView2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_saveCodeView2.xib; sourceTree = "<group>"; };
@@ -2343,7 +2352,6 @@
 		659EA0612203D5A1004471CD /* GuideImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GuideImage.bundle; sourceTree = "<group>"; };
 		659EA0622203D5A1004471CD /* DHGifImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGifImageOperation.m; sourceTree = "<group>"; };
 		659EA06E2203D5A1004471CD /* DHGuidePageHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGuidePageHUD.h; sourceTree = "<group>"; };
-		659EA06F2203D5A1004471CD /* DHGifImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGifImageOperation.h; sourceTree = "<group>"; };
 		659EA0702203D5A1004471CD /* DHGuidePageHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGuidePageHUD.m; sourceTree = "<group>"; };
 		659EA0842203FA66004471CD /* LXEmptyDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXEmptyDataView.h; sourceTree = "<group>"; };
 		659EA0852203FA66004471CD /* LXEmptyDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXEmptyDataView.m; sourceTree = "<group>"; };
@@ -3165,6 +3173,7 @@
 		0453D1B12283B60100880C2A /* homePageVC */ = {
 			isa = PBXGroup;
 			children = (
+				0495D3CF22B0EE01006134F4 /* final render_1.mp4 */,
 				04B9D4F322803CF00084FA23 /* HomePageVC.h */,
 				04B9D4F422803CF00084FA23 /* HomePageVC.m */,
 				04F5F24F228418880043BBB7 /* SXF_HF_HomePageVM.h */,
@@ -5937,6 +5946,17 @@
 			path = "对Masonry扩展";
 			sourceTree = "<group>";
 		};
+		04F6A83522B0D78800D4C196 /* 圆环动画 */ = {
+			isa = PBXGroup;
+			children = (
+				04F6A83222B0D78200D4C196 /* WGButtnAniView.h */,
+				04F6A83022B0D78100D4C196 /* WGButtnAniView.m */,
+				04F6A82F22B0D78100D4C196 /* WGCircleAniView.h */,
+				04F6A83122B0D78100D4C196 /* WGCircleAniView.m */,
+			);
+			path = "圆环动画";
+			sourceTree = "<group>";
+		};
 		04F89315229254270075918A /* 新版卡包 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7059,10 +7079,11 @@
 			isa = PBXGroup;
 			children = (
 				659EA0612203D5A1004471CD /* GuideImage.bundle */,
+				04F6A83622B0D7BA00D4C196 /* DHGifImageOperation.h */,
 				659EA0622203D5A1004471CD /* DHGifImageOperation.m */,
 				659EA06E2203D5A1004471CD /* DHGuidePageHUD.h */,
-				659EA06F2203D5A1004471CD /* DHGifImageOperation.h */,
 				659EA0702203D5A1004471CD /* DHGuidePageHUD.m */,
+				04F6A83522B0D78800D4C196 /* 圆环动画 */,
 			);
 			path = DHGuidePageHUD;
 			sourceTree = "<group>";
@@ -7697,6 +7718,7 @@
 				04B9D3CA227FE5A90084FA23 /* UMSSecKeyboardLibResource.bundle in Resources */,
 				04F946F8228C1F9700085F78 /* 回删附号@2x.png in Resources */,
 				048DABCF22856656006E6BA2 /* password_loading_b@2x.png in Resources */,
+				0495D3D022B0EE01006134F4 /* final render_1.mp4 in Resources */,
 				0453D1EF2284033000880C2A /* errorAlertViewViewController.xib in Resources */,
 				04F52151228A76BA00ED4995 /* newcapsLock@2x.png in Resources */,
 				6522949B225AE063001DF691 /* VersionUpdate_Icon@3x.png in Resources */,
@@ -8167,6 +8189,7 @@
 				6C2F5159222A663D0022EE03 /* HXPhotoView.m in Sources */,
 				658C3ADE21F31A5000880B6A /* MKButton+Line.m in Sources */,
 				6CCAD6F822827CBE001824A0 /* ZC_HF_ShopHomeVC.m in Sources */,
+				04F6A83322B0D78200D4C196 /* WGButtnAniView.m in Sources */,
 				04A5088E227EDD3A0013E8EC /* CALayer+WHLayer.m in Sources */,
 				658C39DC21E9FA5B00880B6A /* JXCategoryTitleImageCell.m in Sources */,
 				658B7C4921D749E100801CC8 /* UIView_extra.m in Sources */,
@@ -8207,6 +8230,7 @@
 				0453D1F32284033000880C2A /* errorAlertViewViewController.m in Sources */,
 				659EA0722203D5A1004471CD /* DHGifImageOperation.m in Sources */,
 				04F8932B229260DC0075918A /* SXF_HF_addCardSectionHeaderView.m in Sources */,
+				04F6A83422B0D78200D4C196 /* WGCircleAniView.m in Sources */,
 				6579784721E6D6B600E606BE /* JFCityViewController.m in Sources */,
 				04A508A1227EDD3A0013E8EC /* UIScrollView+WHScrollView.m in Sources */,
 				04FA265622967E6D00F4E9EB /* balanceHomeView.m in Sources */,
@@ -8702,7 +8726,7 @@
 					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/支付/银联支付/Chinaums",
 					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/支付/银联支付/UPPaymentControl",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ly.hanlifee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ly.hanlife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -8764,7 +8788,7 @@
 					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/支付/银联支付/Chinaums",
 					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/支付/银联支付/UPPaymentControl",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ly.hanlifee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ly.hanlife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

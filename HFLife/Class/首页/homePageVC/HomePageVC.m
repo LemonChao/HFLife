@@ -168,6 +168,9 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:BOOLFORKEY];
         // 静态引导页
         [self setStaticGuidePage];
+    }else{
+        //视频引导页
+        [self videoGuideView];
     }
 }
 - (void)setStaticGuidePage {
@@ -201,7 +204,19 @@
 
 
 
-
+//视频引导页
+- (void)videoGuideView{
+    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"final render_1" ofType:@"mp4"];
+    DHGuidePageHUD *videoView = [[DHGuidePageHUD alloc] dh_initWithFrame:[UIScreen mainScreen].bounds videoURL:[NSURL fileURLWithPath:videoPath]];
+    //设置销毁时间
+    
+    videoView.alpha = 0.1;
+    [[UIApplication sharedApplication].keyWindow addSubview:videoView];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        videoView.alpha = 1;
+        videoView.videoDuration = 5.0;
+    });
+}
 
 
 

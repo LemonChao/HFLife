@@ -37,9 +37,9 @@
 //    valueArray = @[@[[UserCache getUserPic],[UserCache getUserNickName],[UserCache getUserName],[UserCache getUserXinXiTitle],[NSString isNOTNull:[UserCache getUserPhone]] ? @"" : [[UserCache getUserPhone] EncodeTel]],@[@""]];
     
     if (([userInfoModel sharedUser].ID && [userInfoModel sharedUser].ID > 0)) {
-        dataArray = @[@[@"头像",@"用户名称",@"昵称",@"性别",@"年龄"],@[@"实名认证"],@[@"退出登录"]];
+        dataArray = @[@[@"头像",@"用户名称",@"昵称",@"性别",@"年龄"],@[@"实名认证"],@[@"客服中心"],@[@"退出登录"]];
     }else {
-        dataArray = @[@[],@[],@[@"退出登录"]];
+        dataArray = @[@[],@[],@[@"客服中心"],@[@"退出登录"]];
     }
     [self initWithUI];
     [self setupNavBar];
@@ -49,7 +49,7 @@
     self.navigationController.navigationBar.hidden = YES;
     
     userInfoModel *user = [userInfoModel sharedUser];
-    self->valueArray = @[@[[NSString judgeNullReturnString:user.member_avatar],[NSString judgeNullReturnString:user.member_mobile],[NSString judgeNullReturnString:user.nickname],[NSString judgeNullReturnString:user.member_sexName],user.member_age ? user.member_age.stringValue : @""],@[[NSString judgeNullReturnString:user.rz_statusName]],@[@""]];
+    self->valueArray = @[@[[NSString judgeNullReturnString:user.member_avatar],[NSString judgeNullReturnString:user.member_mobile],[NSString judgeNullReturnString:user.nickname],[NSString judgeNullReturnString:user.member_sexName],user.member_age ? user.member_age.stringValue : @""],@[[NSString judgeNullReturnString:user.rz_statusName]],@[@""],@[@""]];
     [self.contentTableView reloadData];
     
     
@@ -118,7 +118,7 @@
             cell.subtitleString = value;
             cell.isArrowHiden = NO;
         }
-    }else if (indexPath.section == 1) {
+    }else if (indexPath.section == 1 || indexPath.section == 2) {
         cell.subtitleString = value;
         cell.isArrowHiden = NO;
     }else{
@@ -247,6 +247,11 @@
                 }];
             }
         }];
+    }else if ([title_value isEqualToString:@"客服中心"]){
+        //跳转客服中心
+        SXF_HF_WKWebViewVC *webView = [SXF_HF_WKWebViewVC new];
+        webView.urlString = SXF_WEB_URLl_Str(servceCenter);
+        [self.navigationController pushViewController:webView animated:YES];
     }
 }
 - (void)albumListViewController:(HXAlbumListViewController *)albumListViewController didDoneAllList:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photoList videos:(NSArray<HXPhotoModel *> *)videoList original:(BOOL)original {
