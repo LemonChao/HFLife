@@ -15,6 +15,8 @@
 @property(nonatomic, strong) baseTableView *myTable;
 @property(nonatomic, strong) NSMutableArray *searResultArr;//
 
+@property(nonatomic, strong) LYEmptyView *noDataView;//无数据
+
 @end
 
 @implementation YYB_HF_SearchResultC
@@ -54,7 +56,7 @@
 
 //数据搜索
 - (void)getData {
-    
+    [self.noDataView setHidden:YES];
     if (_isAllPage) {
         [self.myTable endRefreshData];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -88,6 +90,11 @@
                         }
                         
                         if (self.searResultArr.count == 0) {
+                            
+                            [self.noDataView setHidden:NO];
+                            
+                            return ;
+
                             NSArray *arr = @[
                                              @{
                                                  @"id": @(1),
@@ -101,7 +108,7 @@
                                                  },
                                              @{
                                                  @"id": @(2),
-                                                 @"food_name": @"企业美食店铺",
+                                                 @"food_name": @"企业美食店铺 测试",
                                                  @"score_star": @(5),
                                                  @"consume_avg":@(70),
                                                  @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/f57ebce8a72b823912904fe76eda0909.png",
@@ -128,11 +135,14 @@
                     
                     if (self.searResultArr.count == 0) {
                         
+                        [self.noDataView setHidden:NO];
+                        
+                        return;
                         NSArray *arr = @[
                                          @{
                                              @"id": @(3),   //酒店id
                                              @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/food/611269fafaaa2921027b980c4526c4b8.jpg",    //logo图
-                                             @"hotel_name": @"如家酒店（郑州CBD会展中心店）",    //酒店名称
+                                             @"hotel_name": @"测试 如家酒店（郑州CBD会展中心店）",    //酒店名称
                                              @"hotel_address": @"商务内环路与通泰路交叉口往东20米新浦大厦",   //酒店地址
                                              @"evaluate_num": @(0),    //评价人数
                                              @"evaluate_star": @(3),   //评分
@@ -142,7 +152,7 @@
                                          @{
                                              @"id": @(2),
                                              @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/f179911bf47eae2f07fdd261274a4537.jpg",
-                                             @"hotel_name": @"私人酒店test",
+                                             @"hotel_name": @"私人酒店 test",
                                              @"hotel_address": @"裕鸿国际A座",
                                              @"evaluate_num": @(0),
                                              @"evaluate_star": @(3),
@@ -163,8 +173,26 @@
             }else {
                 [WXZTipView showCenterWithText:@"网络错误"];
             }
+            
+            self.searResultArr = nil;
+            [self.myTable reloadData];
+            [self.noDataView setHidden:NO];
         }
     }];
+}
+
+//加载无数据视图
+
+- (LYEmptyView *)noDataView {
+    if (!_noDataView) {
+         _noDataView = [LYEmptyView emptyActionViewWithImage:image(@"ic_empty_data") titleStr:nil detailStr:nil btnTitleStr:@"重新加载" btnClickBlock:^{
+            self->_isAllPage = NO;
+             [self->_noDataView setHidden:YES];
+            [self getData];
+        }];
+        [self.view addSubview:_noDataView];
+    }
+    return _noDataView;
 }
 
 -(void)setupNavBar{

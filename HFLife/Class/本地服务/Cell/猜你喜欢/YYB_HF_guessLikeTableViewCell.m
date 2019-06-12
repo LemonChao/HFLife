@@ -95,15 +95,15 @@
    
     
     self.nameLabel.text = @"索菲特国际饭店海鲜自助餐";
-    self.nameLabel.font = FONT(14);
+    self.nameLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size: 14];
     self.adLabel.text = @"仅售3580元，价值6086元的优惠套餐，欢迎体验仅售3580元，价值6086元的优惠套餐，欢迎体验";
-    self.adLabel.font = FONT(12);
+    self.adLabel.font = FONT(11);
     self.adLabel.textColor = HEX_COLOR(0x333333);
     self.distanceLabel.text = @"4.5km";
-    self.distanceLabel.font = FONT(9);
+    self.distanceLabel.font = FONT(11);
     self.distanceLabel.textColor = HEX_COLOR(0x333333);
     self.priceLabel.text = @"￥3580";
-    self.priceLabel.font = FONT(17);
+    self.priceLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size: 18];
     self.priceLabel.textColor = HEX_COLOR(0xCA1400);
     
     self.oldPriceLabel.text = @"￥3580";
@@ -137,11 +137,11 @@
     [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bgView).mas_offset(-10);
         make.height.mas_equalTo(12);
-        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(5);
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(7);
     }];
     [self.adLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
-        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(5);
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(7);
         make.right.mas_equalTo(self.distanceLabel.mas_left).mas_offset(-18);
         make.height.mas_equalTo(12);
     }];
@@ -149,12 +149,12 @@
     
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
-        make.top.mas_equalTo(self.adLabel.mas_bottom).mas_offset(5);
+        make.top.mas_equalTo(self.adLabel.mas_bottom).mas_offset(7);
         make.height.mas_equalTo(17);
     }];
     
     [self.oldPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.priceLabel.mas_right).mas_offset(5);
+        make.left.mas_equalTo(self.priceLabel.mas_right).mas_offset(7);
         make.bottom.mas_equalTo(self.priceLabel);
         make.height.mas_equalTo(11);
     }];
