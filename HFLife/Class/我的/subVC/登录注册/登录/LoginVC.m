@@ -225,6 +225,14 @@
 -(void)loginWithWeChat{
 
     [[WBPCreate sharedInstance] showWBProgress];
+    
+    
+    //判断平台是否授权
+    if ([ShareSDK hasAuthorized:SSDKPlatformTypeWechat]) {
+
+    }else{
+        
+    }
     [ShareSDK getUserInfo:SSDKPlatformTypeWechat
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error){
                [[WBPCreate sharedInstance] hideAnimated];

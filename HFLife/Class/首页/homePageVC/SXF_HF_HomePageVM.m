@@ -36,6 +36,7 @@
 @property (nonatomic, strong)NSMutableArray *newsListArrM;
 
 
+@property (nonatomic, strong) NSString *static_coin;
 
 @end
 
@@ -66,9 +67,9 @@
 
 - (void)setFqValue:(NSDictionary *)fqValue{
     _fqValue = fqValue;
-    self.collectionView.fqPrice = fqValue[@"bn_acc_ratio"];
+    self.collectionView.fqPrice = fqValue[@"rate"];
 
-    self.collectionView.myFQ = Format([self getMoney:fqValue[@"bn_acc_ratio"] :fqValue[@"static_coin"]]);
+    self.collectionView.myFQ = Format([self getMoney:fqValue[@"rate"] :self.static_coin]);
 }
 
 
@@ -82,6 +83,7 @@
                 self.collectionView.fqPrice = value[@"data"][@"bn_acc_ratio"];
                 //需要计算得来
                 NSString *moneyStr = [NSString stringWithFormat:@"%@", [self getMoney:Format(self.collectionView.fqPrice ? self.collectionView.fqPrice : @(0)) :value[@"data"][@"static_coin"]]];
+                self.static_coin = value[@"data"][@"static_coin"];
                 self.collectionView.myFQ = moneyStr;
                 NSDictionary *dict = value[@"data"];
                 NSMutableDictionary *dataSourceDicM = [NSMutableDictionary dictionary];

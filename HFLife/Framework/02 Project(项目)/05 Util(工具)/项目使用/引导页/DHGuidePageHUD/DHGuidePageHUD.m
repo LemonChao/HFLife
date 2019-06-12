@@ -12,15 +12,19 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVKit/AVKit.h>
 #import "UIImage+Developer.h"
+#import "WGButtnAniView.h"
+#import "WGCircleAniView.h"
 #define DDHidden_TIME   3.0
 #define DDScreenW   [UIScreen mainScreen].bounds.size.width
 #define DDScreenH   [UIScreen mainScreen].bounds.size.height
 
-@interface DHGuidePageHUD ()<UIScrollViewDelegate>
+@interface DHGuidePageHUD ()<UIScrollViewDelegate, CAAnimationDelegate>
 @property (nonatomic, strong) NSArray                 *imageArray;
 @property (nonatomic, strong) UIPageControl           *imagePageControl;
 @property (nonatomic, assign) NSInteger               slideIntoNumber;
 @property (nonatomic, strong) MPMoviePlayerController *playerController;
+@property (nonatomic, strong)UIButton *cycleBtn;
+@property (nonatomic, strong)CAShapeLayer *shapeLayer;
 @end
 
 @implementation DHGuidePageHUD
@@ -124,7 +128,7 @@
     [UIView animateWithDuration:DDHidden_TIME animations:^{
         self.alpha = 0;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(DDHidden_TIME * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self performSelector:@selector(removeGuidePageHUD) withObject:nil afterDelay:1];
+            [self performSelector:@selector(removeGuidePageHUD) withObject:nil afterDelay:0.1];
         });
     }];
 }
@@ -143,8 +147,10 @@
         [self.playerController setRepeatMode:MPMovieRepeatModeOne];
         [self.playerController setShouldAutoplay:YES];
         [self.playerController prepareToPlay];
+        self.playerController.scalingMode = MPMovieScalingModeAspectFill;
+        self.playerController.repeatMode = MPMovieRepeatModeNone;
         [self addSubview:self.playerController.view];
-        
+        self.playerController.fullscreen = YES;
         // 视频引导页进入按钮
         UIButton *movieStartButton = [[UIButton alloc] initWithFrame:CGRectMake(20, DDScreenH-30-40, DDScreenW-40, 40)];
         [movieStartButton.layer setBorderWidth:1.0];
@@ -157,8 +163,91 @@
         [UIView animateWithDuration:DDHidden_TIME animations:^{
             [movieStartButton setAlpha:1.0];
         }];
+        
+        movieStartButton.hidden = YES;
+        
+        
+        
+        
+        
+        
+        
     }
     return self;
 }
 
+- (void)startCycleAnimation{
+    UIButton *btn = [[UIButton alloc] init];
+    btn.frame = CGRectMake(self.frame.size.width - 50, HeightStatus, 40, 40);
+    btn.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
+    [btn setTitle:@"跳过" forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [btn setTitleColor:colorCA1400 forState:UIControlStateNormal];
+    [self addSubview:btn];
+    self.cycleBtn = btn;
+    [self.cycleBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.cycleBtn.layer.cornerRadius = self.cycleBtn.frame.size.width * 0.5;
+    self.cycleBtn.layer.masksToBounds = YES;
+    
+    
+    self.shapeLayer = [[CAShapeLayer alloc] init];
+    
+    UIBezierPath *circlePath = [UIBezierPath bezierPath];
+    [circlePath addArcWithCenter:CGPointMake(self.cycleBtn.frame.size.width * 0.5, self.cycleBtn.frame.size.width * 0.5) radius:self.cycleBtn.frame.size.height/2 startAngle:0 endAngle:M_PI*2 clockwise:YES];
+    
+    
+    
+    _shapeLayer.path = circlePath.CGPath;
+    _shapeLayer.lineWidth = 5;
+    _shapeLayer.lineCap = kCALineCapRound;
+    _shapeLayer.fillColor = [UIColor clearColor].CGColor;
+    [self.cycleBtn.layer addSublayer:_shapeLayer];
+    [self startCircleAniColor:colorCA1400 duation:self.videoDuration];
+    
+}
+
+- (void)startCircleAniColor:(UIColor *)color duation:(CGFloat)duation{
+    
+    self.hidden = NO;
+    self.shapeLayer.strokeColor = color.CGColor;
+    
+    CABasicAnimation *ani = [[CABasicAnimation alloc] init];
+    ani.keyPath = @"strokeEnd";
+    ani.duration = duation;
+    ani.fromValue = @(0);
+    ani.toValue = @(1);
+    ani.delegate = self;
+    ani.fillMode = kCAFillModeForwards;
+    [ani setRemovedOnCompletion:NO];
+    [self.shapeLayer addAnimation:ani forKey:nil];
+}
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    
+    if (flag) {
+        //进度动画完成,回调
+//        if (self.circleAniViewDelegate && [self.circleAniViewDelegate respondsToSelector:@selector(aniDidStop:finished:)]) {
+//
+//            self.hidden = YES;
+//            [self.circleAniViewDelegate aniDidStop:anim finished:flag];
+//        }
+        [self buttonClick:self.cycleBtn];
+    }
+    
+}
+
+
+
+- (void) stopCycleAnimation{
+    
+}
+
+
+- (void)setVideoDuration:(CGFloat)videoDuration{
+    _videoDuration = videoDuration;
+//    [self performSelector:@selector(buttonClick:) withObject:nil afterDelay:(videoDuration - 0.1)];
+    //圆环f动画
+    [self startCycleAnimation];
+}
 @end

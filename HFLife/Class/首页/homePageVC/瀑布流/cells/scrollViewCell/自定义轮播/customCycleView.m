@@ -106,6 +106,17 @@
     [self.carousel controllerWillAppear];
     
     [self addSubview:self.carousel];
+    
+    [NOTIFICATION addObserver:self selector:@selector(scrollEnable:) name:@"stopScroll" object:nil];
+    
+    
+}
+- (void)scrollEnable:(NSNotification *)notifi{
+    if ([notifi.object integerValue]) {
+        [self.carousel pause];
+    }else{
+        [self.carousel resumePlay];
+    }
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
