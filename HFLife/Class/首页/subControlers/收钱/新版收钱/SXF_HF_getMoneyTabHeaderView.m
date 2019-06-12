@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *meddileTitleLb;
 
 @property (weak, nonatomic) IBOutlet UIImageView *qCodeImageV;
+//设置金额
+@property (weak, nonatomic) IBOutlet UILabel *setMoneyLb;
 
 @end
 
@@ -30,7 +32,14 @@
 
     
 }
-
+- (void)setMoney:(NSString *)money{
+    _money = money;
+    if ([_money floatValue] > 0) {
+        self.setMoneyLb.text = [NSString stringWithFormat:@"￥%@", money];
+    }else{
+        self.setMoneyLb.text = @"";
+    }
+}
 - (IBAction)clickBtn:(UIButton *)sender {
 //    if (sender.tag == 1) {
 //        //保存图片

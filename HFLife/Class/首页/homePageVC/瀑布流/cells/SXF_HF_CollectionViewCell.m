@@ -69,6 +69,9 @@
     self.cycleView.backgroundColor = colorCA1400;
     self.cycleView.layer.cornerRadius = ScreenScale(4);
     
+    
+    self.cycleView.hidden = YES;
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCell)];
 //    [self.bgView addGestureRecognizer:tap];
     

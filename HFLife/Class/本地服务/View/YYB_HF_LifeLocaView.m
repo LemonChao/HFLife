@@ -19,8 +19,6 @@
 //#import "SynthesizeMerchantListVC.h"
 @interface YYB_HF_LifeLocaView()<XPCollectionViewWaterfallFlowLayoutDataSource,UICollectionViewDelegate,UICollectionViewDataSource> {
     int allPage;//猜你喜欢数据页数
-    NSArray *VcArr;//跳转webvcurlid或class
-
 }
 @property(nonatomic, strong) baseCollectionView *collectionView;
 @property(nonatomic, strong) XPCollectionViewWaterfallFlowLayout *layout;
@@ -38,17 +36,7 @@
         [self setUpUI];
         self.isFirstLoad = YES;
         self.guessLikeData = [NSMutableArray array];
-        VcArr = @[@"NearFoodVC",
-                  @(1),
-                  @(2),
-                  @(3),
-                  @(4),
-                  @(5),
-                  @"经济连锁",
-                  @"GuesthouseVC",
-                  @"商务酒店",
-                  @"NearHotelVC"
-                  ];
+       
     }
     return self;
 }
@@ -84,7 +72,10 @@
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
-                
+//                NSMutableArray *arr = [[NSMutableArray alloc]init];
+//                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
+//                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
+//                [value[@"data"] setValue:[NSArray arrayWithArray:arr] forKey:@"entrance"];
                 [YYB_HF_nearLifeModel mj_setupObjectClassInArray:^NSDictionary *{
                     return @{
                              @"entrance":[EntranceDetail className]
@@ -284,22 +275,7 @@
     
     EntranceDetail *entrModel = self.dataModel.entrance[indexPath.row];
 
-    NSString *url;
-    if (indexPath.row == 0) {
-        [self checkCamareAlbum];
-        //商家入驻
-        url = kEnter;
-    }else if (indexPath.row == 1) {
-        //美食
-        url = kMeiFood;
-    }else if (indexPath.row == 2) {
-        //酒店住宿
-        url = kHotelAccommodation;
-    }else {
-        //默认地址
-        url = entrModel.url;
-    }
-    
+    NSString *url = entrModel.url;
     if (url && url.length > 0) {
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
         vc.isTop = NO;
@@ -309,41 +285,6 @@
     }else {
         [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld",indexPath.row]];
     }
-    
-    return;
-//    if (indexPath.section == 0) {
-//        UIViewController *vc;
-//
-//        if (indexPath.row == 6 || indexPath.row == 8) {
-//            WKWebViewController *web = [[WKWebViewController alloc]init];
-//            web.webTitle = VcArr[indexPath.row];
-//            web.isNavigationHidden = YES;
-//            if (indexPath.row == 5) {
-//                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=1",GP_BASEURL);
-//            }else if (indexPath.row == 6){
-//                web.isNavigationHidden = NO;
-//                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/ecoChainHotel.html?cate_id=2",GP_BASEURL);
-//
-//            }else if (indexPath.row == 8){
-//                web.urlString = MMNSStringFormat(@"%@/app_html/food_hotel/html/hotel.html?cate_id=4",GP_BASEURL);
-//            }
-//            vc = web;
-//        }else{
-//            if (VcArr.count > indexPath.row) {
-//                if ([VcArr[indexPath.row] isKindOfClass:[NSString class]]) {
-//                    Class vcClass = NSClassFromString(VcArr[indexPath.row]);
-//                    vc = [[vcClass alloc] init];
-//                }else{
-//                    SynthesizeMerchantListVC *syn = [[SynthesizeMerchantListVC alloc]init];
-//                    syn.type = MMNSStringFormat(@"%@",VcArr[indexPath.row]);
-//                    vc = syn;
-//                }
-//            }
-//        }
-//        if (vc) {
-//            [self.viewController.navigationController pushViewController:vc animated:YES];
-//        }
-//    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -374,9 +315,21 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"section %ld item %ld",indexPath.section,indexPath.row);
-    [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
-    if (indexPath.section == 0) {
-        
+    if (indexPath.section == 2) {
+        //猜你喜欢
+        GuessLikeModel *guessModel = self.guessLikeData[indexPath.row];
+        NSString *url = guessModel.url;
+        if (url && url.length > 0) {
+            YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+            vc.isTop = NO;
+            vc.urlString = url;
+            vc.isNavigationHidden = YES;
+            [self.supVC.navigationController pushViewController:vc animated:YES];
+        }else {
+            [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
+        }
+    }else {
+        [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
     }
     
 }
@@ -398,8 +351,6 @@
             }
         }
     }
-    
-   
     
     return view;
 }
@@ -428,7 +379,7 @@
     if (indexPath.section == 0) {
         NSArray *itemArr = self.dataModel.entrance;
         //计算行高
-        return ScreenScale(70) * ((itemArr.count / 5) + (itemArr.count % 5 > 0 ? 1 : 0));
+        return ScreenScale(75) * ((itemArr.count / 5) + (itemArr.count % 5 > 0 ? 1 : 0));
     }
     
     if (indexPath.section == 1) {

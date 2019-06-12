@@ -20,6 +20,9 @@
 #import "SXF_HF_payStepAleryView.h"
 #import "LoginVC.h"
 
+
+
+
 //test
 #import "ReviseMobilePhone.h"
 
@@ -117,32 +120,39 @@
     
 //    [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{
-        
-        [JMConfig config].selectedIndex = 1;
-        
-        return ;
-        
-        
-        
-//        [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
+//        [SXF_HF_AlertView showAlertType:AlertType_setPassword  Complete:^(BOOL btnBype) {
+//            if (btnBype) {
 //
+//
+//            }
 //        }];
         
+        
+        
+        
+        
+//        [JMConfig config].selectedIndex = 1;
+//
+//        return ;
+        
+
 //        [self loadServerData:1];
         
         
         //语音朗读
 //        [voiceHeaper say:@"我靠!下班吃饭了!"];
-//        [touchID_helper showTouchIDshowType:@"" complate:^(BOOL success, NSError * _Nullable error) {
-//
-//        }];
+        [touchID_helper showTouchIDshowType:@"" complate:^(BOOL success, NSError * _Nullable error) {
+            
+
+        }];
 //        return ;
     }];
     WEAK(weakSelf);
     self.collectionView.clickSectionHeaderBtn = ^(NSInteger section) {
         if (section == 2) {
+            //更过新闻
             SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
-            webVC.urlString = SXF_WEB_URLl_Str(@"ewe");
+            webVC.urlString = SXF_WEB_URLl_Str(headlinesList);
             [weakSelf.navigationController pushViewController:webVC animated:YES];
         }
     };

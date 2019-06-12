@@ -47,7 +47,7 @@
     [self.contentView addSubview:self.collectionView];
     self.collectionView.scrollEnabled = NO;
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(ScreenScale(70) * (self.itemDataArr.count / 5 + (self.itemDataArr.count % 5 > 0 ? 1 : 0)));
+        make.height.mas_equalTo(ScreenScale(75) * (self.itemDataArr.count / 5 + (self.itemDataArr.count % 5 > 0 ? 1 : 0)));
         make.top.right.left.mas_equalTo(self.contentView);
     }];
 }
@@ -55,7 +55,7 @@
 - (void)reFreshData:(NSArray *)dataArr {
     self.itemDataArr = dataArr;
     [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(ScreenScale(70) * (self.itemDataArr.count / 5 + (self.itemDataArr.count % 5 > 0 ? 1 : 0)));
+        make.height.mas_equalTo(ScreenScale(75) * (self.itemDataArr.count / 5 + (self.itemDataArr.count % 5 > 0 ? 1 : 0)));
         make.top.right.left.mas_equalTo(self.contentView);
     }];
     

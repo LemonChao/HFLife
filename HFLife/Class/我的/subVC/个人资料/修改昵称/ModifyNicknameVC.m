@@ -149,6 +149,23 @@
     //    [self.view addSubview:button];
     //    MMViewBorderRadius(button, WidthRatio(10), 0, [UIColor clearColor]);
 }
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if ([self.type isEqualToString:@"年龄"]) {
+        if (userNameTextField.text.length > 3) {
+            [WXZTipView showCenterWithText:@"年龄不能大于三位"];
+            return NO;
+        }
+    }else {
+        if (userNameTextField.text.length > 5) {
+            [WXZTipView showCenterWithText:@"昵称不能大于5位"];
+            return NO;
+        }
+    }
+    return YES;
+}
+
+
 //请求修改信息
 -(void)buttonClick{
     if ([NSString isNOTNull:userNameTextField.text]) {

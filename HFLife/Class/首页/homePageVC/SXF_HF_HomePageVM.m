@@ -23,6 +23,7 @@
 //新版
 #import "SXF_HF_GetMoneyVC.h"
 #import "SXF_HP_cardPacketVC.h"
+#import "YYB_HF_setDealPassWordVC.h"
 
 @interface SXF_HF_HomePageVM ()<JFLocationDelegate>
 
@@ -72,7 +73,6 @@
 
 
 - (void) getBannerData{
-    WEAK(weakSelf);
     [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         if (result){
@@ -80,9 +80,6 @@
                 
                 self.collectionView.peopleNum = value[@"data"][@"nums"];
                 self.collectionView.fqPrice = value[@"data"][@"bn_acc_ratio"];
-                
-                //
-                
                 //需要计算得来
                 NSString *moneyStr = [NSString stringWithFormat:@"%@", [self getMoney:Format(self.collectionView.fqPrice ? self.collectionView.fqPrice : @(0)) :value[@"data"][@"static_coin"]]];
                 self.collectionView.myFQ = moneyStr;
@@ -120,7 +117,6 @@
     [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNewsList withParameters:@{@"page" :@(page)} withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         if (result){
-            [self.collectionView endRefreshData];
             if ([value[@"data"] isKindOfClass:[NSArray class]]) {
                 NSArray *newsModels = [HR_dataManagerTool   getModelArrWithArr:value[@"data"] withClass:[homeListModel class]];
                 if (page == 1) {
@@ -142,6 +138,7 @@
                     self.collectionView.state = MJRefreshStateNoMoreData;
                 });
             }
+            
         }
     }];
 }
@@ -191,8 +188,15 @@
                     }]];
                     [self.vc.navigationController presentViewController:alert animated:YES completion:nil];
                     return;
+                }else if([[userInfoModel sharedUser].set_pass integerValue] == 0){
+                    [SXF_HF_AlertView showAlertType:AlertType_setPassword Complete:^(BOOL btnBype) {
+                        if (btnBype) {
+                            //设置密码
+                            [self.vc.navigationController pushViewController:[YYB_HF_setDealPassWordVC new] animated:YES];
+                        }
+                    }];
                 }else{
-                    vc = [FlickingVC new];//扫一扫
+                   vc = [FlickingVC new];//扫一扫
                 }
             }else{
                 [WXZTipView showCenterWithText:@"相机不可用"];

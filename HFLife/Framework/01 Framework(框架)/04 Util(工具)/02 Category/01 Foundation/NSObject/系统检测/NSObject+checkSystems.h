@@ -14,10 +14,11 @@
 //判断相机全新头文件
 #import <AVFoundation/AVCaptureDevice.h>
 #import <AVFoundation/AVMediaFormat.h>
+#import <UserNotifications/UserNotifications.h>
+#import <CoreTelephony/CTCellularData.h> 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (checkSystems)
-
 
 
 /**
@@ -83,6 +84,24 @@ NS_ASSUME_NONNULL_BEGIN
  检测闪光灯是否可用(后置)
  */
 + (BOOL)isRearBackCameraAvailable;
+
+
+/**
+ 检测touchID
+ */
++ (BOOL)checkTouchID;
+
+
+/**
+ 检测是否允许消息推送:
+ */
++ (BOOL)openMessageNotificationService;
+
+/**
+ 检测是否开启网络权限
+ */
++ (void)openEventServiceWithBolck:(void(^ __nullable)(BOOL result))returnBolck;
+
 @end
 
 NS_ASSUME_NONNULL_END

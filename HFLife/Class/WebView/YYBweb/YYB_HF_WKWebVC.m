@@ -177,7 +177,7 @@
     configuration.preferences = preferences;
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
-    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.navBarHeight);
+    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
     dic[@"token"] = [NSString judgeNullReturnString:[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]];
     dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
 
@@ -338,15 +338,7 @@
     
     
     [self.customNavBar setHidden:self.isNavigationHidden];
-    //    //OC反馈给JS导航栏高度
-    //    NSString *JSResult = [NSString stringWithFormat:@"getTabbarHeight('%@')",MMNSStringFormat(@"%f",self.navBarHeight)];
-    //    //OC调用JS
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //            // OC 调用JS方法 method 的js代码可往下看
-    //        [self.webView evaluateJavaScript:JSResult completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-    //             NSLog(@"result:%@,error:%@",result,error);
-    //        }];
-    //    });
+    
     [self loadSuccess];
     //去除长按后出现的文本选取框
     //    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
@@ -472,8 +464,18 @@
 #pragma mark - JS调用OC方法
 #pragma mark - 拨打电话
 -(void)CallParameter:(NSDictionary *)dict{
-    NSString *str = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    NSString *telStr;
+    if ([dict isKindOfClass:[NSDictionary class]]) {
+        telStr = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
+    }else if([dict isKindOfClass:[NSString class]]){
+        telStr = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict]];
+    }
+    
+    if (![[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr]]) {
+        UIWebView * callWebview = [[UIWebView alloc] init];
+        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:telStr]]];
+        [self.view addSubview:callWebview];
+    }
 }
 #pragma mark - 网络数据是否请求成功
 -(void)getStatusParameter:(NSDictionary *)dict{

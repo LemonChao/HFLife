@@ -114,15 +114,24 @@
     }
     [self.tableView reloadData];
 }
-- (void)setDataForView:(id)code type:(BOOL)isCustom{
+- (void)setDataForView:(id)code type:(BOOL)isCustom downLoadUrl:(NSString *)downLoadStr{
     [self.getMoneyHeader setDataForView:code];
     [self.payMoneyHeader setDataForView:code];
     if (!isCustom) {
 //        [self.saveCodeView setDataForView:code];
-        [self.saveCodeView2 setDataForView:code];
+        [self.saveCodeView2 setDataForView:code downLoadUrl:downLoadStr];
     }
 }
-
+- (void)setMoney:(NSString *)money{
+    _money = money;
+    if ([_money floatValue] > 0) {
+        self.getMoneyHeader.frame = CGRectMake(0, 0, SCREEN_WIDTH, 472);
+    }else{
+        self.getMoneyHeader.frame = CGRectMake(0, 0, SCREEN_WIDTH, 432);
+    }
+    self.getMoneyHeader.money = _money;
+    self.tableView.tableHeaderView = self.getMoneyHeader;
+}
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     if (!self.payType) {
         //付款
@@ -154,6 +163,9 @@
                 cell.payStatusLb.text = [NSString stringWithFormat:@"￥%@", self.payUserDic[@"pay_money"]];
             }
             cell.hidden = !self.openCell;
+            if (cell.hidden) {
+                cell.payStatusLb.text = @"支付中";
+            }
         }else{
             cell.cellType = YES;
             cell.titleLb.text = _titleArr[indexPath.section];

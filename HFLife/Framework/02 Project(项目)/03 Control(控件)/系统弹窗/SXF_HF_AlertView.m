@@ -231,6 +231,14 @@
             self.titleLb.text = self.title ? self.title : @"使用银行卡前请先进行实名认证";
         }
             break;
+        case AlertType_setPassword:{
+            //设置密码
+            self.cancleBtn.setTitleColor(colorAAAAAA, UIControlStateNormal).setTitleFontSize(14).setTitle(@"取消", UIControlStateNormal);
+            self.sureBtn.setTitleColor(colorCA1400, UIControlStateNormal).setTitleFontSize(14).setTitle(@"去设置", UIControlStateNormal);
+            self.titleLb.textAlignment = NSTextAlignmentCenter;
+            self.titleLb.text = self.title ? self.title : @"您还未设置支付密码";
+        }
+            break;
         case AlertType_cancellation:{
             self.titleLb.font = FONT(14);
             self.titleLb.textColor = color0C0B0B;
@@ -314,7 +322,9 @@
             [self layoutExchangeAlertView];
         }
             break;
-        case AlertType_realyCheck:{
+        case AlertType_realyCheck:
+        case AlertType_setPassword:
+        {
             [self layoutRealyCheck];
         }
             break;
@@ -679,6 +689,7 @@
             alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(121));
         }
             break;
+        case AlertType_setPassword:
         case AlertType_realyCheck:{
             alertView.frame = CGRectMake(0, 0, ScreenScale(280), ScreenScale(119));
         }

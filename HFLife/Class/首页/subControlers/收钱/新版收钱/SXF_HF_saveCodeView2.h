@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SXF_HF_saveCodeView2 : UIView
-- (void)setDataForView:(id )code;
+- (void)setDataForView:(id )code downLoadUrl:(NSString *)downLoadStr;
 @end

@@ -86,7 +86,7 @@ static NSString *const QrcodeGetMoneyCore                      = @"ceshi-ucenter
 
 static NSString *const shareUrl             = @"https://www.hfgld.net/app_html/registered/registered.html?invite_code=%@";
 
-#define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://192.168.0.100:8080/%@", subUrl ? subUrl : @""]
+#define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://192.168.0.142:8080/%@", subUrl ? subUrl : @""]
 /****************************webSubUrl*******************************/
 //余额
 static NSString *const balanceMain           = @"balanceMain";
@@ -118,8 +118,8 @@ static NSString *const membershipInformation = @"membershipInformation";
 static NSString *const reCodeIntroduction    = @"reCodeIntroduction";
 //实名认证
 static NSString *const certification         = @"certification";
-
 //更多新闻
 static NSString *const headlinesList         = @"headlinesList";
-
+//我要入驻（个人中心用）
+static NSString *const enterIndex            = @"http://192.168.0.143:1111/#/signingIndex?type=2";
 #endif /* Header_SXF_h */

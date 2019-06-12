@@ -64,6 +64,11 @@
         [self.navigationController pushViewController:vc animated:YES];
     };
     
+    headView.searchIconClick = ^{
+      //点击搜索
+        [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
+    };
+    
     self.myLocaVeiw = [[YYB_HF_LifeLocaView alloc]initWithFrame:CGRectZero];
     self.myLocaVeiw.supVC = self;
     WEAK(weakSelf);

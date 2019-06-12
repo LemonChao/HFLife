@@ -16,6 +16,11 @@
 		0406ED2922755438000784D0 /* AipOcrSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2122755421000784D0 /* AipOcrSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED2B22755438000784D0 /* IdcardQuality.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406ED2022755421000784D0 /* IdcardQuality.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406ED2F227554E3000784D0 /* LYBmOcrManager.m */; };
+		04079C7022AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04079C6F22AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.m */; };
+		04079C7322AF5394000E6349 /* YYB_HF_SearchHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04079C7222AF5394000E6349 /* YYB_HF_SearchHeadView.m */; };
+		04079CC422AF8FB2000E6349 /* YYB_HF_SearchResultC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04079CC322AF8FB2000E6349 /* YYB_HF_SearchResultC.m */; };
+		04079CC822AF9325000E6349 /* YYB_HF_SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04079CC722AF9325000E6349 /* YYB_HF_SearchResultCell.m */; };
+		04079CCB22AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04079CCA22AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.m */; };
 		040915DD229782C9007BEB12 /* YYB_HF_destroyFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040915DC229782C9007BEB12 /* YYB_HF_destroyFailView.m */; };
 		040915E722978F4B007BEB12 /* YYB_HF_changeAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 040915E622978F4B007BEB12 /* YYB_HF_changeAccountVC.m */; };
 		040915EB2297926E007BEB12 /* YYB_HF_changeAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040915E92297926E007BEB12 /* YYB_HF_changeAccountCell.m */; };
@@ -558,6 +563,7 @@
 		04FA26612296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA265F2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m */; };
 		04FA26622296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */; };
 		04FAC56322977DE500C5B716 /* UIButton+timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAC56222977DE500C5B716 /* UIButton+timer.m */; };
+		04FAEE0E22AF8FD8005A0FC8 /* HF_PayHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAEE0D22AF8FD8005A0FC8 /* HF_PayHelp.m */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
 		04FB7F1D2286A40700150CA7 /* UILabel+atributeText.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1C2286A40700150CA7 /* UILabel+atributeText.m */; };
 		04FB7F332286C02600150CA7 /* NSObject+currentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F322286C02500150CA7 /* NSObject+currentController.m */; };
@@ -921,6 +927,16 @@
 		0406ED2222755421000784D0 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		0406ED2E227554E3000784D0 /* LYBmOcrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBmOcrManager.h; sourceTree = "<group>"; };
 		0406ED2F227554E3000784D0 /* LYBmOcrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBmOcrManager.m; sourceTree = "<group>"; };
+		04079C6E22AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_HotSearchCollectionCell.h; sourceTree = "<group>"; };
+		04079C6F22AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_HotSearchCollectionCell.m; sourceTree = "<group>"; };
+		04079C7122AF5394000E6349 /* YYB_HF_SearchHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SearchHeadView.h; sourceTree = "<group>"; };
+		04079C7222AF5394000E6349 /* YYB_HF_SearchHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_SearchHeadView.m; sourceTree = "<group>"; };
+		04079CC222AF8FB2000E6349 /* YYB_HF_SearchResultC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SearchResultC.h; sourceTree = "<group>"; };
+		04079CC322AF8FB2000E6349 /* YYB_HF_SearchResultC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_SearchResultC.m; sourceTree = "<group>"; };
+		04079CC622AF9325000E6349 /* YYB_HF_SearchResultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SearchResultCell.h; sourceTree = "<group>"; };
+		04079CC722AF9325000E6349 /* YYB_HF_SearchResultCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_SearchResultCell.m; sourceTree = "<group>"; };
+		04079CC922AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SearchResultHotelCell.h; sourceTree = "<group>"; };
+		04079CCA22AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_SearchResultHotelCell.m; sourceTree = "<group>"; };
 		040915DB229782C9007BEB12 /* YYB_HF_destroyFailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_destroyFailView.h; sourceTree = "<group>"; };
 		040915DC229782C9007BEB12 /* YYB_HF_destroyFailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_destroyFailView.m; sourceTree = "<group>"; };
 		040915E522978F4B007BEB12 /* YYB_HF_changeAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_changeAccountVC.h; sourceTree = "<group>"; };
@@ -1922,6 +1938,8 @@
 		04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_exchangePhoneVc.xib; sourceTree = "<group>"; };
 		04FAC56122977DE500C5B716 /* UIButton+timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+timer.h"; sourceTree = "<group>"; };
 		04FAC56222977DE500C5B716 /* UIButton+timer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+timer.m"; sourceTree = "<group>"; };
+		04FAEE0C22AF8FD8005A0FC8 /* HF_PayHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_PayHelp.h; sourceTree = "<group>"; };
+		04FAEE0D22AF8FD8005A0FC8 /* HF_PayHelp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_PayHelp.m; sourceTree = "<group>"; };
 		04FB7F1722866BE300150CA7 /* UIImageView+LoadGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadGif.h"; sourceTree = "<group>"; };
 		04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LoadGif.m"; sourceTree = "<group>"; };
 		04FB7F1B2286A40700150CA7 /* UILabel+atributeText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+atributeText.h"; sourceTree = "<group>"; };
@@ -2615,6 +2633,17 @@
 				0406ED2F227554E3000784D0 /* LYBmOcrManager.m */,
 			);
 			path = "百度OCR";
+			sourceTree = "<group>";
+		};
+		04079CC522AF92BF000E6349 /* 搜索cell */ = {
+			isa = PBXGroup;
+			children = (
+				04079CC622AF9325000E6349 /* YYB_HF_SearchResultCell.h */,
+				04079CC722AF9325000E6349 /* YYB_HF_SearchResultCell.m */,
+				04079CC922AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.h */,
+				04079CCA22AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.m */,
+			);
+			path = "搜索cell";
 			sourceTree = "<group>";
 		};
 		040915DE22978DFA007BEB12 /* 切换账号 */ = {
@@ -3652,6 +3681,8 @@
 				049783512285957E00E143D7 /* YYB_HF_LocaColumnCollectionCell.h */,
 				049783522285957E00E143D7 /* YYb_HF_CollReusableView.m */,
 				049783532285957E00E143D7 /* YYB_HF_cycleScrollCollectionViewCell.m */,
+				04079C6E22AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.h */,
+				04079C6F22AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.m */,
 			);
 			path = colloctionCell;
 			sourceTree = "<group>";
@@ -3780,10 +3811,15 @@
 		0497837B2285957E00E143D7 /* naview */ = {
 			isa = PBXGroup;
 			children = (
+				04079CC522AF92BF000E6349 /* 搜索cell */,
 				0497837C2285957E00E143D7 /* YYB_HF_LocalHeadView.m */,
 				0497837D2285957E00E143D7 /* YYB_HF_NearSearchVC.h */,
 				0497837E2285957E00E143D7 /* YYB_HF_LocalHeadView.h */,
 				0497837F2285957E00E143D7 /* YYB_HF_NearSearchVC.m */,
+				04079C7122AF5394000E6349 /* YYB_HF_SearchHeadView.h */,
+				04079C7222AF5394000E6349 /* YYB_HF_SearchHeadView.m */,
+				04079CC222AF8FB2000E6349 /* YYB_HF_SearchResultC.h */,
+				04079CC322AF8FB2000E6349 /* YYB_HF_SearchResultC.m */,
 			);
 			path = naview;
 			sourceTree = "<group>";
@@ -4092,9 +4128,9 @@
 			isa = PBXGroup;
 			children = (
 				04A506CF227EDD350013E8EC /* CustomPromptBox.h */,
-				04A506D0227EDD350013E8EC /* CustomAlertView.m */,
 				04A506D1227EDD350013E8EC /* CustomPromptBox.m */,
 				04A506D2227EDD350013E8EC /* CustomAlertView.h */,
+				04A506D0227EDD350013E8EC /* CustomAlertView.m */,
 			);
 			path = "弹窗和提示";
 			sourceTree = "<group>";
@@ -6001,6 +6037,7 @@
 		04F8D25622A2112500C0A310 /* 收银台 */ = {
 			isa = PBXGroup;
 			children = (
+				04FAEE0B22AF8FB6005A0FC8 /* payHelpr */,
 				04F8D25822A2113A00C0A310 /* MallCashierDeskVC.h */,
 				04F8D25922A2113A00C0A310 /* MallCashierDeskVC.m */,
 				04F8D25722A2113A00C0A310 /* MallCashierDeskVC.xib */,
@@ -6116,6 +6153,15 @@
 				04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */,
 			);
 			path = "修改手机号（new）";
+			sourceTree = "<group>";
+		};
+		04FAEE0B22AF8FB6005A0FC8 /* payHelpr */ = {
+			isa = PBXGroup;
+			children = (
+				04FAEE0C22AF8FD8005A0FC8 /* HF_PayHelp.h */,
+				04FAEE0D22AF8FD8005A0FC8 /* HF_PayHelp.m */,
+			);
+			path = payHelpr;
 			sourceTree = "<group>";
 		};
 		04FB7F1222865A3200150CA7 /* 动画资源图 */ = {
@@ -7779,6 +7825,7 @@
 				658B7C5021D749E100801CC8 /* AxcAE_TabBarBadge.m in Sources */,
 				6C7D850822857C1800A8E9F7 /* ZCDisCountCollectionCell.m in Sources */,
 				040AAC7B229395C3002AB524 /* YYB_HF_SexChoiceView.m in Sources */,
+				04079CC422AF8FB2000E6349 /* YYB_HF_SearchResultC.m in Sources */,
 				0453D1A42282B2DE00880C2A /* SXF_HF_HeadlineCell2.m in Sources */,
 				048DAC5522857516006E6BA2 /* WithdrawVC.m in Sources */,
 				04A508CD227EDD3A0013E8EC /* UILabel+FitSize.m in Sources */,
@@ -7863,6 +7910,7 @@
 				04F5217E228A793400ED4995 /* EnterVC.m in Sources */,
 				04A508C7227EDD3A0013E8EC /* UIView+Responder.m in Sources */,
 				04153C1F228AA2F100AA5DAF /* ConfigOrderInfoVC.m in Sources */,
+				04079CC822AF9325000E6349 /* YYB_HF_SearchResultCell.m in Sources */,
 				04153C04228AA2F100AA5DAF /* NearFoodListVC.m in Sources */,
 				658C39DE21E9FA5B00880B6A /* JXCategoryTitleCellModel.m in Sources */,
 				04FA26612296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m in Sources */,
@@ -7956,6 +8004,7 @@
 				658B7C4721D749E100801CC8 /* UIButton+EdgeInsets.m in Sources */,
 				04F89332229264920075918A /* SXF_HF_addCardViewCell.m in Sources */,
 				6C2F5148222A663D0022EE03 /* HXCollectionView.m in Sources */,
+				04079C7322AF5394000E6349 /* YYB_HF_SearchHeadView.m in Sources */,
 				658C39E921E9FA5B00880B6A /* JXCategoryFactory.m in Sources */,
 				04F520FF228A764400ED4995 /* CertificatePhoto.m in Sources */,
 				658B7C4321D749E100801CC8 /* UIViewController+Extension.m in Sources */,
@@ -8087,6 +8136,7 @@
 				658902F0223B775F009C1B03 /* PYSearchSuggestionViewController.m in Sources */,
 				658C39D421E9FA5B00880B6A /* JXCategoryIndicatorBackgroundView.m in Sources */,
 				6C988786229BD0B100AA7037 /* ZCShopOrderTableHeader.m in Sources */,
+				04079CCB22AF9B27000E6349 /* YYB_HF_SearchResultHotelCell.m in Sources */,
 				0453D19C2282918400880C2A /* ZHB_HP_PreventWeChatPopout.m in Sources */,
 				04A50895227EDD3A0013E8EC /* WHMethods.m in Sources */,
 				04A508AB227EDD3A0013E8EC /* LYDataCache.m in Sources */,
@@ -8318,6 +8368,7 @@
 				658B7CC621D749E100801CC8 /* SFHFKeychainUtils.m in Sources */,
 				6C2F5151222A663D0022EE03 /* HXDatePhotoPreviewViewController.m in Sources */,
 				658902EF223B775F009C1B03 /* PYSearchViewController.m in Sources */,
+				04FAEE0E22AF8FD8005A0FC8 /* HF_PayHelp.m in Sources */,
 				658C3A8F21F1B1F900880B6A /* MBProgressHUD+SGQRCode.m in Sources */,
 				04B9D4F022803C6B0084FA23 /* sxfTouchBtn.m in Sources */,
 				658C39DD21E9FA5B00880B6A /* JXCategoryTitleImageCellModel.m in Sources */,
@@ -8442,6 +8493,7 @@
 				04A50856227EDD3A0013E8EC /* ZFCollectionViewController.m in Sources */,
 				6C2F5143222A663D0022EE03 /* HXPhotoConfiguration.m in Sources */,
 				0453D1982282774C00880C2A /* SXF_HF_ItemsViewCell.m in Sources */,
+				04079C7022AF49D0000E6349 /* YYB_HF_HotSearchCollectionCell.m in Sources */,
 				0406ED30227554E3000784D0 /* LYBmOcrManager.m in Sources */,
 				04A50852227EDD3A0013E8EC /* ZFPlayerControlView.m in Sources */,
 				0453D1B82283BE8D00880C2A /* baseCollectionView.m in Sources */,
@@ -8650,7 +8702,7 @@
 					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/支付/银联支付/Chinaums",
 					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/支付/银联支付/UPPaymentControl",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ly.hanlife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ly.hanlifee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -8712,7 +8764,7 @@
 					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/支付/银联支付/Chinaums",
 					"$(PROJECT_DIR)/HFLife/Framework/02\\ Project(项目)/05\\ Util(工具)/项目使用/支付/银联支付/UPPaymentControl",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ly.hanlife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ly.hanlifee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

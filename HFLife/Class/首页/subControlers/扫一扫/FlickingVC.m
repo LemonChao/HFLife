@@ -14,6 +14,7 @@
 #import "WKWebViewController.h"
 #import "SXF_HF_PayVC.h"//付款
 #import "SXF_HF_GetMoneyVC.h"//收款
+#import "HF_PayHelp.h"
 @interface FlickingVC () {
     SGQRCodeObtain *obtain;
 }
@@ -92,17 +93,23 @@
                 NSLog(@"result = %@",result);
                 [MBProgressHUD SG_hideHUDForView:weakSelf.view];
                 NSString *code = @"";
-                if ([result containsString:@"http"]) {
+                if ([result containsString:@"http"] || [result containsString:@"https"]) {
                     NSArray *array = [result componentsSeparatedByString:@"show_code="];
                     if (array.count > 1) {
                         code = array[1];
                     }
+                    if (code.length == 0) {
+                        SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+                        webVC.urlString = result;
+                        [weakSelf.navigationController pushViewController:webVC animated:YES];
+                        return ;
+                    }
+                    
                 }else{
                     code = result;
                 }
                 
                 if([result containsString:@"itunes.apple.com"]) {
-                    
                     NSLog(@"str1包含str2");
                     //跳转到appleStore
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
@@ -111,9 +118,6 @@
                     NSLog(@"str1不包含str2");
                     [weakSelf decodingString:code];
                 }
-                
-                
-                
             });
         }
     }];
@@ -150,6 +154,9 @@
     }];
     [obtain setBlockWithQRCodeObtainAlbumResult:^(SGQRCodeObtain *obtain, NSString *result) {
         [MBProgressHUD SG_showMBProgressHUDWithModifyStyleMessage:@"正在处理..." toView:weakSelf.view];
+        
+        
+        
         if (result == nil) {
             NSLog(@"暂未识别出二维码");
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -270,6 +277,8 @@
     WS(weakSelf);
     //扫描到w二维码后 获取对方的用户信息用以显示
     [networkingManagerTool requestToServerWithType:POST withSubUrl:GetQrcodeInfo withParameters:@{@"code_str":string, @"app_type" : @"1"} withResultBlock:^(BOOL result, id value) {
+//        [HF_PayHelp goWXPay:string];
+//        return;
         if (result && value) {
             //二维码类型：0本站链接 1收款码 2付款码
             if (value[@"data"][@"type"]) {
@@ -312,5 +321,13 @@
         }
     }];
 }
+
+
+
+//微信打开url
+
+
+
+
 
 @end

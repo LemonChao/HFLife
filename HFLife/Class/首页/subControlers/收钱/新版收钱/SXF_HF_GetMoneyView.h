@@ -16,13 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)void(^tabBtnCallback)(NSInteger index);
 @property (nonatomic, strong)void (^clickBarCodeImageV)(UIImage *image, NSString *codeStr);
 @property (nonatomic, strong)NSMutableDictionary *payUserDic;
+@property (nonatomic, strong)NSString *money;//设置的金额
 /**
  
 
  @param code <#code description#>
  @param isCustom 是否是自己设置的付款金额
  */
-- (void)setDataForView:(id)code type:(BOOL)isCustom;
+- (void)setDataForView:(id)code type:(BOOL)isCustom downLoadUrl:(NSString *)downLoadStr;
 @end
 
 NS_ASSUME_NONNULL_END

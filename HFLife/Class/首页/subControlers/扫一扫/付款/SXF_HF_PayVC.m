@@ -12,6 +12,10 @@
 #import "RYNumberKeyboard.h"
 #import "SXF_HF_paySuccessVC.h"
 #import "YYB_HF_setDealPassWordVC.h"
+
+
+
+#import "HF_PayHelp.h"
 @interface SXF_HF_PayVC ()
 @property (weak, nonatomic) IBOutlet UITextField *moneyTF;
 @property (nonatomic, strong) SXF_HF_payStepAleryView *payView;
@@ -47,7 +51,7 @@
     self.moneyTF.clearButtonMode = UITextFieldViewModeAlways;
     self.moneyTF.textColor = [UIColor blackColor];
     self.moneyTF.textAlignment = NSTextAlignmentLeft;
-    self.moneyTF.ry_interval = 3;
+    self.moneyTF.ry_interval = 20;//不做空格处理
     if (!([self.payMoney floatValue] == 0)) {
         self.moneyTF.text = self.payMoney;
         [self.moneyTF endEditing:YES];
@@ -130,6 +134,12 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:GoToPay withParameters:param withResultBlock:^(BOOL result, id value) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        
+        [HF_PayHelp goWXPay:value[@"data"][@"qrcode_link"]];
+        return;
+        
+        
         if (result && value) {
             //支付成功
             SXF_HF_paySuccessVC *payVC = [SXF_HF_paySuccessVC new];
@@ -137,10 +147,14 @@
             payVC.payName = self.payName;
             payVC.payStatus = YES;
             payVC.payType = @"余额";
-            
             payVC.payMoney = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
             [self.navigationController pushViewController:payVC animated:YES];
             [self.payView cancleAlertView];
+            
+            
+            //语音播报
+            
+            
         }else{
             [SXF_HF_AlertView showAlertType:AlertType_Pay Complete:^(BOOL btnBype) {
                 if (btnBype) {

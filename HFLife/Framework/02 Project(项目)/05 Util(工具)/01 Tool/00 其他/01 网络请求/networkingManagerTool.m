@@ -263,6 +263,7 @@
         }else if([valueDic[@"status"] integerValue]  == -1){
             //登陆过期
 //            valueBlock(NO , valueDic);
+            [[WBPCreate sharedInstance]hideAnimated];
             [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
             [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
             [userInfoModel attempDealloc];

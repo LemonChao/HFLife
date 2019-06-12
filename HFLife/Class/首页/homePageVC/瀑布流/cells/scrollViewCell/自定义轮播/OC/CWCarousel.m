@@ -233,9 +233,13 @@
 - (void) scrollToCenter{
     NSArray <NSIndexPath *> *indexPaths = [self.carouselView indexPathsForVisibleItems];
     NSLog(@"\n%@ \n%@",[self originIndexPath], indexPaths);
-    [self.carouselView scrollToItemAtIndexPath:indexPaths[1] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-
-    NSInteger index = indexPaths[1].row % 3 + 150;
+//    [self.carouselView scrollToItemAtIndexPath:indexPaths[1] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    [self centerCell];
+    
+    [self.carouselView scrollToItemAtIndexPath:self.currentIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    
+    
+    NSInteger index = self.currentIndexPath.row % 3 + 150;
     NSIndexPath *scrollIndexP = [NSIndexPath indexPathForRow:index inSection:0];
     self.currentIndexPath = scrollIndexP;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -252,7 +256,7 @@
         
     });
     
-//    [self adjustErrorCell:YES];
+    
 }
 /// 滚动动画完成
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
@@ -349,6 +353,31 @@
     }
     return row;
 }
+
+- (void) centerCell{
+    NSArray <NSIndexPath *> *indexPaths = [self.carouselView indexPathsForVisibleItems];
+    NSMutableArray <UICollectionViewLayoutAttributes *> *attriArr = [NSMutableArray arrayWithCapacity:indexPaths.count];
+    [indexPaths enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UICollectionViewLayoutAttributes *attri = [self.carouselView layoutAttributesForItemAtIndexPath:obj];
+        [attriArr addObject:attri];
+    }];
+    CGFloat centerX = self.carouselView.contentOffset.x + CGRectGetWidth(self.carouselView.frame) * 0.5;
+    __block CGFloat minSpace = MAXFLOAT;
+    BOOL shouldSet = YES;
+    if (self.flowLayout.style != CWCarouselStyle_Normal && indexPaths.count <= 2)
+    {
+        shouldSet = NO;
+    }
+    [attriArr enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.zIndex = 0;
+        if(ABS(minSpace) > ABS(obj.center.x - centerX) && shouldSet) {
+            minSpace = obj.center.x - centerX;
+            self.currentIndexPath = obj.indexPath;
+        }
+    }];
+}
+
+
 
 - (void)adjustErrorCell:(BOOL)isScroll {
     NSArray <NSIndexPath *> *indexPaths = [self.carouselView indexPathsForVisibleItems];

@@ -62,7 +62,18 @@
             if (indexPath.section == 0) {
                 
                 if (![[userInfoModel sharedUser] chect_rz_status]) {
-                    [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
+                    if ([[userInfoModel sharedUser].rz_status integerValue] == 0) {
+                        //去认证
+                        [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
+                            if (btnBype) {
+                                SXF_HF_WKWebViewVC *web = [SXF_HF_WKWebViewVC new];
+                                web.urlString = SXF_WEB_URLl_Str(certification);
+                                [weakSelf.navigationController pushViewController:web animated:YES];
+                            }
+                        }];
+                    }else{
+                        [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
+                    }
                     return ;
                 }
                 
@@ -87,7 +98,7 @@
                                         bankCardList,
                                         share,
                                         @"",
-                                        @"",//我要入驻
+                                        enterIndex,//我要入驻
                                         upgradeMain,
                                         myCollection,
                                         myFriendsMain,
@@ -109,6 +120,9 @@
                         vc = [AboutVC new];
                     }else{
                         webVC.urlString = SXF_WEB_URLl_Str(urlArr[indexPath.row]);
+                        if (indexPath.row == 4) {
+                            webVC.urlString = urlArr[indexPath.row];
+                        }
                         vc = webVC;
                     }
                     
@@ -164,7 +178,9 @@
         }
     }];
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    
+}
 
 
 
