@@ -97,6 +97,17 @@
         make.right.mas_equalTo(self.view).mas_offset(-0);
         make.height.mas_equalTo(SCREEN_HEIGHT - NavBarHeight - TabBarHeight);
     }];
+    //定位是否上传过
+    NSString *seleCity = [MMNSUserDefaults valueForKey:SelectedCity];
+    if (seleCity && [seleCity isKindOfClass:[NSString class]] && seleCity.length > 0) {
+        [self uploadBackLocation:seleCity];
+    }else {
+        seleCity = [MMNSUserDefaults valueForKey:LocationCity];
+        if (seleCity && [seleCity isKindOfClass:[NSString class]] && seleCity.length > 0) {
+            [self uploadBackLocation:seleCity];
+        }
+    }
+    
     
 }
 
