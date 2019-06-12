@@ -15,8 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UILabel *titleL;//名称
 @property(nonatomic, strong) UILabel *priceL;//人均消费
 @property(nonatomic, strong) UILabel *addressL;//地址
+/** 代金券 */
 @property(nonatomic, strong) UILabel *cashL;//
+@property(nonatomic, strong) UIButton *cashB;//
+@property(nonatomic, strong) UILabel *distanceL;//距离
 
+@property(nonatomic, strong) UIView *starBg;//星星
+@property(nonatomic, strong) UIView *starSel;//、、
+@property(nonatomic, assign) NSInteger starNum;//
 @end
 
 NS_ASSUME_NONNULL_END

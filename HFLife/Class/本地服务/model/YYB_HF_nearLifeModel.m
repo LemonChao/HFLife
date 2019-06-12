@@ -19,3 +19,9 @@
 @implementation GuessLikeModel
 
 @end
+@implementation SearchHotelList
+
+@end
+@implementation SearchFoodList
+
+@end

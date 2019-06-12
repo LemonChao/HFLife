@@ -36,6 +36,7 @@
         make.left.mas_equalTo(self.contentView);
         make.right.mas_equalTo(self.contentView);
         make.height.mas_equalTo(ScreenScale(20));
+        make.centerY.mas_equalTo(self.contentView);
     }];
 }
 @end

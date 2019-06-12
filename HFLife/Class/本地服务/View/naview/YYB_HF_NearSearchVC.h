@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_NearSearchVC : BaseViewController
-
+@property(nonatomic, copy) NSString *searchStrDe;
 @end
 
 NS_ASSUME_NONNULL_END

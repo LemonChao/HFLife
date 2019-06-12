@@ -261,27 +261,26 @@
 //    NSLog(@"%@",headImgURL);
     
     
-    if (![NSString isNOTNull:self.urlString]) {
-//        NSURL *url = [NSURL URLWithString:[[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
-//                NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-        
-        
+    if (![NSString isNOTNull:self.urlString] && self.urlString.length > 0) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]];
         
 //        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
         [self.webView loadRequest:request];
     }else{
-        [self loadFailed];
-        //        //loadFileURL方法通常用于加载服务器的HTML页面或者JS，而loadHTMLString通常用于加载本地HTML或者JS
-        //        NSString *htmlPath = [[NSBundle mainBundle] pathForResource:self.fileName ofType:@"html" inDirectory:@"美食"];
-        //        NSURL *fileUrl;
-        //        if (![NSString isNOTNull:self.jointParameter]) {
-        //            fileUrl = [NSURL URLWithString:[self.jointParameter stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]
-        //                             relativeToURL:[NSURL fileURLWithPath:htmlPath]];
-        //        }else{
-        //            fileUrl = [NSURL fileURLWithPath:htmlPath];
-        //        }
-        //        [self.webView loadRequest:[NSURLRequest requestWithURL:fileUrl]];
+        //         通过路径创建本地URL地址
+        NSString *pathStr = [[NSBundle mainBundle] pathForResource:self.fileName ofType:@"html" inDirectory:self.folderName];
+        
+        if (pathStr) {
+            
+            NSString * urlString2 = [[NSString stringWithFormat:@"?token=%@",[HeaderToken getAccessToken]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString2 relativeToURL:[NSURL fileURLWithPath:pathStr]]]];
+            
+            CGFloat heig = self.isNavigationHidden ? self.heightStatus : self.navBarHeight;
+            [self.webView setFrame:CGRectMake(0,heig, SCREEN_WIDTH, SCREEN_HEIGHT - heig)];
+            
+        }else {
+            [self loadFailed];
+        }
     }
 }
 #pragma mark - UIScrollViewDelegate

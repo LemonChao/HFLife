@@ -13,6 +13,7 @@
 //定位
 //城市选择相关
 #import "JFLocation.h"
+#import "YYB_HF_NearSearchVC.h"
 @interface NearPageVC (){
     int arc;
     BOOL isFirstLoad;
@@ -63,10 +64,11 @@
         vc.isNavigationHidden = YES;
         [self.navigationController pushViewController:vc animated:YES];
     };
-    
-    headView.searchIconClick = ^{
-      //点击搜索
-        [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
+    headView.searchIconClick = ^(NSString * _Nonnull search) {
+        //点击搜索
+        YYB_HF_NearSearchVC *vc = [[YYB_HF_NearSearchVC alloc]init];
+        vc.searchStrDe = search;
+        [self.navigationController pushViewController:vc animated:YES];
     };
     
     self.myLocaVeiw = [[YYB_HF_LifeLocaView alloc]initWithFrame:CGRectZero];
