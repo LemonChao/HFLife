@@ -90,6 +90,8 @@
     [userContentController addScriptMessageHandler:self name:@"goShopping"];
     //原生跳转
     [userContentController addScriptMessageHandler:self name:@"nativeToJump"];
+    //原生跳转
+    [userContentController addScriptMessageHandler:self name:@"goToSearch"];
     //返回首页
     [userContentController addScriptMessageHandler:self name:@"goToHome"];
     //抢购
@@ -321,6 +323,8 @@
         //去设置支付密码
         YYB_HF_submitDealPassWordVC *vc = [YYB_HF_submitDealPassWordVC new];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if ([message.name isEqualToString:@"goToSearch"]){
+        [self jumSearchVC];
     }
     //goToHome
 }
@@ -446,6 +450,13 @@
     BaseViewController *vc = (BaseViewController *)instance;
     vc.dataParameter = dict[@"data"];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - h5跳转 搜索界面 goToSearch
+-(void)jumSearchVC {
+    
+    [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
+    
 }
 #pragma mark - 返回首页--
 -(void)goToHome{
