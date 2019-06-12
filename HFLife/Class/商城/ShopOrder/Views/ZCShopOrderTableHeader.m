@@ -88,7 +88,7 @@
         [self.goodsWishlist mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.bottomContentView);
             make.bottom.equalTo(self.bottomContentView).inset(ScreenScale(10));
-            make.height.mas_equalTo(ScreenScale(32));
+            make.height.mas_equalTo(ScreenScale(35));
         }];
         
         [verticalLine1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -141,7 +141,7 @@
     [self.nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.bottomContentView).inset(offset);
     }];
-    [self.historyWishlist setImagePosition:ImagePositionTypeTop spacing:ScreenScale(4)];
+    [self.historyWishlist setImagePosition:ImagePositionTypeTop spacing:ScreenScale(3)];
 
 }
 
@@ -208,9 +208,8 @@
 //}
 - (UIButton *)historyWishlist {
     if (!_historyWishlist) {
-        _historyWishlist = [UITool richButton:UIButtonTypeCustom title:@"我的足迹" titleColor:ImportantColor font:SystemFont(14) bgColor:[UIColor whiteColor] image:image(@"orderCenter_zuji")];
+        _historyWishlist = [UITool richButton:UIButtonTypeCustom title:@"我的足迹" titleColor:ImportantColor font:SystemFont(13) bgColor:[UIColor whiteColor] image:image(@"orderCenter_zuji")];
         [_historyWishlist addTarget:self action:@selector(historyWishlistAction:) forControlEvents:UIControlEventTouchUpInside];
-        
     }
     return _historyWishlist;
 }
