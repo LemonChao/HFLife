@@ -38,7 +38,7 @@
         [self.contentView addSubview:bottomRightButton];
         
         [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView);
+            make.top.equalTo(self.contentView).offset(ScreenScale(10));
             make.left.equalTo(self.contentView).offset(ScreenScale(12));
             make.height.mas_equalTo(ScreenScale(40));
         }];

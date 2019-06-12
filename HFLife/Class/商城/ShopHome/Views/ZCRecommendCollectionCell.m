@@ -24,46 +24,48 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.layer.cornerRadius = ScreenScale(4);
+        self.contentView.layer.cornerRadius = ScreenScale(5);
         self.contentView.clipsToBounds = YES;
         self.contentView.backgroundColor = [UIColor whiteColor];
         
         [self.contentView addSubview:self.imageView];
         [self.contentView addSubview:self.tagView];
         [self.contentView addSubview:self.titleLab];
-        [self.contentView addSubview:self.descriptLab];
+//        [self.contentView addSubview:self.descriptLab];
         [self.contentView addSubview:self.priceLab];
         [self.contentView addSubview:self.cartButton];
         
+        [self.cartButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.bottom.equalTo(self.contentView).inset(ScreenScale(10));
+        }];
+
+
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self.contentView);
             make.height.mas_equalTo(ScreenScale(150));
         }];
-        
+
         [self.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.imageView.mas_bottom);
             make.left.right.equalTo(self.imageView);
             make.height.mas_equalTo(ScreenScale(0));
         }];
-        
+
         [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.contentView).inset(ScreenScale(10));
             make.top.equalTo(self.tagView.mas_bottom).offset(ScreenScale(10));
         }];
-        
-        [self.descriptLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.contentView).inset(ScreenScale(10));
-            make.top.equalTo(self.titleLab.mas_bottom).offset(ScreenScale(8));
-        }];
-        
+
+//        [self.descriptLab mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.equalTo(self.contentView).inset(ScreenScale(10));
+//            make.top.equalTo(self.titleLab.mas_bottom).offset(ScreenScale(8));
+//        }];
+
         [self.priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.contentView).inset(ScreenScale(10));
-            make.top.equalTo(self.descriptLab.mas_bottom).offset(ScreenScale(16));
+            make.top.equalTo(self.titleLab.mas_bottom).offset(ScreenScale(16));
         }];
         
-        [self.cartButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.bottom.equalTo(self.contentView).inset(ScreenScale(10));
-        }];
     }
     return self;
 }

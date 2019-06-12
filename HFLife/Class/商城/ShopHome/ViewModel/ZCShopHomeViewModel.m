@@ -117,14 +117,14 @@
         ZCShopHomeCellModel *cellModel = [[ZCShopHomeCellModel alloc] init];
         cellModel.title = @"限时折扣";
         cellModel.cellDatas = model.limit_time_goods;
-        cellModel.rowHeight = ScreenScale(234);
+        cellModel.rowHeight = ScreenScale(244);
         [section0 addObject:cellModel];
     }
     
     ZCShopHomeCellModel *cellModel = [[ZCShopHomeCellModel alloc] init];
     cellModel.title = @"今日必抢";
     cellModel.cellDatas = [NSArray array];
-    cellModel.rowHeight = ScreenScale(374);
+    cellModel.rowHeight = ScreenScale(384);
     [section0 addObject:cellModel];
     
     if (model.shop_newGoods.count) {
@@ -138,7 +138,7 @@
             item.attPrice = mAttstring;
         }];
         cellModel.cellDatas = model.shop_newGoods;
-        cellModel.rowHeight = ScreenScale(290);
+        cellModel.rowHeight = ScreenScale(285);
         [section0 addObject:cellModel];
     }
     

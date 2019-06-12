@@ -42,7 +42,7 @@
     if (!imageBgView) {
       imageBgView = [[UIView alloc] initWithFrame:CGRectMake(bgView.centerX-25, bgView.centerY-25 + 40, 50, 50)];
     }
-    imageBgView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.7];
+    imageBgView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0];
     MMViewBorderRadius(imageBgView, 10, 0, [UIColor colorWithWhite:0.3 alpha:0.7]);
     [bgView addSubview:imageBgView];
     

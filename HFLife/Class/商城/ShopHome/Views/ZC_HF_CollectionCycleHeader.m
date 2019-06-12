@@ -76,9 +76,9 @@
     
     ZCShopHomeBannerModel *model = self.bannerList[index];
     
-//    ZCShopWebViewController *webVC = [ZCShopWebViewController alloc] initWithPath:<#(nonnull NSString *)#> parameters:<#(nullable NSDictionary *)#>
-    
-    
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] init];
+    webVC.urlString = model.mobile_banner_url;
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
 }
 
 
@@ -182,7 +182,7 @@
         [self addSubview:self.titleLable];
         self.backgroundColor = [UIColor clearColor];
         [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self);
+            make.top.equalTo(self).offset(ScreenScale(20));
             make.left.equalTo(self).offset(ScreenScale(12));
         }];
     }

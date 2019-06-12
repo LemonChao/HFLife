@@ -34,14 +34,14 @@
     
     [self.titleButton setTitle:model.gc_name forState:UIControlStateNormal];
     [self.titleButton setTitle:model.gc_name forState:UIControlStateSelected];
-    self.titleButton.selected = model.isSelect;
+    self.titleButton.selected = !model.isClosed;
     [self.titleButton setImagePosition:ImagePositionTypeRight WithMargin:ScreenScale(10)];
 }
 
 - (void)titleButtonAction:(UIButton *)button {
-    self.model.select = !self.model.select;
+    self.model.closed = !self.model.isClosed;
     
-    button.selected = self.model.select;
+    button.selected = self.model.isClosed;
     UICollectionView *collectionView = (UICollectionView*)self.superview;
     [collectionView performBatchUpdates:^{
         [collectionView reloadSections:[NSIndexSet indexSetWithIndex:self.model.indexPath.section]];

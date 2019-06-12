@@ -83,7 +83,7 @@
 
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [UITool imageViewPlaceHolder:nil contentMode:UIViewContentModeScaleAspectFill cornerRadius:ScreenScale(5) borderWidth:0.f borderColor:[UIColor clearColor]];
+        _imageView = [UITool imageViewPlaceHolder:nil contentMode:UIViewContentModeScaleAspectFill cornerRadius:0 borderWidth:0.f borderColor:[UIColor clearColor]];
     }
     return _imageView;
 }

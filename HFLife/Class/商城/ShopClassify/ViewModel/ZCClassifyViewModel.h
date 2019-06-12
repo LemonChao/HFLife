@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) RACCommand *classifyCmd;
 
-@property(nonatomic, copy) NSArray *dataArray;
+@property(nonatomic, copy) NSArray <ZCShopClassifyModel*>*dataArray;
 
 
 @end

@@ -80,16 +80,16 @@
 }
 
 - (void)allButtonAction:(UIButton *)button {
-    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"apply-record" parameters:@{@"type":@"0"}];
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"inList" parameters:nil];
     [self.viewController.navigationController pushViewController:webVC animated:YES];
 }
 
 - (void)orderButtonAction:(UIButton *)button {
-    if ([button.currentTitle isEqualToString:@"个人入住"]) {
-        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"enter-select-gr" parameters:nil];
+    if ([button.currentTitle isEqualToString:@"个人入驻"]) {
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"signingIndex" parameters:@{@"type":@"1"}];
         [self.viewController.navigationController pushViewController:webVC animated:YES];
     }else if ([button.currentTitle isEqualToString:@"商家入驻"]) {
-        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"enter-select-qy" parameters:nil];
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"signingIndex" parameters:@{@"type":@"1"}];
         [self.viewController.navigationController pushViewController:webVC animated:YES];
     }
     
@@ -108,7 +108,7 @@
 
 - (NSArray<UIButton *> *)subButtons {
     if (!_subButtons) {
-        NSArray *titls = @[@"个人入住",@"商家入驻"];
+        NSArray *titls = @[@"个人入驻",@"商家入驻"];
         NSArray *imageNames = @[@"orderCenter_gerenruzhu",@"orderCenter_shangjiaruzhu"];
         NSMutableArray *array = [NSMutableArray array];
         for (int i = 0; i < titls.count; i++) {

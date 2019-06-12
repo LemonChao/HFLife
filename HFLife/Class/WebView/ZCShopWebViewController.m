@@ -283,15 +283,15 @@
 }
 #pragma mark -返回--
 - (void)goBack:(NSString *)body{
-    if (body.integerValue == 0) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }else if (!body.integerValue || [body isEqualToString:@"返回"] || body.integerValue == 1) {
-        
+    if (StringIsEmpty(body) || [body isEqualToString:@"返回"] || body.integerValue == 1) {
         if ([self.webView canGoBack]) {
             [self.webView goBack];
         }else {
             [self.navigationController popViewControllerAnimated:YES];
         }
+
+    }else if (body.integerValue == 0 ) {
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

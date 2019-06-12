@@ -25,7 +25,7 @@
         [self.contentView addSubview:self.collectionView];
         
         [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView);
+            make.top.equalTo(self.contentView).offset(ScreenScale(10));
             make.left.equalTo(self.contentView).offset(ScreenScale(12));
             make.height.mas_equalTo(ScreenScale(40));
         }];
@@ -66,7 +66,7 @@
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout.itemSize = CGSizeMake(ScreenScale(150), ScreenScale(250));
+        layout.itemSize = CGSizeMake(ScreenScale(150), ScreenScale(235));
         layout.minimumLineSpacing = ScreenScale(11);
         layout.minimumInteritemSpacing = 0.f;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];

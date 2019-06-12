@@ -25,8 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 最底级model使用 字体对齐 */
 @property(nonatomic, strong) NSIndexPath *indexPath;
-/** section是否应该展开 */
-@property(nonatomic, assign, getter=isSelect) BOOL select;
+/** section是否应该关闭 */
+@property(nonatomic, assign, getter=isClosed) BOOL closed;
 
 @end
 

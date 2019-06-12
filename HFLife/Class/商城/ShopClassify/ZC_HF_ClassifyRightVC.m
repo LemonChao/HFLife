@@ -51,7 +51,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     ZCShopClassifyListModel *sectionModel = self.dataArray[section];
-    return sectionModel.select ? sectionModel.child.count : 0;
+    return sectionModel.isClosed ? 0 : sectionModel.child.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

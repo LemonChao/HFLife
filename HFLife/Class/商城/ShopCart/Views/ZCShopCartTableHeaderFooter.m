@@ -57,7 +57,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = BackGroundColor;
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height-ScreenScale(12))];
+        contentView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:contentView];
         [self addSubview:self.emptyButton];
         [self addSubview:self.descriptLabel];
         

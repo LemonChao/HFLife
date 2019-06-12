@@ -117,7 +117,7 @@
         return model.rowHeight;
     }else {
         ZCExclusiveRecommendModel *model = array[indexPath.row];
-        return model.viewHeight+ScreenScale(110);
+        return model.viewHeight+ScreenScale(95);
     }
 }
 
@@ -156,7 +156,7 @@
     if (section == 0) {
         return ScreenScale(365);
     }else {
-        return ScreenScale(40);
+        return ScreenScale(50);
     }
 }
 

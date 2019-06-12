@@ -31,7 +31,7 @@
         [self.contentView addSubview:self.imageView];
         [self.contentView addSubview:self.tagView];
         [self.contentView addSubview:self.titleLab];
-        [self.contentView addSubview:self.descriptLab];
+//        [self.contentView addSubview:self.descriptLab];
         [self.contentView addSubview:self.priceLab];
         [self.contentView addSubview:self.cartButton];
 
@@ -51,14 +51,14 @@
             make.top.equalTo(self.tagView.mas_bottom).offset(ScreenScale(10));
         }];
         
-        [self.descriptLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.contentView).inset(ScreenScale(10));
-            make.top.equalTo(self.titleLab.mas_bottom).offset(ScreenScale(8));
-        }];
+//        [self.descriptLab mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.equalTo(self.contentView).inset(ScreenScale(10));
+//            make.top.equalTo(self.titleLab.mas_bottom).offset(ScreenScale(8));
+//        }];
 
         [self.priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.contentView).inset(ScreenScale(10));
-            make.top.equalTo(self.descriptLab.mas_bottom).offset(ScreenScale(16));
+            make.top.equalTo(self.titleLab.mas_bottom).offset(ScreenScale(16));
         }];
         
         [self.cartButton mas_makeConstraints:^(MASConstraintMaker *make) {

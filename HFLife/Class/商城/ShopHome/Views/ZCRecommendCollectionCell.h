@@ -10,7 +10,7 @@
 #import "ZCShopHomeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+//新品推荐collectionView Cell
 @interface ZCRecommendCollectionCell : UICollectionViewCell
 
 @property(nonatomic, strong) ZCShopNewGoodsModel *model;
