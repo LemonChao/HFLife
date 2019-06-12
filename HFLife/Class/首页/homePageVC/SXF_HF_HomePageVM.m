@@ -38,6 +38,9 @@
 
 @property (nonatomic, strong) NSString *static_coin;
 
+
+@property (nonatomic, assign)NSInteger people;
+
 @end
 
 
@@ -68,17 +71,24 @@
 - (void)setFqValue:(NSDictionary *)fqValue{
     _fqValue = fqValue;
     self.collectionView.fqPrice = fqValue[@"rate"];
-
     self.collectionView.myFQ = Format([self getMoney:fqValue[@"rate"] :self.static_coin]);
 }
 
 
 - (void) getBannerData{
+//    self.people = 106;
+//    //test
+//    if (@available(iOS 10.0, *)) {
+//        [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//            self.collectionView.peopleNum  = @((self.people ++));
+//        }];
+//    } else {
+//        // Fallback on earlier versions
+//    }
     [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         if (result){
             if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
-                
                 self.collectionView.peopleNum = value[@"data"][@"nums"];
                 self.collectionView.fqPrice = value[@"data"][@"bn_acc_ratio"];
                 //需要计算得来

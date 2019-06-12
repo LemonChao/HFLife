@@ -136,8 +136,12 @@
     for (NSUInteger i = 0; i < numberStr.length; i++) {
         [_numbersText addObject:[numberStr substringWithRange:NSMakeRange(i, 1)]];
     }
+    
+    
 #warning 移除以前数据
-    [historyArray removeAllObjects];
+//    [historyArray removeAllObjects];
+    
+    
     
     
     
