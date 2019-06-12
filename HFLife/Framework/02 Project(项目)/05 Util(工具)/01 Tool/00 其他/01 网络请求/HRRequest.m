@@ -150,7 +150,7 @@
 //             NSDictionary *valueDic = [HR_dataManagerTool dataToypteDJson:da];
             NSString *str = [[NSString alloc] initWithData:errorInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
             
-            MYLog(@"error = %@", str);
+            NSLog(@"error = %@", str);
         }
         
         
