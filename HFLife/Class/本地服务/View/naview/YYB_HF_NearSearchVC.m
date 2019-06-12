@@ -55,7 +55,7 @@
         }];
         [check show];
     };
-    
+    self.headView.setSearchStr = self.searchStrDe;
     self.headView.searchClick = ^{
         YYB_HF_SearchResultC *vc = [[YYB_HF_SearchResultC alloc]init];
         vc.searchType = weakSelf.searchType;
@@ -73,7 +73,7 @@
         make.left.right.bottom.mas_equalTo(self.view);
     }];
         
-    self.searArr = @[@"阿五黄河大鲤鱼",@"小泉烧烤",@"小泉烧烤",@"海底捞火锅",@"阿勇美食",@"必胜客",@"肯德基",@"阿五黄河大鲤鱼2",@"小泉烧烤2",@"小泉烧烤 拷贝"];
+    self.searArr = @[@"xxxx",@"xxx",@"xx",@"x"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -103,6 +103,8 @@
             }else {
                 [WXZTipView showCenterWithText:@"网络错误"];
             }
+            self.searArr = nil;
+            [self.collectionView reloadData];
         }
     }];
 }
@@ -128,7 +130,7 @@
         double width = (self.view.width - ScreenScale(10)*6) / 5.0;
         _layout.itemSize = CGSizeMake(width, ScreenScale(60));
         _layout.minimumLineSpacing = ScreenScale(10);
-        _layout.minimumInteritemSpacing = ScreenScale(10);
+        _layout.minimumInteritemSpacing = ScreenScale(30);
 
         
         // 头部视图悬停

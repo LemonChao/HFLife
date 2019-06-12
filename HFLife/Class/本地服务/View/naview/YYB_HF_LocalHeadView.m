@@ -90,7 +90,7 @@
     self.searchIcon = searchIcon;
     
     [searchBgView addSubview:self.searchlabel];
-    self.searchlabel.text = @"海底捞";
+    self.searchlabel.text = @"搜一搜";
     self.searchlabel.textColor = HEX_COLOR(0xAAAAAA);
     self.searchlabel.font = FONT(13);
     
@@ -123,7 +123,7 @@
     [searchBgView wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
        
         if (self.searchIconClick) {
-            self.searchIconClick();
+            self.searchIconClick(self.setSearchStr);
         }else{ [WXZTipView showCenterWithText:@"click -line 搜索"]; }
 //        [self.viewController.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
 //        [self shareInfo];
@@ -323,12 +323,6 @@
         self.addressSelect();
     }
     
-//    CityChooseVC *cityChoose = [[CityChooseVC alloc]init];
-//    cityChoose.delegate = self;
-//    BaseNavigationController *navigationController = [[BaseNavigationController alloc] initWithRootViewController:cityChoose];
-//    [self.viewController presentViewController:navigationController animated:YES completion:nil];
-//    [self.viewController.navigationController pushViewController:[NSClassFromString(@"PYSearchViewController") new] animated:YES];
-    
 }
 
 #pragma mark - setValue
@@ -340,11 +334,10 @@
         make.height.mas_equalTo(ScreenScale(33));
         make.width.mas_equalTo(ScreenScale(16) * (self.localLabel.text.length > 6 ? 6 : self.localLabel.text.length));
     }];
+    self.setSearchStr = self.searchlabel.text;
+    [self getData];
 }
 
-- (void)setSetSearchStr:(NSString *)setSearchStr {
-    self.searchlabel.text = setSearchStr;
-}
 
 - (void)setSetHeadImageStr:(NSString *)setHeadImageStr {
     [self.headImageV sd_setImageWithURL:[NSURL URLWithString:setHeadImageStr] placeholderImage:image(@"icon_touxiang")];
@@ -356,6 +349,23 @@
     }else {
         [self.headImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:image(@"icon_touxiang")];
     }
+}
+//获取热搜数据、默认美食
+- (void)getData {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kGetHotSearchList withParameters:@{@"type":@"1"} withResultBlock:^(BOOL result, id value) {
+        if (result) {
+            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                NSArray *dataArr = value[@"data"];
+                if (dataArr && [dataArr isKindOfClass:[NSArray class]]) {
+                    NSString *searchStr = dataArr.firstObject;
+                    if (searchStr && searchStr.length > 0) {
+                        self.searchlabel.text = searchStr;
+                        self.setSearchStr = searchStr;
+                    }
+                }
+            }
+        }
+    }];
 }
 
 

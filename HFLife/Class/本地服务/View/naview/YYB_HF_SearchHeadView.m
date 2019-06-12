@@ -81,9 +81,10 @@
     self.searchIcon = searchIcon;
     
     [self.searchBgView addSubview:self.searchT];
-    self.searchT.text = @"海底捞";
-    self.searchT.textColor = HEX_COLOR(0xAAAAAA);
+//    self.searchT.textColor = HEX_COLOR(0xAAAAAA);
     self.searchT.font = FONT(13);
+    [self.searchT becomeFirstResponder];
+    self.searchT.placeholder = @"搜索内容";
     
     
     [self.orderSearchBtn setTitle:@"搜索" forState:UIControlStateNormal];
@@ -113,6 +114,7 @@
 
 //搜索类型
 - (void)typeClick {
+    [self endEditing:YES];
     if (self.typeSelect) {
         self.typeSelect();
     }else {
@@ -184,22 +186,12 @@
         make.height.mas_equalTo(ScreenScale(33));
         make.width.mas_equalTo(ScreenScale(16) * (self.typeLabel.text.length > 4 ? 4 : self.typeLabel.text.length));
     }];
+    
 }
 
 - (void)setSetSearchStr:(NSString *)setSearchStr {
     self.searchT.text = setSearchStr;
-}
-
-- (void)setSetHeadImageStr:(NSString *)setHeadImageStr {
-    [self.backIcon sd_setImageWithURL:[NSURL URLWithString:setHeadImageStr] placeholderImage:image(@"icon_touxiang")];
-}
-
-- (void)setSetHeadImage:(UIImage *)setHeadImage {
-    if (setHeadImage && [setHeadImage isKindOfClass:[UIImage class]]) {
-        [self.backIcon setImage:setHeadImage];
-    }else {
-        [self.backIcon sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:image(@"icon_touxiang")];
-    }
+    _setSearchStr = setSearchStr;
 }
 
 
