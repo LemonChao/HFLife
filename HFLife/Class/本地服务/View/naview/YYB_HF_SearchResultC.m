@@ -160,6 +160,8 @@
         _myTable.delegate = self;
         _myTable.dataSource = self;
         _myTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _myTable.estimatedRowHeight = 0;
+
     }
     return _myTable;
 }

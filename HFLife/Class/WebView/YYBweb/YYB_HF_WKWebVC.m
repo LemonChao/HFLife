@@ -86,43 +86,31 @@
     
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
-    //分享
-    [userContentController addScriptMessageHandler:self name:@"Share"];
-    [userContentController addScriptMessageHandler:self name:@"Camera"];
+    
     //拨打电话
     [userContentController addScriptMessageHandler:self name:@"call"];
     //获取网页数据是否请求成功
     [userContentController addScriptMessageHandler:self name:@"getStatus"];
-    //获取店铺的位置
-    [userContentController addScriptMessageHandler:self name:@"getAddress"];
-    //吃喝玩乐
-    [userContentController addScriptMessageHandler:self name:@"getNear"];
+    
     //链接跳转
     [userContentController addScriptMessageHandler:self name:@"pageJump"];
-    //立即抢购
-    [userContentController addScriptMessageHandler:self name:@"goShopping"];
-    //原生跳转
-    [userContentController addScriptMessageHandler:self name:@"nativeToJump"];
+    
     //返回首页
     [userContentController addScriptMessageHandler:self name:@"goToHome"];
     [userContentController addScriptMessageHandler:self name:@"goBack"];
-    //抢购
-    [userContentController addScriptMessageHandler:self name:@"rushBuy"];
-    //抢购
-    [userContentController addScriptMessageHandler:self name:@"orderHotel"];
-    //提交订单
-    [userContentController addScriptMessageHandler:self name:@"submitOrder"];
+    [userContentController addScriptMessageHandler:self name:@"goToApp"];
+
     //调起支付
     [userContentController addScriptMessageHandler:self name:@"goToPay"];
     //调起银联支付
-    [userContentController addScriptMessageHandler:self name:@"goToApp"];
     //选择城市
     [userContentController addScriptMessageHandler:self name:@"choiceCity"];
     //调起支付
     [userContentController addScriptMessageHandler:self name:@"goPay"];
-    //调起支付
+    //调起搜索界面
     [userContentController addScriptMessageHandler:self name:@"goToSearch"];
-    
+    //调起设置支付密码
+    [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
     configuration.userContentController = userContentController;
     
     
@@ -367,6 +355,8 @@
         [self goToHome];
     }else if ([message.name isEqualToString:@"goToSearch"]){
         [self jumSearchVC];
+    }else if ([message.name isEqualToString:@"goSetPayPassword"]){
+        [self jumPasswordVC];
     }
     //goToHome
 }
@@ -476,6 +466,10 @@
 #pragma mark - h5跳转 搜索界面 goToSearch
 -(void)jumSearchVC {
     [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
+}
+#pragma mark - h5跳转 设置密码界面 goSetPayPassword
+- (void)jumPasswordVC {
+    [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_setDealPassWordVC") new] animated:YES];
 }
 
 #pragma mark - 返回首页--
