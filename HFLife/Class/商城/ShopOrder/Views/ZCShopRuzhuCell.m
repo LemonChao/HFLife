@@ -86,7 +86,7 @@
 
 - (void)orderButtonAction:(UIButton *)button {
     if ([button.currentTitle isEqualToString:@"个人入驻"]) {
-        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"signingIndex" parameters:@{@"type":@"1"}];
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"signingIndex" parameters:@{@"type":@"0"}];
         [self.viewController.navigationController pushViewController:webVC animated:YES];
     }else if ([button.currentTitle isEqualToString:@"商家入驻"]) {
         ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"signingIndex" parameters:@{@"type":@"1"}];

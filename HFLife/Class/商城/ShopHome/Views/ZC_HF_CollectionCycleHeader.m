@@ -102,8 +102,7 @@
 
 - (SDCycleScrollView *)cycleView {
     if (!_cycleView) {
-        _cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(240)) delegate:self placeholderImage:image(@"banner")];
-        _cycleView.localizationImageNamesGroup = @[image(@"banner"),image(@"banner")];
+        _cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(240)) delegate:self placeholderImage:nil];
         _cycleView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _cycleView.backgroundColor = [UIColor whiteColor];
     }

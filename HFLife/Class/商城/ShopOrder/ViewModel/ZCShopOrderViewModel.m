@@ -21,7 +21,7 @@
                     if (result) {
                         
                         self.model = [ZCShopOrderModel yy_modelWithDictionary:value[@"data"]];
-                        
+                        [subscriber sendNext:@(1)];
                         [subscriber sendCompleted];
                     }else {
                         [subscriber sendError:nil];

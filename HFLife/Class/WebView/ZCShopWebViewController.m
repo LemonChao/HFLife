@@ -246,7 +246,7 @@
 #pragma mark -URL跳转
 -(void)pageJumpParameter:(NSDictionary *)dict{
     NSLog(@"dict = %@",dict);
-    WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
+    ZCShopWebViewController *wkWebView = [[ZCShopWebViewController alloc]init];
     wkWebView.urlString = [NSString judgeNullReturnString:dict[@"href"]];
     wkWebView.isNavigationHidden = [MMNSStringFormat(@"%@",dict[@"bar"]) isEqualToString:@"1"]?YES:NO;
     wkWebView.webTitle = [NSString judgeNullReturnString:dict[@"title"]];
