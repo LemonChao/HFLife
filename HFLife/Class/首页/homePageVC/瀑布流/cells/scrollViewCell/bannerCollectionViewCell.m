@@ -44,7 +44,7 @@
     [self.contentView addSubview:self.imageV];
     
     
-    self.imageV.backgroundColor = HEX_COLOR(0xE1E1E1);
+    self.imageV.backgroundColor = [UIColor whiteColor];
     self.imageV.layer.cornerRadius = 5;
     self.imageV.clipsToBounds = YES;
     

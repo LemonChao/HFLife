@@ -118,7 +118,7 @@
             cell.subtitleString = value;
             cell.isArrowHiden = NO;
         }
-    }else if (indexPath.section == 1 || indexPath.section == 2) {
+    }else if (indexPath.section == 1) {
         cell.subtitleString = value;
         cell.isArrowHiden = NO;
     }else{

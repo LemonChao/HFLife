@@ -79,7 +79,7 @@
     self.inviteeButton = [UIButton new];
     self.rightIncoderImgV = [UIImageView new];
     self.rightIncoderImgV.tintColor = [UIColor whiteColor];
-    self.rightIncoderImgV.image = [UIImage imageNamed:@"homePage更多"];
+    self.rightIncoderImgV.image = [UIImage imageNamed:@"right_white"];
     self.goBuyBtn = [UIButton new];
     self.bgImageV = [UIImageView new];
     self.leftImageV = [UIImageView new];
@@ -241,8 +241,8 @@
     
     [self.rightIncoderImgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bgView.mas_right).offset(-ScreenScale(13));
-        make.height.mas_equalTo(ScreenScale(12));
-        make.width.mas_equalTo(ScreenScale(7));
+        make.height.mas_equalTo(ScreenScale(15));
+        make.width.mas_equalTo(ScreenScale(15));
         make.centerY.mas_equalTo(self.titleLb.mas_centerY);
     }];
     
