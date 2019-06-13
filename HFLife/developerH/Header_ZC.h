@@ -25,7 +25,7 @@
 /************************subUrl************************/
 
 #define shopHost        @"ceshi-shop.hfgld.net/"
-//#define shopWebHost     @"http://ceshi-web.hfgld.net/mall/    //域名
+//#define shopWebHost     @"http://ceshi-web.hfgld.net/mall/"    //域名
 //#define shopWebHost     @"http://192.168.0.143:1111/"
 #define shopWebHost     @"http://192.168.0.172:8080/"            //小曲
 #define shopUrl(subUrl)    [NSString stringWithFormat:@"%@api/mobile/index.php?%@",shopHost,subUrl]

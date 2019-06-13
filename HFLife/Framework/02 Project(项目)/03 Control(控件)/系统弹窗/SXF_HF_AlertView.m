@@ -138,12 +138,6 @@
 
 - (void)configerAlert{
     switch (self.alertType) {
-        case AlertType_delete:{
-            self.titleLb.text = @"温馨提示";
-            self.msgLb.text = @"确认要删除商品吗";
-            [self.sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-            [self.cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
-        }
         case AlertType_login:{
             self.titleLb.text = @"是否登录";
             self.msgLb.text = @"此功能需登录才可使用，是否登录？";
@@ -275,6 +269,25 @@
             [self.msgLb setLabelWithLineSpace:ScreenScale(8)];
         }
             break;
+        case AlertType_delete: {
+            self.titleLb.text = @"温馨提示";
+            self.msgLb.text = @"确认要删除商品吗";
+            self.titleLb.font = MyFont(18);
+            self.msgLb.font = MyFont(14);
+            self.titleLb.textColor = color0C0B0B;
+            self.msgLb.textColor = colorAAAAAA;
+            self.sureBtn.setTitle(@"确定", UIControlStateNormal).setTitleFontSize(18).setTitleColor([UIColor whiteColor], UIControlStateNormal);
+            self.sureBtn.backgroundColor = colorCA1400;
+            
+            self.cancleBtn.setTitle(@"取消", UIControlStateNormal).setTitleFontSize(18).setTitleColor([UIColor whiteColor], UIControlStateNormal);
+            self.cancleBtn.backgroundColor = colorAAAAAA;
+            
+            self.cancleBtn.layer.cornerRadius = 5;
+            self.sureBtn.layer.cornerRadius = 5;
+            self.cancleBtn.layer.masksToBounds = self.sureBtn.layer.masksToBounds = YES;
+
+            break;
+        }
         case AlertType_logout:{
             self.titleLb.text = @"温馨提示";
             self.msgLb.text = @"您确定要退出登录吗？";
@@ -349,6 +362,7 @@
             [self layoutCancleView];
         }
             break;
+        case AlertType_delete:
         case AlertType_logout:{
             [self layoutLogout];
         }
@@ -721,6 +735,7 @@
             }];
         }
             break;
+        case AlertType_delete:
         case AlertType_logout:{
             [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(kwin.mas_left).offset(ScreenScale(45));

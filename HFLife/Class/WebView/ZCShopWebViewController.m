@@ -509,7 +509,7 @@
         config.preferences = preferences;
         NSMutableDictionary *dic = [NSMutableDictionary new];
         dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
-        dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"Token"];
+        dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
         dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
 
         NSLog(@"window.iOSInfo:%@", dic);
