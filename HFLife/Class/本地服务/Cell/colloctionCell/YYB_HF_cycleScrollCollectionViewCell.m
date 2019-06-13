@@ -35,7 +35,7 @@
 //广告位
 -(SDCycleScrollView *)cycleScroll{
     if (_cycleScroll == nil) {
-        _cycleScroll = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"bg_banner"]];
+        _cycleScroll = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:nil];
         _cycleScroll.isCustom = YES;
         _cycleScroll.distance = HeightRatio(47);
         _cycleScroll.delegate = self;

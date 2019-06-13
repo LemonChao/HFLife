@@ -79,10 +79,7 @@
     [self.picBgView addSubview:self.showImage1];
     [self.picBgView addSubview:self.showImage2];
     [self.picBgView addSubview:self.showImage3];
-    
-    self.showImage1.image = image(@"image1");
-    self.showImage2.image = image(@"image2");
-    self.showImage3.image = image(@"image3");
+ 
     self.picImageViewArr = [NSMutableArray arrayWithArray:@[self.showImage1,self.showImage2,self.showImage3]];
     
     self.concessionIamgeView.image = image(@"icon_biaoqian");
@@ -235,7 +232,7 @@
         if (setImageArr.count > i) {
             [imgView setHidden:NO];
             NSString *imgUrlStr = setImageArr[i];
-            [imgView sd_setImageWithURL:[NSURL URLWithString:imgUrlStr] placeholderImage:image(@"icon_shenxian")];
+            [imgView sd_setImageWithURL:[NSURL URLWithString:imgUrlStr] placeholderImage:nil];
 
         }else {
             [imgView setHidden:YES];
@@ -293,7 +290,6 @@
     [self.contentView addSubview:self.concessionMoney];
     [self.contentView addSubview:self.showImage];
     self.concessionIamgeView.image = image(@"icon_biaoqian");
-    self.showImage.image = image(@"image1");
     
     self.bgView.backgroundColor = [UIColor whiteColor];
     //    self.bgView.clipsToBounds = YES;
@@ -409,7 +405,7 @@
 }
 
 - (void)setSetImageUrl:(NSString *)setImageUrl {
-    [self.showImage sd_setImageWithURL:[NSURL URLWithString:setImageUrl] placeholderImage:image(@"icon_shenxian")];
+    [self.showImage sd_setImageWithURL:[NSURL URLWithString:setImageUrl] placeholderImage:nil];
 }
 
 
