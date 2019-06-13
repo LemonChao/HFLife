@@ -5,10 +5,7 @@
 //  Created by mac on 2019/5/23.
 //  Copyright © 2019 luyukeji. All rights reserved.
 //
-#import <UIKit/UIKit.h>
-
-#import "baseCollectionView.h"
-
+#import "BaseViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_WKWebVC : BaseViewController
@@ -18,12 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, copy) void (^choiceCity)(NSString *city);
 
-/**
- 是否隐藏返回按钮
- */
-@property (nonatomic,assign)BOOL isHidenLeft;
-/** 是否从状态栏开始布局 NO:是的 YES：不是*/
-@property (nonatomic,assign)BOOL isTop;
+
 /** 直接加载URL*/
 @property (nonatomic,copy)NSString *urlString;
 
@@ -35,11 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**文件夹名*/
 @property (nonatomic,copy)NSString *folderName;
 
-///**导航隐藏*/
-@property (nonatomic,assign)BOOL isNavigationHidden;
-/** 标题 */
-@property (nonatomic,copy)NSString *webTitle;
-@property (nonatomic,strong)UIColor *titleColor;
 /**
  刷新webview
  */

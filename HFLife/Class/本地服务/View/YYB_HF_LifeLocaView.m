@@ -67,7 +67,7 @@
     }
     
     [[WBPCreate sharedInstance]showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kNearLife withParameters:nil  withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(kNearLife) withParameters:nil  withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
@@ -125,7 +125,7 @@
     
     NSDictionary *parm = @{@"page":@(self.collectionView.page)};
     [[WBPCreate sharedInstance]showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kGetIndexRecommendList withParameters:parm withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(kGetIndexRecommendList) withParameters:parm withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
@@ -278,9 +278,7 @@
     NSString *url = entrModel.url;
     if (url && url.length > 0) {
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-        vc.isTop = NO;
         vc.urlString = url;
-        vc.isNavigationHidden = YES;
         [self.supVC.navigationController pushViewController:vc animated:YES];
     }else {
         [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld",indexPath.row]];
@@ -321,9 +319,7 @@
         NSString *url = guessModel.url;
         if (url && url.length > 0) {
             YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-            vc.isTop = NO;
             vc.urlString = url;
-            vc.isNavigationHidden = YES;
             [self.supVC.navigationController pushViewController:vc animated:YES];
         }else {
             [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];

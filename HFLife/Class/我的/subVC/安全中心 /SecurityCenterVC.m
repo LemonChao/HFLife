@@ -106,18 +106,21 @@
         YYB_HF_setDealPassWordVC *vc = [[YYB_HF_setDealPassWordVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([value isEqualToString:@"注销账号"]){
-                NSString *msg = @"1.您将不再享有汉富新生活的专属会员权益（包括但不限于付费会员权益、生态会员权益等）；\n2.您将再也无法对此账号进行登录、忘记密码操作；\n3.您账户的个人资料及历史信息将无法找回；\n4.您账户中如果存在与会员相关的其他权益未使用，注销后将不能再使用；\n5.您的汉富智新生活能终端产品在使用时，需重新注册汉富账号并重新设置，原账号内的数据信息不会进行移转或继承；\n6.除法律法规要求必须保存的信息以外，您的用户信息我们将予以删除。您账户下所有行为信息记录，您将无法找回；\n7.注销本账户并不代表本账户注销前的账户行为和相关责任得到豁免或减轻。";
-                SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_cancellation Complete:^(BOOL btnBype) {
-                    if (btnBype) {
-                        if ([userInfoModel sharedUser].ID && [userInfoModel sharedUser].ID > 0) {
-                            YYB_HF_destroyAccountVC *vc = [[YYB_HF_destroyAccountVC alloc]init];
-                            [self.navigationController pushViewController:vc animated:YES];
-                        }else {
-                            [WXZTipView showCenterWithText:@"用户信息未获取成功"];
-                        }
-                    }
-                }];
-                alert.msg = msg;
+        NSString *msg = @"1.您将不再享有汉富新生活的专属会员权益（包括但不限于付费会员权益、生态会员权益等）；\n2.您将再也无法对此账号进行登录、忘记密码操作；\n3.您账户的个人资料及历史信息将无法找回；\n4.您账户中如果存在与会员相关的其他权益未使用，注销后将不能再使用；\n5.您的汉富智新生活能终端产品在使用时，需重新注册汉富账号并重新设置，原账号内的数据信息不会进行移转或继承；\n6.除法律法规要求必须保存的信息以外，您的用户信息我们将予以删除。您账户下所有行为信息记录，您将无法找回；\n7.注销本账户并不代表本账户注销前的账户行为和相关责任得到豁免或减轻。";
+        
+//        msg = @"您在申请注销流程中点击同意前，应当认真阅读《帐号注销协议》（以下简称“本协议”）。特别提醒您，当您成功提交注销申请后，即表示您已充分阅读、理解并接受本协议的全部内容。阅读本协议的过程中，如果您不同意相关任何条款，请您立即停止帐号注销程序。如您对本协议有任何疑问，可通过客服专区联系我们的客服。\n1. 如果您仍欲继续注销帐号，您的帐号需同时满足以下条件：\n\t（1）帐号不在处罚状态中，且能正常登录；\n\t（2）帐号最近一个月内并无修改密码、修改关联手机、绑定手机记录。\n2.您应确保您有权决定该帐号的注销事宜，不侵犯任何第三方的合法权益，如因此引发任何争议，由您自行承担。\n3.您理解并同意，账号注销后我们无法协助您重新恢复前述服务。请您在申请注销前自行备份您欲保留的本帐号信息和数据。\n4.帐号注销后，已绑定的手机号、邮箱将会被解除绑定。\n5.注销帐号后，您将无法再使用本帐号，也将无法找回您帐号中及与帐号相关的任何内容或信息，包括但不限于：\n\t（1）您将无法继续使用该帐号进行登录；\n\t（2）您帐号的个人资料和历史信息（包含昵称、头像、消息记录等）都将无法找回；\n\t（3）您理解并同意，注销帐号后，您曾获得的充值余额、游戏道具、礼品券及其他虚拟财产等将视为您自愿、主动放弃，无法继续使用，由此引起一切纠纷由您自行处理，我们不承担任何责任。\n6.在帐号注销期间，如果您的帐号被他人投诉、被国家机关调查或者正处于诉讼、仲裁程序中，我们有权自行终止您的帐号注销程序，而无需另行得到您的同意。\n7.请注意，注销您的帐号并不代表本帐号注销前的帐号行为和相关责任得到豁免或减轻。";
+        
+        SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_cancellation Complete:^(BOOL btnBype) {
+            if (btnBype) {
+                if ([userInfoModel sharedUser].ID && [userInfoModel sharedUser].ID > 0) {
+                    YYB_HF_destroyAccountVC *vc = [[YYB_HF_destroyAccountVC alloc]init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else {
+                    [WXZTipView showCenterWithText:@"用户信息未获取成功"];
+                }
+            }
+        }];
+        alert.msg = msg;
         
     }else if ([value isEqualToString:@"关联账号"]){
         if ([userInfoModel sharedUser].ID && [userInfoModel sharedUser].ID > 0) {

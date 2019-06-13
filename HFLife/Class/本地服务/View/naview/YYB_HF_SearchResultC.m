@@ -69,9 +69,9 @@
     [[WBPCreate sharedInstance]showWBProgress];
     NSString *urlStr;
     if ([self.searchType isEqualToString:@"1"]) {//美食
-        urlStr = kGetSearchFoodList;
+        urlStr = kLifeAdress(kGetSearchFoodList);
     }else {
-        urlStr = kGetSearchHotelList;
+        urlStr = kLifeAdress(kGetSearchHotelList);
     }
     NSDictionary *parm = @{@"keyword":self.searchStr,@"sort":@"0",@"page":@(self.myTable.page)};
     
@@ -225,9 +225,7 @@
     
     if (url && url.length > 0) {
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-        vc.isTop = NO;
         vc.urlString = url;
-        vc.isNavigationHidden = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }else {
         [WXZTipView showCenterWithText:@"click -line"];

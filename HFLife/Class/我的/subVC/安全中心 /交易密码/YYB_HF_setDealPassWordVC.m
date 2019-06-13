@@ -298,7 +298,7 @@
     
     //    [self openCountdown:send];
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneText.text,@"event":@"set_pay_password"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kSendsms) withParameters:@{@"mobile":self.phoneText.text,@"event":@"set_pay_password"} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];

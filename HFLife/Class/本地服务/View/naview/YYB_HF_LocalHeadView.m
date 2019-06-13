@@ -352,7 +352,7 @@
 }
 //获取热搜数据、默认美食
 - (void)getData {
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kGetHotSearchList withParameters:@{@"type":@"1"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(kGetHotSearchList) withParameters:@{@"type":@"1"} withResultBlock:^(BOOL result, id value) {
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
                 NSArray *dataArr = value[@"data"];

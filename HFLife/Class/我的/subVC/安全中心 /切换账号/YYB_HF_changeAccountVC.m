@@ -162,7 +162,7 @@
                 NSLog(@"移除的别名   %@", iAlias);
             } seq:001];
 
-            [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+            [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kMemberInfo) withParameters:nil withResultBlock:^(BOOL result, id value) {
                 [[WBPCreate sharedInstance]hideAnimated];
                 if (result) {
                     dispatch_async(dispatch_get_main_queue(), ^{

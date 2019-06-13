@@ -232,7 +232,7 @@
     
     //    [self openCountdown:send];
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":[userInfoModel sharedUser].member_mobile,@"event":@"close_mobile"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kSendsms) withParameters:@{@"mobile":[userInfoModel sharedUser].member_mobile,@"event":@"close_mobile"} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
@@ -253,7 +253,7 @@
 - (void)sureBtnClick {
     
     [[WBPCreate sharedInstance]showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCloseAccount withParameters:@{@"captcha":self.vercodeText.text} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kCloseAccount) withParameters:@{@"captcha":self.vercodeText.text} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
             SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_exchnageSuccess Complete:nil];

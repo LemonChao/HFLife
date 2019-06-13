@@ -322,7 +322,7 @@
     
 //    [self openCountdown:send];
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":_userName.text,@"event":@"register"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kSendsms) withParameters:@{@"mobile":_userName.text,@"event":@"register"} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
@@ -395,7 +395,7 @@
     }
     
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kRegisterMobile withParameters:@{@"member_mobile":_userName.text,@"captcha":self.vercodeText.text,@"invite_code":_inviteCodeTextField.text} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kRegisterMobile) withParameters:@{@"member_mobile":_userName.text,@"captcha":self.vercodeText.text,@"invite_code":_inviteCodeTextField.text} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -455,7 +455,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField == _userName) {
         
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile withParameters:@{@"member_mobile":textField.text} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kCheckMobile) withParameters:@{@"member_mobile":textField.text} withResultBlock:^(BOOL result, id value) {
             if (result) {
                 
             }else {

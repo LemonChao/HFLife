@@ -85,7 +85,7 @@
 
 - (void)getData {
     [[WBPCreate sharedInstance]showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kGetHotSearchList withParameters:@{@"type":_searchType} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(kGetHotSearchList) withParameters:@{@"type":_searchType} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {

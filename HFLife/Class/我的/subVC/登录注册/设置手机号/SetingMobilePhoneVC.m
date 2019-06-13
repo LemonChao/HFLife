@@ -369,7 +369,7 @@
         parm = @{@"mobile":self.phoneText.text,@"event":@"alipay_bind_mobile"};
     }
     [[WBPCreate sharedInstance] showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:parm withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kSendsms) withParameters:parm withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [WXZTipView showCenterWithText:@"短信验证码已发送"];
@@ -436,9 +436,9 @@
 //    }
     NSString *subUrl;
     if (self.loginType == LoginTypeWeiXin) {
-        subUrl = kWxBindmobile;
+        subUrl = kCenterAdress(kWxBindmobile);
     }else if (self.loginType == LoginTypeAliPay) {
-        subUrl = kAlipayBindmobile;
+        subUrl = kCenterAdress(kAlipayBindmobile);
     }
     
     [[WBPCreate sharedInstance] showWBProgress];
@@ -507,7 +507,7 @@
             parm = @{@"member_mobile":textField.text,@"type":@"3"};
         }
         
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile withParameters:parm withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kCheckMobile) withParameters:parm withResultBlock:^(BOOL result, id value) {
             if (result) {
 
             }else {
@@ -520,7 +520,7 @@
         }];
     }
     if (textField == _inviteCodeTextField && _inviteCodeTextField.text.length > 0) {
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckInviteCode withParameters:@{@"invite_code":textField.text} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kCheckInviteCode) withParameters:@{@"invite_code":textField.text} withResultBlock:^(BOOL result, id value) {
             if (result) {
                 
             }else {

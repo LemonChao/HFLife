@@ -35,7 +35,7 @@
             if (btnBype) {
                 
                 [[WBPCreate sharedInstance]showWBProgress];
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileRemoveWx withParameters:nil withResultBlock:^(BOOL result, id value) {
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kMobileRemoveWx) withParameters:nil withResultBlock:^(BOOL result, id value) {
                     [[WBPCreate sharedInstance]hideAnimated];
                     if (result) {
                         [userInfoModel sharedUser].weixin_unionid = nil;
@@ -64,7 +64,7 @@
                    if (state == SSDKResponseStateSuccess){
                        NSDictionary *dataDict = @{@"openid":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
                        [[WBPCreate sharedInstance] showWBProgress];
-                       [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileBindWx withParameters:dataDict withResultBlock:^(BOOL result, id value) {
+                       [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kMobileBindWx) withParameters:dataDict withResultBlock:^(BOOL result, id value) {
                            [[WBPCreate sharedInstance]hideAnimated];
                            if (result) {
                                self.wechatStateLabel.text = @"已绑定";
@@ -97,7 +97,7 @@
       [SXF_HF_AlertView showAlertType:AlertType_binding_alipay Complete:^(BOOL btnBype) {
             if (btnBype) {
                 [[WBPCreate sharedInstance]showWBProgress];
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileRemoveAlipay withParameters:nil withResultBlock:^(BOOL result, id value) {
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kMobileRemoveAlipay) withParameters:nil withResultBlock:^(BOOL result, id value) {
                     [[WBPCreate sharedInstance]hideAnimated];
                     if (result) {
                         [userInfoModel sharedUser].alipay_unionid = nil;
@@ -125,7 +125,7 @@
             NSDictionary *dataDict = @{@"auth_code":authCode};
             [[WBPCreate sharedInstance] showWBProgress];
             [[WBPCreate sharedInstance]showWBProgress];
-            [networkingManagerTool requestToServerWithType:POST withSubUrl:kMobileBindAlipay withParameters:dataDict withResultBlock:^(BOOL result, id value) {
+            [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kMobileBindAlipay) withParameters:dataDict withResultBlock:^(BOOL result, id value) {
                 [[WBPCreate sharedInstance]hideAnimated];
                 if (result) {
                     self.wechatStateLabel.text = @"已绑定";
