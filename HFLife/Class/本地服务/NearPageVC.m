@@ -41,9 +41,8 @@
     headView.addressSelect = ^{
         //地址选择
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-        vc.urlString = kChoiceCity;
-        vc.isTop = NO;
-        vc.isNavigationHidden = YES;
+        vc.urlString = kH5LocaAdress(kChoiceCity);
+        
         vc.choiceCity = ^(NSString * _Nonnull city) {
             self.headView.setLocalStr = city;
             [MMNSUserDefaults setValue:city forKey:SelectedCity];
@@ -59,9 +58,8 @@
     headView.orderIconClick = ^{
         //点击订单
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-        vc.urlString = kOrderList;
-        vc.isTop = NO;
-        vc.isNavigationHidden = YES;
+        vc.urlString = kH5LocaAdress(kOrderList);
+        
         [self.navigationController pushViewController:vc animated:YES];
     };
     headView.searchIconClick = ^(NSString * _Nonnull search) {

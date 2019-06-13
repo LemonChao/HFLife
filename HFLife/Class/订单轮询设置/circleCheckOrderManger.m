@@ -90,7 +90,7 @@
                          @"orderId" : orderID,
                          @"orderType" : isHotel,
                          };
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kGetOrderPayResult withParameters:param withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(kGetOrderPayResult) withParameters:param withResultBlock:^(BOOL result, id value) {
         NSLog(@"查询订单====");
         NSDictionary *dict = value;
         if (dict && [dict[@"status"] integerValue] == 1) {

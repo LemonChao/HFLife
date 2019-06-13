@@ -147,7 +147,7 @@
 #pragma mark - 加载数据
 - (void)loadData {
     
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kMemberInfo) withParameters:nil withResultBlock:^(BOOL result, id value) {
         if (result) {
             [userInfoModel attempDealloc];
             if (value && [value isKindOfClass:[NSDictionary class]]) {

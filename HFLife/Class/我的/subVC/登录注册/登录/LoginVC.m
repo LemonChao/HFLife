@@ -139,8 +139,6 @@
 //        serv.row = 1;
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
         vc.urlString = kAppAgreement;
-        vc.isTop = NO;
-        vc.isNavigationHidden = YES;
 
         [self.navigationController pushViewController:vc animated:YES];
     }];
@@ -246,7 +244,7 @@
                    // !!!:三方登录 清空token
                    NSDictionary *dataDict = @{@"openid":user.uid,@"nickname":user.nickname,@"user_headimg":user.icon,@"sex":@(user.gender)};
                    [[WBPCreate sharedInstance] showWBProgress];
-                   [networkingManagerTool requestToServerWithType:POST withSubUrl:kWXLogin withParameters:dataDict withResultBlock:^(BOOL result, id value) {
+                   [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kWXLogin) withParameters:dataDict withResultBlock:^(BOOL result, id value) {
                        [[WBPCreate sharedInstance] hideAnimated];
                        if (result) {
                            NSDictionary *dict = value;
@@ -296,7 +294,7 @@
         
         [[WBPCreate sharedInstance]showWBProgress];
         // !!!: 调取后台接口获取支付宝用户信息
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kAlipayLogin withParameters:@{@"auth_code":authCode} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kAlipayLogin) withParameters:@{@"auth_code":authCode} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
             if (result) {
                 if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -347,7 +345,7 @@
     __block NSString *authStr = @"";// @"apiname=com.alipay.account.auth&app_id=xxxxx&app_name=mc&auth_type=AUTHACCOUNT&biz_type=openservice&method=alipay.open.auth.sdk.code.get&pid=xxxxx&product_id=APP_FAST_LOGIN&scope=kuaijie&target_id=20141225xxxx&sign_type=RSA2&sign=fMcp4GtiM6rxSIeFnJCVePJKV43eXrUP86CQgiLhDHH2u%2FdN75eEvmywc2ulkm7qKRetkU9fbVZtJIqFdMJcJ9Yp%2BJI%2FF%2FpESafFR6rB2fRjiQQLGXvxmDGVMjPSxHxVtIqpZy5FDoKUSjQ2%2FILDKpu3%2F%2BtAtm2jRw1rUoMhgt0%3D";//@"后台获取的authStr";
     
     [[WBPCreate sharedInstance]showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kAlipayOauth withParameters:nil withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kAlipayOauth) withParameters:nil withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {

@@ -189,8 +189,6 @@
         if ([userInfoModel sharedUser].rz_status.intValue == 0 || [userInfoModel sharedUser].rz_status.intValue == 3) {
             YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
             vc.urlString = SXF_WEB_URLl_Str(certification);
-            vc.isTop = NO;
-            vc.isNavigationHidden = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }else {
             [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
@@ -235,7 +233,7 @@
                 [ShareSDK cancelAuthorize:(SSDKPlatformTypeWechat) result:^(NSError *error) {
                     
                 }];
-                [networkingManagerTool requestToServerWithType:POST withSubUrl:kLogout withParameters:nil withResultBlock:^(BOOL result, id value) {
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kLogout) withParameters:nil withResultBlock:^(BOOL result, id value) {
                     [[WBPCreate sharedInstance]hideAnimated];
                     if (result) {
                         
