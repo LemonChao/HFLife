@@ -97,7 +97,7 @@
     setAmountBtn = [UIButton new];
     setAmountBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(26)];
     [setAmountBtn setTitle:@"设置金额" forState:(UIControlStateNormal)];
-    [setAmountBtn setTitle:@"清除金额" forState:(UIControlStateSelected)];
+//    [setAmountBtn setTitle:@"清除金额" forState:(UIControlStateSelected)];
     [setAmountBtn setTitleColor:HEX_COLOR(0x7B44F8) forState:(UIControlStateNormal)];
     [setAmountBtn addTarget:self action:@selector(setAmountBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:setAmountBtn];

@@ -134,12 +134,6 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:GoToPay withParameters:param withResultBlock:^(BOOL result, id value) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        
-        [HF_PayHelp goWXPay:value[@"data"][@"qrcode_link"]];
-        return;
-        
-        
         if (result && value) {
             //支付成功
             SXF_HF_paySuccessVC *payVC = [SXF_HF_paySuccessVC new];

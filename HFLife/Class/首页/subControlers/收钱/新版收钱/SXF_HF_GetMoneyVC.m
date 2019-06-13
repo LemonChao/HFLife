@@ -43,13 +43,12 @@
         self.getMoneyView.payUserDic = self.getMoneyView.payUserDic;
         
         
-        if (OpenMoneyNotiStatus) {
+        if (OpenMoneyNotiStatus){
             [voiceHeaper say:[NSString stringWithFormat:@"收款,%@ 元", noti.object[@"content"][@"pay_money"]]];
         }
         
         
         [WXZTipView showBottomWithText:@"支付成功"];
-        
         //3m秒之后隐藏支付栏
         [self performSelector:@selector(hiddenCell) withObject:nil afterDelay:3];
         
@@ -167,26 +166,28 @@
     };
     
     
-    [self.customNavBar wr_setRightButtonWithImage:MY_IMAHE(@"更多")];
-    [self.customNavBar setOnClickRightButton:^{
-        [SXF_HF_AlertView showAlertType:AlertType_topRight Complete:^(BOOL btnBype) {
-            if (btnBype) {
-                //收款码介绍
-//                BaseViewController *vc = [BaseViewController new];
-//                vc.customNavBar.title = @"收款码介绍";
-//                [weakSelf.navigationController pushViewController:vc animated:YES];
-                SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
-                webVC.urlString = SXF_WEB_URLl_Str(reCodeIntroduction);
-                [weakSelf.navigationController pushViewController:webVC animated:YES];
-            }else{
-                //开启或关闭到账通知
-                setGetMoneyStatus(!OpenMoneyNotiStatus)
-                [WXZTipView showCenterWithText:OpenMoneyNotiStatus ? @"已开启" : @"已关闭"];
+    if (self.payType) {
+        [self.customNavBar wr_setRightButtonWithImage:MY_IMAHE(@"更多")];
+        [self.customNavBar setOnClickRightButton:^{
+            [SXF_HF_AlertView showAlertType:AlertType_topRight Complete:^(BOOL btnBype) {
+                if (btnBype) {
+                    //收款码介绍
+                    //                BaseViewController *vc = [BaseViewController new];
+                    //                vc.customNavBar.title = @"收款码介绍";
+                    //                [weakSelf.navigationController pushViewController:vc animated:YES];
+                    SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+                    webVC.urlString = SXF_WEB_URLl_Str(reCodeIntroduction);
+                    [weakSelf.navigationController pushViewController:webVC animated:YES];
+                }else{
+                    //开启或关闭到账通知
+                    setGetMoneyStatus(!OpenMoneyNotiStatus)
+                    [WXZTipView showCenterWithText:OpenMoneyNotiStatus ? @"已开启" : @"已关闭"];
+                    
+                }
                 
-            }
-            
+            }];
         }];
-    }];
+    }
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -208,6 +209,4 @@
         
     }];
 }
-
-
 @end

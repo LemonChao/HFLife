@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (nonatomic, strong)UIImage *userHeaderImage;//用户头像
-
+@property (nonatomic, strong)NSNumber *payment_code;//是否领取收款码
 
 @end
 //@interface MemberInfoModel : BaseModel

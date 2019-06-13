@@ -51,14 +51,10 @@
     return self;
 }
 - (void) addChildrenViews{
-    
-    
-    _titleArr = @[@"收款记录",@"",@"商家入驻"];
-    _imageArr = @[@"记录",@"",@"入驻 (1)"];
+    _titleArr = @[@"收款记录",@"",[[userInfoModel sharedUser].payment_code integerValue] ? @"收款码已领取" : @"领取收款码"];
+    _imageArr = @[@"记录",@"",[[userInfoModel sharedUser].payment_code integerValue] ? @"收款码未领取" : @"收款码未领取"];
     self.getMoneyHeader = [[SXF_HF_getMoneyTabHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 432)];
     self.payMoneyHeader = [[SXF_HF_payMoneyTabHeader alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, ScreenScale(410))];
-    
-    
     
     self.tableView = [[UITableView alloc] initWithFrame:self.bounds];
     self.tableView.delegate = self;
@@ -170,6 +166,21 @@
             cell.cellType = YES;
             cell.titleLb.text = _titleArr[indexPath.section];
             cell.titltImageV.image = MY_IMAHE(_imageArr[indexPath.section]);
+            if (indexPath.section == 2) {
+                if ([[userInfoModel sharedUser].payment_code integerValue]) {
+                    //已领取
+                    cell.userInteractionEnabled = NO;
+                    cell.titleLb.text = @"已领取收款码";
+                    cell.titltImageV.image = MY_IMAHE(@"收款码已领取");
+                    cell.textLabel.textColor = color0C0B0B;
+                }else{
+                    //未领取
+                    cell.userInteractionEnabled = YES;
+                    cell.titleLb.text = @"领取收款码";
+                    cell.titltImageV.image = MY_IMAHE(@"收款码未领取");
+                    cell.textLabel.textColor = colorAAAAAA;
+                }
+            }
         }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

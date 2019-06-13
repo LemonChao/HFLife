@@ -116,11 +116,11 @@
 }
 
 - (NSString *)getTitle:(noticeModel *)model{
-    if ([model.type integerValue] == 0) {
+    if ([model.type integerValue] == 1) {
         return @"汉富助手";
-    }else if ([model.type integerValue] == 1){
-        return @"我的快递";
     }else if ([model.type integerValue] == 2){
+        return @"汉富助手";
+    }else if ([model.type integerValue] == 3){
         return @"生活缴费";
     }else{
         return @"";

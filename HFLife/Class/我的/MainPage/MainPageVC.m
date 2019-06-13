@@ -104,6 +104,7 @@
                                         share,
                                         @"",
                                         enterIndex,//我要入驻
+                                        @"",//领取收款码
                                         upgradeMain,
                                         myCollection,
                                         myFriendsMain,
