@@ -66,7 +66,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 //    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBar.hidden = YES;
 //    self.fd_interactivePopDisabled = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated{
@@ -196,9 +196,9 @@
         NSString *urlString_encode = [subUrlStr stringByAddingPercentEncodingWithAllowedCharacters:encode_set];
         urlString_encode = [NSString stringWithFormat:@"%@%@",baseUrl,urlString_encode];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString_encode]];
+//        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString_encode]];
         
-        //        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString_encode] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
         [self.webView loadRequest:request];
     }else{
         //         通过路径创建本地URL地址

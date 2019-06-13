@@ -188,7 +188,7 @@
             cell = [[YYB_HF_SearchResultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString judgeNullReturnString:food.logo_image]] placeholderImage:image(@"image1")];
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString judgeNullReturnString:food.logo_image]] placeholderImage:nil];
         cell.titleL.text = food.food_name;
         cell.priceL.text = [NSString stringWithFormat:@"￥%@/人",[food.consume_avg stringValue]];
         cell.addressL.text = food.detail_list;
@@ -204,7 +204,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString judgeNullReturnString:hotel.logo_image]] placeholderImage:image(@"image1")];
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString judgeNullReturnString:hotel.logo_image]] placeholderImage:nil];
         cell.titleL.text = hotel.hotel_name;
         cell.scoreL.text = [NSString stringWithFormat:@"%.1f分",[hotel.evaluate_star floatValue]];
         cell.addressL.text = [NSString stringWithFormat:@"%.2fkm|%@",[hotel.distance floatValue],hotel.hotel_address];

@@ -281,7 +281,7 @@
         vc.urlString = url;
         [self.supVC.navigationController pushViewController:vc animated:YES];
     }else {
-        [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld",indexPath.row]];
+        [WXZTipView showCenterWithText:[NSString stringWithFormat:@"暂无开通"]];
     }
 }
 

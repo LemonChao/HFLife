@@ -43,7 +43,6 @@
     [self.contentView addSubview:self.starSel];
     
     
-    self.imageV.image = image(@"image1");
     self.titleL.text = @"xxxx";
     self.priceL.text = @"xxxx";
     self.addressL.text = @"xxxx";
