@@ -543,6 +543,7 @@
 		04F8935E2292BDC50075918A /* SXF_HF_cardDetaileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8935D2292BDC50075918A /* SXF_HF_cardDetaileVC.m */; };
 		04F8D25A22A2113A00C0A310 /* MallCashierDeskVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F8D25722A2113A00C0A310 /* MallCashierDeskVC.xib */; };
 		04F8D25B22A2113A00C0A310 /* MallCashierDeskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8D25922A2113A00C0A310 /* MallCashierDeskVC.m */; };
+		04F8EFCC22B20954003F6938 /* refresh.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04F8EFCB22B20954003F6938 /* refresh.gif */; };
 		04F946D3228B9E9600085F78 /* SXF_HF_payStepAleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */; };
 		04F946D6228BBC6300085F78 /* SXF_HF_payStepTowCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946D5228BBC6300085F78 /* SXF_HF_payStepTowCel.m */; };
 		04F946E3228C0C7400085F78 /* SXF_HF_Password.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F946E0228C0C7300085F78 /* SXF_HF_Password.m */; };
@@ -1908,6 +1909,7 @@
 		04F8D25722A2113A00C0A310 /* MallCashierDeskVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MallCashierDeskVC.xib; sourceTree = "<group>"; };
 		04F8D25822A2113A00C0A310 /* MallCashierDeskVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallCashierDeskVC.h; sourceTree = "<group>"; };
 		04F8D25922A2113A00C0A310 /* MallCashierDeskVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallCashierDeskVC.m; sourceTree = "<group>"; };
+		04F8EFCB22B20954003F6938 /* refresh.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = refresh.gif; sourceTree = "<group>"; };
 		04F946D1228B9E9600085F78 /* SXF_HF_payStepAleryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payStepAleryView.h; sourceTree = "<group>"; };
 		04F946D2228B9E9600085F78 /* SXF_HF_payStepAleryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_payStepAleryView.m; sourceTree = "<group>"; };
 		04F946D4228BBC6300085F78 /* SXF_HF_payStepTowCel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_payStepTowCel.h; sourceTree = "<group>"; };
@@ -3181,6 +3183,7 @@
 		0453D1B12283B60100880C2A /* homePageVC */ = {
 			isa = PBXGroup;
 			children = (
+				04F8EFCB22B20954003F6938 /* refresh.gif */,
 				0495D3D122B10C59006134F4 /* 引导页 */,
 				0495D3CF22B0EE01006134F4 /* final render_1.mp4 */,
 				04B9D4F322803CF00084FA23 /* HomePageVC.h */,
@@ -7760,6 +7763,7 @@
 				65DC6894221A6C9700F1085E /* luxian@3x.png in Resources */,
 				04F5214C228A76BA00ED4995 /* checkbox_selected_true.png in Resources */,
 				0453D1DF2284033000880C2A /* sxf_地址.png in Resources */,
+				04F8EFCC22B20954003F6938 /* refresh.gif in Resources */,
 				658C3B1021F57FBC00880B6A /* location.txt in Resources */,
 				6C2F5164222A663D0022EE03 /* HXPhotoPicker.bundle in Resources */,
 				04F5214F228A76BA00ED4995 /* charactor@2x.png in Resources */,

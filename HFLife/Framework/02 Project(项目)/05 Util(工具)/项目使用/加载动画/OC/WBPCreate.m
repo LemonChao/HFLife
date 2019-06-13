@@ -49,7 +49,7 @@
     if (!lodingImage) {
         lodingImage = [[UIImageView alloc]initWithFrame:CGRectMake(bgView.centerX-25, bgView.centerY-25 + 40, 50, 50)];
 //        lodingImage.image = MMGetImage(@"barCode_icon");
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"load_GIF" ofType:@"gif"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"refresh" ofType:@"gif"];
         NSData *data = [NSData dataWithContentsOfFile:path];
         lodingImage.image = [UIImage sd_animatedGIFWithData:data];
         if ([path hasSuffix:@".gif"] || [path hasSuffix:@".GIF"]) {

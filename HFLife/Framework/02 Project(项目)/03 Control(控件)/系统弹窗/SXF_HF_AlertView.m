@@ -15,6 +15,8 @@
 @property (nonatomic, strong)UILabel *msgLb;
 @property (nonatomic, strong)UIButton *sureBtn;
 @property (nonatomic, strong)UIButton *cancleBtn;
+@property (nonatomic, strong)UITextView *msgTextV;//注销文字多，文本滑动展示
+
 @property (nonatomic, strong)void(^clickBtn)(BOOL btnType);
 @property (nonatomic, strong)SXF_HF_TimeSelectedView *timerAlert;
 @property (nonatomic, strong)void(^selecteTime)(NSString *year, NSString *month);
@@ -56,6 +58,8 @@
     self.topRightAlertV = [SXF_HF_leftRightAlert new];
     self.topImageV    = [UIImageView new];
     
+    
+    
     [self addSubview:self.titleLb];
     [self addSubview:self.msgLb];
     [self addSubview:self.sureBtn];
@@ -63,6 +67,12 @@
     [self addSubview:self.timerAlert];
     [self addSubview:self.topRightAlertV];
     [self addSubview:self.topImageV];
+    
+    self.msgTextV = [UITextView new];
+    [self addSubview:self.msgTextV];
+    self.msgTextV.font = FONT(14);
+    self.msgTextV.textColor = HEX_COLOR(0x0C0B0B);
+    self.msgTextV.editable = NO;
     
     
     
@@ -95,6 +105,7 @@
 - (void)setMsg:(NSString *)msg{
     _msg = msg;
     self.msgLb.text = _msg;
+    self.msgTextV.text = _msg;
     [self configerAlert];
 }
 
@@ -247,13 +258,15 @@
             self.msgLb.font = FONT(11);
             self.msgLb.textColor = HEX_COLOR(0x333333);
             self.msgLb.numberOfLines = 0;
-            self.msgLb.text = self.msg;
+            
+//            self.msgTextV.text = _msg;
+//            self.msgLb.text = self.msg;
             
             self.cancleBtn.setTitleColor(colorCA1400, UIControlStateNormal).setTitleFontSize(14).setTitle(@"我再想想", UIControlStateNormal);
             self.cancleBtn.layer.borderWidth = self.sureBtn.layer.borderWidth = 1.0f;
             self.cancleBtn.layer.borderColor = self.sureBtn.layer.borderColor = [HEX_COLOR(0xE5E5E5) CGColor];
             self.sureBtn.setTitleColor(colorAAAAAA, UIControlStateNormal).setTitleFontSize(14).setTitle(@"确定注销", UIControlStateNormal);
-            self.msgLb.text = self.msg;
+//            self.msgLb.text = self.msg;
             
             [self.msgLb setLabelWithLineSpace:ScreenScale(8)];
         }
@@ -380,15 +393,16 @@
         make.height.mas_equalTo(ScreenScale(14));
     }];
     
-    [self.msgLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.titleLb.mas_bottom).offset(ScreenScale(42));
+    [self.msgTextV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.titleLb.mas_bottom).offset(ScreenScale(22));
         make.left.mas_equalTo(ScreenScale(27));
         make.right.mas_equalTo(ScreenScale(-27));
+        make.height.mas_equalTo(SCREEN_HEIGHT * 1 / 2);
         
     }];
     
     [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.msgLb.mas_bottom).offset(ScreenScale(82));
+        make.top.mas_equalTo(self.msgTextV.mas_bottom).offset(ScreenScale(22));
         make.bottom.mas_equalTo(self.mas_bottom).offset(1);
         make.left.mas_equalTo(self.mas_left).offset(-1);
         make.height.mas_equalTo(ScreenScale(45));

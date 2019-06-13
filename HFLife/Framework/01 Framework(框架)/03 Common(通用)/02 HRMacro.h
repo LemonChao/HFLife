@@ -53,7 +53,7 @@
 #define COLOR_CLEAR         [UIColor clearColor]
 
 #define MyFont(font) [UIFont systemFontOfSize:font]
-#define image(name) [UIImage imageNamed:name]
+#define image(name) [UIImage imageNamed:name] ? [UIImage imageNamed:name] : [UIImage new]
 
 
 #pragma mark - -------------------- Log --------------------

@@ -40,8 +40,7 @@
     // Do any additional setup after loading the view.
     self.title = @"";
     self.view.backgroundColor = [UIColor whiteColor];
-    [self wr_setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    
+    [self.customNavBar wr_setBottomLineHidden:YES];
     [self initWKWebView];
     
     maskView = [UIView new];
@@ -50,15 +49,15 @@
         make.edges.mas_equalTo(self.view);
     }];
     
-    [self.navigationController.navigationBar setHidden:YES];
-    [self.customNavBar setHidden:YES];
-    UIView *topView = [UIView new];
-    topView.backgroundColor = [UIColor whiteColor];;//
-    [self.view addSubview:topView];
-    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(self.view);
-        make.height.mas_equalTo(self.heightStatus);
-    }];
+//    [self.navigationController.navigationBar setHidden:YES];
+//    [self.customNavBar setHidden:YES];
+//    UIView *topView = [UIView new];
+//    topView.backgroundColor = [UIColor whiteColor];;//
+//    [self.view addSubview:topView];
+//    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.left.right.mas_equalTo(self.view);
+//        make.height.mas_equalTo(self.heightStatus);
+//    }];
     
     [self loadWKwebViewData];
     
@@ -66,15 +65,15 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
-    self.navigationController.navigationBar.hidden = YES;
-    self.fd_interactivePopDisabled = YES;
+//    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
+//    self.navigationController.navigationBar.hidden = YES;
+//    self.fd_interactivePopDisabled = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
-    self.fd_interactivePopDisabled = NO;
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
+//    self.fd_interactivePopDisabled = NO;
+//    self.navigationController.navigationBar.hidden = NO;
     
 }
 
@@ -149,7 +148,7 @@
     [configuration.userContentController addUserScript:script];
     
     
-    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:configuration];
+    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - HomeIndicatorHeight) configuration:configuration];
     
     
     
@@ -197,9 +196,9 @@
         NSString *urlString_encode = [subUrlStr stringByAddingPercentEncodingWithAllowedCharacters:encode_set];
         urlString_encode = [NSString stringWithFormat:@"%@%@",baseUrl,urlString_encode];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString_encode]];
+//        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString_encode]];
         
-        //        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString_encode] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
         [self.webView loadRequest:request];
     }else{
         //         通过路径创建本地URL地址
