@@ -123,15 +123,15 @@ static NSString *const kGetHotSearchList = @"ceshi-life.hfgld.net/index.php/api/
 #pragma mark - h5Url ---------------------------
 #pragma mark - h5个人中心 ---------------------------
 /** 收货地址 */
-static NSString *const kH5addressList =     @"http://192.168.0.105:8080/addressList";
-/** 添加银行卡 */
-static NSString *const kH5bankCardList =    @"http://192.168.0.105:8080/bankCardList";
-/** 我的收藏 */
-static NSString *const kH5myCollection =    @"http://192.168.0.105:8080/myCollection";
+//static NSString *const kH5addressList =     @"http://192.168.0.105:8080/addressList";
+///** 添加银行卡 */
+//static NSString *const kH5bankCardList =    @"http://192.168.0.105:8080/bankCardList";
+///** 我的收藏 */
+//static NSString *const kH5myCollection =    @"http://192.168.0.105:8080/myCollection";
 
 #pragma mark - h5本地 ---------------------------
 /** 选择位置 */
-static NSString *const kChoiceCity =        @"http://192.168.0.122:8080/#/city";
+static NSString *const kChoiceCity =        @"http://192.168.0.253:8080/#/city";
 // !!!: ==============   后面使用接口返回的url    ==================
 ///** 商家入驻 */
 //static NSString *const kEnter =             @"http://192.168.0.122:10004/#/enter-index/";
@@ -140,7 +140,7 @@ static NSString *const kChoiceCity =        @"http://192.168.0.122:8080/#/city";
 ///** 酒店住宿 */
 //static NSString *const kHotelAccommodation = @"http://192.168.0.122:8080/#/";
 /** 订单列表 */
-static NSString *const kOrderList =         @"http://192.168.0.122:10004/#/order";
+static NSString *const kOrderList =         @"http://192.168.0.253:10004/#/order";
 
 
 #pragma mark - h5  服务协议 ---------------------------

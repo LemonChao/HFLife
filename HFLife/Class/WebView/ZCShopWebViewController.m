@@ -16,6 +16,7 @@
 #import "UMSPPPayUnifyPayPlugin.h"
 #import <AFURLResponseSerialization.h>
 #import "WeakWebViewScriptMessageDelegate.h"
+#import "JMTabBarController.h"
 
 @interface ZCShopWebViewController ()<WKUIDelegate,WKScriptMessageHandler,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,WKNavigationDelegate,UIGestureRecognizerDelegate>
 {
@@ -297,16 +298,21 @@
 
 - (void)goBackToShopHome {
     
-//    [self.navigationController popViewControllerAnimated:YES];
-//    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC));
-//    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-//
-//        NSLog(@"tab:%@", self.tabBarController);
-//        [self.tabBarController setSelectedIndex:0];
-//    });
+    [self.navigationController popViewControllerAnimated:YES];
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC));
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+
+        [[JMConfig config].tabBarController setSelectedIndex:0];
+    });
     
-    [self.tabBarController setSelectedIndex:0];
-    [self.navigationController popViewControllerAnimated:NO];
+//    BaseNavigationController *rootVC = self.tabBarController.selectedViewController;
+//    [self.tabBarController setSelectedIndex:0];
+//    [rootVC popViewControllerAnimated:YES];
+//
+    
+//    [self.tabBarController setSelectedIndex:0];
+//    [self.navigationController popViewControllerAnimated:NO];
+
 }
 
 #pragma mark -抢购--

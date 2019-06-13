@@ -41,9 +41,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self wr_setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     
-    
-    //    [self removeWebCache];
-    
     [self initWKWebView];
     
     maskView = [UIView new];
@@ -52,20 +49,16 @@
         make.edges.mas_equalTo(self.view);
     }];
     
-    if (self.isNavigationHidden) {
-        [self.navigationController.navigationBar setHidden:YES];
-        [self.customNavBar setHidden:YES];
-        UIView *topView = [UIView new];
-        topView.backgroundColor = [UIColor whiteColor];;//
-        [self.view addSubview:topView];
-        [topView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.mas_equalTo(self.view);
-            make.height.mas_equalTo(self.heightStatus);
-        }];
-    }else{
-        [self setupNavBar];
-        
-    }
+    [self.navigationController.navigationBar setHidden:YES];
+    [self.customNavBar setHidden:YES];
+    UIView *topView = [UIView new];
+    topView.backgroundColor = [UIColor whiteColor];;//
+    [self.view addSubview:topView];
+    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(self.view);
+        make.height.mas_equalTo(self.heightStatus);
+    }];
+    
     [self loadWKwebViewData];
     
 }
@@ -75,57 +68,15 @@
     self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
     self.navigationController.navigationBar.hidden = YES;
     self.fd_interactivePopDisabled = YES;
-    //    //隐藏返回按钮
-    //    self.navigationItem.hidesBackButton = YES;
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    //    }
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.delegate =self;
-    //    }
-
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
     self.fd_interactivePopDisabled = NO;
     self.navigationController.navigationBar.hidden = NO;
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    //    }
-    //    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    //        self.navigationController.interactivePopGestureRecognizer.delegate =nil;
-    //
-    //    }
     
 }
-- (void)setupNavBar{
-    WS(weakSelf);
-    [super setupNavBar];
-    if (self.isHidenLeft) {
-        [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@""]];
-    }else{
-        [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-    }
-    
-    //    [self.customNavBar wr_setRightButtonWithImage:MMGetImage(@"tianjia")];
-    self.customNavBar.barBackgroundImage = [self createImageWithColor:[UIColor whiteColor]];
-    [self.customNavBar setOnClickLeftButton:^{
-        if (!weakSelf.isHidenLeft) {
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-        }
-    }];
-    
-    [self.customNavBar wr_setBackgroundAlpha:self.isNavigationHidden?0:1];
-    [self.customNavBar wr_setBottomLineHidden:YES];
-    //    self.customNavBar.title = @"优惠券详情";
-    self.customNavBar.title = [NSString isNOTNull:self.webTitle] ? @"":self.webTitle;
-    self.customNavBar.titleLabelColor = [UIColor blackColor];
-    if (    !self.isNavigationHidden) {
-        self.customNavBar.backgroundColor = [UIColor whiteColor];
-    }
-    
-}
+
 - (void)initWKWebView{
     
     //创建并配置WKWebView的相关参数
@@ -154,6 +105,7 @@
     [userContentController addScriptMessageHandler:self name:@"nativeToJump"];
     //返回首页
     [userContentController addScriptMessageHandler:self name:@"goToHome"];
+    [userContentController addScriptMessageHandler:self name:@"goBack"];
     //抢购
     [userContentController addScriptMessageHandler:self name:@"rushBuy"];
     //抢购
@@ -168,6 +120,9 @@
     [userContentController addScriptMessageHandler:self name:@"choiceCity"];
     //调起支付
     [userContentController addScriptMessageHandler:self name:@"goPay"];
+    //调起支付
+    [userContentController addScriptMessageHandler:self name:@"goToSearch"];
+    
     configuration.userContentController = userContentController;
     
     
@@ -275,9 +230,6 @@
             NSString * urlString2 = [[NSString stringWithFormat:@"?token=%@",[HeaderToken getAccessToken]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
             [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString2 relativeToURL:[NSURL fileURLWithPath:pathStr]]]];
             
-            CGFloat heig = self.isNavigationHidden ? self.heightStatus : self.navBarHeight;
-            [self.webView setFrame:CGRectMake(0,heig, SCREEN_WIDTH, SCREEN_HEIGHT - heig)];
-            
         }else {
             [self loadFailed];
         }
@@ -285,23 +237,23 @@
 }
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (self.isNavigationHidden&&self.isHidenLeft==NO) {
-        if(scrollView.contentOffset.y <= 0){
-            self.customNavBar.title = @"";
-            [self.customNavBar wr_setBackgroundAlpha:0];
-            [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-            return;
-        }
-        //移动的百分比
-        CGFloat ratioY = scrollView.contentOffset.y / (self.navBarHeight ); // y轴上移动的百分比
-        if(ratioY > 1) {
-            self.customNavBar.title = _webTitle;
-            [self.customNavBar wr_setBackgroundAlpha:1];
-            [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
-            return;
-        }
-        [self.customNavBar wr_setBackgroundAlpha:ratioY];
-    }
+//    if (self.isNavigationHidden&&self.isHidenLeft==NO) {
+//        if(scrollView.contentOffset.y <= 0){
+//            self.customNavBar.title = @"";
+//            [self.customNavBar wr_setBackgroundAlpha:0];
+//            [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
+//            return;
+//        }
+//        //移动的百分比
+//        CGFloat ratioY = scrollView.contentOffset.y / (self.navBarHeight ); // y轴上移动的百分比
+//        if(ratioY > 1) {
+//            self.customNavBar.title = _webTitle;
+//            [self.customNavBar wr_setBackgroundAlpha:1];
+//            [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
+//            return;
+//        }
+//        [self.customNavBar wr_setBackgroundAlpha:ratioY];
+//    }
     
 }
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer{
@@ -336,7 +288,7 @@
     NSLog(@"网页导航加载完毕");
     
     
-    [self.customNavBar setHidden:self.isNavigationHidden];
+    [self.customNavBar setHidden:YES];
     
     [self loadSuccess];
     //去除长按后出现的文本选取框
@@ -345,18 +297,6 @@
     [self.webView evaluateJavaScript:@"document.documentElement.style.webkitTouchCallout='none';" completionHandler:nil];
     [self.webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';"completionHandler:nil];
     //    [self loadSuccess];
-    if (self.isNavigationHidden) {
-        if([NSString isNOTNull:self.webTitle]){
-            _webTitle =  webView.title;
-        }
-    }else{
-        if ([NSString isNOTNull:self.webTitle]) {
-            self.customNavBar.title = webView.title;
-        }else{
-            self.customNavBar.title = _webTitle;
-        }
-        
-    }
     
     
     [webView evaluateJavaScript:@"document.readyState" completionHandler:^(id _Nullable readyState, NSError * _Nullable error) {
@@ -444,6 +384,10 @@
         }
     }else if ([message.name isEqualToString:@"goPay"]){
         [self goToPayParameter:message.body];
+    }else if ([message.name isEqualToString:@"goBack"]){
+        [self goToHome];
+    }else if ([message.name isEqualToString:@"goToSearch"]){
+        [self jumSearchVC];
     }
     //goToHome
 }
@@ -550,6 +494,11 @@
     vc.dataParameter = dict[@"data"];
     [self.navigationController pushViewController:vc animated:YES];
 }
+#pragma mark - h5跳转 搜索界面 goToSearch
+-(void)jumSearchVC {
+    [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
+}
+
 #pragma mark - 返回首页--
 -(void)goToHome{
     [self.navigationController popViewControllerAnimated:YES];
@@ -737,7 +686,7 @@
     __block LYEmptyView *empView = [LYEmptyView emptyActionViewWithImage:image(@"ic_empty_data") titleStr:nil detailStr:nil btnTitleStr:@"重新加载" btnClickBlock:^{
         [self loadWKwebViewData];
         [empView removeFromSuperview];
-        [self.customNavBar setHidden:self.isNavigationHidden];
+        [self.customNavBar setHidden:NO];
     }];
     [self.customNavBar setHidden:NO];
     [self.view addSubview:empView];

@@ -50,13 +50,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    self.myTable.page = 1;
-    [self getData];
+    if (self.searResultArr.count == 0) {
+        self.myTable.page = 1;
+        [self getData];
+    }
 }
 
 //数据搜索
 - (void)getData {
-    [self.noDataView setHidden:YES];
     if (_isAllPage) {
         [self.myTable endRefreshData];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -64,6 +65,7 @@
         });
         return;
     }
+    [self.noDataView setHidden:YES];
     [[WBPCreate sharedInstance]showWBProgress];
     NSString *urlStr;
     if ([self.searchType isEqualToString:@"1"]) {//美食
@@ -84,86 +86,21 @@
                         NSArray *dataArr = dataDic[@"data"];
                         if (dataArr && dataArr.count > 0) {
                             [self.searResultArr addObjectsFromArray:[SearchFoodList mj_objectArrayWithKeyValuesArray:dataArr]];
-                            [self.myTable reloadData];
                         }else {
                             self->_isAllPage = YES;
                         }
-                        
-                        if (self.searResultArr.count == 0) {
-                            
-                            [self.noDataView setHidden:NO];
-                            
-                            return ;
-
-                            NSArray *arr = @[
-                                             @{
-                                                 @"id": @(1),
-                                                 @"food_name": @"个人美食店铺 test",
-                                                 @"score_star": @(3),
-                                                 @"consume_avg": @(60),
-                                                 @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/eec4236b95f3abace045babf97ae0ef9.jpg",
-                                                 @"distance": @(1.71),
-                                                 @"coupon": @"100元代金券",
-                                                 @"detail_list": @"披萨（8寸）,披萨（10寸）,雪碧"
-                                                 },
-                                             @{
-                                                 @"id": @(2),
-                                                 @"food_name": @"企业美食店铺 测试",
-                                                 @"score_star": @(5),
-                                                 @"consume_avg":@(70),
-                                                 @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/f57ebce8a72b823912904fe76eda0909.png",
-                                                 @"distance": @(0.03),
-                                                 @"coupon": @"200元代金券",
-                                                 @"detail_list": @"小龙虾,大闸蟹,水果沙拉"
-                                                 }
-                                             ];
-                            [self.searResultArr addObjectsFromArray:[SearchFoodList mj_objectArrayWithKeyValuesArray:arr]];
-                            
-                            [self.myTable reloadData];
-                        }
                     }
-                    
-                    
-                }else {
+                }else {//酒店
                     NSArray *dataArr = value[@"data"];
                     if (dataArr && dataArr.count > 0) {
                         [self.searResultArr addObjectsFromArray:[SearchHotelList mj_objectArrayWithKeyValuesArray:dataArr]];
-                        [self.myTable reloadData];
                     }else {
                         self->_isAllPage = YES;
                     }
-                    
-                    if (self.searResultArr.count == 0) {
-                        
-                        [self.noDataView setHidden:NO];
-                        
-                        return;
-                        NSArray *arr = @[
-                                         @{
-                                             @"id": @(3),   //酒店id
-                                             @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/food/611269fafaaa2921027b980c4526c4b8.jpg",    //logo图
-                                             @"hotel_name": @"测试 如家酒店（郑州CBD会展中心店）",    //酒店名称
-                                             @"hotel_address": @"商务内环路与通泰路交叉口往东20米新浦大厦",   //酒店地址
-                                             @"evaluate_num": @(0),    //评价人数
-                                             @"evaluate_star": @(3),   //评分
-                                             @"consume_min": @(100),   //最低消费
-                                             @"distance": @(4.74)    //距离（km）
-                                             },
-                                         @{
-                                             @"id": @(2),
-                                             @"logo_image": @"http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/f179911bf47eae2f07fdd261274a4537.jpg",
-                                             @"hotel_name": @"私人酒店 test",
-                                             @"hotel_address": @"裕鸿国际A座",
-                                             @"evaluate_num": @(0),
-                                             @"evaluate_star": @(3),
-                                             @"consume_min": @(260),
-                                             @"distance": @(0.04)
-                                             }
-                                         ];
-                        [self.searResultArr addObjectsFromArray:[SearchHotelList mj_objectArrayWithKeyValuesArray:arr]];
-                        [self.myTable reloadData];
-                    }
-                    
+                }
+                [self.myTable reloadData];
+                if (self.searResultArr.count == 0) {
+                    [self.noDataView setHidden:NO];
                 }
             }
             
@@ -212,7 +149,7 @@
     }];
     //    [self.customNavBar wr_setBackgroundAlpha:0];
     [self.customNavBar wr_setBottomLineHidden:NO];
-    self.customNavBar.title = self.searchStr;
+    self.customNavBar.title = [self.searchType isEqualToString:@"1"] ? @"美食" : @"酒店";
     self.customNavBar.backgroundColor = [UIColor whiteColor];
     self.customNavBar.titleLabelColor = [UIColor blackColor];
 }
