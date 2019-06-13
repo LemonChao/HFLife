@@ -71,6 +71,9 @@
     
     //默认开启jif动画
     self.activityGifHeader = NO;
+//    self.activityGifHeader = YES;
+    
+    self.gifSourceName = @"refresh";
     
 }
 
@@ -89,10 +92,10 @@
         }
         //激活gif 动画刷新
         NSMutableArray *images = [NSMutableArray array];
-        for (int i = 0 ; i < 10; i++) {
-            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
-            [images addObject:image];
-        }
+//        for (int i = 0 ; i < 10; i++) {
+//            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
+//            [images addObject:image];
+//        }
         images = [NSMutableArray arrayWithArray:imagesArr];
         
         NSMutableArray *firstArr = [NSMutableArray array];
@@ -102,7 +105,7 @@
         
         [_header setImages:images duration:time forState:MJRefreshStateRefreshing];
         
-        [_header setImages:firstArr duration:time forState:MJRefreshStatePulling];
+        [_header setImages:images duration:time forState:MJRefreshStatePulling];
         
         [_header setImages:firstArr duration:time forState:MJRefreshStateWillRefresh];
         
@@ -170,7 +173,7 @@
     
     
     //1. 拿到gif数据
-    NSString * gifPathSource = [[NSBundle mainBundle] pathForResource:@"jiazai" ofType:@"gif"];//默认的加载动画
+    NSString * gifPathSource = [[NSBundle mainBundle] pathForResource:self.gifSourceName ofType:@"gif"];//默认的加载动画
     
     //拿不到资源就不设置
     if (!gifPathSource) {

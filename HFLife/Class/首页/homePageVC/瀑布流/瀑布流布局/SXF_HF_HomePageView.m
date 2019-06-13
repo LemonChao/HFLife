@@ -112,6 +112,8 @@ static NSString * const footerReuseIdentifier = @"Footer";
         [[NSNotificationCenter defaultCenter] postNotificationName:@"hiddenSearchBar" object:@(alpha)];
     };
     
+    
+    
 }
 
 - (void)setPausePlay:(BOOL)pausePlay{
