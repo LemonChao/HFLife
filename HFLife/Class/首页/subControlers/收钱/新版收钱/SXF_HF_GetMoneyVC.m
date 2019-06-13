@@ -101,13 +101,13 @@
     self.getMoneyView.openCell = NO;
     WEAK(weakSelf);
     self.getMoneyView.tabBtnCallback = ^(NSInteger index) {
-        NSLog(@"%ld", index);
+        NSLog(@"%ld", (long)index);
         __block BaseViewController *vc ;
         if (!weakSelf.payType) {
             //向商家付钱
             if (index == 2) {
-                
                 [WXZTipView showCenterWithText:@"暂未开通"];
+                return ;
                 //余额支付
                 SXF_HF_payStepAleryView *payAlert = [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
                     
@@ -126,6 +126,8 @@
                 };
                 payAlert.payStep = 1;
             }else if (index == 3){
+                [WXZTipView showCenterWithText:@"暂无记录"];
+                return ;
                 //付款记录
                 receiptRecordListVC *recordVC = [[receiptRecordListVC alloc] init];
                 recordVC.payType = NO;
