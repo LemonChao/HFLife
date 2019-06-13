@@ -94,7 +94,7 @@ static dispatch_once_t onceToken;
 
 
 + (void) getUserInfo:(void(^__nullable)(id result))complate{
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kMemberInfo withParameters:nil withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kMemberInfo) withParameters:nil withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [userInfoModel attempDealloc];

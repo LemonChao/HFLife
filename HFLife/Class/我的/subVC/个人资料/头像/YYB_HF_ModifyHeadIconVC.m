@@ -114,7 +114,7 @@
 
 - (void) setHeadIcon:(UIImage *)image {
     [[WBPCreate sharedInstance]showWBProgress];
-    [networkingManagerTool requestToServerWithType:UPDATE withSubUrl:kUploadFiles withParameters:@{@"image" : image} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:UPDATE withSubUrl:kCenterAdress(kUploadFiles) withParameters:@{@"image" : image} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -126,7 +126,7 @@
                 if (urlStr && [urlStr isKindOfClass:[NSString class]] && urlStr.length > 0) {
                     [[WBPCreate sharedInstance] showWBProgress];
                     
-                    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSaveMemberBase withParameters:@{@"field":@"member_avatar",@"value":urlStr} withResultBlock:^(BOOL result, id value) {
+                    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kSaveMemberBase) withParameters:@{@"field":@"member_avatar",@"value":urlStr} withResultBlock:^(BOOL result, id value) {
                         [[WBPCreate sharedInstance] hideAnimated];
                         if (result) {
                             if (value && [value isKindOfClass:[NSDictionary class]]) {

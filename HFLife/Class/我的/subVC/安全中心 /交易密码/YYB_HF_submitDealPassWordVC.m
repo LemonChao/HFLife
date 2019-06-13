@@ -185,7 +185,7 @@
     
     [[WBPCreate sharedInstance]showWBProgress];
     
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSetPayPassword withParameters:parm withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kSetPayPassword) withParameters:parm withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
             SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_exchnageSuccess Complete:nil];

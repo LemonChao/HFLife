@@ -190,7 +190,7 @@
         parm =  @{@"field":@"member_age",@"value":userNameTextField.text};
     }
     [[WBPCreate sharedInstance]showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:kSaveMemberBase withParameters:parm withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kSaveMemberBase) withParameters:parm withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
             if (self.modifiedSuccessfulBlock) {

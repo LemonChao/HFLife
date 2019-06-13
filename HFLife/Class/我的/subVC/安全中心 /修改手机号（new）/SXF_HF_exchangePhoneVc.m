@@ -42,7 +42,7 @@
     if (!changeNum) {
         //验证旧手机号
         [[WBPCreate sharedInstance]showWBProgress];
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCheckMobile_security withParameters:@{@"captcha":self.verCodeTextf.text} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kCheckMobile_security) withParameters:@{@"captcha":self.verCodeTextf.text} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
             if (result) {
                 if (value && [value isKindOfClass:[NSDictionary class]]) {
@@ -67,7 +67,7 @@
     else {
         //修改手机号
         [[WBPCreate sharedInstance]showWBProgress];
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kChangemobile withParameters:@{@"mobile":self.phoneTextF.text,@"captcha":self.verCodeTextf.text} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kChangemobile) withParameters:@{@"mobile":self.phoneTextF.text,@"captcha":self.verCodeTextf.text} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
             if (result) {
                 //
@@ -118,7 +118,7 @@
         }
         
         [[WBPCreate sharedInstance]showWBProgress];
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":[userInfoModel sharedUser].member_mobile,@"event":@"checkmobile"} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kSendsms) withParameters:@{@"mobile":[userInfoModel sharedUser].member_mobile,@"event":@"checkmobile"} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
             if (result) {
                 [sender setTheCountdownStartWithTime:60 title:@"获取验证码" countDownTitle:@"s后重新获取" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
@@ -134,7 +134,7 @@
     }else {
         //注销手机号
         [[WBPCreate sharedInstance]showWBProgress];
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:kSendsms withParameters:@{@"mobile":self.phoneTextF.text,@"event":@"changemobile"} withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kSendsms) withParameters:@{@"mobile":self.phoneTextF.text,@"event":@"changemobile"} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
             if (result) {
                 [sender setTheCountdownStartWithTime:60 title:@"获取验证码" countDownTitle:@"s后重新获取" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];

@@ -15,6 +15,7 @@
 //
 
 #import "YYB_HF_WKWebVC.h"
+#import "WKWebViewController.h"
 #import <WebKit/WebKit.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
@@ -147,35 +148,8 @@
     WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:(WKUserScriptInjectionTimeAtDocumentStart) forMainFrameOnly:YES];
     [configuration.userContentController addUserScript:script];
     
-    CGFloat top = self.isTop?0:-self.heightStatus;
-    CGFloat Hei = self.isTop?SCREEN_HEIGHT-self.heightStatus:SCREEN_HEIGHT;
-    if (self.isHidenLeft) {
-        top = 0;
-        if (self.heightStatus > 20) {
-            Hei = SCREEN_HEIGHT - self.heightStatus;
-        }else{
-            Hei = SCREEN_HEIGHT;
-        }
-        
-    }else{
-        if (self.heightStatus > 20) {
-            top = -self.heightStatus;
-            Hei = SCREEN_HEIGHT;
-        }else{
-            if (kiPhone6Plus == NO) {
-                top = 0;
-            }
-            Hei = SCREEN_HEIGHT + self.heightStatus;
-        }
-    }
     
-    if (self.heightStatus <= 20 && top == 0) {
-        Hei = SCREEN_HEIGHT;
-    }else{
-        
-    }
-    
-    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,top, SCREEN_WIDTH, Hei) configuration:configuration];
+    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:configuration];
     
     
     
@@ -192,10 +166,7 @@
 
     [self.view addSubview:self.webView];
     if (@available(iOS 11.0, *)) {
-        if (self.isTop) {//不是从状态栏开始布局
-        }else {
-            self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
+        self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
         // Fallback on earlier versions
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -217,9 +188,18 @@
     
     
     if (![NSString isNOTNull:self.urlString] && self.urlString.length > 0) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]];
+        //对地址参数编码
+        NSArray *arr = [self.urlString componentsSeparatedByString:@"?"];
+        NSString *baseUrl = arr.firstObject;
+        NSString *subUrlStr = [self.urlString stringByReplacingOccurrencesOfString:baseUrl withString:@""];
         
-//        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
+        NSCharacterSet *encode_set= [NSCharacterSet URLQueryAllowedCharacterSet];
+        NSString *urlString_encode = [subUrlStr stringByAddingPercentEncodingWithAllowedCharacters:encode_set];
+        urlString_encode = [NSString stringWithFormat:@"%@%@",baseUrl,urlString_encode];
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString_encode]];
+        
+        //        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
         [self.webView loadRequest:request];
     }else{
         //         通过路径创建本地URL地址
@@ -343,7 +323,7 @@
 {
     //JS调用OC方法
     //message.boby就是JS里传过来的参数
-    NSLog(@"body:%@",message.body);
+    NSLog(@"name:%@ body:%@",message.name,message.body);
     if ([message.name isEqualToString:@"call"]) {
         //        [self ShareWithInformation:message.body];
         [self CallParameter:message.body];
@@ -460,7 +440,7 @@
     NSLog(@"dict = %@",dict);
     WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
     wkWebView.urlString = [NSString judgeNullReturnString:dict[@"href"]];
-    wkWebView.isNavigationHidden = [MMNSStringFormat(@"%@",dict[@"bar"]) isEqualToString:@"1"]?YES:NO;
+    wkWebView.isNavigationHidden = [MMNSStringFormat(@"%@",dict[@"bar"]) isEqualToString:@"1"] ? YES : NO;
     wkWebView.webTitle = [NSString judgeNullReturnString:dict[@"title"]];
     [self.navigationController pushViewController:wkWebView animated:YES];
 }
@@ -532,7 +512,6 @@
         return;
     }
     NSString *namestr = dict[@"name"];
-    
     NSArray *names = [self toArrayOrNSDictionary:[namestr dataUsingEncoding:NSUTF8StringEncoding]];
     if (names.count == 0) {
         [WXZTipView showCenterWithText:@"请填写入驻人姓名"];
@@ -608,7 +587,6 @@
                 
             }];
         }];
-        
     }
     else if ([type isEqualToString:@"3"]){
         
