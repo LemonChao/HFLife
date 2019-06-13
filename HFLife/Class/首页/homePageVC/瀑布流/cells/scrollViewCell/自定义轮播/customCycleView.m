@@ -13,7 +13,7 @@
 #import "bannerCollectionViewCell.h"
 #import "SXF_HF_CycleContentCell.h"
 #import "CWPageControl.h"//自定义pageControll
-
+#import "DHGifImageOperation.h"
 @interface customCycleView()<CWCarouselDatasource, CWCarouselDelegate>
 @property (nonatomic ,strong) CWPageControl *control;
 @property (nonatomic, strong) CWCarousel *carousel;
@@ -219,6 +219,9 @@
     NSString *iamgePath = [[NSBundle mainBundle] pathForResource:cell.gifName ofType:@""];
     
     
+    
+    
+    
     currentCell = cell;
     selectedImagePath = iamgePath;
     
@@ -242,6 +245,11 @@
 
 - (void)payGif{
     [currentCell.gifImageV playGifImagePath:selectedImagePath repeatCount:1];
+    
+    
+//    NSData *localData = [NSData dataWithContentsOfFile:selectedImagePath];
+//    currentCell.gifImageV = (UIImageView *)[[DHGifImageOperation alloc] initWithFrame:currentCell.gifImageV.frame gifImageData:localData];
+//    
     
     
     

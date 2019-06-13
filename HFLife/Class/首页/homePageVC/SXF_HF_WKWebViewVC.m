@@ -368,10 +368,9 @@
 
 
 #pragma mark - 拨打电话
--(void)CallParameter:(NSDictionary *)dict{
-    NSString *str = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
+-(void)CallParameter:(NSString *)phone{
+    NSString *str = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:phone]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-
 }
 #pragma mark - 网络数据是否请求成功
 -(void)getStatusParameter:(NSDictionary *)dict{
@@ -411,9 +410,8 @@
 #pragma mark -URL跳转
 -(void)pageJumpParameter:(NSDictionary *)dict{
     NSLog(@"dict = %@",dict);
-    WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
+    SXF_HF_WKWebViewVC *wkWebView = [[SXF_HF_WKWebViewVC alloc]init];
     wkWebView.urlString = [NSString judgeNullReturnString:dict[@"href"]];
-    wkWebView.isNavigationHidden = [MMNSStringFormat(@"%@",dict[@"bar"]) isEqualToString:@"1"]?YES:NO;
     wkWebView.webTitle = [NSString judgeNullReturnString:dict[@"title"]];
     [self.navigationController pushViewController:wkWebView animated:YES];
 }
