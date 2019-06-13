@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, HF_AlertType) {
+    AlertType_delete,//删除提示
     AlertType_login,//登录提示
     AlertType_save,//安全提示,
     AlertType_Pay,//支付提示

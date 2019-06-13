@@ -138,9 +138,13 @@
 
 - (void)configerAlert{
     switch (self.alertType) {
+        case AlertType_delete:{
+            self.titleLb.text = @"温馨提示";
+            self.msgLb.text = @"确认要删除商品吗";
+            [self.sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+            [self.cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
+        }
         case AlertType_login:{
-            
-            
             self.titleLb.text = @"是否登录";
             self.msgLb.text = @"此功能需登录才可使用，是否登录？";
             [self.sureBtn setTitle:@"确定" forState:UIControlStateNormal];

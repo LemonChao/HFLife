@@ -71,6 +71,10 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:cartValueChangedNotification object:@"selectAction"];
 }
 
+- (void)shopNameButtonAction:(UIButton *)button {
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"store_Detail" parameters:@{@"store_id":self.model.store_id}];
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
+}
 
 - (void)setModel:(ZCShopCartModel *)model {
     _model = model;
@@ -101,6 +105,7 @@
 - (UIButton *)shopNameButton {
     if (!_shopNameButton) {
         _shopNameButton = [UITool richButton:UIButtonTypeCustom title:nil titleColor:ImportantColor font:MediumFont(14) bgColor:[UIColor clearColor] image:image(@"classify_arrow_right_gray")];
+        [_shopNameButton addTarget:self action:@selector(shopNameButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _shopNameButton;
 }

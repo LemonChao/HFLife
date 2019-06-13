@@ -55,8 +55,12 @@
     self.customNavBar.title = @"购物车";
     @weakify(self);
     [self.customNavBar setOnClickRightButton:^{
-        @strongify(self);
-        [self.viewModel.deleteCmd execute:nil];
+        [SXF_HF_AlertView showAlertType:AlertType_delete Complete:^(BOOL btnBype) {
+            @strongify(self);
+            if (btnBype) {
+                [self.viewModel.deleteCmd execute:nil];
+            }
+        }];
     }];
 }
 

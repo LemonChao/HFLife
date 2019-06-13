@@ -156,7 +156,7 @@
 
 - (UIButton *)ruzhuButton {
     if (!_ruzhuButton) {
-        _ruzhuButton = [UITool richButton:UIButtonTypeCustom title:@"我要入驻" titleColor:ImportantColor font:SystemFont(14) bgColor:[UIColor whiteColor] image:image(@"orderCenter_shangjiaruzhu")];
+        _ruzhuButton = [UITool richButton:UIButtonTypeCustom title:@"商家入驻" titleColor:ImportantColor font:SystemFont(14) bgColor:[UIColor whiteColor] image:image(@"orderCenter_shangjiaruzhu")];
         [_ruzhuButton addTarget:self action:@selector(ruzhuButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _ruzhuButton;
