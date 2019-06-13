@@ -249,7 +249,6 @@
 		04A50843227EDD390013E8EC /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A5067B227EDD350013E8EC /* down@2x.png */; };
 		04A50844227EDD390013E8EC /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A5067C227EDD350013E8EC /* line@2x.png */; };
 		04A50845227EDD390013E8EC /* DMDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5067D227EDD350013E8EC /* DMDropDownMenu.m */; };
-		04A50846227EDD3A0013E8EC /* minion_02.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 04A5067F227EDD350013E8EC /* minion_02.mp4 */; };
 		04A50847227EDD3A0013E8EC /* ZFPlayerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A50682227EDD350013E8EC /* ZFPlayerModel.m */; };
 		04A50848227EDD3A0013E8EC /* UITabBarController+ZFPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A50688227EDD350013E8EC /* UITabBarController+ZFPlayerRotation.m */; };
 		04A50849227EDD3A0013E8EC /* UIWindow+CurrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5068F227EDD350013E8EC /* UIWindow+CurrentViewController.m */; };
@@ -1340,7 +1339,6 @@
 		04A5067B227EDD350013E8EC /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@2x.png"; sourceTree = "<group>"; };
 		04A5067C227EDD350013E8EC /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
 		04A5067D227EDD350013E8EC /* DMDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDropDownMenu.m; sourceTree = "<group>"; };
-		04A5067F227EDD350013E8EC /* minion_02.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = minion_02.mp4; sourceTree = "<group>"; };
 		04A50682227EDD350013E8EC /* ZFPlayerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerModel.m; sourceTree = "<group>"; };
 		04A50683227EDD350013E8EC /* ZFPlayerControlViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerControlViewDelegate.h; sourceTree = "<group>"; };
 		04A50684227EDD350013E8EC /* ZFPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerControlView.h; sourceTree = "<group>"; };
@@ -3999,7 +3997,6 @@
 		04A5067E227EDD350013E8EC /* 视频播放 */ = {
 			isa = PBXGroup;
 			children = (
-				04A5067F227EDD350013E8EC /* minion_02.mp4 */,
 				04A50680227EDD350013E8EC /* 视频播放封装 */,
 			);
 			path = "视频播放";
@@ -7741,7 +7738,6 @@
 				65DC682B2211253200F1085E /* shareView_qzone.png in Resources */,
 				04FF0E5D22A4CFA600CBE45D /* bg富权1.png in Resources */,
 				04F52177228A789600ED4995 /* service.html in Resources */,
-				04A50846227EDD3A0013E8EC /* minion_02.mp4 in Resources */,
 				04B9D3CA227FE5A90084FA23 /* UMSSecKeyboardLibResource.bundle in Resources */,
 				04F946F8228C1F9700085F78 /* 回删附号@2x.png in Resources */,
 				048DABCF22856656006E6BA2 /* password_loading_b@2x.png in Resources */,

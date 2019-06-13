@@ -159,6 +159,8 @@
         _cycleScroll.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
         _cycleScroll.imageURLStringsGroup = @[];
         _cycleScroll.showPageControl = NO;
+        _cycleScroll.autoScroll = YES;
+        _cycleScroll.backgroundColor = [UIColor whiteColor];
     }
     return _cycleScroll;
 }
