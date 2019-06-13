@@ -49,7 +49,7 @@
     self.navigationController.navigationBar.hidden = YES;
     
     userInfoModel *user = [userInfoModel sharedUser];
-    self->valueArray = @[@[[NSString judgeNullReturnString:user.member_avatar],[NSString judgeNullReturnString:user.member_mobile],[NSString judgeNullReturnString:user.nickname],[NSString judgeNullReturnString:user.member_sexName],user.member_age ? user.member_age.stringValue : @""],@[[NSString judgeNullReturnString:user.rz_statusName]],@[@""],@[@""]];
+    self->valueArray = @[@[[NSString judgeNullReturnString:user.member_avatar],[NSString judgeNullReturnString:user.member_mobile],[NSString judgeNullReturnString:user.nickname],[NSString judgeNullReturnString:user.member_sexName],user.member_age ? user.member_age.stringValue : @""],@[[NSString judgeNullReturnString:user.rz_statusName]],@[@""],@[@""],@[@""]];
     [self.contentTableView reloadData];
     
     
@@ -186,7 +186,7 @@
 //        self.manager.configuration.saveSystemAblum = YES;
 //        [self hx_presentAlbumListViewControllerWithManager:self.manager delegate:self];
     }else if ([title_value isEqualToString:@"实名认证"]){
-        if ([userInfoModel sharedUser].rz_status.intValue == 0 || [userInfoModel sharedUser].rz_status.intValue == 3) {
+        if ([userInfoModel sharedUser].rz_status.intValue != 0 || [userInfoModel sharedUser].rz_status.intValue == 3) {
             YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
             vc.urlString = SXF_WEB_URLl_Str(certification);
             [self.navigationController pushViewController:vc animated:YES];
