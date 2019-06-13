@@ -104,7 +104,8 @@
     [userContentController addScriptMessageHandler:self name:@"goToPay"];
     //调起银联支付
     [userContentController addScriptMessageHandler:self name:@"goToApp"];
-    
+    //调起QQ
+    [userContentController addScriptMessageHandler:self name:@"goToQQ"];
     
     
     [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
@@ -325,6 +326,8 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([message.name isEqualToString:@"goToSearch"]){
         [self jumSearchVC];
+    }else if ([message.name isEqualToString:@"goToQQ"]){
+        [self jumQQVC:message.body];
     }
     //goToHome
 }
@@ -456,6 +459,31 @@
     [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
     
 }
+#pragma mark - h5跳转 QQ界面 与陌生人聊天 goToQQ
+- (void)jumQQVC:(NSString *)qqStr {
+    //qqNumber就是你要打开的QQ号码， 也就是你的客服号码。
+    NSString  *qqNumber = qqStr;
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqq://"]]) {
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        NSURL * url=[NSURL URLWithString:[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqNumber]];
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [webView loadRequest:request];
+        [self.view addSubview:webView];
+    }else{
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"nil" message:@"对不起，您还没安装QQ" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            return ;
+        }];
+        
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+}
+    
 #pragma mark - 返回首页--
 -(void)goToHome{
     [self.navigationController popViewControllerAnimated:YES];
