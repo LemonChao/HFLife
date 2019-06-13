@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  选择城市
  */
 @property(nonatomic, copy) void (^choiceCity)(NSString *city);
+
 /**
  是否隐藏返回按钮
  */
@@ -25,13 +26,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign)BOOL isTop;
 /** 直接加载URL*/
 @property (nonatomic,copy)NSString *urlString;
+
 /**拼接的URL参数*/
 @property (nonatomic,copy)NSString *jointParameter;
+
 /**文件名*/
 @property (nonatomic,copy)NSString *fileName;
 /**文件夹名*/
 @property (nonatomic,copy)NSString *folderName;
-/**导航隐藏*/
+
+///**导航隐藏*/
 @property (nonatomic,assign)BOOL isNavigationHidden;
 /** 标题 */
 @property (nonatomic,copy)NSString *webTitle;

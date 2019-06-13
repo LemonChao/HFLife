@@ -59,7 +59,7 @@
     self.headView.searchClick = ^{
         YYB_HF_SearchResultC *vc = [[YYB_HF_SearchResultC alloc]init];
         vc.searchType = weakSelf.searchType;
-        vc.searchStr = [weakSelf.searchType isEqualToString:@"1"] ? @"美食" : @"酒店";
+        vc.searchStr = weakSelf.headView.searchT.text;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     
@@ -155,7 +155,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     YYB_HF_SearchResultC *vc = [[YYB_HF_SearchResultC alloc]init];
     vc.searchType = self.searchType;
-    vc.searchStr = [self.searchType isEqualToString:@"1"] ? @"美食" : @"酒店";
+    vc.searchStr = self.searArr[indexPath.row];
     
     [self.navigationController pushViewController:vc animated:YES];
 }
