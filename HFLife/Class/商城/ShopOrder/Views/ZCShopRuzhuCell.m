@@ -14,6 +14,8 @@
 
 @property(nonatomic, strong) UIButton *allButton;
 
+@property(nonatomic, strong) UIButton *ruzhuButton;
+
 @property(nonatomic, copy) NSArray<__kindof UIButton*> *subButtons;
 
 
@@ -40,7 +42,8 @@
         [cornerBGView addSubview:self.titleLabel];
         [cornerBGView addSubview:self.allButton];
         [cornerBGView addSubview:lineView];
-        [cornerBGView addSubview:stack];
+//        [cornerBGView addSubview:stack];
+        [cornerBGView addSubview:self.ruzhuButton];
         
         
         
@@ -66,14 +69,22 @@
             make.height.mas_equalTo(1);
         }];
         
-        [stack mas_makeConstraints:^(MASConstraintMaker *make) {
+//        [stack mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(lineView.mas_bottom).offset(ScreenScale(15));
+//            make.left.right.equalTo(cornerBGView).inset(ScreenScale(15));
+//            make.bottom.equalTo(cornerBGView).inset(ScreenScale(15));
+//        }];
+        
+        CGFloat ruzhuWidth = [self.ruzhuButton intrinsicContentSize].width+ScreenScale(11);
+        [self.ruzhuButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(lineView.mas_bottom).offset(ScreenScale(15));
-            make.left.right.equalTo(cornerBGView).inset(ScreenScale(15));
+            make.left.equalTo(cornerBGView).inset(ScreenScale(30));
             make.bottom.equalTo(cornerBGView).inset(ScreenScale(15));
+            make.width.mas_equalTo(ruzhuWidth);
         }];
         
-        
         [self layoutIfNeeded];
+        [self.ruzhuButton setImagePosition:ImagePositionTypeLeft spacing:ScreenScale(11)];
     }
     
     return self;
@@ -92,8 +103,11 @@
         ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"signingIndex" parameters:@{@"type":@"1"}];
         [self.viewController.navigationController pushViewController:webVC animated:YES];
     }
-    
-    
+}
+
+- (void)ruzhuButtonAction:(UIButton *)button {
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"signingIndex" parameters:nil];
+    [self.viewController.navigationController pushViewController:webVC animated:YES];
 }
 
 - (void)setModel:(NSObject *)model {
@@ -140,5 +154,12 @@
     return _allButton;
 }
 
+- (UIButton *)ruzhuButton {
+    if (!_ruzhuButton) {
+        _ruzhuButton = [UITool richButton:UIButtonTypeCustom title:@"我要入驻" titleColor:ImportantColor font:SystemFont(14) bgColor:[UIColor whiteColor] image:image(@"orderCenter_shangjiaruzhu")];
+        [_ruzhuButton addTarget:self action:@selector(ruzhuButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _ruzhuButton;
+}
 
 @end

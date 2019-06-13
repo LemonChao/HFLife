@@ -172,15 +172,13 @@
 {
     //JS调用OC方法
     //message.boby就是JS里传过来的参数
-    NSLog(@"body:%@",message.body);
+    NSLog(@"name:%@ body:%@", message.name, message.body);
     if ([message.name isEqualToString:@"Call"]) {
         [self CallParameter:message.body];
     }else if ([message.name isEqualToString:@"getStatus"]){
         [self getStatusParameter:message.body];
     }else if ([message.name isEqualToString:@"getAddress"]){
         [self getAddressParameter:message.body];
-    }else if ([message.name isEqualToString:@"getNear"]){
-        [self getNearParameter:message.body];
     }else if ([message.name isEqualToString:@"pageJump"]){
         [self pageJumpParameter:message.body];
     }else if ([message.name isEqualToString:@"goShopping"]){
@@ -195,10 +193,14 @@
         [self submitOrderParameter:message.body];
     }else if ([message.name isEqualToString:@"goPay"]){
         [self goToPayParameter:message.body];
-    }else if ([message.name isEqualToString:@"goBackToShopHome"]){
-        [self goBackToShopHome];
     }else if ([message.name isEqualToString:@"goToHome"]){
         [self goBack:message.body];
+    }else if ([message.name isEqualToString:@"goBackToShopHome"]){
+        [self goBackToShopHome:0];
+    }else if ([message.name isEqualToString:@"goBackToClassifyHome"]){
+        [self goBackToShopHome:1];
+    }else if ([message.name isEqualToString:@"goBackToShopCarHome"]){
+        [self goBackToShopHome:2];
     }
 }
 
@@ -231,18 +233,7 @@
 //    map.isMark = YES;
 //    [self.navigationController pushViewController:map animated:YES];
 }
-#pragma mark -参数跳转
--(void)getNearParameter:(NSDictionary *)dict{
-    WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
-    //    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
-    //    NSString *coupon_id = MMNSStringFormat(@"%@",dict[@"coupon_id"]);
-    wkWebView.isNavigationHidden = YES;
-    NSString *shop_id = MMNSStringFormat(@"%@",dict[@"shop_id"]);
-    
-    wkWebView.jointParameter = MMNSStringFormat(@"?shop_id=%@",shop_id);
-    //    wkWebView.urlString = [NSString judgeNullReturnString:dict[@"url"]];
-    [self.navigationController pushViewController:wkWebView animated:YES];
-}
+
 #pragma mark -URL跳转
 -(void)pageJumpParameter:(NSDictionary *)dict{
     NSLog(@"dict = %@",dict);
@@ -296,19 +287,24 @@
     }
 }
 
-- (void)goBackToShopHome {
+- (void)goBackToShopHome:(NSUInteger)idx {
+    
+    JMTabBarController *tabBarVC = [JMConfig config].tabBarController;
+    NSUInteger index = [tabBarVC.viewControllers indexOfObject:self.navigationController];
     
     [self.navigationController popViewControllerAnimated:YES];
+    if (idx == index) return; //当前选中就为目标Home
+    
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC));
     dispatch_after(delayTime, dispatch_get_main_queue(), ^{
 
-        [[JMConfig config].tabBarController setSelectedIndex:0];
+        [[JMConfig config].tabBarController setSelectedIndex:idx];
     });
     
 //    BaseNavigationController *rootVC = self.tabBarController.selectedViewController;
 //    [self.tabBarController setSelectedIndex:0];
 //    [rootVC popViewControllerAnimated:YES];
-//
+
     
 //    [self.tabBarController setSelectedIndex:0];
 //    [self.navigationController popViewControllerAnimated:NO];
@@ -498,8 +494,11 @@
         //注册一个name为jsToOcNoPrams的js方法 设置处理接收JS方法的对象
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goToHome"];//H5返回按钮事件
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goBackToShopHome"];// 返回到商城首页
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goBackToClassifyHome"];// 返回到分类首页
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goBackToShopCarHome"];// 返回到购物车首页
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goPay"];// 商城确认支付按钮
-        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"logout"];
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goSetPayPassword"];//设置余额支付密码
+
 
         WKPreferences *preferences = [WKPreferences new];
         preferences.javaScriptCanOpenWindowsAutomatically = YES;

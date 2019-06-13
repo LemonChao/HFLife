@@ -14,7 +14,7 @@
 #import "ZCShopOrderViewModel.h"
 
 @interface ZC_HF_ShopOrderVC ()<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic, strong) UITableView *tableView;
+@property(nonatomic, strong) baseTableView *tableView;
 @property(nonatomic, strong) ZCShopOrderViewModel *viewModel;
 @end
 
@@ -89,9 +89,9 @@
 
 #pragma mark - getters and setters
 
-- (UITableView *)tableView {
+- (baseTableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TabBarHeight) style:UITableViewStylePlain];
+        _tableView = [[baseTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TabBarHeight) style:UITableViewStylePlain];
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.dataSource = self;
@@ -111,10 +111,11 @@
         [_tableView registerClass:[ZCShopRuzhuCell class] forCellReuseIdentifier:NSStringFromClass([ZCShopRuzhuCell class])];
         
         @weakify(self);
-        _tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [_tableView setRefreshHeaderBlock:^{
             @strongify(self);
             [self getData];
         }];
+        _tableView.mj_footer = nil;
     }
     return _tableView;
 }
