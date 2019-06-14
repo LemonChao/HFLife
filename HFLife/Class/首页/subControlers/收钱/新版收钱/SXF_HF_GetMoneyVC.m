@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.customNavBar.title = self.payType ? @"收钱" : @"向商家付款";
+    self.customNavBar.title = self.payType ? @"收款" : @"向商家付款";
     [self setUpUI];
     
     [self loadServerData];
@@ -155,7 +155,10 @@
                 //正在付款z。。。。
             }else if (index == 4){
                 //商家入驻
-               [WXZTipView showCenterWithText:@"暂未开通"];
+//               [WXZTipView showCenterWithText:@"暂未开通"];
+                SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+                webVC.urlString = SXF_WEB_URLl_Str(upgrade);
+                vc = webVC;
             }
         }
         if (vc) {
