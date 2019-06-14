@@ -15,7 +15,6 @@
 #import "JFLocation.h"
 #import "YYB_HF_NearSearchVC.h"
 
-#import "YYB_HF_LocalFailAlertV.h"//定位失败显示
 @interface NearPageVC (){
     int arc;
     BOOL isFirstLoad;
@@ -40,15 +39,25 @@
     self.headView = headView;
     headView.addressSelect = ^{
         //地址选择
-        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-        vc.urlString = kH5LocaAdress(kChoiceCity);
+        [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+            if (type == 0) {
+                //app 已开启定位
+            }else {
+                //系统 未开启定位
+                [[YYB_HF_LocalFailAlertV shareInstance] show];
+                return ;
+            }
+            YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+            vc.urlString = kH5LocaAdress(kChoiceCity);
+            
+            vc.choiceCity = ^(NSString * _Nonnull city) {
+                self.headView.setLocalStr = city;
+                [MMNSUserDefaults setValue:city forKey:SelectedCity];
+                [self uploadBackLocation:city];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
         
-        vc.choiceCity = ^(NSString * _Nonnull city) {
-            self.headView.setLocalStr = city;
-            [MMNSUserDefaults setValue:city forKey:SelectedCity];
-            [self uploadBackLocation:city];
-        };
-        [self.navigationController pushViewController:vc animated:YES];
     };
     headView.userHeadClick = ^{
         //点击头像
@@ -64,9 +73,19 @@
     };
     headView.searchIconClick = ^(NSString * _Nonnull search) {
         //点击搜索
-        YYB_HF_NearSearchVC *vc = [[YYB_HF_NearSearchVC alloc]init];
-        vc.searchStrDe = search;
-        [self.navigationController pushViewController:vc animated:YES];
+        [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+            if (type == 0) {
+                //app 已开启定位
+            }else {
+                //系统 未开启定位
+                [[YYB_HF_LocalFailAlertV shareInstance] show];
+                return ;
+            }
+            YYB_HF_NearSearchVC *vc = [[YYB_HF_NearSearchVC alloc]init];
+            vc.searchStrDe = search;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
     };
     
     self.myLocaVeiw = [[YYB_HF_LifeLocaView alloc]initWithFrame:CGRectZero];
@@ -74,11 +93,14 @@
     WEAK(weakSelf);
     self.myLocaVeiw.reFreshData = ^(YYB_HF_nearLifeModel * _Nonnull nearModel) {
         //数据更新
-        if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
-        }else {
-            //app 未开启定位
-            [[YYB_HF_LocalFailAlertV shareInstance] show];
-        }
+        [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+            if (type == 0) {
+                //app 已开启定位
+            }else {
+                //系统 未开启定位
+                [[YYB_HF_LocalFailAlertV shareInstance] show];
+            }
+        }];
         if (nearModel.city_now && [nearModel.city_now isKindOfClass:[NSString class]] && nearModel.city_now.length > 0) {
             weakSelf.headView.setLocalStr = nearModel.city_now;
         }else {
@@ -153,9 +175,7 @@
             [[YYB_HF_LocalFailAlertV shareInstance] show];
         }
     }];
-    
 }
-
 
 - (CGFloat)cellContentViewWith
 {

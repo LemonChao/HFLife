@@ -8,12 +8,12 @@
 
 #import "YYB_HF_LocalFailAlertV.h"
 @interface YYB_HF_LocalFailAlertV()<UIGestureRecognizerDelegate>
-@property(nonatomic, strong) UIView *actiView;
-@property(nonatomic, strong) UIImageView *imageV;
-@property(nonatomic, strong) UIImageView *delV;
-@property(nonatomic, strong) UILabel *failL;
-@property(nonatomic, strong) UILabel *lessL;
-@property(nonatomic, strong) UILabel *setingL;
+@property(nonatomic, strong) UIView *actiView;//底视图
+@property(nonatomic, strong) UIImageView *imageV;//图片
+@property(nonatomic, strong) UIImageView *delV;//取消图片
+@property(nonatomic, strong) UILabel *failL;//错误提示
+@property(nonatomic, strong) UILabel *lessL;//
+@property(nonatomic, strong) UILabel *setingL;//去设置
 @end
 
 @implementation YYB_HF_LocalFailAlertV
@@ -62,8 +62,10 @@
     [self.actiView addSubview:self.lessL];
     [self.actiView addSubview:self.setingL];
     
-    self.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.7];
+    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.actiView.backgroundColor = [UIColor whiteColor];
+    self.actiView.clipsToBounds = YES;
+    self.actiView.layer.cornerRadius = 5;
     self.imageV.image = image(@"local_no");
     self.delV.image = image(@"关闭");
     
@@ -137,10 +139,12 @@
 }
 
 - (void)show {
+    
     UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;
     self.frame = rootWindow.bounds;
     [rootWindow addSubview:self];
     [self creatShowAnimation];
+    
 }
 
 - (void)creatShowAnimation {
@@ -164,7 +168,7 @@
     [self.delV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.actiView).mas_equalTo(ScreenScale(10));
         make.right.mas_equalTo(self.actiView).mas_equalTo(ScreenScale(-10));
-        make.width.height.mas_equalTo(ScreenScale(14));
+        make.width.height.mas_equalTo(ScreenScale(16));
     }];
     
     [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
