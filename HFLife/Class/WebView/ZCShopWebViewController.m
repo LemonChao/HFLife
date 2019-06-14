@@ -194,7 +194,7 @@
     }else if ([message.name isEqualToString:@"goPay"]){
         [self goToPayParameter:message.body];
     }else if ([message.name isEqualToString:@"goToHome"]){
-        [self goBack:message.body];
+        [self goToHome:message.body];
     }else if ([message.name isEqualToString:@"goBackToShopHome"]){
         [self goBackToShopHome:0];
     }else if ([message.name isEqualToString:@"goBackToClassifyHome"]){
@@ -274,17 +274,20 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark -返回--
-- (void)goBack:(NSString *)body{
-    if (StringIsEmpty(body) || [body isEqualToString:@"返回"] || body.integerValue == 1) {
+- (void)goToHome:(NSString *)body{
+    if (body.integerValue == 0 ) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else {
         if ([self.webView canGoBack]) {
             [self.webView goBack];
         }else {
             [self.navigationController popViewControllerAnimated:YES];
         }
-
-    }else if (body.integerValue == 0 ) {
-        [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+-(void)goToHome {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)goBackToShopHome:(NSUInteger)idx {
@@ -300,15 +303,6 @@
 
         [[JMConfig config].tabBarController setSelectedIndex:idx];
     });
-    
-//    BaseNavigationController *rootVC = self.tabBarController.selectedViewController;
-//    [self.tabBarController setSelectedIndex:0];
-//    [rootVC popViewControllerAnimated:YES];
-
-    
-//    [self.tabBarController setSelectedIndex:0];
-//    [self.navigationController popViewControllerAnimated:NO];
-
 }
 
 #pragma mark -抢购--
