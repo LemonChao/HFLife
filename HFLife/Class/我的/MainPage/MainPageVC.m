@@ -126,7 +126,7 @@
                         vc = [AboutVC new];
                     }else{
                         webVC.urlString = SXF_WEB_URLl_Str(urlArr[indexPath.row]);
-                        if (indexPath.row == 4) {
+                        if (indexPath.row == 4 || indexPath.row == 5) {
                             webVC.urlString = urlArr[indexPath.row];
                         }
                         vc = webVC;

@@ -157,7 +157,7 @@
                 //商家入驻
 //               [WXZTipView showCenterWithText:@"暂未开通"];
                 SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
-                webVC.urlString = SXF_WEB_URLl_Str(upgrade);
+                webVC.urlString = upgrade;
                 vc = webVC;
             }
         }
