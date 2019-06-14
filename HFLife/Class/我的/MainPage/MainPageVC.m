@@ -122,7 +122,7 @@
                     if (indexPath.row == 3) {
                         //安全中心
                         vc = [SecurityCenterVC new];
-                    }else if (indexPath.row == 8){
+                    }else if (indexPath.row == 9){
                         vc = [AboutVC new];
                     }else{
                         webVC.urlString = SXF_WEB_URLl_Str(urlArr[indexPath.row]);
@@ -131,7 +131,6 @@
                         }
                         vc = webVC;
                     }
-                    
                 }
             if (vc) {
                 [weakSelf.navigationController pushViewController:vc animated:YES];

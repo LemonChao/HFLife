@@ -204,7 +204,9 @@
     
     SXF_HF_CycleContentCell *cell = (SXF_HF_CycleContentCell *)[self.carousel.carouselView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:indexPathRow inSection:0]];
     
-    [cell.gifImageV stopAnimating];
+    if ([cell.gifImageV isAnimating]) {
+       [cell.gifImageV stopAnimating];
+    }
     //释放上次操作 防止l卡顿
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(payGif) object:nil];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
@@ -231,10 +233,10 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     
     //添加新的操作
-//    [self performSelector:@selector(payGif) withObject:nil afterDelay:0.1 inModes:@[NSRunLoopCommonModes]];
+    [self performSelector:@selector(payGif) withObject:nil afterDelay:0.1 inModes:@[NSRunLoopCommonModes]];
     
     
-    [self performSelectorOnMainThread:@selector(payGif) withObject:nil waitUntilDone:0.0];
+//    [self performSelectorOnMainThread:@selector(payGif) withObject:nil waitUntilDone:0.0];
     
     
 //    NSLog(@"结束滑动: %ld", index);
@@ -247,9 +249,12 @@
     [currentCell.gifImageV playGifImagePath:selectedImagePath repeatCount:1];
     
     
+    
+    
+    
 //    NSData *localData = [NSData dataWithContentsOfFile:selectedImagePath];
 //    currentCell.gifImageV = (UIImageView *)[[DHGifImageOperation alloc] initWithFrame:currentCell.gifImageV.frame gifImageData:localData];
-//    
+    
     
     
     

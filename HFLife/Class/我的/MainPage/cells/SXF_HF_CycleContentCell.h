@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)UIImageView *gifImageV;
 @property (nonatomic, assign)NSInteger index;
 @property (nonatomic, strong)NSString *gifName;
+
+@property (nonatomic, strong)UIImageView *customImage;
 @end
 
 NS_ASSUME_NONNULL_END
