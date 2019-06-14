@@ -75,7 +75,7 @@
         
     }
 
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateMoneyQrcode withParameters:param withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(CreateMoneyQrcode) withParameters:param withResultBlock:^(BOOL result, id value) {
         if ([value isKindOfClass:[NSDictionary class]]) {
             if (result){
                 NSLog(@"%@", value);
@@ -198,7 +198,7 @@
 //    [self.getMoneyView setDataForView:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[userInfoModel sharedUser].ID) publicKey:AMOUNTRSAPRIVATEKEY] type:YES ];
     
     [[WBPCreate sharedInstance]showWBProgress];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateMoneyQrcode withParameters:@{@"type" : @"1", @"set_money" : amount} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(CreateMoneyQrcode) withParameters:@{@"type" : @"1", @"set_money" : amount} withResultBlock:^(BOOL result, id value) {
         [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             if (value) {

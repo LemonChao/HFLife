@@ -276,7 +276,7 @@
 -(void)decodingString:(NSString *)string{
     WS(weakSelf);
     //扫描到w二维码后 获取对方的用户信息用以显示
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:GetQrcodeInfo withParameters:@{@"code_str":string, @"app_type" : @"1"} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(GetQrcodeInfo) withParameters:@{@"code_str":string, @"app_type" : @"1"} withResultBlock:^(BOOL result, id value) {
 //        [HF_PayHelp goWXPay:string];
 //        return;
         if (result && value) {

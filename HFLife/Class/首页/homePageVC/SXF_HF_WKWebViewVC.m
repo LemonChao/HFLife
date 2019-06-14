@@ -304,7 +304,7 @@
     }else if ([message.name isEqualToString:@"nativeToJump"]){
         [self nativeToJumpParameter:message.body];
     }else if ([message.name isEqualToString:@"goToHome"]){
-        [self goToHome];
+        [self goToHome:message.body];
     }else if ([message.name isEqualToString:@"rushBuy"]){
         [self rushBuyParameter:message.body];
     }else if ([message.name isEqualToString:@"orderHotel"]){
@@ -314,7 +314,7 @@
     }else if ([message.name isEqualToString:@"goToPay"]){
         [self goToPayParameter:message.body];
     }else if ([message.name isEqualToString:@"goToApp"]){
-        [self goToHome];
+        [self goToHome:message.body];
     }
     else if ([message.name isEqualToString:@"goToShare"]){
         //分享
@@ -485,8 +485,16 @@
 }
     
 #pragma mark - 返回首页--
--(void)goToHome{
-    [self.navigationController popViewControllerAnimated:YES];
+-(void)goToHome:(id)type{
+    if ([type integerValue] == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        if ([self.webView canGoBack]) {
+            [self.webView goBack];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
 }
 #pragma mark -抢购--
 -(void)rushBuyParameter:(NSDictionary *)dict{

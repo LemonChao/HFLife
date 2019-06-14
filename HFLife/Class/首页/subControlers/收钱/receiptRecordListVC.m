@@ -42,7 +42,7 @@
                             @"month":date,
                             @"page" : @(page),
                             };
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:QrcodeGetMoneyCore withParameters:param withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(QrcodeGetMoneyCore) withParameters:param withResultBlock:^(BOOL result, id value) {
         [self.listView.tableView endRefreshData];
         if (result){
             if (value) {

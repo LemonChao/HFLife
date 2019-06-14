@@ -101,7 +101,7 @@
                             @"bn_num" : self.moneyTF.text,
                             @"code_str" : self.codeStr,
                             };
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:CreateOrder withParameters:param withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(CreateOrder) withParameters:param withResultBlock:^(BOOL result, id value) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (result && value) {
             NSString *orderIdStr = value[@"data"][@"order_id"];
@@ -132,7 +132,7 @@
                             @"paypassword" : password,
                             };
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:GoToPay withParameters:param withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(GoToPay) withParameters:param withResultBlock:^(BOOL result, id value) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (result && value) {
             //支付成功
