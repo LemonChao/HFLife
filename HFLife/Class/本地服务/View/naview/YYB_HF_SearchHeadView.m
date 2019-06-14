@@ -84,7 +84,7 @@
 //    self.searchT.textColor = HEX_COLOR(0xAAAAAA);
     self.searchT.font = FONT(13);
     [self.searchT becomeFirstResponder];
-    self.searchT.placeholder = @"搜索内容";
+    self.searchT.delegate = self;
     
     
     [self.orderSearchBtn setTitle:@"搜索" forState:UIControlStateNormal];
@@ -176,6 +176,20 @@
     }];
 }
 
+#pragma mark - textfield delage
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField.text.length == 0) {
+        textField.placeholder = _setSearchStr;
+    }else {
+        textField.placeholder = @"搜索内容";
+    }
+    return YES;
+}
+
 #pragma mark - setValue
 
 - (void)setSetTypeStr:(NSString *)setTypeStr{
@@ -191,6 +205,7 @@
 
 - (void)setSetSearchStr:(NSString *)setSearchStr {
     self.searchT.text = setSearchStr;
+    self.searchT.placeholder = setSearchStr;
     _setSearchStr = setSearchStr;
 }
 
