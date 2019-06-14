@@ -106,7 +106,6 @@
             }else {
                 [[UIApplication sharedApplication] openURL:url];
             }
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLocalView:) name:UIApplicationWillEnterForegroundNotification object:nil];
         }else {
             
         }
@@ -134,9 +133,6 @@
     }
 }
 //
-- (void)refreshLocalView:(NSNotification *)not {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
-}
 
 - (void)show {
     
