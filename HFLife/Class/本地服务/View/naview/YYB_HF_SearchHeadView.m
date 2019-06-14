@@ -185,7 +185,7 @@
     if (textField.text.length == 0) {
         textField.placeholder = _setSearchStr;
     }else {
-        textField.placeholder = @"搜索内容";
+        textField.placeholder = @"";
     }
     return YES;
 }

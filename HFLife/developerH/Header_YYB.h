@@ -100,7 +100,6 @@ static NSString *const kAppAgreement =      @"http://ceshi-web.hfgld.net/mall/#/
 
 //个人中心
 #define kCenterAdress(parm)                 [NSString stringWithFormat:@"%@%@",centerBaceUrl,parm]
-
 //本地生活
 #define kLifeAdress(parm)                   [NSString stringWithFormat:@"%@%@",kBaseLife,parm]
 //本地生活h5
