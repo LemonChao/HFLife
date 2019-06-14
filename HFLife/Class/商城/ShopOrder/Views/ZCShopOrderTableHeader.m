@@ -132,12 +132,11 @@
 
     [self.portraitButton sd_setImageWithURL:[NSURL URLWithString:model.avatar] forState:UIControlStateNormal];
     self.nameLabel.text = model.user_name;
-    self.levelLabel.text = [NSString stringWithFormat:@"VIP%@", model.level_name];
+    self.levelLabel.text = model.level_name;
     self.goodsWishlist.topString = model.favorites_goods;
     self.shopWishlist.topString = model.favorites_store;
     
     CGFloat offset = (SCREEN_WIDTH - ScreenScale(30)-self.nameLabel.intrinsicContentSize.width-self.levelLabel.intrinsicContentSize.width)/2;
-    NSLog(@"offset:%f -name:%f -level:%f",offset,self.nameLabel.intrinsicContentSize.width,self.levelLabel.intrinsicContentSize.width);
     [self.nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.bottomContentView).inset(offset);
     }];

@@ -322,14 +322,12 @@
         
     }else if ([message.name isEqualToString:@"goSetPayPassword"]){
         //去设置支付密码
-        YYB_HF_submitDealPassWordVC *vc = [YYB_HF_submitDealPassWordVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_setDealPassWordVC") new] animated:YES];
     }else if ([message.name isEqualToString:@"goToSearch"]){
         [self jumSearchVC];
     }else if ([message.name isEqualToString:@"goToQQ"]){
         [self jumQQVC:message.body];
     }
-    //goToHome
 }
 
 #pragma mark - JS调用OC方法

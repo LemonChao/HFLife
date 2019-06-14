@@ -26,7 +26,7 @@
 /************************subUrl************************/
 
 
-#define LOCALTEST        0  //1:本地测试 0:线上测试
+#define LOCALTEST        1  //1:本地测试 0:线上测试
 
 #if DEBUG//测试线
     #if LOCALTEST//(本地测试)

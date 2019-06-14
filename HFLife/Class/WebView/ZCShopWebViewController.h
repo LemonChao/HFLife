@@ -28,10 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 标题 */
 @property (nonatomic,copy)NSString *webTitle;
 @property (nonatomic,strong)UIColor *titleColor;
-/**
- 刷新webview
- */
--(void)refreshWebView;
 
 
 /** 顶部间距 */
