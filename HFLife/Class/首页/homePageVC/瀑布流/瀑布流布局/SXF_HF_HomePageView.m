@@ -151,8 +151,10 @@ static NSString * const footerReuseIdentifier = @"Footer";
 //    self.activityModelsArr = @[];
     
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
     
-    [self.collectionView reloadData];
     
 }
 

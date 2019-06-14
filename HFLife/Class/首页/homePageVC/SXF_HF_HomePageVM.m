@@ -92,12 +92,15 @@
         [self.collectionView endRefreshData];
         if (result){
             if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
-                self.collectionView.peopleNum = value[@"data"][@"nums"];
-                self.collectionView.fqPrice = value[@"data"][@"bn_acc_ratio"];
-                //需要计算得来
-                NSString *moneyStr = [NSString stringWithFormat:@"%@", [self getMoney:Format(self.collectionView.fqPrice ? self.collectionView.fqPrice : @(0)) :value[@"data"][@"static_coin"]]];
-                self.static_coin = value[@"data"][@"static_coin"];
-                self.collectionView.myFQ = moneyStr;
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    self.collectionView.peopleNum = value[@"data"][@"nums"];
+                    self.collectionView.fqPrice = value[@"data"][@"bn_acc_ratio"];
+                    //需要计算得来
+                    NSString *moneyStr = [NSString stringWithFormat:@"%@", [self getMoney:Format(self.collectionView.fqPrice ? self.collectionView.fqPrice : @(0)) :value[@"data"][@"static_coin"]]];
+                    self.static_coin = value[@"data"][@"static_coin"];
+                    self.collectionView.myFQ = moneyStr;
+                }];
+                
                 NSDictionary *dict = value[@"data"];
                 NSMutableDictionary *dataSourceDicM = [NSMutableDictionary dictionary];
                 if ([dict objectForKey:@"nav"] && [[dict objectForKey:@"nav"] isKindOfClass:[NSArray class]]) {

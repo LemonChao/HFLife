@@ -163,8 +163,16 @@
 //    [self performSelector:@selector(stopPlayGifImage) withObject:nil afterDelay:[self durationForGifData:imageData] * repeatCount inModes:@[NSRunLoopCommonModes]];
     
     
-    [self performSelectorOnMainThread:@selector(startPlayGifImage) withObject:nil waitUntilDone:0.01];
-   [self performSelector:@selector(stopPlayGifImage) withObject:nil afterDelay:[self durationForGifData:imageData] * repeatCount - 0.1 inModes:@[NSRunLoopCommonModes]];
+    
+    
+    
+    
+    [[NSOperationQueue currentQueue] addOperationWithBlock:^{
+        [self performSelectorOnMainThread:@selector(startPlayGifImage) withObject:nil waitUntilDone:0.0];
+    }];
+    
+    [self performSelector:@selector(stopPlayGifImage) withObject:nil afterDelay:[self durationForGifData:imageData] * repeatCount - 0.1 inModes:@[NSRunLoopCommonModes]];
+   
     
     //不释放 会内存暴涨 导致creash
     CFRelease(gifSource);

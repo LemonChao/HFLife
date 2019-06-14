@@ -234,7 +234,7 @@
 //    [self performSelector:@selector(payGif) withObject:nil afterDelay:0.1 inModes:@[NSRunLoopCommonModes]];
     
     
-    [self performSelectorOnMainThread:@selector(payGif) withObject:nil waitUntilDone:0.1];
+    [self performSelectorOnMainThread:@selector(payGif) withObject:nil waitUntilDone:0.0];
     
     
 //    NSLog(@"结束滑动: %ld", index);
