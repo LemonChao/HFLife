@@ -39,15 +39,72 @@
 
 #pragma mark - public公用 ---------------------------
 
+//意起缘生 2019/06/13 下午2:51
+//http://ceshi-web.hfgld.net/book/#/ 超级账本
+//
+//意起缘生 2019/06/13 下午2:51
+//http://ceshi-web.hfgld.net/contract/#/ 自助签约
+//
+//意起缘生 2019/06/13 下午2:51
+//http://ceshi-web.hfgld.net/life/#/ 附近商家
+//
+//意起缘生 2019/06/13 下午2:52
+//http://ceshi-web.hfgld.net/my/#/ 商学院/生活缴费
+//
+//意起缘生 2019/06/13 下午2:52
+//http://ceshi-web.hfgld.net/mall/#/ 商城
+//
+
+#if DEBUG//测试线
+#if LOCALTEST//(本地测试)
+static NSString *const centerBaceUrl =      @"ceshi-ucenter.hfgld.net/";//个人中心
+static NSString *const kBaseLife =          @"ceshi-life.hfgld.net/index.php/";//本地生活
+static NSString *const kBaseUrlH5 =         @"http://192.168.0.253:";//h5本地测试base
+
+#pragma mark - h5 ---------------------------
+/** 选择位置 */
+static NSString *const kChoiceCity =        @"8080/#/city";
+/** 订单列表 */
+static NSString *const kOrderList =         @"10004/#/order";
+#pragma mark - h5  服务协议 ---------------------------
+/** 服务协议 */
+static NSString *const kAppAgreement =      @"http://192.168.0.143:8080/#/appAgreement";
+
+#else        //(线上测试)
+static NSString *const centerBaceUrl =      @"ceshi-ucenter.hfgld.net/";
+static NSString *const kBaseLife =          @"ceshi-life.hfgld.net/index.php/";
+static NSString *const kBaseUrlH5 =         @"http://ceshi-web.hfgld.net/";//h5线上测试base
+
+/** 选择位置 */
+static NSString *const kChoiceCity =        @"hotel/#/city";
+/** 订单列表 */
+static NSString *const kOrderList =         @"life/#/order";
+/** 服务协议 */
+static NSString *const kAppAgreement =      @"http://ceshi-web.hfgld.net/mall/#/appAgreement";
+
+#endif
+
+#else//正式线上
+static NSString *const centerBaceUrl =      @"ceshi-ucenter.hfgld.net/";
+static NSString *const kBaseLife =          @"ceshi-life.hfgld.net/index.php/";
+static NSString *const kBaseUrlH5 =         @"http://ceshi-web.hfgld.net/";//h5线上测试base
+
+//h5
+/** 选择位置 */
+static NSString *const kChoiceCity =        @"hotel/#/city";
+/** 订单列表 */
+static NSString *const kOrderList =         @"life/#/order";
+/** 服务协议 */
+static NSString *const kAppAgreement =      @"http://ceshi-web.hfgld.net/mall/#/appAgreement";
+#endif
+
 //个人中心
 #define kCenterAdress(parm)                 [NSString stringWithFormat:@"%@%@",centerBaceUrl,parm]
-static NSString *const centerBaceUrl =      @"ceshi-ucenter.hfgld.net/";
+
 //本地生活
 #define kLifeAdress(parm)                   [NSString stringWithFormat:@"%@%@",kBaseLife,parm]
-static NSString *const kBaseLife =          @"ceshi-life.hfgld.net/index.php/";
 //本地生活h5
-#define kH5LocaAdress(parm)                 [NSString stringWithFormat:@"%@%@",kBaseLocal,parm]
-static NSString *const kBaseLocal =         @"http://192.168.0.253:";
+#define kH5LocaAdress(parm)                 [NSString stringWithFormat:@"%@%@",kBaseUrlH5,parm]
 
 
 /** 上传文件/头像 */
@@ -136,17 +193,4 @@ static NSString *const kGetHotSearchList =              @"api/common/getHotSearc
 ///** 我的收藏 */
 //static NSString *const kH5myCollection =    @"http://192.168.0.105:8080/myCollection";
 
-#pragma mark - h5本地 ---------------------------
-
-/** 选择位置 */
-static NSString *const kChoiceCity =        @"8080/#/city";
-
-/** 订单列表 */
-static NSString *const kOrderList =         @"10004/#/order";
-
-
-#pragma mark - h5  服务协议 ---------------------------
-
-/** 服务协议 */
-static NSString *const kAppAgreement =        @"http://192.168.0.143:8080/#/appAgreement";
 #endif /* Header_YYB_h */

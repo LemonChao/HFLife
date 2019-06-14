@@ -59,7 +59,7 @@
     self.headView.searchClick = ^{
         YYB_HF_SearchResultC *vc = [[YYB_HF_SearchResultC alloc]init];
         vc.searchType = weakSelf.searchType;
-        vc.searchStr = weakSelf.headView.searchT.text;
+        vc.searchStr = weakSelf.headView.searchT.text.length > 0 ? weakSelf.headView.searchT.text : weakSelf.headView.searchT.placeholder;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     
