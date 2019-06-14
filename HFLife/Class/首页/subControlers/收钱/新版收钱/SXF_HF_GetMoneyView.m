@@ -51,7 +51,7 @@
     return self;
 }
 - (void) addChildrenViews{
-    _titleArr = @[@"收款记录",@"",[[userInfoModel sharedUser].payment_code integerValue] ? @"收款码已领取" : @"领取收款码"];
+    _titleArr = @[@"收款记录",@"",[[userInfoModel sharedUser].payment_code integerValue] ? @"收款码已升级" : @"升级收款码"];
     _imageArr = @[@"记录",@"",[[userInfoModel sharedUser].payment_code integerValue] ? @"收款码未领取" : @"收款码未领取"];
     self.getMoneyHeader = [[SXF_HF_getMoneyTabHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 432)];
     self.payMoneyHeader = [[SXF_HF_payMoneyTabHeader alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, ScreenScale(410))];
@@ -68,13 +68,13 @@
     self.tableView.backgroundColor = HEX_COLOR(0xCA1400);
     WEAK(weakSelf);
     
-    self.getMoneyHeader.clickHeaderBtn = ^(NSInteger tag) {
+    self.getMoneyHeader.clickHeaderBtn = ^(NSInteger tag, BOOL reset) {
         if (tag == 1) {
 //            [weakSelf loadImageFinished:weakSelf.saveCodeView];
             [weakSelf loadImageFinished:weakSelf.saveCodeView2];
             return ;
         }
-        !weakSelf.tabBtnCallback ? : weakSelf.tabBtnCallback(tag);
+        !weakSelf.tabBtnCallback ? : weakSelf.tabBtnCallback(tag, reset);
     };
     
     self.payMoneyHeader.barCodeClick = ^(UIImage * _Nonnull image,  NSString *barCodeStr) {
@@ -127,6 +127,7 @@
     }
     self.getMoneyHeader.money = _money;
     self.tableView.tableHeaderView = self.getMoneyHeader;
+    
 }
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     if (!self.payType) {
@@ -170,13 +171,13 @@
                 if ([[userInfoModel sharedUser].payment_code integerValue]) {
                     //已领取
                     cell.userInteractionEnabled = NO;
-                    cell.titleLb.text = @"已领取收款码";
+                    cell.titleLb.text = @"已升级收款码";
                     cell.titltImageV.image = MY_IMAHE(@"收款码已领取");
                     cell.textLabel.textColor = color0C0B0B;
                 }else{
                     //未领取
                     cell.userInteractionEnabled = YES;
-                    cell.titleLb.text = @"领取收款码";
+                    cell.titleLb.text = @"升级收款码";
                     cell.titltImageV.image = MY_IMAHE(@"收款码未领取");
                     cell.textLabel.textColor = colorAAAAAA;
                 }
@@ -187,7 +188,7 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    !self.tabBtnCallback ? : self.tabBtnCallback(indexPath.section + 2);
+    !self.tabBtnCallback ? : self.tabBtnCallback(indexPath.section + 2, NO);
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.payType) {

@@ -85,7 +85,10 @@
 //    } else {
 //        // Fallback on earlier versions
 //    }
+    
+//    [[WBPCreate sharedInstance] showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(HomeNavBanner) withParameters:@{} withResultBlock:^(BOOL result, id value) {
+//        [[WBPCreate sharedInstance] hideAnimated];
         [self.collectionView endRefreshData];
         if (result){
             if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {

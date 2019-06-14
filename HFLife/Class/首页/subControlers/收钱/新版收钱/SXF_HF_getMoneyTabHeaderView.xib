@@ -145,6 +145,7 @@
             <connections>
                 <outlet property="meddileTitleLb" destination="Wbf-U4-Swm" id="Qdf-hk-YOj"/>
                 <outlet property="qCodeImageV" destination="7GY-wu-pdJ" id="Yh6-AW-PQG"/>
+                <outlet property="resetMoneyBtn" destination="wvn-Rc-Rsz" id="712-p1-BuV"/>
                 <outlet property="setMoneyLb" destination="bXY-bk-CQd" id="uol-xf-4S3"/>
                 <outlet property="userNameLb" destination="x3V-Al-5cP" id="zA9-Gn-0yV"/>
             </connections>

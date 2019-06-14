@@ -16,7 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *qCodeImageV;
 //设置金额
 @property (weak, nonatomic) IBOutlet UILabel *setMoneyLb;
-
+@property (weak, nonatomic) IBOutlet UIButton *resetMoneyBtn;
+@property (nonatomic, assign)BOOL resetBtnType;
 @end
 
 @implementation SXF_HF_getMoneyTabHeaderView
@@ -36,8 +37,12 @@
     _money = money;
     if ([_money floatValue] > 0) {
         self.setMoneyLb.text = [NSString stringWithFormat:@"￥%@", money];
+        [self.resetMoneyBtn setTitle:@"清除金额" forState:UIControlStateNormal];
+        self.resetBtnType = YES;
     }else{
         self.setMoneyLb.text = @"";
+        [self.resetMoneyBtn setTitle:@"设置金额" forState:UIControlStateNormal];
+        self.resetBtnType = NO;
     }
 }
 - (IBAction)clickBtn:(UIButton *)sender {
@@ -48,7 +53,7 @@
 //        return;
 //    }
     
-    !self.clickHeaderBtn ? :  self.clickHeaderBtn(sender.tag);
+    !self.clickHeaderBtn ? :  self.clickHeaderBtn(sender.tag, self.resetBtnType);
 }
 #pragma mark 保存图片
 - (void)loadImageFinished:(UIImage *)image{

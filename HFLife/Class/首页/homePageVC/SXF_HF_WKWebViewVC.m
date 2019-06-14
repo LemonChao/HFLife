@@ -486,13 +486,17 @@
     
 #pragma mark - 返回首页--
 -(void)goToHome:(id)type{
-    if ([type integerValue] == 0) {
+    if ([type isKindOfClass:[NSNull class]]) {
         [self.navigationController popViewControllerAnimated:YES];
     }else{
-        if ([self.webView canGoBack]) {
-            [self.webView goBack];
-        }else{
+        if ([type integerValue] == 0) {
             [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            if ([self.webView canGoBack]) {
+                [self.webView goBack];
+            }else{
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }
     }
 }

@@ -122,6 +122,8 @@
                     if (indexPath.row == 3) {
                         //安全中心
                         vc = [SecurityCenterVC new];
+                    }else if (indexPath.row == 5){
+                        [WXZTipView showCenterWithText:@"暂未开通"];
                     }else if (indexPath.row == 8){
                         vc = [AboutVC new];
                     }else{
@@ -147,8 +149,9 @@
 }
 #pragma mark - 加载数据
 - (void)loadData {
-    
+    [[WBPCreate sharedInstance] showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kMemberInfo) withParameters:nil withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [userInfoModel attempDealloc];
             if (value && [value isKindOfClass:[NSDictionary class]]) {

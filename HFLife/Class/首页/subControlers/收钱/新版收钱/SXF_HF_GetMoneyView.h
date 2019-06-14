@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SXF_HF_GetMoneyView : UIView
 @property (nonatomic, assign)BOOL openCell;//收钱 接收通知接收开关cell
 @property (nonatomic, assign)BOOL payType;//收款 、付款
-@property (nonatomic, strong)void(^tabBtnCallback)(NSInteger index);
+@property (nonatomic, strong)void(^tabBtnCallback)(NSInteger index, BOOL reset);
 @property (nonatomic, strong)void (^clickBarCodeImageV)(UIImage *image, NSString *codeStr);
 @property (nonatomic, strong)NSMutableDictionary *payUserDic;
 @property (nonatomic, strong)NSString *money;//设置的金额

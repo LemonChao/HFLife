@@ -186,7 +186,7 @@
 //        self.manager.configuration.saveSystemAblum = YES;
 //        [self hx_presentAlbumListViewControllerWithManager:self.manager delegate:self];
     }else if ([title_value isEqualToString:@"实名认证"]){
-        if ([userInfoModel sharedUser].rz_status.intValue != 0 || [userInfoModel sharedUser].rz_status.intValue == 3) {
+        if ([userInfoModel sharedUser].rz_status.intValue == 0 || [userInfoModel sharedUser].rz_status.intValue == 3) {
             YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
             vc.urlString = SXF_WEB_URLl_Str(certification);
             [self.navigationController pushViewController:vc animated:YES];
