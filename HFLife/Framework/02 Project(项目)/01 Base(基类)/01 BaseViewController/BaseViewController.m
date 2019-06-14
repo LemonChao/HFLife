@@ -312,7 +312,7 @@ static BOOL IsUpdateRemind = YES;
                            @"type" : @"2",
                            @"ver_nod" : APP_VERSION,
                            };
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:appUpDateUrl withParameters:dict withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(appUpDateUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
         if (result) {
             if ([value isKindOfClass:[NSDictionary class]]) {
                 [self setUpVersion:value[@"data"]];

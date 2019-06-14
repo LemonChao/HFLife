@@ -37,9 +37,9 @@
     
     NSString *subUrl;
     if (self.row == 0) {
-        subUrl = VersionContent;//版本说明
+        subUrl = SXF_LOC_URL_STR(VersionContent);//版本说明
     }else{
-        subUrl = ServiceAgreement;
+        subUrl = SXF_LOC_URL_STR(ServiceAgreement);
     }
     
     

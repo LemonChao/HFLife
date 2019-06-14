@@ -128,21 +128,21 @@
 		<true/>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>汉支付需要访问您的日历</string>
+	<string>汉富新生活需要访问您的日历</string>
 	<key>NSCameraUsageDescription</key>
-	<string>汉支付需要您的同意才能进行相机的访问，以便于您的扫码操作</string>
+	<string>汉富新生活需要您的同意才能进行相机的访问，以便于您的扫码操作</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>汉支付需要您的同意获取当前位置，以便我们向您推荐适合您所在地理位置的商品和店铺</string>
+	<string>汉富新生活需要您的同意获取当前位置，以便我们向您推荐适合您所在地理位置的商品和店铺</string>
 	<key>NSLocationUsageDescription</key>
-	<string>汉支付需要您的同意获取当前位置，以便我们向您推荐适合您所在地理位置的商品和店铺</string>
+	<string>汉富新生活需要您的同意获取当前位置，以便我们向您推荐适合您所在地理位置的商品和店铺</string>
 	<key>NSLocationWhenInUseDescription</key>
-	<string>汉支付需要您的同意获取当前位置，以便我们向您推荐适合您所在地理位置的商品和店铺</string>
+	<string>汉富新生活需要您的同意获取当前位置，以便我们向您推荐适合您所在地理位置的商品和店铺</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>汉支付需要您的同意获取当前位置，以便我们向您推荐适合您所在地理位置的商品和店铺</string>
+	<string>汉富新生活需要您的同意获取当前位置，以便我们向您推荐适合您所在地理位置的商品和店铺</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>汉支付需要您的同意才能进行相册的访问，以便于我们您的操作</string>
+	<string>汉富新生活需要您的同意才能进行相册的访问，以便于我们您的操作</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>汉支付需要您的同意才能进行相册的访问，以便于我们您的操作</string>
+	<string>汉富新生活需要您的同意才能进行相册的访问，以便于我们您的操作</string>
 	<key>UIBackgroundModes</key>
 	<array/>
 	<key>UIMainStoryboardFile</key>

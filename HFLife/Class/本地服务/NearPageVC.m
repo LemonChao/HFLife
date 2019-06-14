@@ -129,7 +129,7 @@
         }
         
         
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:upDateLocationUrl withParameters:dict withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
             
         }];
     }

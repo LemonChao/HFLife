@@ -85,7 +85,7 @@
 //    } else {
 //        // Fallback on earlier versions
 //    }
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNavBanner withParameters:@{} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(HomeNavBanner) withParameters:@{} withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         if (result){
             if ([value[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -126,7 +126,7 @@
 }
 
 - (void) getNewsListData:(NSInteger)page{
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:HomeNewsList withParameters:@{@"page" :@(page)} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(HomeNewsList) withParameters:@{@"page" :@(page)} withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         if (result){
             if ([value[@"data"] isKindOfClass:[NSArray class]]) {
@@ -333,7 +333,7 @@
         }
         
         
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:upDateLocationUrl withParameters:dict withResultBlock:^(BOOL result, id value) {
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
             
         }];
         
