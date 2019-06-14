@@ -9,20 +9,13 @@
 #import "ZCShopWebViewController.h"
 #import <WebKit/WebKit.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-#import <AVFoundation/AVFoundation.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import "MapViewController.h"
-#import "UINavigationController+FDFullscreenPopGesture.h"
 #import "UMSPPPayUnifyPayPlugin.h"
 #import <AFURLResponseSerialization.h>
 #import "WeakWebViewScriptMessageDelegate.h"
 #import "JMTabBarController.h"
 
-@interface ZCShopWebViewController ()<WKUIDelegate,WKScriptMessageHandler,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,WKNavigationDelegate,UIGestureRecognizerDelegate>
-{
-    UIImagePickerController *imagePickerController;
-    
-}
+@interface ZCShopWebViewController ()<WKUIDelegate,WKScriptMessageHandler,UINavigationControllerDelegate,WKNavigationDelegate,UIGestureRecognizerDelegate>
+
 @property(nonatomic, strong)WKWebView *webView;
 @end
 
@@ -99,9 +92,8 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
     [self.webView loadRequest:request];
-
 }
-#pragma mark - WKWebView代理
+#pragma mark - WKWebView代理 WKUIDelegate
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
     //    Decides whether to allow or cancel a navigation after its response is known.
     NSLog(@"知道返回内容之后，是否允许加载，允许加载");
@@ -140,7 +132,7 @@
     NSLog(@"网页加载内容进程终止");
     [[WBPCreate sharedInstance] hideAnimated];
 }
-#pragma mark - WKUIDelegate
+
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
 {
     
@@ -153,7 +145,6 @@
 }
 
 #pragma mark - JS调用OC方法
-
 #pragma mark -URL跳转
 -(void)pageJumpParameter:(NSDictionary *)dict{
     NSLog(@"dict = %@",dict);
@@ -164,9 +155,6 @@
     [self.navigationController pushViewController:wkWebView animated:YES];
 }
 #pragma mark -跳转设置支付密码
-
-
-
 -(void)goSetPayPassword:(NSString *)body{
     [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_setDealPassWordVC") new] animated:YES];
 }
