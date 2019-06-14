@@ -26,7 +26,7 @@
 /************************subUrl************************/
 
 
-#define LOCALTEST        0  //0 本地测试   1 线上测试
+#define LOCALTEST        0  //1:本地测试 0:线上测试
 
 #if DEBUG//测试线
     #if LOCALTEST//(本地测试)
@@ -36,10 +36,10 @@
         //(个人中心和首页用)
         #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://ceshi-web.hfgld.net/my/#/%@", subUrl ? subUrl : @""]
         static NSString *const enterIndex            = @"http://ceshi-web.hfgld.net/contract/#/signingIndex?type=2";//我要入驻（个人中心用）
-        static NSString *const upgrade               = @"http://ceshi-web.hfgld.net/contract/#/upgrade";
 
     #endif
     //测试线通用部分
+    static NSString *const upgrade               = @"http://ceshi-web.hfgld.net/contract/#/upgrade";
     #define SXF_LOC_URL_STR(subUrl)        [NSString stringWithFormat:@"ceshi-ucenter.hfgld.net%@", subUrl ? subUrl : @""]
     static NSString *const shareUrl        = @"https://www.hfgld.net/app_html/registered/registered.html?invite_code=%@";//分享
     #define OPENSHOPURLLIST @"https://www.hfgld.net/app_html/enter_shop_model/#/list"//申请列表(web)

@@ -168,7 +168,7 @@
 
 - (UIImageView *)godsImgView {
     if (!_godsImgView) {
-        _godsImgView = [UITool imageViewPlaceHolder:image(@"image2") contentMode:UIViewContentModeScaleToFill cornerRadius:WidthRatio(5) borderWidth:0 borderColor:[UIColor clearColor]];
+        _godsImgView = [UITool imageViewPlaceHolder:nil contentMode:UIViewContentModeScaleAspectFill cornerRadius:WidthRatio(5) borderWidth:0 borderColor:[UIColor clearColor]];
     }
     return _godsImgView;
 }
