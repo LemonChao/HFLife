@@ -99,7 +99,7 @@
     self.getMoneyView.payType = self.payType;
     self.getMoneyView.openCell = NO;
     WEAK(weakSelf);
-    self.getMoneyView.tabBtnCallback = ^(NSInteger index) {
+    self.getMoneyView.tabBtnCallback = ^(NSInteger index, BOOL reset) {
         NSLog(@"%ld", (long)index);
         __block BaseViewController *vc ;
         if (!weakSelf.payType) {
@@ -137,9 +137,15 @@
         }else{
             if (index == 0) {
                 //设置金额
-                SetAmountVC *setAmVC = [SetAmountVC new];
-                setAmVC.amountDelegate = weakSelf;
-                vc = setAmVC;
+                if (reset) {
+                    //清楚金额
+                    weakSelf.getMoneyView.money = @"0";
+                    [weakSelf loadServerData];
+                }else{
+                    SetAmountVC *setAmVC = [SetAmountVC new];
+                    setAmVC.amountDelegate = weakSelf;
+                    vc = setAmVC;
+                }
             }else if (index == 2){
                 //收款记录
                 receiptRecordListVC *recordVC = [[receiptRecordListVC alloc] init];
@@ -149,9 +155,7 @@
                 //正在付款z。。。。
             }else if (index == 4){
                 //商家入驻
-                SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
-                webVC.urlString = enterIndex;
-                [weakSelf.navigationController pushViewController:webVC animated:YES];
+               [WXZTipView showCenterWithText:@"z暂未开通"];
             }
         }
         if (vc) {
@@ -196,6 +200,8 @@
 #pragma mark 代理
 -(void)SetAmountNumber:(NSString *)amount{
 //    [self.getMoneyView setDataForView:[RSAEncryptor encryptString:MMNSStringFormat(@"HanPay:%@,UserID:%@",amount,[userInfoModel sharedUser].ID) publicKey:AMOUNTRSAPRIVATEKEY] type:YES ];
+    
+    
     
     [[WBPCreate sharedInstance]showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(CreateMoneyQrcode) withParameters:@{@"type" : @"1", @"set_money" : amount} withResultBlock:^(BOOL result, id value) {

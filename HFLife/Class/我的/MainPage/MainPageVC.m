@@ -122,6 +122,8 @@
                     if (indexPath.row == 3) {
                         //安全中心
                         vc = [SecurityCenterVC new];
+                    }else if (indexPath.row == 5){
+                        [WXZTipView showCenterWithText:@"暂未开通"];
                     }else if (indexPath.row == 8){
                         vc = [AboutVC new];
                     }else{
