@@ -273,16 +273,27 @@
 - (void)selectColumnIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"idnex %ld - %ld",indexPath.section,indexPath.row);
     
-    EntranceDetail *entrModel = self.dataModel.entrance[indexPath.row];
-
-    NSString *url = entrModel.url;
-    if (url && url.length > 0) {
-        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-        vc.urlString = url;
-        [self.supVC.navigationController pushViewController:vc animated:YES];
-    }else {
-        [WXZTipView showCenterWithText:[NSString stringWithFormat:@"暂无开通"]];
-    }
+    [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+        if (type == 0) {
+            //app 已开启定位
+        }else {
+            //系统 未开启定位
+            [[YYB_HF_LocalFailAlertV shareInstance] show];
+            return ;
+        }
+        EntranceDetail *entrModel = self.dataModel.entrance[indexPath.row];
+        
+        NSString *url = entrModel.url;
+        if (url && url.length > 0) {
+            YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+            vc.urlString = url;
+            [self.supVC.navigationController pushViewController:vc animated:YES];
+        }else {
+            [WXZTipView showCenterWithText:[NSString stringWithFormat:@"暂无开通"]];
+        }
+    }];
+    
+   
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -315,15 +326,25 @@
     NSLog(@"section %ld item %ld",indexPath.section,indexPath.row);
     if (indexPath.section == 2) {
         //猜你喜欢
-        GuessLikeModel *guessModel = self.guessLikeData[indexPath.row];
-        NSString *url = guessModel.url;
-        if (url && url.length > 0) {
-            YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-            vc.urlString = url;
-            [self.supVC.navigationController pushViewController:vc animated:YES];
-        }else {
-            [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
-        }
+        [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+            if (type == 0) {
+                //app 已开启定位
+            }else {
+                //系统 未开启定位
+                [[YYB_HF_LocalFailAlertV shareInstance] show];
+                return ;
+            }
+            GuessLikeModel *guessModel = self.guessLikeData[indexPath.row];
+            NSString *url = guessModel.url;
+            if (url && url.length > 0) {
+                YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+                vc.urlString = url;
+                [self.supVC.navigationController pushViewController:vc animated:YES];
+            }else {
+                [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
+            }
+        }];
+        
     }else {
         [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
     }

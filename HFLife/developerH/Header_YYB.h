@@ -27,6 +27,8 @@
 #import "YYB_HF_nearLifeModel.h"
 /** 订单轮循 */
 #import "circleCheckOrderManger.h"
+/** 设置定位视图 */
+#import "YYB_HF_LocalFailAlertV.h"
 /************************yourTools************************/
 
 /************************yourTools************************/

@@ -41,6 +41,7 @@
         _cycleScroll.delegate = self;
         _cycleScroll.tag = -4000;
         _cycleScroll.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
+        _cycleScroll.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         
         //        _cycleScroll.backgroundColor = [UIColor brownColor];
     }

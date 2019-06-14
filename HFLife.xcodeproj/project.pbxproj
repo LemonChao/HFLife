@@ -83,6 +83,7 @@
 		04153C20228AA2F100AA5DAF /* NearDiscountCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BEF228AA2F100AA5DAF /* NearDiscountCouponCell.m */; };
 		04153C21228AA2F100AA5DAF /* NearDiscountCouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BF1228AA2F100AA5DAF /* NearDiscountCouponVC.m */; };
 		04153C22228AA2F100AA5DAF /* LunchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04153BF4228AA2F100AA5DAF /* LunchVC.m */; };
+		0415C27822B3923C0028F4FF /* YYB_HF_LocalFailAlertV.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415C27722B3923C0028F4FF /* YYB_HF_LocalFailAlertV.m */; };
 		042638D622969B7600041A91 /* YYB_HF_setDealPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042638D522969B7600041A91 /* YYB_HF_setDealPassWordVC.m */; };
 		042638D92296A5D000041A91 /* YYB_HF_submitDealPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042638D82296A5D000041A91 /* YYB_HF_submitDealPassWordVC.m */; };
 		042638DD2296B2C900041A91 /* YYB_HF_destroyAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042638DC2296B2C900041A91 /* YYB_HF_destroyAccountVC.m */; };
@@ -1056,6 +1057,8 @@
 		04153BF3228AA2F100AA5DAF /* LunchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunchVC.h; sourceTree = "<group>"; };
 		04153BF4228AA2F100AA5DAF /* LunchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunchVC.m; sourceTree = "<group>"; };
 		04153BF5228AA2F100AA5DAF /* NearFoodVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearFoodVC.h; sourceTree = "<group>"; };
+		0415C27622B3923C0028F4FF /* YYB_HF_LocalFailAlertV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_LocalFailAlertV.h; sourceTree = "<group>"; };
+		0415C27722B3923C0028F4FF /* YYB_HF_LocalFailAlertV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_LocalFailAlertV.m; sourceTree = "<group>"; };
 		042638D422969B7600041A91 /* YYB_HF_setDealPassWordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_setDealPassWordVC.h; sourceTree = "<group>"; };
 		042638D522969B7600041A91 /* YYB_HF_setDealPassWordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYB_HF_setDealPassWordVC.m; sourceTree = "<group>"; };
 		042638D72296A5D000041A91 /* YYB_HF_submitDealPassWordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_submitDealPassWordVC.h; sourceTree = "<group>"; };
@@ -3019,6 +3022,15 @@
 			path = "午餐";
 			sourceTree = "<group>";
 		};
+		0415C27522B391D60028F4FF /* 定位失败提示 */ = {
+			isa = PBXGroup;
+			children = (
+				0415C27622B3923C0028F4FF /* YYB_HF_LocalFailAlertV.h */,
+				0415C27722B3923C0028F4FF /* YYB_HF_LocalFailAlertV.m */,
+			);
+			path = "定位失败提示";
+			sourceTree = "<group>";
+		};
 		042638D322969AB300041A91 /* 交易密码 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3836,6 +3848,7 @@
 			children = (
 				0497837A2285957E00E143D7 /* YYB_HF_LifeLocaView.h */,
 				049783802285957E00E143D7 /* YYB_HF_LifeLocaView.m */,
+				0415C27522B391D60028F4FF /* 定位失败提示 */,
 				0497837B2285957E00E143D7 /* naview */,
 			);
 			path = View;
@@ -8289,6 +8302,7 @@
 				048DAC4A22857516006E6BA2 /* getOutFQ_VC.m in Sources */,
 				04F893462292A1270075918A /* SXF_HF_vipShopVC.m in Sources */,
 				04A50875227EDD3A0013E8EC /* NSArray+Chameleon.m in Sources */,
+				0415C27822B3923C0028F4FF /* YYB_HF_LocalFailAlertV.m in Sources */,
 				04A5083F227EDD390013E8EC /* NinaPagerView.m in Sources */,
 				04A508DB227EDD3A0013E8EC /* HRSandbox.m in Sources */,
 				658B7CBD21D749E100801CC8 /* ZAlertView.m in Sources */,

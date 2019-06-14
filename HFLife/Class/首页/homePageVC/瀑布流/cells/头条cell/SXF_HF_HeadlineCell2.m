@@ -56,7 +56,7 @@
 - (void)setDataForCell:(homeListModel *)model{
     self.titleLb.text = model.title;
     self.timeLb.text = model.addtime_text;
-    [self.imageV sd_setImageWithURL:URL_IMAGE(model.image)];
+    [self.imageV sd_setImageWithURL:MY_URL_IMG(model.image)];
     
 }
 

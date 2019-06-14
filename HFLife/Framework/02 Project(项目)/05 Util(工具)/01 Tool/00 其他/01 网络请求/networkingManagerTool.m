@@ -111,7 +111,9 @@
     //签名sin
     [requestManager.sessionManager.requestSerializer setValue:sha256Str forHTTPHeaderField:@"SIGN"];
     //appVersion
-    [requestManager.sessionManager.requestSerializer setValue:[self getAppVersion] forHTTPHeaderField:@"VERSION"];
+//    [requestManager.sessionManager.requestSerializer setValue:[self getAppVersion] forHTTPHeaderField:@"VERSION"];
+    [requestManager.sessionManager.requestSerializer setValue:@"1.0.1" forHTTPHeaderField:@"VERSION"];
+
     
     //currentTime
     [requestManager.sessionManager.requestSerializer setValue:[NSDate currentTimeStamp10] forHTTPHeaderField:@"TIME"];

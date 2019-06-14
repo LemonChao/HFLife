@@ -14,6 +14,7 @@
 //城市选择相关
 #import "JFLocation.h"
 #import "YYB_HF_NearSearchVC.h"
+
 @interface NearPageVC (){
     int arc;
     BOOL isFirstLoad;
@@ -23,8 +24,6 @@
 @property(nonatomic, strong) YYB_HF_LocalHeadView *headView;
 @property(nonatomic, strong) NSMutableDictionary *cellHeightDic;
 @property(nonatomic, strong) YYB_HF_LifeLocaView *myLocaVeiw;
-@property(nonatomic, strong) UIView *openLocalView;
-
 
 @end
 
@@ -40,15 +39,25 @@
     self.headView = headView;
     headView.addressSelect = ^{
         //地址选择
-        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-        vc.urlString = kH5LocaAdress(kChoiceCity);
+        [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+            if (type == 0) {
+                //app 已开启定位
+            }else {
+                //系统 未开启定位
+                [[YYB_HF_LocalFailAlertV shareInstance] show];
+                return ;
+            }
+            YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+            vc.urlString = kH5LocaAdress(kChoiceCity);
+            
+            vc.choiceCity = ^(NSString * _Nonnull city) {
+                self.headView.setLocalStr = city;
+                [MMNSUserDefaults setValue:city forKey:SelectedCity];
+                [self uploadBackLocation:city];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
         
-        vc.choiceCity = ^(NSString * _Nonnull city) {
-            self.headView.setLocalStr = city;
-            [MMNSUserDefaults setValue:city forKey:SelectedCity];
-            [self uploadBackLocation:city];
-        };
-        [self.navigationController pushViewController:vc animated:YES];
     };
     headView.userHeadClick = ^{
         //点击头像
@@ -64,9 +73,19 @@
     };
     headView.searchIconClick = ^(NSString * _Nonnull search) {
         //点击搜索
-        YYB_HF_NearSearchVC *vc = [[YYB_HF_NearSearchVC alloc]init];
-        vc.searchStrDe = search;
-        [self.navigationController pushViewController:vc animated:YES];
+        [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+            if (type == 0) {
+                //app 已开启定位
+            }else {
+                //系统 未开启定位
+                [[YYB_HF_LocalFailAlertV shareInstance] show];
+                return ;
+            }
+            YYB_HF_NearSearchVC *vc = [[YYB_HF_NearSearchVC alloc]init];
+            vc.searchStrDe = search;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
     };
     
     self.myLocaVeiw = [[YYB_HF_LifeLocaView alloc]initWithFrame:CGRectZero];
@@ -74,12 +93,14 @@
     WEAK(weakSelf);
     self.myLocaVeiw.reFreshData = ^(YYB_HF_nearLifeModel * _Nonnull nearModel) {
         //数据更新
-        if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
-        }else {
-            //app 未开启定位
-            [weakSelf.myLocaVeiw setHidden:YES];
-            [weakSelf.openLocalView setHidden:NO];
-        }
+        [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+            if (type == 0) {
+                //app 已开启定位
+            }else {
+                //系统 未开启定位
+                [[YYB_HF_LocalFailAlertV shareInstance] show];
+            }
+        }];
         if (nearModel.city_now && [nearModel.city_now isKindOfClass:[NSString class]] && nearModel.city_now.length > 0) {
             weakSelf.headView.setLocalStr = nearModel.city_now;
         }else {
@@ -142,82 +163,19 @@
     self.navigationController.navigationBar.translucent = YES;
     self.headView.setHeadImage = [userInfoModel sharedUser].userHeaderImage;
     
-    if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
-        //app 已开启定位
-        if (isFirstLoad) {
-            [self.myLocaVeiw loadData];
-            isFirstLoad = NO;
-        }
-        [self.myLocaVeiw setHidden:NO];
-        [self.openLocalView setHidden:YES];
-    }else {
-        //app 未开启定位
-        [self.myLocaVeiw setHidden:YES];
-        [self.openLocalView setHidden:NO];
+    if (self->isFirstLoad) {
+        [self.myLocaVeiw loadData];
+        self->isFirstLoad = NO;
     }
-    
-}
-
-- (UIView *)openLocalView {
-    
-    if (_openLocalView) {
-        return _openLocalView;
-    }
-    UIView *view = [UIView new];
-    [view setFrame:self.view.frame];
-    _openLocalView = view;
-    [self.view addSubview:view];
-    view.backgroundColor = [UIColor whiteColor];
-    UILabel *label = [[UILabel alloc]init];
-    label.text = @" 未开启定位 ";
-    label.textColor = [UIColor grayColor];
-    
-    UILabel *labelOpen = [[UILabel alloc]init];
-    labelOpen.text = @"  开启定位  ";
-    labelOpen.textColor = [UIColor grayColor];
-    labelOpen.layer.cornerRadius = 10;
-    labelOpen.clipsToBounds = YES;
-    labelOpen.layer.borderWidth = 1.5;
-    labelOpen.layer.borderColor = [UIColor grayColor].CGColor;
-    
-    [view addSubview:label];
-    [view addSubview:labelOpen];
-    
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(view);
-        make.centerY.mas_equalTo(view);
-        make.height.mas_equalTo(20);
-    }];
-    
-    [labelOpen mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(view);
-        make.top.mas_equalTo(label.mas_bottom).mas_offset(15);
-        make.height.mas_equalTo(30);
-    }];
-    [labelOpen setUserInteractionEnabled:YES];
-    [labelOpen wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
-        
-        NSURL *url = [[NSURL alloc] initWithString:UIApplicationOpenSettingsURLString];
-        
-        
-        if( [[UIApplication sharedApplication] canOpenURL:url])
-        {
-            if (@available(iOS 10.0, *)) {
-                [[UIApplication sharedApplication] openURL:url options:nil completionHandler:^(BOOL success) {
-                    if (success) {
-                        [self.openLocalView setHidden:YES];
-                        [self.myLocaVeiw setHidden:NO];
-                    }
-                }];
-            }else {
-                [[UIApplication sharedApplication] openURL:url];
-            }
+    [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+        if (type == 0) {
+            //app 已开启定位
+        }else {
+            //系统 未开启定位
+            [[YYB_HF_LocalFailAlertV shareInstance] show];
         }
     }];
-    return _openLocalView;
-    
 }
-
 
 - (CGFloat)cellContentViewWith
 {

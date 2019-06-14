@@ -90,7 +90,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YYB_HF_LocaColumnCollectionCellItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_LocaColumnCollectionCellItem" forIndexPath:indexPath];
     EntranceDetail *itemModel = (EntranceDetail *)self.itemDataArr[indexPath.row];
-    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:itemModel.icon] placeholderImage:image(@"icon_phone_login")];
+    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:itemModel.icon] placeholderImage:image(@"")];
     cell.title.text = itemModel.name;
     cell.imgView.contentMode = UIViewContentModeScaleAspectFit;
     
