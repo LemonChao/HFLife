@@ -329,7 +329,7 @@
     }else if ([message.name isEqualToString:@"nativeToJump"]){
         [self nativeToJumpParameter:message.body];
     }else if ([message.name isEqualToString:@"goToHome"]){
-        [self goToHome];
+        [self goToHome:message.body];
     }else if ([message.name isEqualToString:@"rushBuy"]){
         [self rushBuyParameter:message.body];
     }else if ([message.name isEqualToString:@"orderHotel"]){
@@ -339,7 +339,7 @@
     }else if ([message.name isEqualToString:@"goToPay"]){
         [self goToPayParameter:message.body];
     }else if ([message.name isEqualToString:@"goToApp"]){
-        [self goToHome];
+        [self goToHome:message.body];
     }else if ([message.name isEqualToString:@"Share"]){
         InviteVC *vc = [[InviteVC alloc]init];
         [vc addShareViewForH5];
@@ -352,7 +352,7 @@
     }else if ([message.name isEqualToString:@"goPay"]){
         [self goToPayParameter:message.body];
     }else if ([message.name isEqualToString:@"goBack"]){
-        [self goToHome];
+        [self goToHome:message.body];
     }else if ([message.name isEqualToString:@"goToSearch"]){
         [self jumSearchVC];
     }else if ([message.name isEqualToString:@"goSetPayPassword"]){
@@ -473,8 +473,17 @@
 }
 
 #pragma mark - 返回首页--
--(void)goToHome{
-    [self.navigationController popViewControllerAnimated:YES];
+-(void)goToHome:(NSString *)body{
+    if (StringIsEmpty(body) || [body isEqualToString:@"返回"] || body.integerValue == 1) {
+        if ([self.webView canGoBack]) {
+            [self.webView goBack];
+        }else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+    }else if (body.integerValue == 0 ) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 #pragma mark -抢购--
 -(void)rushBuyParameter:(NSDictionary *)dict{
