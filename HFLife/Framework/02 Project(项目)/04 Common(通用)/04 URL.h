@@ -18,20 +18,18 @@ static NSString *const URL_PROTOCOL = @"https://";
 //http://xm_hanfu2.com/api/mobile/index.php?w=index&t=index
 //地址(host) （不能为空）http://hzf-takeout    备用@"hzf2-mall.zhongchangjy.com/
 #if DEBUG
-static NSString *const URL_HOST =  @"";//@"ceshi-ucenter.hfgld.net/"; //@"ceshi-shop.hfgld.net/api/mobile/index.php?";
-//static NSString *const URL_HOST =  @"ceshi-ucenter.hfgld.net/";//@"ceshi-life.hfgld.net/";//@"ceshi-ucenter.hfgld.net/"; //@"ceshi-shop.hfgld.net/api/mobile/index.php?";
-//ceshi-ucenter.hfgld.net/;
+static NSString *const URL_HOST =  @"";
 #else
-static NSString *const URL_HOST = @"<#www.xxx.xxx#>";
+static NSString *const URL_HOST = @"";
 #endif
 
 #pragma mark - ---------- 端口(port) ----------
 //端口（port），（含“:”前缀，如果 URL_PORT 为空，则不含）
 #if DEBUG
 
-static NSString *const URL_PORT = @"";//@"api/mobile/index.php?";
+static NSString *const URL_PORT = @"";
 #else
-static NSString *const URL_PORT = @"<#:xxxx#>";
+static NSString *const URL_PORT = @"";
 #endif
 
 #pragma mark - ---------- 路径(path) ----------
@@ -52,7 +50,7 @@ static NSString *const PATH_XXXX = @"PATH_XXXX"; // ⚠️：变量名称全部�
 
 #pragma mark 图片路径通用前缀
 //包括协议、地址、端口号...。含“/”，如果 URL_IMG_PREFIX 为空，则不含。
-static NSString *const URL_IMG_PREFIX = @"<#xxx/#>";
+static NSString *const URL_IMG_PREFIX = @"";
 
 
 
