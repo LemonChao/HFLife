@@ -155,7 +155,7 @@
                 //正在付款z。。。。
             }else if (index == 4){
                 //商家入驻
-               [WXZTipView showCenterWithText:@"z暂未开通"];
+               [WXZTipView showCenterWithText:@"暂未开通"];
             }
         }
         if (vc) {

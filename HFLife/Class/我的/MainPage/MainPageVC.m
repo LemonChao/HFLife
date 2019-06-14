@@ -149,8 +149,9 @@
 }
 #pragma mark - 加载数据
 - (void)loadData {
-    
+    [[WBPCreate sharedInstance] showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kMemberInfo) withParameters:nil withResultBlock:^(BOOL result, id value) {
+        [[WBPCreate sharedInstance] hideAnimated];
         if (result) {
             [userInfoModel attempDealloc];
             if (value && [value isKindOfClass:[NSDictionary class]]) {
