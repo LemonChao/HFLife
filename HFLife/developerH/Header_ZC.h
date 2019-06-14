@@ -62,8 +62,14 @@
 // 商城-购物车-购物车列表
 #define shopCartList        shopUrl(@"w=member_cart&t=cart_list")
 
+// 商城-购物车-修改购物车数量
+#define shopCartQuantity    shopUrl(@"w=member_cart&t=cart_edit_quantity")
+
 // 商城-购物车-删除购物车商品
 #define shopCartDelete      shopUrl(@"w=member_cart&t=cart_delall")
+
+// 商城-购物车-添加到购物车
+#define shopCartAdd         shopUrl(@"w=member_cart&t=cart_add")
 
 // 商城-订单中心-首页
 #define shopOrderCenterHome shopUrl(@"w=member_index")

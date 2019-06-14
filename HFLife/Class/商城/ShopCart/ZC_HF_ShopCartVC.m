@@ -88,7 +88,7 @@
                 make.bottom.equalTo(self.view).inset(TabBarHeight-49);
             }];
         }
-        [self.customNavBar wr_setRightButtonWithTitle:cartArray.count?@"删除 ":@"" titleColor:AssistColor];
+        [self.customNavBar wr_setRightButtonWithTitle:self.viewModel.selectCount.boolValue?@"删除 ":@"" titleColor:AssistColor];
         [self.tableView reloadData];
     }];
     

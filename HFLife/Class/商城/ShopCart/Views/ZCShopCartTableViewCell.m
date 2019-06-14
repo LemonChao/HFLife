@@ -252,7 +252,7 @@
 
 - (void)executeCmdWithSubscriber:(id<RACSubscriber>  _Nonnull) subscriber goodsCount:(NSInteger)count{
     @weakify(self);
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=member_cart&t=cart_edit_quantity" withParameters:@{@"cart_id":self.model.cart_id,@"quantity":@(count)} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartQuantity withParameters:@{@"cart_id":self.model.cart_id,@"quantity":@(count)} withResultBlock:^(BOOL result, id value) {
         @strongify(self);
         if (result) {
             self.model.goods_num = [NSString stringWithFormat:@"%ld",count];

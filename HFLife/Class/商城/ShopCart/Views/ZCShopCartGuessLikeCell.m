@@ -120,7 +120,7 @@
 - (RACCommand *)addCartCmd {
     RACCommand *cmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
         return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-            [networkingManagerTool requestToServerWithType:POST withSubUrl:@"w=member_cart&t=cart_add" withParameters:@{@"goods_id":self.model.goods_id,@"quantity":@"1"} withResultBlock:^(BOOL result, id value) {
+            [networkingManagerTool requestToServerWithType:POST withSubUrl:shopCartAdd withParameters:@{@"goods_id":self.model.goods_id,@"quantity":@"1"} withResultBlock:^(BOOL result, id value) {
                 if (result) {
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:cartValueChangedNotification object:@"refreshNetCart"];
