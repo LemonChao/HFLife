@@ -103,10 +103,10 @@
     return NO;
 }
 +(NSString *)judgeNullReturnString:(id)object{
-    if ([NSString isNOTNull:MMNSStringFormat(@"%@",object)]) {
+    if (object == nil || [object isKindOfClass:[NSNull class]]) {
         return @"";
     }else{
-        return MMNSStringFormat(@"%@",object);
+        return [NSString stringWithFormat:@"%@", object];
     }
 }
 #pragma mark 返回沙盒中的文件路径

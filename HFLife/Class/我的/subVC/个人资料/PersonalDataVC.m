@@ -49,7 +49,8 @@
     self.navigationController.navigationBar.hidden = YES;
     
     userInfoModel *user = [userInfoModel sharedUser];
-    self->valueArray = @[@[[NSString judgeNullReturnString:user.member_avatar],[NSString judgeNullReturnString:user.member_mobile],[NSString judgeNullReturnString:user.nickname],[NSString judgeNullReturnString:user.member_sexName],user.member_age ? user.member_age.stringValue : @""],@[[NSString judgeNullReturnString:user.rz_statusName]],@[@""],@[@""],@[@""]];
+    self->valueArray = @[@[[NSString judgeNullReturnString:user.member_avatar],[NSString judgeNullReturnString:user.member_mobile],[NSString judgeNullReturnString:user.nickname],[NSString judgeNullReturnString:user.member_sexName],[user.member_age integerValue] ? Format(user.member_age) : @""],@[[NSString judgeNullReturnString:user.rz_statusName]],@[@""],@[@""],@[@""]];
+    
     [self.contentTableView reloadData];
     
     
