@@ -310,7 +310,7 @@
      第三个参数:间隔时间 GCD里面的时间最小单位为 纳秒
      第四个参数:精准度(表示允许的误差,0表示绝对精准)
      */
-    dispatch_source_set_timer(self.myTimer, DISPATCH_TIME_NOW, 300.0 * NSEC_PER_SEC, 1 * NSEC_PER_SEC);
+    dispatch_source_set_timer(self.myTimer, DISPATCH_TIME_NOW, 300.0 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
     
     //3.要调用的任务
     dispatch_source_set_event_handler(self.myTimer, ^{
@@ -343,8 +343,10 @@
         }
         
         
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
-            
+        [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
+            if (result) {
+                
+            }
         }];
         
     }
