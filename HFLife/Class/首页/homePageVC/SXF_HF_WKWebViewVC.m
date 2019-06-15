@@ -107,6 +107,8 @@
     //调起QQ
     [userContentController addScriptMessageHandler:self name:@"goToQQ"];
     
+    //下载图片
+    [userContentController addScriptMessageHandler:self name:@"getPhoto"];
     
     [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
     
@@ -327,11 +329,45 @@
         [self jumSearchVC];
     }else if ([message.name isEqualToString:@"goToQQ"]){
         [self jumQQVC:message.body];
+    }else if ([message.name isEqualToString:@"getPhoto"]){
+        [self savePhoto:message.body];
     }
 }
 
 #pragma mark - JS调用OC方法
 
+
+//下载图片
+- (void)savePhoto:(id)photo{
+    NSString *base64Str = @"";
+    if ([photo isKindOfClass:[NSString class]]) {
+        NSString *str = (NSString *)photo;
+        
+        NSArray *arr = [str componentsSeparatedByString:@","];
+        
+        base64Str = arr.lastObject;
+    }
+    //base64加密 数据
+    //base64 解密
+     NSData *data = [[NSData alloc] initWithBase64EncodedString:base64Str options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    UIImage *image = [UIImage imageWithData:data];
+//    [self.view addSubview:imageV];
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    
+    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
+    if (error != NULL)
+    {
+        [WXZTipView showCenterWithText:@"图片保存失败"];
+    }
+    else  // No errors
+    {
+        [WXZTipView showCenterWithText:@"图片保存成功"];
+    }
+}
 
 #pragma mark - 分享
 - (void) goToShare:(id)message{
