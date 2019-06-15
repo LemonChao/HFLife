@@ -42,7 +42,7 @@
         make.left.equalTo(self.leftTableView.mas_right);
     }];
     
-
+    [[WBPCreate sharedInstance] showWBProgress];
     [self getData];
 }
 
@@ -63,8 +63,8 @@
             [self selectedIndex:0];
         }
         
-    } error:^(NSError * _Nullable error) {
-        
+    } completed:^{
+        [[WBPCreate sharedInstance] hideAnimated];
     }];
 }
 
