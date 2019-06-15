@@ -41,6 +41,8 @@
 
 @property (nonatomic, assign)NSInteger people;
 
+@property (nonatomic, strong) dispatch_source_t myTimer;
+
 @end
 
 
@@ -299,8 +301,8 @@
      第三个参数:0
      第四个参数:队列
      */
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    
+    self.myTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+//    self.myTimer = timer;
     //2.设置时间等
     /*
      第一个参数:定时器对象
@@ -308,16 +310,18 @@
      第三个参数:间隔时间 GCD里面的时间最小单位为 纳秒
      第四个参数:精准度(表示允许的误差,0表示绝对精准)
      */
-    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 300.0 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_timer(self.myTimer, DISPATCH_TIME_NOW, 300.0 * NSEC_PER_SEC, 1 * NSEC_PER_SEC);
     
     //3.要调用的任务
-    dispatch_source_set_event_handler(timer, ^{
+    dispatch_source_set_event_handler(self.myTimer, ^{
         NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
         [self uploadBackLocation:city];
         
     });
     //4.开始执行
-    dispatch_resume(timer);
+    dispatch_resume(self.myTimer);
+    
+    
 }
 -(void)uploadBackLocation:(NSString *)city{
     NSLog(@"city = %@",city);
