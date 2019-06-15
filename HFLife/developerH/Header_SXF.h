@@ -65,7 +65,7 @@ static NSString *const ServiceAgreement           = @"/api/system/getServiceAgre
 
 //获取版本信息
 //上传定位
-static NSString *const upDateLocationUrl          = @"/index.php/api/common/setUserAddress";
+static NSString *const upDateLocationUrl          = @"api/common/setUserAddress";
 
 //首页轮播导航接口
 static NSString *const HomeNavBanner              = @"/api/index/homePage";
