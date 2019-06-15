@@ -340,14 +340,14 @@
 
 
 - (void)setSetHeadImageStr:(NSString *)setHeadImageStr {
-    [self.headImageV sd_setImageWithURL:[NSURL URLWithString:setHeadImageStr] placeholderImage:image(@"user__easyico")];
+    [self.headImageV sd_setImageWithURL:[NSURL URLWithString:setHeadImageStr] placeholderImage:image(@"logo")];
 }
 
 - (void)setSetHeadImage:(UIImage *)setHeadImage {
     if (setHeadImage && [setHeadImage isKindOfClass:[UIImage class]]) {
         [self.headImageV setImage:setHeadImage];
     }else {
-        [self.headImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:image(@"user__easyico")];
+        [self.headImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:image(@"logo")];
     }
 }
 //获取热搜数据、默认美食

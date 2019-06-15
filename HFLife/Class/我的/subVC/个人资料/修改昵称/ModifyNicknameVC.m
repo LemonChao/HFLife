@@ -152,16 +152,26 @@
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     if ([self.type isEqualToString:@"年龄"]) {
-        if (userNameTextField.text.length > 3) {
-            [WXZTipView showCenterWithText:@"年龄不能大于三位"];
-            return NO;
-        }
+        
     }else {
         if (userNameTextField.text.length > 5) {
             [WXZTipView showCenterWithText:@"昵称不能大于5位"];
             return NO;
         }
     }
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if ([self.type isEqualToString:@"年龄"]) {
+        if (userNameTextField.text.length >= 3 && string.length != 0) {
+            return NO;
+        }
+    }else {
+        
+    }
+    
     return YES;
 }
 
@@ -173,10 +183,7 @@
         return;
     }
     if ([self.type isEqualToString:@"年龄"]) {
-        if ((userNameTextField.text.length) > 3) {
-            [WXZTipView showCenterWithText:@"年龄不能大于三位数"];
-            return ;
-        }
+        
     }else {
         if ((userNameTextField.text.length) > 5) {
             [WXZTipView showCenterWithText:@"昵称不能大于5位数"];
@@ -194,7 +201,13 @@
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
             if (self.modifiedSuccessfulBlock) {
-                self.modifiedSuccessfulBlock(self->userNameTextField.text);
+                if ([self.type isEqualToString:@"年龄"]) {
+                    int age = [self->userNameTextField.text intValue];
+                    NSString *ageStr =  [NSString stringWithFormat:@"%d",age > 128 ? 127 : age];
+                    self.modifiedSuccessfulBlock(ageStr);
+                }else {
+                    self.modifiedSuccessfulBlock(self->userNameTextField.text);
+                }
             }
             [self.navigationController popViewControllerAnimated:YES];
             if (value && [value isKindOfClass:[NSDictionary class]]) {

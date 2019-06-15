@@ -155,7 +155,7 @@
         if (indexPath.section == 1) {
             cell.cellType = NO;
             cell.userNameLb.text = self.payUserDic[@"nickname"];
-            [cell.userHeaderImageV sd_setImageWithURL:MY_URL_IMG(self.payUserDic[@"photo"]) placeholderImage:MY_IMAHE(@"user__easyico")];
+            [cell.userHeaderImageV sd_setImageWithURL:MY_URL_IMG(self.payUserDic[@"photo"]) placeholderImage:MY_IMAHE(@"logo")];
             if ([self.payUserDic valueForKey:@"pay_money"]) {
                 cell.payStatusLb.text = [NSString stringWithFormat:@"￥%@", self.payUserDic[@"pay_money"]];
             }
