@@ -21,8 +21,12 @@
         _shopRefreshCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal combineLatest:@[[self restSignal],[self exclusizeSignal]] reduce:^id _Nonnull(NSArray *section0, NSArray *section1){
                 @strongify(self);
-                if (section0.count && section1.count) {
-                    self.dataArray = @[section0,section1];
+                [[WBPCreate sharedInstance] hideAnimated];
+                if (section0.count) {//如果只有 exclusizeSignal 成功，也视为失败
+                    self.dataArray = @[section0];
+                    if (section1.count) {
+                        self.dataArray = @[section0,section1];
+                    }
                     return @(1);
                 }
                 return @(0);

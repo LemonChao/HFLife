@@ -65,6 +65,7 @@
 }
 /*去掉json字符串中的特殊字符*/
 + (NSDictionary *)checkJsonWithJsonData:(NSData *)jsonData withEcodingStr:(NSString *)ecodingStr{
+    if (!jsonData) return nil;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
     if (dictionary == nil) {
         ecodingStr = [ecodingStr stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];

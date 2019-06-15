@@ -35,6 +35,7 @@
     
     [self.view addSubview:self.collectionView];
     [self refreshData];
+    [[WBPCreate sharedInstance] showWBProgress];
 }
 
 - (void)setupNavBar {
