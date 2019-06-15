@@ -210,7 +210,7 @@
             [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
             [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
             [userInfoModel attempDealloc];
-            [WXZTipView showCenterWithText:@"登录已过期请重新登录"];
+//            [WXZTipView showCenterWithText:@"登录已过期请重新登录"];
             [LoginVC login];
         }else{
             

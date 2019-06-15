@@ -88,22 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSNumber *payment_code;//是否领取收款码
 
 @end
-//@interface MemberInfoModel : BaseModel
-//@property (nonatomic ,strong) NSNumber *id;//用户id
-//@property (nonatomic ,copy) NSString *member_mobile;///用户名
-//@property (nonatomic ,strong) NSNumber *member_sex;//性别 0保密 1男 2女
-//@property (nonatomic ,copy) NSString *member_sexName;//性别 0保密 1男 2女(!!获取member_sex名称
-//@property (nonatomic ,copy) NSString *member_avatar;//头像
-//@property (nonatomic ,strong) NSNumber *member_age;//年龄
-//@property (nonatomic ,copy) NSString *nickname;//昵称
-//@property (nonatomic ,strong) NSNumber *rz_status;// 实名认证状态 0未认证   1已认证   2审核中   3未通过
-//@property (nonatomic ,copy) NSString *realname;// //真实姓名
-//@property (nonatomic ,copy) NSString *rz_statusName;//实名认证状态(!!获取rz_status名称
-//@property (nonatomic ,copy) NSString *invite_code;//邀请码
-//@property (nonatomic ,strong) NSNumber *level_id;//等级ID
-//@property (nonatomic ,copy) NSString *level_name;//等级名称
-//
-//@end
+
 
 
 
