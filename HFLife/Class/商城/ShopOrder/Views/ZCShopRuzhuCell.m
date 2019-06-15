@@ -106,7 +106,8 @@
 }
 
 - (void)ruzhuButtonAction:(UIButton *)button {
-    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] initWithPath:@"signingIndex" parameters:nil];
+    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] init];
+    webVC.urlString = @"https://ceshi-web.hfgld.net/contract/#/signingIndex";
     [self.viewController.navigationController pushViewController:webVC animated:YES];
 }
 
