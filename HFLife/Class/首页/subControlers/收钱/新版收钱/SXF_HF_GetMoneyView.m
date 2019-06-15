@@ -53,8 +53,7 @@
 - (void) addChildrenViews{
     _titleArr = @[@"收款记录",@"",[[userInfoModel sharedUser].payment_code integerValue] ? @"收款码已升级" : @"升级收款码"];
     _imageArr = @[@"记录",@"",[[userInfoModel sharedUser].payment_code integerValue] ? @"收款码未领取" : @"收款码未领取"];
-    self.getMoneyHeader = [[SXF_HF_getMoneyTabHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 432)];
-    self.payMoneyHeader = [[SXF_HF_payMoneyTabHeader alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, ScreenScale(410))];
+    
     
     self.tableView = [[UITableView alloc] initWithFrame:self.bounds];
     self.tableView.delegate = self;
@@ -173,13 +172,13 @@
                     cell.userInteractionEnabled = NO;
                     cell.titleLb.text = @"已升级收款码";
                     cell.titltImageV.image = MY_IMAHE(@"收款码已领取");
-                    cell.textLabel.textColor = color0C0B0B;
+                    cell.titleLb.textColor = colorAAAAAA;
                 }else{
                     //未领取
                     cell.userInteractionEnabled = YES;
                     cell.titleLb.text = @"升级收款码";
                     cell.titltImageV.image = MY_IMAHE(@"收款码未领取");
-                    cell.textLabel.textColor = colorAAAAAA;
+                    cell.titleLb.textColor = color0C0B0B;
                 }
             }
         }
@@ -252,4 +251,22 @@
         [WXZTipView showCenterWithText:@"图片保存成功"];
     }
 }
+
+
+
+- (SXF_HF_payMoneyTabHeader *)payMoneyHeader{
+    if (!_payMoneyHeader) {
+        _payMoneyHeader = [[SXF_HF_payMoneyTabHeader alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, ScreenScale(410))];
+    }
+    
+    return _payMoneyHeader;
+}
+
+- (SXF_HF_getMoneyTabHeaderView *)getMoneyHeader{
+    if (!_getMoneyHeader) {
+        _getMoneyHeader = [[SXF_HF_getMoneyTabHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 432)];
+    }
+    return _getMoneyHeader;
+}
+
 @end

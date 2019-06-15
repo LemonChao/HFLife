@@ -25,6 +25,7 @@
 #define URL_IMAGE(url)  [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, url ? url : @""]]
 /************************subUrl************************/
 
+#define baseWebUrl      @"http://ceshi-web.hfgld.net/"
 
 #define LOCALTEST        0  //1:本地测试 0:线上测试
 
@@ -43,6 +44,8 @@
     #define SXF_LOC_URL_STR(subUrl)        [NSString stringWithFormat:@"ceshi-ucenter.hfgld.net%@", subUrl ? subUrl : @""]
     static NSString *const shareUrl        = @"https://www.hfgld.net/app_html/registered/registered.html?invite_code=%@";//分享
     #define OPENSHOPURLLIST @"https://www.hfgld.net/app_html/enter_shop_model/#/list"//申请列表(web)
+
+    #define myShop    @"http://ceshi-web.hfgld.net/mall/#/store?store_id=65"
 
 #else//线上
     #define SXF_LOC_URL_STR(subUrl)        [NSString stringWithFormat:@"ceshi-ucenter.hfgld.net%@", subUrl ? subUrl : @""]

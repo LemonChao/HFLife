@@ -64,9 +64,25 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.homePageVM fireTimer];
     //加载数据
     [self loadServerData];
 }
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.homePageVM cancleTimer];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+}
+
+
+
 //网络数据
 - (void)loadServerData{
     [self.homePageVM  getBannerData];
@@ -169,15 +185,7 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.homePageVM fireTimer];
-}
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.homePageVM cancleTimer];
-}
 
 
 

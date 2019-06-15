@@ -82,10 +82,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy,nullable)  NSString  *weixin_unionid;//微信id
 @property (nonatomic ,copy,nullable) NSString *alipay_unionid;//支付宝id
 @property (nonatomic ,strong) NSNumber *set_pass;//支付密码（0未设置，1已设置）
-
-
 @property (nonatomic, strong)UIImage *userHeaderImage;//用户头像
+
+
 @property (nonatomic, strong)NSNumber *payment_code;//是否领取收款码
+@property (nonatomic, strong)NSString *qrcode_shop_name;//店铺名称
 
 @end
 
