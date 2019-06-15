@@ -183,7 +183,10 @@
         return;
     }
     if ([self.type isEqualToString:@"年龄"]) {
-        
+        if (([userNameTextField.text intValue]) > 100) {
+            [WXZTipView showCenterWithText:@"年龄不能大于100！"];
+            return ;
+        }
     }else {
         if ((userNameTextField.text.length) > 5) {
             [WXZTipView showCenterWithText:@"昵称不能大于5位数"];
