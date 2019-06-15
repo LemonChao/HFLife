@@ -265,7 +265,6 @@
     _shapeLayer.fillColor = [UIColor clearColor].CGColor;
     [self.cycleBtn.layer addSublayer:_shapeLayer];
     [self startCircleAniColor:colorCA1400 duation:self.videoDuration];
-    
 }
 
 - (void)startCircleAniColor:(UIColor *)color duation:(CGFloat)duation{
