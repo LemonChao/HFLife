@@ -51,8 +51,7 @@
             vc.urlString = kH5LocaAdress(kChoiceCity);
             
             vc.choiceCity = ^(NSString * _Nonnull city) {
-                self.headView.setLocalStr = city;
-                [MMNSUserDefaults setValue:city forKey:SelectedCity];
+//                self.headView.setLocalStr = city;
                 [self uploadBackLocation:city];
             };
             [self.navigationController pushViewController:vc animated:YES];
@@ -60,6 +59,19 @@
         
     };
     headView.userHeadClick = ^{
+        
+//        NSURL *url;
+//        // QQ
+//        url = [NSURL URLWithString:[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", @"1171727303"]];
+//        // 微信
+////         url = [NSURL URLWithString:[NSString stringWithFormat:@"weixin://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", @"YANGYABO019"]];
+//        // 电话
+//        // url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", @"电话号码"]];
+//
+//        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+//            [[UIApplication sharedApplication] openURL:url];
+//        }
+//        return ;
         //点击头像
         [self.navigationController pushViewController:[NSClassFromString(@"PersonalDataVC") new] animated:YES];
     };
@@ -147,12 +159,15 @@
             CLLocationCoordinate2D coor = [JZLocationConverter gcj02ToBd09:gaocoor];
             [dict setObject:MMNSStringFormat(@"%f",coor.latitude) forKey:@"lat"];
             [dict setObject:MMNSStringFormat(@"%f",coor.longitude) forKey:@"lng"];
+            [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
+                if (result) {
+                    [MMNSUserDefaults setValue:city forKey:SelectedCity];
+                    [self.myLocaVeiw loadData];
+                }else {
+                    
+                }
+            }];
         }
-        
-        
-        [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
-            
-        }];
     }
 }
 
