@@ -537,8 +537,13 @@
     }
     
     NSString *type = [NSString stringWithFormat:@"%@", dict[@"payType"] ? dict[@"payType"] : @""];
-    NSString *payDataJsonStr = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict[@"pullPayInfo"] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-    
+    NSString *payDataJsonStr;
+    if ([dict[@"pullPayInfo"] isKindOfClass:[NSDictionary class]]) {
+        payDataJsonStr = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict[@"pullPayInfo"] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+    }else{
+        [WXZTipView showCenterWithText:@"数据错误"];
+        return;
+    }
     if ([type isEqualToString:@"0"]) {
         // 余额支付
     }
