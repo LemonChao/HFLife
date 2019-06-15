@@ -18,6 +18,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *setMoneyLb;
 @property (weak, nonatomic) IBOutlet UIButton *resetMoneyBtn;
 @property (nonatomic, assign)BOOL resetBtnType;
+
+
+
+//升级后状态
+@property (weak, nonatomic) IBOutlet UIView *topHeaderView;
+@property (weak, nonatomic) IBOutlet UIImageView *shopImageV;
+@property (weak, nonatomic) IBOutlet UILabel *shopNameLb;
+@property (weak, nonatomic) IBOutlet UIImageView *rightIncoder;
+
+
 @end
 
 @implementation SXF_HF_getMoneyTabHeaderView
@@ -26,13 +36,39 @@
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
-
-    self.userNameLb.text = [NSString stringWithFormat:@"%@(LV:%@)", [userInfoModel sharedUser].nickname , [userInfoModel sharedUser].level_name];
-    self.meddileTitleLb.text = [userInfoModel sharedUser].nickname;
-    
-
-    
+    [self changeHeaderStatus];
 }
+
+
+//改变头部状态
+- (void) changeHeaderStatus{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTopHeader:)];
+    [self.topHeaderView addGestureRecognizer:tap];
+    if ([[userInfoModel sharedUser].payment_code integerValue]) {
+        //已领收款码 显示店铺信息
+        self.userNameLb.hidden = YES;
+        self.shopImageV.hidden = NO;
+        self.shopNameLb.hidden = NO;
+        self.rightIncoder.hidden = NO;
+        self.shopNameLb.text = [userInfoModel sharedUser].qrcode_shop_name;
+        self.topHeaderView.userInteractionEnabled = YES;
+    }else{
+        self.userNameLb.hidden = NO;
+        self.shopImageV.hidden = YES;
+        self.shopNameLb.hidden = YES;
+        self.rightIncoder.hidden = YES;
+        self.userNameLb.text = [NSString stringWithFormat:@"%@(LV:%@)", [userInfoModel sharedUser].nickname , [userInfoModel sharedUser].level_name];
+        self.topHeaderView.userInteractionEnabled = NO;
+    }
+    self.meddileTitleLb.text = [userInfoModel sharedUser].nickname;
+}
+
+
+//点击头部按钮
+- (void)tapTopHeader:(UITapGestureRecognizer *)tap{
+    !self.clickHeaderBtn ? :  self.clickHeaderBtn(-1, NO);
+}
+
 - (void)setMoney:(NSString *)money{
     _money = money;
     if ([_money floatValue] > 0) {
@@ -68,6 +104,9 @@
 }
 - (void)setDataForView:(id)data{
     self.qCodeImageV.image = [SGQRCodeObtain generateQRCodeWithData:[NSString stringWithFormat:@"%@",data] size:self.qCodeImageV.bounds.size.width logoImage:[userInfoModel sharedUser].userHeaderImage ratio:0.25];
+    
+    //判断是否已升级二维码 改变状态
+    [self changeHeaderStatus];
 }
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     

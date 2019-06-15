@@ -14,7 +14,7 @@
 #import "UIImage+Developer.h"
 #import "WGButtnAniView.h"
 #import "WGCircleAniView.h"
-#define DDHidden_TIME   3.0
+#define DDHidden_TIME   0.5
 #define DDScreenW   [UIScreen mainScreen].bounds.size.width
 #define DDScreenH   [UIScreen mainScreen].bounds.size.height
 
@@ -25,6 +25,11 @@
 @property (nonatomic, strong) MPMoviePlayerController *playerController;
 @property (nonatomic, strong)UIButton *cycleBtn;
 @property (nonatomic, strong)CAShapeLayer *shapeLayer;
+
+@property (nonatomic, strong)CADisplayLink *link;
+@property (nonatomic, assign)NSInteger index;
+@property (nonatomic, strong)UIButton *countDownBtn;
+@property (nonatomic, strong)NSTimer *countTimer;
 @end
 
 @implementation DHGuidePageHUD
@@ -142,7 +147,18 @@
 }
 
 - (void)removeGuidePageHUD {
+    if (self.link) {
+        [self cancleLinker];
+    }
+    NSLog(@"移除");
+    // 停掉定时器
+    if (self.countTimer) {
+        [self.countTimer invalidate];
+        self.countTimer = nil;
+    }
+    
     [self removeFromSuperview];
+    
 }
 
 /**< APP视频新特性页面(新增测试模块内容) */
@@ -184,6 +200,45 @@
     return self;
 }
 
+
+
+- (void) startCountDownBtn{
+    self.index = 5;
+    UIButton *btn = [[UIButton alloc] init];
+    btn.frame = CGRectMake(self.frame.size.width - 81, HeightStatus, 70, 26);
+    btn.layer.cornerRadius = 13;
+    btn.layer.masksToBounds = YES;
+    btn.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+    btn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [btn setTitle:[NSString stringWithFormat:@"%ld  跳过", self.index] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self addSubview:btn];
+    [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.countDownBtn = btn;
+    
+//    self.link = [CADisplayLink displayLinkWithTarget:self selector:@selector(changeBtn)];
+//    [self.link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+//    self.link.frameInterval = 1000;//一秒触发一次
+    
+    
+    
+    
+}
+- (void)changeBtn{
+    self.index --;
+    [self.countDownBtn setTitle:[NSString stringWithFormat:@"%ld  跳过", self.index] forState:UIControlStateNormal];
+    if (self.index <= 0) {
+        //释放timer
+        [self cancleLinker];
+    }
+}
+
+- (void)cancleLinker{
+    [self.link removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+    [self.link invalidate];
+    self.link = nil;
+}
+
 - (void)startCycleAnimation{
     UIButton *btn = [[UIButton alloc] init];
     btn.frame = CGRectMake(self.frame.size.width - 50, HeightStatus, 40, 40);
@@ -203,8 +258,6 @@
     
     UIBezierPath *circlePath = [UIBezierPath bezierPath];
     [circlePath addArcWithCenter:CGPointMake(self.cycleBtn.frame.size.width * 0.5, self.cycleBtn.frame.size.width * 0.5) radius:self.cycleBtn.frame.size.height/2 startAngle:0 endAngle:M_PI*2 clockwise:YES];
-    
-    
     
     _shapeLayer.path = circlePath.CGPath;
     _shapeLayer.lineWidth = 5;
@@ -256,6 +309,70 @@
     _videoDuration = videoDuration;
 //    [self performSelector:@selector(buttonClick:) withObject:nil afterDelay:(videoDuration - 0.1)];
     //圆环f动画
-    [self startCycleAnimation];
+//    [self startCycleAnimation];
+    [self startCountDownBtn];
+    [self startTimer];
+    
+//    [self startCoundown];
 }
+
+
+
+- (void)countDown {
+    
+    //防止负数出现
+    if (self.index > 0) {
+        self.index --;
+    }
+    [self.countDownBtn setTitle:[NSString stringWithFormat:@"%ld  跳过",(long)self.index] forState:UIControlStateNormal];
+    if (self.index == 0) {
+        
+        [self buttonClick:self.countDownBtn];
+    }
+}
+
+// 定时器倒计时
+- (void)startTimer {
+    
+    [[NSRunLoop mainRunLoop] addTimer:self.countTimer forMode:NSRunLoopCommonModes];
+}
+
+// GCD倒计时
+- (void)startCoundown {
+    
+    __weak __typeof(self) weakSelf = self;
+    __block NSInteger timeout = self.index + 1; //倒计时时间 + 1
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0 * NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout <= 0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                //移除
+                [self buttonClick:self.countDownBtn];
+                
+            });
+        }else{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.countDownBtn setTitle:[NSString stringWithFormat:@"%ld  跳过",timeout] forState:UIControlStateNormal];
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+}
+
+- (NSTimer *)countTimer {
+    
+    if (!_countTimer) {
+        _countTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
+    }
+    return _countTimer;
+}
+
+
+
 @end

@@ -27,12 +27,38 @@
                                     <color key="textColor" red="0.792156862745098" green="0.078431372549019607" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="店铺背景" translatesAutoresizingMaskIntoConstraints="NO" id="cl7-Jv-1zx">
+                                    <rect key="frame" x="10" y="11.5" width="23" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="X6D-cS-z2T"/>
+                                        <constraint firstAttribute="width" constant="23" id="lZz-aA-hsI"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小可爱(LV:VIP1)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIN-GU-MDX">
+                                    <rect key="frame" x="38" y="12" width="100.5" height="20"/>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="14"/>
+                                    <color key="textColor" red="0.79215686269999996" green="0.078431372550000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="资源 36" translatesAutoresizingMaskIntoConstraints="NO" id="YMZ-Us-eij">
+                                    <rect key="frame" x="403" y="16.5" width="7" height="11"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="11" id="Yct-wq-LV8"/>
+                                        <constraint firstAttribute="width" constant="7" id="oLC-nu-LlR"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="Auf-r6-s4j"/>
+                                <constraint firstItem="cl7-Jv-1zx" firstAttribute="leading" secondItem="x3V-Al-5cP" secondAttribute="leading" id="G0Z-ox-wHy"/>
                                 <constraint firstItem="x3V-Al-5cP" firstAttribute="leading" secondItem="c82-R2-euO" secondAttribute="leading" constant="10" id="M96-NA-rrk"/>
+                                <constraint firstItem="YMZ-Us-eij" firstAttribute="centerY" secondItem="c82-R2-euO" secondAttribute="centerY" id="Mbq-a7-BXw"/>
+                                <constraint firstItem="yIN-GU-MDX" firstAttribute="leading" secondItem="cl7-Jv-1zx" secondAttribute="trailing" constant="5" id="UsJ-Rk-XFA"/>
+                                <constraint firstAttribute="trailing" secondItem="YMZ-Us-eij" secondAttribute="trailing" constant="12" id="XeN-q8-vRb"/>
+                                <constraint firstItem="cl7-Jv-1zx" firstAttribute="centerY" secondItem="c82-R2-euO" secondAttribute="centerY" id="fwF-Fh-MvW"/>
                                 <constraint firstItem="x3V-Al-5cP" firstAttribute="centerY" secondItem="c82-R2-euO" secondAttribute="centerY" id="j2G-Lh-0h0"/>
+                                <constraint firstItem="yIN-GU-MDX" firstAttribute="centerY" secondItem="cl7-Jv-1zx" secondAttribute="centerY" id="mqB-Pc-uxF"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小可爱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbf-U4-Swm">
@@ -146,10 +172,18 @@
                 <outlet property="meddileTitleLb" destination="Wbf-U4-Swm" id="Qdf-hk-YOj"/>
                 <outlet property="qCodeImageV" destination="7GY-wu-pdJ" id="Yh6-AW-PQG"/>
                 <outlet property="resetMoneyBtn" destination="wvn-Rc-Rsz" id="712-p1-BuV"/>
+                <outlet property="rightIncoder" destination="YMZ-Us-eij" id="icy-Ww-WF8"/>
                 <outlet property="setMoneyLb" destination="bXY-bk-CQd" id="uol-xf-4S3"/>
+                <outlet property="shopImageV" destination="cl7-Jv-1zx" id="72S-IF-pXr"/>
+                <outlet property="shopNameLb" destination="yIN-GU-MDX" id="xBX-Td-FAS"/>
+                <outlet property="topHeaderView" destination="c82-R2-euO" id="0bQ-Mg-UFJ"/>
                 <outlet property="userNameLb" destination="x3V-Al-5cP" id="zA9-Gn-0yV"/>
             </connections>
             <point key="canvasLocation" x="64" y="-474.06296851574217"/>
         </view>
     </objects>
+    <resources>
+        <image name="店铺背景" width="23" height="21"/>
+        <image name="资源 36" width="6.5" height="10.5"/>
+    </resources>
 </document>
