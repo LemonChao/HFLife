@@ -325,7 +325,8 @@
         dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
         dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
         dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
-        
+        dic[@"locationCity"] = [[NSUserDefaults standardUserDefaults] valueForKey:LocationCity];
+
         NSLog(@"window.iOSInfo:%@", dic);
         NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
         NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
