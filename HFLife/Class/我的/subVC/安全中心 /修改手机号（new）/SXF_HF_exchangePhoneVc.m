@@ -70,19 +70,42 @@
         [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kChangemobile) withParameters:@{@"mobile":self.phoneTextF.text,@"captcha":self.verCodeTextf.text} withResultBlock:^(BOOL result, id value) {
             [[WBPCreate sharedInstance]hideAnimated];
             if (result) {
-                //
-                if (value && [value isKindOfClass:[NSDictionary class]]) {
-                    [WXZTipView showCenterWithText:@"修改成功"];
-                    NSString *token = [value safeObjectForKey:@"ucenter_token"];
-                    if (token && [token isKindOfClass:[NSString class]] && token.length > 0) {
-                        [[NSUserDefaults standardUserDefaults]setValue:token forKey:USER_TOKEN];
-                        [userInfoModel sharedUser].member_mobile = self.phoneTextF.text;
-                        [userInfoModel getUserInfo];
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }else {
-                        [WXZTipView showCenterWithText:@"未获取到token"];
-                    }
-                }
+                
+                
+                [WXZTipView showCenterWithText:@"修改成功，请重新登陆！！！"];
+                dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+                dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                    
+                    [[NSUserDefaults standardUserDefaults] setValue:nil forKey:USER_TOKEN];
+                    [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:LOGIN_STATES];
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERINFO_DATA];
+                    [userInfoModel attempDealloc];
+                    
+                    //移除别名
+                    [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                        NSLog(@"移除的别名   %@", iAlias);
+                    } seq:001];
+                    //销毁单例
+                    [LoginVC login];
+                    
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    [ShareSDK cancelAuthorize:(SSDKPlatformTypeQQ) result:^(NSError *error) {
+                        
+                    }];
+                    [ShareSDK cancelAuthorize:(SSDKPlatformTypeWechat) result:^(NSError *error) {
+                        
+                    }];
+                    [networkingManagerTool requestToServerWithType:POST withSubUrl:kCenterAdress(kLogout) withParameters:nil withResultBlock:^(BOOL result, id value) {
+                        [[WBPCreate sharedInstance]hideAnimated];
+                        if (result) {
+                            
+                        }else {
+                            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                            }else {
+                            }
+                        }
+                    }];
+                });
                 
             }else {
                 if (value && [value isKindOfClass:[NSDictionary class]]) {

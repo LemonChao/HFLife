@@ -60,7 +60,7 @@
     self.moneyLb.text = [NSString stringWithFormat:@"%@", model.real_num ? model.real_num : @(0)];
     self.typeLb.text = model.tag;
     self.subTitleLb.text = model.tag_remark;
-    [self.headerImageV sd_setImageWithURL:MY_URL_IMG(model.member_avatar) placeholderImage:MY_IMAHE(@"user__easyico")];
+    [self.headerImageV sd_setImageWithURL:MY_URL_IMG(model.member_avatar) placeholderImage:MY_IMAHE(@"logo")];
 }
 
 - (void)layoutSubviews{

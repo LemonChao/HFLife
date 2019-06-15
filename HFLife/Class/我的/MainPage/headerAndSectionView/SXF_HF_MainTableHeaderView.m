@@ -152,7 +152,7 @@
     
     
     
-    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"user__easyico")];
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MY_IMAHE(@"logo")];
     NSString *nameStr = [userInfoModel sharedUser].nickname;
     self.userNameLb.text = nameStr ? nameStr : @"";
     self.userLeveLb.text = @"LV：";
@@ -168,7 +168,7 @@
 
 #pragma mark - 设置信息
 - (void)setMemberInfoModel:(userInfoModel *)memberInfoModel {
-    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:memberInfoModel.member_avatar] placeholderImage:MY_IMAHE(@"user__easyico")];
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:memberInfoModel.member_avatar] placeholderImage:MY_IMAHE(@"logo")];
     NSString *nameStr = memberInfoModel.nickname;
     self.userNameLb.text = nameStr ? nameStr : @"昵称名称";
     self.userLeveLb.text = memberInfoModel.level_name ? memberInfoModel.level_name : @"无等级信息";

@@ -92,7 +92,7 @@
     }];
     
     headImageView = [UIImageView new];
-    [headImageView sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MMGetImage(@"user__easyico")];
+    [headImageView sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] placeholderImage:MMGetImage(@"logo")];
     [self.view addSubview:headImageView];
     [headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);

@@ -97,7 +97,7 @@
         make.width.mas_equalTo(SCREEN_WIDTH);
     }];
     self.imageBtn = imageV;
-    [self.imageBtn sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] forState:UIControlStateNormal placeholderImage:image(@"user__easyico")];
+    [self.imageBtn sd_setImageWithURL:[NSURL URLWithString:[userInfoModel sharedUser].member_avatar] forState:UIControlStateNormal placeholderImage:image(@"logo")];
 
 }
 

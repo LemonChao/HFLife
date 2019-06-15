@@ -96,7 +96,7 @@
     _imageName = imageName;
     iconImageView.hidden = NO;
     subtitleLabel.hidden = YES;
-    [iconImageView sd_setImageWithURL:[NSURL URLWithString:_imageName] placeholderImage:MMGetImage(@"user__easyico")];
+    [iconImageView sd_setImageWithURL:[NSURL URLWithString:_imageName] placeholderImage:MMGetImage(@"logo")];
 }
 -(void)setIsArrowHiden:(BOOL)isArrowHiden{
     _isArrowHiden = isArrowHiden;

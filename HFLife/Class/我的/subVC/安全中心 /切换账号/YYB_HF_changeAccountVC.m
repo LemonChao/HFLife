@@ -112,7 +112,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         NSDictionary *accountItem = [self.accountDic valueForKey:self.accountMobileArr[indexPath.row]];
-        [cell.headImageView sd_setImageWithURL:[accountItem valueForKey:@"member_avatar"] placeholderImage:image(@"user__easyico")];
+        [cell.headImageView sd_setImageWithURL:[accountItem valueForKey:@"member_avatar"] placeholderImage:image(@"logo")];
         NSString *accountStr = [accountItem valueForKey:@"member_mobile"];
         cell.accountLabel.text = [accountStr EncodeTel] ;
         if ([[userInfoModel sharedUser].member_mobile isEqualToString:accountStr]) {
