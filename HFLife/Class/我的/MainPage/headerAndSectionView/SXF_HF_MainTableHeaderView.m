@@ -174,8 +174,8 @@
     self.userLeveLb.text = memberInfoModel.level_name ? memberInfoModel.level_name : @"无等级信息";
     self.myJoinTitleLb.text = memberInfoModel.invite_code ? [NSString stringWithFormat:@"我的邀请码:%@",memberInfoModel.invite_code] : @"";
     if (memberInfoModel.i_agent_level.intValue > 0) {
-        self.moneyLb1.text = memberInfoModel.yesterday_turnover.stringValue ? memberInfoModel.yesterday_turnover.stringValue : @"0";
-        self.moneyLb2.text = memberInfoModel.yesterday_benefit.stringValue ? memberInfoModel.yesterday_benefit.stringValue : @"0";
+        self.moneyLb1.text = Format(memberInfoModel.yesterday_turnover) ? Format(memberInfoModel.yesterday_turnover) : @"0";
+        self.moneyLb2.text = Format(memberInfoModel.yesterday_benefit) ? Format(memberInfoModel.yesterday_benefit) : @"0";
         self.moneyTitle1.text = @"昨日营业额(元)";
         self.moneyTitle2.text = @"昨日商家让利(元)";
         self.bottomLb.text = memberInfoModel.i_agent_name ? memberInfoModel.i_agent_name : @"代理区域";

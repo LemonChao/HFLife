@@ -113,12 +113,21 @@
                 [[YYB_HF_LocalFailAlertV shareInstance] show];
             }
         }];
-        if (nearModel.city_now && [nearModel.city_now isKindOfClass:[NSString class]] && nearModel.city_now.length > 0) {
-            weakSelf.headView.setLocalStr = nearModel.city_now;
-        }else {
-            weakSelf.headView.setLocalStr = @"正在定位...";
-        }
+//        if (nearModel.city_now && [nearModel.city_now isKindOfClass:[NSString class]] && nearModel.city_now.length > 0) {
+//            weakSelf.headView.setLocalStr = nearModel.city_now;
+//        }else {
+//            weakSelf.headView.setLocalStr = @"正在定位...";
+//        }
     };
+    
+    NSString *address = [[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity];
+    if (!address) {
+        address = [[NSUserDefaults standardUserDefaults] valueForKey:LocationCity];
+    }
+    if (!address) {
+        address = @"定位失败";
+    }
+    self.headView.setLocalStr = address;
     
     [self.view addSubview:self.myLocaVeiw];
     //    [self.myLocaVeiw setFrame:CGRectMake(0, NavBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - NavBarHeight - TabBarHeight)];
@@ -150,24 +159,72 @@
         
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         [dict setObject:city forKey:@"city_name"];
-        
-        if ([JFLocationSingleton sharedInstance].locationArray.count>0) {
-            CLLocation *newLocation = [[JFLocationSingleton sharedInstance].locationArray lastObject];
-            CLLocationCoordinate2D gaocoor;
-            gaocoor.latitude = newLocation.coordinate.latitude ? newLocation.coordinate.latitude : 0.0;
-            gaocoor.longitude = newLocation.coordinate.longitude ? newLocation.coordinate.longitude : 0.0;
-            CLLocationCoordinate2D coor = [JZLocationConverter gcj02ToBd09:gaocoor];
-            [dict setObject:MMNSStringFormat(@"%f",coor.latitude) forKey:@"lat"];
-            [dict setObject:MMNSStringFormat(@"%f",coor.longitude) forKey:@"lng"];
-            [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
-                if (result) {
-                    [MMNSUserDefaults setValue:city forKey:SelectedCity];
-                    [self.myLocaVeiw loadData];
-                }else {
-                    
+        CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+
+        [geoCoder geocodeAddressString:city completionHandler:^(NSArray *placemarks, NSError *error) {
+            // 地址为空,直接返回
+            if (!city) return ;
+            if (error) { // 输入的地址有错误
+                [WXZTipView showCenterWithText:@"该地址不存在"];
+            }else{
+                // 遍历查询到的地标
+                NSLog(@"总共有%d个地标符合要求",placemarks.count);
+                for (int i = 0; i < placemarks.count; i++) {
+                    CLPlacemark *placemark = placemarks[i];
+                    NSLog(@"%@",placemark);
                 }
-            }];
-        }
+                
+                // 取地标数组的第一个为最终结果
+                CLPlacemark *placemark = [placemarks firstObject];
+                //                                 self.latitude.text =[NSString stringWithFormat:@"%.1f", placemark.location.coordinate.latitude];
+                //                                 self.longitude.text = [NSString stringWithFormat:@"%.1f", placemark.location.coordinate.longitude];
+                [dict setObject:MMNSStringFormat(@"%f",placemark.location.coordinate.latitude) forKey:@"lat"];
+                [dict setObject:MMNSStringFormat(@"%f",placemark.location.coordinate.longitude) forKey:@"lng"];
+                
+                [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
+                    if (result) {
+                        [MMNSUserDefaults setValue:city forKey:SelectedCity];
+                        [self.myLocaVeiw loadData];
+                        self.headView.setLocalStr = city;
+                    }else {
+                        if (value && [value isKindOfClass:[NSDictionary class]]) {
+                            NSString *msg = value[@"msg"];
+                            if (msg) {
+                                [WXZTipView showCenterWithText:@"msg"];
+                            }
+                        }else {
+                            [WXZTipView showCenterWithText:@"网络错误"];
+                        }
+                    }
+                }];
+            }
+        }];
+        
+//        if ([JFLocationSingleton sharedInstance].locationArray.count>0) {
+//            CLLocation *newLocation = [[JFLocationSingleton sharedInstance].locationArray lastObject];
+//            CLLocationCoordinate2D gaocoor;
+//            gaocoor.latitude = newLocation.coordinate.latitude ? newLocation.coordinate.latitude : 0.0;
+//            gaocoor.longitude = newLocation.coordinate.longitude ? newLocation.coordinate.longitude : 0.0;
+//            CLLocationCoordinate2D coor = [JZLocationConverter gcj02ToBd09:gaocoor];
+//            [dict setObject:MMNSStringFormat(@"%f",coor.latitude) forKey:@"lat"];
+//            [dict setObject:MMNSStringFormat(@"%f",coor.longitude) forKey:@"lng"];
+//            [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
+//                if (result) {
+//                    [MMNSUserDefaults setValue:city forKey:SelectedCity];
+//                    [self.myLocaVeiw loadData];
+//                    self.headView.setLocalStr = city;
+//                }else {
+//                    if (value && [value isKindOfClass:[NSDictionary class]]) {
+//                        NSString *msg = value[@"msg"];
+//                        if (msg) {
+//                            [WXZTipView showCenterWithText:@"msg"];
+//                        }
+//                    }else {
+//                        [WXZTipView showCenterWithText:@"网络错误"];
+//                    }
+//                }
+//            }];
+//        }
     }
 }
 

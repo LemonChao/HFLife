@@ -45,7 +45,7 @@
     self.searchNum = 1;
     self.searchMaxTime = 5;
     if (self.orderSearchInfoDic && [self.orderSearchInfoDic isKindOfClass:[NSDictionary class]]) {
-        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:[self.orderSearchInfoDic[@"orderId"] stringValue]   isHotel:self.orderSearchInfoDic[@"orderType"] idType:self.orderSearchInfoDic[@"payType"] isNowPay:YES];
+        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:Format(self.orderSearchInfoDic[@"orderId"])   isHotel:self.orderSearchInfoDic[@"orderType"] idType:self.orderSearchInfoDic[@"payType"] isNowPay:YES];
         self.orderSearchInfoDic = nil;
         
     }

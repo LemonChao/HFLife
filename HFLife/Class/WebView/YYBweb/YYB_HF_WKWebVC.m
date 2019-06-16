@@ -109,6 +109,10 @@
     [userContentController addScriptMessageHandler:self name:@"goPay"];
     //调起搜索界面
     [userContentController addScriptMessageHandler:self name:@"goToSearch"];
+    //调起h5界面
+    [userContentController addScriptMessageHandler:self name:@"goToH5View"];
+    //获取h5传值
+    [userContentController addScriptMessageHandler:self name:@"sendTypeValue"];
     //调起设置支付密码
     [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
     configuration.userContentController = userContentController;
@@ -357,7 +361,14 @@
         [self jumSearchVC];
     }else if ([message.name isEqualToString:@"goSetPayPassword"]){
         [self jumPasswordVC];
+    }else if ([message.name isEqualToString:@"goToH5View"]){//跳转h5
+        [self gotoH5View:message.body];
+    }else if ([message.name isEqualToString:@"sendTypeValue"]){//获取h5子界面传值并返回
+        if (self.backH5) {
+            self.backH5(message.body);
+        }
     }
+    
     //goToHome
 }
 
@@ -435,6 +446,25 @@
 }
 #pragma mark -去购买
 -(void)goShoppingParameter:(NSDictionary *)dict{
+}
+#pragma mark -跳转h5子界面
+-(void)gotoH5View:(NSString *)url {
+    
+    if (url && [url isKindOfClass:[NSString class]] && url.length > 0) {
+        //
+        YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+        vc.urlString = url;
+        vc.backH5 = ^(NSDictionary * _Nonnull dataDic) {
+            //执行js
+            NSString *JSResult = [NSString stringWithFormat:@"sendValue('%@')",dataDic];
+            [self evaluateJavaScript:JSResult resultBlock:^(id  _Nullable result) {
+                
+            }];
+            
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 #pragma mark -跳转原生界面
 -(void)nativeToJumpParameter:(NSDictionary *)dict{

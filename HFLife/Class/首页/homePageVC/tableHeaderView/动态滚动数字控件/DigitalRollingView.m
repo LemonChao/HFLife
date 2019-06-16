@@ -117,7 +117,7 @@
     [self configScrollLayers];
 }
 - (void)configNumbersText{
-//    NSString *numberStr = [_number stringValue];
+//    NSString *numberStr = Format(_number);
     
     // 如果 number 长度小于 最小长度就补0
     // 这里需要注意一下 minLength 和 length 都是NSUInteger类型 如果相减得负数的话会有问题
