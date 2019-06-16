@@ -57,8 +57,7 @@
     [self.view addSubview:self.webView];
     
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.customNavBar.mas_bottom).priority(1000);
-        make.top.equalTo(self.view).offset(self.topInset).priority(900);
+        make.top.equalTo(self.view).offset(self.topInset);
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.view).inset(HomeIndicatorHeight);
     }];
