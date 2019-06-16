@@ -102,7 +102,8 @@
     [userContentController addScriptMessageHandler:self name:@"sendTypeValue"];
     //调起设置支付密码
     [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
-    
+    //去登陆
+    [userContentController addScriptMessageHandler:self name:@"loginApp"];
     configuration.userContentController = userContentController;
     
     
@@ -308,8 +309,6 @@
 //        [self CallParameter:message.body];
     } else if ([message.name isEqualToString:@"Camera"]) {
         [self camera];
-    }else if ([message.name isEqualToString:@"getStatus"]){
-        [self getStatusParameter:message.body];
     }else if ([message.name isEqualToString:@"getAddress"]){
         [self getAddressParameter:message.body];
     }else if ([message.name isEqualToString:@"getNear"]){
@@ -352,6 +351,8 @@
             self.backH5(message.body);
             [self.navigationController popViewControllerAnimated:YES];
         }
+    }else if ([message.name isEqualToString:@"loginApp"]){//跳转登录
+        [LoginVC login];
     }
     
     //goToHome
