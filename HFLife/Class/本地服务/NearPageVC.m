@@ -48,9 +48,6 @@
         };
         [self.navigationController pushViewController:vc animated:YES];
         
-//        [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
-//
-//        }];
         
     };
     headView.userHeadClick = ^{

@@ -42,7 +42,7 @@
 @property (nonatomic, assign)NSInteger people;
 
 @property (nonatomic, strong) dispatch_source_t myTimer;
-
+@property(nonatomic, strong) NSNumber *setingTimes;//2次不在加载
 @end
 
 
@@ -317,17 +317,35 @@
     dispatch_source_set_event_handler(self.myTimer, ^{
         
         if (self.isAleart) {
-            //提醒过不管  结束计时
-            dispatch_source_cancel(self.myTimer);
         }else {
-            NSString *localCity = [[NSUserDefaults standardUserDefaults] valueForKey:LocationCity];
-            NSString *selectCity = [[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity];
-            if (localCity && localCity.length > 0 && ![selectCity isEqualToString:localCity]) {
-                //定位成功  切位置当前位置和上传的不一致
-                //提示上传当前位置
-                [self currentLocation:@{@"City":localCity}];
-            }
+            [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+                if (type == 0) {
+                    //定位开启
+                    NSString *localCity = [[NSUserDefaults standardUserDefaults] valueForKey:LocationCity];
+                    NSString *selectCity = [[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity];
+                    if (localCity && localCity.length > 0 && ![selectCity isEqualToString:localCity]) {
+                        //定位成功  切位置当前位置和上传的不一致
+                        //提示上传当前位置
+                        [self currentLocation:@{@"City":localCity}];
+                    }
+                }
+            }];
         }
+        
+        if (self.setingTimes.intValue < 2) {
+            self.setingTimes = @(self.setingTimes.intValue + 1);
+            
+            [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
+                if (type == 0) {
+                    
+                }else {
+                    [[YYB_HF_LocalFailAlertV shareInstance] show];
+                }
+            }];
+        }
+        
+        
+        
 //        NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
 //        [self uploadBackLocation:city];
         
@@ -459,6 +477,19 @@
 - (void)locateFailure:(NSString *)message {
     NSLog(@"%@",message);
     [WXZTipView showCenterWithText:message];
+    if (self.setingTimes.intValue < 2) {
+        self.setingTimes = @(self.setingTimes.intValue + 1);
+        [YYB_HF_LocalFailAlertV shareInstance].supVC = self.vc;
+        [[YYB_HF_LocalFailAlertV shareInstance] show];
+    }
+}
+
+- (NSNumber *)setingTimes {
+    if (!_setingTimes) {
+        _setingTimes = @(0);
+    }
+    
+    return _setingTimes;
 }
 
 
