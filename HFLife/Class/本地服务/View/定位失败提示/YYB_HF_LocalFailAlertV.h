@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 检查定位 */
 + (void)detectionLocationState:(void(^)(int type))authorizedBlock;
 - (void)show;
+@property(nonatomic, strong) UIViewController *supVC;
+
++ (void)uploadBackLocation:(NSString *)city;
 @end
 
 NS_ASSUME_NONNULL_END
