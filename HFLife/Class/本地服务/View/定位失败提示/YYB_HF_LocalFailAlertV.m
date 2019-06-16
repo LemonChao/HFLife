@@ -79,11 +79,13 @@
     self.failL.textColor = HEX_COLOR(0x0C0B0B);
     self.failL.font = FONT(15);
     
-    self.lessL.text = @"缺少定位服务";
+    self.lessL.text = @"未开启定位服务，将导致本地生活服务和部分功能无法正常使用！";
+    self.lessL.numberOfLines = 0;
     self.lessL.textColor = HEX_COLOR(0xAAAAAA);
     self.lessL.font = FONT(11);
+    self.lessL.textAlignment = NSTextAlignmentCenter;
     
-    self.setingL.text = @" 前往开启定位服务 ";
+    self.setingL.text = @"  前往开启定位服务  ";
     self.setingL.font = FONT(15);
     self.setingL.textColor = HEX_COLOR(0xCA1400);
     self.setingL.layer.cornerRadius = 14.5;
@@ -92,7 +94,7 @@
     self.setingL.layer.borderColor = HEX_COLOR(0xCA1400).CGColor;
     self.setingL.textAlignment = NSTextAlignmentCenter;
     
-    self.seting2L.text = @" 手动选取定位服务 ";
+    self.seting2L.text = @"  手动选取当前位置  ";
     self.seting2L.font = FONT(15);
     self.seting2L.textColor = HEX_COLOR(0xCA1400);
     self.seting2L.layer.cornerRadius = 14.5;
@@ -111,7 +113,7 @@
         
         NSURL *url = [[NSURL alloc] initWithString:UIApplicationOpenSettingsURLString];
         
-        if( [[UIApplication sharedApplication] canOpenURL:url])
+        if([[UIApplication sharedApplication] canOpenURL:url])
         {
             [self removeFromSuperview];
             if (@available(iOS 10.0, *)) {
@@ -139,7 +141,6 @@
                 };
                 [self.getCurrentViewController.navigationController pushViewController:vc animated:YES];
                 [self removeFromSuperview];
-
             });
     }];
     
@@ -235,7 +236,7 @@
     [self.actiView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(self);
         make.width.mas_equalTo(ScreenScale(205));
-        make.height.mas_equalTo(ScreenScale(268 + 40));
+        make.height.mas_equalTo(ScreenScale(268 + 45));
     }];
     
     [self.delV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -260,7 +261,9 @@
     [self.lessL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.failL.mas_bottom).mas_offset(ScreenScale(7));
         make.centerX.mas_equalTo(self.actiView);
-        make.height.mas_equalTo(ScreenScale(11));
+        make.right.mas_equalTo(self.actiView).mas_offset(-15);
+        make.left.mas_equalTo(self.actiView).mas_offset(15);
+        make.height.mas_equalTo(ScreenScale(25));
     }];
     
     [self.setingL mas_makeConstraints:^(MASConstraintMaker *make) {
