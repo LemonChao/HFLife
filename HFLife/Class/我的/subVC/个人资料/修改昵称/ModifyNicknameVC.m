@@ -79,7 +79,7 @@
         placeStr = @"请输入年龄";
         markStr = @"永远活在18岁。";
         userNameTextField.keyboardType = UIKeyboardTypeNumberPad;
-        nameStr = [userInfoModel sharedUser].member_age.stringValue;
+        nameStr = Format([userInfoModel sharedUser].member_age);
     }
     userNameTextField.backgroundColor = [UIColor whiteColor];
     userNameTextField.textColor = [UIColor blackColor];

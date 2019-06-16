@@ -30,6 +30,8 @@
 @property (nonatomic, assign)NSInteger index;
 @property (nonatomic, strong)UIButton *countDownBtn;
 @property (nonatomic, strong)NSTimer *countTimer;
+
+@property (nonatomic, strong)AVPlayer *player;
 @end
 
 @implementation DHGuidePageHUD
@@ -156,7 +158,7 @@
         [self.countTimer invalidate];
         self.countTimer = nil;
     }
-    
+    [self.player pause];
     [self removeFromSuperview];
     
 }
@@ -164,17 +166,32 @@
 /**< APP视频新特性页面(新增测试模块内容) */
 - (instancetype)dh_initWithFrame:(CGRect)frame videoURL:(NSURL *)videoURL {
     if ([super initWithFrame:frame]) {
-        self.playerController = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
-        [self.playerController.view setFrame:frame];
-        [self.playerController.view setAlpha:1.0];
-        [self.playerController setControlStyle:MPMovieControlStyleNone];
-        [self.playerController setRepeatMode:MPMovieRepeatModeOne];
-        [self.playerController setShouldAutoplay:YES];
-        [self.playerController prepareToPlay];
-        self.playerController.scalingMode = MPMovieScalingModeAspectFill;
-        self.playerController.repeatMode = MPMovieRepeatModeNone;
-        [self addSubview:self.playerController.view];
-        self.playerController.fullscreen = YES;
+//        self.playerController = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
+//        [self.playerController.view setFrame:frame];
+//        [self.playerController.view setAlpha:1.0];
+//        [self.playerController setControlStyle:MPMovieControlStyleNone];
+//        [self.playerController setRepeatMode:MPMovieRepeatModeOne];
+//        [self.playerController setShouldAutoplay:YES];
+//        [self.playerController prepareToPlay];
+//        self.playerController.scalingMode = MPMovieScalingModeAspectFill;
+//        self.playerController.repeatMode = MPMovieRepeatModeNone;
+//        [self addSubview:self.playerController.view];
+//        self.playerController.fullscreen = YES;
+        
+        
+        //防止黑屏
+        AVPlayerItem *item = [AVPlayerItem playerItemWithURL:videoURL];
+        // 3.创建AVPlayer
+         _player = [AVPlayer playerWithPlayerItem:item];
+        // 4.添加AVPlayerLayer
+        AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
+        playerLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        playerLayer.videoGravity =AVLayerVideoGravityResizeAspectFill;
+        [self.layer addSublayer:playerLayer];
+        playerLayer.backgroundColor = [UIColor whiteColor].CGColor;
+        [_player play];
+        
+ 
         // 视频引导页进入按钮
         UIButton *movieStartButton = [[UIButton alloc] initWithFrame:CGRectMake(20, DDScreenH-30-40, DDScreenW-40, 40)];
         [movieStartButton.layer setBorderWidth:1.0];

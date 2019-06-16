@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)NSString *fileName;
 /**文件夹名*/
 @property (nonatomic,copy)NSString *folderName;
+//h5提交传值|返回事件
+@property(nonatomic, copy) void (^backH5)(NSDictionary *dataDic);//
 
 /**
  刷新webview
