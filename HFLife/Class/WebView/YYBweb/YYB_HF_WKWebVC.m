@@ -481,7 +481,7 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
         
-    }else if (body.integerValue == 0 ) {
+    }else {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
