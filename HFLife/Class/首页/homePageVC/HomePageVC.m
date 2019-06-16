@@ -57,6 +57,11 @@
     
     //接收推送通知
     [NOTIFICATION addObserver:self selector:@selector(getFQValue:) name:JPUSH_FQ object:nil];
+    
+    
+    [userInfoModel sharedUser].set_pass = @(0);
+    
+    
 }
 - (void)getFQValue:(NSNotification *)notifi{
     NSLog(@"%@", notifi.userInfo);

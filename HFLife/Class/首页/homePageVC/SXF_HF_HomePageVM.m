@@ -98,7 +98,7 @@
                     self.collectionView.peopleNum = value[@"data"][@"nums"];
                     self.collectionView.fqPrice = value[@"data"][@"bn_acc_ratio"];
                     //需要计算得来
-                    NSString *moneyStr = [NSString stringWithFormat:@"%@", [self getMoney:Format(self.collectionView.fqPrice ? self.collectionView.fqPrice : @(0)) :value[@"data"][@"static_coin"]]];
+                    NSString *moneyStr = [NSString stringWithFormat:@"%@", [self getMoney:Format(self.collectionView.fqPrice) :value[@"data"][@"static_coin"]]];
                     self.static_coin = value[@"data"][@"static_coin"];
                     self.collectionView.myFQ = moneyStr;
                 }];
@@ -208,7 +208,8 @@
                     }]];
                     [self.vc.navigationController presentViewController:alert animated:YES completion:nil];
                     return;
-                }else if([[userInfoModel sharedUser].set_pass integerValue] == 0){
+                }
+                if([[userInfoModel sharedUser].set_pass integerValue] == 0){
                     [SXF_HF_AlertView showAlertType:AlertType_setPassword Complete:^(BOOL btnBype) {
                         if (btnBype) {
                             //设置密码
