@@ -85,41 +85,7 @@
     configure.sampleBufferDelegate = YES;
     [obtain establishQRCodeObtainScanWithController:self configure:configure];
     [obtain setBlockWithQRCodeObtainScanResult:^(SGQRCodeObtain *obtain, NSString *result) {
-        if (result) {
-            [MBProgressHUD SG_showMBProgressHUDWithModifyStyleMessage:@"正在处理..." toView:weakSelf.view];
-            [obtain stopRunning];
-            [obtain playSoundName:@"SGQRCode.bundle/sound.caf"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                NSLog(@"result = %@",result);
-                [MBProgressHUD SG_hideHUDForView:weakSelf.view];
-                NSString *code = @"";
-                if ([result containsString:@"http"] || [result containsString:@"https"]) {
-                    NSArray *array = [result componentsSeparatedByString:@"show_code="];
-                    if (array.count > 1) {
-                        code = array[1];
-                    }
-                    if (code.length == 0) {
-                        SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
-                        webVC.urlString = result;
-                        [weakSelf.navigationController pushViewController:webVC animated:YES];
-                        return ;
-                    }
-                    
-                }else{
-                    code = result;
-                }
-                
-                if([result containsString:@"itunes.apple.com"]) {
-                    NSLog(@"str1包含str2");
-                    //跳转到appleStore
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
-                } else {
-                    
-                    NSLog(@"str1不包含str2");
-                    [weakSelf decodingString:code];
-                }
-            });
-        }
+        [weakSelf getResult:obtain result:result];
     }];
     [obtain setBlockWithQRCodeObtainScanBrightness:^(SGQRCodeObtain *obtain, CGFloat brightness) {
         if (brightness < - 1) {
@@ -132,6 +98,55 @@
     }];
 }
 
+
+
+//处理二维码处理后的k逻辑
+- (void) getResult:(SGQRCodeObtain *)obtain result:(NSString *)result{
+    if (result) {
+        [MBProgressHUD SG_showMBProgressHUDWithModifyStyleMessage:@"正在处理..." toView:self.view];
+        [obtain stopRunning];
+        [obtain playSoundName:@"SGQRCode.bundle/sound.caf"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSLog(@"result = %@",result);
+            [MBProgressHUD SG_hideHUDForView:self.view];
+            NSString *code = @"";
+            if ([result containsString:@"http"] || [result containsString:@"https"]) {
+                NSArray *array = [result componentsSeparatedByString:@"show_code="];
+                if (array.count > 1) {
+                    code = array[1];
+                }
+                if (code.length == 0) {
+                    SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+                    webVC.urlString = result;
+                    [self.navigationController pushViewController:webVC animated:YES];
+                    return ;
+                }
+                
+            }else{
+                code = result;
+            }
+            
+            if([result containsString:@"itunes.apple.com"]) {
+                NSLog(@"str1包含str2");
+                //跳转到appleStore
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
+            } else {
+                
+                NSLog(@"str1不包含str2");
+                [self decodingString:code];
+            }
+        });
+    }else{
+        NSLog(@"暂未识别出二维码");
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [MBProgressHUD SG_hideHUDForView:self.view];
+            [MBProgressHUD SG_showMBProgressHUDWithOnlyMessage:@"未发现二维码/条形码" delayTime:1.0];
+        });
+    }
+}
+
+
+
 - (void)setupNavigationBar {
     self.customNavBar.title = @"扫一扫";
     WEAK(weakSelf);
@@ -139,12 +154,10 @@
     self.customNavBar.onClickRightButton = ^{
         [weakSelf rightBarButtonItenAction];
     };
-
 }
 
 - (void)rightBarButtonItenAction {
     __weak typeof(self) weakSelf = self;
-    
     [obtain establishAuthorizationQRCodeObtainAlbumWithController:nil];
     if (obtain.isPHAuthorization == YES) {
         [self.scanView removeTimer];
@@ -153,48 +166,7 @@
         [weakSelf.view addSubview:weakSelf.scanView];
     }];
     [obtain setBlockWithQRCodeObtainAlbumResult:^(SGQRCodeObtain *obtain, NSString *result) {
-        [MBProgressHUD SG_showMBProgressHUDWithModifyStyleMessage:@"正在处理..." toView:weakSelf.view];
-        
-        
-        
-        if (result == nil) {
-            NSLog(@"暂未识别出二维码");
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [MBProgressHUD SG_hideHUDForView:weakSelf.view];
-                [MBProgressHUD SG_showMBProgressHUDWithOnlyMessage:@"未发现二维码/条形码" delayTime:1.0];
-            });
-        } else {
-//            ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
-//            jumpVC.comeFromVC = ScanSuccessJumpComeFromWC;
-//            if ([result hasPrefix:@"http"]) {
-//                jumpVC.jump_URL = result;
-//            } else {
-//                jumpVC.jump_bar_code = result;
-//            }
-           
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [MBProgressHUD SG_hideHUDForView:weakSelf.view];
-                [weakSelf decodingString:result];
-//                NSString *amoubt = [RSAEncryptor decryptString:result privateKey:AMOUNTRSAPUBLICKEY];
-//                if ([amoubt containsString:@"HanPay:"]) {
-//                    NSArray *array = [amoubt componentsSeparatedByString:@","];
-//                    NSString *str1 = array[0];
-//                    NSString *str2 = array[1];
-//                    NSString *amoubtStr = [str1 substringFromIndex:7];
-//                    NSString *userID = [str2 substringFromIndex:7];
-//                    TransferVC *tran = [[TransferVC alloc]init];
-//                    tran.amount = amoubtStr;
-//                    tran.userID = userID;
-//                    [weakSelf.navigationController pushViewController:tran animated:YES];
-//                }else if ([amoubt containsString:@"HanPay_Merchants:"]){
-//                    [WXZTipView showCenterWithText:@"该二维码只适用商户进行扫码"];
-//                    [weakSelf.navigationController popViewControllerAnimated:YES];
-//                }else{
-//                    [WXZTipView showCenterWithText:@"无效的二维码"];
-//                    [weakSelf.navigationController popViewControllerAnimated:YES];
-//                }
-            });
-        }
+        [weakSelf getResult:obtain result:result];
     }];
 }
 

@@ -284,8 +284,6 @@
 }
 
 #pragma mark - JS调用OC方法
-
-
 //下载图片
 - (void)savePhoto:(id)photo{
     NSString *base64Str = @"";
@@ -301,6 +299,9 @@
      NSData *data = [[NSData alloc] initWithBase64EncodedString:base64Str options:NSDataBase64DecodingIgnoreUnknownCharacters];
     
     UIImage *image = [UIImage imageWithData:data];
+    if (!image) {
+        [WXZTipView showCenterWithText:@"图片保存失败"];
+    }
 //    [self.view addSubview:imageV];
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
 }
@@ -359,8 +360,10 @@
 
 #pragma mark - 拨打电话
 -(void)CallParameter:(NSString *)phone{
-    NSString *str = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:phone]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    if ([phone isKindOfClass:[NSString class]]) {
+        NSString *str = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:phone]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
 }
 #pragma mark - 网络数据是否请求成功
 -(void)getStatusParameter:(NSDictionary *)dict{
