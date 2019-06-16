@@ -68,6 +68,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    [self addUserScript];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -145,15 +146,10 @@
 }
 
 #pragma mark - JS调用OC方法
-#pragma mark -URL跳转
--(void)pageJumpParameter:(NSDictionary *)dict{
-    NSLog(@"dict = %@",dict);
-    ZCShopWebViewController *wkWebView = [[ZCShopWebViewController alloc]init];
-    wkWebView.urlString = [NSString judgeNullReturnString:dict[@"href"]];
-    wkWebView.isNavigationHidden = [MMNSStringFormat(@"%@",dict[@"bar"]) isEqualToString:@"1"]?YES:NO;
-    wkWebView.webTitle = [NSString judgeNullReturnString:dict[@"title"]];
-    [self.navigationController pushViewController:wkWebView animated:YES];
+- (void)loginApp:(NSString *)body {
+    [LoginVC login];
 }
+
 #pragma mark -跳转设置支付密码
 -(void)goSetPayPassword:(NSString *)body{
     [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_setDealPassWordVC") new] animated:YES];
@@ -268,6 +264,23 @@
     }];
 }
 
+//更新插入的JavaScript
+- (void)addUserScript {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
+    dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
+    dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
+    dic[@"locationCity"] = [[NSUserDefaults standardUserDefaults] valueForKey:LocationCity];
+    
+    NSLog(@"window.iOSInfo:%@", dic);
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *js = [NSString stringWithFormat:@"window.iOSInfo = %@", jsonStr];
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:(WKUserScriptInjectionTimeAtDocumentStart) forMainFrameOnly:YES];
+    
+    [self.webView.configuration.userContentController addUserScript:script];
+}
+
 #pragma mark -- WKScriptMessageHandler
 /**
  *  JS 调用 OC 时 webview 会调用此方法
@@ -282,7 +295,7 @@
     //message.boby就是JS里传过来的参数
     NSLog(@"name:%@ body:%@", message.name, message.body);
     if ([message.name isEqualToString:@"pageJump"]){
-        [self pageJumpParameter:message.body];
+        [self loginApp:message.body];
     }else if ([message.name isEqualToString:@"goSetPayPassword"]){
         [self goSetPayPassword:message.body];
     }else if ([message.name isEqualToString:@"goPay"]){
@@ -313,26 +326,15 @@
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goBackToShopCarHome"];// 返回到购物车首页
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goPay"];// 商城确认支付按钮
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"goSetPayPassword"];//设置余额支付密码
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate name:@"loginApp"];//重新登陆
 
         WKPreferences *preferences = [WKPreferences new];
         preferences.javaScriptCanOpenWindowsAutomatically = YES;
         WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
         config.userContentController = wkUController;
-        
         //    preferences.minimumFontSize = 40.0;
         config.preferences = preferences;
-        NSMutableDictionary *dic = [NSMutableDictionary new];
-        dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
-        dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
-        dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
-        dic[@"locationCity"] = [[NSUserDefaults standardUserDefaults] valueForKey:LocationCity];
-
-        NSLog(@"window.iOSInfo:%@", dic);
-        NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
-        NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSString *js = [NSString stringWithFormat:@"window.iOSInfo = %@", jsonStr];
-        WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:(WKUserScriptInjectionTimeAtDocumentStart) forMainFrameOnly:YES];
-        [config.userContentController addUserScript:script];
+        
         /*
          禁止长按(超链接、图片、文本...)弹出效果
          document.documentElement.style.webkitTouchCallout='none';
