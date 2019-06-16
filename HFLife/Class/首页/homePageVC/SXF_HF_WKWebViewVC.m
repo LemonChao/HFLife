@@ -289,9 +289,7 @@
     NSString *base64Str = @"";
     if ([photo isKindOfClass:[NSString class]]) {
         NSString *str = (NSString *)photo;
-        
         NSArray *arr = [str componentsSeparatedByString:@","];
-        
         base64Str = arr.lastObject;
     }
     //base64加密 数据
@@ -346,8 +344,6 @@
             type = SSDKPlatformTypeUnknown;
             break;
     }
-    
-    
     NSString *sharedUrlStr = [NSString stringWithFormat:shareUrl, ([userInfoModel sharedUser].invite_code ? [userInfoModel sharedUser].invite_code : @"")];
     
     [ShareProductInfoView shareBtnClick:type ShareImage:MY_IMAHE(@"shareLogo") title:@"一个可以购物又可赚钱的APP" url:sharedUrlStr context:@"下载汉富生活APP一起做老板" shareBtnClickBlock:^(BOOL isSucceed, NSString *msg) {

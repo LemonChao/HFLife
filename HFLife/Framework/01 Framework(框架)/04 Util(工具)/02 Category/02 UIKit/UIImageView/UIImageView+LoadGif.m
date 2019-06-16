@@ -171,7 +171,7 @@
         [self performSelectorOnMainThread:@selector(startPlayGifImage) withObject:nil waitUntilDone:0.0];
     }];
     
-    [self performSelector:@selector(stopPlayGifImage) withObject:nil afterDelay:[self durationForGifData:imageData] * repeatCount - 0.1 inModes:@[NSRunLoopCommonModes]];
+    [self performSelector:@selector(stopPlayGifImage) withObject:nil afterDelay:[self durationForGifData:imageData] * repeatCount - 0.05 inModes:@[NSRunLoopCommonModes]];
    
     
     //不释放 会内存暴涨 导致creash

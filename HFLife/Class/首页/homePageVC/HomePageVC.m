@@ -92,7 +92,6 @@
 - (void)loadServerData{
     [self.homePageVM  getBannerData];
     [self.homePageVM getNewsListData:1];
-    [self.homePageVM upDataLocation];
     //用户信息
     [userInfoModel getUserInfo];
 }
@@ -186,7 +185,10 @@
     NSArray *imageNameArray = @[@"intro1.gif",@"intro2.gif",@"intro3.gif"];
     DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:self.view.frame imageNameArray:imageNameArray buttonIsHidden:NO];
     guidePage.slideInto = YES;
-    
+    guidePage.cancleGuildView = ^{
+        //释放之后 调用 更新
+        [self.homePageVM upDataLocation];
+    };
     [[UIApplication sharedApplication].keyWindow addSubview:guidePage];
 }
 
@@ -211,14 +213,13 @@
     NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"final render_1" ofType:@"mp4"];
     DHGuidePageHUD *videoView = [[DHGuidePageHUD alloc] dh_initWithFrame:[UIScreen mainScreen].bounds videoURL:[NSURL fileURLWithPath:videoPath]];
     //设置销毁时间
-    
-//    videoView.alpha = 0.1;
     videoView.videoDuration = 5.0;
     [[UIApplication sharedApplication].keyWindow addSubview:videoView];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        videoView.alpha = 1;
-//
-//    });
+    videoView.cancleGuildView = ^{
+        //释放之后 调用 更新
+        [self.homePageVM upDataLocation];
+    };
+
 }
 
 

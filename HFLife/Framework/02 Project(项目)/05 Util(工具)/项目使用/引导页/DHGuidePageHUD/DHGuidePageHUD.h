@@ -37,4 +37,8 @@
 - (instancetype)dh_initWithFrame:(CGRect)frame videoURL:(NSURL *)videoURL;
 
 @property (nonatomic, assign)CGFloat videoDuration;
+
+@property (nonatomic, strong)void (^cancleGuildView)();
+
+
 @end

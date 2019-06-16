@@ -20,6 +20,8 @@
 
 @interface DHGuidePageHUD ()<UIScrollViewDelegate, CAAnimationDelegate>
 @property (nonatomic, strong) NSArray                 *imageArray;
+@property (nonatomic, strong) NSMutableArray           *imageViewArray;
+@property (nonatomic, strong) UIScrollView             *scrollView;
 @property (nonatomic, strong) UIPageControl           *imagePageControl;
 @property (nonatomic, assign) NSInteger               slideIntoNumber;
 @property (nonatomic, strong) MPMoviePlayerController *playerController;
@@ -36,11 +38,18 @@
 @end
 
 @implementation DHGuidePageHUD
-
+- (NSMutableArray *)imageViewArray{
+    if (!_imageViewArray) {
+        _imageViewArray = [NSMutableArray array];
+    }
+    return _imageViewArray;
+}
 - (instancetype)dh_initWithFrame:(CGRect)frame imageNameArray:(NSArray<NSString *> *)imageNameArray buttonIsHidden:(BOOL)isHidden {
     if ([super initWithFrame:frame]) {
         self.slideInto = NO;
         if (isHidden == YES) {
+            self.imageArray = imageNameArray;
+        }else{
             self.imageArray = imageNameArray;
         }
         
@@ -52,6 +61,7 @@
         [guidePageView setPagingEnabled:YES];
         [guidePageView setShowsHorizontalScrollIndicator:NO];
         [guidePageView setDelegate:self];
+        self.scrollView = guidePageView;
         [self addSubview:guidePageView];
         
         // 设置引导页上的跳过按钮
@@ -69,9 +79,12 @@
         // 添加在引导视图上的多张引导图片
         for (int i=0; i<imageNameArray.count; i++) {
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(DDScreenW*i, 0, DDScreenW, DDScreenH)];
+            //持有imageView
+            [self.imageViewArray addObject:imageView];
             if ([[DHGifImageOperation dh_contentTypeForImageData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageNameArray[i] ofType:nil]]] isEqualToString:@"gif"]) {
                 NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageNameArray[i] ofType:nil]];
-                imageView = (UIImageView *)[[DHGifImageOperation alloc] initWithFrame:imageView.frame gifImageData:localData];
+//                imageView = (UIImageView *)[[DHGifImageOperation alloc] initWithFrame:imageView.frame gifImageData:localData repeat:NO];
+                imageView.image = [UIImage imageNamed:imageNameArray[i]];
                 [guidePageView addSubview:imageView];
             } else {
                 imageView.image = [UIImage imageNamed:imageNameArray[i]];
@@ -116,6 +129,8 @@
         
         self.imagePageControl.hidden = YES;
         
+        
+        [self scrollViewDidEndDecelerating:self.scrollView];
     }
     return self;
 }
@@ -123,6 +138,27 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollview {
     int page = scrollview.contentOffset.x / scrollview.frame.size.width;
     [self.imagePageControl setCurrentPage:page];
+    
+    
+    //gif 每次进去 播放一次
+    if ([[DHGifImageOperation dh_contentTypeForImageData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.imageArray[page] ofType:nil]]] isEqualToString:@"gif"]) {
+        
+        UIImageView *imageView = self.imageViewArray[page];
+//
+//        NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.imageArray[page] ofType:nil]];
+//        imageView = (UIImageView *)[[DHGifImageOperation alloc] initWithFrame:imageView.frame gifImageData:localData repeat:YES];
+        NSString * path = [[NSBundle mainBundle] pathForResource:self.imageArray[page] ofType:nil];
+        
+//        [self showGifImageOnlyOnceWithImageView:imageView path:path];
+        [imageView playGifImagePath:path repeatCount:1];
+        return;
+    } else {
+    }
+    
+    
+    
+    
+    
     if (self.imageArray && page == self.imageArray.count-1 && self.slideInto == NO) {
         [self buttonClick:nil];
     }
@@ -165,6 +201,11 @@
     
     [self.player pause];
     [self removeFromSuperview];
+    
+    
+    //杀掉之后回到出去
+    !self.cancleGuildView ? : self.cancleGuildView();
+    
     
 }
 
@@ -391,6 +432,23 @@
     return _countTimer;
 }
 
-
+- (void)showGifImageOnlyOnceWithImageView:(UIImageView*)imageView path:(NSString*)path{
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    CGImageSourceRef gifSource = CGImageSourceCreateWithData(CFBridgingRetain(data), nil);
+    size_t gifCount =CGImageSourceGetCount(gifSource);
+    NSMutableArray *frames = [[NSMutableArray alloc]init];
+    for(size_t i = 0; i< gifCount; i++) {
+        CGImageRef imageRef =CGImageSourceCreateImageAtIndex(gifSource, i,NULL);
+        UIImage*image = [UIImage imageWithCGImage:imageRef];
+        [frames addObject:image];
+        CGImageRelease(imageRef);
+    }//从这里开始是不是很熟悉
+    imageView.animationImages= frames;
+    imageView.animationDuration=2;
+    imageView.animationRepeatCount = 1;
+    [imageView startAnimating];
+    //释放资源
+    CFRelease(gifSource);
+}
 
 @end
