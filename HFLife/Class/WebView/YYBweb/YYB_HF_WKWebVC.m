@@ -49,16 +49,6 @@
         make.edges.mas_equalTo(self.view);
     }];
     
-//    [self.navigationController.navigationBar setHidden:YES];
-//    [self.customNavBar setHidden:YES];
-//    UIView *topView = [UIView new];
-//    topView.backgroundColor = [UIColor whiteColor];;//
-//    [self.view addSubview:topView];
-//    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.right.mas_equalTo(self.view);
-//        make.height.mas_equalTo(self.heightStatus);
-//    }];
-    
     [self loadWKwebViewData];
     
 }
@@ -66,8 +56,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self addUserScript];
-    
-    
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -92,6 +80,7 @@
     [userContentController addScriptMessageHandler:self name:@"choiceCity"];
     //调起支付 调起银联支付
     [userContentController addScriptMessageHandler:self name:@"goPay"];
+    
     //调起h5界面
     [userContentController addScriptMessageHandler:self name:@"goToH5View"];
     //获取h5传值
@@ -110,7 +99,7 @@
     
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - HomeIndicatorHeight) configuration:configuration];
-    [self addUserScript];
+    [self addUserScript];//配置WindowsInFo
     
     
     self.webView.UIDelegate = self;
@@ -131,12 +120,6 @@
         // Fallback on earlier versions
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    
-    
-    
-    //    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.edges.mas_equalTo(self.view);
-    //    }];
 }
 //更新插入的JavaScript
 - (void)addUserScript {
@@ -154,10 +137,9 @@
     
     [self.webView.configuration.userContentController addUserScript:script];
 }
-- (void)loadWKwebViewData{
+- (void)loadWKwebViewData {
     [[WBPCreate sharedInstance]showWBProgress];
     
-//    NSString *str = @"http://xxxxxx.com/uploads/image/20180813/20180813150735_\U5de5\U7a0b\U5e08\U5934\U50cf.png";
 //    //使用stringByAddingPercentEncodingWithAllowedCharacters处理
 //    NSString *headImgURL = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
 //    NSLog(@"%@",headImgURL);
@@ -182,10 +164,8 @@
         NSString *pathStr = [[NSBundle mainBundle] pathForResource:self.fileName ofType:@"html" inDirectory:self.folderName];
         
         if (pathStr) {
-            
             NSString * urlString2 = [[NSString stringWithFormat:@"?token=%@",[HeaderToken getAccessToken]]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
             [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString2 relativeToURL:[NSURL fileURLWithPath:pathStr]]]];
-            
         }else {
             [self loadFailed];
         }
@@ -242,8 +222,6 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"网页导航加载完毕");
-    
-    
     [self.customNavBar setHidden:YES];
     
     [self loadSuccess];
@@ -256,13 +234,13 @@
     
     
     [webView evaluateJavaScript:@"document.readyState" completionHandler:^(id _Nullable readyState, NSError * _Nullable error) {
-        //        NSLog(@"----document.title:%@---webView title:%@",readyState,webView.title);
-        //         BOOL complete = [readyState isEqualToString:@"complete"];
-        //        if (complete) {
-        //            [self loadSuccess];
-        //        }else{
-        //            [self loadFailed];
-        //        }
+//        NSLog(@"----document.title:%@---webView title:%@",readyState,webView.title);
+//        BOOL complete = [readyState isEqualToString:@"complete"];
+//        if (complete) {
+//            [self loadSuccess];
+//        }else{
+//            [self loadFailed];
+//        }
     }];
     
 }
@@ -305,30 +283,29 @@
 //        [self CallParameter:message.body];
     } else if ([message.name isEqualToString:@"Camera"]) {
         [self camera];
-    }else if ([message.name isEqualToString:@"getAddress"]){
-        [self getAddressParameter:message.body];
-    }else if ([message.name isEqualToString:@"getNear"]){
-        [self getNearParameter:message.body];
-    }else if ([message.name isEqualToString:@"pageJump"]){
-        [self pageJumpParameter:message.body];
-    }else if ([message.name isEqualToString:@"goShopping"]){
-        [self goShoppingParameter:message.body];
-    }else if ([message.name isEqualToString:@"nativeToJump"]){
-        [self nativeToJumpParameter:message.body];
-    }else if ([message.name isEqualToString:@"goToHome"]){
+    }
+//    else if ([message.name isEqualToString:@"getAddress"]){
+//        [self getAddressParameter:message.body];
+//    }else if ([message.name isEqualToString:@"getNear"]){
+//        [self getNearParameter:message.body];
+//    }else if ([message.name isEqualToString:@"pageJump"]){
+//        [self pageJumpParameter:message.body];
+//    }else if ([message.name isEqualToString:@"goShopping"]){
+//        [self goShoppingParameter:message.body];
+//    }else if ([message.name isEqualToString:@"nativeToJump"]){
+//        [self nativeToJumpParameter:message.body];
+//    }else if ([message.name isEqualToString:@"rushBuy"]){
+//    [self rushBuyParameter:message.body];
+//    }else if ([message.name isEqualToString:@"orderHotel"]){
+//    [self orderHotelParameter:message.body];
+//}
+    else if ([message.name isEqualToString:@"goToHome"]){
         [self goToHome:message.body];
-    }else if ([message.name isEqualToString:@"rushBuy"]){
-        [self rushBuyParameter:message.body];
-    }else if ([message.name isEqualToString:@"orderHotel"]){
-        [self orderHotelParameter:message.body];
     }else if ([message.name isEqualToString:@"submitOrder"]){
         [self submitOrderParameter:message.body];
-    }else if ([message.name isEqualToString:@"goToApp"]){
-        [self goToHome:message.body];
     }else if ([message.name isEqualToString:@"Share"]){
-        InviteVC *vc = [[InviteVC alloc]init];
-        [vc addShareViewForH5];
-        
+//        InviteVC *vc = [[InviteVC alloc]init];
+//        [vc addShareViewForH5];
     }else if ([message.name isEqualToString:@"choiceCity"]){
         if (self.choiceCity) {
             self.choiceCity(message.body);
@@ -384,47 +361,56 @@
 }
 #pragma mark - 网络数据是否请求成功
 -(void)getStatusParameter:(NSDictionary *)dict{
-    NSString *isSuccess = MMNSStringFormat(@"%@",dict[@"status"]);
-    if ([isSuccess isEqualToString:@"1"]) {
-        NSLog(@"数据请求成功");
-        [self loadSuccess];
-    }else{
-        NSLog(@"数据请求失败");
-        [self loadFailed];
+    if (dict && [dict isKindOfClass:[NSDictionary class]]) {
+        NSString *isSuccess = MMNSStringFormat(@"%@",dict[@"status"]);
+        if (isSuccess && [isSuccess isEqualToString:@"1"]) {
+            NSLog(@"数据请求成功");
+            [self loadSuccess];
+        }else{
+            NSLog(@"数据请求失败");
+            [self loadFailed];
+        }
     }
 }
 #pragma mark -获取地理位置
--(void)getAddressParameter:(NSDictionary *)dict{
-    MapViewController *map = [[MapViewController alloc]init];
-    CLLocationCoordinate2D gaocoor;
-    gaocoor.latitude = [MMNSStringFormat(@"%@",dict[@"latitude"]) floatValue];
-    gaocoor.longitude = [MMNSStringFormat(@"%@",dict[@"longitude"]) floatValue];
-    CLLocationCoordinate2D coor = [JZLocationConverter bd09ToGcj02:gaocoor];
-    map.latitude = coor.latitude;
-    map.longitude = coor.longitude;
-    map.isMark = YES;
-    [self.navigationController pushViewController:map animated:YES];
+-(void)getAddressParameter:(NSDictionary *)dict {
+//    if (dict && [dict isKindOfClass:[NSDictionary class]]) {
+//        MapViewController *map = [[MapViewController alloc]init];
+//        CLLocationCoordinate2D gaocoor;
+//        gaocoor.latitude = [MMNSStringFormat(@"%@",dict[@"latitude"]) floatValue];
+//        gaocoor.longitude = [MMNSStringFormat(@"%@",dict[@"longitude"]) floatValue];
+//        CLLocationCoordinate2D coor = [JZLocationConverter bd09ToGcj02:gaocoor];
+//        map.latitude = coor.latitude;
+//        map.longitude = coor.longitude;
+//        map.isMark = YES;
+//        [self.navigationController pushViewController:map animated:YES];
+//    }
 }
 #pragma mark -参数跳转
 -(void)getNearParameter:(NSDictionary *)dict{
-    WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
-    //    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
-    //    NSString *coupon_id = MMNSStringFormat(@"%@",dict[@"coupon_id"]);
-    wkWebView.isNavigationHidden = YES;
-    NSString *shop_id = MMNSStringFormat(@"%@",dict[@"shop_id"]);
     
-    wkWebView.jointParameter = MMNSStringFormat(@"?shop_id=%@",shop_id);
-    //    wkWebView.urlString = [NSString judgeNullReturnString:dict[@"url"]];
-    [self.navigationController pushViewController:wkWebView animated:YES];
+    if (dict && [dict isKindOfClass:[NSDictionary class]]) {
+        WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
+        //    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
+        //    NSString *coupon_id = MMNSStringFormat(@"%@",dict[@"coupon_id"]);
+        wkWebView.isNavigationHidden = YES;
+        NSString *shop_id = MMNSStringFormat(@"%@",dict[@"shop_id"]);
+        
+        wkWebView.jointParameter = MMNSStringFormat(@"?shop_id=%@",shop_id);
+        //    wkWebView.urlString = [NSString judgeNullReturnString:dict[@"url"]];
+        [self.navigationController pushViewController:wkWebView animated:YES];
+    }
 }
 #pragma mark -URL跳转
 -(void)pageJumpParameter:(NSDictionary *)dict{
     NSLog(@"dict = %@",dict);
-    WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
-    wkWebView.urlString = [NSString judgeNullReturnString:dict[@"href"]];
-    wkWebView.isNavigationHidden = [MMNSStringFormat(@"%@",dict[@"bar"]) isEqualToString:@"1"] ? YES : NO;
-    wkWebView.webTitle = [NSString judgeNullReturnString:dict[@"title"]];
-    [self.navigationController pushViewController:wkWebView animated:YES];
+    if (dict && [dict isKindOfClass:[NSDictionary class]]) {
+        WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
+        wkWebView.urlString = [NSString judgeNullReturnString:dict[@"href"]];
+        wkWebView.isNavigationHidden = [MMNSStringFormat(@"%@",dict[@"bar"]) isEqualToString:@"1"] ? YES : NO;
+        wkWebView.webTitle = [NSString judgeNullReturnString:dict[@"title"]];
+        [self.navigationController pushViewController:wkWebView animated:YES];
+    }
 }
 #pragma mark -去购买
 -(void)goShoppingParameter:(NSDictionary *)dict{
@@ -444,34 +430,38 @@
             }];
         };
         [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        [WXZTipView showCenterWithText:@"链接错误"];
     }
 }
 #pragma mark -跳转原生界面
 -(void)nativeToJumpParameter:(NSDictionary *)dict{
-    /**
-     {
-     VCName:@"LandlordInformationVC",
-     data:{@"shop_id":@"1"}
-     }
-     */
-    // 类名
-    NSString *class = dict[@"VCName"];
-    const char *className = [class cStringUsingEncoding:NSASCIIStringEncoding];
-    // 从一个字串返回一个类
-    Class newClass = objc_getClass(className);
-    if (!newClass)
-    {
-        // 创建一个类
-        Class superClass = [NSObject class];
-        newClass = objc_allocateClassPair(superClass, className, 0);
-        // 注册你创建的这个类
-        objc_registerClassPair(newClass);
+    if (dict && [dict isKindOfClass:[NSDictionary class]]) {
+        /**
+         {
+         VCName:@"LandlordInformationVC",
+         data:{@"shop_id":@"1"}
+         }
+         */
+        // 类名
+        NSString *class = dict[@"VCName"];
+        const char *className = [class cStringUsingEncoding:NSASCIIStringEncoding];
+        // 从一个字串返回一个类
+        Class newClass = objc_getClass(className);
+        if (!newClass)
+        {
+            // 创建一个类
+            Class superClass = [NSObject class];
+            newClass = objc_allocateClassPair(superClass, className, 0);
+            // 注册你创建的这个类
+            objc_registerClassPair(newClass);
+        }
+        // 创建对象
+        id instance = [[newClass alloc] init];
+        BaseViewController *vc = (BaseViewController *)instance;
+        vc.dataParameter = dict[@"data"];
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    // 创建对象
-    id instance = [[newClass alloc] init];
-    BaseViewController *vc = (BaseViewController *)instance;
-    vc.dataParameter = dict[@"data"];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - h5跳转 搜索界面 goToSearch
 -(void)jumSearchVC {
@@ -505,11 +495,13 @@
 }
 #pragma mark -酒店预定(抢购)--
 -(void)orderHotelParameter:(NSDictionary *)dict{
-    WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
-    wkWebView.urlString = [NSString judgeNullReturnString:dict[@"href"]];
-    wkWebView.isNavigationHidden = [MMNSStringFormat(@"%@",dict[@"bar"]) isEqualToString:@"1"]?YES:NO;
-    wkWebView.webTitle = [NSString judgeNullReturnString:dict[@"title"]];
-    [self.navigationController pushViewController:wkWebView animated:YES];
+    if (dict && [dict isKindOfClass:[NSDictionary class]]) {
+        WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
+        wkWebView.urlString = [NSString judgeNullReturnString:dict[@"href"]];
+        wkWebView.isNavigationHidden = [MMNSStringFormat(@"%@",dict[@"bar"]) isEqualToString:@"1"]?YES:NO;
+        wkWebView.webTitle = [NSString judgeNullReturnString:dict[@"title"]];
+        [self.navigationController pushViewController:wkWebView animated:YES];
+    }
 }
 #pragma mark --提交订单---
 -(void)submitOrderParameter:(NSDictionary *)dict{
