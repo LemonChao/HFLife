@@ -213,7 +213,6 @@
 //
 
 - (void)show {
-    
     UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;
     self.frame = rootWindow.bounds;
     [rootWindow addSubview:self];
@@ -314,6 +313,7 @@
                 //app 已开启定位
             }else {
                 //系统 未开启定位
+                authorizedBlock(type);
             }
         }
     }

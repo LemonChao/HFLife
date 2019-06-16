@@ -276,7 +276,11 @@
             //app 已开启定位
         }else {
             //系统 未开启定位
-            [[YYB_HF_LocalFailAlertV shareInstance] show];
+            
+            if ([YYB_HF_LocalFailAlertV shareInstance].showTimes < 2) {
+                [[YYB_HF_LocalFailAlertV shareInstance] show];
+                [YYB_HF_LocalFailAlertV shareInstance].showTimes ++;
+            }
             return ;
         }
         
@@ -287,7 +291,7 @@
         
         NSString *url = entrModel.url;
 //        if (indexPath.row == 0) {
-//            url = @"http://ceshi-web.hfgld.net/contract/#/signingIndex";//http://192.168.0.253:10004/#/enter-index/";
+//            url = @"http://192.168.0.253:10004/#/enter-index/";//@"http://ceshi-web.hfgld.net/contract/#/signingIndex";//
 //        }else if (indexPath.row == 1) {
 //            url = @"http://192.168.0.253:10004/#/food-index/";
 //        }else if (indexPath.row == 2) {

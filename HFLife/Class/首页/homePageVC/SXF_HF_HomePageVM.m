@@ -42,7 +42,6 @@
 @property (nonatomic, assign)NSInteger people;
 
 @property (nonatomic, strong) dispatch_source_t myTimer;
-@property(nonatomic, strong) NSNumber *setingTimes;//2次不在加载
 @end
 
 
@@ -53,7 +52,7 @@
     self = [super init];
     if (self) {
         self.locationManager.delegate = self;
-        [self timingTask];
+//        [self timingTask];
         self.homePageListDic = @{@"nav" : [NSArray array],
                                  @"banner" : [NSArray array],
                                  @"activity" : [NSArray array],
@@ -332,14 +331,13 @@
             }];
         }
         
-        if (self.setingTimes.intValue < 2) {
-            self.setingTimes = @(self.setingTimes.intValue + 1);
-            
+        if ([YYB_HF_LocalFailAlertV shareInstance].showTimes < 2) {
             [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
                 if (type == 0) {
                     
                 }else {
                     [[YYB_HF_LocalFailAlertV shareInstance] show];
+                    [YYB_HF_LocalFailAlertV shareInstance].showTimes ++;
                 }
             }];
         }
@@ -477,19 +475,10 @@
 - (void)locateFailure:(NSString *)message {
     NSLog(@"%@",message);
     [WXZTipView showCenterWithText:message];
-    if (self.setingTimes.intValue < 2) {
-        self.setingTimes = @(self.setingTimes.intValue + 1);
-        [YYB_HF_LocalFailAlertV shareInstance].supVC = self.vc;
+    if ([YYB_HF_LocalFailAlertV shareInstance].showTimes < 2) {
         [[YYB_HF_LocalFailAlertV shareInstance] show];
+        [YYB_HF_LocalFailAlertV shareInstance].showTimes ++;
     }
-}
-
-- (NSNumber *)setingTimes {
-    if (!_setingTimes) {
-        _setingTimes = @(0);
-    }
-    
-    return _setingTimes;
 }
 
 

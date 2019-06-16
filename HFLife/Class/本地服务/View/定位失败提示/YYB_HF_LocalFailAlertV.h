@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIViewController *supVC;
 
 + (void)uploadBackLocation:(NSString *)city;
+@property(nonatomic, assign) NSInteger showTimes;//只显示2次
 @end
 
 NS_ASSUME_NONNULL_END
