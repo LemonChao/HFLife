@@ -226,6 +226,13 @@
         
         if (authorizedBlock)
         {
+            if (type == 0) {
+                //app 已开启定位
+            }else {
+                //系统 未开启定位
+                [[YYB_HF_LocalFailAlertV shareInstance] show];
+                return ;
+            }
             authorizedBlock(type);
         }
     }
