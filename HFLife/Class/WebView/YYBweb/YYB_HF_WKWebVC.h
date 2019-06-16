@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**文件夹名*/
 @property (nonatomic,copy)NSString *folderName;
 
+@property(nonatomic, copy) void (^backH5)(NSDictionary *dataDic);//
+
 /**
  刷新webview
  */

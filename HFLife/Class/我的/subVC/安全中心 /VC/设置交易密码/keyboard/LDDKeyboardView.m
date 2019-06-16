@@ -151,7 +151,7 @@
         UIButton *button=(UIButton*)obj;
             if (button.tag!=LDDButtonTypeLogin && button.tag!=LDDButtonTypeDelete) {
                 NSNumber *number=randomArr[index++];
-                [button setTitle:number.stringValue forState:UIControlStateNormal];
+                [button setTitle:Format(number) forState:UIControlStateNormal];
             }
         }];
     }

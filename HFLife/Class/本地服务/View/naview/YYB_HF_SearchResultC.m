@@ -192,7 +192,7 @@
         }
         [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString judgeNullReturnString:food.logo_image]] placeholderImage:nil];
         cell.titleL.text = food.food_name;
-        cell.priceL.text = [NSString stringWithFormat:@"￥%@/人",[food.consume_avg stringValue]];
+        cell.priceL.text = [NSString stringWithFormat:@"￥%@/人",Format(food.consume_avg)];
         cell.addressL.text = food.detail_list;
         cell.cashL.text = food.coupon;
         cell.starNum = [food.score_star intValue];
@@ -210,8 +210,8 @@
         cell.titleL.text = hotel.hotel_name;
         cell.scoreL.text = [NSString stringWithFormat:@"%.1f分",[hotel.evaluate_star floatValue]];
         cell.addressL.text = [NSString stringWithFormat:@"%.2fkm|%@",[hotel.distance floatValue],hotel.hotel_address];
-        cell.pingjiaL.text = [NSString stringWithFormat:@"%@人评价",[hotel.evaluate_num stringValue]];
-        cell.consume_minL.text = [NSString stringWithFormat:@"￥%@",[hotel.consume_min stringValue]];
+        cell.pingjiaL.text = [NSString stringWithFormat:@"%@人评价",Format(hotel.evaluate_num)];
+        cell.consume_minL.text = [NSString stringWithFormat:@"￥%@",Format(hotel.consume_min)];
         cell.starNum = [hotel.evaluate_star intValue];
         return cell;
     }

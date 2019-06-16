@@ -506,7 +506,7 @@ UITableViewDelegate
     }];
     
     self.albumNameLb.text = model.albumName;
-    self.photoNumberLb.text = @(model.result.count).stringValue;
+    self.photoNumberLb.text = Format(@(model.result.count));
 //    if (model.selectedCount == 0) {
 //        self.selectNumberBtn.hidden = YES;
 //    }else {
@@ -664,7 +664,7 @@ UITableViewDelegate
     }
     
     self.albumNameLb.text = model.albumName;
-    self.photoNumberLb.text = @(photoCount).stringValue;
+    self.photoNumberLb.text = Format(@(photoCount));
 }
 - (void)layoutSubviews {
     [super layoutSubviews];

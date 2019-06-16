@@ -361,7 +361,7 @@ static NSString *const kObserverPage = @"currentPage";
     self.lastObject = self.currentObject;
     self.currentObject = ctrl;
     [vcsArray addObject:ctrl];
-    NSString *tagStr = @(i).stringValue;
+    NSString *tagStr = Format(@(i));
     [vcsTagArray addObject:tagStr];
     if (isDebugging) {
         NSLog(@"Use new created controller or view%li",(long)i + 1);
