@@ -89,32 +89,21 @@
     
     //拨打电话
     [userContentController addScriptMessageHandler:self name:@"call"];
-    //获取网页数据是否请求成功
-    [userContentController addScriptMessageHandler:self name:@"getStatus"];
-    
-    //链接跳转
-    [userContentController addScriptMessageHandler:self name:@"pageJump"];
-    
     //返回首页
     [userContentController addScriptMessageHandler:self name:@"goToHome"];
     [userContentController addScriptMessageHandler:self name:@"goBack"];
-    [userContentController addScriptMessageHandler:self name:@"goToApp"];
-
-    //调起支付
-    [userContentController addScriptMessageHandler:self name:@"goToPay"];
-    //调起银联支付
     //选择城市
     [userContentController addScriptMessageHandler:self name:@"choiceCity"];
-    //调起支付
+    //调起支付 调起银联支付
     [userContentController addScriptMessageHandler:self name:@"goPay"];
-    //调起搜索界面
-    [userContentController addScriptMessageHandler:self name:@"goToSearch"];
     //调起h5界面
     [userContentController addScriptMessageHandler:self name:@"goToH5View"];
     //获取h5传值
     [userContentController addScriptMessageHandler:self name:@"sendTypeValue"];
     //调起设置支付密码
     [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
+    //去登陆
+    [userContentController addScriptMessageHandler:self name:@"loginApp"];
     configuration.userContentController = userContentController;
     
     
@@ -317,11 +306,9 @@
     NSLog(@"name:%@ body:%@",message.name,message.body);
     if ([message.name isEqualToString:@"call"]) {
         //        [self ShareWithInformation:message.body];
-        [self CallParameter:message.body];
+//        [self CallParameter:message.body];
     } else if ([message.name isEqualToString:@"Camera"]) {
         [self camera];
-    }else if ([message.name isEqualToString:@"getStatus"]){
-        [self getStatusParameter:message.body];
     }else if ([message.name isEqualToString:@"getAddress"]){
         [self getAddressParameter:message.body];
     }else if ([message.name isEqualToString:@"getNear"]){
@@ -340,8 +327,6 @@
         [self orderHotelParameter:message.body];
     }else if ([message.name isEqualToString:@"submitOrder"]){
         [self submitOrderParameter:message.body];
-    }else if ([message.name isEqualToString:@"goToPay"]){
-        [self goToPayParameter:message.body];
     }else if ([message.name isEqualToString:@"goToApp"]){
         [self goToHome:message.body];
     }else if ([message.name isEqualToString:@"Share"]){
@@ -357,8 +342,6 @@
         [self goToPayParameter:message.body];
     }else if ([message.name isEqualToString:@"goBack"]){
         [self goToHome:message.body];
-    }else if ([message.name isEqualToString:@"goToSearch"]){
-        [self jumSearchVC];
     }else if ([message.name isEqualToString:@"goSetPayPassword"]){
         [self jumPasswordVC];
     }else if ([message.name isEqualToString:@"goToH5View"]){//跳转h5
@@ -366,7 +349,10 @@
     }else if ([message.name isEqualToString:@"sendTypeValue"]){//获取h5子界面传值并返回
         if (self.backH5) {
             self.backH5(message.body);
+            [self.navigationController popViewControllerAnimated:YES];
         }
+    }else if ([message.name isEqualToString:@"loginApp"]){//跳转登录
+        [LoginVC login];
     }
     
     //goToHome
@@ -455,16 +441,14 @@
         YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
         vc.urlString = url;
         vc.backH5 = ^(NSDictionary * _Nonnull dataDic) {
-            //执行js
+            //执行js 给h5传值
             NSString *JSResult = [NSString stringWithFormat:@"sendValue('%@')",dataDic];
             [self evaluateJavaScript:JSResult resultBlock:^(id  _Nullable result) {
                 
             }];
-            
         };
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
 }
 #pragma mark -跳转原生界面
 -(void)nativeToJumpParameter:(NSDictionary *)dict{
