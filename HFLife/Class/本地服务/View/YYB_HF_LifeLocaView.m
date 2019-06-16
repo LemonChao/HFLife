@@ -280,8 +280,8 @@
             if ([YYB_HF_LocalFailAlertV shareInstance].showTimes < 2) {
                 [[YYB_HF_LocalFailAlertV shareInstance] show];
                 [YYB_HF_LocalFailAlertV shareInstance].showTimes ++;
+                return ;
             }
-            return ;
         }
         
         
