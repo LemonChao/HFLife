@@ -75,44 +75,18 @@
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
     //分享
     [userContentController addScriptMessageHandler:self name:@"goToShare"];
-    [userContentController addScriptMessageHandler:self name:@"Camera"];
     //拨打电话
     [userContentController addScriptMessageHandler:self name:@"Call"];
-    //获取网页数据是否请求成功
-    [userContentController addScriptMessageHandler:self name:@"getStatus"];
-    //获取店铺的位置
-    [userContentController addScriptMessageHandler:self name:@"getAddress"];
-    //吃喝玩乐
-    [userContentController addScriptMessageHandler:self name:@"getNear"];
-    //链接跳转
-    [userContentController addScriptMessageHandler:self name:@"pageJump"];
-    //立即抢购
-    [userContentController addScriptMessageHandler:self name:@"goShopping"];
-    //原生跳转
-    [userContentController addScriptMessageHandler:self name:@"nativeToJump"];
     //原生跳转
     [userContentController addScriptMessageHandler:self name:@"goToSearch"];
     //返回首页
     [userContentController addScriptMessageHandler:self name:@"goToHome"];
-    //抢购
-    [userContentController addScriptMessageHandler:self name:@"rushBuy"];
-    //抢购
-    [userContentController addScriptMessageHandler:self name:@"orderHotel"];
-    //提交订单
-    [userContentController addScriptMessageHandler:self name:@"submitOrder"];
-    //调起支付
-    [userContentController addScriptMessageHandler:self name:@"goToPay"];
-    //调起银联支付
-    [userContentController addScriptMessageHandler:self name:@"goToApp"];
-    //调起QQ
-    [userContentController addScriptMessageHandler:self name:@"goToQQ"];
-    
     //下载图片
     [userContentController addScriptMessageHandler:self name:@"getPhoto"];
     
     [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
     
-    
+    [userContentController addScriptMessageHandler:self name:@"loginApp"];
     
     configuration.userContentController = userContentController;
     
@@ -289,46 +263,19 @@
     //message.boby就是JS里传过来的参数
     NSLog(@"body:%@",message.body);
     if ([message.name isEqualToString:@"Call"]) {
-        //        [self ShareWithInformation:message.body];
         [self CallParameter:message.body];
-    } else if ([message.name isEqualToString:@"Camera"]) {
-        [self camera];
-    }else if ([message.name isEqualToString:@"getStatus"]){
-        [self getStatusParameter:message.body];
-    }else if ([message.name isEqualToString:@"getAddress"]){
-        [self getAddressParameter:message.body];
-    }else if ([message.name isEqualToString:@"getNear"]){
-        [self getNearParameter:message.body];
-    }else if ([message.name isEqualToString:@"pageJump"]){
-        [self pageJumpParameter:message.body];
-    }else if ([message.name isEqualToString:@"goShopping"]){
-        [self goShoppingParameter:message.body];
-    }else if ([message.name isEqualToString:@"nativeToJump"]){
-        [self nativeToJumpParameter:message.body];
     }else if ([message.name isEqualToString:@"goToHome"]){
         [self goToHome:message.body];
-    }else if ([message.name isEqualToString:@"rushBuy"]){
-        [self rushBuyParameter:message.body];
-    }else if ([message.name isEqualToString:@"orderHotel"]){
-        [self orderHotelParameter:message.body];
-    }else if ([message.name isEqualToString:@"submitOrder"]){
-        [self submitOrderParameter:message.body];
-    }else if ([message.name isEqualToString:@"goToPay"]){
-        [self goToPayParameter:message.body];
-    }else if ([message.name isEqualToString:@"goToApp"]){
-        [self goToHome:message.body];
-    }
-    else if ([message.name isEqualToString:@"goToShare"]){
+    }else if ([message.name isEqualToString:@"goToShare"]){
         //分享
         [self goToShare:message.body];
-        
     }else if ([message.name isEqualToString:@"goSetPayPassword"]){
         //去设置支付密码
         [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_setDealPassWordVC") new] animated:YES];
     }else if ([message.name isEqualToString:@"goToSearch"]){
         [self jumSearchVC];
-    }else if ([message.name isEqualToString:@"goToQQ"]){
-        [self jumQQVC:message.body];
+    }else if ([message.name isEqualToString:@"loginApp"]){
+        [LoginVC login];//登录
     }else if ([message.name isEqualToString:@"getPhoto"]){
         [self savePhoto:message.body];
     }
@@ -436,29 +383,8 @@
     map.isMark = YES;
     [self.navigationController pushViewController:map animated:YES];
 }
-#pragma mark -参数跳转
--(void)getNearParameter:(NSDictionary *)dict{
-    WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
-    //    NSString *city = [MMNSUserDefaults objectForKey:selectedCity];
-    //    NSString *coupon_id = MMNSStringFormat(@"%@",dict[@"coupon_id"]);
-    wkWebView.isNavigationHidden = YES;
-    NSString *shop_id = MMNSStringFormat(@"%@",dict[@"shop_id"]);
-    
-    wkWebView.jointParameter = MMNSStringFormat(@"?shop_id=%@",shop_id);
-    //    wkWebView.urlString = [NSString judgeNullReturnString:dict[@"url"]];
-    [self.navigationController pushViewController:wkWebView animated:YES];
-}
-#pragma mark -URL跳转
--(void)pageJumpParameter:(NSDictionary *)dict{
-    NSLog(@"dict = %@",dict);
-    SXF_HF_WKWebViewVC *wkWebView = [[SXF_HF_WKWebViewVC alloc]init];
-    wkWebView.urlString = [NSString judgeNullReturnString:dict[@"href"]];
-    wkWebView.webTitle = [NSString judgeNullReturnString:dict[@"title"]];
-    [self.navigationController pushViewController:wkWebView animated:YES];
-}
-#pragma mark -去购买
--(void)goShoppingParameter:(NSDictionary *)dict{
-}
+
+
 #pragma mark -跳转原生界面
 -(void)nativeToJumpParameter:(NSDictionary *)dict{
     /**
@@ -489,35 +415,8 @@
 
 #pragma mark - h5跳转 搜索界面 goToSearch
 -(void)jumSearchVC {
-    
     [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_NearSearchVC") new] animated:YES];
-    
 }
-#pragma mark - h5跳转 QQ界面 与陌生人聊天 goToQQ
-- (void)jumQQVC:(NSString *)qqStr {
-    //qqNumber就是你要打开的QQ号码， 也就是你的客服号码。
-    NSString  *qqNumber = qqStr;
-    
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqq://"]]) {
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-        NSURL * url=[NSURL URLWithString:[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqNumber]];
-        
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [webView loadRequest:request];
-        [self.view addSubview:webView];
-    }else{
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"nil" message:@"对不起，您还没安装QQ" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            return ;
-        }];
-        
-        [alertController addAction:cancelAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-    }
-}
-    
 #pragma mark - 返回首页--
 -(void)goToHome:(id)type{
     if ([type isKindOfClass:[NSNull class]]) {
@@ -533,95 +432,6 @@
             }
         }
     }
-}
-#pragma mark -抢购--
--(void)rushBuyParameter:(NSDictionary *)dict{
-    NSLog(@"dict = %@",dict);
-    if ([NSString isNOTNull:[HeaderToken getAccessToken]]) {
-        //        [[NSNotificationCenter defaultCenter] postNotificationName:LOG_BACK_IN object:nil userInfo:nil];
-        //        return;
-    }
-}
-#pragma mark -酒店预定(抢购)--
--(void)orderHotelParameter:(NSDictionary *)dict{
-    WKWebViewController *wkWebView = [[WKWebViewController alloc]init];
-    wkWebView.urlString = [NSString judgeNullReturnString:dict[@"href"]];
-    wkWebView.isNavigationHidden = [MMNSStringFormat(@"%@",dict[@"bar"]) isEqualToString:@"1"]?YES:NO;
-    wkWebView.webTitle = [NSString judgeNullReturnString:dict[@"title"]];
-    [self.navigationController pushViewController:wkWebView animated:YES];
-}
-#pragma mark --提交订单---
--(void)submitOrderParameter:(NSDictionary *)dict{
-    if ([NSString isNOTNull:[HeaderToken getAccessToken]]) {
-        //        [[NSNotificationCenter defaultCenter] postNotificationName:LOG_BACK_IN object:nil userInfo:nil];
-        //        return;
-    }
-    NSLog(@"dict = %@",dict);
-    NSString *mobile = dict[@"mobile"];
-    if ([NSString isNOTNull:mobile]) {
-        [WXZTipView showCenterWithText:@"请填写手机号"];
-        return;
-    }
-    NSString *namestr = dict[@"name"];
-    
-    NSArray *names = [self toArrayOrNSDictionary:[namestr dataUsingEncoding:NSUTF8StringEncoding]];
-    if (names.count == 0) {
-        [WXZTipView showCenterWithText:@"请填写入驻人姓名"];
-        return;
-    }
-    for (NSString *str in names) {
-        if (str.length==0) {
-            [WXZTipView showCenterWithText:@"请填写入驻人姓名"];
-            return;
-        }
-    }
-}
-#pragma mark --银联商务调起支付宝支付---
--(void)goToPayParameter:(NSDictionary *)dict{
-    //    NSString *orderId = dict[@"pay_sn"];
-    NSString *type = [NSString stringWithFormat:@"%@", dict[@"type"] ? dict[@"type"] : @""];
-    if ([type isEqualToString:@"3"]) {
-        NSString *payDataJsonStr = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict[@"query"] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-        [UMSPPPayUnifyPayPlugin cloudPayWithURLSchemes:@"unifyPayHanPay" payData:payDataJsonStr viewController:self callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
-            NSLog(@"=====%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
-        }];
-    }else{
-        NSString *payDataJsonStr = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict[@"query"] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-        
-        //开启轮询订单
-        //        [[circleCheckOrderManger sharedInstence] searchOrderWithOrderId:orderId isHotel:YES idType:NO isNowPay:YES];
-        
-        [UMSPPPayUnifyPayPlugin payWithPayChannel:CHANNEL_ALIPAY payData:payDataJsonStr callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
-            if ([resultCode isEqualToString:@"1003"]) {
-                NSLog(@"%@",[NSString stringWithFormat:@"resultCode = %@\nresultInfo = %@", resultCode, resultInfo]);
-            }
-        }];
-    }
-    
-}
-- (void)ShareWithInformation:(NSDictionary *)dic
-{
-    if (![dic isKindOfClass:[NSDictionary class]]) {
-        return;
-    }
-    NSString *title = [dic objectForKey:@"title"];
-    NSString *content = [dic objectForKey:@"content"];
-    NSString *url = [dic objectForKey:@"url"];
-    
-    //在这里写分享操作的代码
-    NSLog(@"要分享了哦😯");
-    
-    //OC反馈给JS分享结果
-    NSString *JSResult = [NSString stringWithFormat:@"shareResult('%@','%@','%@')",title,content,url];
-    
-    //OC调用JS
-    [self.webView evaluateJavaScript:JSResult completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        NSLog(@"%@", error);
-    }];
-}
-
-- (void)camera{
-    NSLog(@"调用");
 }
 
 
