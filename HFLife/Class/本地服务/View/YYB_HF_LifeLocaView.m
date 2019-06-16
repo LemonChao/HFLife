@@ -66,7 +66,6 @@
         [self loadGuessLikeData];
     }
     
-    [[WBPCreate sharedInstance]showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(kNearLife) withParameters:nil  withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         [[WBPCreate sharedInstance]hideAnimated];
@@ -124,7 +123,6 @@
     }
     
     NSDictionary *parm = @{@"page":@(self.collectionView.page)};
-    [[WBPCreate sharedInstance]showWBProgress];
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(kGetIndexRecommendList) withParameters:parm withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         [[WBPCreate sharedInstance]hideAnimated];
@@ -281,9 +279,21 @@
             [[YYB_HF_LocalFailAlertV shareInstance] show];
             return ;
         }
+        
+        
+       
+        
         EntranceDetail *entrModel = self.dataModel.entrance[indexPath.row];
         
         NSString *url = entrModel.url;
+//        if (indexPath.row == 0) {
+//            url = @"http://ceshi-web.hfgld.net/contract/#/signingIndex";//http://192.168.0.253:10004/#/enter-index/";
+//        }else if (indexPath.row == 1) {
+//            url = @"http://192.168.0.253:10004/#/food-index/";
+//        }else if (indexPath.row == 2) {
+//            url = @"http://192.168.0.253:8080/#/";
+//        }
+        
         if (url && url.length > 0) {
             YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
             vc.urlString = url;

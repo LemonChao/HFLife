@@ -316,7 +316,8 @@
     dispatch_source_set_event_handler(self.myTimer, ^{
         
         if (self.isAleart) {
-            //提醒过不管
+            //提醒过不管  结束计时
+            dispatch_source_cancel(self.myTimer);
         }else {
             NSString *localCity = [[NSUserDefaults standardUserDefaults] valueForKey:LocationCity];
             NSString *selectCity = [[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity];
@@ -429,9 +430,10 @@
     if (!city_nsu) {
         city_nsu = city;
         [MMNSUserDefaults setObject:city forKey:SelectedCity];
+        [self uploadBackLocation:city];
     }
     [MMNSUserDefaults setObject:city forKey:LocationCity];
-    if (![city_nsu isEqualToString:city]) {
+    if (![city_nsu isEqualToString:city] && !self.isAleart) {
         self.isAleart = YES;
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"您定位到%@，确定切换城市吗？",city] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
