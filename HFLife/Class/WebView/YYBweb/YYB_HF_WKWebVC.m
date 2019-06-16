@@ -65,16 +65,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = NO;
-//    self.navigationController.navigationBar.hidden = YES;
-//    self.fd_interactivePopDisabled = YES;
+    [self addUserScript];
+    
+    
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    self.navigationController.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
-//    self.fd_interactivePopDisabled = NO;
-//    self.navigationController.navigationBar.hidden = NO;
-    
 }
 
 - (void)initWKWebView{
@@ -112,25 +108,9 @@
     //    preferences.minimumFontSize = 40.0;
     configuration.preferences = preferences;
     
-    NSMutableDictionary *dic = [NSMutableDictionary new];
-    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
-    dic[@"token"] = [NSString judgeNullReturnString:[[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]];
-    dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
-
-    //    dic[@"avatar"] = [UserInfoTool avatar];
-    
-    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
-    
-    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    NSString *js = [NSString stringWithFormat:@"window.iOSInfo = %@", jsonStr];
-    
-    WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:(WKUserScriptInjectionTimeAtDocumentStart) forMainFrameOnly:YES];
-    [configuration.userContentController addUserScript:script];
-    
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - HomeIndicatorHeight) configuration:configuration];
-    
+    [self addUserScript];
     
     
     self.webView.UIDelegate = self;
@@ -157,6 +137,22 @@
     //    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
     //        make.edges.mas_equalTo(self.view);
     //    }];
+}
+//更新插入的JavaScript
+- (void)addUserScript {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
+    dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
+    dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
+    dic[@"locationCity"] = [[NSUserDefaults standardUserDefaults] valueForKey:LocationCity];
+    
+    NSLog(@"window.iOSInfo:%@", dic);
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *js = [NSString stringWithFormat:@"window.iOSInfo = %@", jsonStr];
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:(WKUserScriptInjectionTimeAtDocumentStart) forMainFrameOnly:YES];
+    
+    [self.webView.configuration.userContentController addUserScript:script];
 }
 - (void)loadWKwebViewData{
     [[WBPCreate sharedInstance]showWBProgress];

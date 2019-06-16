@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong)JFLocation *locationManager;
 @property (nonatomic, strong)NSTimer *circleTimer;
-
+@property(nonatomic, assign) BOOL isAleart;//是否提醒过切换城市
 
 @property (nonatomic, strong)NSDictionary <NSString *, NSArray *>*homePageListDic;//数据原数组
 //新闻数组
@@ -315,8 +315,20 @@
     
     //3.要调用的任务
     dispatch_source_set_event_handler(self.myTimer, ^{
-        NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
-        [self uploadBackLocation:city];
+        
+        if (self.isAleart) {
+            //提醒过不管
+        }else {
+            NSString *localCity = [[NSUserDefaults standardUserDefaults] valueForKey:LocationCity];
+            NSString *selectCity = [[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity];
+            if (localCity && localCity.length > 0 && ![selectCity isEqualToString:localCity]) {
+                //定位成功  切位置当前位置和上传的不一致
+                //提示上传当前位置
+                [self currentLocation:@{@"City":localCity}];
+            }
+        }
+//        NSString *city = [MMNSUserDefaults objectForKey:SelectedCity];
+//        [self uploadBackLocation:city];
         
     });
     //4.开始执行
@@ -324,10 +336,61 @@
     
     
 }
--(void)uploadBackLocation:(NSString *)city{
+
+
+
+-(void)uploadBackLocation:(NSString *)city {
     NSLog(@"city = %@",city);
+    NSLog(@"上传定位");
+
+    
+    if (![NSString isNOTNull:city] && ![city isKindOfClass:[[NSUserDefaults standardUserDefaults] valueForKey:LocationCity]]) {
+        //选择城市和本地一致
+        if (![NSString isNOTNull:city]) {
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            [dict setObject:city forKey:@"city_name"];
+            //地理反编码，获取经纬度
+            CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+            [geoCoder geocodeAddressString:city completionHandler:^(NSArray *placemarks, NSError *error) {
+                // 地址为空,直接返回
+                if (!city) return ;
+                if (error) { // 输入的地址有错误
+                    [WXZTipView showCenterWithText:@"该地址不存在，请确认地址正确"];
+                }else{
+                    //                // 遍历查询到的地标
+                    //                NSLog(@"总共有%ld个地标符合要求",placemarks.count);
+                    //                for (int i = 0; i < placemarks.count; i++) {
+                    //                    CLPlacemark *placemark = placemarks[i];
+                    //                    NSLog(@"%@",placemark);
+                    //                }
+                    
+                    // 取地标数组的第一个为最终结果
+                    CLPlacemark *placemark = [placemarks firstObject];
+                    
+                    [dict setObject:MMNSStringFormat(@"%f",placemark.location.coordinate.latitude) forKey:@"lat"];
+                    [dict setObject:MMNSStringFormat(@"%f",placemark.location.coordinate.longitude) forKey:@"lng"];
+                    
+                    [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
+                        if (result) {
+                            
+                        }else {
+                            if (value && [value isKindOfClass:[NSDictionary class]]) {
+                                NSString *msg = value[@"msg"];
+                                if (msg) {
+                                    [WXZTipView showCenterWithText:@"msg"];
+                                }
+                            }else {
+                                [WXZTipView showCenterWithText:@"网络错误"];
+                            }
+                        }
+                    }];
+                }
+            }];
+        }
+        return;
+    }
+    
     if (![NSString isNOTNull:city]) {
-        NSLog(@"上传定位");
         
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         [dict setObject:city forKey:@"city_name"];
@@ -349,9 +412,7 @@
                 
             }
         }];
-        
     }
-    
 }
 
 
@@ -366,23 +427,24 @@
 - (void)currentLocation:(NSDictionary *)locationDictionary {
     NSString *city = [locationDictionary valueForKey:@"City"];
     NSString *city_nsu = [MMNSUserDefaults objectForKey:SelectedCity];
-    
+    if (!city_nsu) {
+        city_nsu = city;
+        [MMNSUserDefaults setObject:city forKey:SelectedCity];
+    }
     [MMNSUserDefaults setObject:city forKey:LocationCity];
     if (![city_nsu isEqualToString:city]) {
+        self.isAleart = YES;
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"您定位到%@，确定切换城市吗？",city] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             //把已选择的城市更改成定位城市
-             [MMNSUserDefaults setObject:city forKey:SelectedCity];
             [self uploadBackLocation:city];
             
         }];
         [alertController addAction:cancelAction];
         [alertController addAction:okAction];
         [self.vc presentViewController:alertController animated:YES completion:nil];
-    }else{
-        [self uploadBackLocation:city];
     }
 }
 
