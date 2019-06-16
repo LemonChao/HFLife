@@ -66,6 +66,7 @@
 }
 #pragma mark 代理
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    self.limitCount = 2;
     return [self limiTtextFled:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 #pragma mark 懒加载

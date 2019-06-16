@@ -28,7 +28,7 @@
  *  @return Gif图片对象
  */
 - (id)initWithFrame:(CGRect)frame gifImagePath:(NSString *)gifImagePath;
-
+- (id)initWithFrame:(CGRect)frame gifImageData:(NSData *)gifImageData repeat:(BOOL)repeat;
 /**
  *  自定义播放Gif图片(Data)(本地+网络)
  *

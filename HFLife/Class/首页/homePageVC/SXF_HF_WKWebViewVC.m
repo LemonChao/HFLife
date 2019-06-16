@@ -59,13 +59,32 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    //注入jsx参数
+    [self configetWeb];
 }
+- (void) configetWeb{
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
+    dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
+    dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
+    dic[@"getAddress"] = [[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity] ? [[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity] : @"杭州市";
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
+    
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSString *js = [NSString stringWithFormat:@"window.iOSInfo = %@", jsonStr];
+    
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:(WKUserScriptInjectionTimeAtDocumentStart) forMainFrameOnly:YES];
+    [self.webView.configuration.userContentController addUserScript:script];
+}
+
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
 }
 
 - (void)initWKWebView{
-    
     //创建并配置WKWebView的相关参数
     //1.WKWebViewConfiguration:是WKWebView初始化时的配置类，里面存放着初始化WK的一系列属性；
     //2.WKUserContentController:为JS提供了一个发送消息的通道并且可以向页面注入JS的类，WKUserContentController对象可以添加多个scriptMessageHandler；
@@ -96,24 +115,10 @@
     //    preferences.minimumFontSize = 40.0;
     configuration.preferences = preferences;
     
-    NSMutableDictionary *dic = [NSMutableDictionary new];
-    dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
-    dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
-    dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
-    //    dic[@"avatar"] = [UserInfoTool avatar];
-    
-    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
-    
-    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    NSString *js = [NSString stringWithFormat:@"window.iOSInfo = %@", jsonStr];
-    
-    WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:(WKUserScriptInjectionTimeAtDocumentStart) forMainFrameOnly:YES];
-    [configuration.userContentController addUserScript:script];
-    
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - HomeIndicatorHeight) configuration:configuration];
     
+    [self configetWeb];
     
     
     self.webView.UIDelegate = self;
@@ -133,9 +138,6 @@
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    
-    
-
 }
 -(void)loadWKwebViewData{
     [[WBPCreate sharedInstance]showWBProgress];

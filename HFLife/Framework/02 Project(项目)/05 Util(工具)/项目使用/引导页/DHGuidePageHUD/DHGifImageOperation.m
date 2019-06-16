@@ -89,6 +89,20 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame gifImageData:(NSData *)gifImageData repeat:(BOOL)repeat{
+    self = [super initWithFrame:frame];
+    if (self) {
+        gifProperties = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:0] forKey:(NSString *)kCGImagePropertyGIFLoopCount] forKey:(NSString *)kCGImagePropertyGIFDictionary];
+        gif = CGImageSourceCreateWithData((CFDataRef)gifImageData, (CFDictionaryRef)gifProperties);
+        count =CGImageSourceGetCount(gif);
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.06 target:self selector:@selector(play) userInfo:nil repeats:repeat];/**< 0.12->0.06 */
+        [timer fire];
+    }
+    return self;
+}
+
+
+
 - (void)play {
     if (count > 0) {
         index ++;

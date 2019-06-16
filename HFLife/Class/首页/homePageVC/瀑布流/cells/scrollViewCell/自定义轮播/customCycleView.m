@@ -201,7 +201,7 @@
 
 - (void)CWCarousel:(CWCarousel *)carousel didStartScrollAtIndex:(NSInteger)index indexPathRow:(NSInteger)indexPathRow {
 //    NSLog(@"开始滑动: %ld", index);
-    
+
     SXF_HF_CycleContentCell *cell = (SXF_HF_CycleContentCell *)[self.carousel.carouselView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:indexPathRow inSection:0]];
     
     if ([cell.gifImageV isAnimating]) {
@@ -246,15 +246,18 @@
 }
 
 - (void)payGif{
-    [currentCell.gifImageV playGifImagePath:selectedImagePath repeatCount:1];
+//    [currentCell.gifImageV playGifImagePath:selectedImagePath repeatCount:1];
     
     
+    for (UIView *vv in currentCell.gifImageV.subviews) {
+        [vv removeFromSuperview];
+    }
     
     
-    
-//    NSData *localData = [NSData dataWithContentsOfFile:selectedImagePath];
-//    currentCell.gifImageV = (UIImageView *)[[DHGifImageOperation alloc] initWithFrame:currentCell.gifImageV.frame gifImageData:localData];
-    
+    NSData *localData = [NSData dataWithContentsOfFile:selectedImagePath];
+    UIImageView *imageV = (UIImageView *)[[DHGifImageOperation alloc] initWithFrame:currentCell.gifImageV.frame gifImageData:localData repeat:NO];
+    imageV.frame = currentCell.gifImageV.bounds;
+    [currentCell.gifImageV addSubview:imageV];
     
     
     

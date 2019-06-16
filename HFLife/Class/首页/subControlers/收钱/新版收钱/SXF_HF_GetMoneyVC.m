@@ -22,8 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [userInfoModel sharedUser].payment_code = @(1);
-    [userInfoModel sharedUser].qrcode_shop_name = @"优衣库";
+
     self.customNavBar.title = self.payType ? @"收款" : @"向商家付款";
     [self setUpUI];
     

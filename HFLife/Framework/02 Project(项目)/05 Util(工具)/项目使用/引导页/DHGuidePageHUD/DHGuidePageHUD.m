@@ -204,15 +204,7 @@
         [UIView animateWithDuration:DDHidden_TIME animations:^{
             [movieStartButton setAlpha:1.0];
         }];
-        
         movieStartButton.hidden = YES;
-        
-        
-        
-        
-        
-        
-        
     }
     return self;
 }
