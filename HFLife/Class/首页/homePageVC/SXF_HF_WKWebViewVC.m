@@ -106,7 +106,9 @@
     [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
     
     [userContentController addScriptMessageHandler:self name:@"loginApp"];
-    
+    //调起QQ
+    [userContentController addScriptMessageHandler:self name:@"goToQQ"];
+
     configuration.userContentController = userContentController;
     
     
@@ -280,7 +282,10 @@
         [LoginVC login];//登录
     }else if ([message.name isEqualToString:@"getPhoto"]){
         [self savePhoto:message.body];
+    }else if ([message.name isEqualToString:@"goToQQ"]){
+        [self jumQQVC:message.body];
     }
+
 }
 
 #pragma mark - JS调用OC方法
@@ -413,6 +418,31 @@
     vc.dataParameter = dict[@"data"];
     [self.navigationController pushViewController:vc animated:YES];
 }
+#pragma mark - h5跳转 QQ界面 与陌生人聊天 goToQQ
+- (void)jumQQVC:(NSString *)qqStr {
+    //qqNumber就是你要打开的QQ号码， 也就是你的客服号码。
+    NSString  *qqNumber = qqStr;
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqq://"]]) {
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        NSURL * url=[NSURL URLWithString:[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqNumber]];
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [webView loadRequest:request];
+        [self.view addSubview:webView];
+    }else{
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"nil" message:@"对不起，您还没安装QQ" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            return ;
+        }];
+        
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+}
+
 
 #pragma mark - h5跳转 搜索界面 goToSearch
 -(void)jumSearchVC {
