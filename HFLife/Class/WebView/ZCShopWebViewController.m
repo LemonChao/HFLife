@@ -155,7 +155,7 @@
 }
 #pragma mark -返回--
 - (void)goToHome:(NSString *)body{
-    if (!StringIsEmpty(body) && body.integerValue == 0 ) { //有时会传NSNull
+    if (StringIsEmpty(body) || body.integerValue == 0) { //有时会传NSNull
         [self.navigationController popViewControllerAnimated:YES];
     }else {
         if ([self.webView canGoBack]) {
