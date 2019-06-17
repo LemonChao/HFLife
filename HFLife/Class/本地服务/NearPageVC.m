@@ -132,6 +132,10 @@
     self.headView.setLocalStr = address;
 }
 
+- (void)haveNetRefreshData {
+    [self.myLocaVeiw loadData];
+}
+
 #pragma mark - 上传定位
 -(void)uploadBackLocation:(NSString *)city{
     NSLog(@"city = %@",city);
