@@ -72,7 +72,7 @@
         make.left.right.bottom.mas_equalTo(self.view);
     }];
         
-    self.searArr = @[@"xxxx",@"xxx",@"xx",@"x"];
+    self.searArr = @[];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -102,7 +102,7 @@
             }else {
                 [WXZTipView showCenterWithText:@"网络错误"];
             }
-            self.searArr = nil;
+            self.searArr = @[];
             [self.collectionView reloadData];
         }
     }];
