@@ -72,12 +72,9 @@
         _imageV = [[UIImageView alloc] init];
         [self addSubview:_imageV];
         
-        _imageV.frame = CGRectMake(ScreenScale(12), ScreenScale(12), 200, 150);
-        _imageV.image = image(@"icon_hot");
+        _imageV.image = image(@"nodataguess");
         _textLabel = [[UILabel alloc] init];
         [self addSubview:_textLabel];
-        
-        _textLabel.frame = CGRectMake(ScreenScale(12), ScreenScale(30), 200, self.frame.size.height);
         _textLabel.font = FONT(12);
         _textLabel.textColor = HEX_COLOR(0xAAAAAA);
         
@@ -85,12 +82,19 @@
     return self;
 }
 
-
-- (void)layoutSubviews{
+- (void)layoutSubviews {
     [super layoutSubviews];
-    [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.mas_left).offset(ScreenScale(30));
-        make.top.bottom.mas_equalTo(self);
+    [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self).mas_offset(10);
+        make.centerX.mas_equalTo(self);
+        make.width.mas_equalTo(ScreenScale(200));
+        make.height.mas_equalTo(ScreenScale(150));
+    }];
+    [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.imageV.mas_bottom).mas_offset(10);
+        make.centerX.mas_equalTo(self);
+        make.height.mas_equalTo(20);
     }];
 }
+
 @end
