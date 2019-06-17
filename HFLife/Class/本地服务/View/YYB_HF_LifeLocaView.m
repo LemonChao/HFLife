@@ -50,7 +50,6 @@
     WEAK(weakSelf)
     self.collectionView.refreshHeaderBlock = ^{
         [weakSelf loadData];
-        [weakSelf loadGuessLikeData];
     };
     
     self.collectionView.refreshFooterBlock = ^{
@@ -63,18 +62,21 @@
     
     if (self.isFirstLoad) {
         self.isFirstLoad = NO;
-        [self loadGuessLikeData];
     }
-    
+    [self loadGuessLikeData];
+    [self loadNearLifeData];
+}
+
+- (void)loadNearLifeData {
     [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(kNearLife) withParameters:nil  withResultBlock:^(BOOL result, id value) {
         [self.collectionView endRefreshData];
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
-//                NSMutableArray *arr = [[NSMutableArray alloc]init];
-//                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
-//                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
-//                [value[@"data"] setValue:[NSArray arrayWithArray:arr] forKey:@"entrance"];
+                //                NSMutableArray *arr = [[NSMutableArray alloc]init];
+                //                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
+                //                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
+                //                [value[@"data"] setValue:[NSArray arrayWithArray:arr] forKey:@"entrance"];
                 [YYB_HF_nearLifeModel mj_setupObjectClassInArray:^NSDictionary *{
                     return @{
                              @"entrance":[EntranceDetail className]
@@ -86,6 +88,7 @@
                     YYB_HF_nearLifeModel *model = [YYB_HF_nearLifeModel mj_objectWithKeyValues:dataDic];
                     if (model) {
                         self.dataModel = model;
+                        
                         //刷新数据
                         
                         [CATransaction setDisableActions:YES];//端头闪动处理
@@ -95,6 +98,11 @@
                         //回调刷新位置
                         if (self.reFreshData) {
                             self.reFreshData(model);
+                        }
+                        
+                        if (self.dataModel.is_select.intValue == 0) {
+                            //未开通
+                            [WXZTipView showCenterWithText:@"该城市暂未开通"];
                         }
                     }
                 }
@@ -136,6 +144,7 @@
                     if (self->allPage == 1) {
                         [self.guessLikeData removeAllObjects];
                     }
+                    
                     NSArray *dataArr = dataDic[@"data"];
                     if (dataArr && [dataArr isKindOfClass:[NSArray class]]) {
                         NSMutableArray *arr = [GuessLikeModel mj_objectArrayWithKeyValuesArray:dataArr];
@@ -177,7 +186,7 @@
         [_collectionView registerClass:[YYB_HF_guessLikeCollectionViewCellRightPic class] forCellWithReuseIdentifier:@"YYB_HF_guessLikeCollectionViewCellRightPic"];
 
         [_collectionView registerClass:[YYb_HF_CollReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"head"];
-        [_collectionView registerClass:[YYb_HF_CollReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"foot"];
+        [_collectionView registerClass:[YYb_HF_GuessLikeCollReusableViewFoot class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"foot"];
         
         
     }
@@ -290,13 +299,13 @@
         EntranceDetail *entrModel = self.dataModel.entrance[indexPath.row];
         
         NSString *url = entrModel.url;
-//        if (indexPath.row == 0) {
-//            url = @"http://192.168.0.253:10004/#/enter-index/";//@"http://ceshi-web.hfgld.net/contract/#/signingIndex";//
-//        }else if (indexPath.row == 1) {
-//            url = @"http://192.168.0.253:10004/#/food-index/";
-//        }else if (indexPath.row == 2) {
-//            url = @"http://192.168.0.253:8080/#/";
-//        }
+        if (indexPath.row == 0) {
+            url = @"http://192.168.0.253:10004/#/enter-index/";//@"http://ceshi-web.hfgld.net/contract/#/signingIndex";//
+        }else if (indexPath.row == 1) {
+            url = @"http://192.168.0.253:10004/#/food-index/";
+        }else if (indexPath.row == 2) {
+            url = @"http://192.168.0.253:8080/#/";
+        }
         
         if (url && url.length > 0) {
             YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
@@ -340,24 +349,15 @@
     NSLog(@"section %ld item %ld",indexPath.section,indexPath.row);
     if (indexPath.section == 2) {
         //猜你喜欢
-        [YYB_HF_LocalFailAlertV detectionLocationState:^(int type) {
-            if (type == 0) {
-                //app 已开启定位
-            }else {
-                //系统 未开启定位
-                [[YYB_HF_LocalFailAlertV shareInstance] show];
-                return ;
-            }
-            GuessLikeModel *guessModel = self.guessLikeData[indexPath.row];
-            NSString *url = guessModel.url;
-            if (url && url.length > 0) {
-                YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
-                vc.urlString = url;
-                [self.supVC.navigationController pushViewController:vc animated:YES];
-            }else {
-                [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
-            }
-        }];
+        GuessLikeModel *guessModel = self.guessLikeData[indexPath.row];
+        NSString *url = guessModel.url;
+        if (url && url.length > 0) {
+            YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
+            vc.urlString = url;
+            [self.supVC.navigationController pushViewController:vc animated:YES];
+        }else {
+            [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
+        }
         
     }else {
         [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
@@ -370,21 +370,35 @@
     YYb_HF_CollReusableView *view = (YYb_HF_CollReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
     view.backgroundColor = [UIColor whiteColor];
     view.textLabel.text = @"猜你喜欢";
-    if (kind == UICollectionElementKindSectionFooter) {
-        view.hidden = YES;
-    }else{
-        if (indexPath.section != 2) {
-            view.hidden = YES;
-        }else{
+    if (indexPath.section == 2) {
+        if (kind == UICollectionElementKindSectionFooter) {
+            ((YYb_HF_GuessLikeCollReusableViewFoot *) view).imageV.image = @"";
+            ((YYb_HF_GuessLikeCollReusableViewFoot *) view).textLabel.text = @"暂无数据";
+            
+        }else {
             view.hidden = NO;
             if (self.guessLikeData.count == 0) {
                 view.hidden = YES;
             }
         }
     }
+    else{
+        if (indexPath.section != 2) {
+            view.hidden = YES;
+        }else {
+            
+        }
+    }
     
     return view;
 }
+
+- (UIView *)footView {
+    UIView *view = [UIView new];
+
+    return view;
+}
+
 
 #pragma mark - XPCollectionViewWaterfallFlowLayout
 

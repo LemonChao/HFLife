@@ -111,21 +111,34 @@
     [self.setingL setUserInteractionEnabled:YES];
     [self.setingL wh_addTapActionWithBlock:^(UITapGestureRecognizer *gestureRecoginzer) {
         
-        NSURL *url = [[NSURL alloc] initWithString:UIApplicationOpenSettingsURLString];
         
-        if([[UIApplication sharedApplication] canOpenURL:url])
-        {
-            [self removeFromSuperview];
-            if (@available(iOS 10.0, *)) {
-                [[UIApplication sharedApplication] openURL:url options:nil completionHandler:^(BOOL success) {
-                    
-                }];
-            }else {
-                [[UIApplication sharedApplication] openURL:url];
-            }
-        }else {
+        [[self class] detectionLocationState:^(int type) {
+            NSURL *url = [[NSURL alloc] initWithString:UIApplicationOpenSettingsURLString];
             
-        }
+            if([[UIApplication sharedApplication] canOpenURL:url])
+            {
+                [self removeFromSuperview];
+                if (@available(iOS 10.0, *)) {
+                    
+                    if (type == 2) {
+                        url = [NSURL URLWithString:@"App-Prefs:root=Privacy"];
+                    }
+                    
+                    [[UIApplication sharedApplication] openURL:url options:nil completionHandler:^(BOOL success) {
+                        
+                    }];
+                }else {
+                    if (type == 2) {
+                        url = [NSURL URLWithString:@"prefs:root=Privacy&path=LOCATION"];
+                    }
+                    [[UIApplication sharedApplication] openURL:url];
+                }
+            }else {
+                
+            }
+        }];
+        
+        
     }];
     
     [self.seting2L setUserInteractionEnabled:YES];
@@ -184,7 +197,7 @@
                         if (value && [value isKindOfClass:[NSDictionary class]]) {
                             NSString *msg = value[@"msg"];
                             if (msg) {
-                                [WXZTipView showCenterWithText:@"msg"];
+                                [WXZTipView showCenterWithText:msg];
                             }
                         }else {
                             [WXZTipView showCenterWithText:@"网络错误"];
@@ -263,7 +276,7 @@
         make.centerX.mas_equalTo(self.actiView);
         make.right.mas_equalTo(self.actiView).mas_offset(-15);
         make.left.mas_equalTo(self.actiView).mas_offset(15);
-        make.height.mas_equalTo(ScreenScale(25));
+        make.height.mas_equalTo(ScreenScale(30));
     }];
     
     [self.setingL mas_makeConstraints:^(MASConstraintMaker *make) {

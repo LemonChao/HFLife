@@ -21,4 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface YYb_HF_GuessLikeCollReusableViewFoot : UICollectionReusableView
+@property(nonatomic, strong) UILabel *textLabel;
+@property(nonatomic, strong) UIImageView *imageV;
+
+@end
+
 NS_ASSUME_NONNULL_END
