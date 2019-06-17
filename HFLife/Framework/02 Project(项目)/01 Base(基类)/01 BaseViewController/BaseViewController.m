@@ -45,6 +45,18 @@ static BOOL IsUpdateRemind = YES;
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
 
     [self setupNavBar];
+    
+    
+    
+    
+    //系统父类 添加网络通知
+    [NOTIFICATION addObserver:self selector:@selector(haveNetRefreshData) name:HAVE_NET object:nil];
+    
+    
+}
+//刷新数据 需要子类重写该方法
+- (void) haveNetRefreshData{
+    
 }
 
 - (void)setupNavBar
@@ -73,6 +85,8 @@ static BOOL IsUpdateRemind = YES;
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    //移除通知
+    [NOTIFICATION removeObserver:self name:HAVE_NET object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

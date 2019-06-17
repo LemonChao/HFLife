@@ -45,6 +45,13 @@
     [super viewWillDisappear:animated];
     [NOTIFICATION postNotificationName:@"stopScroll" object:@(1)];
 }
+
+//有网 刷新数据(重回写父类)
+- (void)haveNetRefreshData{
+    [self loadData];
+}
+
+
 - (void)setUpUI{
     self.mainPageView = [[SXF_HF_MainPageView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight - self.tabBarHeight)];
     [self.view addSubview:self.mainPageView];

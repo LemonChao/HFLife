@@ -62,7 +62,10 @@
 -(void)versionUpdateRequest;
 
 
-
+/**
+ 刷新数据 需要子类重写该方法
+ */
+- (void) haveNetRefreshData;
 
 
 /** 计算手续费*/

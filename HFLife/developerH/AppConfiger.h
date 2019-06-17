@@ -61,7 +61,10 @@ static NSString *const JPUSH_SQCODE         = @"jpush_sqcode";
  */
 static NSString *const JPUSH_LOGIN          = @"jpusj_login";
 
-
+/**
+ 断网通知刷新
+ */
+static NSString *const HAVE_NET             = @"have_net";
 
 
 

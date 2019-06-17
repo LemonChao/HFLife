@@ -151,14 +151,13 @@
         if (status == NetworkStatusNotReachable) {
             [[ZAlertViewManager shareManager] showWithType:3 title:@"暂无网络，请查看设置"];
             [[ZAlertViewManager shareManager] didSelectedAlertViewWithBlock:^{
-                //                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=General&path=Network"]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=General&path=Network"]];
             }];
             [[ZAlertViewManager shareManager] dismissAlertWithTime:5];
+        }else if(status == NetworkStatusReachableViaWWAN || status ==  NetworkStatusReachableViaWiFi){
+            //有网络 通知刷新
+            [NOTIFICATION postNotificationName:HAVE_NET object:nil];
         }
-//        NSNotification *notification =[NSNotification notificationWithName:NETWORK_CHANGES object:nil userInfo:nil];
-        // 3.通过 通知中心 发送 通知
-//        [[NSNotificationCenter defaultCenter] postNotification:notification];
-        
     }];
 }
 #pragma mark ————— 键盘处理 —————

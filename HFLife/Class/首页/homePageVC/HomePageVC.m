@@ -63,6 +63,15 @@
     
     
 }
+
+//有网 刷新数据(重回写父类)
+- (void)haveNetRefreshData{
+    [self loadServerData];
+}
+
+
+
+
 - (void)getFQValue:(NSNotification *)notifi{
     NSLog(@"%@", notifi.userInfo);
     self.homePageVM.fqValue = notifi.object[@"content"];

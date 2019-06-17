@@ -100,10 +100,11 @@
         case AlertViewTypeNetStatus:
         {
             self.frame = CGRectMake(0, Start_Height, Screen_Width, Height);
-            self.backgroundColor = [UIColor colorWithHexString:@"#B0C4DE"];
-            self.imageView.image = [UIImage imageNamed:@"net"];
+            self.backgroundColor = [UIColor whiteColor];
+            self.imageView.image = [UIImage imageNamed:@"nonet"];
             self.tipsLabel.text = title;
-            self.tipsLabel.textColor = [UIColor colorWithHexString:@"#d4237a"];
+//            self.tipsLabel.textAlignment = NSTextAlignmentCenter;
+            self.tipsLabel.textColor = colorCA1400;
         }
             break;
         default:
