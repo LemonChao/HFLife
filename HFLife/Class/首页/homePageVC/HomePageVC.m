@@ -213,7 +213,7 @@
     NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"final render_1" ofType:@"mp4"];
     DHGuidePageHUD *videoView = [[DHGuidePageHUD alloc] dh_initWithFrame:[UIScreen mainScreen].bounds videoURL:[NSURL fileURLWithPath:videoPath]];
     //设置销毁时间
-    videoView.videoDuration = 5.0;
+    videoView.videoDuration = 5.5;
     [[UIApplication sharedApplication].keyWindow addSubview:videoView];
     videoView.cancleGuildView = ^{
         //释放之后 调用 更新

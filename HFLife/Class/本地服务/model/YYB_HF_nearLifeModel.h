@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 //"banner": [
 //           "http://hanzhifu2-photos-public.oss-cn-shenzhen.aliyuncs.com/locallife/admin/7cb2b6a9bc572736876194418001ee3f.png"]
 @property(nonatomic, strong) NSArray *banner;
+@property(nonatomic, strong) NSNumber *is_select;//当前城市是否已开通 0：否 1：是
 
 
 @end

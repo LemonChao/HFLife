@@ -474,7 +474,7 @@
 
 #pragma mark - 返回首页--
 -(void)goToHome:(NSString *)body{
-    if (StringIsEmpty(body) || [body isEqualToString:@"返回"] || body.integerValue == 1) {
+    if (!StringIsEmpty(body) || [body isEqualToString:@"返回"] || body.integerValue == 1) {
         if ([self.webView canGoBack]) {
             [self.webView goBack];
         }else {

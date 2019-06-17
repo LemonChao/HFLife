@@ -394,7 +394,7 @@
                             if (value && [value isKindOfClass:[NSDictionary class]]) {
                                 NSString *msg = value[@"msg"];
                                 if (msg) {
-                                    [WXZTipView showCenterWithText:@"msg"];
+                                    [WXZTipView showCenterWithText:msg];
                                 }
                             }else {
                                 [WXZTipView showCenterWithText:@"网络错误"];

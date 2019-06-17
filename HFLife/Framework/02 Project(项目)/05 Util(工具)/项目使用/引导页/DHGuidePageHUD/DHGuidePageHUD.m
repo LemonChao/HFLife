@@ -177,11 +177,14 @@
 }
 
 - (void)buttonClick:(UIButton *)button {
-    [UIView animateWithDuration:DDHidden_TIME animations:^{
+    
+    [UIView animateWithDuration:DDHidden_TIME delay:1 options:UIViewAnimationOptionLayoutSubviews animations:^{
         self.alpha = 0;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(DDHidden_TIME * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self performSelector:@selector(removeGuidePageHUD) withObject:nil afterDelay:0.1];
+            [self performSelector:@selector(removeGuidePageHUD) withObject:nil afterDelay:1];
         });
+    } completion:^(BOOL finished) {
+        
     }];
 }
 
