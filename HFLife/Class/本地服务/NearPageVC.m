@@ -18,6 +18,7 @@
 @interface NearPageVC (){
     int arc;
     BOOL isFirstLoad;
+    NSInteger is_select;
     
 }
 /** 容器TableView*/
@@ -63,6 +64,12 @@
     };
     headView.searchIconClick = ^(NSString * _Nonnull search) {
         //点击搜索
+        
+        if (self->is_select == 0) {
+            [WXZTipView showCenterWithText:@"该城市暂未开通，请选择其他城市"];
+            return ;
+        }
+        
         YYB_HF_NearSearchVC *vc = [[YYB_HF_NearSearchVC alloc]init];
         vc.searchStrDe = search;
         [self.navigationController pushViewController:vc animated:YES];
@@ -73,6 +80,7 @@
     WEAK(weakSelf);
     self.myLocaVeiw.reFreshData = ^(YYB_HF_nearLifeModel * _Nonnull nearModel) {
         //数据更新
+        self->is_select = nearModel.is_select.intValue;
     };
     
     [self.view addSubview:self.myLocaVeiw];
@@ -160,7 +168,7 @@
                         if (value && [value isKindOfClass:[NSDictionary class]]) {
                             NSString *msg = value[@"msg"];
                             if (msg) {
-                                [WXZTipView showCenterWithText:@"msg"];
+                                [WXZTipView showCenterWithText:msg];
                             }
                         }else {
                             [WXZTipView showCenterWithText:@"网络错误"];

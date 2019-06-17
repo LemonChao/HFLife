@@ -63,6 +63,8 @@
     if (self.isFirstLoad) {
         self.isFirstLoad = NO;
     }
+    allPage = 0;
+    self.collectionView.page = 1;
     [self loadGuessLikeData];
     [self loadNearLifeData];
 }
@@ -141,7 +143,7 @@
                 if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
                     
                     self->allPage = [[dataDic safeObjectForKey:@"last_page"] intValue];
-                    if (self->allPage == 1) {
+                    if (self.collectionView.page <= 1) {
                         [self.guessLikeData removeAllObjects];
                     }
                     
@@ -293,19 +295,22 @@
             }
         }
         
-        
+        if (self.dataModel.is_select.intValue == 0) {
+            [WXZTipView showCenterWithText:@"该城市暂未开通，请选择其他城市"];
+            return;
+        }
        
         
         EntranceDetail *entrModel = self.dataModel.entrance[indexPath.row];
         
         NSString *url = entrModel.url;
-        if (indexPath.row == 0) {
-            url = @"http://192.168.0.253:10004/#/enter-index/";//@"http://ceshi-web.hfgld.net/contract/#/signingIndex";//
-        }else if (indexPath.row == 1) {
-            url = @"http://192.168.0.253:10004/#/food-index/";
-        }else if (indexPath.row == 2) {
-            url = @"http://192.168.0.253:8080/#/";
-        }
+//        if (indexPath.row == 0) {
+//            url = @"http://192.168.0.253:10004/#/enter-index/";//@"http://ceshi-web.hfgld.net/contract/#/signingIndex";//
+//        }else if (indexPath.row == 1) {
+//            url = @"http://192.168.0.253:10004/#/food-index/";
+//        }else if (indexPath.row == 2) {
+//            url = @"http://192.168.0.253:8080/#/";
+//        }
         
         if (url && url.length > 0) {
             YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
@@ -369,33 +374,31 @@
     NSString *identifier = (kind==UICollectionElementKindSectionHeader) ? @"head" : @"foot";
     YYb_HF_CollReusableView *view = (YYb_HF_CollReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
     view.backgroundColor = [UIColor whiteColor];
-    view.textLabel.text = @"猜你喜欢";
     if (indexPath.section == 2) {
         if (kind == UICollectionElementKindSectionFooter) {
-            ((YYb_HF_GuessLikeCollReusableViewFoot *) view).imageV.image = @"";
-            ((YYb_HF_GuessLikeCollReusableViewFoot *) view).textLabel.text = @"暂无数据";
-            
+            if (self.guessLikeData.count == 0) {
+                view.hidden = NO;
+                ((YYb_HF_GuessLikeCollReusableViewFoot *) view).imageV.image = image(@"nodataguess");
+                ((YYb_HF_GuessLikeCollReusableViewFoot *) view).textLabel.text = @"暂无数据";
+                if (self.dataModel.is_select.intValue == 0) {
+                    ((YYb_HF_GuessLikeCollReusableViewFoot *) view).imageV.image = image(@"noselec");
+                    ((YYb_HF_GuessLikeCollReusableViewFoot *) view).textLabel.text = @"该城市暂未开通，请选择其他城市";
+                }
+            }else {
+                view.hidden = YES;
+            }
         }else {
+            view.textLabel.text = @"猜你喜欢";
             view.hidden = NO;
             if (self.guessLikeData.count == 0) {
-                view.hidden = YES;
+//                view.hidden = YES;
             }
         }
     }
     else{
-        if (indexPath.section != 2) {
-            view.hidden = YES;
-        }else {
-            
-        }
+        view.hidden = YES;
     }
     
-    return view;
-}
-
-- (UIView *)footView {
-    UIView *view = [UIView new];
-
     return view;
 }
 
@@ -482,6 +485,11 @@
 }
 /// Return per section footer view height.
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout referenceHeightForFooterInSection:(NSInteger)section {
+    if (section == 2) {
+        if (self.dataModel.is_select.intValue == 0 || self.guessLikeData.count == 0) {
+            return  200;
+        }
+    }
     return 1;
 }
 #pragma mark - 检测相机相册

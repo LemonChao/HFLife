@@ -89,6 +89,9 @@
     [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
     //去登陆
     [userContentController addScriptMessageHandler:self name:@"loginApp"];
+    //更新余额
+    
+    [userContentController addScriptMessageHandler:self name:@"upDataUser"];
     configuration.userContentController = userContentController;
     
     
@@ -326,6 +329,8 @@
         }
     }else if ([message.name isEqualToString:@"loginApp"]){//跳转登录
         [LoginVC login];
+    }else if ([message.name isEqualToString:@"upDataUser"]) {
+        //更新余额
     }
     
     //goToHome
@@ -474,15 +479,19 @@
 
 #pragma mark - 返回首页--
 -(void)goToHome:(NSString *)body{
-    if (!StringIsEmpty(body) || [body isEqualToString:@"返回"] || body.integerValue == 1) {
-        if ([self.webView canGoBack]) {
-            [self.webView goBack];
-        }else {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        
-    }else {
+    
+    if ([body isKindOfClass:[NSNull class]]) {
         [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        if ([body integerValue] == 0) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            if ([self.webView canGoBack]) {
+                [self.webView goBack];
+            }else{
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
     }
 }
 #pragma mark -抢购--
