@@ -296,7 +296,7 @@
         }
         
         if (self.dataModel.is_select.intValue == 0) {
-            [WXZTipView showCenterWithText:@"该城市暂未开通，请选择其他城市"];
+            [WXZTipView showTopWithText:@"该城市暂未开通，请选择其他城市"];
             return;
         }
        
