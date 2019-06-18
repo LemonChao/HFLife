@@ -169,18 +169,18 @@
 //- (void)setValue:(id)value forKey:(NSString *)key{
 //    NSLog(@"value : %@  ----  key : %@", value, key);
 //}
-- (void)setValue:(id)value forKeyPath:(NSString *)keyPath{
-    NSLog(@"value : %@  ----  key : %@", value, keyPath);
-    
-//    if ([value isKindOfClass:[NSNull class]] || value == nil) {
-//        NSLog(@"！！！！！！！！！---------------------数据类型位---<Null>---value = %@" , value);
-//        //设置数据为@"";
-//        value = @"";
-//        [self setValue:value forKey:keyPath];
-//    }
-    
-    
-}
+//- (void)setValue:(id)value forKeyPath:(NSString *)keyPath{
+//    NSLog(@"value : %@  ----  key : %@", value, keyPath);
+//    
+////    if ([value isKindOfClass:[NSNull class]] || value == nil) {
+////        NSLog(@"！！！！！！！！！---------------------数据类型位---<Null>---value = %@" , value);
+////        //设置数据为@"";
+////        value = @"";
+////        [self setValue:value forKey:keyPath];
+////    }
+//    
+//    
+//}
 
 
 

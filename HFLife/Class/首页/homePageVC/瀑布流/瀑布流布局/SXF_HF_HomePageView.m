@@ -246,13 +246,12 @@ static NSString * const footerReuseIdentifier = @"Footer";
     }else if (indexPath.section == 2) {
         //热点头条
         mySection = 4;
-#warning 数据结构中暂无该字段
         model = self.hotNewsModelsArr[indexPath.row];
-        value = model.url;
+        value = model.ID;
     }else if (indexPath.section == 3){
         //头条
          model = self.noHotNewsModelArr[indexPath.row];
-         value = model.url;
+         value = model.ID;
         mySection = 5;
     }
     [self collectionViewSelection:mySection itemIndex:indexPath.row value:value];

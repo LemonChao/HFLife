@@ -260,6 +260,13 @@
         
     }else if (indexPath.section == 3){
         
+    }else if(indexPath.section == 4 || indexPath.section == 5){
+        //新闻详情
+        if (value) {
+             urlStr = SXF_WEB_URLl_Str(([NSString stringWithFormat:newsListDetaile, value]));
+        }else{
+            urlStr = nil;
+        }
     }else{
         
     }

@@ -25,39 +25,44 @@
 #define URL_IMAGE(url)  [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, url ? url : @""]]
 /************************subUrl************************/
 
-#define baseWebUrl      @"http://ceshi-web.hfgld.net/"
+//web地址
+#define baseWebUrlCompunent      @"ceshi-web.hfgld.net"
+//分享地址/
+#define shareUrlCompunent        @"www.hfgld.net"
+//原生地址
+#define baseAppUrl               @"ceshi-ucenter.hfgld.net"
+
+
+
+#define shareBaseUrl    [NSString stringWithFormat:@"%@%@", URL_PROTOCOL, shareUrlCompunent]
+#define baseWebUrl      [NSString stringWithFormat:@"%@%@", URL_PROTOCOL, baseWebUrlCompunent]
+
 
 #define LOCALTEST        0  //1:本地测试 0:线上测试
-
 #if DEBUG//测试线
     #if LOCALTEST//(本地测试)
         #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://192.168.0.142:8080/#/%@", subUrl ? subUrl : @""]
         static NSString *const enterIndex            = @"http://192.168.0.143:1111/#/signingIndex?type=2";//我要入驻（个人中心用）
     #else//(线上测试)
         //(个人中心和首页用)
-        #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"https://ceshi-web.hfgld.net/my/#/%@", subUrl ? subUrl : @""]
-        static NSString *const enterIndex            = @"https://ceshi-web.hfgld.net/contract/#/signingIndex?type=2";//我要入驻（个人中心用）
-
+        #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"%@/my/#/%@",baseWebUrl,subUrl ? subUrl : @""]
+        #define enterIndex                      [NSString stringWithFormat:@"%@/%@",baseWebUrl, entering]//我要入驻（个人中心用）
     #endif
     //测试线通用部分
-    static NSString *const upgrade               = @"https://ceshi-web.hfgld.net/contract/#/upgrade";
-    #define SXF_LOC_URL_STR(subUrl)        [NSString stringWithFormat:@"ceshi-ucenter.hfgld.net%@", subUrl ? subUrl : @""]
-    static NSString *const shareUrl        = @"https://www.hfgld.net/app_html/registered/registered.html?invite_code=%@";//分享
-    #define OPENSHOPURLLIST @"https://www.hfgld.net/app_html/enter_shop_model/#/list"//申请列表(web)
-
-    #define myShop    @"https://ceshi-web.hfgld.net/mall/#/store?store_id=65"
-
+    #define upgrade                             [NSString stringWithFormat:@"%@/%@", baseWebUrl, upGradeApp]
+    #define SXF_LOC_URL_STR(subUrl)             [NSString stringWithFormat:@"%@%@", baseAppUrl,subUrl ? subUrl : @""]
+    #define shareUrl                            [NSString stringWithFormat:@"%@%@", shareBaseUrl,sharedRegist]//分享
+    //申请列表(web)
+    #define OPENSHOPURLLIST                     [NSString stringWithFormat:@"%@%@", shareBaseUrl,applacationList]
 #else//线上
-
-    #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"https://ceshi-web.hfgld.net/my/#/%@", subUrl ? subUrl : @""]
-    static NSString *const enterIndex            = @"https://ceshi-web.hfgld.net/contract/#/signingIndex?type=2";//我要入驻（个人中心用）
-
-    static NSString *const upgrade               = @"https://ceshi-web.hfgld.net/contract/#/upgrade";
-    #define SXF_LOC_URL_STR(subUrl)        [NSString stringWithFormat:@"ceshi-ucenter.hfgld.net%@", subUrl ? subUrl : @""]
-    static NSString *const shareUrl        = @"https://www.hfgld.net/app_html/registered/registered.html?invite_code=%@";//分享
-    #define OPENSHOPURLLIST @"https://www.hfgld.net/app_html/enter_shop_model/#/list"//申请列表(web)
-
-    #define myShop    @"https://ceshi-web.hfgld.net/mall/#/store?store_id=65"
+//(个人中心和首页用)
+    #define SXF_WEB_URLl_Str(subUrl)            [NSString stringWithFormat:@"%@/my/#/%@",baseWebUrl,subUrl ? subUrl : @""]
+    #define enterIndex                          [NSString stringWithFormat:@"%@/%@",baseWebUrl, entering]//我要入驻（个人中心用）
+    #define upgrade                             [NSString stringWithFormat:@"%@/%@", baseWebUrl, upGradeApp]
+    #define SXF_LOC_URL_STR(subUrl)             [NSString stringWithFormat:@"%@%@", baseAppUrl,subUrl ? subUrl : @""]
+    #define shareUrl                            [NSString stringWithFormat:@"%@%@", shareBaseUrl,sharedRegist]//分享
+    //申请列表(web)
+    #define OPENSHOPURLLIST                     [NSString stringWithFormat:@"%@%@", shareBaseUrl,applacationList]
 #endif
 
 //版本信息
@@ -114,38 +119,56 @@ static NSString *const QrcodeGetMoneyCore         = @"/api/Finance/qrcodeGetMone
 
 /****************************webSubUrl*******************************/
 //余额
-static NSString *const balanceMain           = @"balanceMain";
+static NSString *const balanceMain                = @"balanceMain";
 //富权
-static NSString *const richRightBalance      = @"richRightBalance";
+static NSString *const richRightBalance           = @"richRightBalance";
 //可兑换富权
-static NSString *const convertible           = @"convertible";
+static NSString *const convertible                = @"convertible";
 //收货地址
-static NSString *const addressList           = @"addressList";
+static NSString *const addressList                = @"addressList";
 //银行卡
-static NSString *const bankCardList          = @"bankCardList";
+static NSString *const bankCardList               = @"bankCardList";
 //分享好友
-static NSString *const share                 = @"share";
+static NSString *const share                      = @"share";
 //我要升级
-static NSString *const upgradeMain           = @"upgradeMain";
+static NSString *const upgradeMain                = @"upgradeMain";
 //我的收藏
-static NSString *const myCollection          = @"myCollection";
+static NSString *const myCollection               = @"myCollection";
 //我的好友
-static NSString *const myFriendsMain         = @"myFriendsMain";
+static NSString *const myFriendsMain              = @"myFriendsMain";
 //首页的消息通知
-static NSString *const noticeList            = @"noticeList";
+static NSString *const noticeList                 = @"noticeList";
 //服务协议
-static NSString *const serviceAgreement      = @"serviceAgreement";
+static NSString *const serviceAgreement           = @"serviceAgreement";
 //版本说明
-static NSString *const versionSpecification  = @"versionSpecification";
+static NSString *const versionSpecification       = @"versionSpecification";
 //会员卡信息
-static NSString *const membershipInformation = @"membershipInformation";
+static NSString *const membershipInformation      = @"membershipInformation";
 //收款码介绍
-static NSString *const reCodeIntroduction    = @"reCodeIntroduction";
+static NSString *const reCodeIntroduction         = @"reCodeIntroduction";
 //实名认证
-static NSString *const certification         = @"certification";
+static NSString *const certification              = @"certification";
 //更多新闻
-static NSString *const headlinesList         = @"headlinesList";
+static NSString *const headlinesList              = @"headlinesList";
 
 //客服中心
-static NSString *servceCenter                = @"serviceCenterMain";
+static NSString *servceCenter                     = @"serviceCenterMain";
+
+//我要入驻
+static NSString *entering                         = @"contract/#/signingIndex?type=2";
+
+//j检查升级接口
+static NSString *const upGradeApp                 = @"contract/#/upgrade";
+
+//分享注册接口
+static NSString *const sharedRegist               = @"/app_html/registered/registered.html?invite_code=%@";
+
+
+//申请列表
+static NSString *const applacationList            = @"/app_html/enter_shop_model/#/list";
+
+
+//新闻详情
+static NSString *newsListDetaile                  = @"headlinesList/headlinesDetail?news_id=%@";
+
 #endif /* Header_SXF_h */
