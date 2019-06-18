@@ -368,7 +368,7 @@
     NSLog(@"上传定位");
 
     
-    if (![NSString isNOTNull:city] && ![city isKindOfClass:[[NSUserDefaults standardUserDefaults] valueForKey:LocationCity]]) {
+    if (![NSString isNOTNull:city] && ![city isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:LocationCity]]) {
         //选择城市和本地一致
         if (![NSString isNOTNull:city]) {
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
