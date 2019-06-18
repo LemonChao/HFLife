@@ -34,7 +34,7 @@
         stack.axis = UILayoutConstraintAxisHorizontal;
         stack.distribution = UIStackViewDistributionFillEqually;
         stack.alignment = UIStackViewAlignmentFill;
-        stack.spacing = ScreenScale(10);//ScreenScale(10);
+        stack.spacing = ScreenScale(70);//ScreenScale(10);
 
         [self.contentView addSubview:cornerBGView];
         [cornerBGView addSubview:self.titleLabel];
@@ -110,8 +110,10 @@
 
 - (NSArray<UIButton *> *)subButtons {
     if (!_subButtons) {
-        NSArray *titls = @[@"代金券",@"优惠券",@"领好券"];
-        NSArray *imageNames = @[@"orderCenter_daijinquan",@"orderCenter_youhuiquan",@"orderCenter_lingquan"];
+//        NSArray *titls = @[@"代金券",@"优惠券",@"领好券"];
+//        NSArray *imageNames = @[@"orderCenter_daijinquan",@"orderCenter_youhuiquan",@"orderCenter_lingquan"];
+        NSArray *titls = @[@"代金券",@"领好券"];
+        NSArray *imageNames = @[@"orderCenter_daijinquan",@"orderCenter_lingquan"];
         NSMutableArray *array = [NSMutableArray array];
         for (int i = 0; i < titls.count; i++) {
             UIButton *button = [UITool richButton:UIButtonTypeCustom title:titls[i] titleColor:ImportantColor font:SystemFont(14) bgColor:[UIColor whiteColor] image:image(imageNames[i])];

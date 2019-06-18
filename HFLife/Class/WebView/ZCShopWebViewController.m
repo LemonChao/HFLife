@@ -250,7 +250,7 @@
 - (void)pollingOrderResult:(NSString *)orderId {
     static NSInteger pollingCount = 0;
     @weakify(self);
-    [networkingManagerTool requestToServerWithType:POST withSubUrl:pollingOrderState withParameters:@{@"pay_sn":orderId} withResultBlock:^(BOOL result, id value) {
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:pollingOrderState withParameters:@{@"pay_id":orderId} withResultBlock:^(BOOL result, id value) {
         @strongify(self);
         if (result || pollingCount >= 4) {
             [[WBPCreate sharedInstance] hideAnimated];
