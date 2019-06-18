@@ -204,7 +204,7 @@ static dispatch_once_t onceToken;
     }
     if (self.rz_status.intValue == 3) {
         [WXZTipView showCenterWithText:@"认证未通过"];
-        return NO;;
+        return NO;
     }
     [WXZTipView showCenterWithText:@"未认证"];
     return NO;

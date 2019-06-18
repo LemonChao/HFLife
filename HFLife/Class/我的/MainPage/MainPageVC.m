@@ -66,31 +66,18 @@
             [SXF_HF_AlertView showAlertType:AlertType_login Complete:^(BOOL btnBype) {
                 if (btnBype) {
                     //登录页
-                    [WXZTipView showCenterWithText:@"去登陆"];
+                    //登录页(已封装在弹窗内部 这里不用再跳转)
+                    //[LoginVC login];
                     return ;
                 }
             }];
         }else {
             if (indexPath.section == 0) {
                 
-                if (![[userInfoModel sharedUser] chect_rz_status]) {
-                    if ([[userInfoModel sharedUser].rz_status integerValue] == 0) {
-                        //去认证
-                        [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
-                            if (btnBype) {
-                                SXF_HF_WKWebViewVC *web = [SXF_HF_WKWebViewVC new];
-                                web.urlString = SXF_WEB_URLl_Str(certification);
-                                [weakSelf.navigationController pushViewController:web animated:YES];
-                            }
-                        }];
-                    }else{
-                        [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
-                    }
+                //检测是否实名认证
+                if (![weakSelf checkRealy]) {
                     return ;
                 }
-                
-                
-                
                 if (indexPath.row == 0) {
                     //余额
                     webVC.urlString = SXF_WEB_URLl_Str(balanceMain);
@@ -118,14 +105,12 @@
                                         @"",
                                         ];
                     
-                    if (indexPath.row == 1) {
+                    if (indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 5) {
                         //银行卡实名认证
-                        if (![[userInfoModel sharedUser] chect_rz_status]) {
-                            [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
+                        if (![weakSelf checkRealy]) {
                             return ;
                         }
                     }
-                    
                     if (indexPath.row == 3) {
                         //安全中心
                         vc = [SecurityCenterVC new];
@@ -192,6 +177,24 @@
     }];
 }
 
-
+//检测是否是，实名认证
+- (BOOL) checkRealy{
+    if (![[userInfoModel sharedUser] chect_rz_status]) {
+        if ([[userInfoModel sharedUser].rz_status integerValue] == 0) {
+            //去认证
+            [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
+                if (btnBype) {
+                    SXF_HF_WKWebViewVC *web = [SXF_HF_WKWebViewVC new];
+                    web.urlString = SXF_WEB_URLl_Str(certification);
+                    [self.navigationController pushViewController:web animated:YES];
+                }
+            }];
+        }else{
+            [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
+        }
+        return NO;
+    }
+    return YES;
+}
 
 @end
