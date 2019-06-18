@@ -75,10 +75,10 @@
         [[WBPCreate sharedInstance]hideAnimated];
         if (result) {
             if (value && [value isKindOfClass:[NSDictionary class]]) {
-                //                NSMutableArray *arr = [[NSMutableArray alloc]init];
-                //                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
-                //                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
-                //                [value[@"data"] setValue:[NSArray arrayWithArray:arr] forKey:@"entrance"];
+//                NSMutableArray *arr = [[NSMutableArray alloc]init];
+//                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
+//                [arr addObjectsFromArray:value[@"data"][@"entrance"]];
+//                [value[@"data"] setValue:[NSArray arrayWithArray:arr] forKey:@"entrance"];
                 [YYB_HF_nearLifeModel mj_setupObjectClassInArray:^NSDictionary *{
                     return @{
                              @"entrance":[EntranceDetail className]
@@ -380,7 +380,7 @@
                 view.hidden = NO;
                 ((YYb_HF_GuessLikeCollReusableViewFoot *) view).imageV.image = image(@"nodataguess");
                 ((YYb_HF_GuessLikeCollReusableViewFoot *) view).textLabel.text = @"暂无数据";
-                if (self.dataModel.is_select.intValue == 0) {
+                if (self.dataModel && self.dataModel.is_select.intValue == 0) {
                     ((YYb_HF_GuessLikeCollReusableViewFoot *) view).imageV.image = image(@"noselec");
                     ((YYb_HF_GuessLikeCollReusableViewFoot *) view).textLabel.text = @"该城市暂未开通，请选择其他城市";
                 }
@@ -486,7 +486,7 @@
 /// Return per section footer view height.
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(XPCollectionViewWaterfallFlowLayout*)layout referenceHeightForFooterInSection:(NSInteger)section {
     if (section == 2) {
-        if (self.dataModel.is_select.intValue == 0 || self.guessLikeData.count == 0) {
+        if ((self.dataModel && self.dataModel.is_select.intValue == 0) || self.guessLikeData.count == 0) {
             return  200;
         }
     }

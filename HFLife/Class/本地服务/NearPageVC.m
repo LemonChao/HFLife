@@ -103,7 +103,7 @@
             [self uploadBackLocation:seleCity];
         }else {
             //默认定位
-            
+            [self uploadBackLocation:@"杭州市"];
         }
     }
     

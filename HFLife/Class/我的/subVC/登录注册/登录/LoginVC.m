@@ -284,6 +284,7 @@
                    }];
                }else{
                    NSLog(@"error = %@",error);
+                   [WXZTipView showCenterWithText:[NSString stringWithFormat:@"微信登录失败"]];
                }
            }];
 }
