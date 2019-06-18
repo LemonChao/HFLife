@@ -41,7 +41,11 @@
     //    [self.customNavBar wr_setRightButtonWithTitle:@"发布" titleColor:HEX_COLOR(0xC04CEB)];
     //    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@"yynavi_bg"];
     [self.customNavBar setOnClickLeftButton:^{
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        if (self.isLocal) {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }else {
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }
         //        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
     [self.customNavBar setOnClickRightButton:^{
@@ -159,6 +163,7 @@
     
     YYB_HF_submitDealPassWordVC *vc = [[YYB_HF_submitDealPassWordVC alloc]init];
     vc.verCode = self.vercodeText.text;
+    vc.isLocal = self.isLocal;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

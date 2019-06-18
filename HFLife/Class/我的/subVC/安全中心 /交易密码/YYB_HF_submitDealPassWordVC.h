@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_submitDealPassWordVC : BaseViewController
 @property(nonatomic, copy) NSString *verCode;//验证码
+@property(nonatomic, assign) BOOL isLocal;//是否本地
 @end
 
 NS_ASSUME_NONNULL_END

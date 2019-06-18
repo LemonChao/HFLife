@@ -62,9 +62,9 @@
     self.showImage1 = [UIImageView new];
     self.showImage2 = [UIImageView new];
     self.showImage3 = [UIImageView new];
-    self.showImage1.backgroundColor = [UIColor brownColor];
-    self.showImage2.backgroundColor = [UIColor brownColor];
-    self.showImage3.backgroundColor = [UIColor brownColor];
+//    self.showImage1.backgroundColor = [UIColor brownColor];
+//    self.showImage2.backgroundColor = [UIColor brownColor];
+//    self.showImage3.backgroundColor = [UIColor brownColor];
     
     [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.nameLabel];

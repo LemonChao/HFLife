@@ -188,7 +188,7 @@
             return ;
         }
     }else {
-        if ((userNameTextField.text.length) > 5) {
+        if ((userNameTextField.text.length) > 15) {
             [WXZTipView showCenterWithText:@"昵称不能大于5位数"];
             return ;
         }

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYB_HF_setDealPassWordVC : BaseViewController
-
+@property(nonatomic, assign) BOOL isLocal;//是否本地
 @end
 
 NS_ASSUME_NONNULL_END

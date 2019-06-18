@@ -7,7 +7,7 @@
 //
 
 #import "YYB_HF_submitDealPassWordVC.h"
-
+//#import "CodeView.h"
 @interface YYB_HF_submitDealPassWordVC ()<UITextFieldDelegate>
 @property(nonatomic, strong) UITextField *oldPassWordText;//旧密码
 @property(nonatomic, strong) UITextField *passWordText;//密码
@@ -16,6 +16,10 @@
 @property (nonatomic,strong)UILabel *saveLabel;//安全提示
 @property (nonatomic,strong)UILabel *errLabel;//错误信息
 @property (nonatomic,strong)UIButton *sureBtn;//确认按钮
+
+//@property (nonatomic, strong) CodeView *passWordView;//密码
+//@property (nonatomic,strong) CodeView *confirmPassWordView;//密码
+
 @end
 
 @implementation YYB_HF_submitDealPassWordVC
@@ -41,7 +45,11 @@
     //    [self.customNavBar wr_setRightButtonWithTitle:@"发布" titleColor:HEX_COLOR(0xC04CEB)];
     //    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@"yynavi_bg"];
     [self.customNavBar setOnClickLeftButton:^{
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        if (weakSelf.isLocal) {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }else {
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }
         //        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
     [self.customNavBar setOnClickRightButton:^{
@@ -73,6 +81,8 @@
     [self.view addSubview:self.passWordText];
     [self.view addSubview:self.confirmPassWordText];
     
+    
+    
     [self.saveImageView setImage:image(@"icon_safe")];
     self.saveLabel.text = @"为了您的资金安全 \n请先设置交易密码";
     self.saveLabel.font = FONT(14);
@@ -83,6 +93,8 @@
     self.errLabel.font = FONT(11);
     self.errLabel.text = @"错误";
     self.errLabel.hidden = YES;
+    
+    
     
     [self.saveImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(bgView).mas_offset(52);
@@ -159,6 +171,38 @@
     }];
     self.sureBtn = sureBtn;
     
+//    self.passWordView = [[CodeView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 50 , 40) num:6 lineColor:HEX_COLOR(0xAAAAAA) textFont:50];
+//    self.passWordView.codeType = CodeViewTypeSecret;
+//    self.passWordView.hasSpaceLine = YES;
+//    self.passWordView.hasUnderLine = NO;
+//
+//    [self.view addSubview:self.passWordView];
+//
+//    [self.passWordView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.mas_equalTo(self.passWordText);
+//        make.centerX.mas_equalTo(self.view);
+//        make.width.mas_equalTo(SCREEN_WIDTH - 30);
+//        make.height.mas_equalTo(ScreenScale(40));
+//    }];
+//
+//    self.confirmPassWordView = [[CodeView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 50, 40) num:6 lineColor:HEX_COLOR(0xAAAAAA) textFont:50];
+//    self.confirmPassWordView.codeType = CodeViewTypeSecret;
+//    self.confirmPassWordView.hasSpaceLine = YES;
+//    self.confirmPassWordView.hasUnderLine = NO;
+//
+//    [self.view addSubview:self.confirmPassWordView];
+//
+//    [self.confirmPassWordView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.mas_equalTo(self.confirmPassWordText);
+//        make.centerX.mas_equalTo(self.view);
+//        make.width.mas_equalTo(SCREEN_WIDTH - 30);
+//        make.height.mas_equalTo(ScreenScale(40));
+//    }];
+    
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 #pragma mark - //提交
 - (void)submitBtnClick {
@@ -192,7 +236,11 @@
             alert.title = @"设置成功";
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.navigationController popToViewControllerWithLevel:2 animated:YES];
+                if (self.isLocal) {
+                    [self.navigationController popToViewControllerWithLevel:2 animated:YES];
+                }else {
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }
             });
             
         }else {
@@ -295,6 +343,13 @@
             make.height.mas_equalTo(ScreenScale(15));
         }];
         
+        [tipLabe mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(tf.mas_top).mas_offset(ScreenScale(-10));
+            make.left.mas_equalTo(tf).mas_offset(12);
+            make.height.mas_equalTo(ScreenScale(15));
+        }];
+        
+        
         UILabel *lin = [UILabel new];
         lin.backgroundColor = HEX_COLOR(0xF5F5F5);
         [tf addSubview:lin];
@@ -352,7 +407,9 @@
             make.bottom.mas_equalTo(tf.mas_top).mas_offset(ScreenScale(-10));
             make.left.mas_equalTo(tf).mas_offset(12);
             make.height.mas_equalTo(ScreenScale(15));
+            make.width.mas_equalTo(SCREEN_WIDTH);
         }];
+        
         
         UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WidthRatio(120), HeightRatio(69))];
         rightView.backgroundColor = [UIColor clearColor];
