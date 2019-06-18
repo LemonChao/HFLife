@@ -463,6 +463,7 @@
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
+            [MMNSUserDefaults setObject:city forKey:SelectedCity];
             //把已选择的城市更改成定位城市
             [self uploadBackLocation:city];
             
