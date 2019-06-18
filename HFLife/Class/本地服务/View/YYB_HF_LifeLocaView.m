@@ -361,11 +361,11 @@
             vc.urlString = url;
             [self.supVC.navigationController pushViewController:vc animated:YES];
         }else {
-            [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
+            [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",(long)indexPath.section,(long)indexPath.row]];
         }
         
     }else {
-        [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",indexPath.section,indexPath.row]];
+        [WXZTipView showCenterWithText:[NSString stringWithFormat:@"click -item %ld - %ld",(long)indexPath.section,(long)indexPath.row]];
     }
     
 }
@@ -379,10 +379,10 @@
             if (self.guessLikeData.count == 0) {
                 view.hidden = NO;
                 ((YYb_HF_GuessLikeCollReusableViewFoot *) view).imageV.image = image(@"nodataguess");
-                ((YYb_HF_GuessLikeCollReusableViewFoot *) view).textLabel.text = @"暂无数据";
+                ((YYb_HF_GuessLikeCollReusableViewFoot *) view).textLabel.text = @"暂无本地商家，无法为您提供本地服务";
                 if (self.dataModel && self.dataModel.is_select.intValue == 0) {
                     ((YYb_HF_GuessLikeCollReusableViewFoot *) view).imageV.image = image(@"noselec");
-                    ((YYb_HF_GuessLikeCollReusableViewFoot *) view).textLabel.text = @"该城市暂未开通，请选择其他城市";
+                    ((YYb_HF_GuessLikeCollReusableViewFoot *) view).textLabel.text = @"当前城市暂未开通本地服务";
                 }
             }else {
                 view.hidden = YES;

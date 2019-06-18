@@ -23,6 +23,8 @@
 #import "MapViewController.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "UMSPPPayUnifyPayPlugin.h"
+#import "YYB_HF_setDealPassWordVC.h"
+
 @interface YYB_HF_WKWebVC()<WKUIDelegate,WKScriptMessageHandler,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,WKNavigationDelegate,UIGestureRecognizerDelegate>
 {
     UIImagePickerController *imagePickerController;
@@ -474,7 +476,9 @@
 }
 #pragma mark - h5跳转 设置密码界面 goSetPayPassword
 - (void)jumPasswordVC {
-    [self.navigationController pushViewController:[NSClassFromString(@"YYB_HF_setDealPassWordVC") new] animated:YES];
+    YYB_HF_setDealPassWordVC *vc =[NSClassFromString(@"YYB_HF_setDealPassWordVC") new];
+    vc.isLocal = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - 返回首页--
