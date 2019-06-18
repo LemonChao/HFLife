@@ -35,29 +35,29 @@
         static NSString *const enterIndex            = @"http://192.168.0.143:1111/#/signingIndex?type=2";//我要入驻（个人中心用）
     #else//(线上测试)
         //(个人中心和首页用)
-        #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://ceshi-web.hfgld.net/my/#/%@", subUrl ? subUrl : @""]
-        static NSString *const enterIndex            = @"http://ceshi-web.hfgld.net/contract/#/signingIndex?type=2";//我要入驻（个人中心用）
+        #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"https://ceshi-web.hfgld.net/my/#/%@", subUrl ? subUrl : @""]
+        static NSString *const enterIndex            = @"https://ceshi-web.hfgld.net/contract/#/signingIndex?type=2";//我要入驻（个人中心用）
 
     #endif
     //测试线通用部分
-    static NSString *const upgrade               = @"http://ceshi-web.hfgld.net/contract/#/upgrade";
+    static NSString *const upgrade               = @"https://ceshi-web.hfgld.net/contract/#/upgrade";
     #define SXF_LOC_URL_STR(subUrl)        [NSString stringWithFormat:@"ceshi-ucenter.hfgld.net%@", subUrl ? subUrl : @""]
     static NSString *const shareUrl        = @"https://www.hfgld.net/app_html/registered/registered.html?invite_code=%@";//分享
     #define OPENSHOPURLLIST @"https://www.hfgld.net/app_html/enter_shop_model/#/list"//申请列表(web)
 
-    #define myShop    @"http://ceshi-web.hfgld.net/mall/#/store?store_id=65"
+    #define myShop    @"https://ceshi-web.hfgld.net/mall/#/store?store_id=65"
 
 #else//线上
 
-    #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://ceshi-web.hfgld.net/my/#/%@", subUrl ? subUrl : @""]
-    static NSString *const enterIndex            = @"http://ceshi-web.hfgld.net/contract/#/signingIndex?type=2";//我要入驻（个人中心用）
+    #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"https://ceshi-web.hfgld.net/my/#/%@", subUrl ? subUrl : @""]
+    static NSString *const enterIndex            = @"https://ceshi-web.hfgld.net/contract/#/signingIndex?type=2";//我要入驻（个人中心用）
 
-    static NSString *const upgrade               = @"http://ceshi-web.hfgld.net/contract/#/upgrade";
+    static NSString *const upgrade               = @"https://ceshi-web.hfgld.net/contract/#/upgrade";
     #define SXF_LOC_URL_STR(subUrl)        [NSString stringWithFormat:@"ceshi-ucenter.hfgld.net%@", subUrl ? subUrl : @""]
     static NSString *const shareUrl        = @"https://www.hfgld.net/app_html/registered/registered.html?invite_code=%@";//分享
     #define OPENSHOPURLLIST @"https://www.hfgld.net/app_html/enter_shop_model/#/list"//申请列表(web)
 
-    #define myShop    @"http://ceshi-web.hfgld.net/mall/#/store?store_id=65"
+    #define myShop    @"https://ceshi-web.hfgld.net/mall/#/store?store_id=65"
 #endif
 
 //版本信息

@@ -102,7 +102,6 @@
 		0453D184228266D200880C2A /* 02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0453D16C228266D200880C2A /* 02.jpg */; };
 		0453D185228266D200880C2A /* 05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0453D16D228266D200880C2A /* 05.jpg */; };
 		0453D186228266D200880C2A /* 04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0453D16F228266D200880C2A /* 04.jpg */; };
-		0453D187228266D300880C2A /* Mask Copy 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0453D171228266D200880C2A /* Mask Copy 2.png */; };
 		0453D188228266D300880C2A /* LWDPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D172228266D200880C2A /* LWDPageControl.m */; };
 		0453D189228266D300880C2A /* customCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D175228266D200880C2A /* customCycleView.m */; };
 		0453D18A228266D300880C2A /* CollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453D176228266D200880C2A /* CollectionReusableView.m */; };
@@ -1092,7 +1091,6 @@
 		0453D16D228266D200880C2A /* 05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 05.jpg; sourceTree = "<group>"; };
 		0453D16E228266D200880C2A /* customCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customCycleView.h; sourceTree = "<group>"; };
 		0453D16F228266D200880C2A /* 04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 04.jpg; sourceTree = "<group>"; };
-		0453D171228266D200880C2A /* Mask Copy 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mask Copy 2.png"; sourceTree = "<group>"; };
 		0453D172228266D200880C2A /* LWDPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWDPageControl.m; sourceTree = "<group>"; };
 		0453D173228266D200880C2A /* CWPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWPageControl.h; sourceTree = "<group>"; };
 		0453D175228266D200880C2A /* customCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customCycleView.m; sourceTree = "<group>"; };
@@ -3126,7 +3124,6 @@
 				0453D169228266D200880C2A /* 03.jpg */,
 				0453D16E228266D200880C2A /* customCycleView.h */,
 				0453D175228266D200880C2A /* customCycleView.m */,
-				0453D171228266D200880C2A /* Mask Copy 2.png */,
 				0453D16C228266D200880C2A /* 02.jpg */,
 				0453D16F228266D200880C2A /* 04.jpg */,
 				0453D16D228266D200880C2A /* 05.jpg */,
@@ -7728,7 +7725,6 @@
 				65DC683E22112C4300F1085E /* 定位@3x.png in Resources */,
 				048DABD722856656006E6BA2 /* RYNumberKeyboard.xib in Resources */,
 				04153C1E228AA2F100AA5DAF /* PreorderTableCell.xib in Resources */,
-				0453D187228266D300880C2A /* Mask Copy 2.png in Resources */,
 				04B9D3C9227FE5A90084FA23 /* PosPay_Resource.bundle in Resources */,
 				65DC682E2211253200F1085E /* shareView_wx@3x.png in Resources */,
 				04F52148228A76BA00ED4995 /* newdelete@2x.png in Resources */,
