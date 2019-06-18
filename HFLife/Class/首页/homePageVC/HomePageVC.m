@@ -53,7 +53,6 @@
     [self addGuideView];
     [self setUpUI];
     [self setUpActions];
-    [self versionUpdateRequest];
     
     //接收推送通知
     [NOTIFICATION addObserver:self selector:@selector(getFQValue:) name:JPUSH_FQ object:nil];
@@ -227,6 +226,7 @@
     videoView.cancleGuildView = ^{
         //释放之后 调用 更新
         [self.homePageVM upDataLocation];
+        [self versionUpdateRequest];
     };
 
 }

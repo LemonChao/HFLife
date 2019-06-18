@@ -373,16 +373,17 @@ static BOOL IsUpdateRemind = YES;
 //版本设置
 -(void)setUpVersion:(NSDictionary *)dataDict{
     if (dataDict != nil && [dataDict isKindOfClass:[NSDictionary class]]) {
-        NSString *description = dataDict[@"remark"];
+        NSString *description = dataDict[@"name"];
         if (![NSString isNOTNull:description]) {
             [CommonTools setUpdateDescription:description];
         }else{
             [CommonTools setUpdateDescription:@"汉富新生活"];
         }
+//        [CommonTools setUpdateDescription:@"哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n mmmmmmmwmemwem\n wqoiewqoewqop\n uwqewqpeqw"];
         // 是否强制更新
         BOOL isForce = [dataDict[@"force_update"] boolValue];
         [CommonTools setIsForce:isForce];
-        
+        //是否有更新
         BOOL hasNewVersion = [dataDict[@"is_update"] boolValue];
         [CommonTools setIsHasNewVersion:hasNewVersion];
         NSString *version = [NSString stringWithFormat:@"%@",dataDict[@"ver_nod"]];

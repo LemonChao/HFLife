@@ -145,7 +145,7 @@
     [[WBPCreate sharedInstance]showWBProgress];
     if (![NSString isNOTNull:self.urlString]) {
 //        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
-        
+        NSLog(@"web页面地址：url =  %@", self.urlString);
        NSURL *url = [NSURL URLWithString:self.urlString];
         //        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];

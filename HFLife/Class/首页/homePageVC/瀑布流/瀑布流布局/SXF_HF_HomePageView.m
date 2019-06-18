@@ -38,6 +38,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 {
     NSArray *_titleArr;
     UILabel *_refreshLb;
+    BOOL viewType;//使用那种UI方式 no 刷新在顶部 yes 刷新可在中间
 }
 static NSString * const headerReuseIdentifier = @"Header";
 static NSString * const footerReuseIdentifier = @"Footer";
@@ -53,20 +54,8 @@ static NSString * const footerReuseIdentifier = @"Footer";
     [self addSubview:self.collectionView];
     _titleArr = @[@"", @"活动推荐",@"汉富头条",  @""];
     
-    //初始化 数据源
-    
-    
-    
-    //设置数据源
-//    self.dataSource = [NSMutableArray array];
-//    for (int i=0; i<10; i++) {
-//        NSMutableArray<NSNumber *> *section = [NSMutableArray array];
-//        for (int j=0; j<10; j++) {
-//            CGFloat height = arc4random_uniform(100) + 30.0;
-//            [section addObject:@(height)];
-//        }
-//        [_dataSource addObject:section];
-//    }
+    //初始化显示方式
+    viewType = NO;
     
 //    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(290))];
 //    headerView.backgroundColor = [UIColor yellowColor];
@@ -75,22 +64,26 @@ static NSString * const footerReuseIdentifier = @"Footer";
     //不能设置 self.collectionView.contentInset = UIEdgeInsetsMake(290, 0.0, 0.0, 0.0);
     
 
-//    [self.collectionView addSubview:self.tableHeader];
-    
+    if (viewType) {
+        UIView *bgView = [[UIView alloc] initWithFrame:self.collectionView.bounds];
+        bgView.backgroundColor = [UIColor whiteColor];
+        self.collectionView.backgroundView = bgView;
+        [bgView addSubview:self.tableHeader];
+        _refreshLb =
+        UILabel.creat()
+        .setFontSize(13)
+        .setTextColor([UIColor redColor])
+        .setText(self.collectionView.header.stateLabel.text)
+        .setTextAligement(NSTextAlignmentCenter)
+        .setFrame(CGRectMake(0, CGRectGetMaxY(self.tableHeader.frame), SCREEN_WIDTH, 40));
+        //下拉刷新
+        [bgView addSubview:_refreshLb];
+    }else{
+        [self.collectionView addSubview:self.tableHeader];
+    }
+
     WEAK(weakSelf);
-    UIView *bgView = [[UIView alloc] initWithFrame:self.collectionView.bounds];
-    bgView.backgroundColor = [UIColor whiteColor];
-    self.collectionView.backgroundView = bgView;
-    [bgView addSubview:self.tableHeader];
-    _refreshLb =
-    UILabel.creat()
-    .setFontSize(13)
-    .setTextColor([UIColor redColor])
-    .setText(self.collectionView.header.stateLabel.text)
-    .setTextAligement(NSTextAlignmentCenter)
-    .setFrame(CGRectMake(0, CGRectGetMaxY(self.tableHeader.frame), SCREEN_WIDTH, 40));
-    //下拉刷新
-    [bgView addSubview:_refreshLb];
+
     self.collectionView.header.stateLabel.hidden = YES;
     self.collectionView.refreshHeaderBlock = ^{
         NSLog(@"collection下拉");
@@ -484,10 +477,10 @@ static NSString * const footerReuseIdentifier = @"Footer";
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    NSIndexSet *set  = [NSIndexSet indexSetWithIndex:0];
-//    [self.collectionView reloadData];
     
-    self.tableHeader.frame = CGRectMake(0, - (scrollView.contentOffset.y > 0 ? scrollView.contentOffset.y : 0), self.tableHeader.bounds.size.width, self.tableHeader.bounds.size.height);
+    if (viewType) {
+        self.tableHeader.frame = CGRectMake(0, - (scrollView.contentOffset.y > 0 ? scrollView.contentOffset.y : 0), self.tableHeader.bounds.size.width, self.tableHeader.bounds.size.height);
+    }
     
     if (scrollView.contentOffset.y > 50) {
         _refreshLb.hidden = YES;
