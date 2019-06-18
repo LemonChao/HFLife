@@ -243,7 +243,7 @@
     if (indexPath.section == 2) {
         
         GuessLikeModel *guessModel = self.guessLikeData[indexPath.row];
-        if (guessModel.product_type.intValue == 1) {//美食布局
+        if (guessModel.product_type.intValue == 1 || guessModel.detail_photo.count > 0) {//美食布局
             YYB_HF_guessLikeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_guessLikeCollectionViewCell" forIndexPath:indexPath];
             
             cell.setNameStr = guessModel.store_name;
@@ -268,6 +268,12 @@
             
         }else{
             YYB_HF_guessLikeCollectionViewCellRightPic *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_guessLikeCollectionViewCellRightPic" forIndexPath:indexPath];
+            cell.setNameStr = guessModel.store_name;
+            cell.setDistanceStr = [NSString stringWithFormat:@"%.2fkm",[guessModel.distance floatValue]];
+            cell.setPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.product_price];
+            cell.setOldPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.original_price];
+            cell.setConcessionMoneyStr = [NSString stringWithFormat:@"让利￥%@",guessModel.fan_price];
+            cell.setImageUrl = guessModel.product_photo;
             return cell;
             
         }

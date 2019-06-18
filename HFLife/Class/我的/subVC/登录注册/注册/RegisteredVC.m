@@ -389,7 +389,7 @@
         [WXZTipView showCenterWithText:@"邀请码不能为空"];
         return;
     }
-    if (self.inviteCodeTextField.text.length >= 0 && self.inviteCodeTextField.text.length < 10) {
+    if (!(self.inviteCodeTextField.text.length >= 0 && self.inviteCodeTextField.text.length < 10)) {
         [WXZTipView showCenterWithText:@"请输入邀请码"];
         return;
     }

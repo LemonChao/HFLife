@@ -154,8 +154,8 @@
     if ([self.type isEqualToString:@"年龄"]) {
         
     }else {
-        if (userNameTextField.text.length > 5) {
-            [WXZTipView showCenterWithText:@"昵称不能大于5位"];
+        if (userNameTextField.text.length > 15 ) {
+            [WXZTipView showCenterWithText:@"昵称不能大于15位"];
             return NO;
         }
     }
