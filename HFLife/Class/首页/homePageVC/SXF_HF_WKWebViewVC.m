@@ -265,7 +265,7 @@
 {
     //JS调用OC方法
     //message.boby就是JS里传过来的参数
-    NSLog(@"body:%@",message.body);
+    NSLog(@"body-------------------:%@",message.body);
     if ([message.name isEqualToString:@"Call"]) {
         [self CallParameter:message.body];
     }else if ([message.name isEqualToString:@"goToHome"]){
@@ -324,10 +324,20 @@
 
 #pragma mark - 分享
 - (void) goToShare:(id)message{
-    NSLog(@"%@", message);
-    
     SSDKPlatformType type;
-    NSInteger index = [message integerValue];
+    
+    NSInteger index;
+    NSString *shareUrlStr;
+    if ([message isKindOfClass:[NSDictionary class]]) {
+        index = [message[@"query"] integerValue];
+        shareUrlStr = message[@"url"];
+        if (!shareUrlStr) {
+            [WXZTipView showCenterWithText:@"暂无分享数据"];
+            return;
+        }
+    }else{
+        return;
+    }
     switch (index) {
         case 1:
             //微信
@@ -349,9 +359,9 @@
             type = SSDKPlatformTypeUnknown;
             break;
     }
-    NSString *sharedUrlStr = [NSString stringWithFormat:shareUrl, ([userInfoModel sharedUser].invite_code ? [userInfoModel sharedUser].invite_code : @"")];
+    NSString *sharedUrlStr = [NSString stringWithFormat:shareUrlStr, ([userInfoModel sharedUser].invite_code ? [userInfoModel sharedUser].invite_code : @"")];
     
-    [ShareProductInfoView shareBtnClick:type ShareImage:MY_IMAHE(@"shareLogo") title:@"一个可以购物又可赚钱的APP" url:sharedUrlStr context:@"下载汉富生活APP一起做老板" shareBtnClickBlock:^(BOOL isSucceed, NSString *msg) {
+    [ShareProductInfoView shareBtnClick:type ShareImage:MY_IMAHE(@"shareLogo") title:@"下载汉富生新活APP一起做老板" url:sharedUrlStr context:@"一个可以购物又可赚钱的APP" shareBtnClickBlock:^(BOOL isSucceed, NSString *msg) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [WXZTipView showCenterWithText:msg];
         }];
