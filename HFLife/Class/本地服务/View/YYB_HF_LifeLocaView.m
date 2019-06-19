@@ -259,6 +259,7 @@
         }else  if (guessModel.product_type.intValue == 3) {//酒店布局
             YYB_HF_guessLikeCollectionViewCellRightPic *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_guessLikeCollectionViewCellRightPic" forIndexPath:indexPath];
             cell.setNameStr = guessModel.store_name;
+            cell.setProduct_introStr = guessModel.product_intro;
             cell.setDistanceStr = [NSString stringWithFormat:@"%.2fkm",[guessModel.distance floatValue]];
             cell.setPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.product_price];
             cell.setOldPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.original_price];
@@ -269,6 +270,7 @@
         }else{
             YYB_HF_guessLikeCollectionViewCellRightPic *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_guessLikeCollectionViewCellRightPic" forIndexPath:indexPath];
             cell.setNameStr = guessModel.store_name;
+            cell.setProduct_introStr = guessModel.product_intro;
             cell.setDistanceStr = [NSString stringWithFormat:@"%.2fkm",[guessModel.distance floatValue]];
             cell.setPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.product_price];
             cell.setOldPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.original_price];
@@ -316,6 +318,8 @@
 //            url = @"http://192.168.0.253:10004/#/food-index/";
 //        }else if (indexPath.row == 2) {
 //            url = @"http://192.168.0.253:8080/#/";
+//        }else if (indexPath.row == 4) {
+//            url = @"http://192.168.0.253:10004/#/zh-store";
 //        }
         
         if (url && url.length > 0) {
@@ -445,10 +449,10 @@
     if (indexPath.section == 2) {
         GuessLikeModel *model = self.guessLikeData[indexPath.row];
         if (model && model.id.intValue > 0) {
-            if (model.product_type.intValue == 1) {//美食高度布局
+            if (model.product_type.intValue == 1 && model.detail_photo.count > 0) {//美食高度布局
                 return ScreenScale(173);
             }
-            return ScreenScale(110);//酒店高度布局
+            return ScreenScale(115);//酒店高度布局
         }
     }
     
