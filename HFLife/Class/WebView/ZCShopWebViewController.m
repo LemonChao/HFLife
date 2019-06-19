@@ -293,7 +293,7 @@
     //JS调用OC方法
     //message.boby就是JS里传过来的参数
     NSLog(@"name:%@ body:%@", message.name, message.body);
-    if ([message.name isEqualToString:@"pageJump"]){
+    if ([message.name isEqualToString:@"loginApp"]){
         [self loginApp:message.body];
     }else if ([message.name isEqualToString:@"goSetPayPassword"]){
         [self goSetPayPassword:message.body];
