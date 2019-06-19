@@ -77,7 +77,8 @@
         
     }
     self.carousel = [[CWCarousel alloc] initWithFrame:self.bounds delegate:self datasource:self flowLayout:flowLayout];
-    self.carousel.isAuto = YES;
+    #warning 需求 不自动轮播
+    self.carousel.isAuto = NO;
     self.carousel.autoTimInterval = 5;
     self.carousel.endless = YES;
     self.carousel.backgroundColor = [UIColor clearColor];
@@ -112,6 +113,7 @@
     
 }
 - (void)scrollEnable:(NSNotification *)notifi{
+    return;//不自动轮播
     if ([notifi.object integerValue]) {
         [self.carousel pause];
     }else{

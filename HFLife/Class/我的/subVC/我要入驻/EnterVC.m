@@ -65,7 +65,7 @@
         [self.customNavBar wr_setRightButtonWithTitle:@"申请列表" titleColor:[UIColor whiteColor]];
         [self.customNavBar setOnClickRightButton:^{
             EnterVC *enter = [[EnterVC alloc]init];
-            enter.urlString = OPENSHOPURLLIST;
+//            enter.urlString = OPENSHOPURLLIST;
             enter.titleString = @"申请列表";
             [weakSelf.navigationController pushViewController:enter animated:YES];
         }];

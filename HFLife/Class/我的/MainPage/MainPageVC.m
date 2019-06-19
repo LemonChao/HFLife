@@ -15,7 +15,6 @@
 //#import "BindingPayWayVC.h"
 #import "InviteVC.h"
 #import "SecurityCenterVC.h"
-#import "EnterVC.h"
 #import "MyCollectionVC.h"
 #import "myFriendListVC.h"
 #import "AboutVC.h"

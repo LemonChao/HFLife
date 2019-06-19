@@ -31,15 +31,11 @@
 #if DEBUG
     //web地址
     #define baseWebUrlCompunent      @"ceshi-web.hfgld.net"
-    //分享地址/
-    #define shareUrlCompunent        @"www.hfgld.net"
     //原生地址
     #define baseAppUrl               @"ceshi-ucenter.hfgld.net"
 #else
     //web地址
     #define baseWebUrlCompunent      @"ceshi-web.hfgld.net"
-    //分享地址/
-    #define shareUrlCompunent        @"www.hfgld.net"
     //原生地址
     #define baseAppUrl               @"ceshi-ucenter.hfgld.net"
 #endif
@@ -49,7 +45,7 @@
 #define baseWebUrl      [NSString stringWithFormat:@"%@%@", URL_PROTOCOL, baseWebUrlCompunent]
 
 
-#define LOCALTEST        1  //1:本地测试 0:线上测试
+#define LOCALTEST        0  //1:本地测试 0:线上测试
 #if DEBUG//测试线
     #if LOCALTEST//(本地测试)
         #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://192.168.0.142:8080/#/%@", subUrl ? subUrl : @""]
