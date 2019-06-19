@@ -243,7 +243,7 @@
     if (indexPath.section == 2) {
         
         GuessLikeModel *guessModel = self.guessLikeData[indexPath.row];
-        if (guessModel.product_type.intValue == 1 || guessModel.detail_photo.count > 0) {//美食布局
+        if (guessModel.product_type.intValue == 1 && guessModel.detail_photo.count > 0) {//美食布局
             YYB_HF_guessLikeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYB_HF_guessLikeCollectionViewCell" forIndexPath:indexPath];
             
             cell.setNameStr = guessModel.store_name;
@@ -396,8 +396,8 @@
         }else {
             view.textLabel.text = @"猜你喜欢";
             view.hidden = NO;
-            if (self.guessLikeData.count == 0) {
-//                view.hidden = YES;
+            if (self.dataModel == nil && self.guessLikeData.count == 0) {
+                view.hidden = YES;
             }
         }
     }

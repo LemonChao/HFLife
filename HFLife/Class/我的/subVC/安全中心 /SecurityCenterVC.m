@@ -83,6 +83,13 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (([userInfoModel sharedUser].ID && [userInfoModel sharedUser].ID > 0)) {
+        
+    }else {
+        [WXZTipView showCenterWithText:@"用户信息未获取成功"];
+        return;
+    }
     NSString *value = titleArray[indexPath.section][indexPath.row];
     if ([value isEqualToString:@"设置交易密码"]){
         if ([[userInfoModel sharedUser].rz_status integerValue] == 1) {

@@ -7,7 +7,7 @@
 //
 
 #import "YYB_HF_submitDealPassWordVC.h"
-//#import "CodeView.h"
+#import "HHTextField.h"
 @interface YYB_HF_submitDealPassWordVC ()<UITextFieldDelegate>
 @property(nonatomic, strong) UITextField *oldPassWordText;//旧密码
 @property(nonatomic, strong) UITextField *passWordText;//密码
@@ -17,8 +17,10 @@
 @property (nonatomic,strong)UILabel *errLabel;//错误信息
 @property (nonatomic,strong)UIButton *sureBtn;//确认按钮
 
-//@property (nonatomic, strong) CodeView *passWordView;//密码
-//@property (nonatomic,strong) CodeView *confirmPassWordView;//密码
+//@property (nonatomic, strong) HHTextField *passwordField;//密码
+//@property (nonatomic,strong) HHTextField *passwordField2;//密码
+
+
 
 @end
 
@@ -170,34 +172,6 @@
         make.height.mas_equalTo(HeightRatio(90));
     }];
     self.sureBtn = sureBtn;
-    
-//    self.passWordView = [[CodeView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 50 , 40) num:6 lineColor:HEX_COLOR(0xAAAAAA) textFont:50];
-//    self.passWordView.codeType = CodeViewTypeSecret;
-//    self.passWordView.hasSpaceLine = YES;
-//    self.passWordView.hasUnderLine = NO;
-//
-//    [self.view addSubview:self.passWordView];
-//
-//    [self.passWordView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.mas_equalTo(self.passWordText);
-//        make.centerX.mas_equalTo(self.view);
-//        make.width.mas_equalTo(SCREEN_WIDTH - 30);
-//        make.height.mas_equalTo(ScreenScale(40));
-//    }];
-//
-//    self.confirmPassWordView = [[CodeView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 50, 40) num:6 lineColor:HEX_COLOR(0xAAAAAA) textFont:50];
-//    self.confirmPassWordView.codeType = CodeViewTypeSecret;
-//    self.confirmPassWordView.hasSpaceLine = YES;
-//    self.confirmPassWordView.hasUnderLine = NO;
-//
-//    [self.view addSubview:self.confirmPassWordView];
-//
-//    [self.confirmPassWordView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.mas_equalTo(self.confirmPassWordText);
-//        make.centerX.mas_equalTo(self.view);
-//        make.width.mas_equalTo(SCREEN_WIDTH - 30);
-//        make.height.mas_equalTo(ScreenScale(40));
-//    }];
     
 }
 
@@ -429,6 +403,7 @@
     }
     return _confirmPassWordText;
 }
+
 
 #pragma mark - textFiledDelegate
 

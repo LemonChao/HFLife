@@ -105,14 +105,17 @@
     
     
     //做sin签名
-    NSString *sinStr = [[NSString stringWithFormat:@"%@&%@&%@&%@", @"c9dfaa769668ac047ff0e72a7fecb991", subUrl, [NSDate currentTimeStamp10], [self getAppVersion]] lowercaseString];
+    NSString *verStr = [self getAppVersion];
+    NSRange subRange = [subUrl rangeOfString:@"/"];
+    NSString *subStr = [subUrl substringFromIndex:subRange.location + 1];//截取域名
+    NSString *sinStr = [[NSString stringWithFormat:@"%@&%@&%@&%@", @"c9dfaa769668ac047ff0e72a7fecb991", subStr, [NSDate currentTimeStamp10], verStr] lowercaseString];
     NSString *sha256Str = [sinStr SHA256];
     //设置请求头
     //签名sin
     [requestManager.sessionManager.requestSerializer setValue:sha256Str forHTTPHeaderField:@"SIGN"];
     //appVersion
 //    [requestManager.sessionManager.requestSerializer setValue:[self getAppVersion] forHTTPHeaderField:@"VERSION"];
-    [requestManager.sessionManager.requestSerializer setValue:@"1.0.1" forHTTPHeaderField:@"VERSION"];
+    [requestManager.sessionManager.requestSerializer setValue:verStr forHTTPHeaderField:@"VERSION"];//@"1.0.1"
 
     
     //currentTime

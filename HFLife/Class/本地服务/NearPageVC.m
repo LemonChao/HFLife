@@ -66,7 +66,7 @@
         //点击搜索
         
         if (self->is_select == 0) {
-            [WXZTipView showCenterWithText:@"该城市暂未开通，请选择其他城市"];
+            [WXZTipView showCenterWithText:@"暂无本地商家，无法为您提供本地服务"];
             return ;
         }
         
@@ -77,7 +77,6 @@
     
     self.myLocaVeiw = [[YYB_HF_LifeLocaView alloc]initWithFrame:CGRectZero];
     self.myLocaVeiw.supVC = self;
-    WEAK(weakSelf);
     self.myLocaVeiw.reFreshData = ^(YYB_HF_nearLifeModel * _Nonnull nearModel) {
         //数据更新
         self->is_select = nearModel.is_select.intValue;
