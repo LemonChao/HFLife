@@ -26,6 +26,7 @@
 		040915EB2297926E007BEB12 /* YYB_HF_changeAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040915E92297926E007BEB12 /* YYB_HF_changeAccountCell.m */; };
 		040915EC2297926E007BEB12 /* YYB_HF_changeAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040915EA2297926E007BEB12 /* YYB_HF_changeAccountCell.xib */; };
 		040988F822A76736008D6B56 /* circleCheckOrderManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 040988F722A76736008D6B56 /* circleCheckOrderManger.m */; };
+		0409E13122BA32C300C7B6D5 /* ZLSafetyPswView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409E12F22BA32C200C7B6D5 /* ZLSafetyPswView.m */; };
 		040A42D8228FB9360003DDF4 /* AFAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */; };
 		040A42D9228FB9360003DDF4 /* AFAuthSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */; };
 		040AAC7B229395C3002AB524 /* YYB_HF_SexChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040AAC7A229395C3002AB524 /* YYB_HF_SexChoiceView.m */; };
@@ -954,6 +955,8 @@
 		040915EA2297926E007BEB12 /* YYB_HF_changeAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YYB_HF_changeAccountCell.xib; sourceTree = "<group>"; };
 		040988F622A76736008D6B56 /* circleCheckOrderManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = circleCheckOrderManger.h; sourceTree = "<group>"; };
 		040988F722A76736008D6B56 /* circleCheckOrderManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = circleCheckOrderManger.m; sourceTree = "<group>"; };
+		0409E12F22BA32C200C7B6D5 /* ZLSafetyPswView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSafetyPswView.m; sourceTree = "<group>"; };
+		0409E13022BA32C300C7B6D5 /* ZLSafetyPswView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSafetyPswView.h; sourceTree = "<group>"; };
 		040A42D6228FB9360003DDF4 /* AFAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFAuthSDK.framework; sourceTree = "<group>"; };
 		040A42D7228FB9360003DDF4 /* AFAuthSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AFAuthSDK.bundle; sourceTree = "<group>"; };
 		040AAC79229395C3002AB524 /* YYB_HF_SexChoiceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYB_HF_SexChoiceView.h; sourceTree = "<group>"; };
@@ -3032,6 +3035,8 @@
 		042638D322969AB300041A91 /* 交易密码 */ = {
 			isa = PBXGroup;
 			children = (
+				0409E13022BA32C300C7B6D5 /* ZLSafetyPswView.h */,
+				0409E12F22BA32C200C7B6D5 /* ZLSafetyPswView.m */,
 				042638D422969B7600041A91 /* YYB_HF_setDealPassWordVC.h */,
 				042638D522969B7600041A91 /* YYB_HF_setDealPassWordVC.m */,
 				042638D72296A5D000041A91 /* YYB_HF_submitDealPassWordVC.h */,
@@ -8105,6 +8110,7 @@
 				04FCEA272290220500F95486 /* userInfoModel.m in Sources */,
 				04153BFA228AA2F100AA5DAF /* FoodClassifyCell.m in Sources */,
 				658B7C4421D749E100801CC8 /* JSONKit.m in Sources */,
+				0409E13122BA32C300C7B6D5 /* ZLSafetyPswView.m in Sources */,
 				658B7C4D21D749E100801CC8 /* UIButton+Extension.m in Sources */,
 				659EA0862203FA66004471CD /* LXEmptyDataView.m in Sources */,
 				04A5087C227EDD3A0013E8EC /* NSObject+CountDown.m in Sources */,

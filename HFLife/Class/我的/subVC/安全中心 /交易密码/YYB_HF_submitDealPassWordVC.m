@@ -7,7 +7,7 @@
 //
 
 #import "YYB_HF_submitDealPassWordVC.h"
-#import "HHTextField.h"
+#import "ZLSafetyPswView.h"
 @interface YYB_HF_submitDealPassWordVC ()<UITextFieldDelegate>
 @property(nonatomic, strong) UITextField *oldPassWordText;//旧密码
 @property(nonatomic, strong) UITextField *passWordText;//密码
@@ -17,8 +17,8 @@
 @property (nonatomic,strong)UILabel *errLabel;//错误信息
 @property (nonatomic,strong)UIButton *sureBtn;//确认按钮
 
-//@property (nonatomic, strong) HHTextField *passwordField;//密码
-//@property (nonatomic,strong) HHTextField *passwordField2;//密码
+@property (nonatomic, strong) ZLSafetyPswView *passwordView;//密码
+@property (nonatomic,strong) ZLSafetyPswView *confirmPasswordView;//密码
 
 
 
@@ -132,17 +132,17 @@
 
     [self.passWordText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(top.mas_bottom).mas_offset(ScreenScale(60));
-        make.left.mas_equalTo(self.view).mas_offset(ScreenScale(12));
+        make.left.mas_equalTo(self.view).mas_offset(ScreenScale(55));
         make.height.mas_equalTo(ScreenScale(40));
-        make.right.mas_equalTo(self.view).mas_offset(ScreenScale(-12));
+        make.right.mas_equalTo(self.view).mas_offset(ScreenScale(-55));
         
     }];
     
     [self.confirmPassWordText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.passWordText.mas_bottom).mas_offset(ScreenScale(50));
-        make.left.mas_equalTo(self.view).mas_offset(ScreenScale(12));
+        make.left.mas_equalTo(self.view).mas_offset(ScreenScale(55));
         make.height.mas_equalTo(ScreenScale(40));
-        make.right.mas_equalTo(self.view).mas_offset(ScreenScale(-12));
+        make.right.mas_equalTo(self.view).mas_offset(ScreenScale(-55));
         
     }];
     [self.errLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -151,6 +151,62 @@
         make.height.mas_equalTo(ScreenScale(15));
         
     }];
+    
+    self.passwordView = [[ZLSafetyPswView alloc] initWithFrame:CGRectMake(50, 100, self.view.frame.size.width - 100, 45)];
+    [self.view addSubview:self.passwordView];
+    WEAK(weakSelf)
+    self.passwordView.passwordDidChangeBlock = ^(NSString *password) {
+        NSLog(@"---用户输入密码为: %@",password);
+        weakSelf.passWordText.text = password;
+        
+        if (self.passWordText.text.length == 6 && self.confirmPassWordText.text.length == 6) {
+            //&& ((self.oldPassWordText.hidden == NO && self.oldPassWordText.text.length == 6) || self.oldPassWordText.hidden == YES)
+            [weakSelf.sureBtn setEnabled:YES];
+            [weakSelf.sureBtn setBackgroundColor:HEX_COLOR(0xCA1400)];
+            weakSelf.errLabel.hidden = YES;
+        }
+        else {
+            [weakSelf.sureBtn setEnabled:NO];
+            [weakSelf.sureBtn setBackgroundColor:HEX_COLOR(0xAAAAAA)];
+            weakSelf.errLabel.text = @"请输入6位交易密码";
+            weakSelf.errLabel.hidden = NO;
+        }
+    };
+    self.confirmPasswordView = [[ZLSafetyPswView alloc] initWithFrame:CGRectMake(50, 100, self.view.frame.size.width - 100, 45)];
+    [self.view addSubview:self.confirmPasswordView];
+    self.confirmPasswordView.passwordDidChangeBlock = ^(NSString *password) {
+        NSLog(@"---用户输入密码为: %@",password);
+        weakSelf.confirmPassWordText.text = password;
+        
+        if (self.passWordText.text.length == 6 && self.confirmPassWordText.text.length == 6) {
+            //&& ((self.oldPassWordText.hidden == NO && self.oldPassWordText.text.length == 6) || self.oldPassWordText.hidden == YES)
+            [weakSelf.sureBtn setEnabled:YES];
+            [weakSelf.sureBtn setBackgroundColor:HEX_COLOR(0xCA1400)];
+            weakSelf.errLabel.hidden = YES;
+        }
+        else {
+            [weakSelf.sureBtn setEnabled:NO];
+            [weakSelf.sureBtn setBackgroundColor:HEX_COLOR(0xAAAAAA)];
+            weakSelf.errLabel.text = @"请输入6位交易密码";
+            weakSelf.errLabel.hidden = NO;
+        }
+    };
+    
+    
+    [self.passwordView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.passWordText.mas_bottom);
+        make.height.mas_equalTo(45);
+        make.centerX.mas_equalTo(self.passWordText);
+        make.width.mas_equalTo(SCREEN_WIDTH - 100);
+    }];
+    
+    [self.confirmPasswordView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.confirmPassWordText.mas_bottom);
+        make.height.mas_equalTo(45);
+        make.centerX.mas_equalTo(self.confirmPassWordText);
+        make.width.mas_equalTo(SCREEN_WIDTH - 100);
+    }];
+    
     
     
     UIButton *sureBtn = [UIButton new];
@@ -310,28 +366,22 @@
         tipLabe.textColor = HEX_COLOR(0xAAAAAA);
         tipLabe.text = @"请输入交易密码";
 
+        [self.view addSubview:tf];
         [tf addSubview:tipLabe];
         [tipLabe mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(tf.mas_top).mas_offset(ScreenScale(-10));
-            make.left.mas_equalTo(tf).mas_offset(12);
-            make.height.mas_equalTo(ScreenScale(15));
-        }];
-        
-        [tipLabe mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(tf.mas_top).mas_offset(ScreenScale(-10));
-            make.left.mas_equalTo(tf).mas_offset(12);
+            make.bottom.mas_equalTo(tf.mas_top).mas_offset(ScreenScale(-20));
+            make.left.mas_equalTo(self.view).mas_offset(24);
             make.height.mas_equalTo(ScreenScale(15));
         }];
         
         
-        UILabel *lin = [UILabel new];
-        lin.backgroundColor = HEX_COLOR(0xF5F5F5);
-        [tf addSubview:lin];
-        [lin mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.bottom.right.mas_equalTo(tf);
-            make.height.mas_equalTo(1);
-        }];
-        [self.view addSubview:tf];
+//        UILabel *lin = [UILabel new];
+//        lin.backgroundColor = HEX_COLOR(0xF5F5F5);
+//        [tf addSubview:lin];
+//        [lin mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.left.bottom.right.mas_equalTo(tf);
+//            make.height.mas_equalTo(1);
+//        }];
         _passWordText = tf;
     }
     UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenScale(20), HeightRatio(69))];
@@ -376,10 +426,11 @@
         tipLabe.font = FONT(15);
         tipLabe.textColor = HEX_COLOR(0xAAAAAA);
         tipLabe.text = @"请输入校验密码";
+        [self.view addSubview:tf];
         [tf addSubview:tipLabe];
         [tipLabe mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(tf.mas_top).mas_offset(ScreenScale(-10));
-            make.left.mas_equalTo(tf).mas_offset(12);
+            make.bottom.mas_equalTo(tf.mas_top).mas_offset(ScreenScale(-20));
+            make.left.mas_equalTo(self.view).mas_offset(24);
             make.height.mas_equalTo(ScreenScale(15));
             make.width.mas_equalTo(SCREEN_WIDTH);
         }];
@@ -391,14 +442,13 @@
         tf.rightViewMode = UITextFieldViewModeAlways;
         tf.rightView = rightView;
         
-        UILabel *lin = [UILabel new];
-        lin.backgroundColor = HEX_COLOR(0xF5F5F5);
-        [tf addSubview:lin];
-        [lin mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.bottom.right.mas_equalTo(tf);
-            make.height.mas_equalTo(1);
-        }];
-        [self.view addSubview:tf];
+//        UILabel *lin = [UILabel new];
+//        lin.backgroundColor = HEX_COLOR(0xF5F5F5);
+//        [tf addSubview:lin];
+//        [lin mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.left.bottom.right.mas_equalTo(tf);
+//            make.height.mas_equalTo(1);
+//        }];
         _confirmPassWordText = tf;
     }
     return _confirmPassWordText;
