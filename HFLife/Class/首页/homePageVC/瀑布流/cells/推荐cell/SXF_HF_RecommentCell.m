@@ -33,7 +33,7 @@
         !weakSelf.selectedItem ? : weakSelf.selectedItem(indexPath, value);
     };
     
-    //上面按钮点击事件
+    //上面按钮点击事件  全链接
     self.collectionV.activityBtnCallback = ^(NSString * _Nonnull urlStr) {
         !weakSelf.activityBtnCallback ? : weakSelf.activityBtnCallback(urlStr);
     };

@@ -282,7 +282,7 @@
 //活动按钮点击事件
 - (void) clickActivityBtn:(NSString *)btnUrl{
     //加载web页面
-    WKWebViewController *webV = [WKWebViewController new];
+    SXF_HF_WKWebViewVC *webV = [SXF_HF_WKWebViewVC new];
     if (btnUrl) {
         webV.urlString = btnUrl;
         [self.vc.navigationController pushViewController:webV animated:YES];

@@ -183,7 +183,7 @@
 - (void) inviteeButtonClick:(UIButton *)sender{
     NSLog(@"点击邀请");
     if ([self.model.type integerValue] == 1) {
-        goUrlStr = self.model.btn_msg;
+        goUrlStr = self.model.btn_url;
     }else{
         if (sender.tag == 50) {
             //购买
