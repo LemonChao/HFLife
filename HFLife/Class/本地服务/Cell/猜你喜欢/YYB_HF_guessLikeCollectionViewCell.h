@@ -22,7 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YYB_HF_guessLikeCollectionViewCellRightPic : UICollectionViewCell
 
 @property(nonatomic, copy) NSString *setNameStr;
+@property(nonatomic, copy) NSString *setProduct_introStr;//商品描述
 @property(nonatomic, copy) NSString *setDistanceStr;
+
 @property(nonatomic, copy) NSString *setPriceStr;
 @property(nonatomic, copy) NSString *setOldPriceStr;
 @property(nonatomic, copy) NSString *setConcessionMoneyStr;

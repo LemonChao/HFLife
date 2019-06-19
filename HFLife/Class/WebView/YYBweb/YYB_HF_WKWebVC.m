@@ -285,7 +285,7 @@
     NSLog(@"name:%@ body:%@",message.name,message.body);
     if ([message.name isEqualToString:@"call"]) {
         //        [self ShareWithInformation:message.body];
-//        [self CallParameter:message.body];
+        [self CallParameter:message.body];
     } else if ([message.name isEqualToString:@"Camera"]) {
         [self camera];
     }

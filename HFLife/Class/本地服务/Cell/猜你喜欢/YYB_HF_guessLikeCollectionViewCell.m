@@ -94,10 +94,10 @@
     self.bgView.layer.shadowRadius = 3;
     
     
-    self.nameLabel.text = @"索菲特国际饭店海鲜自助餐";
+    self.nameLabel.text = @"xxx";
     self.nameLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size: ScreenScale(14)];
     self.nameLabel.textColor = HEX_COLOR(0x131313);
-    self.adLabel.text = @"仅售3580元，价值6086元的优惠套餐，欢迎体验仅售3580元，价值6086元的优惠套餐，欢迎体验";
+    self.adLabel.text = @"xxx";
     self.adLabel.font = FONT(11);
     self.adLabel.textColor = HEX_COLOR(0x333333);
     self.distanceLabel.text = @"x.xkm";
@@ -247,6 +247,7 @@
 @interface YYB_HF_guessLikeCollectionViewCellRightPic()
 @property(nonatomic, strong) UIView *bgView;
 @property(nonatomic, strong) UILabel  *nameLabel;
+@property(nonatomic, strong) UILabel  *productInfoLabel;
 @property(nonatomic, strong) UILabel *distanceLabel;
 @property(nonatomic, strong) UILabel *priceLabel;
 @property(nonatomic, strong) UILabel *oldPriceLabel;
@@ -277,6 +278,7 @@
     self.distanceLabel = [UILabel new];
     self.priceLabel = [UILabel new];
     self.oldPriceLabel = [UILabel new];
+    self.productInfoLabel = [UILabel new];
     
     self.concessionIamgeView = [UIImageView new];
     self.concessionMoney = [UILabel new];
@@ -289,6 +291,7 @@
     [self.contentView addSubview:self.concessionIamgeView];
     [self.contentView addSubview:self.concessionMoney];
     [self.contentView addSubview:self.showImage];
+    [self.contentView addSubview:self.productInfoLabel];
     self.concessionIamgeView.image = image(@"icon_biaoqian");
     
     self.bgView.backgroundColor = [UIColor whiteColor];
@@ -299,10 +302,15 @@
     self.bgView.layer.shadowOpacity = 0.5;
     self.bgView.layer.shadowRadius = 3;
     
-    self.nameLabel.text = @"郑州辰星医疗美容医院【冰点脱 毛】（腋毛/唇毛二选一）...郑州辰星医疗美容医院【冰点脱 毛】（腋毛/唇毛二选一）...";
+    self.nameLabel.text = @"xxxx";
     self.nameLabel.textColor = HEX_COLOR(0x131313);
-    self.nameLabel.font = FONT(14);
+    self.nameLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size: ScreenScale(14)];
     self.nameLabel.numberOfLines = 2;
+    
+    self.productInfoLabel.text = @"xxx";
+    self.productInfoLabel.font = FONT(11);
+    self.productInfoLabel.textColor = HEX_COLOR(0x333333);
+    
     self.distanceLabel.text = @"x.xkm";
     self.distanceLabel.font = FONT(11);
     self.distanceLabel.textAlignment = NSTextAlignmentRight;
@@ -338,13 +346,25 @@
         make.centerY.mas_equalTo(self.bgView);
         make.right.mas_equalTo(self.bgView).mas_offset(-10);
         make.width.mas_equalTo(101);
-        make.height.mas_equalTo(74);
+        make.height.mas_equalTo(80);
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
         make.top.mas_equalTo(self.bgView).mas_offset(10);
         make.right.mas_equalTo(self.showImage.mas_left).mas_offset(-39);
-        make.height.mas_greaterThanOrEqualTo(33);
+        make.height.mas_greaterThanOrEqualTo(25);
+    }];
+    [self.productInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.bgView).mas_offset(10);
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(7);
+        make.right.mas_equalTo(self.showImage.mas_left).mas_offset(-10);
+        make.height.mas_lessThanOrEqualTo(12);
+    }];
+    
+    [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.productInfoLabel);
+        make.top.mas_equalTo(self.productInfoLabel.mas_bottom).mas_offset(7);
+        make.height.mas_equalTo(12);
     }];
     
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -371,17 +391,16 @@
         make.bottom.mas_equalTo(self.concessionMoney);
         make.top.mas_equalTo(self.concessionMoney);
     }];
-    [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.showImage.mas_left).mas_offset(-5);
-        make.left.mas_equalTo(self.concessionIamgeView.mas_right).mas_offset(5);
-        make.bottom.mas_equalTo(self.priceLabel);
-        make.height.mas_equalTo(12);
-    }];
 }
 
 - (void)setSetNameStr:(NSString *)setNameStr {
     _setNameStr = setNameStr;
     self.nameLabel.text = setNameStr;
+}
+
+- (void)setSetProduct_introStr:(NSString *)setProduct_introStr {
+    _setProduct_introStr = setProduct_introStr;
+    self.productInfoLabel.text = setProduct_introStr;
 }
 
 - (void)setSetDistanceStr:(NSString *)setDistanceStr {
