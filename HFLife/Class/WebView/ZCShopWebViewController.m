@@ -127,13 +127,8 @@
         [webView evaluateJavaScript:injectionJSString completionHandler:nil];
         
     }else{
-//        self.customNavBar.hidden = YES;//加载成功隐藏 使用web导航
-        [self.customNavBar removeFromSuperview];
-
+        self.customNavBar.hidden = YES;//加载成功隐藏 使用web导航
     }
-//    if (self.isNavigationHidden) {
-//        [self.customNavBar removeFromSuperview];
-//    }
 
     [[WBPCreate sharedInstance] hideAnimated];
 
