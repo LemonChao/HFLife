@@ -80,7 +80,7 @@
     [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
     [self.customNavBar wr_setBottomLineHidden:YES];
     self.customNavBar.title = self.webTitle;
-
+    [self.customNavBar wr_setContentViewColor:[UIColor clearColor]];
     [self.customNavBar setOnClickLeftButton:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
@@ -117,9 +117,23 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"网页导航加载完毕");
-    if (self.isNavigationHidden) {
+    //判断 银联外链
+    if ([webView.URL.host containsString:@"chinaums"]) {
+        self.customNavBar.hidden = NO;
+        NSString *injectionJSString = @"var script = document.createElement('meta');"
+        "script.name = 'viewport';"
+        "script.content=\"width=device-width, user-scalable=yes\";"
+        "document.getElementsByTagName('head')[0].appendChild(script);";
+        [webView evaluateJavaScript:injectionJSString completionHandler:nil];
+        
+    }else{
+//        self.customNavBar.hidden = YES;//加载成功隐藏 使用web导航
         [self.customNavBar removeFromSuperview];
+
     }
+//    if (self.isNavigationHidden) {
+//        [self.customNavBar removeFromSuperview];
+//    }
 
     [[WBPCreate sharedInstance] hideAnimated];
 
