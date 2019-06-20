@@ -106,9 +106,24 @@
 }
 
 - (void)ruzhuButtonAction:(UIButton *)button {
-    ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] init];
-    webVC.urlString = @"https://ceshi-web.hfgld.net/contract/#/signingIndex";
-    [self.viewController.navigationController pushViewController:webVC animated:YES];
+    @weakify(self);
+    
+    if ([[userInfoModel sharedUser].rz_status boolValue]) { //已认证
+        ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] init];
+        webVC.urlString = @"https://ceshi-web.hfgld.net/contract/#/signingIndex";
+        [self.viewController.navigationController pushViewController:webVC animated:YES];
+    }else {
+        [SXF_HF_AlertView showAlertType:AlertType_ShopCertification Complete:^(BOOL btnBype) {
+            @strongify(self);
+            if (btnBype) {
+                SXF_HF_WKWebViewVC *web = [SXF_HF_WKWebViewVC new];
+                web.urlString = SXF_WEB_URLl_Str(certification);
+                [self.viewController.navigationController pushViewController:web animated:YES];
+            }
+        }];
+    }
+    
+
 }
 
 - (void)setModel:(NSObject *)model {
