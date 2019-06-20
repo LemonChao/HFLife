@@ -119,7 +119,8 @@ static dispatch_once_t onceToken;
                     
                     //初始化头像
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        [userInfoModel sharedUser].userHeaderImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar)]];
+                        [userInfoModel sharedUser].userHeaderImage = [userInfoModel sharedUser].member_avatar.length > 0 ? [UIImage imageWithData:[NSData dataWithContentsOfURL:MY_URL_IMG([userInfoModel sharedUser].member_avatar)]] : MY_IMAHE(@"shareLogo");
+                        
                     }];
                 }else {
                     [WXZTipView showCenterWithText:@"个人信息获取错误"];
