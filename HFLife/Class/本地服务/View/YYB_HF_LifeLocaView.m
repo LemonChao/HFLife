@@ -322,6 +322,13 @@
 //            url = @"http://192.168.0.253:10004/#/zh-store";
 //        }
         
+        if ([url containsString:@"signingIndex"]) {
+            //是商家入驻接口 检测是否要实名认证
+            if (![self checkRealy]) {
+                return;
+            }
+        }
+        
         if (url && url.length > 0) {
             YYB_HF_WKWebVC *vc = [[YYB_HF_WKWebVC alloc]init];
             vc.urlString = url;
@@ -529,6 +536,27 @@
         [WXZTipView showCenterWithText:@"相机不可用"];
         return;
     }
+}
+
+// !!!: 检测是否是，实名认证
+- (BOOL) checkRealy{
+    if (![[userInfoModel sharedUser] chect_rz_status]) {
+        if ([[userInfoModel sharedUser].rz_status integerValue] == 0) {
+            //去认证
+            SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
+                if (btnBype) {
+                    SXF_HF_WKWebViewVC *web = [SXF_HF_WKWebViewVC new];
+                    web.urlString = SXF_WEB_URLl_Str(certification);
+                    [self.supVC.navigationController pushViewController:web animated:YES];
+                }
+            }];
+            alert.title = @"您还未实名认证，请先进行实名认证";
+        }else{
+            [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
+        }
+        return NO;
+    }
+    return YES;
 }
 
 @end
