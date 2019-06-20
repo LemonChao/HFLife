@@ -90,7 +90,7 @@
     self.searchIcon = searchIcon;
     
     [searchBgView addSubview:self.searchlabel];
-    self.searchlabel.text = @"搜一搜";
+    self.searchlabel.text = @"";
     self.searchlabel.textColor = HEX_COLOR(0xAAAAAA);
     self.searchlabel.font = FONT(13);
     

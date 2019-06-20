@@ -369,7 +369,7 @@
     
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
-        make.bottom.mas_equalTo(self.showImage.mas_bottom).mas_offset(0);
+        make.bottom.mas_equalTo(self.showImage.mas_bottom).mas_offset(3);
         make.height.mas_equalTo(17);
     }];
     
