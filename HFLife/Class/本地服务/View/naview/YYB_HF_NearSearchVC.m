@@ -73,14 +73,14 @@
     }];
         
     self.searArr = @[];
+    [self getData];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [self.customNavBar setHidden:YES];
-    [self getData];
-    
 }
 
 - (void)getData {

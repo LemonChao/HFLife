@@ -134,7 +134,7 @@
                     [[UIApplication sharedApplication] openURL:url];
                 }
             }else {
-                
+                [WXZTipView showCenterWithText:@"打开设置失败!"];
             }
         }];
         
