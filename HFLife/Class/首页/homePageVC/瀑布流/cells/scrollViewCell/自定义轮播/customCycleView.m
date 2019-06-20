@@ -235,7 +235,7 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     
     //添加新的操作
-    [self performSelector:@selector(payGif) withObject:nil afterDelay:0.1 inModes:@[NSRunLoopCommonModes, UITrackingRunLoopMode]];
+    [self performSelector:@selector(payGif) withObject:nil afterDelay:0.25 inModes:@[NSRunLoopCommonModes]];
     
     
 //    [self performSelectorOnMainThread:@selector(payGif) withObject:nil waitUntilDone:0.0];

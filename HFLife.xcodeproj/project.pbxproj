@@ -6095,6 +6095,7 @@
 		04F8D25622A2112500C0A310 /* 收银台 */ = {
 			isa = PBXGroup;
 			children = (
+				040988F522A76736008D6B56 /* 订单轮询设置 */,
 				04FAEE0B22AF8FB6005A0FC8 /* payHelpr */,
 				04F8D25822A2113A00C0A310 /* MallCashierDeskVC.h */,
 				04F8D25922A2113A00C0A310 /* MallCashierDeskVC.m */,
@@ -6816,7 +6817,6 @@
 		658B7D0421D7541900801CC8 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				040988F522A76736008D6B56 /* 订单轮询设置 */,
 				04F8D25622A2112500C0A310 /* 收银台 */,
 				049783492285957E00E143D7 /* 本地服务 */,
 				04F54B3122811D38009AAEF3 /* models */,

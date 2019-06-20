@@ -78,6 +78,13 @@
             make.right.left.mas_equalTo(self.contentView);
             make.top.mas_equalTo(self.contentView.mas_top).offset(ScreenScale(10));
         }];
+    }else if(index == 0){//余额
+        [self.gifImageV mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-10));
+            make.left.mas_equalTo(self.contentView.mas_left).offset(5);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-5);
+            make.top.mas_equalTo(self.moneyLb.mas_bottom);
+        }];
     }else{
         [self.gifImageV mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(ScreenScale(-10));
