@@ -181,13 +181,14 @@
     if (![[userInfoModel sharedUser] chect_rz_status]) {
         if ([[userInfoModel sharedUser].rz_status integerValue] == 0) {
             //去认证
-            [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
+           SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
                 if (btnBype) {
                     SXF_HF_WKWebViewVC *web = [SXF_HF_WKWebViewVC new];
                     web.urlString = SXF_WEB_URLl_Str(certification);
                     [self.navigationController pushViewController:web animated:YES];
                 }
             }];
+            alert.title = @"您还未实名认证，请先进行实名认证";
         }else{
             [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
         }

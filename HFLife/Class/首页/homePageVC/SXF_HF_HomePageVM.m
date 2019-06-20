@@ -273,6 +273,13 @@
     
     if (urlStr) {
         webVC.urlString = urlStr;
+        if ([urlStr containsString:@"signingIndex"]) {
+            //是商家入驻接口 检测是否要实名认证
+            if (![self checkRealy]) {
+                return;
+            }
+        }
+        
         [self.vc.navigationController pushViewController:webVC animated:YES];
     }else{
         [WXZTipView showCenterWithText:@"暂无该条详情数据"];
@@ -284,6 +291,12 @@
     //加载web页面
     SXF_HF_WKWebViewVC *webV = [SXF_HF_WKWebViewVC new];
     if (btnUrl) {
+        if ([btnUrl containsString:@"signingIndex"]) {
+            //是商家入驻接口 检测是否要实名认证
+            if (![self checkRealy]) {
+                return;
+            }
+        }
         webV.urlString = btnUrl;
         [self.vc.navigationController pushViewController:webV animated:YES];
     }else{
@@ -554,5 +567,24 @@
     return valueNum;
     
 }
-
+//检测是否是，实名认证
+- (BOOL) checkRealy{
+    if (![[userInfoModel sharedUser] chect_rz_status]) {
+        if ([[userInfoModel sharedUser].rz_status integerValue] == 0) {
+            //去认证
+            SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
+                if (btnBype) {
+                    SXF_HF_WKWebViewVC *web = [SXF_HF_WKWebViewVC new];
+                    web.urlString = SXF_WEB_URLl_Str(certification);
+                    [self.vc.navigationController pushViewController:web animated:YES];
+                }
+            }];
+            alert.title = @"您还未实名认证，请先进行实名认证";
+        }else{
+            [WXZTipView showCenterWithText:[userInfoModel sharedUser].rz_statusName];
+        }
+        return NO;
+    }
+    return YES;
+}
 @end
