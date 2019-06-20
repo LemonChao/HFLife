@@ -51,6 +51,7 @@
         make.edges.mas_equalTo(self.view);
     }];
     
+    
     [self loadWKwebViewData];
     
 }
@@ -175,6 +176,8 @@
             [self loadFailed];
         }
     }
+    
+    
 }
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -210,6 +213,18 @@
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"url:====== %@",webView.URL);
     [self.customNavBar setHidden:NO];
+    //判断 银联外链
+    if ([webView.URL.host containsString:@"chinaums"]) {
+        self.customNavBar.hidden = NO;
+        NSString *injectionJSString = @"var script = document.createElement('meta');"
+        "script.name = 'viewport';"
+        "script.content=\"width=device-width, user-scalable=yes\";"
+        "document.getElementsByTagName('head')[0].appendChild(script);";
+        [webView evaluateJavaScript:injectionJSString completionHandler:nil];
+        
+    }else{
+        self.customNavBar.hidden = YES;//加载成功隐藏 使用web导航
+    }
     NSLog(@"开始加载");
     
 }
