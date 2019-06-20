@@ -363,27 +363,28 @@
 //    NSString *JSResult = [NSString stringWithFormat:@"shareResult('%@','%@','%@')",title,content,url];
     
     //OC调用JS
-    [self.webView evaluateJavaScript:JSMethod completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        NSLog(@"%@", error);
-        sucess(result);
-    }];
+    if (JSMethod && [JSMethod isKindOfClass:[NSString class]]) {
+        if (JSMethod && [JSMethod isKindOfClass:[NSString class]]) {
+            [self.webView evaluateJavaScript:JSMethod completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                NSLog(@"%@", error);
+                sucess(result);
+            }];
+        }
+    }
+    
+    
 }
 
 #pragma mark - JS调用OC方法
 #pragma mark - 拨打电话
 -(void)CallParameter:(NSDictionary *)dict{
-    NSString *telStr;
+    NSString *telStr = @"";
     if ([dict isKindOfClass:[NSDictionary class]]) {
         telStr = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict[@"tel"]]];
     }else if([dict isKindOfClass:[NSString class]]){
         telStr = [[NSString alloc] initWithFormat:@"tel:%@",[NSString judgeNullReturnString:dict]];
     }
-    
-    if (![[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr]]) {
-        UIWebView * callWebview = [[UIWebView alloc] init];
-        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:telStr]]];
-        [self.view addSubview:callWebview];
-    }
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr]];
 }
 #pragma mark - 网络数据是否请求成功
 -(void)getStatusParameter:(NSDictionary *)dict{
@@ -632,7 +633,7 @@
     else if ([type isEqualToString:@"3"]){
         
         [UMSPPPayUnifyPayPlugin cloudPayWithURLSchemes:@"unifyPayHanPay" payData:payDataJsonStr viewController:self callbackBlock:^(NSString *resultCode, NSString *resultInfo) {//1000 取消
-            NSString *JSResult;
+            NSString *JSResult = [NSString stringWithFormat:@"payState('%@')",@"0"];
             if ([resultCode isEqualToString:@"1003"]) {
                 JSResult = [NSString stringWithFormat:@"payState('%@')",@"0"];
             }else if ([resultCode isEqualToString:@"1000"]){

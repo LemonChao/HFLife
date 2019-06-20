@@ -42,7 +42,7 @@
         ZHB_HP_PreventWeChatPopout *check = [[ZHB_HP_PreventWeChatPopout alloc]initWithTitle:@"选择搜索类型" cancelButtonTitle:@"取消" destructiveButtonTitle:weakSelf.headView.setTypeStr otherButtonTitles:arr actionSheetBlock:^(NSInteger index) {
             weakSelf.headView.setTypeStr = arr[index];
             NSString *typeStr = arr[index];
-            NSString *searType;
+            NSString *searType = @"";
             if ([typeStr isEqualToString:@"美食"]) {
                 searType = @"1";
             }else if ([typeStr isEqualToString:@"酒店"]){
