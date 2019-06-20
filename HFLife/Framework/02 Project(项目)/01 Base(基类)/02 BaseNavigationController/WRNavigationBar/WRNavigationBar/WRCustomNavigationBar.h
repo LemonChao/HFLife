@@ -25,7 +25,7 @@
 - (void)wr_setBottomLineHidden:(BOOL)hidden;
 - (void)wr_setBackgroundAlpha:(CGFloat)alpha;
 - (void)wr_setTintColor:(UIColor *)color;
-
+- (void)wr_setContentViewColor:(UIColor *)color;
 // 默认返回事件
 //- (void)wr_setLeftButtonWithNormal:(UIImage *)normal highlighted:(UIImage *)highlighted title:(NSString *)title titleColor:(UIColor *)titleColor;
 //- (void)wr_setLeftButtonWithImage:(UIImage *)image title:(NSString *)title titleColor:(UIColor *)titleColor;

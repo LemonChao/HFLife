@@ -56,6 +56,9 @@
     
     [self loadWKwebViewData];
     
+    
+    //设置导航背景透明
+    [self.customNavBar wr_setContentViewColor:[UIColor clearColor]];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -108,6 +111,13 @@
     [userContentController addScriptMessageHandler:self name:@"loginApp"];
     //调起QQ
     [userContentController addScriptMessageHandler:self name:@"goToQQ"];
+    
+    
+    [userContentController addScriptMessageHandler:self name:@"remindVisibleBack"];
+    
+    
+    
+    
 
     configuration.userContentController = userContentController;
     
@@ -197,7 +207,19 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"网页导航加载完毕");
-    self.customNavBar.hidden = YES;//加载成功隐藏 使用web导航
+    
+    
+    //判断 银联外链
+    if ([webView.URL.host containsString:@"chinaums"]) {
+        self.customNavBar.hidden = NO;
+        NSString *injectionJSString = @"var script = document.createElement('meta');"
+        "script.name = 'viewport';"
+        "script.content=\"width=device-width, user-scalable=yes\";"
+        "document.getElementsByTagName('head')[0].appendChild(script);";
+        [webView evaluateJavaScript:injectionJSString completionHandler:nil];
+    }else{
+        self.customNavBar.hidden = YES;//加载成功隐藏 使用web导航
+    }
     //    //OC反馈给JS导航栏高度
     //    NSString *JSResult = [NSString stringWithFormat:@"getTabbarHeight('%@')",MMNSStringFormat(@"%f",self.navBarHeight)];
     //    //OC调用JS
@@ -284,6 +306,11 @@
         [self savePhoto:message.body];
     }else if ([message.name isEqualToString:@"goToQQ"]){
         [self jumQQVC:message.body];
+    }else if ([message.name isEqualToString:@"remindVisibleBack"]){
+        //显示导航
+//        self.customNavBar.hidden = YES;
+    }else{
+        
     }
 
 }

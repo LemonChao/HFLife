@@ -153,7 +153,10 @@
     [self.rightButton setTitleColor:color forState:UIControlStateNormal];
     [self.titleLable setTextColor:color];
 }
-
+- (void)wr_setContentViewColor:(UIColor *)color{
+    self.backgroundView.backgroundColor = color;
+    self.backgroundColor = color;
+}
 #pragma mark - 左右按钮
 - (void)wr_setLeftButtonWithNormal:(UIImage *)normal highlighted:(UIImage *)highlighted title:(NSString *)title titleColor:(UIColor *)titleColor {
     self.leftButton.hidden = NO;
