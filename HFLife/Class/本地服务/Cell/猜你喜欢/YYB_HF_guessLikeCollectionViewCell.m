@@ -180,7 +180,7 @@
         make.top.mas_equalTo(self.priceLabel.mas_bottom).mas_offset(10);
         make.left.mas_equalTo(self.nameLabel);
         make.right.mas_equalTo(self.distanceLabel);
-        make.height.mas_equalTo(80);
+        make.height.mas_equalTo(ScreenScale(80));
     }];
     //    [self.picImageViewArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:10 leadSpacing:10 tailSpacing:10];
     //    [self.picImageViewArr mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -188,7 +188,7 @@
     //        make.height.mas_equalTo(80);
     //    }];
     
-    [self.picImageViewArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:105 leadSpacing:0 tailSpacing:0];
+    [self.picImageViewArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:ScreenScale(105) leadSpacing:0 tailSpacing:0];
     [self.picImageViewArr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.picBgView);
         make.bottom.mas_equalTo(self.picBgView);
