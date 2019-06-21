@@ -3748,10 +3748,10 @@
 		049783592285957E00E143D7 /* 猜你喜欢 */ = {
 			isa = PBXGroup;
 			children = (
-				0497835A2285957E00E143D7 /* YYB_HF_guessLikeTableViewCell.m */,
-				0497835B2285957E00E143D7 /* YYB_HF_guessLikeCollectionViewCell.m */,
 				0497835C2285957E00E143D7 /* YYB_HF_guessLikeTableViewCell.h */,
+				0497835A2285957E00E143D7 /* YYB_HF_guessLikeTableViewCell.m */,
 				0497835D2285957E00E143D7 /* YYB_HF_guessLikeCollectionViewCell.h */,
+				0497835B2285957E00E143D7 /* YYB_HF_guessLikeCollectionViewCell.m */,
 			);
 			path = "猜你喜欢";
 			sourceTree = "<group>";

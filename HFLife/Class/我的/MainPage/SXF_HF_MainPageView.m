@@ -67,6 +67,7 @@
         [self.modelArrM addObject:model];
     }
     [self.tableView reloadData];
+    [NOTIFICATION postNotificationName:@"changeBgColor" object:@(0)];
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -138,6 +139,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     SXF_HF_MianPageSectionView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SXF_HF_MianPageSectionView class])];
     sectionView.titleLb.text = _titleArr[section];
+    sectionView.backgroundColor = [UIColor clearColor];
     return sectionView;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

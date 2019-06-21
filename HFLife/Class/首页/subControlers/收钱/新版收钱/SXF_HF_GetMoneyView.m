@@ -114,7 +114,7 @@
     [self.payMoneyHeader setDataForView:code];
     if (!isCustom) {
 //        [self.saveCodeView setDataForView:code];
-        [self.saveCodeView2 setDataForView:code downLoadUrl:downLoadStr];
+        [self.saveCodeView2 setDataForView:code downLoadUrl:downLoadStr ? downLoadStr : @""];
     }
 }
 - (void)setMoney:(NSString *)money{

@@ -351,6 +351,9 @@ static NSString * const footerReuseIdentifier = @"Footer";
         }
         if (indexPath.section == 2) {
             view.moreBtn.hidden = NO;
+            if (self.newsListModelArr.count == 0) {
+                view.moreBtn.hidden = YES;
+            }
             
         }else{
             view.moreBtn.hidden = YES;

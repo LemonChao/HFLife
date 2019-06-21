@@ -35,9 +35,9 @@
     #define baseAppUrl               @"ceshi-ucenter.hfgld.net"
 #else
     //web地址
-    #define baseWebUrlCompunent      @"ceshi-web.hfgld.net"
+    #define baseWebUrlCompunent      @"web.hfgld.net"
     //原生地址
-    #define baseAppUrl               @"ceshi-ucenter.hfgld.net"
+    #define baseAppUrl               @"ucenter.hfgld.net"
 #endif
 
 
@@ -160,6 +160,9 @@ static NSString *const headlinesList              = @"headlinesList";
 
 //客服中心
 static NSString *servceCenter                     = @"serviceCenterMain";
+
+//首页搜索
+static NSString *searchUrl                        = @"homeSearch";
 
 //我要入驻
 static NSString *entering                         = @"contract/#/signingIndex?type=2";

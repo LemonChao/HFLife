@@ -181,19 +181,22 @@
             }
         }];
     }else{
-        if (![userInfoModel sharedUser].chect_rz_status) {
-            if ([[[userInfoModel sharedUser] rz_status] integerValue] == 0) {
-                SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
-                    if (btnBype) {
-                        //去认证
-                        SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
-                        webVC.urlString = SXF_WEB_URLl_Str(certification);
-                        [self.vc.navigationController pushViewController:webVC animated:YES];
-                    }
-                }];
-                alert.title = @"您未进行实名认证";
+        //过滤掉搜索(不实名认证)
+        if (index != 4) {
+            if (![userInfoModel sharedUser].chect_rz_status) {
+                if ([[[userInfoModel sharedUser] rz_status] integerValue] == 0) {
+                    SXF_HF_AlertView *alert = [SXF_HF_AlertView showAlertType:AlertType_realyCheck Complete:^(BOOL btnBype) {
+                        if (btnBype) {
+                            //去认证
+                            SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+                            webVC.urlString = SXF_WEB_URLl_Str(certification);
+                            [self.vc.navigationController pushViewController:webVC animated:YES];
+                        }
+                    }];
+                    alert.title = @"您未进行实名认证";
+                }
+                return;
             }
-            return;
         }
         UIViewController *vc;
         if (index == 0) {
@@ -237,7 +240,9 @@
             vc = [SXF_HP_cardPacketVC new];//卡包
         }else if (index == 4){
             //搜索
-            
+            SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
+            webVC.urlString = SXF_WEB_URLl_Str(searchUrl);
+            vc = webVC;
         }
         if (vc) {
             [self.vc.navigationController pushViewController:vc animated:YES];
