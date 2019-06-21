@@ -32,7 +32,7 @@
     
     [self.contentView addSubview:self.titleLb];
     [self.contentView addSubview:self.leftView];
-    
+    self.contentView.backgroundColor = rgb(245.0, 245.0, 245.0);
     self.leftView.backgroundColor = HEX_COLOR(0xCA1400);
     self.titleLb.font = FONT(18);
     self.titleLb.textColor = HEX_COLOR(0x0C0B0B);

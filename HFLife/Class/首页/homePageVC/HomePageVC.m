@@ -148,17 +148,7 @@
     
 //    [self.view addSubview:testBtn];
     [testBtn wh_addActionHandler:^{
-//        [SXF_HF_AlertView showAlertType:AlertType_setPassword  Complete:^(BOOL btnBype) {
-//            if (btnBype) {
-//
-//
-//            }
-//        }];
-//        [JMConfig config].selectedIndex = 1;
-//        return ;
-//        [self loadServerData:1];
-        //语音朗读
-//        [voiceHeaper say:@"下班吃饭了!"];
+
         [touchID_helper showTouchIDshowType:@"" complate:^(BOOL success, NSError * _Nullable error) {
         }];
 //        return ;

@@ -161,6 +161,9 @@ static NSString *const headlinesList              = @"headlinesList";
 //客服中心
 static NSString *servceCenter                     = @"serviceCenterMain";
 
+//首页搜索
+static NSString *searchUrl                        = @"homeSearch";
+
 //我要入驻
 static NSString *entering                         = @"contract/#/signingIndex?type=2";
 
