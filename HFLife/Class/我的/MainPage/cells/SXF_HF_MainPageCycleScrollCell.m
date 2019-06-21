@@ -43,7 +43,6 @@
     self.pageControl.numberOfPages = self.nums;
     [self.cycleV refreshData];
 //    [self addPageControl];
-    
 }
 
 - (void) addPageControl{
