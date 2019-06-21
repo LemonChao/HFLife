@@ -95,8 +95,9 @@
     //去登陆
     [userContentController addScriptMessageHandler:self name:@"loginApp"];
     //更新余额
-    
     [userContentController addScriptMessageHandler:self name:@"upDataUser"];
+    //显示地图
+    [userContentController addScriptMessageHandler:self name:@"actionMap"];
     configuration.userContentController = userContentController;
     
     
@@ -307,10 +308,10 @@
         [self CallParameter:message.body];
     } else if ([message.name isEqualToString:@"Camera"]) {
         [self camera];
+    } else if ([message.name isEqualToString:@"actionMap"]){
+        [self getAddressParameter:@{@"latitude":@"33",@"longitude":@"109"}];
     }
-//    else if ([message.name isEqualToString:@"getAddress"]){
-//        [self getAddressParameter:message.body];
-//    }else if ([message.name isEqualToString:@"getNear"]){
+//    else if ([message.name isEqualToString:@"getNear"]){
 //        [self getNearParameter:message.body];
 //    }else if ([message.name isEqualToString:@"pageJump"]){
 //        [self pageJumpParameter:message.body];
@@ -401,17 +402,17 @@
 }
 #pragma mark -获取地理位置
 -(void)getAddressParameter:(NSDictionary *)dict {
-//    if (dict && [dict isKindOfClass:[NSDictionary class]]) {
-//        MapViewController *map = [[MapViewController alloc]init];
-//        CLLocationCoordinate2D gaocoor;
-//        gaocoor.latitude = [MMNSStringFormat(@"%@",dict[@"latitude"]) floatValue];
-//        gaocoor.longitude = [MMNSStringFormat(@"%@",dict[@"longitude"]) floatValue];
-//        CLLocationCoordinate2D coor = [JZLocationConverter bd09ToGcj02:gaocoor];
-//        map.latitude = coor.latitude;
-//        map.longitude = coor.longitude;
-//        map.isMark = YES;
-//        [self.navigationController pushViewController:map animated:YES];
-//    }
+    if (dict && [dict isKindOfClass:[NSDictionary class]]) {
+        MapViewController *map = [[MapViewController alloc]init];
+        CLLocationCoordinate2D gaocoor;
+        gaocoor.latitude = [MMNSStringFormat(@"%@",dict[@"latitude"]) floatValue];
+        gaocoor.longitude = [MMNSStringFormat(@"%@",dict[@"longitude"]) floatValue];
+        CLLocationCoordinate2D coor = [JZLocationConverter bd09ToGcj02:gaocoor];
+        map.latitude = coor.latitude;
+        map.longitude = coor.longitude;
+        map.isMark = YES;
+        [self.navigationController pushViewController:map animated:YES];
+    }
 }
 #pragma mark -参数跳转
 -(void)getNearParameter:(NSDictionary *)dict{

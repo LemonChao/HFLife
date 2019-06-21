@@ -40,7 +40,7 @@
 -(void)setupNavBar{
     WS(weakSelf);
     [super setupNavBar];
-    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"Map_fanhui"]];
+    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
     self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
     [self.customNavBar setOnClickLeftButton:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
