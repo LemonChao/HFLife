@@ -8,7 +8,7 @@
 #pragma mark - ---------- 协议(protocol) ----------
 //协议（http/https）（含“//”后缀，不能为空）
 #if DEBUG
-static NSString *const URL_PROTOCOL = @"http://";
+static NSString *const URL_PROTOCOL = @"https://";
 #else
 static NSString *const URL_PROTOCOL = @"https://";
 #endif

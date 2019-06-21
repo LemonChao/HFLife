@@ -47,6 +47,13 @@ typedef void(^MapBlock)(void);
 @property (nonatomic,strong)NSString *destinationImgURL;
 //定位大头针图片名
 @property (nonatomic,strong)NSString *locationPointImgName;
+// !!!: 显示自定义地址名称
+/** 地址 */
+@property(nonatomic, copy) NSString *address;
+/** 详细地址 */
+@property(nonatomic, copy) NSString *address_info;
+/** 店铺名称 */
+@property(nonatomic, copy) NSString *store_name;
 
 /**
  自己实现导航方法

@@ -235,7 +235,6 @@
     NSLog(@"网页导航加载完毕");
     //判断 银联外链
     if ([webView.URL.host containsString:@"chinaums"]) {
-        //设置导航背景透明
         
         self.customNavBar.hidden = NO;
         NSString *injectionJSString = @"var script = document.createElement('meta');"
@@ -309,7 +308,7 @@
     } else if ([message.name isEqualToString:@"Camera"]) {
         [self camera];
     } else if ([message.name isEqualToString:@"actionMap"]){
-        [self getAddressParameter:@{@"latitude":@"33",@"longitude":@"109"}];
+        [self getAddressParameter:message.body];
     }
 //    else if ([message.name isEqualToString:@"getNear"]){
 //        [self getNearParameter:message.body];
@@ -403,16 +402,29 @@
 #pragma mark -获取地理位置
 -(void)getAddressParameter:(NSDictionary *)dict {
     if (dict && [dict isKindOfClass:[NSDictionary class]]) {
+        
+    }else if (dict && [dict isKindOfClass:[NSString class]]){
+        dict = [dict mj_JSONObject];
+    }
+    
+    if (dict && [dict isKindOfClass:[NSDictionary class]]) {
         MapViewController *map = [[MapViewController alloc]init];
         CLLocationCoordinate2D gaocoor;
-        gaocoor.latitude = [MMNSStringFormat(@"%@",dict[@"latitude"]) floatValue];
-        gaocoor.longitude = [MMNSStringFormat(@"%@",dict[@"longitude"]) floatValue];
+        gaocoor.latitude = [MMNSStringFormat(@"%@",dict[@"lat"]) floatValue];
+        gaocoor.longitude = [MMNSStringFormat(@"%@",dict[@"lng"]) floatValue];
         CLLocationCoordinate2D coor = [JZLocationConverter bd09ToGcj02:gaocoor];
         map.latitude = coor.latitude;
         map.longitude = coor.longitude;
         map.isMark = YES;
+        
+        map.address = MMNSStringFormat(@"%@",dict[@"address"]);
+        map.address_info = MMNSStringFormat(@"%@",dict[@"address_info"]);
+        map.store_name = MMNSStringFormat(@"%@",dict[@"store_name"]);
+        
+
         [self.navigationController pushViewController:map animated:YES];
     }
+   
 }
 #pragma mark -参数跳转
 -(void)getNearParameter:(NSDictionary *)dict{
