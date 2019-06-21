@@ -24,25 +24,24 @@
 
 #if DEBUG//测试线
 
-#if LOCALTEST//(本地测试)
-#define shopHost        @"shop.hfgld.net/"                 //后台接口域名
-//#define shopWebHost     @"http://192.168.0.143:1111/"
-#define shopWebHost     @"http://192.168.0.172:8080/"            //小曲IP
+#if LOCALTEST //(本地测试)
+#define shopHost        @"shop.hfgld.net"                  //后台接口域名
+#define shopWebHost     @"https://web.hfgld.net"           //web域名
 
-#else        //(线上测试)
-#define shopHost        @"shop.hfgld.net/"                 //后台接口域名
-#define shopWebHost     @"https://web.hfgld.net/"           //web域名
+#else //(线上测试)
+#define shopHost        @"shop.hfgld.net"                  //后台接口域名
+#define shopWebHost     @"https://web.hfgld.net"           //web域名
 #endif
 
 #else//正式线上
-#define shopHost        @"shop.hfgld.net/"                 //后台接口域名
-#define shopWebHost     @"https://web.hfgld.net/"           //web域名
+#define shopHost        @"shop.hfgld.net"                  //后台接口域名
+#define shopWebHost     @"https://web.hfgld.net"           //web域名
 #endif
 
 
 /************************subUrl************************/
 
-#define shopUrl(subUrl)    [NSString stringWithFormat:@"%@api/mobile/index.php?%@",shopHost,subUrl]
+#define shopUrl(subUrl)    [NSString stringWithFormat:@"%@/api/mobile/index.php?%@",shopHost,subUrl]
 
 // 商城-首页-专属推荐
 #define shopHomeTui_Goods   shopUrl(@"w=index&t=get_tui_goods")
