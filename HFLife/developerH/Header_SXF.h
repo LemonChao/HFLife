@@ -35,9 +35,9 @@
     #define baseAppUrl               @"ceshi-ucenter.hfgld.net"
 #else
     //web地址
-    #define baseWebUrlCompunent      @"ceshi-web.hfgld.net"
+    #define baseWebUrlCompunent      @"web.hfgld.net"
     //原生地址
-    #define baseAppUrl               @"ceshi-ucenter.hfgld.net"
+    #define baseAppUrl               @"ucenter.hfgld.net"
 #endif
 
 

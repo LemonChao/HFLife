@@ -79,6 +79,13 @@
     [self.picBgView addSubview:self.showImage1];
     [self.picBgView addSubview:self.showImage2];
     [self.picBgView addSubview:self.showImage3];
+    
+    
+    
+    self.showImage1.layer.cornerRadius = self.showImage2.layer.cornerRadius = self.showImage3.layer.cornerRadius = ScreenScale(5);
+    
+    self.showImage1.clipsToBounds = self.showImage2.clipsToBounds = self.showImage3.clipsToBounds = YES;
+    
  
     self.picImageViewArr = [NSMutableArray arrayWithArray:@[self.showImage1,self.showImage2,self.showImage3]];
     
@@ -129,46 +136,46 @@
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentView).mas_offset(12);
         make.right.mas_equalTo(self.contentView).mas_offset(-13);
-        make.top.mas_equalTo(self.contentView).mas_offset(5);
-        make.bottom.mas_equalTo(self.contentView).mas_offset(-5);
+        make.top.mas_equalTo(self.contentView).mas_offset(ScreenScale(5));
+        make.bottom.mas_equalTo(self.contentView).mas_offset(ScreenScale(-5));
         
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
-        make.top.mas_equalTo(self.bgView).mas_offset(10);
-        make.height.mas_equalTo(15);
+        make.top.mas_equalTo(self.bgView).mas_offset(ScreenScale(10));
+        make.height.mas_equalTo(ScreenScale(15));
     }];
     
     [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bgView).mas_offset(-10);
-        make.height.mas_equalTo(12);
-        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(7);
+        make.height.mas_equalTo(ScreenScale(12));
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(ScreenScale(7));
         make.width.mas_greaterThanOrEqualTo(40);
     }];
     [self.adLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
-        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(7);
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(ScreenScale(7));
         make.right.mas_equalTo(self.distanceLabel.mas_left).mas_offset(-18);
-        make.height.mas_equalTo(12);
+        make.height.mas_equalTo(ScreenScale(12));
     }];
     
     
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).mas_offset(10);
-        make.top.mas_equalTo(self.adLabel.mas_bottom).mas_offset(7);
-        make.height.mas_equalTo(17);
+        make.top.mas_equalTo(self.adLabel.mas_bottom).mas_offset(ScreenScale(7));
+        make.height.mas_equalTo(ScreenScale(17));
     }];
     
     [self.oldPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.priceLabel.mas_right).mas_offset(5);
         make.bottom.mas_equalTo(self.priceLabel);
-        make.height.mas_equalTo(11);
+        make.height.mas_equalTo(ScreenScale(11));
     }];
     
     [self.concessionMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.oldPriceLabel.mas_right).mas_offset(10);
         make.centerY.mas_equalTo(self.priceLabel);
-        make.height.mas_equalTo(13);
+        make.height.mas_equalTo(ScreenScale(13));
     }];
     [self.concessionIamgeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.mas_equalTo(self.concessionMoney);
@@ -177,23 +184,16 @@
     }];
     
     [self.picBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.priceLabel.mas_bottom).mas_offset(10);
+        make.top.mas_equalTo(self.priceLabel.mas_bottom).mas_offset(ScreenScale(10));
         make.left.mas_equalTo(self.nameLabel);
         make.right.mas_equalTo(self.distanceLabel);
         make.height.mas_equalTo(ScreenScale(80));
     }];
-    //    [self.picImageViewArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:10 leadSpacing:10 tailSpacing:10];
-    //    [self.picImageViewArr mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.top.mas_equalTo(0);
-    //        make.height.mas_equalTo(80);
-    //    }];
-    
-    [self.picImageViewArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:ScreenScale(105) leadSpacing:0 tailSpacing:0];
+    [self.picImageViewArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:ScreenScale(7) leadSpacing:0 tailSpacing:0];
     [self.picImageViewArr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.picBgView);
         make.bottom.mas_equalTo(self.picBgView);
     }];
-    
 }
 
 - (void)setSetNameStr:(NSString *)setNameStr {
