@@ -271,6 +271,9 @@ updatingLocation:(BOOL)updatingLocation
 -(void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view{
     //    NSLog(@"%lf------%lf",view.annotation.coordinate.latitude,view.annotation.coordinate.longitude);
     distinateCoor = view.annotation.coordinate;
+    view.annotation.title = self.store_name ? self.store_name : view.annotation.title;
+    NSString *subStr = [NSString stringWithFormat:@"%@ %@",[NSString judgeNullReturnString:self.address],[NSString judgeNullReturnString:self.address_info]];
+    view.annotation.subtitle = (subStr && subStr.length > 3) ? subStr : view.annotation.subtitle;
 }
 #pragma mark --步行导航代理方法
 -(void)walkManagerOnCalculateRouteSuccess:(AMapNaviWalkManager *)walkManager{

@@ -182,11 +182,7 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if (textField.text.length == 0) {
-        textField.placeholder = _setSearchStr;
-    }else {
-        textField.placeholder = @"";
-    }
+    
     return YES;
 }
 

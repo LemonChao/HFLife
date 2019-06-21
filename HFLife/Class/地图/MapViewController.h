@@ -26,6 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
  是否标注
  */
 @property (nonatomic,assign)BOOL isMark;
+/** 地址 */
+@property(nonatomic, copy) NSString *address;
+/** 详细地址 */
+@property(nonatomic, copy) NSString *address_info;
+/** 店铺名称 */
+@property(nonatomic, copy) NSString *store_name;
 @end
 
 NS_ASSUME_NONNULL_END
