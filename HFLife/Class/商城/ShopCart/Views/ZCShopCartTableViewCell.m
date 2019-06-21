@@ -117,11 +117,12 @@
     [self.priceLab mas_remakeConstraints:^(MASConstraintMaker *make) {
         if (StringIsEmpty(self.model.goods_spec)) {
             make.top.equalTo(self.nameLab.mas_bottom).offset(ScreenScale(16));
+            make.bottom.equalTo(self.contentView).inset(ScreenScale(30));
         }else {
             make.top.equalTo(self.specialLab.mas_bottom).offset(ScreenScale(16));
+            make.bottom.equalTo(self.contentView).inset(ScreenScale(24));
         }
         make.left.equalTo(self.nameLab);
-        make.bottom.equalTo(self.contentView).inset(ScreenScale(24));
     }];
     
     [super updateConstraints];

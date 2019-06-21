@@ -41,11 +41,13 @@
         self.isNavigationHidden = self.isHidenLeft = YES;
         self.pathForH5 = path;
         self.parameters = parameters;//
-        if (DictIsEmpty(self.parameters)) {
-            self.urlString = StringFormat(@"%@#/%@",shopWebHost,self.pathForH5);
-        }else {
-            self.urlString = StringFormat(@"%@#/%@?%@",shopWebHost,self.pathForH5,AFQueryStringFromParameters(self.parameters));
-        }
+//        if (DictIsEmpty(self.parameters)) {
+//            self.urlString = StringFormat(@"%@/mall/#/%@",shopWebHost,self.pathForH5);
+//        }else {
+//            self.urlString = StringFormat(@"%@/mall/#/%@?%@",shopWebHost,self.pathForH5,AFQueryStringFromParameters(self.parameters));
+//        }
+        self.urlString = StringFormat(@"%@/mall/#/%@?%@",shopWebHost,self.pathForH5,AFQueryStringFromParameters(self.parameters));
+
     }
     return self;
 }

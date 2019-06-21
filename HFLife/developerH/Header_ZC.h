@@ -25,21 +25,18 @@
 #if DEBUG//测试线
 
 #if LOCALTEST//(本地测试)
-#define shopHost        @"ceshi-shop.hfgld.net/"                 //接口域名
+#define shopHost        @"ceshi-shop.hfgld.net/"                 //后台接口域名
 //#define shopWebHost     @"http://192.168.0.143:1111/"
 #define shopWebHost     @"http://192.168.0.172:8080/"            //小曲IP
 
 #else        //(线上测试)
-#define shopHost        @"ceshi-shop.hfgld.net/"                 //接口域名
-#define shopWebHost     @"https://ceshi-web.hfgld.net/mall/"      //域名
+#define shopHost        @"ceshi-shop.hfgld.net/"                 //后台接口域名
+#define shopWebHost     @"https://ceshi-web.hfgld.net/"      //域名
 #endif
 
 #else//正式线上
-
-#define shopHost        @"ceshi-shop.hfgld.net/"                 //接口域名
-//#define shopWebHost     @"http://ceshi-web.hfgld.net/mall/"    //域名
-//#define shopWebHost     @"http://192.168.0.143:1111/"
-#define shopWebHost     @"https://ceshi-web.hfgld.net/mall/"
+#define shopHost        @"shop.hfgld.net/"                 //后台接口域名
+#define shopWebHost     @"https://web.hfgld.net/"           //web域名
 #endif
 
 
