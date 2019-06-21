@@ -293,7 +293,8 @@
     [self.contentView addSubview:self.showImage];
     [self.contentView addSubview:self.productInfoLabel];
     self.concessionIamgeView.image = image(@"icon_biaoqian");
-    
+    self.showImage.layer.cornerRadius = ScreenScale(5);
+    self.showImage.clipsToBounds = YES;
     self.bgView.backgroundColor = [UIColor whiteColor];
     //    self.bgView.clipsToBounds = YES;
     self.bgView.layer.cornerRadius = 5;
