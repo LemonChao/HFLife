@@ -40,7 +40,7 @@
 -(void)setupNavBar{
     WS(weakSelf);
     [super setupNavBar];
-    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back"]];
+    [self.customNavBar wr_setLeftButtonWithImage:[UIImage imageNamed:@"back_blackBackground"]];
     self.customNavBar.barBackgroundImage = [UIImage imageNamed:@""];
     [self.customNavBar setOnClickLeftButton:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -48,7 +48,8 @@
     [self.customNavBar wr_setBottomLineHidden:YES];
 
     self.customNavBar.titleLabelColor = [UIColor blackColor];
-    
+    [self.customNavBar wr_setContentViewColor:[UIColor clearColor]];
+
 }
 //显示自己的定位信息
 -(void)locationOnlySelf {
@@ -57,6 +58,9 @@
     [manager setNavigationPath:^(CGFloat latitude, CGFloat longitude) {
         [self gotoMapLatitude:latitude Longitude:longitude];
     }];
+    manager.address = self.address;
+    manager.address_info = self.address_info;
+    manager.store_name = self.store_name;
     [manager initMapView];
 }
 //给一个坐标，在地图上显示大头针

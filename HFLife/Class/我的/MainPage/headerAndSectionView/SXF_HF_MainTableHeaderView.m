@@ -171,7 +171,7 @@
     [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:memberInfoModel.member_avatar] placeholderImage:MY_IMAHE(@"logo")];
     NSString *nameStr = memberInfoModel.nickname;
     self.userNameLb.text = nameStr ? nameStr : @"昵称名称";
-    self.userLeveLb.text = memberInfoModel.level_name ? memberInfoModel.level_name : @"无等级信息";
+    self.userLeveLb.text = memberInfoModel.level_name ? StringFormat(@"LV:%@",memberInfoModel.level_name) : @"无等级信息";
     self.myJoinTitleLb.text = memberInfoModel.invite_code ? [NSString stringWithFormat:@"我的邀请码:%@",memberInfoModel.invite_code] : @"";
     if (memberInfoModel.i_agent_level.intValue > 0) {
         self.moneyLb1.text = Format(memberInfoModel.yesterday_turnover) ? Format(memberInfoModel.yesterday_turnover) : @"0";
