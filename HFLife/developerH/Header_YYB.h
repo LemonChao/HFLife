@@ -59,8 +59,8 @@
 
 #if DEBUG//测试线
 #if LOCALTEST//(本地测试)
-static NSString *const centerBaceUrl =      @"ceshi-ucenter.hfgld.net/";//个人中心
-static NSString *const kBaseLife =          @"ceshi-life.hfgld.net/index.php/";//本地生活
+static NSString *const centerBaceUrl =      @"ucenter.hfgld.net/";//个人中心
+static NSString *const kBaseLife =          @"life.hfgld.net/index.php/";//本地生活
 static NSString *const kBaseUrlH5 =         @"http://192.168.0.253:";//h5本地测试base
 
 #pragma mark - h5 ---------------------------
@@ -73,16 +73,16 @@ static NSString *const kOrderList =         @"10004/#/order";
 static NSString *const kAppAgreement =      @"http://192.168.0.143:8080/#/appAgreement";
 
 #else        //(线上测试)
-static NSString *const centerBaceUrl =      @"ceshi-ucenter.hfgld.net/";
-static NSString *const kBaseLife =          @"ceshi-life.hfgld.net/index.php/";
-static NSString *const kBaseUrlH5 =         @"https://ceshi-web.hfgld.net/";//h5线上测试base
+static NSString *const centerBaceUrl =      @"ucenter.hfgld.net/";
+static NSString *const kBaseLife =          @"life.hfgld.net/index.php/";
+static NSString *const kBaseUrlH5 =         @"https://web.hfgld.net/";//h5线上测试base
 
 /** 选择位置 */
 static NSString *const kChoiceCity =        @"hotel/#/city";
 /** 订单列表 */
 static NSString *const kOrderList =         @"life/#/order";
 /** 服务协议 */
-static NSString *const kAppAgreement =      @"https://ceshi-web.hfgld.net/mall/#/appAgreement";
+static NSString *const kAppAgreement =      @"https://web.hfgld.net/mall/#/appAgreement";
 
 #endif
 
