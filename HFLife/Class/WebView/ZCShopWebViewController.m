@@ -46,7 +46,7 @@
 //        }else {
 //            self.urlString = StringFormat(@"%@/mall/#/%@?%@",shopWebHost,self.pathForH5,AFQueryStringFromParameters(self.parameters));
 //        }
-        self.urlString = StringFormat(@"%@mall/#/%@?%@",shopWebHost,self.pathForH5,AFQueryStringFromParameters(self.parameters));
+        self.urlString = StringFormat(@"%@/mall/#/%@?%@",shopWebHost,self.pathForH5,AFQueryStringFromParameters(self.parameters));
 
     }
     return self;
