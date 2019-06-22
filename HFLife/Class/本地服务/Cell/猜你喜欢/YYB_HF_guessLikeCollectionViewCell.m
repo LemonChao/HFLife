@@ -179,8 +179,8 @@
     }];
     [self.concessionIamgeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.mas_equalTo(self.concessionMoney);
-        make.left.mas_equalTo(self.concessionMoney).mas_offset(0);
-        make.width.mas_equalTo(self.concessionMoney);
+        make.left.mas_equalTo(self.concessionMoney).mas_offset(-5);
+        make.right.mas_equalTo(self.concessionMoney).mas_offset(2);
     }];
     
     [self.picBgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -387,8 +387,8 @@
         make.width.mas_greaterThanOrEqualTo(1);
     }];
     [self.concessionIamgeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.concessionMoney).mas_offset(0);
-        make.right.mas_equalTo(self.concessionMoney);
+        make.left.mas_equalTo(self.concessionMoney).mas_offset(-5);
+        make.right.mas_equalTo(self.concessionMoney).mas_offset(2);
         make.bottom.mas_equalTo(self.concessionMoney);
         make.top.mas_equalTo(self.concessionMoney);
     }];
