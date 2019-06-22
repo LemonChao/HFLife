@@ -390,6 +390,14 @@ static BOOL IsUpdateRemind = YES;
         
         
         
+        //判断强制h更新的版本 k是否和当前版本一样
+        if ([[self getAppVersion] isEqualToString:version]) {
+            //已更新 就无需再更新版本
+            return;
+        }
+        
+        
+        
         
         [CommonTools setVersionString:version];
         if (![NSString isNOTNull:[NSString stringWithFormat:@"%@",dataDict[@"url"]]]) {

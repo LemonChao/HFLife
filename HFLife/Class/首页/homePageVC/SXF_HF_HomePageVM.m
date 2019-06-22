@@ -568,8 +568,7 @@
     
     //(1-手续费比例)
 //    NSDecimalNumber *subNum = [oneNum decimalNumberBySubtracting:bn_acc_blNum withBehavior:rounUp];
-//
-//
+
     NSDecimalNumber *valueNum = [static_coinNum decimalNumberByMultiplyingBy:bn_acc_ratioNum withBehavior:rounUp];
     NSLog(@"%@", valueNum);
     
