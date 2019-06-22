@@ -50,6 +50,8 @@ static CLLocationCoordinate2D distinateCoor;//目的地坐标
     _mapView.distanceFilter = 5.0f;
     //把中心点设成自己的坐标
     _mapView.centerCoordinate = self.currentLocation.coordinate;
+    //指南针位置
+    _mapView.compassOrigin = CGPointMake(SCREEN_WIDTH - _mapView.compassSize.width - 15, SCREEN_HEIGHT - 100);
 }
 #pragma mark --带block的地图初始化方法
 -(void)initMapViewWithBlock:(MapBlock)block{
