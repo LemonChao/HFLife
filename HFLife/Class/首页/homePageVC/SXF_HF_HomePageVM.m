@@ -72,7 +72,10 @@
 - (void)setFqValue:(NSDictionary *)fqValue{
     _fqValue = fqValue;
     self.collectionView.fqPrice = fqValue[@"rate"];
-    self.collectionView.myFQ = Format([self getMoney:fqValue[@"rate"] :self.static_coin]);
+    
+    
+    NSString *moneyStr = Format([self getMoney:fqValue[@"rate"] :self.static_coin]);
+    self.collectionView.myFQ = moneyStr;
 }
 
 
@@ -536,7 +539,7 @@
     return _locationManager;
 }
 //用于货币高精度计算
-- (NSDecimalNumber *) getMoney:(NSString *)bn_acc_ratio :(NSString *)static_coin{
+- (NSString *) getMoney:(NSString *)bn_acc_ratio :(NSString *)static_coin{
     //富权值
     NSDecimalNumber *static_coinNum = [NSDecimalNumber decimalNumberWithString:static_coin];
     //富权价格
@@ -569,7 +572,33 @@
 //
     NSDecimalNumber *valueNum = [static_coinNum decimalNumberByMultiplyingBy:bn_acc_ratioNum withBehavior:rounUp];
     NSLog(@"%@", valueNum);
-    return valueNum;
+    
+    
+    NSString *valueStr = Format(valueNum);
+    
+    if ([valueStr floatValue] == 0) {
+        valueStr = @"0.0000000000";
+    }else{
+        NSString *lastValur = @"0000000000000";
+        NSMutableArray <NSString *>*compunentArr = [[valueStr componentsSeparatedByString:@"."] mutableCopy];
+        if (compunentArr.count > 1) {
+            if (compunentArr[1].length < 10) {
+                NSString *appendStr = [lastValur substringWithRange:NSMakeRange(0, 10 - compunentArr[1].length)];
+                
+                NSString *lastStr = [NSString stringWithFormat:@"%@%@", compunentArr[1], appendStr];
+                
+                
+                [compunentArr replaceObjectAtIndex:1 withObject:lastStr];
+               valueStr = [compunentArr componentsJoinedByString:@"."];
+            }else{
+                valueStr = Format(valueNum);
+            }
+        }else{
+            valueStr = [NSString stringWithFormat:@"%@%@", compunentArr[0], @".0000000000"];
+        }
+    }
+    //当为0 的时候 返回@"0.0000000000"
+    return valueStr;
     
 }
 //检测是否是，实名认证
