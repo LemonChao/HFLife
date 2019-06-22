@@ -30,9 +30,9 @@
 
 #if DEBUG
     //web地址
-    #define baseWebUrlCompunent      @"web.hfgld.net"
+    #define baseWebUrlCompunent      @"ceshi-web.hfgld.net"
     //原生地址
-    #define baseAppUrl               @"ucenter.hfgld.net"
+    #define baseAppUrl               @"ceshi-ucenter.hfgld.net"
 #else
     //web地址
     #define baseWebUrlCompunent      @"web.hfgld.net"
