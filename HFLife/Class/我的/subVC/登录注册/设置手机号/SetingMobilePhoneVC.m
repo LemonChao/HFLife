@@ -292,7 +292,7 @@
         UITextField *tf = [[UITextField alloc] init];
         //        tf.keyboardType = UIKeyboardTypeASCIICapable;
         tf.keyboardType = UIKeyboardTypeTwitter;
-        tf.placeholder = @"请输入邀请码";
+        tf.placeholder = @"请输入邀请码(非必选)";
         [tf setValue:HEX_COLOR(0xAAAAAA) forKeyPath:@"_placeholderLabel.textColor"];
         tf.textColor = HEX_COLOR(0x5b5b5b);
         //        tf.secureTextEntry = YES;
@@ -430,12 +430,12 @@
         [WXZTipView showCenterWithText:@"请输入验证码"];
         return;
     }
-    if ([NSString isNOTNull:self.inviteCodeTextField.text]) {
-        [WXZTipView showCenterWithText:@"邀请码不能为空"];
-        return;
-    }
+//    if ([NSString isNOTNull:self.inviteCodeTextField.text]) {
+//        [WXZTipView showCenterWithText:@"邀请码不能为空"];
+//        return;
+//    }
     if (!(self.inviteCodeTextField.text.length >= 0 && self.inviteCodeTextField.text.length < 10)) {
-        [WXZTipView showCenterWithText:@"请输入邀请码"];
+        [WXZTipView showCenterWithText:@"邀请码不能超过10位"];
         return;
     }
     NSString *subUrl;

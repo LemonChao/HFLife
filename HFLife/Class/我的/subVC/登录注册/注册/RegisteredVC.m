@@ -390,7 +390,7 @@
         return;
     }
     if (!(self.inviteCodeTextField.text.length >= 0 && self.inviteCodeTextField.text.length < 10)) {
-        [WXZTipView showCenterWithText:@"请输入邀请码"];
+        [WXZTipView showCenterWithText:@"邀请码不能超过10位"];
         return;
     }
     
