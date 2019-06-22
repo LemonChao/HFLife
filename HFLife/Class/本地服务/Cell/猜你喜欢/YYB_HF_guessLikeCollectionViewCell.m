@@ -121,7 +121,7 @@
     self.oldPriceLabel.font = FONT(11);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
-    self.concessionMoney.text = @"让利￥xxx";
+    self.concessionMoney.text = @"共享值￥xxx";
     self.concessionMoney.font = FONT(10);
     self.concessionMoney.textAlignment = NSTextAlignmentCenter;
 
@@ -179,8 +179,8 @@
     }];
     [self.concessionIamgeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.mas_equalTo(self.concessionMoney);
-        make.left.mas_equalTo(self.concessionMoney).mas_offset(0);
-        make.width.mas_equalTo(self.concessionMoney);
+        make.left.mas_equalTo(self.concessionMoney).mas_offset(-5);
+        make.right.mas_equalTo(self.concessionMoney).mas_offset(2);
     }];
     
     [self.picBgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -293,7 +293,8 @@
     [self.contentView addSubview:self.showImage];
     [self.contentView addSubview:self.productInfoLabel];
     self.concessionIamgeView.image = image(@"icon_biaoqian");
-    
+    self.showImage.layer.cornerRadius = ScreenScale(5);
+    self.showImage.clipsToBounds = YES;
     self.bgView.backgroundColor = [UIColor whiteColor];
     //    self.bgView.clipsToBounds = YES;
     self.bgView.layer.cornerRadius = 5;
@@ -323,7 +324,7 @@
     self.oldPriceLabel.font = FONT(11);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
-    self.concessionMoney.text = @"让利￥xxx";
+    self.concessionMoney.text = @"共享值￥xxx";
     self.concessionMoney.font = FONT(10);
     self.concessionMoney.textAlignment = NSTextAlignmentCenter;
     
@@ -386,8 +387,8 @@
         make.width.mas_greaterThanOrEqualTo(1);
     }];
     [self.concessionIamgeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.concessionMoney).mas_offset(0);
-        make.right.mas_equalTo(self.concessionMoney);
+        make.left.mas_equalTo(self.concessionMoney).mas_offset(-5);
+        make.right.mas_equalTo(self.concessionMoney).mas_offset(2);
         make.bottom.mas_equalTo(self.concessionMoney);
         make.top.mas_equalTo(self.concessionMoney);
     }];

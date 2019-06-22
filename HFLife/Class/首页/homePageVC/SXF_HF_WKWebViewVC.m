@@ -301,6 +301,7 @@
     }else if ([message.name isEqualToString:@"goToSearch"]){
         [self jumSearchVC];
     }else if ([message.name isEqualToString:@"loginApp"]){
+        [self.navigationController popToRootViewControllerAnimated:NO];
         [LoginVC login];//登录
     }else if ([message.name isEqualToString:@"getPhoto"]){
         [self savePhoto:message.body];

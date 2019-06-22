@@ -349,6 +349,7 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
     }else if ([message.name isEqualToString:@"loginApp"]){//跳转登录
+        [self.navigationController popToRootViewControllerAnimated:NO];
         [LoginVC login];
     }else if ([message.name isEqualToString:@"upDataUser"]) {
         //更新余额

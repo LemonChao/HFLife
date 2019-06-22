@@ -108,7 +108,7 @@
     self.oldPriceLabel.font = FONT(11);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
-    self.concessionMoney.text = @"让利$100";
+    self.concessionMoney.text = @"共享值100";
     self.concessionMoney.font = FONT(10);
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.oldPriceLabel.text
@@ -292,7 +292,7 @@
     self.oldPriceLabel.font = FONT(11);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
-    self.concessionMoney.text = @"让利$100";
+    self.concessionMoney.text = @"共享值￥100";
     self.concessionMoney.font = FONT(10);
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.oldPriceLabel.text
