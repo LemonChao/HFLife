@@ -140,9 +140,8 @@
     self.selectButton.selected = model.selected;
     self.countLabel.text = model.goods_num;
     self.specialLab.text = model.goods_spec;
-    if (StringIsEmpty(model.goods_spec)) {
-        self.specialLab.edgeInsets = UIEdgeInsetsZero;
-    }
+    self.specialLab.edgeInsets = StringIsEmpty(model.goods_spec) ? UIEdgeInsetsZero : UIEdgeInsetsMake(2, 4, 2, 4);
+
     [self setNeedsUpdateConstraints];
 }
 
@@ -280,7 +279,6 @@
         _specialLab.layer.cornerRadius = ScreenScale(5);
         _specialLab.clipsToBounds = YES;
         _specialLab.font = SystemFont(14);
-        _specialLab.edgeInsets = UIEdgeInsetsMake(2, 4, 2, 4);
     }
     return _specialLab;
 }
