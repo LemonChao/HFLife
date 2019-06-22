@@ -120,7 +120,7 @@
     }];
     
     UILabel *rangli_describe = [UILabel new];
-    rangli_describe.text = @"让利消费金额";
+    rangli_describe.text = @"共享值消费金额";
     rangli_describe.font = [UIFont systemFontOfSize:WidthRatio(20)];
     rangli_describe.textColor = HEX_COLOR(0x666666);
     [self.contentView addSubview:rangli_describe];

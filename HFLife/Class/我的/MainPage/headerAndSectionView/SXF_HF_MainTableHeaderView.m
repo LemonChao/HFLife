@@ -160,8 +160,8 @@
     
     self.moneyLb1.text = @"";
     self.moneyLb2.text = @"";
-    self.moneyTitle1.text = @"昨日营业额(元)";
-    self.moneyTitle2.text = @"昨日商家让利(元)";
+    self.moneyTitle1.text = @"昨日营业额";
+    self.moneyTitle2.text = @"昨日商家共享值";
     self.bottomLb.text = @"";
     
 }
@@ -177,7 +177,7 @@
         self.moneyLb1.text = Format(memberInfoModel.yesterday_turnover) ? Format(memberInfoModel.yesterday_turnover) : @"0";
         self.moneyLb2.text = Format(memberInfoModel.yesterday_benefit) ? Format(memberInfoModel.yesterday_benefit) : @"0";
         self.moneyTitle1.text = @"昨日营业额(元)";
-        self.moneyTitle2.text = @"昨日商家让利(元)";
+        self.moneyTitle2.text = @"昨日商家共享值";
         self.bottomLb.text = memberInfoModel.i_agent_name ? memberInfoModel.i_agent_name : @"代理区域";
     }else {
         self.vipBgView.hidden = YES;

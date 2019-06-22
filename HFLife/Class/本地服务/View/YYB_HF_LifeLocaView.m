@@ -251,7 +251,7 @@
             cell.setDistanceStr = [NSString stringWithFormat:@"%.2fkm",[guessModel.distance floatValue]];
             cell.setPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.product_price];
             cell.setOldPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.original_price];
-            cell.setConcessionMoneyStr = [NSString stringWithFormat:@"让利￥%@",guessModel.fan_price];
+            cell.setConcessionMoneyStr = [NSString stringWithFormat:@"共享值￥%@",guessModel.fan_price];
             cell.setImageArr = guessModel.detail_photo;
 
             return cell;
@@ -263,7 +263,7 @@
             cell.setDistanceStr = [NSString stringWithFormat:@"%.2fkm",[guessModel.distance floatValue]];
             cell.setPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.product_price];
             cell.setOldPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.original_price];
-            cell.setConcessionMoneyStr = [NSString stringWithFormat:@"让利￥%@",guessModel.fan_price];
+            cell.setConcessionMoneyStr = [NSString stringWithFormat:@"共享值￥%@",guessModel.fan_price];
             cell.setImageUrl = guessModel.product_photo;
             return cell;
             
@@ -274,7 +274,7 @@
             cell.setDistanceStr = [NSString stringWithFormat:@"%.2fkm",[guessModel.distance floatValue]];
             cell.setPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.product_price];
             cell.setOldPriceStr = [NSString stringWithFormat:@"￥%@",guessModel.original_price];
-            cell.setConcessionMoneyStr = [NSString stringWithFormat:@"让利￥%@",guessModel.fan_price];
+            cell.setConcessionMoneyStr = [NSString stringWithFormat:@"共享值￥%@",guessModel.fan_price];
             cell.setImageUrl = guessModel.product_photo;
             return cell;
             

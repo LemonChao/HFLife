@@ -121,7 +121,7 @@
     self.oldPriceLabel.font = FONT(11);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
-    self.concessionMoney.text = @"让利￥xxx";
+    self.concessionMoney.text = @"共享值￥xxx";
     self.concessionMoney.font = FONT(10);
     self.concessionMoney.textAlignment = NSTextAlignmentCenter;
 
@@ -324,7 +324,7 @@
     self.oldPriceLabel.font = FONT(11);
     
     self.concessionMoney.textColor = [UIColor whiteColor];
-    self.concessionMoney.text = @"让利￥xxx";
+    self.concessionMoney.text = @"共享值￥xxx";
     self.concessionMoney.font = FONT(10);
     self.concessionMoney.textAlignment = NSTextAlignmentCenter;
     
