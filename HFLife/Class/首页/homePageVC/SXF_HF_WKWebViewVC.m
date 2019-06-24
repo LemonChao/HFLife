@@ -23,6 +23,8 @@
 #import "ShareProductInfoView.h"
 #import "YYB_HF_submitDealPassWordVC.h"
 
+#import "WKWebView+SXF_WKCacheManager.h"
+
 
 @interface SXF_HF_WKWebViewVC ()<WKUIDelegate,WKScriptMessageHandler,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,WKNavigationDelegate,UIGestureRecognizerDelegate>
 {
@@ -31,6 +33,7 @@
     
 }
 @property(nonatomic, strong)WKWebView *webView;
+@property (nonatomic, strong)WKUserContentController *userContentController;
 @end
 
 @implementation SXF_HF_WKWebViewVC
@@ -95,31 +98,10 @@
     
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
-    //分享
-    [userContentController addScriptMessageHandler:self name:@"goToShare"];
-    //拨打电话
-    [userContentController addScriptMessageHandler:self name:@"Call"];
-    //原生跳转
-    [userContentController addScriptMessageHandler:self name:@"goToSearch"];
-    //返回首页
-    [userContentController addScriptMessageHandler:self name:@"goToHome"];
-    //下载图片
-    [userContentController addScriptMessageHandler:self name:@"getPhoto"];
-    
-    [userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
-    
-    [userContentController addScriptMessageHandler:self name:@"loginApp"];
-    //调起QQ
-    [userContentController addScriptMessageHandler:self name:@"goToQQ"];
-    
-    
-    [userContentController addScriptMessageHandler:self name:@"remindVisibleBack"];
-    
-    
-    
-    
+    self.userContentController = userContentController;
+    [self addMessageHandler];
 
-    configuration.userContentController = userContentController;
+    configuration.userContentController = self.userContentController;
     
     
     WKPreferences *preferences = [WKPreferences new];
@@ -158,8 +140,14 @@
         NSLog(@"web页面地址：url =  %@", self.urlString);
        NSURL *url = [NSURL URLWithString:self.urlString];
         //        NSURL *url = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+       
+        
+        
+        //添加缓存策略(先从本地读取 读取不到再从url资源下载)
+         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
         [self.webView loadRequest:request];
+        
+//        [self.webView loadDataWithUrl:self.urlString];
     }else{
         [self loadFailed];
         //        //loadFileURL方法通常用于加载服务器的HTML页面或者JS，而loadHTMLString通常用于加载本地HTML或者JS
@@ -571,5 +559,47 @@
 }
 -(void)setTitleColor:(UIColor *)titleColor{
     
+}
+
+- (void) addMessageHandler{
+    //分享
+    [self.userContentController addScriptMessageHandler:self name:@"goToShare"];
+    //拨打电话
+    [self.userContentController addScriptMessageHandler:self name:@"Call"];
+    //原生跳转
+    [self.userContentController addScriptMessageHandler:self name:@"goToSearch"];
+    //返回首页
+    [self.userContentController addScriptMessageHandler:self name:@"goToHome"];
+    //下载图片
+    [self.userContentController addScriptMessageHandler:self name:@"getPhoto"];
+    
+    [self.userContentController addScriptMessageHandler:self name:@"goSetPayPassword"];
+    
+    [self.userContentController addScriptMessageHandler:self name:@"loginApp"];
+    //调起QQ
+    [self.userContentController addScriptMessageHandler:self name:@"goToQQ"];
+    
+    
+    [self.userContentController addScriptMessageHandler:self name:@"remindVisibleBack"];
+}
+- (void) removeAllMessageHandler{
+    [self.userContentController removeAllUserScripts];
+    
+    [self.userContentController removeScriptMessageHandlerForName:@"goToShare"];
+    [self.userContentController removeScriptMessageHandlerForName:@"Call"];
+    [self.userContentController removeScriptMessageHandlerForName:@"goToSearch"];
+    [self.userContentController removeScriptMessageHandlerForName:@"goToHome"];
+    [self.userContentController removeScriptMessageHandlerForName:@"getPhoto"];
+    [self.userContentController removeScriptMessageHandlerForName:@"goSetPayPassword"];
+    [self.userContentController removeScriptMessageHandlerForName:@"loginApp"];
+    [self.userContentController removeScriptMessageHandlerForName:@"goToQQ"];
+    [self.userContentController removeScriptMessageHandlerForName:@"remindVisibleBack"];
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self removeAllMessageHandler];
+}
+- (void)dealloc{
+    NSLog(@"%s 被释放", __FUNCTION__);
 }
 @end

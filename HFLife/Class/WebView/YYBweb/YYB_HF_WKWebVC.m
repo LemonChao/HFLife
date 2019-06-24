@@ -166,7 +166,7 @@
         
 //        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString_encode]];
         
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString_encode] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString_encode] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:20];
         [self.webView loadRequest:request];
     }else{
         //         通过路径创建本地URL地址

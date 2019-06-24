@@ -91,8 +91,8 @@
 
 -(void)loadWKwebViewData{
     [[WBPCreate sharedInstance]showWBProgress];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
+    //添加缓存策略(先从本地读取 读取不到再从url资源下载)
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:20];
     [self.webView loadRequest:request];
 }
 #pragma mark - WKWebView代理 WKUIDelegate

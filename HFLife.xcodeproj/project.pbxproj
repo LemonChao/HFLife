@@ -571,6 +571,7 @@
 		04FA265C2296981600F4E9EB /* SXF_HF_bindingAccount.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA265A2296981600F4E9EB /* SXF_HF_bindingAccount.xib */; };
 		04FA26612296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA265F2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m */; };
 		04FA26622296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */; };
+		04FA3D7A22C0724200EA43D0 /* WKWebView+SXF_WKCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA3D7922C0724200EA43D0 /* WKWebView+SXF_WKCacheManager.m */; };
 		04FAC56322977DE500C5B716 /* UIButton+timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAC56222977DE500C5B716 /* UIButton+timer.m */; };
 		04FAEE0E22AF8FD8005A0FC8 /* HF_PayHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAEE0D22AF8FD8005A0FC8 /* HF_PayHelp.m */; };
 		04FB7F1922866BE300150CA7 /* UIImageView+LoadGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7F1822866BE300150CA7 /* UIImageView+LoadGif.m */; };
@@ -1959,6 +1960,8 @@
 		04FA265E2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXF_HF_exchangePhoneVc.h; sourceTree = "<group>"; };
 		04FA265F2296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXF_HF_exchangePhoneVc.m; sourceTree = "<group>"; };
 		04FA26602296A68F00F4E9EB /* SXF_HF_exchangePhoneVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXF_HF_exchangePhoneVc.xib; sourceTree = "<group>"; };
+		04FA3D7822C0724200EA43D0 /* WKWebView+SXF_WKCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebView+SXF_WKCacheManager.h"; sourceTree = "<group>"; };
+		04FA3D7922C0724200EA43D0 /* WKWebView+SXF_WKCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+SXF_WKCacheManager.m"; sourceTree = "<group>"; };
 		04FAC56122977DE500C5B716 /* UIButton+timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+timer.h"; sourceTree = "<group>"; };
 		04FAC56222977DE500C5B716 /* UIButton+timer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+timer.m"; sourceTree = "<group>"; };
 		04FAEE0C22AF8FD8005A0FC8 /* HF_PayHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_PayHelp.h; sourceTree = "<group>"; };
@@ -3208,6 +3211,8 @@
 				048DABFF22857057006E6BA2 /* SXF_HF_HomePageModel.m */,
 				04FCA9B822A0BB600043F64F /* SXF_HF_WKWebViewVC.h */,
 				04FCA9B922A0BB600043F64F /* SXF_HF_WKWebViewVC.m */,
+				04FA3D7822C0724200EA43D0 /* WKWebView+SXF_WKCacheManager.h */,
+				04FA3D7922C0724200EA43D0 /* WKWebView+SXF_WKCacheManager.m */,
 				0453D1B52283B6E200880C2A /* 搜索栏 */,
 				0453D1B22283B62900880C2A /* tableHeaderView */,
 				0453D155228266A800880C2A /* 瀑布流 */,
@@ -8488,6 +8493,7 @@
 				04F52028228A4AD600ED4995 /* CWFlowLayout.m in Sources */,
 				6C2F5165222A663D0022EE03 /* HXDatePhotoToolManager.m in Sources */,
 				04F946D3228B9E9600085F78 /* SXF_HF_payStepAleryView.m in Sources */,
+				04FA3D7A22C0724200EA43D0 /* WKWebView+SXF_WKCacheManager.m in Sources */,
 				04A508AC227EDD3A0013E8EC /* HR_dataManagerTool.m in Sources */,
 				04F52164228A77EA00ED4995 /* RegisteredVC.m in Sources */,
 				6C2F5156222A663D0022EE03 /* HXCustomCameraController.m in Sources */,
