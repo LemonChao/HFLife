@@ -27,7 +27,9 @@
 @end
 
 @implementation FlickingVC
-
+{
+    NSString *_codeResult;//存储w二维码结果
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
         /// 二维码开启方法
@@ -103,6 +105,7 @@
 //处理二维码处理后的k逻辑
 - (void) getResult:(SGQRCodeObtain *)obtain result:(NSString *)result{
     if (result) {
+        _codeResult = result;
         [MBProgressHUD SG_showMBProgressHUDWithModifyStyleMessage:@"正在处理..." toView:self.view];
         [obtain stopRunning];
         [obtain playSoundName:@"SGQRCode.bundle/sound.caf"];
@@ -156,6 +159,8 @@
     };
 }
 
+
+//去相册识别
 - (void)rightBarButtonItenAction {
     __weak typeof(self) weakSelf = self;
     [obtain establishAuthorizationQRCodeObtainAlbumWithController:nil];
@@ -290,6 +295,26 @@
                 }
                 
             }
+        }else{
+            if (value) {
+                [WXZTipView showCenterWithText:value[@"msg"]];
+            }else{
+                [WXZTipView showCenterWithText:@"二维码错误"];
+            }
+            
+            BaseViewController *errorCodeVC = [BaseViewController new];
+            [self.navigationController pushViewController:errorCodeVC animated:YES];
+            errorCodeVC.customNavBar.title = @"二维码错误";
+            UITextView *errorLb = [[UITextView alloc] init];
+//            errorLb.numberOfLines = 0;
+            [errorCodeVC.view addSubview:errorLb];
+            errorLb.font = MyFont(17);
+            errorLb.frame = CGRectMake(10, 0, SCREEN_WIDTH - 20, 100);
+            errorLb.center = errorCodeVC.view.center;
+            errorLb.editable = NO;
+            errorLb.contentMode = UIViewContentModeCenter;
+            errorLb.text = [NSString stringWithFormat:@"%@", self->_codeResult ? self->_codeResult : @""];
+            
         }
     }];
 }
