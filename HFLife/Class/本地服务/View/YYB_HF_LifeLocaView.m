@@ -312,15 +312,20 @@
         EntranceDetail *entrModel = self.dataModel.entrance[indexPath.row];
         
         NSString *url = entrModel.url;
-//        if (indexPath.row == 0) {
-//            url = @"http://192.168.0.253:10004/#/enter-index/";//@"http://ceshi-web.hfgld.net/contract/#/signingIndex";//
-//        }else if (indexPath.row == 1) {
-//            url = @"http://192.168.0.253:10004/#/food-index/";
-//        }else if (indexPath.row == 2) {
-//            url = @"http://192.168.0.253:8080/#/";
-//        }else if (indexPath.row == 4) {
-//            url = @"http://192.168.0.253:10004/#/zh-store";
-//        }
+#if DEBUG
+        //本地h5地址
+        if (LOCALTEST) {
+            if (indexPath.row == 0) {
+                url = @"http://192.168.0.253:10004/#/enter-index/";
+            }else if (indexPath.row == 1) {
+                url = @"http://192.168.0.253:10004/#/food-index/";
+            }else if (indexPath.row == 2) {
+                url = @"http://192.168.0.253:8080/#/";
+            }else if (indexPath.row == 4) {
+                url = @"http://192.168.0.253:10004/#/zh-store";
+            }
+        }
+#endif
         
         if ([url containsString:@"signingIndex"]) {
             //是商家入驻接口 检测是否要实名认证
