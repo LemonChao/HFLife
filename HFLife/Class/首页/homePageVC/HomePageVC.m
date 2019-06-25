@@ -172,11 +172,16 @@
 - (void)addGuideView{
     if (![[NSUserDefaults standardUserDefaults] boolForKey:BOOLFORKEY]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:BOOLFORKEY];
+
         // 静态引导页
         [self setStaticGuidePage];
-    }else{
+        
+#warning 新需求
         //视频引导页
         [self videoGuideView];
+    }else{
+        //视频引导页
+//        [self videoGuideView];
     }
 }
 - (void)setStaticGuidePage {
