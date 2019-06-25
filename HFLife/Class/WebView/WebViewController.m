@@ -358,7 +358,8 @@ static BOOL IsUpdateRemind = YES;
     //清除UIWebView的缓存
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     NSURLCache * cache = [NSURLCache sharedURLCache];
-    [cache removeAllCachedResponses];[cache setDiskCapacity:0];
+    [cache removeAllCachedResponses];
+    [cache setDiskCapacity:0];
     [cache setMemoryCapacity:0];
 
 }

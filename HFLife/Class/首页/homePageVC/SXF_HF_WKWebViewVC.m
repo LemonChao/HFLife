@@ -144,7 +144,7 @@
         
         
         //添加缓存策略(先从本地读取 读取不到再从url资源下载)
-         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
+         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:30];
         [self.webView loadRequest:request];
         
 //        [self.webView loadDataWithUrl:self.urlString];
