@@ -96,7 +96,9 @@
                 self.passwordInputView.editingEable = NO;
             }else{
                 //找回密码
-                [self.navigationController pushViewController:[YYB_HF_setDealPassWordVC new] animated:YES];
+                YYB_HF_setDealPassWordVC *passVC = [YYB_HF_setDealPassWordVC new];
+                passVC.isLocal = YES;
+                [self.navigationController pushViewController:passVC animated:YES];
                 self.passwordInputView.editingEable = YES;
             }
         }];
