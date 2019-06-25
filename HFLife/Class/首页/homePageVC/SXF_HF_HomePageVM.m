@@ -214,11 +214,13 @@
                     [self.vc.navigationController presentViewController:alert animated:YES completion:nil];
                     return;
                 }
-                if([[userInfoModel sharedUser].set_pass integerValue] == 0){
+                if([[userInfoModel sharedUser].set_pass integerValue] == 1){
                     [SXF_HF_AlertView showAlertType:AlertType_setPassword Complete:^(BOOL btnBype) {
                         if (btnBype) {
                             //设置密码
-                            [self.vc.navigationController pushViewController:[YYB_HF_setDealPassWordVC new] animated:YES];
+                            YYB_HF_setDealPassWordVC *passVC = [YYB_HF_setDealPassWordVC new];
+                            passVC.isLocal = YES;
+                            [self.vc.navigationController pushViewController:passVC animated:YES];
                         }
                     }];
                 }else{

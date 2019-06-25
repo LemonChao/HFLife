@@ -41,7 +41,7 @@
     //    [self.customNavBar wr_setRightButtonWithTitle:@"发布" titleColor:HEX_COLOR(0xC04CEB)];
     //    self.customNavBar.barBackgroundImage = [UIImage imageNamed:@"yynavi_bg"];
     [self.customNavBar setOnClickLeftButton:^{
-        if (self.isLocal) {
+        if (weakSelf.isLocal) {
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }else {
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
