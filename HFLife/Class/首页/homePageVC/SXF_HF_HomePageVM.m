@@ -214,7 +214,7 @@
                     [self.vc.navigationController presentViewController:alert animated:YES completion:nil];
                     return;
                 }
-                if([[userInfoModel sharedUser].set_pass integerValue] == 1){
+                if([[userInfoModel sharedUser].set_pass integerValue] == 0){
                     [SXF_HF_AlertView showAlertType:AlertType_setPassword Complete:^(BOOL btnBype) {
                         if (btnBype) {
                             //设置密码
