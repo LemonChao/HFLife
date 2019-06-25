@@ -16,7 +16,7 @@
 - (void) cacheWebViewDataWithUrl:(NSString *)urlStr{
     NSURL *url = [NSURL URLWithString:urlStr ? urlStr : @""];
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:30];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"response:%@",response);
         NSLog(@"data:%@",data);

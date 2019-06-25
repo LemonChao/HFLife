@@ -27,7 +27,9 @@
     [self setUpUI];
     
     [self loadServerData];
-    
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     if (self.payType) {
         //收钱需要接收通知
         [NOTIFICATION addObserver:self selector:@selector(getMoneyNoti:) name:JPUSH_SQCODE object:nil];
