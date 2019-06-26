@@ -151,7 +151,9 @@
         if (status == NetworkStatusNotReachable) {
             [[ZAlertViewManager shareManager] showWithType:3 title:@"暂无网络，请查看设置"];
             [[ZAlertViewManager shareManager] didSelectedAlertViewWithBlock:^{
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=General&path=Network"]];
+                NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                [[UIApplication sharedApplication] openURL:url];
+                
             }];
             [[ZAlertViewManager shareManager] dismissAlertWithTime:5];
         }else if(status == NetworkStatusReachableViaWWAN || status ==  NetworkStatusReachableViaWiFi){

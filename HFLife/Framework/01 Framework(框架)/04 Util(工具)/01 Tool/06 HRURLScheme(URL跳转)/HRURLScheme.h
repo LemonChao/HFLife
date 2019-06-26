@@ -18,7 +18,6 @@ typedef NS_ENUM(NSUInteger, HRSettingItem) {
 @interface HRURLScheme : NSObject
 
 //访问设置页面或子页面
-+ (void)openSettingItem:(HRSettingItem)item;
 //访问系统app（含系统设置界面等）
 + (void)openSystemApp:(NSString *)urlScheme;
 //访问其他app

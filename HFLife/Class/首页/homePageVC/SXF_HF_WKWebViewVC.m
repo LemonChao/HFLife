@@ -67,6 +67,11 @@
     [super viewWillAppear:animated];
     //注入jsx参数
     [self configetWeb];
+    
+}
+- (void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+//    [self addMessageHandler];
 }
 - (void) configetWeb{
     NSMutableDictionary *dic = [NSMutableDictionary new];
@@ -597,7 +602,7 @@
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self removeAllMessageHandler];
+//    [self removeAllMessageHandler];
 }
 - (void)dealloc{
     NSLog(@"%s 被释放", __FUNCTION__);

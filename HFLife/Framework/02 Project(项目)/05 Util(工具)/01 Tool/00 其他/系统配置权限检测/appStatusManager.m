@@ -30,25 +30,17 @@
 }
 
 + (void)goSettingOpenLocation{
-    if (SYSTEM_VERSION_GREATER_THAN(@"8.0")) {
-        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [[UIApplication sharedApplication] openURL:url];
-        }
-    } else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"]];
+    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
     }
 }
 
 
 + (void)goSettingOpenMessage{
-    if (SYSTEM_VERSION_GREATER_THAN(@"8.0")) {
-        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [[UIApplication sharedApplication] openURL:url];
-        }
-    } else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=NOTIFICATIONS_ID"]];
+    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
     }
 }
 
@@ -141,12 +133,7 @@
 + (void)goSettingOpenPhoto{
     // 系统是否大于10
     NSURL *url = nil;
-    if ([[UIDevice currentDevice] systemVersion].floatValue < 10.0) {
-        url = [NSURL URLWithString:@"prefs:root=privacy"];
-        
-    } else {
-        url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-    }
+    url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
     [[UIApplication sharedApplication] openURL:url];
     
 

@@ -118,21 +118,7 @@
             if([[UIApplication sharedApplication] canOpenURL:url])
             {
                 [self removeFromSuperview];
-                if (@available(iOS 10.0, *)) {
-                    
-                    if (type == 2) {
-                        url = [NSURL URLWithString:@"App-Prefs:root=Privacy"];
-                    }
-                    
-                    [[UIApplication sharedApplication] openURL:url options:nil completionHandler:^(BOOL success) {
-                        
-                    }];
-                }else {
-                    if (type == 2) {
-                        url = [NSURL URLWithString:@"prefs:root=Privacy&path=LOCATION"];
-                    }
-                    [[UIApplication sharedApplication] openURL:url];
-                }
+                [[UIApplication sharedApplication] openURL:url];
             }else {
                 [WXZTipView showCenterWithText:@"打开设置失败!"];
             }
