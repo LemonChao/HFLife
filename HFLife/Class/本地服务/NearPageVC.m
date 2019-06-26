@@ -138,7 +138,8 @@
 #pragma mark - 上传定位
 -(void)uploadBackLocation:(NSString *)city{
     NSLog(@"city = %@",city);
-    if (![NSString isNOTNull:city]) {
+    
+    if (![NSString isNOTNull:city] && ![[[[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity] stringByReplacingOccurrencesOfString:@"市" withString:@""] isEqualToString:[city stringByReplacingOccurrencesOfString:@"市" withString:@""]]) {//不为空切和当前位置不同时切换城市
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         [dict setObject:city forKey:@"city_name"];
         //地理反编码，获取经纬度
