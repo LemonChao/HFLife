@@ -110,7 +110,7 @@
     
     if ([[userInfoModel sharedUser].rz_status boolValue]) { //已认证
         ZCShopWebViewController *webVC = [[ZCShopWebViewController alloc] init];
-        webVC.urlString = StringFormat(@"%@contract/#/signingIndex", shopWebHost);
+        webVC.urlString = StringFormat(@"%@/contract/#/signingIndex", shopWebHost);
        [self.viewController.navigationController pushViewController:webVC animated:YES];
     }else {
         [SXF_HF_AlertView showAlertType:AlertType_ShopCertification Complete:^(BOOL btnBype) {
