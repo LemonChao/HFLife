@@ -129,10 +129,10 @@
 - (void)setModel:(ZCShopOrderModel *)model {
     _model = model;
     self.levelLabel.edgeInsets = UIEdgeInsetsMake(0, ScreenScale(5), 0, ScreenScale(5));
-
-    [self.portraitButton sd_setImageWithURL:[NSURL URLWithString:model.avatar] forState:UIControlStateNormal];
-    self.nameLabel.text = model.user_name;
-    self.levelLabel.text = model.level_name;
+    userInfoModel *infoModel = [userInfoModel sharedUser];
+    [self.portraitButton sd_setImageWithURL:[NSURL URLWithString:infoModel.member_avatar] forState:UIControlStateNormal placeholderImage:image(@"shareLogo")];
+    self.nameLabel.text = infoModel.nickname;
+    self.levelLabel.text = infoModel.level_name;
     self.goodsWishlist.topString = model.favorites_goods;
     self.shopWishlist.topString = model.favorites_store;
     
