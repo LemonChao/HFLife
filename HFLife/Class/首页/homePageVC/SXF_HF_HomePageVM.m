@@ -395,7 +395,7 @@
         //选择城市和本地不一致
         if (![NSString isNOTNull:city]) {
             
-            [YYB_HF_LocalFailAlertV uploadBackLocation:city Sucess:^{
+            [YYB_HF_LocalFailAlertV uploadBackLocation:city sucess:^{
                 
             }];
         }

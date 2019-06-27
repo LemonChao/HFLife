@@ -14,7 +14,7 @@
 #import "YYB_HF_guessLikeCollectionViewCell.h"
 #import "YYb_HF_CollReusableView.h"
 #import "SynthesizeMerchantListVC.h"
-
+#import "NearPageVC.h"
 //#import "WKWebViewController.h"
 //#import "SynthesizeMerchantListVC.h"
 @interface YYB_HF_LifeLocaView()<XPCollectionViewWaterfallFlowLayoutDataSource,UICollectionViewDelegate,UICollectionViewDataSource> {

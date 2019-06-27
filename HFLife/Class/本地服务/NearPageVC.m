@@ -105,7 +105,9 @@
             [self uploadBackLocation:@"杭州市"];
         }
     }
-    
+    [YYB_HF_LocalFailAlertV shareInstance].choiceCity = ^(NSString * _Nonnull city) {
+        [self uploadBackLocation:city];
+    };
     
 }
 
@@ -142,7 +144,7 @@
     if (![NSString isNOTNull:city] && ![[[[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity] stringByReplacingOccurrencesOfString:@"市" withString:@""] isEqualToString:[city stringByReplacingOccurrencesOfString:@"市" withString:@""]]) {//不为空切和当前位置不同时切换城市
         
         //逆编码城市上传位置
-        [YYB_HF_LocalFailAlertV uploadBackLocation:city Sucess:^{
+        [YYB_HF_LocalFailAlertV uploadBackLocation:city sucess:^{
             [self.myLocaVeiw loadData];
             self.headView.setLocalStr = city;
         }];

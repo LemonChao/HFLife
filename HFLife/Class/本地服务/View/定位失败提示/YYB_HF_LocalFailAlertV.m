@@ -136,9 +136,9 @@
                 vc.urlString = kH5LocaAdress(kChoiceCity);
                 
                 vc.choiceCity = ^(NSString * _Nonnull city) {
-                    [YYB_HF_LocalFailAlertV uploadBackLocation:city Sucess:^{
-                        
-                    }];
+                    if (self.choiceCity) {
+                        self.choiceCity(city);
+                    }
                 };
                 [self.getCurrentViewController.navigationController pushViewController:vc animated:YES];
                 [self removeFromSuperview];
@@ -152,7 +152,7 @@
 }
 
 #pragma mark - 上传定位
-+ (void)uploadBackLocation:(NSString *)city Sucess:(void (^)())sucess{
++ (void)uploadBackLocation:(NSString *)city sucess:(void (^)())sucess{
     NSLog(@"city = %@",city);
     if (![NSString isNOTNull:city]) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
