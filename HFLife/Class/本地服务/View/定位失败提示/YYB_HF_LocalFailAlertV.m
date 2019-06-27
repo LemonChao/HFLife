@@ -136,7 +136,9 @@
                 vc.urlString = kH5LocaAdress(kChoiceCity);
                 
                 vc.choiceCity = ^(NSString * _Nonnull city) {
-                    [YYB_HF_LocalFailAlertV uploadBackLocation:city];
+                    [YYB_HF_LocalFailAlertV uploadBackLocation:city Sucess:^{
+                        
+                    }];
                 };
                 [self.getCurrentViewController.navigationController pushViewController:vc animated:YES];
                 [self removeFromSuperview];
@@ -150,7 +152,7 @@
 }
 
 #pragma mark - 上传定位
-+ (void)uploadBackLocation:(NSString *)city{
++ (void)uploadBackLocation:(NSString *)city Sucess:(void (^)())sucess{
     NSLog(@"city = %@",city);
     if (![NSString isNOTNull:city]) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -179,6 +181,9 @@
                 [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
                     if (result) {
                         [MMNSUserDefaults setValue:city forKey:SelectedCity];
+                        if (sucess) {
+                            sucess();
+                        }
                     }else {
                         if (value && [value isKindOfClass:[NSDictionary class]]) {
                             NSString *msg = value[@"msg"];

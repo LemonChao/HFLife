@@ -391,47 +391,12 @@
     NSLog(@"上传定位");
 
     
-    if (![NSString isNOTNull:city] && ![city isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:LocationCity]]) {
-        //选择城市和本地一致
+    if (![NSString isNOTNull:city] && ![[city stringByReplacingOccurrencesOfString:@"市" withString:@""] isEqualToString:[[[NSUserDefaults standardUserDefaults] valueForKey:LocationCity] stringByReplacingOccurrencesOfString:@"市" withString:@""]]) {
+        //选择城市和本地不一致
         if (![NSString isNOTNull:city]) {
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            [dict setObject:city forKey:@"city_name"];
-            //地理反编码，获取经纬度
-            CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
-            [geoCoder geocodeAddressString:city completionHandler:^(NSArray *placemarks, NSError *error) {
-                // 地址为空,直接返回
-                if (!city) return ;
-                if (error) { // 输入的地址有错误
-                    [WXZTipView showCenterWithText:@"该地址不存在，请确认地址正确"];
-                }else{
-                    //                // 遍历查询到的地标
-                    //                NSLog(@"总共有%ld个地标符合要求",placemarks.count);
-                    //                for (int i = 0; i < placemarks.count; i++) {
-                    //                    CLPlacemark *placemark = placemarks[i];
-                    //                    NSLog(@"%@",placemark);
-                    //                }
-                    
-                    // 取地标数组的第一个为最终结果
-                    CLPlacemark *placemark = [placemarks firstObject];
-                    
-                    [dict setObject:MMNSStringFormat(@"%f",placemark.location.coordinate.latitude) forKey:@"lat"];
-                    [dict setObject:MMNSStringFormat(@"%f",placemark.location.coordinate.longitude) forKey:@"lng"];
-                    
-                    [networkingManagerTool requestToServerWithType:POST withSubUrl:kLifeAdress(upDateLocationUrl) withParameters:dict withResultBlock:^(BOOL result, id value) {
-                        if (result) {
-                            
-                        }else {
-                            if (value && [value isKindOfClass:[NSDictionary class]]) {
-                                NSString *msg = value[@"msg"];
-                                if (msg) {
-                                    [WXZTipView showCenterWithText:msg];
-                                }
-                            }else {
-                                [WXZTipView showCenterWithText:@"网络错误"];
-                            }
-                        }
-                    }];
-                }
+            
+            [YYB_HF_LocalFailAlertV uploadBackLocation:city Sucess:^{
+                
             }];
         }
         return;

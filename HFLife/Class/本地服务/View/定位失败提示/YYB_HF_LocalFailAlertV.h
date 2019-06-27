@@ -16,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)detectionLocationState:(void(^)(int type))authorizedBlock;
 - (void)show;
 @property(nonatomic, strong) UIViewController *supVC;
-
-+ (void)uploadBackLocation:(NSString *)city;
+// 上传城市
++ (void)uploadBackLocation:(NSString *)city Sucess:(void (^)())sucess;
 @property(nonatomic, assign) NSInteger showTimes;//只显示2次
 @end
 
