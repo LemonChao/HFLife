@@ -41,12 +41,20 @@
     if ([noti.object[@"type"] integerValue] == 4) {
         //说明是支付成功通知
         self.getMoneyView.openCell = YES;
-        [self.getMoneyView.payUserDic setValue:noti.object[@"content"][@"pay_money"] forKey:@"pay_money"];
+        NSString *msgStr = @"收款成功";
+        NSString *moneyStr = @"";
+        if([noti.object isKindOfClass:[NSDictionary class]] && [noti.object[@"content"] isKindOfClass:[NSDictionary class]]){
+            moneyStr = noti.object[@"content"][@"pay_money"] ? noti.object[@"content"][@"pay_money"] : @"";
+            msgStr = noti.object[@"content"][@"msg"] ? noti.object[@"content"][@"msg"] : @"收款成功";
+        }
+        
+        
+        [self.getMoneyView.payUserDic setValue:moneyStr forKey:@"pay_money"];
         self.getMoneyView.payUserDic = self.getMoneyView.payUserDic;
         
         
         if (OpenMoneyNotiStatus){
-            [voiceHeaper say:[NSString stringWithFormat:@"收款,%@ 元", noti.object[@"content"][@"pay_money"]]];
+            [voiceHeaper say:[NSString stringWithFormat:@"%@,%@ 元", msgStr , moneyStr]];
         }
         
         
