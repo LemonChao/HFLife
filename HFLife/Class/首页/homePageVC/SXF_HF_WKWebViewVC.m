@@ -79,11 +79,10 @@
     dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
     dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
     dic[@"getAddress"] = [[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity] ? [[NSUserDefaults standardUserDefaults] valueForKey:SelectedCity] : @"杭州市";
-    
+    NSLog(@"web参数 ： %@", dic[@"token"]);
     NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
     
     NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
     NSString *js = [NSString stringWithFormat:@"window.iOSInfo = %@", jsonStr];
     
     WKUserScript *script = [[WKUserScript alloc] initWithSource:js injectionTime:(WKUserScriptInjectionTimeAtDocumentStart) forMainFrameOnly:YES];

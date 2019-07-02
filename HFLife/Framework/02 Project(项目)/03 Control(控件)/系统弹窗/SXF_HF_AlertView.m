@@ -254,7 +254,7 @@
             self.cancleBtn.setTitleColor(colorAAAAAA, UIControlStateNormal).setTitleFontSize(14).setTitle(@"取消", UIControlStateNormal);
             self.sureBtn.setTitleColor(colorCA1400, UIControlStateNormal).setTitleFontSize(14).setTitle(@"去设置", UIControlStateNormal);
             self.titleLb.textAlignment = NSTextAlignmentCenter;
-            self.titleLb.text = self.title ? self.title : @"您还未设置支付密码";
+            self.titleLb.text = self.title ? self.title : @"您还未设置交易密码";
         }
             break;
         case AlertType_cancellation:{

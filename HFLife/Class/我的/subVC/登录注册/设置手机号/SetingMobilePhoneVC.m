@@ -83,6 +83,7 @@
         make.top.mas_equalTo(self.vercodeText.mas_bottom).offset(HeightRatio(26));
     }];
     
+    
     UIButton *sureBtn = [UIButton new];
     sureBtn.titleLabel.font = [UIFont systemFontOfSize:WidthRatio(31)];
     sureBtn.backgroundColor = [UIColor redColor];
@@ -97,6 +98,22 @@
         make.height.mas_equalTo(HeightRatio(90));
     }];
     MMViewBorderRadius(sureBtn, WidthRatio(10), 0, [UIColor clearColor]);
+    
+    UILabel *noticeLb = [UILabel new];
+    noticeLb.font = FONT(12);
+    noticeLb.textColor = colorCA1400;
+    noticeLb.text = @"*新注册用户必填，已注册用户请忽略";
+    [self.view addSubview:noticeLb];
+    [noticeLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.inviteCodeTextField.mas_left);
+        make.right.mas_equalTo(self.view.mas_right).offset(ScreenScale(12));
+        make.top.mas_equalTo(self.inviteCodeTextField.mas_bottom);
+        make.bottom.mas_equalTo(sureBtn.mas_top).offset(ScreenScale(-5));
+    }];
+    
+    
+    
+    
     
     //    UILabel *lin = [UILabel new];
     //    lin.backgroundColor = HEX_COLOR(0xdddddd);
@@ -264,6 +281,7 @@
         [codeButton addTarget:self action:@selector(getSetingCode:) forControlEvents:(UIControlEventTouchUpInside)];
         [codeButton setTitleColor:HEX_COLOR(0x666666) forState:(UIControlStateNormal)];
         [codeButton setTitle:@"获取验证码" forState:(UIControlStateNormal)];
+        codeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [rightView addSubview:codeButton];
         
         
