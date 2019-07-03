@@ -46,35 +46,36 @@
         [self.cornerBGView addSubview:self.lineView];
         [self.cornerBGView addSubview:self.stack];
         
-//        [self.cornerBGView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.contentView).inset(ScreenScale(0));
-//            make.left.right.equalTo(self.contentView).inset(ScreenScale(12));
-//            make.bottom.equalTo(self.contentView).inset(ScreenScale(10));
-//        }];
-//
-//        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(self.cornerBGView).inset(ScreenScale(10));
-//            make.top.equalTo(self.cornerBGView).inset(ScreenScale(15));
-//        }];
-//
-//        [self.allButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.centerY.equalTo(self.titleLabel);
-//            make.right.equalTo(self.cornerBGView).inset(ScreenScale(15));
-//        }];
-//
-//        [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.right.equalTo(self.cornerBGView);
-//            make.top.equalTo(self.titleLabel.mas_bottom).offset(ScreenScale(12));
-//            make.height.mas_equalTo(1);
-//        }];
-//
-//        [self.stack mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.right.equalTo(self.cornerBGView).inset(ScreenScale(15));
-//            make.bottom.equalTo(self.cornerBGView).inset(ScreenScale(10));
-//            make.top.equalTo(self.lineView.mas_bottom).offset(ScreenScale(15));
-//        }];
-//
-//        [self layoutIfNeeded];
+        [self.cornerBGView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView).inset(ScreenScale(0));
+            make.left.right.equalTo(self.contentView).inset(ScreenScale(12));
+            make.bottom.equalTo(self.contentView).inset(ScreenScale(10));
+        }];
+
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.cornerBGView).inset(ScreenScale(10));
+            make.top.equalTo(self.cornerBGView).inset(ScreenScale(15));
+        }];
+
+        [self.allButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.titleLabel);
+            make.right.equalTo(self.cornerBGView).inset(ScreenScale(15));
+        }];
+
+        [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.cornerBGView);
+            make.top.equalTo(self.titleLabel.mas_bottom).offset(ScreenScale(12));
+            make.height.mas_equalTo(1);
+        }];
+
+        [self.stack mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(SCREEN_WIDTH-ScreenScale(54));
+            make.centerX.equalTo(self.cornerBGView);
+            make.bottom.equalTo(self.cornerBGView).inset(ScreenScale(10));
+            make.top.equalTo(self.lineView.mas_bottom).offset(ScreenScale(15));
+        }];
+
+        [self layoutIfNeeded];
     }
     return self;
 }
@@ -102,7 +103,6 @@
 }
 
 - (void)setModel:(NSObject *)model {
-    [self layoutIfNeeded];
     for (UIButton *button in self.subButtons) {
         [button setImagePosition:ImagePositionTypeTop spacing:ScreenScale(10)];
     }
@@ -144,38 +144,38 @@
     return _allButton;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    [self.cornerBGView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).inset(ScreenScale(0));
-        make.left.right.equalTo(self.contentView).inset(ScreenScale(12));
-        make.bottom.equalTo(self.contentView).inset(ScreenScale(10));
-    }];
-    
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.cornerBGView).inset(ScreenScale(10));
-        make.top.equalTo(self.cornerBGView).inset(ScreenScale(15));
-    }];
-    
-    [self.allButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.titleLabel);
-        make.right.equalTo(self.cornerBGView).inset(ScreenScale(15));
-    }];
-    
-    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.cornerBGView);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(ScreenScale(12));
-        make.height.mas_equalTo(1);
-    }];
-    
-    [self.stack mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(SCREEN_WIDTH-ScreenScale(27));
-        make.centerX.equalTo(self.cornerBGView);
-        make.bottom.equalTo(self.cornerBGView).inset(ScreenScale(10));
-        make.top.equalTo(self.lineView.mas_bottom).offset(ScreenScale(15));
-    }];
-    
-}
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    
+//    [self.cornerBGView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.contentView).inset(ScreenScale(0));
+//        make.left.right.equalTo(self.contentView).inset(ScreenScale(12));
+//        make.bottom.equalTo(self.contentView).inset(ScreenScale(10));
+//    }];
+//    
+//    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.cornerBGView).inset(ScreenScale(10));
+//        make.top.equalTo(self.cornerBGView).inset(ScreenScale(15));
+//    }];
+//    
+//    [self.allButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(self.titleLabel);
+//        make.right.equalTo(self.cornerBGView).inset(ScreenScale(15));
+//    }];
+//    
+//    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.cornerBGView);
+//        make.top.equalTo(self.titleLabel.mas_bottom).offset(ScreenScale(12));
+//        make.height.mas_equalTo(1);
+//    }];
+//    
+//    [self.stack mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(SCREEN_WIDTH-ScreenScale(27));
+//        make.centerX.equalTo(self.cornerBGView);
+//        make.bottom.equalTo(self.cornerBGView).inset(ScreenScale(10));
+//        make.top.equalTo(self.lineView.mas_bottom).offset(ScreenScale(15));
+//    }];
+//    
+//}
 
 @end

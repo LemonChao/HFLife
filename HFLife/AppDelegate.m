@@ -251,20 +251,19 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
-    //读取用户信息
-    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *fileName = [array.firstObject stringByAppendingPathComponent:@"userInfo"];
-    
-//    userInfoModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
-//    NSLog(@"user ==  %@", user);
-    
-    NSLog(@"开始活跃");
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+// 禁用第三方输入法键盘
+- (BOOL)application:(UIApplication *)application shouldAllowExtensionPointIdentifier:(UIApplicationExtensionPointIdentifier)extensionPointIdentifier {
+    if ([extensionPointIdentifier isEqualToString:UIApplicationKeyboardExtensionPointIdentifier]) {
+        return NO;
+    }
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)app
