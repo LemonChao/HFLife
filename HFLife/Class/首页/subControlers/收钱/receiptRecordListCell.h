@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface receiptRecordListCell : UITableViewCell
 - (void) setDataForCell:(payRecordModel *) model;
+@property (nonatomic, assign)BOOL payType;
 @end
 
 NS_ASSUME_NONNULL_END

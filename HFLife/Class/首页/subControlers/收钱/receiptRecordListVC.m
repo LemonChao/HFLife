@@ -26,6 +26,7 @@
     self.listView = [[receiptRecordListView alloc] initWithFrame:CGRectMake(0, self.navBarHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navBarHeight)];
     
     [self.view addSubview:self.listView];
+    self.listView.payType = self.payType;
     
     WS(weakSelf);
    

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)void(^refreshData)(NSInteger page, NSString *dateStr);
 
 @property (nonatomic, strong)NSArray <payRecordModel *>*dataSourceArr;
+@property (nonatomic, assign)BOOL payType;
 @end
 
 NS_ASSUME_NONNULL_END

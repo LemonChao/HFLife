@@ -57,10 +57,12 @@
 - (void) setDataForCell:(payRecordModel *) model{
     self.nameLb.text = model.nickname;
     self.timeLb.text = model.createdate;
-    self.moneyLb.text = [NSString stringWithFormat:@"%@", model.real_num ? model.real_num : @(0)];
-    self.typeLb.text = model.tag;
-    self.subTitleLb.text = model.tag_remark;
+    self.moneyLb.text = [NSString stringWithFormat:@"%@%@", self.payType ? @"+" : @"-", model.real_num ? model.real_num : @(0)];
+    self.moneyLb.textColor =  self.payType ? colorCA1400 : color0C0B0B;
+    self.typeLb.text = model.tag_remark;
+    self.subTitleLb.text = model.tag;
     [self.headerImageV sd_setImageWithURL:MY_URL_IMG(model.member_avatar) placeholderImage:MY_IMAHE(@"logo")];
+   
 }
 
 - (void)layoutSubviews{
