@@ -25,7 +25,7 @@
 {
     self = [super init];
     if (self) {
-        self.topInset = 0;
+        self.topInset = -self.heightStatus;
         self.bottomInset = HomeIndicatorHeight;
         self.isNavigationHidden = self.isHidenLeft = YES;
     }
@@ -36,7 +36,7 @@
 {
     self = [super init];
     if (self) {
-        self.topInset = 0;
+        self.topInset = -self.heightStatus;
         self.bottomInset = HomeIndicatorHeight;
         self.isNavigationHidden = self.isHidenLeft = YES;
         self.pathForH5 = path;
@@ -57,7 +57,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.webView];
-    
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(self.topInset);
         make.left.right.equalTo(self.view);
@@ -69,12 +68,11 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    [self addUserScript];
+    [self addUserScript:@"0"];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
-    
 }
 -(void)setupNavBar{
     WS(weakSelf);
@@ -275,13 +273,14 @@
 }
 
 //更新插入的JavaScript
-- (void)addUserScript {
+- (void)addUserScript:(NSString *)keyBoardHeight
+{
     NSMutableDictionary *dic = [NSMutableDictionary new];
     dic[@"tabbarHeight"] = MMNSStringFormat(@"%f",self.heightStatus);
     dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN];
     dic[@"device"] = [SFHFKeychainUtils GetIOSUUID];
     dic[@"locationCity"] = [[NSUserDefaults standardUserDefaults] valueForKey:LocationCity];
-    
+
     NSLog(@"window.iOSInfo:%@", dic);
     NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:(NSJSONWritingPrettyPrinted) error:nil];
     NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -357,9 +356,9 @@
         
         _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
         if (@available(iOS 11.0, *)) {
-            _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
         } else {
-            [self setAutomaticallyAdjustsScrollViewInsets:NO];
+            [self setAutomaticallyAdjustsScrollViewInsets:YES];
         }
         self.navigationController.edgesForExtendedLayout = UIRectEdgeTop;
         _webView.scrollView.showsVerticalScrollIndicator = NO;
