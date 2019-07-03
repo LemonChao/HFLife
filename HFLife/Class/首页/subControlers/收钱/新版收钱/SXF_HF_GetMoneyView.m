@@ -153,10 +153,14 @@
     }else{
         if (indexPath.section == 1) {
             cell.cellType = NO;
+            NSString *imageUrl = @"";
             cell.userNameLb.text = self.payUserDic[@"nickname"];
-            [cell.userHeaderImageV sd_setImageWithURL:MY_URL_IMG(self.payUserDic[@"photo"]) placeholderImage:MY_IMAHE(@"logo")];
-            if ([self.payUserDic valueForKey:@"pay_money"]) {
-                cell.payStatusLb.text = [NSString stringWithFormat:@"￥%@", self.payUserDic[@"pay_money"]];
+            if (![self.payUserDic[@"photo"] isKindOfClass:[NSNull class]] || self.payUserDic[@"photo"] != nil) {
+                imageUrl = self.payUserDic[@"photo"];
+            }
+            [cell.userHeaderImageV sd_setImageWithURL:MY_URL_IMG(imageUrl) placeholderImage:MY_IMAHE(@"logo")];
+            if ([self.payUserDic valueForKey:@"pay_money"] && self.payUserDic[@"pay_money"] != [NSNull class]) {
+                cell.payStatusLb.text = [NSString stringWithFormat:@"￥%@", self.payUserDic[@"pay_money"] ? self.payUserDic[@"pay_money"] : @""];
             }
             cell.hidden = !self.openCell;
             if (cell.hidden) {
