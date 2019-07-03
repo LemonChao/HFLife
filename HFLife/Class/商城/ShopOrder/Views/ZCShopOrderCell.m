@@ -9,6 +9,9 @@
 #import "ZCShopOrderCell.h"
 
 @interface ZCShopOrderCell ()
+@property(nonatomic, strong) UIView *cornerBGView;
+@property(nonatomic, strong) UIStackView *stack;
+@property(nonatomic, strong) UIView *lineView;
 
 @property(nonatomic, strong) UILabel *titleLabel;
 
@@ -27,51 +30,51 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        UIView *cornerBGView = [UITool viewWithColor:[UIColor whiteColor]];
-        [cornerBGView addShadowForViewColor:GeneralRedColor offSet:CGSizeMake(0, 2) shadowRadius:3 cornerRadius:ScreenScale(5) opacity:0.1];
-        UIView *lineView = [UITool viewWithColor:LineColor];
-        UIStackView *stack = [[UIStackView alloc] initWithArrangedSubviews:self.subButtons];
-        stack.axis = UILayoutConstraintAxisHorizontal;
-        stack.distribution = UIStackViewDistributionFillEqually;
-        stack.alignment = UIStackViewAlignmentFill;
-        stack.spacing = 0;//ScreenScale(10);
+        self.cornerBGView = [UITool viewWithColor:[UIColor whiteColor]];
+        [self.cornerBGView addShadowForViewColor:GeneralRedColor offSet:CGSizeMake(0, 2) shadowRadius:3 cornerRadius:ScreenScale(5) opacity:0.1];
+        self.lineView = [UITool viewWithColor:LineColor];
+        self.stack = [[UIStackView alloc] initWithArrangedSubviews:self.subButtons];
+        self.stack.axis = UILayoutConstraintAxisHorizontal;
+        self.stack.distribution = UIStackViewDistributionFillEqually;
+        self.stack.alignment = UIStackViewAlignmentFill;
+        self.stack.spacing = 0;//ScreenScale(10);
 
         
-        [self.contentView addSubview:cornerBGView];
-        [cornerBGView addSubview:self.titleLabel];
-        [cornerBGView addSubview:self.allButton];
-        [cornerBGView addSubview:lineView];
-        [cornerBGView addSubview:stack];
+        [self.contentView addSubview:self.cornerBGView];
+        [self.cornerBGView addSubview:self.titleLabel];
+        [self.cornerBGView addSubview:self.allButton];
+        [self.cornerBGView addSubview:self.lineView];
+        [self.cornerBGView addSubview:self.stack];
         
-        [cornerBGView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView).inset(ScreenScale(0));
-            make.left.right.equalTo(self.contentView).inset(ScreenScale(12));
-            make.bottom.equalTo(self.contentView).inset(ScreenScale(10));
-        }];
-        
-        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(cornerBGView).inset(ScreenScale(10));
-            make.top.equalTo(cornerBGView).inset(ScreenScale(15));
-        }];
-        
-        [self.allButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.titleLabel);
-            make.right.equalTo(cornerBGView).inset(ScreenScale(15));
-        }];
-        
-        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(cornerBGView);
-            make.top.equalTo(self.titleLabel.mas_bottom).offset(ScreenScale(12));
-            make.height.mas_equalTo(1);
-        }];
-        
-        [stack mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(cornerBGView).inset(ScreenScale(15));
-            make.bottom.equalTo(cornerBGView).inset(ScreenScale(10));
-            make.top.equalTo(lineView.mas_bottom).offset(ScreenScale(15));
-        }];
-
-        [self layoutIfNeeded];
+//        [self.cornerBGView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.contentView).inset(ScreenScale(0));
+//            make.left.right.equalTo(self.contentView).inset(ScreenScale(12));
+//            make.bottom.equalTo(self.contentView).inset(ScreenScale(10));
+//        }];
+//
+//        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(self.cornerBGView).inset(ScreenScale(10));
+//            make.top.equalTo(self.cornerBGView).inset(ScreenScale(15));
+//        }];
+//
+//        [self.allButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerY.equalTo(self.titleLabel);
+//            make.right.equalTo(self.cornerBGView).inset(ScreenScale(15));
+//        }];
+//
+//        [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.equalTo(self.cornerBGView);
+//            make.top.equalTo(self.titleLabel.mas_bottom).offset(ScreenScale(12));
+//            make.height.mas_equalTo(1);
+//        }];
+//
+//        [self.stack mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.equalTo(self.cornerBGView).inset(ScreenScale(15));
+//            make.bottom.equalTo(self.cornerBGView).inset(ScreenScale(10));
+//            make.top.equalTo(self.lineView.mas_bottom).offset(ScreenScale(15));
+//        }];
+//
+//        [self layoutIfNeeded];
     }
     return self;
 }
@@ -99,6 +102,7 @@
 }
 
 - (void)setModel:(NSObject *)model {
+    [self layoutIfNeeded];
     for (UIButton *button in self.subButtons) {
         [button setImagePosition:ImagePositionTypeTop spacing:ScreenScale(10)];
     }
@@ -140,6 +144,38 @@
     return _allButton;
 }
 
-
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self.cornerBGView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView).inset(ScreenScale(0));
+        make.left.right.equalTo(self.contentView).inset(ScreenScale(12));
+        make.bottom.equalTo(self.contentView).inset(ScreenScale(10));
+    }];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.cornerBGView).inset(ScreenScale(10));
+        make.top.equalTo(self.cornerBGView).inset(ScreenScale(15));
+    }];
+    
+    [self.allButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.titleLabel);
+        make.right.equalTo(self.cornerBGView).inset(ScreenScale(15));
+    }];
+    
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.cornerBGView);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(ScreenScale(12));
+        make.height.mas_equalTo(1);
+    }];
+    
+    [self.stack mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(SCREEN_WIDTH-ScreenScale(27));
+        make.centerX.equalTo(self.cornerBGView);
+        make.bottom.equalTo(self.cornerBGView).inset(ScreenScale(10));
+        make.top.equalTo(self.lineView.mas_bottom).offset(ScreenScale(15));
+    }];
+    
+}
 
 @end
