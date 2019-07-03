@@ -110,6 +110,7 @@
     {
         receiptRecordListCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([receiptRecordListCell class]) forIndexPath:indexPath];
         payRecordModel *model = self.dataSourceArr[indexPath.row];
+        cell.payType = self.payType;
         [cell setDataForCell:model];
         anyCell = cell;
     }
