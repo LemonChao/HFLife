@@ -141,6 +141,28 @@ static JpushManager *manager = nil;
             case 4:
                 //4扫码支付成功
                 [NOTIFICATION postNotificationName:JPUSH_SQCODE object:contentDict];
+                
+                
+            {
+                //语音播报
+                if (OpenMoneyNotiStatus){
+                    if ([contentDict isKindOfClass:[NSDictionary class]]) {
+                        if ([contentDict[@"content"] isKindOfClass:[NSDictionary class]]) {
+                            NSString *moneyStr = contentDict[@"content"][@"pay_money"] ? contentDict[@"content"][@"pay_money"] : @"";
+                            NSString *msgStr = contentDict[@"content"][@"msg"] ? contentDict[@"content"][@"msg"] : @"收款成功";
+                            [voiceHeaper say:[NSString stringWithFormat:@"%@,%@ 元", msgStr , moneyStr]];
+                            
+                            
+                            
+                        }
+                    }
+                    
+                }
+            }
+                
+                
+                
+                
                 break;
             default:
                 break;

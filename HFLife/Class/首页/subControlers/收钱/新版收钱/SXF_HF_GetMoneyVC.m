@@ -62,7 +62,8 @@
         
         
         if (OpenMoneyNotiStatus){
-            [voiceHeaper say:[NSString stringWithFormat:@"%@,%@ 元", msgStr , moneyStr]];
+            //语音播报q提前
+//            [voiceHeaper say:[NSString stringWithFormat:@"%@,%@ 元", msgStr , moneyStr]];
         }
         
         
