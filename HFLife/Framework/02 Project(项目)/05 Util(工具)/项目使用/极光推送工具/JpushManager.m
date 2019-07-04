@@ -44,7 +44,9 @@ static JpushManager *manager = nil;
         NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
         
-        [CustomPromptBox showTextHud:[NSString stringWithFormat:@"杀死后  %@", str]];
+//        [CustomPromptBox showTextHud:[NSString stringWithFormat:@"杀死后  %@", str]];
+        
+//        [CustomPromptBox showTextHud:[NSString stringWithFormat:@"杀死后  %@", str]];
     }
     
     
@@ -163,6 +165,35 @@ static JpushManager *manager = nil;
 //如果delegate 设置为当前类 那么 可在这里注册
 
 //推送回调代理 (非自定义消息状态下)
+- (void)showVoice:(UNNotification *)notification API_AVAILABLE(ios(10.0)){
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    
+//    return;
+    //解析数据直接播报
+    NSDictionary *aps = userInfo[@"aps"];
+    NSString *voiceStr = @"";
+    if ([aps isKindOfClass:[NSDictionary class]]) {
+        if (aps[@"alert"] && aps[@"alert"] != [NSNull class] && aps[@"alert"] != nil) {
+            voiceStr = aps[@"alert"];
+            
+            
+            //语音播报
+            dispatch_async(dispatch_get_main_queue(), ^{
+               [voiceHeaper say:voiceStr];
+            });
+//            [CustomPromptBox showTextHud:voiceStr];
+        }
+    }
+}
+
+
+
+
+
+
+
+
 
 
 //// iOS 10 Support
@@ -184,10 +215,14 @@ static JpushManager *manager = nil;
 //    }
 //}
 
-// iOS 10 Support
+// iOS 10 Support  杀死后点击alertj进来
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler  API_AVAILABLE(ios(10.0)){
     // Required
     NSDictionary * userInfo = response.notification.request.content.userInfo;
+    [self showVoice:response.notification];
+    
+    
+    /*
     if (@available(iOS 10.0, *)) {
         if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
             [JPUSHService handleRemoteNotification:userInfo];
@@ -201,6 +236,13 @@ static JpushManager *manager = nil;
     
     //点击窗口进来
     NSLog(@"收到通知 内容 ：------%@", response.notification.request.content.body);
+     
+     
+     */
+     
+     
+     
+     
     completionHandler();  //系统要求执行这个方法
 }
 
@@ -214,14 +256,21 @@ static JpushManager *manager = nil;
 // iOS 10 Support,程序在前台时
 
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger)
-                                                                                                                                                 
-                                                                                                                                                 )completionHandler {
+    )completionHandler {
     
-    // Required
-    NSDictionary * userInfo = notification.request.content.userInfo;
+    if (@available(iOS 10.0, *)) {
+        [self showVoice:notification];
+    } else {
+        // Fallback on earlier versions
+    }
     
     
     
+    
+    
+    
+    
+    /*
     if (@available(iOS 10.0, *)) {
         if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]
             
@@ -278,9 +327,11 @@ static JpushManager *manager = nil;
     } else {
         
     }
+     
+     */
     
     if (@available(iOS 10.0, *)) {
-        completionHandler(UNNotificationPresentationOptionAlert);
+//        completionHandler(UNNotificationPresentationOptionSound);
     } else {
         // Fallback on earlier versions
     } // 需要执 这个 法，选择 是否提醒 户，有Badge、Sound、Alert三种类型可以选择设置
@@ -348,8 +399,8 @@ static JpushManager *manager = nil;
 #ifdef __IPHONE_12_0
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center openSettingsForNotification:(UNNotification *)notification API_AVAILABLE(ios(10.0)){
     NSString *title = nil;
-    [CustomPromptBox showTextHud:@"什么时候进来"];
-    [CustomPromptBox showTextHud:[NSString stringWithFormat:@"%s", __func__]];
+//    [CustomPromptBox showTextHud:@"什么时候进来"];
+//    [CustomPromptBox showTextHud:[NSString stringWithFormat:@"%s", __func__]];
     if (notification) {
         title = @"从通知界面直接进入应用";
     }else{

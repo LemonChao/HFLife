@@ -78,7 +78,7 @@
     self.collectionView.myFQ = moneyStr;
 }
 
-
+//int num = 0;
 - (void) getBannerData{
 //    self.people = 106;
 //    //test
@@ -121,6 +121,14 @@
                 }
                 if ([dict objectForKey:@"notice"] && [[dict objectForKey:@"notice"] isKindOfClass:[NSArray class]]) {
                     NSArray *activityListArr = [HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"notice"] withClass:[noticeModel class]];
+                    
+//                    if (num % 2 == 0) {
+//                        activityListArr = @[[HR_dataManagerTool getModelArrWithArr:[dict valueForKey:@"notice"] withClass:[noticeModel class]].firstObject];
+//                    }
+//
+//                    num ++;
+                    
+                    
                     [dataSourceDicM setValue:activityListArr forKey:@"notice"];
                 }
                 self.homePageListDic = dataSourceDicM;

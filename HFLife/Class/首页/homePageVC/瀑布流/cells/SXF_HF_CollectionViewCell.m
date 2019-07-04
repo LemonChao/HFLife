@@ -86,18 +86,20 @@
     _modelArr = modelArr;
     //赋值
     if (modelArr.count == 1) {
+        self.subTitle.hidden = self.time2.hidden = YES;
         [self.titleLb mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.contentView.mas_centerY); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
             make.height.mas_equalTo(12);
         }];
+        
         noticeModel *model = modelArr.firstObject;
         NSLog(@"时间%@", [NSDate timestampSwitchTime:[model.addtime integerValue] dateFormat:DateFormatStr]);
         self.titleLb.text = [NSString stringWithFormat:@"%@:%@", [self getTitle:model] , model.body];
         self.time1.text = [NSDate intervalSinceNow:[NSString stringWithFormat:@"%@", model.addtime ? model.addtime : @""]];
     }else if (modelArr.count > 1){
         
-       
-        [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.subTitle.hidden = self.time2.hidden = NO;
+        [self.titleLb mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.imageV.mas_top); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
             make.height.mas_equalTo(12);
         }];

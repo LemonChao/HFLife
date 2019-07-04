@@ -182,6 +182,8 @@
     }else{
         //视频引导页
 //        [self videoGuideView];
+        
+        [self versionUpdateRequest];
     }
 }
 - (void)setStaticGuidePage {

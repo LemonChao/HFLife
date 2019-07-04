@@ -44,13 +44,21 @@
         NSString *msgStr = @"收款成功";
         NSString *moneyStr = @"";
         if([noti.object isKindOfClass:[NSDictionary class]] && [noti.object[@"content"] isKindOfClass:[NSDictionary class]]){
+            
+            
+            if ([noti.object[@"content"] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *content = noti.object[@"content"];
+                self.getMoneyView.payUserDic = [content mutableCopy];
+            }
+            
+            
             moneyStr = noti.object[@"content"][@"pay_money"] ? noti.object[@"content"][@"pay_money"] : @"";
             msgStr = noti.object[@"content"][@"msg"] ? noti.object[@"content"][@"msg"] : @"收款成功";
         }
         
-        
         [self.getMoneyView.payUserDic setValue:moneyStr forKey:@"pay_money"];
         self.getMoneyView.payUserDic = self.getMoneyView.payUserDic;
+        
         
         
         if (OpenMoneyNotiStatus){

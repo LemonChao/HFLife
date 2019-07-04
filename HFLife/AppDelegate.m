@@ -55,10 +55,12 @@
     //share
     [self registerShare];
     
-    
-    
-    
-    
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge| UIUserNotificationTypeSound|UIUserNotificationTypeAlert  categories:nil];
+    [application registerUserNotificationSettings:settings];
+    //申请使用通知
+    [application registerForRemoteNotifications];
+//    NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+//    [CustomPromptBox showTextHud:[NSString stringWithFormat:@"%@",userInfo ? userInfo : @""]];
     return YES;
 }
 -(void)registerShare{
@@ -226,6 +228,106 @@
     [self archiver];
 }
 
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    /// Required - 注册 DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
+    NSString *registerid = [JPUSHService registrationID];
+    NSLog(@"registrationID-------%@", registerid);
+    [[NSUserDefaults standardUserDefaults] setObject:registerid forKey:Jpush_Registration_Id];
+}
+//注册失败
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //Optional
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+}
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//    // 取得 APNs 标准信息内容
+//    NSDictionary *aps = [userInfo valueForKey:@"aps"];
+//    NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
+//    NSInteger badge = [[aps valueForKey:@"badge"] integerValue]; //badge 数量
+//    NSString *sound = [aps valueForKey:@"sourceSound"]; //播放的声音
+//    // 取得 Extras 字段内容
+//    NSString *customizeField1 = [userInfo valueForKey:@"customizeExtras"]; //服务端中 Extras 字段，key 是自己定义的
+//    NSLog(@"content =[%@], badge=[%ld], sound=[%@], customize field  =[%@]",content,(long)badge,sound,customizeField1);
+//
+//    [CustomPromptBox showTextHud:@"completionHandler"];
+//
+//    // iOS 10 以下 Required
+//    [JPUSHService handleRemoteNotification:userInfo];
+//}
+
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    
+    
+//    [CustomPromptBox showTextHud:@"completionHandler"];
+    
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    
+    
+//    [CustomPromptBox showTextHud:@"didReceiveRemoteNotification"];
+    
+    
+    //处理收到的 APNs 消息
+    [JPUSHService handleRemoteNotification:userInfo];
+    //解析数据直接播报
+    NSDictionary *aps = userInfo[@"aps"];
+    NSString *voiceStr = @"";
+    if ([aps isKindOfClass:[NSDictionary class]]) {
+        if (aps[@"alert"] && aps[@"alert"] != [NSNull class] && aps[@"alert"] != nil) {
+            voiceStr = aps[@"alert"];
+            
+//            [CustomPromptBox showTextHud:voiceStr];
+            //语音播报
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [voiceHeaper say:voiceStr];
+            });
+        }
+    }
+    
+//    [CustomPromptBox showTextHud:[NSString stringWithFormat:@"%s", __func__]];
+    completionHandler(UIBackgroundFetchResultNewData);
+    /**
+     *  iOS的应用程序分为3种状态
+     *      1、前台运行的状态UIApplicationStateActive；
+     *      2、后台运行的状态UIApplicationStateInactive；
+     *      3、app关闭状态UIApplicationStateBackground。
+     */
+    if (application.applicationState == UIApplicationStateActive) {
+        // 应用正处理前台状态下，不会收到推送消息，因此在此处需要额外处理一下
+        //let message = "您有一条新的消息,是否点击查看"
+        NSLog(@"// 应用正处理前台状态下，不会收到推送消息，因此在此处需要额外处理一下－－－－－－－－－－－－userinfo:%@",userInfo);
+        //        showAlertWithMessage(userInfo)
+//        [CustomPromptBox showTextHud:@"有通知进来"];
+        
+    } else if (application.applicationState == UIApplicationStateInactive){
+        // 处于后台运行状态时
+        
+        NSLog(@"// 处于后台运行状态时－－－－－－－－－userinfo:%@",userInfo);
+//        [CustomPromptBox showTextHud:@"有通知进来"];
+        
+    } else if (application.applicationState == UIApplicationStateBackground) {
+        //app关闭状态
+        NSLog(@"//app关闭状态－－－－－－－－－－－userinfo:%@",userInfo);
+//        [CustomPromptBox showTextHud:@"有通知进来"];
+    }
+    // Required, iOS 7 Support
+}
+
+
+
+
+
+
+
+
 //按Home键使App进入后台
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
@@ -251,6 +353,13 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    
+//    [CustomPromptBox showTextHud:@"app活跃"];
+//    JPushNotificationIdentifier *idf = [[JPushNotificationIdentifier alloc] init];
+//    idf.findCompletionHandler = ^(NSArray *results) {
+//        NSLog(@"%@", results);
+//    };
 }
 
 

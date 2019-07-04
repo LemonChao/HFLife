@@ -63,7 +63,7 @@
     [self.customNavBar wr_setRightButtonWithTitle:@"完成" titleColor:colorCA1400];
     WEAK(weakSelf);
     [self.customNavBar setOnClickRightButton:^{
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     }];
     [self.customNavBar wr_setLeftButtonWithNormal:image(@"") highlighted:image(@"")];
 }
