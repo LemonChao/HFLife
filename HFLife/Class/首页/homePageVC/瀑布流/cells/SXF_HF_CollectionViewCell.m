@@ -90,6 +90,7 @@
         [self.titleLb mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.contentView.mas_centerY); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
             make.height.mas_equalTo(12);
+            make.width.lessThanOrEqualTo(@(ScreenScale(200)));
         }];
         
         noticeModel *model = modelArr.firstObject;
@@ -102,6 +103,7 @@
         [self.titleLb mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.imageV.mas_top); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
             make.height.mas_equalTo(12);
+            make.width.lessThanOrEqualTo(@(ScreenScale(200)));
         }];
         
         
@@ -125,7 +127,7 @@
     }else if ([model.type integerValue] == 3){
         return @"生活缴费";
     }else{
-        return @"";
+        return @"汉富助手";
     }
 }
 
@@ -151,8 +153,9 @@
     }];
     
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.imageV.mas_top); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
+        make.top.mas_equalTo(self.imageV.mas_top).priorityLow(); make.left.mas_equalTo(self.imageV.mas_right).offset(ScreenScale(10));
         make.height.mas_equalTo(12);
+        make.width.lessThanOrEqualTo(@(ScreenScale(200)));
     }];
     
     [self.subTitle mas_makeConstraints:^(MASConstraintMaker *make) {
