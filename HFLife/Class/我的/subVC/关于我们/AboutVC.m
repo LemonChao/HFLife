@@ -9,6 +9,7 @@
 #import "AboutVC.h"
 #import "PersonalDataCell.h"
 #import "ServiceAgreementVC.h"
+#import <WebKit/WebKit.h>//用于清楚缓存
 @interface AboutVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *titleArray;
@@ -21,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HEX_COLOR(0xf4f7f7);
-    titleArray = @[@"版本说明",@"服务协议"];
+    titleArray = @[@"版本说明",@"服务协议", @"清理缓存"];
     [self initWithUI];
     [self setupNavBar];
 }
@@ -114,7 +115,7 @@
     if (!cell) {
         cell = [[PersonalDataCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"PersonalDataCell"];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleString = titleArray[indexPath.row];
     cell.isArrowHiden = NO;
     return cell;
@@ -148,12 +149,38 @@
     SXF_HF_WKWebViewVC *webVC = [SXF_HF_WKWebViewVC new];
     if (indexPath.row == 1) {
         webVC.urlString = SXF_WEB_URLl_Str(serviceAgreement);
-    }else{
+    }else if(indexPath.row == 0){
         webVC.urlString = SXF_WEB_URLl_Str(versionSpecification);
+    }else{
+        //清理缓存
+        [self clearWebCache];
+        return;
     }
     
     [self.navigationController pushViewController:webVC animated:YES];
 }
+
+- (void) clearWebCache{
+    //清理web缓存
+    //allWebsiteDataTypes清除所有缓存
+    UIAlertController *alertVC = [UIAlertController wh_alertControllerWithTitle:@"温馨提示" message:@"您确认要清除存吗？" optionStyle:OptionStyleStyleOK_Cancel OkTitle:@"清除" cancelTitle:@"取消" okBlock:^{
+        NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+        
+        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+        
+        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+            [WXZTipView showCenterWithText:@"已为您清除缓存"];
+        }];
+    } cancelBlock:^{
+        [alertVC dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [self.navigationController presentViewController:alertVC animated:YES completion:nil];
+    
+}
+
+
+
 #pragma mark 懒加载
 -(UITableView *)contentTableView{
     if (!_contentTableView) {

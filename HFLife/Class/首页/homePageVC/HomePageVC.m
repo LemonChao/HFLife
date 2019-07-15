@@ -59,8 +59,6 @@
     
     
     [userInfoModel sharedUser].set_pass = @(0);
-    
-    
 }
 
 //有网 刷新数据(重回写父类)
