@@ -11,8 +11,8 @@
 # ************************* 配置 Start ********************************
 
 # 上传到蒲公英
-__PGYER_U_KEY="bd1102006599c4c771421741f730fe0e"
-__PGYER_API_KEY="db2c3a7a08a9fb856eea49648fa8a3bd"
+__PGYER_U_KEY="a77827b68120e6781911013a4e86d4b9"
+__PGYER_API_KEY="fd30dd8c3d7fc69f7b303403dcb11499"
 
 # 上传到 Fir
 __FIR_API_TOKEN="xKKdjdldlodeikK626266skdkkddK"
@@ -418,7 +418,7 @@ fi
 if ${__IS_AUTO_OPENT_FILE} ; then
 # open ${__EXPORT_IPA_PATH}
 # 打开pyger应用下载页
-open 'https://www.pgyer.com/qpg8'
+open 'https://www.pgyer.com/EF9g'
 fi
 
 fi

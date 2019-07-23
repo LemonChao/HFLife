@@ -104,6 +104,7 @@
     if (!_cycleView) {
         _cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ScreenScale(240)) delegate:self placeholderImage:nil];
         _cycleView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _cycleView.autoScrollTimeInterval = 5;
         _cycleView.backgroundColor = [UIColor whiteColor];
     }
     return _cycleView;

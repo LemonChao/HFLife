@@ -47,7 +47,7 @@
 - (void)commonInit {
     self.backgroundColor = [UIColor whiteColor];
     UILabel *hejiLab = [UITool labelWithText:@"合计" textColor:ImportantColor font:SystemFont(14)];
-    UILabel *yunfeiLab = [UITool labelWithText:@"不含运费" textColor:AssistColor font:SystemFont(11)];
+    UILabel *yunfeiLab = [UITool labelWithText:@"不包含运费" textColor:AssistColor font:SystemFont(11)];
     
     [self addSubview:self.selectAllBtn];
     [self addSubview:hejiLab];
