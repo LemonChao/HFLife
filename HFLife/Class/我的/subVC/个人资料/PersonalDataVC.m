@@ -16,7 +16,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import "YYB_HF_ModifyHeadIconVC.h"
 #import "YYB_HF_SexChoiceView.h"
-#import <WebKit/WebKit.h>//用于清楚缓存
+
 @interface PersonalDataVC ()<UITableViewDelegate,UITableViewDataSource,HXAlbumListViewControllerDelegate>
 {
     NSArray *dataArray;
@@ -88,28 +88,11 @@
         make.top.mas_equalTo(self.view.mas_top).offset(self.navBarHeight + 8);
     }];
     
-    UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(clearWebCache)];
-    longTap.minimumPressDuration = 1;
-    [self.contentTableView addGestureRecognizer:longTap];
+//    UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(clearWebCache)];
+//    longTap.minimumPressDuration = 1;
+//    [self.contentTableView addGestureRecognizer:longTap];
 }
-- (void) clearWebCache{
-    //清理web缓存
-    //allWebsiteDataTypes清除所有缓存
-    UIAlertController *alertVC = [UIAlertController wh_alertControllerWithTitle:@"温馨提示" message:@"您确认要清除存吗？" optionStyle:OptionStyleStyleOK_Cancel OkTitle:@"清除" cancelTitle:@"取消" okBlock:^{
-        NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-        
-        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
-        
-        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
-            [WXZTipView showCenterWithText:@"已为您清除缓存"];
-        }];
-    } cancelBlock:^{
-        
-    }];
-    
-    [self.navigationController presentViewController:alertVC animated:YES completion:nil];
-    
-}
+
 #pragma mark 列表代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSArray *array = dataArray[section];

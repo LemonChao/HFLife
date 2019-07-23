@@ -48,7 +48,7 @@
 #define LOCALTEST        0  //1:本地测试 0:线上测试
 #if DEBUG//测试线
     #if LOCALTEST//(本地测试)
-        #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://192.168.0.142:8080/#/%@", subUrl ? subUrl : @""]
+        #define SXF_WEB_URLl_Str(subUrl)        [NSString stringWithFormat:@"http://192.168.0.109:8080/#/%@", subUrl ? subUrl : @""]
         static NSString *const enterIndex            = @"http://192.168.0.143:1111/#/signingIndex?type=2";//我要入驻（个人中心用）
     #else//(线上测试)
         //(个人中心和首页用)
