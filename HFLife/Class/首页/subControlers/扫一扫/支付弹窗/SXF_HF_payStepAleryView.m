@@ -32,18 +32,21 @@
 @property (nonatomic, strong)UIView *stepOneline2;
 @property (nonatomic, strong)UIButton *nowPayBtn;
 @property (nonatomic, strong)UIImageView *rightImageV;
-@property (nonatomic, strong)UIButton *goStep2Btn;
+@property (nonatomic, strong)UIButton *goStep2Btn; // 付款方式遮罩button
 @property (nonatomic, strong)void(^clickStepOneBtnCallback)(NSInteger tag);
 @property (nonatomic, assign)NSInteger selectedIndex;
 
 
 @property (nonatomic, strong)UIView *stepTwoView;//子控件2
 @property (nonatomic, strong)UITableView *stepTowTableView;
-@property (nonatomic, strong)void(^clickStepTowCellCallback)(NSIndexPath *indexPath);
 @property (nonatomic, strong)UIView *stepThreeView;//子控件3
 @property (nonatomic, strong)SXF_HF_KeyBoardView *passwordInputView;
 @property (nonatomic, strong)void(^passwordCallback)(NSString *password);
 
+/**
+ 0：确认付款，左上关闭按钮
+ 1：选择支付方式 || 输入支付密码 左上返回
+ */
 @property (nonatomic, assign)NSInteger step;//第几步
 
 
@@ -76,9 +79,9 @@
 }
 - (void) addChildrenViews{
     
-    _titleArr = @[@"余额(剩余:￥8888.88)", @"支付宝(*秋艳)", @"微信(*秋艳)", @"QQ钱包", @"中国工商银行储蓄卡(8888)", @"花呗"];
-    _imageArr = @[@"余额", @"支付宝", @"微信 (1)", @"qqPay", @"工商银行", @"花呗"];
-    _subTitle = @[@"", @"", @"", @"", @"", @"当前交易暂不支付花呗，请选择其他方式交易"];
+    _titleArr = @[@"余额", @"云闪付", @"支付宝"];
+    _imageArr = @[@"余额", @"yunsanfu", @"支付宝"];
+    _subTitle = @[@"", @"", @"", @""];
     
     self.showAlertView = [UIView new];
     self.titleLb       = [UILabel new];
@@ -201,7 +204,7 @@
     NSLog(@"关闭  step=%ld", self.step);
     !self.cancleBtnCallback? : self.cancleBtnCallback(self.step);
 }
-//步骤一按钮
+//立即付款Action
 -(void)clickStepOneBtn:(UIButton *)sender{
     NSInteger index = sender.tag - 99;
     !self.clickStepOneBtnCallback ? : self.clickStepOneBtnCallback(index);
@@ -230,8 +233,9 @@
     
     self.selectedIndex = indexPath.row;
     [self.stepTowTableView reloadData];
+    self.stepOnepayTypeLb.text = _titleArr[indexPath.row];
+    self.cancleBtnCallback(self.step);
     
-    !self.clickStepTowCellCallback ? : self.clickStepTowCellCallback(indexPath);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([_subTitle[indexPath.row] isEqualToString:@""]) {
@@ -385,12 +389,8 @@
     return _stepTowTableView;
 }
 
-
-
-
-
-
-+ (SXF_HF_payStepAleryView *)showAlertComplete:(void(^__nullable)(BOOL btnBype))complate password:(void(^)(NSString *pwd))password{
++ (SXF_HF_payStepAleryView *)showAlertComplete:(void(^__nullable)(BOOL btnBype))complate password:(void(^)(NSString *pwd))password nowPayWithStyle:(void(^)(NSString *style))nowPayBlock {
+    
     UIWindow *kwin = [UIApplication sharedApplication].keyWindow;
     if (!kwin) {
         kwin =  [UIApplication sharedApplication].windows.lastObject;
@@ -413,7 +413,7 @@
     alertView.cancleBtnCallback = ^(NSInteger step) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             switch (step) {
-                case 0:{
+                case 0:{ // 确认支付
                     [UIView animateWithDuration:0.2 animations:^{
                         bgView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
                         weakAlert.frame = CGRectMake(0, kwin.bounds.size.height * (1.0 / 3.0), SCREEN_WIDTH, kwin.bounds.size.height * (2.0 / 3.0));
@@ -424,7 +424,7 @@
                 }
                     
                     break;
-                case 1:{
+                case 1:{ // 选择支付方式
                     weakAlert.step = 0;
                     [UIView animateWithDuration:0.2 animations:^{
                         weakAlert.stepTwoView.frame = CGRectMake(weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.origin.y, weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.size.height);
@@ -435,7 +435,7 @@
                     }];
                 }
                     break;
-                case 2:{
+                case 2:{ // 输入密码
                     weakAlert.passwordInputView.editingEable = NO;
                     [UIView animateWithDuration:0.2 animations:^{
                         weakAlert.stepThreeView.frame = CGRectMake(weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.origin.y, weakAlert.stepOneView.frame.size.width, weakAlert.stepOneView.frame.size.height);
@@ -465,16 +465,14 @@
     
     
     
-    //actions
-    
+    //立即付款&&更改支付方式 actions
     alertView.clickStepOneBtnCallback = ^(NSInteger tag) {
-        if (tag == 0) {
+        if (tag == 0) { // 遮罩button Action 更改支付方式
+            if (!weakAlert.isBusiness.boolValue) {
+                [WXZTipView showCenterWithText:@"个人收款码暂只支持余额付"];
+                return;
+            }
             
-#warning 只能余额支付
-            return ;
-            
-            //stepTow
-//            NSLog(@"step2");
             weakAlert.step = 1;
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [UIView animateWithDuration:0.2 animations:^{
@@ -482,45 +480,26 @@
                 }];
             }];
         }else{
-//            NSLog(@"立即付款");
-            //跳转到支付密码页面
-            weakAlert.passwordInputView.editingEable = YES;//调起支付密码框
-            [UIView animateWithDuration:0.2 animations:^{
-                weakAlert.stepThreeView.frame = weakAlert.stepOneView.frame;
-            } completion:^(BOOL finished) {
-                weakAlert.step = 1;
-            }];
+            
+            if ([weakAlert.stepOnepayTypeLb.text isEqualToString:@"余额"]) { //跳转到支付密码页面
+                weakAlert.passwordInputView.editingEable = YES;//调起支付密码框
+                [UIView animateWithDuration:0.2 animations:^{
+                    weakAlert.stepThreeView.frame = weakAlert.stepOneView.frame;
+                } completion:^(BOOL finished) {
+                    weakAlert.step = 1;
+                }];
+            }else { //云闪付 || 支付宝
+                if (nowPayBlock) {
+                    nowPayBlock(weakAlert.stepOnepayTypeLb.text);
+                }
+            }
             
         }
     };
     
-    alertView.clickStepTowCellCallback = ^(NSIndexPath *indexPath) {
-        
-        if (weakAlert.payStep != 1) {
-            weakAlert.passwordInputView.editingEable = YES;
-            weakAlert.step = 2;
-        }else{
-            weakAlert.step = 0;
-        }
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [UIView animateWithDuration:0.2 animations:^{
-//                NSLog(@"step3");
-                if (weakAlert.payStep == 1) {
-                    //返回按钮
-//                    [weakAlert clickCancleBtn];
-                    !weakAlert.payStepCallback ? : weakAlert.payStepCallback(indexPath);
-                }else{
-                    weakAlert.stepThreeView.frame = weakAlert.stepOneView.frame;;
-                }
-            }];
-        }];
-    };
-
     return alertView;
     
 }
-
-
 
 - (void)setPayStep:(NSInteger)payStep{
     _payStep = payStep;

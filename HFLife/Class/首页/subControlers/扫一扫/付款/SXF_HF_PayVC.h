@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSString *payName;
 @property (nonatomic, strong)NSString *payHeaderUrl;
 @property (nonatomic, strong)NSString *codeStr;//收款码信息
+
+/** true 付款 false 收款 */
 @property (nonatomic, assign)BOOL payType;
 
 @property (nonatomic, strong)NSString *payMoney;//扫一扫设置金额

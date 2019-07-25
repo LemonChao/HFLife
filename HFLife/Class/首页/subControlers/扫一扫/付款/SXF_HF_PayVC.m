@@ -12,6 +12,7 @@
 #import "RYNumberKeyboard.h"
 #import "SXF_HF_paySuccessVC.h"
 #import "YYB_HF_setDealPassWordVC.h"
+#import "UMSPPPayUnifyPayPlugin.h"
 
 
 
@@ -22,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *payHeaderImageV;
 @property (weak, nonatomic) IBOutlet UILabel *payNameLb;
 @property (nonatomic, strong)NSString *order_Id;//生成的订单编号
+// 扫描的二维码是不是商户
+@property(nonatomic, strong) NSString *isBusiness;
 @end
 
 @implementation SXF_HF_PayVC
@@ -68,7 +71,10 @@
 
 
 - (IBAction)confirmBtnClick:(UIButton *)sender {
-    WEAK(weakSelf);
+    [self getOrder];
+}
+
+- (void)showAlert {
     if (self.payType) {
         if (self.moneyTF.text.length > 0) {
             [self.moneyTF endEditing:YES];
@@ -78,11 +84,19 @@
                 //密码
                 NSLog(@"密码框%@",pwd);
                 if (pwd.length == 6) {
-                    //网络请求
-                    [weakSelf getOrder:pwd];
+                    //去支付
+                    [self pay:self.order_Id pwd:pwd];
+                }
+            } nowPayWithStyle:^(NSString * _Nonnull style) {
+                [self.payView cancleAlertView];
+                if ([style isEqualToString:@"支付宝"]) {
+                    [self thirdPay:self.order_Id payType:@"1"];
+                }else if ([style isEqualToString:@"云闪付"]) {
+                    [self thirdPay:self.order_Id payType:@"3"];
                 }
             }];
-            self.payView.payMoneyStr = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+            self.payView.payMoneyStr = [self.moneyTF.text stringByReplacingOccurrencesOfString:@"" withString:@""];
+            self.payView.isBusiness = self.isBusiness;
         }else{
             [WXZTipView showCenterWithText:@"请输入付款金额"];
         }
@@ -93,8 +107,10 @@
         }];
     }
 }
+
+
 //去下单
-- (void) getOrder:(NSString *)password{
+- (void) getOrder{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *param = @{
                             @"app_type" : @"1",
@@ -104,11 +120,9 @@
     [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(CreateOrder) withParameters:param withResultBlock:^(BOOL result, id value) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (result && value) {
-            NSString *orderIdStr = value[@"data"][@"order_id"];
-            self.order_Id = orderIdStr;
-            
-            //去支付
-            [self pay:self.order_Id pwd:password];
+            self.order_Id = value[@"data"][@"order_id"];
+            self.isBusiness = value[@"data"][@"is_business"];
+            [self showAlert];
         }else{
             if (value) {
                 [WXZTipView showCenterWithText:value[@"msg"]];
@@ -119,13 +133,11 @@
     }];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        
-        
     });
     
 }
 
+// 余额支付
 - (void) pay:(NSString *)orderId pwd:(NSString *)password{
     NSDictionary *param = @{
                             @"order_id" :orderId ? orderId : @"",
@@ -136,19 +148,10 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (result && value) {
             //支付成功
-            SXF_HF_paySuccessVC *payVC = [SXF_HF_paySuccessVC new];
-            payVC.payImage = self.payHeaderImageV.image;
-            payVC.payName = self.payName;
-            payVC.payStatus = YES;
-            payVC.payType = @"余额";
-            payVC.payMoney = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-            [self.navigationController pushViewController:payVC animated:YES];
+            [self jumpToPayResultVC:YES];
             [self.payView cancleAlertView];
             
-            
             //语音播报
-            
-            
         }else{
             [SXF_HF_AlertView showAlertType:AlertType_Pay Complete:^(BOOL btnBype) {
                 if (btnBype) {
@@ -165,6 +168,101 @@
         }
     }];
 }
+
+// 第三方支付 1支付宝、2微信、3银联(云闪付) （微信的不能用去掉了）
+- (void)thirdPay:(NSString *)orderId payType:(NSString *)payType {
+    NSDictionary *paramDic = @{@"order_id":orderId ? orderId : @"",
+                               @"payType":payType};
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(ThirdPay) withParameters:paramDic withResultBlock:^(BOOL result, id value) {
+        if (result && value) { //请求成功
+            NSDictionary *payInfo = value[@"data"][@"pullPayInfo"];
+            if (DictIsEmpty(payInfo)) {
+                [WXZTipView showBottomWithText:@"支付参数错误"];
+                return;
+            }
+            
+            NSString *payDataJsonStr = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:payInfo options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+            
+            __weak typeof(self) weak_self = self;
+            if (payType.integerValue == 1) {
+                //开启轮询订单
+                [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+                    [[WBPCreate sharedInstance] showWBProgress];
+                    [weak_self pollingOrderResult:weak_self.order_Id];
+                }];
+
+                [UMSPPPayUnifyPayPlugin payWithPayChannel:CHANNEL_ALIPAY payData:payDataJsonStr callbackBlock:^(NSString *resultCode, NSString *resultInfo) {}];
+
+            }else if (payType.integerValue == 3) {
+                
+                [UMSPPPayUnifyPayPlugin cloudPayWithURLSchemes:@"unifyPayHanPay" payData:payDataJsonStr viewController:self callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
+                    [weak_self handlePayResultL:resultCode info:resultInfo];
+                }];
+            }
+        }
+    }];
+    
+    
+}
+
+// 支付宝支付结果轮询
+- (void)pollingOrderResult:(NSString *)orderId {
+    static NSInteger pollingCount = 0;
+    @weakify(self);
+    [networkingManagerTool requestToServerWithType:POST withSubUrl:SXF_LOC_URL_STR(pollingPayState) withParameters:@{@"order_id":orderId} withResultBlock:^(BOOL result, id value) {
+        @strongify(self);
+        NSLog(@"count:%ld", pollingCount);
+        if (result || pollingCount >= 4) {
+            pollingCount = 0;
+            [[WBPCreate sharedInstance] hideAnimated];
+            [self_weak_ jumpToPayResultVC:result];
+            
+        }else {
+            pollingCount++;
+            [self performSelector:@selector(pollingOrderResult:) withObject:orderId afterDelay:2.f];
+        }
+    }];
+}
+
+/**
+ 处理支付结果
+ 0000 支付成功
+ 1000 用户取消支付
+ 1001 参数错误
+ 1002 网络连接错误
+ 1003 支付客户端未安装
+ 2001 订单处理中，支付结果未知(有可能已经支付成功)，请通过后台接口查询订单状态
+ 2002 订单号重复
+ 2003 订单支付失败
+ 9999 其他支付错误
+ */
+-(void)handlePayResultL:(NSString *)resultCode info:(NSString *)resultInfo {
+    if ([resultCode isEqualToString:@"1003"]) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [WXZTipView showBottomWithText:@"客户端未安装" duration:1.5];
+        }];
+        return;
+    }
+
+    [self jumpToPayResultVC:[resultCode isEqualToString:@"0000"]];
+}
+
+
+// 跳转支付结果界面
+- (void)jumpToPayResultVC:(BOOL)result {
+    SXF_HF_paySuccessVC *payVC = [SXF_HF_paySuccessVC new];
+    payVC.payImage = self.payHeaderImageV.image;
+    payVC.payName = self.payName;
+    payVC.payStatus = result;
+    payVC.payType = @"余额";
+    payVC.payMoney = [self.moneyTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [self.navigationController pushViewController:payVC animated:YES];
+}
+
+
+
+
+
 
 
 

@@ -219,7 +219,7 @@
             [self handlePayResultL:resultCode info:resultInfo];
         }];
     }
-    else if ([type isEqualToString:@"3"]){
+    else if ([type isEqualToString:@"3"]){ //云闪付
         
         [UMSPPPayUnifyPayPlugin cloudPayWithURLSchemes:@"unifyPayHanPay" payData:payDataJsonStr viewController:self callbackBlock:^(NSString *resultCode, NSString *resultInfo) {
             [self handlePayResultL:resultCode info:resultInfo];

@@ -121,6 +121,16 @@ static NSString *const TradingDetail              = @"/member_coin/tradingDetail
  
  */
 static NSString *const QrcodeGetMoneyCore         = @"/api/Finance/qrcodeGetMoneyCore";
+
+/**
+ 扫码-第三方（支付宝-云闪付-微信不支持）支付
+ */
+static NSString *const ThirdPay                    = @"/api/finance/tree_Pay";
+/**
+ 扫码支付结果轮询
+ */
+static NSString *const pollingPayState             = @"/api/finance/pay_state";
+
 /************************subUrl************************/
 
 

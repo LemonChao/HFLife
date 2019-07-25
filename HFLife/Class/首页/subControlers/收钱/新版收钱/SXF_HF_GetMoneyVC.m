@@ -119,7 +119,7 @@
     WEAK(weakSelf);
     self.getMoneyView.tabBtnCallback = ^(NSInteger index, BOOL reset) {
         NSLog(@"%ld", (long)index);
-        __block BaseViewController *vc ;
+        __block BaseViewController *vc;
         if (!weakSelf.payType) {
             //向商家付钱
             if (index == 2) {
@@ -129,6 +129,8 @@
                 SXF_HF_payStepAleryView *payAlert = [SXF_HF_payStepAleryView showAlertComplete:^(BOOL btnBype) {
                     
                 } password:^(NSString * _Nonnull pwd) {
+                    
+                } nowPayWithStyle:^(NSString * _Nonnull style) {
                     
                 }];
                 payAlert.payStepCallback = ^(NSIndexPath * _Nonnull indexP) {
